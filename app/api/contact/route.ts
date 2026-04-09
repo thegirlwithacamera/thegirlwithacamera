@@ -9,7 +9,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    console.log("API KEY STATUS:", process.env.RESEND_API_KEY ? `present (starts with ${process.env.RESEND_API_KEY.slice(0, 5)})` : "UNDEFINED");
+    console.error("API KEY STATUS:", process.env.RESEND_API_KEY ? `present (starts with ${process.env.RESEND_API_KEY.slice(0, 5)})` : "UNDEFINED");
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
