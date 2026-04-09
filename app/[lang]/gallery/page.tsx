@@ -1,98 +1,55 @@
-"use client";
-
 import Image from "next/image";
-import { use } from "react";
+import Link from "next/link";
+import { series } from "@/lib/series";
 
-const categories = {
-  fr: [
-    { id: "all", label: "Tout" },
-    { id: "portraits", label: "Portraits" },
-    { id: "fashion", label: "Mode" },
-    { id: "street", label: "Street" },
-    { id: "lifestyle", label: "Lifestyle" },
-    { id: "studio", label: "Studio" },
-  ],
-  en: [
-    { id: "all", label: "All" },
-    { id: "portraits", label: "Portraits" },
-    { id: "fashion", label: "Fashion" },
-    { id: "street", label: "Street" },
-    { id: "lifestyle", label: "Lifestyle" },
-    { id: "studio", label: "Studio" },
-  ],
-};
+interface Props {
+  params: Promise<{ lang: "fr" | "en" }>;
+}
 
-const photos = [
-  { id: 1, title: "Portrait Editorial", category: "portraits", image: "/images/gallery/photo-1.jpg" },
-  { id: 2, title: "Fashion Street", category: "fashion", image: "/images/gallery/photo-2.jpg" },
-  { id: 3, title: "Urban Life", category: "street", image: "/images/gallery/photo-3.jpg" },
-  { id: 4, title: "Golden Hour", category: "lifestyle", image: "/images/gallery/photo-4.jpg" },
-  { id: 5, title: "Studio Noir", category: "studio", image: "/images/gallery/photo-5.jpg" },
-  { id: 6, title: "Portrait Naturel", category: "portraits", image: "/images/gallery/photo-6.jpg" },
-  { id: 7, title: "Haute Couture", category: "fashion", image: "/images/gallery/photo-7.jpg" },
-  { id: 8, title: "City Lights", category: "street", image: "/images/gallery/photo-8.jpg" },
-  { id: 9, title: "Morning Coffee", category: "lifestyle", image: "/images/gallery/photo-9.jpg" },
-  { id: 10, title: "Studio Light", category: "studio", image: "/images/gallery/photo-10.jpg" },
-  { id: 11, title: "Regard Intense", category: "portraits", image: "/images/gallery/photo-11.jpg" },
-  { id: 12, title: "Editorial Fashion", category: "fashion", image: "/images/gallery/photo-12.jpg" },
-];
-
-export default function GalleryPage({ params }: { params: Promise<{ lang: "fr" | "en" }> }) {
-  const { lang } = use(params);
-  const isFrench = lang === "fr";
-
-  const filteredPhotos = photos;
+export default async function GalleryPage({ params }: Props) {
+  const { lang } = await params;
 
   return (
-    <div className="pt-24 pb-16 px-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="pt-32 pb-24 px-6">
+      <div className="max-w-6xl mx-auto">
+
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4">
-            {isFrench ? "Galerie" : "Gallery"}
+        <div className="mb-20 border-b border-[#e5e5e5] pb-8">
+          <h1 className="font-serif text-5xl md:text-6xl font-bold">
+            {lang === "fr" ? "Séries" : "Series"}
           </h1>
-          <p className="text-[#737373] text-lg max-w-2xl mx-auto">
-            {isFrench
-              ? "Une sélection de mes photographies"
-              : "A selection of my photographs"}
-          </p>
         </div>
 
-        {/* Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories[lang].map((cat) => (
-            <button
-              key={cat.id}
-              className="text-sm font-medium tracking-wide transition-colors text-[#737373] hover:text-black"
+        {/* Series grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+          {series.map((s) => (
+            <Link
+              key={s.slug}
+              href={`/${lang}/gallery/${s.slug}`}
+              className="group block"
             >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredPhotos.map((photo) => (
-            <div
-              key={photo.id}
-              className="group relative aspect-[3/4] overflow-hidden bg-[#f5f5f5] image-overlay cursor-pointer"
-            >
-              <Image
-                src={photo.image}
-                alt={photo.title}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="font-serif text-xl font-bold">
-                    {photo.title}
-                  </h3>
+              {/* Frame */}
+              <div className="border border-[#d4d4d4] p-3 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] group-hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-shadow duration-400">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#f5f5f5]">
+                  <Image
+                    src={s.cover}
+                    alt={s.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                 </div>
               </div>
-            </div>
+
+              {/* Label */}
+              <div className="mt-4 text-center">
+                <p className="font-serif text-lg font-bold tracking-wide">{s.title}</p>
+                <p className="mt-1 text-xs tracking-[0.2em] uppercase text-[#737373]">{s.year}</p>
+              </div>
+            </Link>
           ))}
         </div>
+
       </div>
     </div>
   );

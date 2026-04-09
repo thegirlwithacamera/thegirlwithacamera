@@ -17,8 +17,7 @@ export default function Header() {
   const navLinks = [
     { href: `/${currentLang}`, label: "Accueil", labelEn: "Home" },
     { href: `/${currentLang}/gallery`, label: "Galerie", labelEn: "Gallery" },
-    { href: `/${currentLang}/da`, label: "D.A.", labelEn: "Art Direction" },
-    { href: `/${currentLang}/blog`, label: "Blog", labelEn: "Blog" },
+    { href: `/${currentLang}/blog`, label: "Journal", labelEn: "Journal" },
     { href: `/${currentLang}/about`, label: "À propos", labelEn: "About" },
     { href: `/${currentLang}/contact`, label: "Contact", labelEn: "Contact" },
   ];

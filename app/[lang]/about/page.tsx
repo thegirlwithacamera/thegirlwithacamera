@@ -5,41 +5,41 @@ import Link from "next/link";
 import { use } from "react";
 
 const content = {
-  fr: {
-    title: "À Propos",
-    subtitle: "La personne derrière l'objectif",
-    hello: "Bonjour, je suis Sandrine",
-    p1: "Photographe et créatrice de contenu basée à Paris, je capture des moments uniques avec un style éditorial et authentique.",
-    p2: "Mon approche combine technique maîtrisée et sensibilité artistique pour créer des images qui racontent une histoire. Chaque projet est une nouvelle opportunité de créer quelque chose d'unique.",
-    p3: "Spécialisée en portrait, mode et lifestyle, je travaille aussi bien en studio qu'en extérieur, avec une prédilection pour la lumière naturelle qui apporte authenticité et émotion à mes images.",
-    services: "Mes Services",
-    photoSessions: "Séances Photo",
-    photoSessionsDesc: "Portraits, mode, événements\nStudio ou extérieur",
-    contentCreation: "Création de Contenu",
-    contentCreationDesc: "Direction artistique\nContenu pour réseaux sociaux",
-    video: "Vidéo",
-    videoDesc: "Reels, behind the scenes\nFormats courts dynamiques",
-    haveProject: "Vous avez un projet ?",
-    projectDesc: "Je serais ravie d'échanger avec vous sur votre prochain projet créatif.",
-    contact: "ME CONTACTER",
-  },
   en: {
     title: "About",
-    subtitle: "The person behind the lens",
-    hello: "Hello, I'm Sandrine",
-    p1: "Photographer and content creator based in Paris, capturing unique moments with an editorial and authentic style.",
-    p2: "My approach combines technical mastery and artistic sensitivity to create images that tell a story. Every project is a new opportunity to create something unique.",
-    p3: "Specializing in portrait, fashion and lifestyle, I work both in studio and on location, with a preference for natural light that brings authenticity and emotion to my images.",
-    services: "Services",
-    photoSessions: "Photo Sessions",
-    photoSessionsDesc: "Portraits, fashion, events\nStudio or location",
-    contentCreation: "Content Creation",
-    contentCreationDesc: "Art direction\nSocial media content",
-    video: "Video",
-    videoDesc: "Reels, behind the scenes\nDynamic short formats",
-    haveProject: "Have a project?",
-    projectDesc: "I'd love to discuss your next creative project with you.",
-    contact: "GET IN TOUCH",
+    chapter1: "I've had a camera in my hands since I was a child.",
+    p1: "Then life happened, and I put it down. In 2024, I picked it up again. What came back wasn't just a hobby. It was a way of seeing.",
+    p2: "I photograph streets, light, and quiet moments. The kind that go unnoticed. My work sits at the intersection of documentary and fashion. Minimal editing. I barely touch the image after. Just what's there, as it was.",
+    p3: "Beyond stills, I create video content: scripting, filming, editing. Currently working with Ricoh and Pentax Europe. I'm building a body of personal work I want to see in print.",
+    based: "Based in Brussels. Available to travel.",
+    whatIDo: "What I do",
+    s1title: "Photography",
+    s1desc: "Street, documentary, travel, fashion.\nPersonal series and editorial work.",
+    s2title: "Video & Content",
+    s2desc: "Scripting, filming, editing.\nBrand content for social media.",
+    s3title: "Collaborations",
+    s3desc: "Ricoh Europe · Pentax Europe\nOpen to brands and magazines.",
+    cta: "Want to work together?",
+    ctaDesc: "Whether it's a brand project, an editorial idea, or something else. I'd love to hear it.",
+    ctaBtn: "Get in touch",
+  },
+  fr: {
+    title: "À propos",
+    chapter1: "J'ai eu un appareil photo entre les mains depuis l'enfance.",
+    p1: "Puis la vie a pris le dessus, et je l'ai posé. En 2024, je l'ai repris. Ce qui est revenu n'était pas juste une passion. C'était une façon de voir.",
+    p2: "Je photographie les rues, la lumière, les moments silencieux. Ceux qu'on ne remarque pas. Mon travail se situe à la croisée du documentaire et de la mode. Post-traitement minimal. Je touche à peine l'image. Ce qui est là, tel que c'était.",
+    p3: "Au-delà de la photo, je crée du contenu vidéo : scripting, tournage, montage. Actuellement avec Ricoh et Pentax Europe. Je construis un corpus de travail personnel que j'aimerais voir publié.",
+    based: "Basée à Bruxelles. Disponible pour voyager.",
+    whatIDo: "Ce que je fais",
+    s1title: "Photographie",
+    s1desc: "Street, documentaire, voyage, mode.\nSéries personnelles et travail éditorial.",
+    s2title: "Vidéo & Contenu",
+    s2desc: "Scripting, tournage, montage.\nContenu de marque pour les réseaux sociaux.",
+    s3title: "Collaborations",
+    s3desc: "Ricoh Europe · Pentax Europe\nOuverte aux marques et magazines.",
+    cta: "Envie de travailler ensemble ?",
+    ctaDesc: "Que ce soit un projet de marque, une idée éditoriale, ou autre chose. Je suis à l'écoute.",
+    ctaBtn: "Me contacter",
   },
 };
 
@@ -48,21 +48,18 @@ export default function AboutPage({ params }: { params: Promise<{ lang: "fr" | "
   const t = content[lang];
 
   return (
-    <div className="pt-24 pb-16 px-6">
-      <div className="max-w-4xl mx-auto">
-        {/* Hero */}
-        <div className="text-center mb-16">
-          <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4">
-            {t.title}
-          </h1>
-          <p className="text-[#737373] text-lg">
-            {t.subtitle}
-          </p>
-        </div>
+    <div className="pt-24 pb-24 px-6">
+      <div className="max-w-5xl mx-auto">
 
-        {/* Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
-          <div className="aspect-[3/4] bg-[#f5f5f5] overflow-hidden">
+        {/* Title */}
+        <h1 className="font-serif text-5xl md:text-6xl font-bold mb-20">
+          {t.title}
+        </h1>
+
+        {/* Main content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">
+          {/* Photo */}
+          <div className="relative aspect-[3/4] bg-[#f5f5f5] overflow-hidden">
             <Image
               src="/images/about.jpg"
               alt="Sandrine Ceuppens"
@@ -70,60 +67,66 @@ export default function AboutPage({ params }: { params: Promise<{ lang: "fr" | "
               className="object-cover"
             />
           </div>
-          <div>
-            <h2 className="font-serif text-3xl font-bold mb-6">
-              {t.hello}
+
+          {/* Text */}
+          <div className="flex flex-col justify-center">
+            <h2 className="font-serif text-2xl md:text-3xl font-bold mb-8 leading-snug">
+              {t.chapter1}
             </h2>
-            <div className="space-y-4 text-[#525252] leading-relaxed">
+            <div className="space-y-5 text-[#525252] leading-relaxed">
               <p>{t.p1}</p>
               <p>{t.p2}</p>
               <p>{t.p3}</p>
             </div>
+            <p className="mt-8 text-xs tracking-widest uppercase text-[#737373]">
+              {t.based}
+            </p>
           </div>
         </div>
 
-        {/* Services */}
-        <div className="py-12 border-t border-b border-[#e5e5e5]">
-          <h3 className="font-serif text-2xl font-bold mb-8 text-center">
-            {t.services}
+        {/* What I do */}
+        <div className="border-t border-[#e5e5e5] pt-16">
+          <h3 className="font-serif text-2xl font-bold mb-12">
+            {t.whatIDo}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <h4 className="font-semibold text-lg mb-2">{t.photoSessions}</h4>
-              <p className="text-[#737373] text-sm whitespace-pre-line">
-                {t.photoSessionsDesc}
+            <div>
+              <h4 className="font-semibold text-sm tracking-wide mb-3">{t.s1title}</h4>
+              <p className="text-[#737373] text-sm leading-relaxed whitespace-pre-line">
+                {t.s1desc}
               </p>
             </div>
-            <div className="text-center">
-              <h4 className="font-semibold text-lg mb-2">{t.contentCreation}</h4>
-              <p className="text-[#737373] text-sm whitespace-pre-line">
-                {t.contentCreationDesc}
+            <div>
+              <h4 className="font-semibold text-sm tracking-wide mb-3">{t.s2title}</h4>
+              <p className="text-[#737373] text-sm leading-relaxed whitespace-pre-line">
+                {t.s2desc}
               </p>
             </div>
-            <div className="text-center">
-              <h4 className="font-semibold text-lg mb-2">{t.video}</h4>
-              <p className="text-[#737373] text-sm whitespace-pre-line">
-                {t.videoDesc}
+            <div>
+              <h4 className="font-semibold text-sm tracking-wide mb-3">{t.s3title}</h4>
+              <p className="text-[#737373] text-sm leading-relaxed whitespace-pre-line">
+                {t.s3desc}
               </p>
             </div>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-16">
-          <h3 className="font-serif text-2xl font-bold mb-4">
-            {t.haveProject}
+        <div className="mt-24 text-center">
+          <h3 className="font-serif text-3xl md:text-4xl font-bold mb-4">
+            {t.cta}
           </h3>
-          <p className="text-[#737373] mb-8">
-            {t.projectDesc}
+          <p className="text-[#737373] mb-8 max-w-md mx-auto">
+            {t.ctaDesc}
           </p>
           <Link
-            href={`/${lang === "fr" ? "fr" : "en"}/contact`}
-            className="inline-block px-8 py-3 bg-black text-white text-sm font-medium tracking-wide hover:bg-[#333] transition-colors"
+            href={`/${lang}/contact`}
+            className="inline-block px-8 py-3 bg-black text-white text-xs font-medium tracking-widest uppercase hover:bg-[#333] transition-colors"
           >
-            {t.contact}
+            {t.ctaBtn}
           </Link>
         </div>
+
       </div>
     </div>
   );

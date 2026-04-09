@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   return {
     title: "SANDRINE CEUPPENS | The Girl With A Camera",
     description: lang === "fr"
-      ? "Portfolio de photographe et créatrice de contenu. Découvrez mes séries photos, créations et articles."
-      : "Photographer and content creator portfolio. Discover my photo series, creations and articles.",
+      ? "Photographe et créatrice de contenu basée à Bruxelles. Street, documentaire, mode et vidéo."
+      : "Photographer and content creator based in Brussels. Street, documentary, fashion and video.",
     keywords: ["photographie", "portfolio", "blog", "création de contenu", "paris"],
     authors: [{ name: "Sandrine Ceuppens" }],
     openGraph: {

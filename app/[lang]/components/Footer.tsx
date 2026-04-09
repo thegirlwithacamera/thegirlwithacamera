@@ -11,86 +11,62 @@ export default function Footer() {
   const isFrench = currentLang === "fr";
 
   return (
-    <footer className="bg-black text-white py-12 mt-auto">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand */}
-          <div>
-            <h3 className="font-serif text-xl font-bold mb-4">
-              SANDRINE CEUPPENS
-            </h3>
-            <p className="text-[#a3a3a3] text-sm leading-relaxed">
-              {isFrench ? (
-                <>
-                  Photographe & Créatrice de contenu<br />
-                  Basée à Paris
-                </>
-              ) : (
-                <>
-                  Photographer & Content Creator<br />
-                  Based in Paris
-                </>
-              )}
-            </p>
-          </div>
-
-          {/* Navigation */}
-          <div>
-            <h4 className="font-semibold text-sm tracking-wide mb-4">
-              {isFrench ? "NAVIGATION" : "NAVIGATION"}
-            </h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href={`/${currentLang}/gallery`} className="text-[#a3a3a3] hover:text-white transition-colors">
-                  {isFrench ? "Galerie" : "Gallery"}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${currentLang}/da`} className="text-[#a3a3a3] hover:text-white transition-colors">
-                  {isFrench ? "D.A." : "Art Direction"}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${currentLang}/blog`} className="text-[#a3a3a3] hover:text-white transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${currentLang}/about`} className="text-[#a3a3a3] hover:text-white transition-colors">
-                  {isFrench ? "À propos" : "About"}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${currentLang}/contact`} className="text-[#a3a3a3] hover:text-white transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4 className="font-semibold text-sm tracking-wide mb-4">
-              {isFrench ? "SUIVEZ-MOI" : "FOLLOW ME"}
-            </h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="https://www.instagram.com/sandrinecppns/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#a3a3a3] hover:text-white transition-colors"
-                >
-                  Instagram
-                </a>
-              </li>
-            </ul>
-          </div>
+    <footer className="bg-black text-white">
+      {/* CTA section */}
+      <div className="px-8 md:px-16 pt-24 pb-16">
+        <h2 className="font-serif text-4xl md:text-6xl font-bold leading-tight mb-10 max-w-3xl">
+          {isFrench
+            ? <span className="whitespace-nowrap">Et si on créait quelque chose&nbsp;?</span>
+            : "Curious what we could create together?"}
+          <br />
+          <span className="text-[#a3a3a3]">
+            {isFrench
+              ? "Quelque chose qui reste."
+              : "Let's craft something worth remembering."}
+          </span>
+        </h2>
+        <div className="flex flex-wrap items-center gap-6">
+          <Link
+            href={`/${currentLang}/contact`}
+            className="inline-block px-8 py-3 border border-white text-white text-xs font-medium tracking-widest uppercase hover:bg-white hover:text-black transition-colors"
+          >
+            {isFrench ? "Me contacter" : "Get in Touch"}
+          </Link>
+          <span className="flex items-center gap-2 text-sm text-[#a3a3a3]">
+            <span className="w-2 h-2 rounded-full bg-green-400 inline-block" />
+            {isFrench ? "Disponible" : "Available for Work"}
+          </span>
         </div>
+      </div>
 
-        {/* Copyright */}
-        <div className="border-t border-[#262626] mt-8 pt-8 text-center text-[#a3a3a3] text-sm">
-          <p>&copy; {new Date().getFullYear()} Sandrine Ceuppens. {isFrench ? "Tous droits réservés" : "All rights reserved"}.</p>
+      {/* Bottom bar */}
+      <div className="border-t border-[#262626] px-8 md:px-16 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <a
+          href="mailto:hello@thegirlwithacamera.com"
+          className="text-sm text-[#737373] hover:text-white transition-colors"
+        >
+          hello@thegirlwithacamera.com
+        </a>
+        <p className="text-xs text-[#525252] order-last md:order-none">
+          All rights reserved, Sandrine Ceuppens &copy;{new Date().getFullYear()}
+        </p>
+        <div className="flex items-center gap-6">
+          <a
+            href="https://www.instagram.com/sandrinecppns/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-[#737373] hover:text-white transition-colors"
+          >
+            Instagram
+          </a>
+          <a
+            href="https://www.threads.net/@sandrinecppns"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-[#737373] hover:text-white transition-colors"
+          >
+            Threads
+          </a>
         </div>
       </div>
     </footer>

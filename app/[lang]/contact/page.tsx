@@ -1,45 +1,27 @@
 "use client";
 
-import { use } from "react";
+import { use, useState } from "react";
 
 const content = {
-  fr: {
-    title: "Contact",
-    desc: "Un projet ? Une collaboration ? N'hésitez pas à me contacter.",
-    talkProject: "Parlons de votre projet",
-    email: "Email",
-    social: "Réseaux Sociaux",
-    location: "Localisation",
-    paris: "Paris, France",
-    travel: "Déplacements possibles",
-    name: "Nom",
-    yourName: "Votre nom",
-    emailLabel: "Email",
-    yourEmail: "votre@email.com",
-    subject: "Sujet",
-    yourProject: "Votre projet",
-    message: "Message",
-    describeProject: "Décrivez votre projet...",
-    send: "ENVOYER",
-  },
   en: {
-    title: "Contact",
-    desc: "A project? A collaboration? Feel free to contact me.",
-    talkProject: "Let's talk about your project",
-    email: "Email",
-    social: "Social Media",
-    location: "Location",
-    paris: "Paris, France",
-    travel: "Available for travel",
-    name: "Name",
-    yourName: "Your name",
-    emailLabel: "Email",
-    yourEmail: "your@email.com",
-    subject: "Subject",
-    yourProject: "Your project",
-    message: "Message",
-    describeProject: "Describe your project...",
-    send: "SEND",
+    sub: "Your Masterpiece Starts Here",
+    namePlaceholder: "Your Name",
+    emailPlaceholder: "Your Email",
+    messagePlaceholder: "Your Masterpiece Starts Here",
+    send: "Send It!",
+    sending: "Sending...",
+    success: "Message sent. I'll be in touch soon.",
+    error: "Something went wrong. Try emailing me directly.",
+  },
+  fr: {
+    sub: "Votre projet commence ici",
+    namePlaceholder: "Votre nom",
+    emailPlaceholder: "Votre email",
+    messagePlaceholder: "Votre projet commence ici",
+    send: "Envoyer !",
+    sending: "Envoi...",
+    success: "Message envoyé. Je reviens vers vous très vite.",
+    error: "Une erreur s'est produite. Écrivez-moi directement.",
   },
 };
 
@@ -47,131 +29,91 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
   const { lang } = use(params);
   const t = content[lang];
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
-    <div className="pt-24 pb-16 px-6">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4">
-            {t.title}
-          </h1>
-          <p className="text-[#737373] text-lg max-w-2xl mx-auto">
-            {t.desc}
-          </p>
+    <div className="min-h-screen pt-20 px-8 md:px-16 pb-16">
+      {/* Big title */}
+      <h1 className="font-serif text-[clamp(4rem,12vw,10rem)] font-black leading-none tracking-tight mt-8 mb-16">
+        SHOOT A<br />REQUEST
+      </h1>
+
+      {/* Two columns */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        {/* Left — email */}
+        <div>
+          <a
+            href="mailto:hello@thegirlwithacamera.com"
+            className="text-sm text-[#525252] hover:text-black transition-colors"
+          >
+            hello@thegirlwithacamera.com
+          </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Info */}
-          <div>
-            <h2 className="font-serif text-2xl font-bold mb-6">
-              {t.talkProject}
-            </h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-semibold text-sm tracking-wide mb-2">
-                  {t.email.toUpperCase()}
-                </h3>
-                <a
-                  href="mailto:hello@thegirlwithacamera.com"
-                  className="text-[#525252] hover:text-black transition-colors"
-                >
-                  hello@thegirlwithacamera.com
-                </a>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-sm tracking-wide mb-2">
-                  {t.social.toUpperCase()}
-                </h3>
-                <ul className="space-y-2">
-                  <li>
-                    <a
-                      href="https://www.instagram.com/sandrinecppns/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#525252] hover:text-black transition-colors"
-                    >
-                      Instagram @sandrinecppns
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-sm tracking-wide mb-2">
-                  {t.location.toUpperCase()}
-                </h3>
-                <p className="text-[#525252]">{t.paris}</p>
-                <p className="text-[#737373] text-sm mt-1">
-                  {t.travel}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Form */}
-          <div>
-            <form className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  {t.name}
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="w-full px-4 py-3 border border-[#e5e5e5] focus:outline-none focus:border-black transition-colors bg-white"
-                  placeholder={t.yourName}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  {t.emailLabel}
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full px-4 py-3 border border-[#e5e5e5] focus:outline-none focus:border-black transition-colors bg-white"
-                  placeholder={t.yourEmail}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                  {t.subject}
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  className="w-full px-4 py-3 border border-[#e5e5e5] focus:outline-none focus:border-black transition-colors bg-white"
-                  placeholder={t.yourProject}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  {t.message}
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  className="w-full px-4 py-3 border border-[#e5e5e5] focus:outline-none focus:border-black transition-colors bg-white resize-none"
-                  placeholder={t.describeProject}
-                />
-              </div>
-
+        {/* Right — form */}
+        <div>
+          {status === "success" ? (
+            <p className="text-[#525252]">{t.success}</p>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="text"
+                required
+                placeholder={t.namePlaceholder}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-4 py-3 bg-[#f5f5f5] border-none focus:outline-none focus:ring-1 focus:ring-black text-sm"
+              />
+              <input
+                type="email"
+                required
+                placeholder={t.emailPlaceholder}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 bg-[#f5f5f5] border-none focus:outline-none focus:ring-1 focus:ring-black text-sm"
+              />
+              <textarea
+                required
+                rows={6}
+                placeholder={t.messagePlaceholder}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="w-full px-4 py-3 bg-[#f5f5f5] border-none focus:outline-none focus:ring-1 focus:ring-black text-sm resize-none"
+              />
+              {status === "error" && (
+                <p className="text-red-500 text-sm">{t.error}</p>
+              )}
               <button
                 type="submit"
-                className="w-full px-8 py-3 bg-black text-white text-sm font-medium tracking-wide hover:bg-[#333] transition-colors"
+                disabled={status === "sending"}
+                className="w-full py-4 bg-black text-white text-sm font-medium tracking-widest uppercase hover:bg-[#333] transition-colors disabled:opacity-50"
               >
-                {t.send}
+                {status === "sending" ? t.sending : t.send}
               </button>
             </form>
-          </div>
+          )}
         </div>
       </div>
     </div>
