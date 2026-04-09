@@ -20,7 +20,8 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (err) {
+    console.error("Resend error:", err);
     return NextResponse.json({ error: "Failed to send" }, { status: 500 });
   }
 }
