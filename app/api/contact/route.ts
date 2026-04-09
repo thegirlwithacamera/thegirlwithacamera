@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
-      from: "The Girl With A Camera <onboarding@resend.dev>",
+      from: "The Girl With A Camera <hello@thegirlwithacamera.com>",
       to: "hello@thegirlwithacamera.com",
       replyTo: email,
       subject: `New message from ${name}`,
