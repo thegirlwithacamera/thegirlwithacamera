@@ -1,11 +1,14 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { use } from "react";
+import type { Metadata } from "next";
+
+interface Props {
+  params: Promise<{ lang: "fr" | "en" }>;
+}
 
 const content = {
   en: {
+    eyebrow: "About",
     title: "About",
     chapter1: "I've had a camera in my hands since I was a child.",
     p1: "Then life happened, and I put it down. In 2024, I picked it up again. What came back wasn't just a hobby. It was a way of seeing.",
@@ -24,6 +27,7 @@ const content = {
     ctaBtn: "Get in touch",
   },
   fr: {
+    eyebrow: "À propos",
     title: "À propos",
     chapter1: "J'ai eu un appareil photo entre les mains depuis l'enfance.",
     p1: "Puis la vie a pris le dessus, et je l'ai posé. En 2024, je l'ai repris. Ce qui est revenu n'était pas juste une passion. C'était une façon de voir.",
@@ -43,32 +47,43 @@ const content = {
   },
 };
 
-export default function AboutPage({ params }: { params: Promise<{ lang: "fr" | "en" }> }) {
-  const { lang } = use(params);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  const isFr = lang === "fr";
+  return {
+    title: isFr ? "À propos" : "About",
+    description: isFr
+      ? "Sandrine Ceuppens, photographe et créatrice de contenu basée à Bruxelles. Documentaire, mode, vidéo. Collaborations Ricoh et Pentax Europe."
+      : "Sandrine Ceuppens, photographer and content creator based in Brussels. Documentary, fashion, video. Ricoh and Pentax Europe collaborations.",
+    alternates: { canonical: `/${lang}/about`, languages: { fr: "/fr/about", en: "/en/about" } },
+  };
+}
+
+export default async function AboutPage({ params }: Props) {
+  const { lang } = await params;
   const t = content[lang];
 
   return (
-    <div className="pt-24 pb-24 px-6">
+    <div className="pt-32 pb-24 px-6">
       <div className="max-w-5xl mx-auto">
+        <div className="mb-16 border-b border-[#e5e5e5] pb-10">
+          <p className="text-xs tracking-[0.3em] uppercase text-[#737373] mb-6">{t.eyebrow}</p>
+          <h1 className="font-serif text-5xl md:text-7xl font-bold leading-none">
+            {t.title}
+          </h1>
+        </div>
 
-        {/* Title */}
-        <h1 className="font-serif text-5xl md:text-6xl font-bold mb-20">
-          {t.title}
-        </h1>
-
-        {/* Main content */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">
-          {/* Photo */}
           <div className="relative aspect-[3/4] bg-[#f5f5f5] overflow-hidden">
             <Image
               src="/images/about.jpg"
-              alt="Sandrine Ceuppens"
+              alt={lang === "fr" ? "Portrait de Sandrine Ceuppens" : "Portrait of Sandrine Ceuppens"}
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
 
-          {/* Text */}
           <div className="flex flex-col justify-center">
             <h2 className="font-serif text-2xl md:text-3xl font-bold mb-8 leading-snug">
               {t.chapter1}
@@ -78,47 +93,31 @@ export default function AboutPage({ params }: { params: Promise<{ lang: "fr" | "
               <p>{t.p2}</p>
               <p>{t.p3}</p>
             </div>
-            <p className="mt-8 text-xs tracking-widest uppercase text-[#737373]">
-              {t.based}
-            </p>
+            <p className="mt-8 text-xs tracking-widest uppercase text-[#737373]">{t.based}</p>
           </div>
         </div>
 
-        {/* What I do */}
         <div className="border-t border-[#e5e5e5] pt-16">
-          <h3 className="font-serif text-2xl font-bold mb-12">
-            {t.whatIDo}
-          </h3>
+          <h3 className="font-serif text-2xl font-bold mb-12">{t.whatIDo}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h4 className="font-semibold text-sm tracking-wide mb-3">{t.s1title}</h4>
-              <p className="text-[#737373] text-sm leading-relaxed whitespace-pre-line">
-                {t.s1desc}
-              </p>
+              <p className="text-[#525252] text-sm leading-relaxed whitespace-pre-line">{t.s1desc}</p>
             </div>
             <div>
               <h4 className="font-semibold text-sm tracking-wide mb-3">{t.s2title}</h4>
-              <p className="text-[#737373] text-sm leading-relaxed whitespace-pre-line">
-                {t.s2desc}
-              </p>
+              <p className="text-[#525252] text-sm leading-relaxed whitespace-pre-line">{t.s2desc}</p>
             </div>
             <div>
               <h4 className="font-semibold text-sm tracking-wide mb-3">{t.s3title}</h4>
-              <p className="text-[#737373] text-sm leading-relaxed whitespace-pre-line">
-                {t.s3desc}
-              </p>
+              <p className="text-[#525252] text-sm leading-relaxed whitespace-pre-line">{t.s3desc}</p>
             </div>
           </div>
         </div>
 
-        {/* CTA */}
         <div className="mt-24 text-center">
-          <h3 className="font-serif text-3xl md:text-4xl font-bold mb-4">
-            {t.cta}
-          </h3>
-          <p className="text-[#737373] mb-8 max-w-md mx-auto">
-            {t.ctaDesc}
-          </p>
+          <h3 className="font-serif text-3xl md:text-4xl font-bold mb-4">{t.cta}</h3>
+          <p className="text-[#525252] mb-8 max-w-md mx-auto">{t.ctaDesc}</p>
           <Link
             href={`/${lang}/contact`}
             className="inline-block px-8 py-3 bg-black text-white text-xs font-medium tracking-widest uppercase hover:bg-[#333] transition-colors"
@@ -126,7 +125,6 @@ export default function AboutPage({ params }: { params: Promise<{ lang: "fr" | "
             {t.ctaBtn}
           </Link>
         </div>
-
       </div>
     </div>
   );

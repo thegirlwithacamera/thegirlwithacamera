@@ -2,8 +2,9 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #000000;
-  --muted: #737373;
+  --foreground: #0a0a0a;
+  --muted: #525252;
+  --muted-soft: #737373;
   --border: #e5e5e5;
 }
 
@@ -16,12 +17,11 @@
   --color-border: var(--border);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -39,50 +39,42 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
+/* Visible focus ring for keyboard users (Tailwind handles focus-visible:* per element) */
+:focus-visible {
+  outline: 2px solid #0a0a0a;
+  outline-offset: 2px;
+}
+
 /* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted-soft); }
 
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
+/* Image hover */
+.image-overlay { position: relative; overflow: hidden; }
+.image-overlay img { transition: transform 0.5s ease; }
+.image-overlay:hover img { transform: scale(1.05); }
 
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--muted);
-}
-
-/* Image hover effect */
-.image-overlay {
-  position: relative;
-  overflow: hidden;
-}
-
-.image-overlay img {
-  transition: transform 0.5s ease;
-}
-
-.image-overlay:hover img {
-  transform: scale(1.05);
-}
-
-/* Fade in animation */
+/* Fade in */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.6s ease forwards; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-.fade-in {
-  animation: fadeIn 0.6s ease forwards;
+/* Print: photographer's portfolios are sometimes printed for review */
+@media print {
+  header, footer, button { display: none !important; }
+  body { color: #000; background: #fff; }
 }

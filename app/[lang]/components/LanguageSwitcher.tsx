@@ -8,26 +8,28 @@ type Lang = "fr" | "en";
 export default function LanguageSwitcher({ currentLang }: { currentLang: Lang }) {
   const pathname = usePathname();
   const otherLang: Lang = currentLang === "fr" ? "en" : "fr";
-
-  // Get the path without the language prefix
   const pathWithoutLang = pathname.replace(/^\/(fr|en)/, "");
-  const newPath = `/${otherLang}${pathWithoutLang}`;
+  const newPath = `/${otherLang}${pathWithoutLang || ""}`;
 
   return (
-    <div className="flex items-center gap-2 text-sm">
+    <div className="flex items-center gap-2 text-sm" role="group" aria-label="Language">
       <Link
         href={currentLang === "fr" ? pathname : newPath}
-        className={`transition-colors ${
-          currentLang === "fr" ? "text-black font-semibold" : "text-[#737373]"
+        aria-current={currentLang === "fr" ? "true" : undefined}
+        hrefLang="fr"
+        className={`transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 ${
+          currentLang === "fr" ? "text-black font-semibold" : "text-[#525252] hover:text-black"
         }`}
       >
         FR
       </Link>
-      <span className="text-[#e5e5e5]">|</span>
+      <span className="text-[#d4d4d4]" aria-hidden>|</span>
       <Link
         href={currentLang === "en" ? pathname : newPath}
-        className={`transition-colors ${
-          currentLang === "en" ? "text-black font-semibold" : "text-[#737373]"
+        aria-current={currentLang === "en" ? "true" : undefined}
+        hrefLang="en"
+        className={`transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 ${
+          currentLang === "en" ? "text-black font-semibold" : "text-[#525252] hover:text-black"
         }`}
       >
         EN

@@ -123,3 +123,11 @@ export const series: Series[] = [
 export function getSeriesBySlug(slug: string): Series | undefined {
   return series.find((s) => s.slug === slug);
 }
+
+export function getAdjacentSeries(slug: string): { prev: Series | null; next: Series | null } {
+  const i = series.findIndex((s) => s.slug === slug);
+  if (i === -1) return { prev: null, next: null };
+  const prev = i > 0 ? series[i - 1] : series[series.length - 1];
+  const next = i < series.length - 1 ? series[i + 1] : series[0];
+  return { prev, next };
+}

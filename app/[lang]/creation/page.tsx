@@ -1,7 +1,10 @@
 "use client";
 
 import Script from "next/script";
+import Image from "next/image";
+import Link from "next/link";
 import { use, useEffect } from "react";
+import { projects } from "@/lib/creations";
 
 declare global {
   interface Window {
@@ -9,136 +12,122 @@ declare global {
   }
 }
 
-const cityDiary = [
-  { id: "DWOJ3UHowD_" },
-  { id: "DWgSNrkoCd5" },
-  { id: "DWx4W3MoGDI" },
-];
-
-const shotOn = [
-  { id: "DUn2--IjF3p" },
-  { id: "DUp4zqDDFa_" },
-  { id: "DUnhKNkDC4R" },
-  { id: "DUvghGGjAXo" },
-];
-
-const comingSoon = [
-  "City Diary #4",
-  "City Diary #5",
-  "City Diary #6",
-  "City Diary #7",
-];
-
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
 }
 
 export default function CreationPage({ params }: Props) {
   const { lang } = use(params);
-  const isFrench = lang === "fr";
+  const isFr = lang === "fr";
 
   useEffect(() => {
-    if (window.instgrm) {
-      window.instgrm.Embeds.process();
-    }
+    if (window.instgrm) window.instgrm.Embeds.process();
   }, []);
 
   return (
-    <div className="pt-24 pb-24 px-6 md:px-16">
+    <div className="pt-32 pb-24 px-6 md:px-16">
       <Script
         src="//www.instagram.com/embed.js"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         onLoad={() => window.instgrm?.Embeds.process()}
       />
 
       <div className="max-w-7xl mx-auto">
-
         {/* Header */}
-        <div className="mb-20">
-          <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6">
-            {isFrench ? "Création" : "Creation"}
-          </h1>
-          <p className="text-[#737373] max-w-xl leading-relaxed">
-            {isFrench
-              ? "Vidéo, scripting, montage. Des formats courts qui montrent le réel : produits, villes, instants."
-              : "Video, scripting, editing. Short formats that show what's real: products, cities, moments."}
+        <div className="mb-20 border-b border-[#e5e5e5] pb-10">
+          <p className="text-xs tracking-[0.3em] uppercase text-[#737373] mb-6">
+            {isFr ? "Vidéo & contenu" : "Video & content"}
           </p>
+          <h1 className="font-serif text-5xl md:text-7xl font-bold leading-none mb-8">
+            {isFr ? "Création" : "Creation"}
+          </h1>
+          <p className="max-w-2xl text-[#525252] leading-relaxed">
+            {isFr
+              ? "Vidéo verticale, scripting, montage. Des formats courts qui montrent le réel — produits, villes, instants. Pour les marques qui veulent du contenu vivant, pas de la pub déguisée."
+              : "Vertical video, scripting, editing. Short formats that show what's real — products, cities, moments. For brands that want living content, not disguised ads."}
+          </p>
+          <div className="mt-8">
+            <Link
+              href={`/${lang}/services`}
+              className="inline-block text-xs tracking-widest uppercase border-b-2 border-black pb-1 hover:opacity-70"
+            >
+              {isFr ? "Voir les offres brand content" : "See brand content offers"} →
+            </Link>
+          </div>
         </div>
 
-        {/* City Diary */}
-        <section className="mb-24">
-          <div className="flex items-baseline justify-between mb-10 border-b border-[#e5e5e5] pb-4">
-            <h2 className="font-serif text-2xl font-bold">City Diary</h2>
-            <p className="text-xs text-[#737373] tracking-widest uppercase">
-              {isFrench ? "Série en cours" : "Ongoing series"}
-            </p>
-          </div>
-          <p className="text-[#737373] text-sm mb-10 max-w-lg">
-            {isFrench
-              ? "Un regard sur les villes à travers une caméra. Bruxelles et au-delà."
-              : "A look at cities through a camera. Brussels and beyond."}
+        {/* Projects */}
+        <div className="space-y-24">
+          {projects.map((p) => (
+            <section key={p.slug}>
+              <div className="flex items-baseline justify-between mb-3 border-b border-[#e5e5e5] pb-4">
+                <h2 className="font-serif text-3xl md:text-4xl font-bold">{p.title}</h2>
+                <p className="text-xs text-[#737373] tracking-widest uppercase">
+                  {p.subtitle[lang]}
+                </p>
+              </div>
+              <p className="text-[#525252] text-sm md:text-base mb-10 max-w-2xl leading-relaxed">
+                {p.description[lang]}
+              </p>
+
+              <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {p.items.map((item) => (
+                  <li key={item.id} className="flex flex-col">
+                    {/* Media */}
+                    <div className="bg-[#f5f5f5] aspect-[9/16] overflow-hidden flex items-center justify-center">
+                      {item.videoUrl ? (
+                        <video
+                          src={item.videoUrl}
+                          poster={item.poster}
+                          controls
+                          playsInline
+                          className="w-full h-full object-cover"
+                        />
+                      ) : item.poster ? (
+                        <div className="relative w-full h-full">
+                          <Image src={item.poster} alt={item.title[lang]} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
+                        </div>
+                      ) : item.instagramId ? (
+                        <blockquote
+                          className="instagram-media"
+                          data-instgrm-permalink={`https://www.instagram.com/reel/${item.instagramId}/`}
+                          data-instgrm-version="14"
+                          style={{ maxWidth: "100%", width: "100%", minWidth: 0, margin: 0 }}
+                        />
+                      ) : null}
+                    </div>
+                    {/* Caption */}
+                    <div className="mt-4">
+                      <h3 className="font-serif text-lg font-bold">{item.title[lang]}</h3>
+                      <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mt-1">
+                        {item.client ? `${item.client} · ` : ""}{item.role[lang]} · {item.year}
+                      </p>
+                      {item.description[lang] && (
+                        <p className="text-sm text-[#525252] mt-2 leading-relaxed">{item.description[lang]}</p>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-24 border-t border-[#e5e5e5] pt-16 text-center">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">
+            {isFr ? "Un format court à produire ?" : "Need short-form video?"}
+          </h2>
+          <p className="text-[#737373] mb-8 max-w-md mx-auto">
+            {isFr ? "Je conçois, je tourne, je monte. Réponse sous 48h." : "I conceive, shoot and edit. Reply within 48 hours."}
           </p>
-
-          {/* Published reels */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            {cityDiary.map((reel) => (
-              <div key={reel.id} className="flex justify-center">
-                <blockquote
-                  className="instagram-media"
-                  data-instgrm-permalink={`https://www.instagram.com/reel/${reel.id}/`}
-                  data-instgrm-version="14"
-                  style={{ maxWidth: "100%", width: "100%", minWidth: 0 }}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Coming soon */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {comingSoon.map((title) => (
-              <div
-                key={title}
-                className="aspect-[9/16] bg-[#f5f5f5] flex items-center justify-center border border-[#e5e5e5]"
-              >
-                <div className="text-center">
-                  <p className="text-xs tracking-widest uppercase text-[#a3a3a3] mb-1">
-                    {isFrench ? "À venir" : "Coming soon"}
-                  </p>
-                  <p className="text-xs text-[#c4c4c4]">{title}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Shot on */}
-        <section>
-          <div className="flex items-baseline justify-between mb-10 border-b border-[#e5e5e5] pb-4">
-            <h2 className="font-serif text-2xl font-bold">Shot on ___</h2>
-            <p className="text-xs text-[#737373] tracking-widest uppercase">
-              {isFrench ? "Vidéo produit" : "Product video"}
-            </p>
-          </div>
-          <p className="text-[#737373] text-sm mb-10 max-w-lg">
-            {isFrench
-              ? "Une vidéo d'utilisation, une photo résultat. Le produit vu de l'intérieur."
-              : "One usage video, one photo result. The product seen from within."}
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {shotOn.map((reel) => (
-              <div key={reel.id} className="flex justify-center">
-                <blockquote
-                  className="instagram-media"
-                  data-instgrm-permalink={`https://www.instagram.com/reel/${reel.id}/`}
-                  data-instgrm-version="14"
-                  style={{ maxWidth: "100%", width: "100%", minWidth: 0 }}
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-
+          <Link
+            href={`/${lang}/contact?subject=${encodeURIComponent("Brand content")}`}
+            className="inline-block px-10 py-4 bg-black text-white text-xs font-medium tracking-widest uppercase hover:bg-[#333] transition-colors"
+          >
+            {isFr ? "Discuter d'un projet" : "Discuss a project"}
+          </Link>
+        </div>
       </div>
     </div>
   );
