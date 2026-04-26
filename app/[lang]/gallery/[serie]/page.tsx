@@ -59,21 +59,23 @@ export default async function SeriePage({ params }: Props) {
       {/* Photos */}
       {s.photos.length > 0 && (
         <div className="px-6 mt-8">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            className="max-w-6xl mx-auto columns-1 md:columns-2"
+            style={{ columnGap: "1rem" }}
+          >
             {s.photos.map((src, i) => (
               <div
                 key={i}
-                className="border border-[#d4d4d4] p-3 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]"
+                className="border border-[#d4d4d4] p-3 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] mb-4 break-inside-avoid"
               >
-                <div className="relative aspect-[3/2] overflow-hidden bg-[#f5f5f5]">
-                  <Image
-                    src={src}
-                    alt={`${s.title} ${i + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                <Image
+                  src={src}
+                  alt={`${s.title} ${i + 1}`}
+                  width={1200}
+                  height={1200}
+                  className="w-full h-auto block bg-[#f5f5f5]"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
             ))}
           </div>
