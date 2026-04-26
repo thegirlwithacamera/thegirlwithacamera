@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(git push:*)",
+      "Bash(/opt/homebrew/bin/brew install:*)",
+      "Bash(/opt/homebrew/bin/npm install:*)",
+      "Bash(/opt/homebrew/bin/vercel login:*)",
+      "Bash(kill %1)",
+      "Bash(/opt/homebrew/bin/vercel link:*)",
+      "Bash(/opt/homebrew/bin/vercel env:*)",
+      "Bash(git commit -m 'Debug: log as error:*)",
+      "Bash(printf \"re_8RqfeB2T_EF4qtbNosTD6pjdMfVHxyjpm\")",
+      "Read(//Users/sandrine/.vercel/**)",
+      "Read(//Users/sandrine/.config/vercel/**)"
+    ]
+  }
+}
