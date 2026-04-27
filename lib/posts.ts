@@ -38,7 +38,7 @@ export const posts: Post[] = [
         {
           type: "text",
           content:
-            "Il y avait ce poissonnier. Tablier orange, bottes vertes, une cigarette dans le dos de la main gauche. Il regardait ailleurs. Pas posé — juste absent à lui-même, absorbé par quelque chose qu'on ne voit pas sur la photo. J'ai appuyé.",
+            "Il y avait ce poissonnier. Tablier orange, bottes vertes, une cigarette dans le dos de la main gauche. Il regardait ailleurs. Pas posé. Juste absent à lui-même, absorbé par quelque chose qu'on ne voit pas sur la photo. J'ai appuyé.",
         },
         {
           type: "image",
@@ -48,7 +48,7 @@ export const posts: Post[] = [
         {
           type: "text",
           content:
-            "Après ça j'ai commencé à chercher les mains. Les gestes. Les corps qui travaillent sans se regarder travailler. Il y a quelque chose de très propre là-dedans — une forme de dignité qui n'a pas besoin d'être racontée.",
+            "Après ça j'ai commencé à chercher les mains. Les gestes. Les corps qui travaillent sans se regarder travailler. Il y a quelque chose de très propre là-dedans, une forme de dignité qui n'a pas besoin d'être racontée.",
         },
         {
           type: "text",
@@ -65,7 +65,7 @@ export const posts: Post[] = [
         {
           type: "text",
           content:
-            "There was this fishmonger. Orange apron, green boots, a cigarette held behind his left hand. He was looking elsewhere. Not posing — just absent from himself, absorbed in something you can't see in the photograph. I pressed the shutter.",
+            "There was this fishmonger. Orange apron, green boots, a cigarette held behind his left hand. He was looking elsewhere. Not posing. Just absent from himself, absorbed in something you can't see in the photograph. I pressed the shutter.",
         },
         {
           type: "image",
@@ -75,7 +75,7 @@ export const posts: Post[] = [
         {
           type: "text",
           content:
-            "After that I started looking for hands. Gestures. Bodies at work that don't watch themselves work. There's something very clean about that — a form of dignity that doesn't need to be narrated.",
+            "After that I started looking for hands. Gestures. Bodies at work that don't watch themselves work. There's something very clean about that, a form of dignity that doesn't need to be narrated.",
         },
         {
           type: "text",
@@ -95,15 +95,15 @@ export const posts: Post[] = [
       en: "Palermo, 6 days",
     },
     excerpt: {
-      fr: "Ce que personne ne dit sur Palerme c'est que la lumière y est violente. Pas belle — violente.",
-      en: "What nobody tells you about Palermo is that the light there is violent. Not beautiful — violent.",
+      fr: "Ce que personne ne dit sur Palerme c'est que la lumière y est violente. Pas belle. Violente.",
+      en: "What nobody tells you about Palermo is that the light there is violent. Not beautiful. Violent.",
     },
     body: {
       fr: [
         {
           type: "text",
           content:
-            "Ce que personne ne dit sur Palerme c'est que la lumière y est violente. Pas belle — violente. Elle entre dans les ruelles comme une intrusion. Les ombres sont dures, les visages surexposés si tu n'es pas au bon endroit au bon moment.",
+            "Ce que personne ne dit sur Palerme c'est que la lumière y est violente. Pas belle. Violente. Elle entre dans les ruelles comme une intrusion. Les ombres sont dures, les visages surexposés si tu n'es pas au bon endroit au bon moment.",
         },
         {
           type: "text",
@@ -123,14 +123,14 @@ export const posts: Post[] = [
         {
           type: "text",
           content:
-            "Je suis revenue avec 340 photos. J'en ai gardé 18. C'est un bon ratio pour moi — ça veut dire que j'ai shooté vite et sélectionné lentement, ce qui est dans l'ordre des choses.",
+            "Je suis revenue avec 340 photos. J'en ai gardé 18. C'est un bon ratio pour moi : ça veut dire que j'ai shooté vite et sélectionné lentement, ce qui est dans l'ordre des choses.",
         },
       ],
       en: [
         {
           type: "text",
           content:
-            "What nobody tells you about Palermo is that the light there is violent. Not beautiful — violent. It enters the alleyways like an intrusion. Shadows are hard, faces blown out if you're not in the right place at the right time.",
+            "What nobody tells you about Palermo is that the light there is violent. Not beautiful. Violent. It enters the alleyways like an intrusion. Shadows are hard, faces blown out if you're not in the right place at the right time.",
         },
         {
           type: "text",
@@ -150,7 +150,7 @@ export const posts: Post[] = [
         {
           type: "text",
           content:
-            "I came back with 340 photos. I kept 18. That's a good ratio for me — it means I shot fast and selected slowly, which is the right order of things.",
+            "I came back with 340 photos. I kept 18. That's a good ratio for me : it means I shot fast and selected slowly, which is the right order of things.",
         },
       ],
     },

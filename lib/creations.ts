@@ -1,6 +1,5 @@
-// Source of truth for video work. Each entry can render either as an Instagram
-// embed (instagramId) or as a self-hosted video (videoUrl + poster). Prefer
-// videoUrl when you have it — embeds are heavy and rely on Instagram being up.
+// Source of truth for video work.
+// Files live under /public/videos/<project>/<file>.mp4 with a matching -poster.jpg
 
 export type Creation = {
   id: string;
@@ -9,9 +8,8 @@ export type Creation = {
   role: { fr: string; en: string };
   year: string;
   description: { fr: string; en: string };
-  instagramId?: string;
-  videoUrl?: string;     // mp4/webm self-hosted, OR Mux/Cloudflare Stream
-  poster?: string;       // local path under /public for the still
+  videoUrl?: string;
+  poster?: string;
 };
 
 export type Project = {
@@ -27,35 +25,82 @@ export const projects: Project[] = [
     slug: "city-diary",
     title: "City Diary",
     subtitle: {
-      fr: "Série en cours · vidéo verticale",
-      en: "Ongoing series · vertical video",
+      fr: "Série · vidéo verticale",
+      en: "Series · vertical video",
     },
     description: {
-      fr: "Un regard sur les villes à travers la caméra. Bruxelles et au-delà — une ville par épisode, au format Reel.",
-      en: "A look at cities through the camera. Brussels and beyond — one city per episode, in Reel format.",
+      fr: "Un regard sur les villes à travers la caméra. Japon : Tokyo, Osaka, Nara, Kyoto. Une ville par épisode, au format Reel.",
+      en: "A look at cities through the camera. Japan : Tokyo, Osaka, Nara, Kyoto. One city per episode, in Reel format.",
     },
     items: [
-      { id: "DWOJ3UHowD_", title: { fr: "City Diary #1", en: "City Diary #1" }, role: { fr: "Concept · tournage · montage", en: "Concept · shoot · edit" }, year: "2026", description: { fr: "", en: "" }, instagramId: "DWOJ3UHowD_" },
-      { id: "DWgSNrkoCd5", title: { fr: "City Diary #2", en: "City Diary #2" }, role: { fr: "Concept · tournage · montage", en: "Concept · shoot · edit" }, year: "2026", description: { fr: "", en: "" }, instagramId: "DWgSNrkoCd5" },
-      { id: "DWx4W3MoGDI", title: { fr: "City Diary #3", en: "City Diary #3" }, role: { fr: "Concept · tournage · montage", en: "Concept · shoot · edit" }, year: "2026", description: { fr: "", en: "" }, instagramId: "DWx4W3MoGDI" },
+      {
+        id: "city-diary-01-tokyo",
+        title: { fr: "City Diary EP 01 · Tokyo", en: "City Diary EP 01 · Tokyo" },
+        role: { fr: "Concept · tournage · montage", en: "Concept · shoot · edit" },
+        year: "2025",
+        description: { fr: "", en: "" },
+        videoUrl: "/videos/city-diary/01-tokyo.mp4",
+        poster: "/videos/city-diary/01-tokyo-poster.jpg",
+      },
+      {
+        id: "city-diary-02-osaka",
+        title: { fr: "City Diary EP 02 · Osaka", en: "City Diary EP 02 · Osaka" },
+        role: { fr: "Concept · tournage · montage", en: "Concept · shoot · edit" },
+        year: "2025",
+        description: { fr: "", en: "" },
+        videoUrl: "/videos/city-diary/02-osaka.mp4",
+        poster: "/videos/city-diary/02-osaka-poster.jpg",
+      },
+      {
+        id: "city-diary-03-tokyo",
+        title: { fr: "City Diary EP 03 · Tokyo", en: "City Diary EP 03 · Tokyo" },
+        role: { fr: "Concept · tournage · montage", en: "Concept · shoot · edit" },
+        year: "2025",
+        description: { fr: "", en: "" },
+        videoUrl: "/videos/city-diary/03-tokyo.mp4",
+        poster: "/videos/city-diary/03-tokyo-poster.jpg",
+      },
+      {
+        id: "city-diary-04-nara",
+        title: { fr: "City Diary EP 04 · Nara", en: "City Diary EP 04 · Nara" },
+        role: { fr: "Concept · tournage · montage", en: "Concept · shoot · edit" },
+        year: "2025",
+        description: { fr: "", en: "" },
+        videoUrl: "/videos/city-diary/04-nara.mp4",
+        poster: "/videos/city-diary/04-nara-poster.jpg",
+      },
+      {
+        id: "city-diary-05-kyoto",
+        title: { fr: "City Diary EP 05 · Kyoto", en: "City Diary EP 05 · Kyoto" },
+        role: { fr: "Concept · tournage · montage", en: "Concept · shoot · edit" },
+        year: "2025",
+        description: { fr: "", en: "" },
+        videoUrl: "/videos/city-diary/05-kyoto.mp4",
+        poster: "/videos/city-diary/05-kyoto-poster.jpg",
+      },
     ],
   },
   {
-    slug: "shot-on",
-    title: "Shot on ___",
+    slug: "life-diary",
+    title: "Life Diary",
     subtitle: {
-      fr: "Vidéo produit · brand content",
-      en: "Product video · brand content",
+      fr: "Série · vidéo verticale",
+      en: "Series · vertical video",
     },
     description: {
-      fr: "Une vidéo d'utilisation, une photo résultat. Le produit vu de l'intérieur — ce qu'il fait, pas ce qu'il prétend.",
-      en: "One usage video, one resulting still. The product seen from within — what it does, not what it claims.",
+      fr: "Carnets de saisons, de moments, de petits bouts de vie filmés au bon endroit, au bon moment.",
+      en: "Notes on seasons, moments, small slices of life caught in the right place, at the right time.",
     },
     items: [
-      { id: "DUn2--IjF3p", title: { fr: "Shot on Pentax", en: "Shot on Pentax" }, client: "Pentax Europe", role: { fr: "Brand content", en: "Brand content" }, year: "2025", description: { fr: "", en: "" }, instagramId: "DUn2--IjF3p" },
-      { id: "DUp4zqDDFa_", title: { fr: "Shot on Ricoh", en: "Shot on Ricoh" }, client: "Ricoh Europe", role: { fr: "Brand content", en: "Brand content" }, year: "2025", description: { fr: "", en: "" }, instagramId: "DUp4zqDDFa_" },
-      { id: "DUnhKNkDC4R", title: { fr: "Shot on Ricoh", en: "Shot on Ricoh" }, client: "Ricoh Europe", role: { fr: "Brand content", en: "Brand content" }, year: "2025", description: { fr: "", en: "" }, instagramId: "DUnhKNkDC4R" },
-      { id: "DUvghGGjAXo", title: { fr: "Shot on Pentax", en: "Shot on Pentax" }, client: "Pentax Europe", role: { fr: "Brand content", en: "Brand content" }, year: "2025", description: { fr: "", en: "" }, instagramId: "DUvghGGjAXo" },
+      {
+        id: "life-diary-01-cherry-blossom",
+        title: { fr: "Life Diary EP 01 · Cherry Blossom", en: "Life Diary EP 01 · Cherry Blossom" },
+        role: { fr: "Concept · tournage · montage", en: "Concept · shoot · edit" },
+        year: "2026",
+        description: { fr: "", en: "" },
+        videoUrl: "/videos/life-diary/01-cherry-blossom.mp4",
+        poster: "/videos/life-diary/01-cherry-blossom-poster.jpg",
+      },
     ],
   },
 ];

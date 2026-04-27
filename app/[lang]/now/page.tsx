@@ -9,8 +9,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: "Now",
     description: lang === "fr"
-      ? "Ce sur quoi je travaille en ce moment — projets en cours, lectures, voyages."
-      : "What I'm working on right now — current projects, readings, travels.",
+      ? "Ce sur quoi je travaille en ce moment : projets en cours, lectures, voyages."
+      : "What I'm working on right now : current projects, readings, travels.",
     alternates: { canonical: `/${lang}/now`, languages: { fr: "/fr/now", en: "/en/now" } },
   };
 }
@@ -20,7 +20,7 @@ const lastUpdated = "2026-04";
 
 const content = {
   fr: {
-    intro: "Une page inspirée de la /now page de Derek Sivers. Ce sur quoi je travaille en ce moment — pour vous, pour moi.",
+    intro: "Une page inspirée de la /now page de Derek Sivers. Ce sur quoi je travaille en ce moment : pour vous, pour moi.",
     sections: [
       {
         title: "En cours",
@@ -33,8 +33,8 @@ const content = {
       {
         title: "Je lis",
         items: [
-          "On Photography — Susan Sontag (relecture)",
-          "The Americans — Robert Frank",
+          "On Photography, Susan Sontag (relecture)",
+          "The Americans, Robert Frank",
         ],
       },
       {
@@ -47,7 +47,7 @@ const content = {
     ],
   },
   en: {
-    intro: "A page inspired by Derek Sivers's /now. What I'm working on right now — for you, for me.",
+    intro: "A page inspired by Derek Sivers's /now. What I'm working on right now : for you, for me.",
     sections: [
       {
         title: "Working on",
@@ -60,8 +60,8 @@ const content = {
       {
         title: "Reading",
         items: [
-          "On Photography — Susan Sontag (re-read)",
-          "The Americans — Robert Frank",
+          "On Photography, Susan Sontag (re-read)",
+          "The Americans, Robert Frank",
         ],
       },
       {
@@ -102,7 +102,7 @@ export default async function NowPage({ params }: Props) {
               <ul className="space-y-3">
                 {s.items.map((item) => (
                   <li key={item} className="flex gap-3 text-[#525252]">
-                    <span className="text-[#a3a3a3] mt-1">—</span>
+                    <span className="text-[#a3a3a3] mt-1">·</span>
                     <span>{item}</span>
                   </li>
                 ))}

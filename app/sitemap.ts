@@ -57,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       })),
     );
   } catch {
-    // Sanity not configured locally — skip post entries rather than fail the build.
+    // Sanity not configured locally, skip post entries rather than fail the build.
   }
 
   return [...staticEntries, ...seriesEntries, ...postEntries];

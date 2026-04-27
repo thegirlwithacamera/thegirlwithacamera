@@ -39,6 +39,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Heavy original assets kept locally only (compressed versions live alongside)
+public/images/_originals/
+public/videos/_originals/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -27,15 +27,15 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   const { lang } = await params;
   const isFr = lang === "fr";
 
-  const title = `${site.name} — Photographe & Créatrice de contenu, Bruxelles`;
-  const titleEn = `${site.name} — Photographer & Content Creator, Brussels`;
+  const title = `${site.name} · Photographe et créatrice de contenu, Bruxelles`;
+  const titleEn = `${site.name} · Photographer and content creator, Brussels`;
   const description = isFr
     ? "Photographe et créatrice de contenu basée à Bruxelles. Street, documentaire, mode, vidéo. Collaborations avec Ricoh et Pentax Europe."
     : "Photographer and content creator based in Brussels. Street, documentary, fashion, video. Collaborations with Ricoh and Pentax Europe.";
 
   return {
     metadataBase: new URL(site.url),
-    title: { default: isFr ? title : titleEn, template: `%s — ${site.name}` },
+    title: { default: isFr ? title : titleEn, template: `%s · ${site.name}` },
     description,
     keywords: [
       "Sandrine Ceuppens",

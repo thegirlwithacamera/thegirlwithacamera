@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: `${s.title} — ${site.name}`,
+      title: `${s.title} · ${site.name}`,
       description: s.description[lang],
       images: [{ url: s.cover, alt: s.title }],
       type: "article",
@@ -93,7 +93,7 @@ export default async function SeriePage({ params }: Props) {
             <div className="relative aspect-[3/2] overflow-hidden bg-[#f5f5f5]">
               <Image
                 src={s.cover}
-                alt={`${s.title} — ${isFr ? "image de couverture" : "cover image"}`}
+                alt={`${s.title}, ${isFr ? "image de couverture" : "cover image"}`}
                 fill
                 className="object-cover"
                 priority

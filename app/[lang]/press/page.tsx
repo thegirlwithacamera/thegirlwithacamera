@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // Edit this list as press coverage comes in.
 const mentions: Array<{ outlet: string; title: string; url?: string; date: string }> = [
-  // Example shape — replace with real entries:
-  // { outlet: "Magazine X", title: "Interview — Behind Doors", url: "https://...", date: "2026-03" },
+  // Example shape, replace with real entries:
+  // { outlet: "Magazine X", title: "Interview, Behind Doors", url: "https://...", date: "2026-03" },
 ];
 
 const bio = {
@@ -28,13 +28,13 @@ const bio = {
     short:
       "Sandrine Ceuppens (b. 1996) est une photographe et créatrice de contenu basée à Bruxelles. Son travail, à la croisée du documentaire et de la mode, explore les gestes du quotidien et la lumière dans la rue. Elle collabore avec Ricoh et Pentax Europe.",
     long:
-      "Sandrine Ceuppens vit et travaille à Bruxelles. Elle photographie depuis l'enfance et reprend une pratique sérieuse en 2024 après plusieurs années de pause. Son travail mêle street, documentaire et mode, avec un post-traitement minimal — une attention au geste, à la lumière, à ce qui se passe quand personne ne regarde. Elle développe en parallèle une pratique vidéo (scripting, tournage, montage) pour les marques. Collabore avec Ricoh et Pentax Europe.",
+      "Sandrine Ceuppens vit et travaille à Bruxelles. Elle photographie depuis l'enfance et reprend une pratique sérieuse en 2024 après plusieurs années de pause. Son travail mêle street, documentaire et mode, avec un post-traitement minimal : une attention au geste, à la lumière, à ce qui se passe quand personne ne regarde. Elle développe en parallèle une pratique vidéo (scripting, tournage, montage) pour les marques. Collabore avec Ricoh et Pentax Europe.",
   },
   en: {
     short:
       "Sandrine Ceuppens (b. 1996) is a Brussels-based photographer and content creator. Her work, at the intersection of documentary and fashion, explores everyday gestures and street light. She collaborates with Ricoh and Pentax Europe.",
     long:
-      "Sandrine Ceuppens lives and works in Brussels. She has been photographing since childhood and returned to a serious practice in 2024 after a long pause. Her work blends street, documentary and fashion, with minimal post-processing — an attention to gesture, light, and what happens when no one is watching. In parallel she develops a video practice (scripting, shooting, editing) for brands. Collaborates with Ricoh and Pentax Europe.",
+      "Sandrine Ceuppens lives and works in Brussels. She has been photographing since childhood and returned to a serious practice in 2024 after a long pause. Her work blends street, documentary and fashion, with minimal post-processing : an attention to gesture, light, and what happens when no one is watching. In parallel she develops a video practice (scripting, shooting, editing) for brands. Collaborates with Ricoh and Pentax Europe.",
   },
 } as const;
 

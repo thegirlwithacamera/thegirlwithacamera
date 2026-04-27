@@ -1,6 +1,6 @@
 # thegirlwithacamera.com
 
-Site éditorial de Sandrine Ceuppens — photographe et créatrice de contenu basée à Bruxelles.
+Site éditorial de Sandrine Ceuppens , photographe et créatrice de contenu basée à Bruxelles.
 
 ## Stack
 - Next.js 16 (App Router) · React 19 · TypeScript · Tailwind 4
@@ -65,18 +65,18 @@ scripts/optimize-images.mjs
 
 ## À faire de ton côté (ce que je ne peux pas inventer)
 
-1. **Compresser les images** — `npm i -D sharp && npm run optimize:images`. Diminue les JPG de 3-8 Mo → 200-400 Ko.
-2. **Mettre à jour `lib/site.ts`** — vraie disponibilité, partenaires, numéro d'entreprise (BCE) pour les mentions légales.
-3. **Mettre à jour `lib/series.ts`** — affiner les descriptions pour le SEO (mots-clés naturels : « street photography Brussels », « documentary Sicily »).
-4. **Mettre à jour `lib/creations.ts`** — héberger les vidéos (Mux/Cloudflare Stream/Vimeo) et remplacer `instagramId` par `videoUrl + poster`.
-5. **Page `/press`** — ajouter les vraies mentions presse au fur et à mesure dans `app/[lang]/press/page.tsx`.
-6. **Page `/now`** — actualiser tous les 1-2 mois (date + sections).
-7. **Mentions légales** — ajouter le numéro BCE.
-8. **Resend** — créer une « Audience » et coller son ID dans `RESEND_AUDIENCE_ID` pour que les inscrits newsletter soient stockés au bon endroit.
-9. **Favicon + OG** — remplacer le `favicon.ico` Next par défaut par un wordmark. L'OG image se génère automatiquement via `app/opengraph-image.tsx`.
-10. **Analytics** — activer Vercel Analytics (gratuit, RGPD-friendly).
-11. **Domain email** — vérifier que `hello@` et `press@` sont bien configurés (DKIM/SPF) côté Resend.
-12. **Publier dans le journal** — viser un article tous les 15 jours pour amorcer.
+1. **Compresser les images** , `npm i -D sharp && npm run optimize:images`. Diminue les JPG de 3-8 Mo → 200-400 Ko.
+2. **Mettre à jour `lib/site.ts`** , vraie disponibilité, partenaires, numéro d'entreprise (BCE) pour les mentions légales.
+3. **Mettre à jour `lib/series.ts`** , affiner les descriptions pour le SEO (mots-clés naturels : « street photography Brussels », « documentary Sicily »).
+4. **Mettre à jour `lib/creations.ts`** , héberger les vidéos (Mux/Cloudflare Stream/Vimeo) et remplacer `instagramId` par `videoUrl + poster`.
+5. **Page `/press`** , ajouter les vraies mentions presse au fur et à mesure dans `app/[lang]/press/page.tsx`.
+6. **Page `/now`** , actualiser tous les 1-2 mois (date + sections).
+7. **Mentions légales** , ajouter le numéro BCE.
+8. **Resend** , créer une « Audience » et coller son ID dans `RESEND_AUDIENCE_ID` pour que les inscrits newsletter soient stockés au bon endroit.
+9. **Favicon + OG** , remplacer le `favicon.ico` Next par défaut par un wordmark. L'OG image se génère automatiquement via `app/opengraph-image.tsx`.
+10. **Analytics** , activer Vercel Analytics (gratuit, RGPD-friendly).
+11. **Domain email** , vérifier que `hello@` et `press@` sont bien configurés (DKIM/SPF) côté Resend.
+12. **Publier dans le journal** , viser un article tous les 15 jours pour amorcer.
 
 ## Déploiement
 

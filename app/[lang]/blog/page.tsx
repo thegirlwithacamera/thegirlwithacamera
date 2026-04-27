@@ -26,7 +26,7 @@ export default async function BlogPage({ params }: Props) {
   try {
     posts = await getAllPosts()
   } catch {
-    // Sanity not configured — render the empty state.
+    // Sanity not configured, render the empty state.
   }
 
   return (
@@ -47,8 +47,8 @@ export default async function BlogPage({ params }: Props) {
             </p>
             <p className="text-[#525252] max-w-md mx-auto">
               {lang === 'fr'
-                ? "Le journal arrive — carnets de tournage, lectures, lieux, technique. Inscrivez-vous à la newsletter pour ne rien manquer."
-                : 'The journal is coming — field notes, readings, places, technique. Subscribe to the newsletter so you don\'t miss it.'}
+                ? "Le journal arrive : carnets de tournage, lectures, lieux, technique. Inscrivez-vous à la newsletter pour ne rien manquer."
+                : 'The journal is coming : field notes, readings, places, technique. Subscribe to the newsletter so you don\'t miss it.'}
             </p>
           </div>
         )}

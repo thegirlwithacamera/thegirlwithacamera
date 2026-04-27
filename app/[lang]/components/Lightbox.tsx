@@ -56,11 +56,11 @@ export default function Lightbox({ photos, alt, lang }: Props) {
             type="button"
             onClick={() => { setIndex(i); setOpen(true); }}
             className="border border-[#d4d4d4] p-3 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] mb-4 break-inside-avoid block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
-            aria-label={`${alt} — ${lang === "fr" ? "photo" : "photo"} ${i + 1} / ${photos.length}`}
+            aria-label={`${alt} ·${lang === "fr" ? "photo" : "photo"} ${i + 1} / ${photos.length}`}
           >
             <Image
               src={src}
-              alt={`${alt} — ${i + 1} / ${photos.length}`}
+              alt={`${alt} ·${i + 1} / ${photos.length}`}
               width={1200}
               height={1200}
               className="w-full h-auto block bg-[#f5f5f5]"
@@ -104,7 +104,7 @@ export default function Lightbox({ photos, alt, lang }: Props) {
           <div className="relative w-full h-full max-w-6xl max-h-[90vh] mx-12 my-12">
             <Image
               src={photos[index]}
-              alt={`${alt} — ${index + 1} / ${photos.length}`}
+              alt={`${alt} ·${index + 1} / ${photos.length}`}
               fill
               className="object-contain"
               sizes="90vw"

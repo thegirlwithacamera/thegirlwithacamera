@@ -9,7 +9,7 @@ export default function NotFound() {
           Off frame.
         </h1>
         <p className="text-[#525252] mb-10">
-          Cette page n&rsquo;existe pas — ou plus. / This page doesn&rsquo;t exist — or doesn&rsquo;t any more.
+          Cette page n&rsquo;existe pas, ou plus. / This page doesn&rsquo;t exist, or doesn&rsquo;t any more.
         </p>
         <div className="flex justify-center gap-4">
           <Link href="/fr" className="px-6 py-3 bg-black text-white text-xs tracking-widest uppercase">FR · Accueil</Link>

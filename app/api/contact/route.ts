@@ -77,7 +77,7 @@ export async function POST(request: Request) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    const subject = `New ${TYPE_LABELS[type] ?? "enquiry"} from ${name}${company ? ` — ${company}` : ""}`;
+    const subject = `New ${TYPE_LABELS[type] ?? "enquiry"} from ${name}${company ? ` · ${company}` : ""}`;
 
     const text = [
       `Name: ${name}`,

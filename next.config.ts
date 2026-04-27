@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // /da was a half-built page with missing assets — keep the URL valuable
+      // /da was a half-built page with missing assets, keep the URL valuable
       { source: "/da", destination: "/fr/services", permanent: true },
       { source: "/fr/da", destination: "/fr/services", permanent: true },
       { source: "/en/da", destination: "/en/services", permanent: true },

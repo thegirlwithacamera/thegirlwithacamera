@@ -18,7 +18,7 @@ export default async function HomePage({ params }: Props) {
       <section className="min-h-[80vh] flex flex-col justify-end px-6 md:px-16 pb-16 pt-32 border-b border-[#e5e5e5]">
         <div className="max-w-7xl w-full mx-auto flex flex-col justify-end h-full">
           <p className="text-xs tracking-[0.3em] uppercase text-[#737373] mb-6">
-            {isFrench ? "Photographe & créatrice de contenu — Bruxelles" : "Photographer & content creator — Brussels"}
+            {isFrench ? "Photographe et créatrice de contenu, Bruxelles" : "Photographer and content creator, Brussels"}
           </p>
           <h1 className="font-serif text-[clamp(3rem,9vw,9rem)] font-bold leading-[0.95] tracking-tight">
             THE GIRL<br />WITH A CAMERA
@@ -26,8 +26,8 @@ export default async function HomePage({ params }: Props) {
           <div className="mt-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <p className="max-w-xl text-base md:text-lg text-[#525252] leading-relaxed">
               {isFrench
-                ? "Je photographie le réel — rues, lumière, gens au travail — et je conçois du contenu vidéo pour les marques qui veulent sortir du moule."
-                : "I photograph the real — streets, light, people at work — and craft video content for brands that want to step out of the mould."}
+                ? "Je photographie le réel : rues, lumière, gens au travail. Et je conçois du contenu vidéo pour les marques qui veulent sortir du moule."
+                : "I photograph the real : streets, light, people at work. And I craft video content for brands that want to step out of the mould."}
             </p>
             <div className="flex gap-4">
               <Link
@@ -91,7 +91,7 @@ export default async function HomePage({ params }: Props) {
                 <div className="relative aspect-[4/5] overflow-hidden bg-[#f5f5f5] mb-4">
                   <Image
                     src={s.cover}
-                    alt={`${s.title} — ${isFrench ? "série de" : "series by"} Sandrine Ceuppens`}
+                    alt={`${s.title}, ${isFrench ? "série de" : "series by"} Sandrine Ceuppens`}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 100vw, 33vw"
@@ -114,7 +114,7 @@ export default async function HomePage({ params }: Props) {
             <div>
               <p className="text-xs tracking-[0.25em] uppercase text-[#737373] mb-3">Services</p>
               <h2 className="font-serif text-4xl md:text-5xl font-bold leading-tight mb-6">
-                {isFrench ? "Trois façons de travailler ensemble." : "Three ways to work together."}
+                {isFrench ? "Deux façons de travailler ensemble." : "Two ways to work together."}
               </h2>
               <Link
                 href={`/${lang}/services`}
@@ -123,29 +123,21 @@ export default async function HomePage({ params }: Props) {
                 {isFrench ? "Voir les offres" : "View offers"} →
               </Link>
             </div>
-            <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+            <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
               <div>
                 <h3 className="font-serif text-xl font-bold mb-3">{isFrench ? "Brand content" : "Brand content"}</h3>
                 <p className="text-[#525252] leading-relaxed">
                   {isFrench
-                    ? "Vidéo + photo pour réseaux sociaux. Concept, tournage, montage. Packs mensuels ou one-shot."
-                    : "Video + stills for social. Concept, shoot, edit. Monthly packs or one-shot."}
+                    ? "Vidéo et photo pour réseaux sociaux. Concept, tournage, montage. D'une seule vidéo à la campagne complète."
+                    : "Video and stills for social. Concept, shoot, edit. From a single video to a full campaign."}
                 </p>
               </div>
               <div>
-                <h3 className="font-serif text-xl font-bold mb-3">{isFrench ? "Éditorial" : "Editorial"}</h3>
+                <h3 className="font-serif text-xl font-bold mb-3">{isFrench ? "Tirages" : "Prints"}</h3>
                 <p className="text-[#525252] leading-relaxed">
                   {isFrench
-                    ? "Séries documentaires et mode pour magazines, livres, expositions."
-                    : "Documentary and fashion series for magazines, books, exhibitions."}
-                </p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl font-bold mb-3">{isFrench ? "Tirages & mentorat" : "Prints & mentoring"}</h3>
-                <p className="text-[#525252] leading-relaxed">
-                  {isFrench
-                    ? "Tirages limités sur demande. Mentorat 1:1 pour photographes en construction."
-                    : "Limited prints on request. 1:1 mentoring for photographers finding their voice."}
+                    ? "Tirages limités, signés, numérotés. Plusieurs formats."
+                    : "Limited prints, signed and numbered. Several sizes."}
                 </p>
               </div>
             </div>

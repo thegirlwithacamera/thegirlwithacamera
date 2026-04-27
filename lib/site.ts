@@ -12,7 +12,10 @@ export const site = {
   // Set to false if you go off-grid for a while (sabbatical, full project pipeline).
   availability: {
     open: true,
-    nextWindow: { fr: "Disponible — projets de mai à août 2026", en: "Available — projects May to August 2026" },
+    nextWindow: {
+      fr: "Disponible : projets de mai à août 2026",
+      en: "Available : projects May to August 2026",
+    },
   },
   social: {
     instagram: "https://www.instagram.com/sandrinecppns/",

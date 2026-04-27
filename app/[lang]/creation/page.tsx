@@ -1,50 +1,43 @@
-"use client";
-
-import Script from "next/script";
 import Image from "next/image";
 import Link from "next/link";
-import { use, useEffect } from "react";
+import type { Metadata } from "next";
 import { projects } from "@/lib/creations";
-
-declare global {
-  interface Window {
-    instgrm?: { Embeds: { process(): void } };
-  }
-}
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
 }
 
-export default function CreationPage({ params }: Props) {
-  const { lang } = use(params);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
   const isFr = lang === "fr";
+  return {
+    title: isFr ? "Création" : "Creation",
+    description: isFr
+      ? "Vidéo verticale, brand content, formats courts. Le travail vidéo de Sandrine Ceuppens."
+      : "Vertical video, brand content, short formats. The video work of Sandrine Ceuppens.",
+    alternates: { canonical: `/${lang}/creation`, languages: { fr: "/fr/creation", en: "/en/creation" } },
+  };
+}
 
-  useEffect(() => {
-    if (window.instgrm) window.instgrm.Embeds.process();
-  }, []);
+export default async function CreationPage({ params }: Props) {
+  const { lang } = await params;
+  const isFr = lang === "fr";
 
   return (
     <div className="pt-32 pb-24 px-6 md:px-16">
-      <Script
-        src="//www.instagram.com/embed.js"
-        strategy="lazyOnload"
-        onLoad={() => window.instgrm?.Embeds.process()}
-      />
-
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-20 border-b border-[#e5e5e5] pb-10">
           <p className="text-xs tracking-[0.3em] uppercase text-[#737373] mb-6">
-            {isFr ? "Vidéo & contenu" : "Video & content"}
+            {isFr ? "Vidéo et contenu" : "Video and content"}
           </p>
           <h1 className="font-serif text-5xl md:text-7xl font-bold leading-none mb-8">
             {isFr ? "Création" : "Creation"}
           </h1>
           <p className="max-w-2xl text-[#525252] leading-relaxed">
             {isFr
-              ? "Vidéo verticale, scripting, montage. Des formats courts qui montrent le réel — produits, villes, instants. Pour les marques qui veulent du contenu vivant, pas de la pub déguisée."
-              : "Vertical video, scripting, editing. Short formats that show what's real — products, cities, moments. For brands that want living content, not disguised ads."}
+              ? "Vidéo verticale, scripting, montage. Des formats courts qui montrent le réel : produits, villes, instants. Pour les marques qui veulent du contenu vivant, pas de la pub déguisée."
+              : "Vertical video, scripting, editing. Short formats that show what's real : products, cities, moments. For brands that want living content, not disguised ads."}
           </p>
           <div className="mt-8">
             <Link
@@ -74,27 +67,25 @@ export default function CreationPage({ params }: Props) {
                 {p.items.map((item) => (
                   <li key={item.id} className="flex flex-col">
                     {/* Media */}
-                    <div className="bg-[#f5f5f5] aspect-[9/16] overflow-hidden flex items-center justify-center">
+                    <div className="bg-[#0a0a0a] aspect-[9/16] overflow-hidden flex items-center justify-center relative">
                       {item.videoUrl ? (
                         <video
                           src={item.videoUrl}
                           poster={item.poster}
                           controls
                           playsInline
+                          preload="metadata"
                           className="w-full h-full object-cover"
                         />
                       ) : item.poster ? (
-                        <div className="relative w-full h-full">
-                          <Image src={item.poster} alt={item.title[lang]} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
+                        <Image src={item.poster} alt={item.title[lang]} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
+                      ) : (
+                        // Clean placeholder while videos are being uploaded.
+                        <div className="text-center text-white/60 px-6">
+                          <p className="text-[10px] tracking-[0.3em] uppercase mb-3">{isFr ? "Vidéo bientôt en ligne" : "Video coming online soon"}</p>
+                          <p className="font-serif text-sm">{item.title[lang]}</p>
                         </div>
-                      ) : item.instagramId ? (
-                        <blockquote
-                          className="instagram-media"
-                          data-instgrm-permalink={`https://www.instagram.com/reel/${item.instagramId}/`}
-                          data-instgrm-version="14"
-                          style={{ maxWidth: "100%", width: "100%", minWidth: 0, margin: 0 }}
-                        />
-                      ) : null}
+                      )}
                     </div>
                     {/* Caption */}
                     <div className="mt-4">

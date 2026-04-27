@@ -63,8 +63,8 @@ export default function Footer() {
           </p>
           <p className="text-sm text-[#d4d4d4] leading-relaxed mb-6 max-w-md">
             {isFrench
-              ? "Une lettre par mois — nouvelles séries, carnets de tournage, lectures. Pas de spam, désinscription en un clic."
-              : "One letter a month — new series, field notes, things I'm reading. No spam, one-click unsubscribe."}
+              ? "Une lettre par mois : nouvelles séries, carnets de tournage, lectures. Pas de spam, désinscription en un clic."
+              : "One letter a month : new series, field notes, things I'm reading. No spam, one-click unsubscribe."}
           </p>
           {status === "success" ? (
             <p className="text-sm text-[#d4d4d4]">
@@ -149,7 +149,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-[#262626] px-8 md:px-16 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs">
         <p className="text-[#737373]">
-          © {new Date().getFullYear()} Sandrine Ceuppens — {isFrench ? "Tous droits réservés" : "All rights reserved"}.
+          © {new Date().getFullYear()} Sandrine Ceuppens. {isFrench ? "Tous droits réservés" : "All rights reserved"}.
         </p>
         <div className="flex items-center gap-6 text-[#737373]">
           <Link className="hover:text-white" href={`/${currentLang}/legal/privacy`}>

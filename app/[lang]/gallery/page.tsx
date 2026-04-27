@@ -13,11 +13,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: isFr ? "Séries" : "Series",
     description: isFr
-      ? "Séries photographiques de Sandrine Ceuppens — street, documentaire, mode, voyage. Bruxelles, Sicile, Japon."
-      : "Photographic series by Sandrine Ceuppens — street, documentary, fashion, travel. Brussels, Sicily, Japan.",
+      ? "Séries photographiques de Sandrine Ceuppens : street, documentaire, mode, voyage. Bruxelles, Sicile, Japon."
+      : "Photographic series by Sandrine Ceuppens : street, documentary, fashion, travel. Brussels, Sicily, Japan.",
     alternates: { canonical: `/${lang}/gallery`, languages: { fr: "/fr/gallery", en: "/en/gallery" } },
     openGraph: {
-      title: isFr ? "Séries — Sandrine Ceuppens" : "Series — Sandrine Ceuppens",
+      title: isFr ? "Séries · Sandrine Ceuppens" : "Series · Sandrine Ceuppens",
       images: series.slice(0, 1).map((s) => s.cover),
     },
   };
@@ -41,8 +41,8 @@ export default async function GalleryPage({ params }: Props) {
           </h1>
           <p className="mt-8 max-w-2xl text-[#525252] leading-relaxed">
             {isFr
-              ? "Des corpus de travail construits sur la durée. Chaque série est un sujet : un lieu, une obsession, une question. Pas d'illustration, pas de retouche lourde — ce qui est là, tel que c'était."
-              : "Bodies of work built over time. Each series is a subject: a place, an obsession, a question. No illustration, no heavy retouching — what's there, as it was."}
+              ? "Des corpus de travail construits sur la durée. Chaque série est un sujet : un lieu, une obsession, une question. Pas d'illustration, pas de retouche lourde. Ce qui est là, tel que c'était."
+              : "Bodies of work built over time. Each series is a subject : a place, an obsession, a question. No illustration, no heavy retouching. What's there, as it was."}
           </p>
         </div>
 
@@ -58,7 +58,7 @@ export default async function GalleryPage({ params }: Props) {
                   <div className="relative aspect-[4/3] overflow-hidden bg-[#f5f5f5]">
                     <Image
                       src={s.cover}
-                      alt={`${s.title} — ${s.description[lang].slice(0, 80)}…`}
+                      alt={`${s.title}, ${s.description[lang].slice(0, 80)}…`}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                       sizes="(max-width: 768px) 100vw, 33vw"

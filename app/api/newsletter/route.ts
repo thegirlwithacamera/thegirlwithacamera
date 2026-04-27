@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
+// Simple in-memory rate limit (one process, low traffic OK).
 const RATE: Map<string, { count: number; resetAt: number }> = new Map();
 const WINDOW_MS = 60_000;
 const MAX_PER_WINDOW = 4;
@@ -14,6 +15,28 @@ function rateLimit(key: string): boolean {
   }
   entry.count += 1;
   return entry.count <= MAX_PER_WINDOW;
+}
+
+let cachedAudienceId: string | null = null;
+
+async function resolveAudienceId(resend: Resend): Promise<string | null> {
+  if (cachedAudienceId) return cachedAudienceId;
+  if (process.env.RESEND_AUDIENCE_ID) {
+    cachedAudienceId = process.env.RESEND_AUDIENCE_ID;
+    return cachedAudienceId;
+  }
+  // Auto-discover : pick the first audience on the account.
+  try {
+    const list = await resend.audiences.list();
+    const first = list.data?.data?.[0];
+    if (first?.id) {
+      cachedAudienceId = first.id;
+      return cachedAudienceId;
+    }
+  } catch {
+    // ignore, fallback to email notification
+  }
+  return null;
 }
 
 export async function POST(request: Request) {
@@ -38,21 +61,20 @@ export async function POST(request: Request) {
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
+    const audienceId = await resolveAudienceId(resend);
 
-    // If a Resend Audience ID is provided, add the contact there.
-    const audienceId = process.env.RESEND_AUDIENCE_ID;
     if (audienceId) {
-      await resend.contacts.create({
-        email,
-        unsubscribed: false,
-        audienceId,
-      });
+      try {
+        await resend.contacts.create({ email, unsubscribed: false, audienceId });
+      } catch {
+        // Contact may already exist : ignore and treat as success.
+      }
     } else {
-      // Fallback — notify by email so nothing is lost.
+      // Fallback : notify by email so nothing is lost.
       await resend.emails.send({
         from: "The Girl With A Camera <hello@thegirlwithacamera.com>",
         to: "hello@thegirlwithacamera.com",
-        subject: `Newsletter signup — ${email}`,
+        subject: `Newsletter signup · ${email}`,
         text: `New subscriber: ${email} (lang: ${lang})`,
       });
     }

@@ -172,7 +172,7 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
                   <div>
                     <label htmlFor="type" className="block text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{t.type} *</label>
                     <select id="type" required value={form.type} onChange={(e) => update("type", e.target.value)} className={inputCls}>
-                      <option value="">—</option>
+                      <option value=""></option>
                       {t.typeOptions.map((o) => (
                         <option key={o.value} value={o.value}>{o.label}</option>
                       ))}
@@ -181,7 +181,7 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
                   <div>
                     <label htmlFor="budget" className="block text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{t.budget}</label>
                     <select id="budget" value={form.budget} onChange={(e) => update("budget", e.target.value)} className={inputCls}>
-                      <option value="">—</option>
+                      <option value=""></option>
                       {t.budgetOptions.map((o) => (
                         <option key={o.value} value={o.value}>{o.label}</option>
                       ))}

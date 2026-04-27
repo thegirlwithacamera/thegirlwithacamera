@@ -14,8 +14,8 @@ export const series: Series[] = [
     year: "2026",
     cover: "/images/series/dramatic-bw/cover.JPG",
     description: {
-      fr: "Ma première série. Des autoportraits en noir et blanc, travaillés dans le contraste et le grain. Un face-à-face avec soi-même, entre ombre et lumière — chercher ce que la couleur cache, trouver ce que le noir révèle.",
-      en: "My first series. Self-portraits in black and white, built on contrast and grain. A face-to-face with oneself, between shadow and light — seeking what colour conceals, finding what black reveals.",
+      fr: "Ma première série. Des autoportraits en noir et blanc, travaillés dans le contraste et le grain. Un face-à-face avec soi-même, entre ombre et lumière. Chercher ce que la couleur cache, trouver ce que le noir révèle.",
+      en: "My first series. Self-portraits in black and white, built on contrast and grain. A face-to-face with oneself, between shadow and light. Seeking what colour conceals, finding what black reveals.",
     },
     photos: [
       "/images/series/dramatic-bw/01.JPG",
@@ -32,8 +32,8 @@ export const series: Series[] = [
     year: "2026",
     cover: "/images/series/behind-doors/cover.JPG",
     description: {
-      fr: "Sicile. Depuis le seuil, depuis la rue, depuis l'extérieur — des gens au travail, pris dans leur intérieur. Derrière les portes ouvertes, la vie continue sans se soucier d'être regardée. Une série sur le dedans vu du dehors.",
-      en: "Sicily. From the threshold, from the street, from outside — people at work, caught in their interiors. Behind open doors, life goes on without caring to be seen. A series on the inside as seen from the outside.",
+      fr: "Sicile. Depuis le seuil, depuis la rue, depuis l'extérieur. Des gens au travail, pris dans leur intérieur. Derrière les portes ouvertes, la vie continue sans se soucier d'être regardée. Une série sur le dedans vu du dehors.",
+      en: "Sicily. From the threshold, from the street, from outside. People at work, caught in their interiors. Behind open doors, life goes on without caring to be seen. A series on the inside as seen from the outside.",
     },
     photos: [
       "/images/series/behind-doors/01.JPG",
@@ -56,8 +56,8 @@ export const series: Series[] = [
     year: "2026",
     cover: "/images/series/mercato/cover.jpg",
     description: {
-      fr: "Les marchés siciliens. Des étals qui débordent, des voix qui s'entremêlent, des mains qui pèsent, qui tendent, qui comptent. Le mercato comme espace de théâtre ordinaire — couleurs criardes, gestes précis, lumière de midi.",
-      en: "Sicilian markets. Stalls overflowing, voices intertwining, hands weighing, reaching, counting. The mercato as a stage for the ordinary — vivid colours, precise gestures, midday light.",
+      fr: "Les marchés siciliens. Des étals qui débordent, des voix qui s'entremêlent, des mains qui pèsent, qui tendent, qui comptent. Le mercato comme espace de théâtre ordinaire : couleurs criardes, gestes précis, lumière de midi.",
+      en: "Sicilian markets. Stalls overflowing, voices intertwining, hands weighing, reaching, counting. The mercato as a stage for the ordinary : vivid colours, precise gestures, midday light.",
     },
     photos: [
       "/images/series/mercato/01.JPG",
