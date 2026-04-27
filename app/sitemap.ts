@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 import { series } from "@/lib/series";
 import { getAllPosts } from "@/lib/sanity.queries";
 
-const STATIC_PATHS = ["", "/gallery", "/creation", "/about", "/contact", "/services", "/press", "/now", "/legal/privacy", "/legal/mentions"];
+const STATIC_PATHS = ["", "/gallery", "/creation", "/about", "/contact", "/services", "/press", "/legal/privacy", "/legal/mentions"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const langs: Array<"fr" | "en"> = ["fr", "en"];

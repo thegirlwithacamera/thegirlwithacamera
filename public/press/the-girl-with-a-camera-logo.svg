@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400">
+  <title>The Girl With A Camera — wordmark</title>
+  <desc>Wordmark for Sandrine Ceuppens · The Girl With A Camera</desc>
+  <style>
+    .wordmark { font-family: "Playfair Display", "Times New Roman", Georgia, serif; font-weight: 900; letter-spacing: -0.02em; }
+    .name { font-family: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; font-weight: 500; letter-spacing: 0.3em; }
+  </style>
+  <g fill="#0a0a0a">
+    <text class="wordmark" x="600" y="180" font-size="150" text-anchor="middle">THE GIRL</text>
+    <text class="wordmark" x="600" y="310" font-size="150" text-anchor="middle">WITH A CAMERA</text>
+    <text class="name" x="600" y="370" font-size="22" text-anchor="middle" fill="#737373">SANDRINE CEUPPENS</text>
+  </g>
+</svg>

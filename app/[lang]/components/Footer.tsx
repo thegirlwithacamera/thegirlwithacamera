@@ -124,7 +124,6 @@ export default function Footer() {
           <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">Studio</p>
           <ul className="space-y-2">
             <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/about`}>{isFrench ? "À propos" : "About"}</Link></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/now`}>Now</Link></li>
             <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/press`}>Press</Link></li>
             <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/blog`}>Journal</Link></li>
           </ul>
