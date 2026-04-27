@@ -63,11 +63,11 @@ export default async function CreationPage({ params }: Props) {
                 {p.description[lang]}
               </p>
 
-              <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {p.items.map((item) => (
                   <li key={item.id} className="flex flex-col">
-                    {/* Media */}
-                    <div className="bg-[#0a0a0a] aspect-[9/16] overflow-hidden flex items-center justify-center relative">
+                    {/* Media : 16:9 horizontal */}
+                    <div className="bg-[#0a0a0a] aspect-video overflow-hidden flex items-center justify-center relative">
                       {item.videoUrl ? (
                         <video
                           src={item.videoUrl}
@@ -75,10 +75,10 @@ export default async function CreationPage({ params }: Props) {
                           controls
                           playsInline
                           preload="metadata"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       ) : item.poster ? (
-                        <Image src={item.poster} alt={item.title[lang]} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
+                        <Image src={item.poster} alt={item.title[lang]} fill className="object-contain" sizes="(max-width: 768px) 100vw, 50vw" />
                       ) : (
                         // Clean placeholder while videos are being uploaded.
                         <div className="text-center text-white/60 px-6">
