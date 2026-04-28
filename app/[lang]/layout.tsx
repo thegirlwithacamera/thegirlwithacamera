@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { site } from "@/lib/site";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -110,6 +111,7 @@ export default async function RootLayout({ children, params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

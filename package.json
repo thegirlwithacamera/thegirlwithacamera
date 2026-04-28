@@ -10,6 +10,7 @@
     "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^1",
     "@vercel/speed-insights": "^1",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.22.0",
