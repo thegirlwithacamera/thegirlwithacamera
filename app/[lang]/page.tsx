@@ -13,14 +13,13 @@ export default async function HomePage({ params }: Props) {
   return (
     <div className="bg-black min-h-screen">
 
-      {/* ── GRILLE FULL IMAGES ── */}
+      {/* ── GRILLE 4 COLONNES UNIFORME ── */}
       <main
-        className="grid gap-[3px]"
         style={{
+          display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
-          gridAutoRows: "50vh",
-          // On force les cellules à ne jamais dépasser leur zone
-          gridAutoFlow: "dense",
+          gridAutoRows: "45vh",
+          gap: "3px",
         }}
       >
         {homeGrid.map((item, i) => (
@@ -28,10 +27,6 @@ export default async function HomePage({ params }: Props) {
             key={i}
             href={`/${lang}${item.href}`}
             className="group relative overflow-hidden block bg-[#111]"
-            style={{
-              gridColumn: item.wide ? "span 2" : "span 1",
-              gridRow:    item.tall ? "span 2" : "span 1",
-            }}
           >
             {/* Photo */}
             <Image
@@ -39,22 +34,22 @@ export default async function HomePage({ params }: Props) {
               alt={item.title || "Sandrine Ceuppens"}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              sizes={item.wide ? "50vw" : "25vw"}
-              priority={i < 4}
+              sizes="25vw"
+              priority={i < 8}
             />
 
-            {/* Assombrissement au hover */}
-            <span className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 z-10" />
+            {/* Overlay hover */}
+            <span className="absolute inset-0 bg-black/0 group-hover:bg-black/35 transition-all duration-300 z-10" />
 
-            {/* Accroche sur la 1ère cellule uniquement */}
+            {/* Accroche sur la 1ère cellule */}
             {i === 0 && (
               <div
-                className="absolute inset-0 z-20 flex flex-col justify-end p-10 md:p-14 pointer-events-none"
-                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 52%)" }}
+                className="absolute inset-0 z-20 flex flex-col justify-end p-6 pointer-events-none"
+                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%)" }}
               >
                 <h1
-                  className="font-serif font-black leading-[1.02] text-white mb-2"
-                  style={{ fontSize: "clamp(28px, 3.4vw, 54px)" }}
+                  className="font-serif font-black leading-[1.02] text-white mb-1"
+                  style={{ fontSize: "clamp(20px, 2vw, 36px)" }}
                 >
                   {isFr ? hero.titleLine1.fr : hero.titleLine1.en}
                   <br />
@@ -63,7 +58,7 @@ export default async function HomePage({ params }: Props) {
                   </em>
                 </h1>
                 <p
-                  className="text-[11px] tracking-[0.18em] uppercase"
+                  className="text-[9px] tracking-[0.18em] uppercase"
                   style={{ color: "rgba(255,255,255,0.5)" }}
                 >
                   {isFr ? hero.tagline.fr : hero.tagline.en}
@@ -74,16 +69,16 @@ export default async function HomePage({ params }: Props) {
             {/* Légende au hover */}
             {item.title && (
               <div
-                className="absolute bottom-0 left-0 right-0 z-20 p-5 md:p-8
-                           opacity-0 translate-y-2
+                className="absolute bottom-0 left-0 right-0 z-20 p-4
+                           opacity-0 translate-y-1
                            group-hover:opacity-100 group-hover:translate-y-0
                            transition-all duration-300 pointer-events-none"
-                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%)" }}
+                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)" }}
               >
-                <p className="text-[10px] tracking-[0.2em] uppercase mb-1" style={{ color: "#c8a882" }}>
+                <p className="text-[9px] tracking-[0.2em] uppercase mb-1" style={{ color: "#c8a882" }}>
                   {isFr ? item.cat.fr : item.cat.en}
                 </p>
-                <p className="font-serif font-bold text-white" style={{ fontSize: "clamp(15px, 1.4vw, 21px)" }}>
+                <p className="font-serif font-bold text-white text-sm">
                   {item.title}
                 </p>
               </div>
@@ -97,7 +92,7 @@ export default async function HomePage({ params }: Props) {
         <span className="font-serif font-bold text-[11px] tracking-[0.12em] uppercase text-white/35">
           Sandrine Ceuppens
         </span>
-        <span className="text-[10px] tracking-[0.05em] text-white/18">
+        <span className="text-[10px] tracking-[0.05em] text-white/20">
           {footer.copyright}
         </span>
         <a
