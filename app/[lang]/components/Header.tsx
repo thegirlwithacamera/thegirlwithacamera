@@ -5,105 +5,169 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-function useIsHomePage() {
-  const pathname = usePathname();
-  const parts = pathname.split("/").filter(Boolean);
-  return parts.length <= 1;
-}
-
 type Lang = "fr" | "en";
 
 const NAV = [
-  { href: "/gallery", label: { fr: "Work", en: "Work" } },
-  { href: "/about",   label: { fr: "About", en: "About" } },
-  { href: "/contact", label: { fr: "Contact", en: "Contact" } },
+  { href: "/gallery", label: "Work" },
+  { href: "/about",   label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const currentLang = (pathname.split("/")[1] || "fr") as Lang;
-  const isHome = useIsHomePage();
 
   useEffect(() => setMenuOpen(false), [pathname]);
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [menuOpen]);
-
-  const links = NAV.map((l) => ({ href: `/${currentLang}${l.href}`, label: l.label[currentLang] }));
-
-  const headerBg   = isHome ? "bg-transparent" : "bg-white/95 backdrop-blur-sm border-b border-[#e5e5e5]";
-  const textColor  = isHome ? "text-white" : "text-black";
-  const linkColor  = isHome ? "text-white/70 hover:text-white" : "text-[#525252] hover:text-black";
-  const activeColor = isHome ? "text-white border-b border-white/60 pb-1" : "text-black border-b-2 border-black pb-1";
-  const burgerColor = isHome ? "bg-white" : "bg-black";
-  const mobileMenuBg = isHome ? "bg-black/90 backdrop-blur-md" : "bg-white border-b border-[#e5e5e5]";
-  const mobileLinkColor = isHome ? "text-white/80" : "text-[#525252]";
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${headerBg}`}>
-      <nav className="px-8 py-5" aria-label={currentLang === "fr" ? "Navigation principale" : "Main navigation"}>
-        <div className="flex items-center justify-between">
+    <header
+      style={{
+        position: "fixed",
+        top: 0, left: 0, right: 0,
+        zIndex: 50,
+        background: "rgba(0,0,0,0.85)",
+        backdropFilter: "blur(8px)",
+        borderBottom: "1px solid rgba(255,255,255,0.15)",
+      }}
+    >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
+          alignItems: "center",
+          padding: "14px 32px",
+          gap: "16px",
+        }}
+      >
+        {/* GAUCHE — Nom */}
+        <Link
+          href={`/${currentLang}`}
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "13px",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.9)",
+            textDecoration: "none",
+          }}
+        >
+          Sandrine Ceuppens
+        </Link>
 
-          {/* Logo */}
-          <Link
-            href={`/${currentLang}`}
-            className={`font-serif text-sm font-bold tracking-[0.14em] uppercase hover:opacity-70 transition-opacity ${textColor}`}
+        {/* CENTRE — Tagline */}
+        <div style={{ textAlign: "center" }}>
+          <p
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "13px",
+              fontWeight: 700,
+              color: "#fff",
+              letterSpacing: "0.02em",
+              lineHeight: 1.2,
+              margin: 0,
+            }}
           >
-            Sandrine Ceuppens
-          </Link>
+            Where photography <em style={{ fontWeight: 400, fontStyle: "italic" }}>and fashion meet.</em>
+          </p>
+          <p
+            style={{
+              fontSize: "9px",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.45)",
+              margin: "4px 0 0",
+            }}
+          >
+            Photographer / Creative / Video Diary
+          </p>
+        </div>
 
+        {/* DROITE — Nav + Langue */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            gap: "28px",
+          }}
+        >
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-10">
-            {links.map((link) => {
-              const active = pathname === link.href || (link.href !== `/${currentLang}` && pathname.startsWith(link.href));
+          <nav className="hidden md:flex items-center gap-7">
+            {NAV.map((l) => {
+              const href = `/${currentLang}${l.href}`;
+              const active = pathname.startsWith(href);
               return (
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`text-xs font-medium tracking-[0.12em] uppercase transition-colors ${active ? activeColor : linkColor}`}
+                  key={href}
+                  href={href}
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 500,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: active ? "#fff" : "rgba(255,255,255,0.55)",
+                    textDecoration: "none",
+                    borderBottom: active ? "1px solid rgba(255,255,255,0.6)" : "none",
+                    paddingBottom: active ? "2px" : "0",
+                    transition: "color 0.2s",
+                  }}
                 >
-                  {link.label}
+                  {l.label}
                 </Link>
               );
             })}
-            <LanguageSwitcher currentLang={currentLang} />
-          </div>
+          </nav>
 
-          {/* Mobile */}
-          <div className="md:hidden flex items-center gap-4">
-            <LanguageSwitcher currentLang={currentLang} />
-            <button
-              type="button"
-              onClick={() => setMenuOpen((v) => !v)}
-              aria-expanded={menuOpen}
-              aria-controls="mobile-menu"
-              aria-label={menuOpen ? "Fermer" : "Menu"}
-              className="p-2"
-            >
-              <div className="w-6 h-4 flex flex-col justify-between">
-                <span className={`w-full h-0.5 transition-transform ${burgerColor} ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-                <span className={`w-full h-0.5 transition-opacity ${burgerColor} ${menuOpen ? "opacity-0" : ""}`} />
-                <span className={`w-full h-0.5 transition-transform ${burgerColor} ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-              </div>
-            </button>
-          </div>
+          <LanguageSwitcher currentLang={currentLang} />
+
+          {/* Burger mobile */}
+          <button
+            className="md:hidden"
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Menu"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
+          >
+            <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+              <span style={{ display: "block", width: "22px", height: "1.5px", background: "#fff" }} />
+              <span style={{ display: "block", width: "22px", height: "1.5px", background: "#fff" }} />
+              <span style={{ display: "block", width: "22px", height: "1.5px", background: "#fff" }} />
+            </div>
+          </button>
         </div>
+      </div>
 
-        {menuOpen && (
-          <div id="mobile-menu" className={`md:hidden absolute top-full left-0 right-0 py-6 px-8 flex flex-col gap-5 ${mobileMenuBg}`}>
-            {links.map((link) => (
-              <Link key={link.href} href={link.href} className={`text-base font-medium ${mobileLinkColor}`}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        )}
-      </nav>
+      {/* Menu mobile */}
+      {menuOpen && (
+        <div
+          style={{
+            background: "rgba(0,0,0,0.95)",
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+            padding: "24px 32px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+          }}
+        >
+          {NAV.map((l) => (
+            <Link
+              key={l.href}
+              href={`/${currentLang}${l.href}`}
+              style={{
+                fontSize: "14px",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.75)",
+                textDecoration: "none",
+              }}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </div>
+      )}
     </header>
   );
 }
