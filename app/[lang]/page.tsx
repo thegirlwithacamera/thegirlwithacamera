@@ -2,12 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { hero, homeGrid, partners, footer } from "@/lib/content";
 
-// ─────────────────────────────────────────────────────────
-//  HOMEPAGE
-//  Pour modifier le contenu, va dans :  lib/content.ts
-//  Pour modifier le style, modifie ce fichier.
-// ─────────────────────────────────────────────────────────
-
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
 }
@@ -20,27 +14,16 @@ export default async function HomePage({ params }: Props) {
     <div className="bg-black min-h-screen">
 
       {/* ── GRILLE FULL IMAGES ── */}
-      <main
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gridAutoRows: "50vh",
-          gap: "3px",
-        }}
-      >
+      <main className="grid gap-[3px]" style={{ gridTemplateColumns: "repeat(4, 1fr)", gridAutoRows: "50vh" }}>
         {homeGrid.map((item, i) => (
           <Link
             key={i}
             href={`/${lang}${item.href}`}
+            className="group relative overflow-hidden block bg-[#111]"
             style={{
               gridColumn: item.wide ? "span 2" : "span 1",
               gridRow: item.tall ? "span 2" : "span 1",
-              position: "relative",
-              overflow: "hidden",
-              display: "block",
-              background: "#111",
             }}
-            className="group"
           >
             {/* Photo */}
             <Image
@@ -52,95 +35,41 @@ export default async function HomePage({ params }: Props) {
               priority={i < 2}
             />
 
-            {/* Assombrissement au hover */}
+            {/* Overlay hover */}
             <span className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 z-10" />
 
-            {/* ── Accroche sur la 1ère cellule (grande) ── */}
+            {/* Accroche sur la 1ère cellule */}
             {i === 0 && (
               <div
-                className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-14"
-                style={{
-                  background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 55%)",
-                  pointerEvents: "none",
-                }}
+                className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-14 pointer-events-none"
+                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 55%)" }}
               >
-                {/* Sous-titre */}
-                <p
-                  style={{
-                    fontSize: "10px",
-                    letterSpacing: "0.22em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.5)",
-                    marginBottom: "12px",
-                    fontFamily: "inherit",
-                  }}
-                >
+                <p className="text-[10px] tracking-[0.22em] uppercase mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>
                   {isFr ? hero.eyebrow.fr : hero.eyebrow.en}
                 </p>
-
-                {/* Titre principal */}
-                <h1
-                  style={{
-                    fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
-                    fontSize: "clamp(26px, 3.2vw, 50px)",
-                    fontWeight: 900,
-                    lineHeight: 1.05,
-                    color: "#fff",
-                    marginBottom: "10px",
-                  }}
-                >
+                <h1 className="font-serif font-black leading-[1.05] text-white mb-2" style={{ fontSize: "clamp(26px, 3.2vw, 50px)" }}>
                   {isFr ? hero.titleLine1.fr : hero.titleLine1.en}
                   <br />
-                  <em style={{ fontWeight: 400, fontStyle: "italic" }}>
+                  <em className="font-normal italic">
                     {isFr ? hero.titleLine2.fr : hero.titleLine2.en}
                   </em>
                 </h1>
-
-                {/* Tagline */}
-                <p
-                  style={{
-                    fontSize: "11px",
-                    letterSpacing: "0.16em",
-                    color: "rgba(255,255,255,0.55)",
-                    fontFamily: "inherit",
-                  }}
-                >
+                <p className="text-[11px] tracking-[0.16em]" style={{ color: "rgba(255,255,255,0.55)" }}>
                   {isFr ? hero.tagline.fr : hero.tagline.en}
                 </p>
               </div>
             )}
 
-            {/* ── Légende au hover (toutes les cellules avec un titre) ── */}
+            {/* Légende hover */}
             {item.title && (
               <div
-                className="absolute bottom-0 left-0 right-0 z-20 p-5 md:p-7
-                           opacity-0 translate-y-2
-                           group-hover:opacity-100 group-hover:translate-y-0
-                           transition-all duration-300"
-                style={{
-                  background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)",
-                  pointerEvents: "none",
-                }}
+                className="absolute bottom-0 left-0 right-0 z-20 p-5 md:p-7 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none"
+                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)" }}
               >
-                <p
-                  style={{
-                    fontSize: "10px",
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    color: "#c8a882",
-                    marginBottom: "5px",
-                  }}
-                >
+                <p className="text-[10px] tracking-[0.18em] uppercase mb-1" style={{ color: "#c8a882" }}>
                   {isFr ? item.cat.fr : item.cat.en}
                 </p>
-                <p
-                  style={{
-                    fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
-                    fontSize: "clamp(16px, 1.5vw, 22px)",
-                    fontWeight: 700,
-                    color: "#fff",
-                  }}
-                >
+                <p className="font-serif font-bold text-white" style={{ fontSize: "clamp(16px, 1.5vw, 22px)" }}>
                   {item.title}
                 </p>
               </div>
@@ -149,27 +78,10 @@ export default async function HomePage({ params }: Props) {
         ))}
       </main>
 
-      {/* ── BANDE COLLABORATIONS ── */}
+      {/* ── COLLABORATIONS ── */}
       {partners.length > 0 && (
-        <div
-          style={{
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-            padding: "24px 48px",
-            display: "flex",
-            alignItems: "center",
-            gap: "48px",
-            flexWrap: "wrap",
-          }}
-        >
-          <span
-            style={{
-              fontSize: "9px",
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
-              whiteSpace: "nowrap",
-            }}
-          >
+        <div className="flex items-center gap-12 flex-wrap px-12 py-6 border-t border-white/5">
+          <span className="text-[9px] tracking-[0.22em] uppercase text-white/30 whitespace-nowrap">
             {isFr ? "Collaborations" : "Selected collaborations"}
           </span>
           {partners.map((p) => (
@@ -178,16 +90,7 @@ export default async function HomePage({ params }: Props) {
               href={p.url}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
-                fontSize: "15px",
-                fontStyle: "italic",
-                color: "rgba(255,255,255,0.35)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.7)")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.35)")}
+              className="font-serif italic text-[15px] text-white/35 hover:text-white/70 transition-colors no-underline"
             >
               {p.name}
             </a>
@@ -196,65 +99,21 @@ export default async function HomePage({ params }: Props) {
       )}
 
       {/* ── FOOTER ── */}
-      <footer
-        style={{
-          background: "#050505",
-          padding: "24px 48px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: "16px",
-          borderTop: "1px solid rgba(255,255,255,0.04)",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
-            fontSize: "12px",
-            fontWeight: 700,
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.4)",
-          }}
-        >
+      <footer className="flex items-center justify-between flex-wrap gap-4 px-12 py-6 border-t border-white/5 bg-[#050505]">
+        <span className="font-serif font-bold text-[12px] tracking-[0.1em] uppercase text-white/40">
           Sandrine Ceuppens
         </span>
-
-        <span
-          style={{
-            fontSize: "10px",
-            letterSpacing: "0.06em",
-            color: "rgba(255,255,255,0.18)",
-          }}
-        >
+        <span className="text-[10px] tracking-[0.06em] text-white/20">
           {footer.copyright}
         </span>
-
-        <div style={{ display: "flex", gap: "20px" }}>
-          {[
-            { label: "Instagram", href: "https://www.instagram.com/sandrinecppns/" },
-          ].map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontSize: "10px",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.3)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.75)")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.3)")}
-            >
-              {s.label}
-            </a>
-          ))}
-        </div>
+        <a
+          href="https://www.instagram.com/sandrinecppns/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[10px] tracking-[0.12em] uppercase text-white/30 hover:text-white/75 transition-colors no-underline"
+        >
+          Instagram
+        </a>
       </footer>
 
     </div>
