@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { series } from "@/lib/series";
-import { site } from "@/lib/site";
+import { hero, homeGrid, partners, footer } from "@/lib/content";
+
+// ─────────────────────────────────────────────────────────
+//  HOMEPAGE
+//  Pour modifier le contenu, va dans :  lib/content.ts
+//  Pour modifier le style, modifie ce fichier.
+// ─────────────────────────────────────────────────────────
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -9,177 +14,249 @@ interface Props {
 
 export default async function HomePage({ params }: Props) {
   const { lang } = await params;
-  const isFrench = lang === "fr";
-  const featuredSeries = series.slice(0, 3);
+  const isFr = lang === "fr";
 
   return (
-    <div>
-      {/* Hero */}
-      <section className="min-h-[80vh] flex flex-col justify-end px-6 md:px-16 pb-16 pt-32 border-b border-[#e5e5e5]">
-        <div className="max-w-7xl w-full mx-auto flex flex-col justify-end h-full">
-          <p className="text-xs tracking-[0.3em] uppercase text-[#737373] mb-6">
-            {isFrench ? "Photographe et créatrice de contenu, Bruxelles" : "Photographer and content creator, Brussels"}
-          </p>
-          <h1 className="font-serif text-[clamp(3rem,9vw,9rem)] font-bold leading-[0.95] tracking-tight">
-            THE GIRL<br />WITH A CAMERA
-          </h1>
-          <div className="mt-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <p className="max-w-xl text-base md:text-lg text-[#525252] leading-relaxed">
-              {isFrench
-                ? "Je photographie le réel : rues, lumière, gens au travail. Et je conçois du contenu vidéo pour les marques qui veulent sortir du moule."
-                : "I photograph the real : streets, light, people at work. And I craft video content for brands that want to step out of the mould."}
-            </p>
-            <div className="flex gap-4">
-              <Link
-                href={`/${lang}/services`}
-                className="inline-block px-8 py-3 bg-black text-white text-xs font-medium tracking-widest uppercase hover:bg-[#333] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
-              >
-                {isFrench ? "Travailler avec moi" : "Work with me"}
-              </Link>
-              <Link
-                href={`/${lang}/gallery`}
-                className="inline-block px-8 py-3 border border-black text-black text-xs font-medium tracking-widest uppercase hover:bg-black hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
-              >
-                {isFrench ? "Voir les séries" : "View the series"}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="bg-black min-h-screen">
 
-      {/* Trusted by */}
-      <section className="py-12 px-6 border-b border-[#e5e5e5]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-xs tracking-[0.3em] uppercase text-[#737373]">
-            {isFrench ? "Collaborations" : "Selected collaborations"}
-          </p>
-          <ul className="flex flex-wrap items-center gap-x-10 gap-y-4">
-            {site.partners.map((p) => (
-              <li key={p.name} className="font-serif text-lg text-[#525252]">
-                {p.name}
-              </li>
-            ))}
-            <li className="text-sm text-[#a3a3a3] italic">
-              {isFrench ? "& projets éditoriaux indépendants" : "& independent editorial projects"}
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* Featured series */}
-      <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-12 border-b border-[#e5e5e5] pb-6">
-            <div>
-              <p className="text-xs tracking-[0.25em] uppercase text-[#737373] mb-3">
-                {isFrench ? "Travail récent" : "Recent work"}
-              </p>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold">
-                {isFrench ? "Séries en cours" : "Current series"}
-              </h2>
-            </div>
-            <Link
-              href={`/${lang}/gallery`}
-              className="hidden md:inline-block text-xs tracking-widest uppercase text-[#525252] hover:text-black border-b border-[#525252] hover:border-black pb-1"
-            >
-              {isFrench ? "Voir tout" : "See all"} →
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredSeries.map((s) => (
-              <Link key={s.slug} href={`/${lang}/gallery/${s.slug}`} className="group block">
-                <div className="relative aspect-[4/5] overflow-hidden bg-[#f5f5f5] mb-4">
-                  <Image
-                    src={s.cover}
-                    alt={`${s.title}, ${isFrench ? "série de" : "series by"} Sandrine Ceuppens`}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{s.year}</p>
-                <h3 className="font-serif text-2xl font-bold group-hover:text-[#525252] transition-colors">
-                  {s.title}
-                </h3>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services teaser */}
-      <section className="py-24 px-6 border-t border-[#e5e5e5] bg-[#fafafa]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div>
-              <p className="text-xs tracking-[0.25em] uppercase text-[#737373] mb-3">Services</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold leading-tight mb-6">
-                {isFrench ? "Deux façons de travailler ensemble." : "Two ways to work together."}
-              </h2>
-              <Link
-                href={`/${lang}/services`}
-                className="inline-block text-xs tracking-widest uppercase border-b-2 border-black pb-1 hover:opacity-70"
-              >
-                {isFrench ? "Voir les offres" : "View offers"} →
-              </Link>
-            </div>
-            <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
-              <div>
-                <h3 className="font-serif text-xl font-bold mb-3">{isFrench ? "Brand content" : "Brand content"}</h3>
-                <p className="text-[#525252] leading-relaxed">
-                  {isFrench
-                    ? "Vidéo et photo pour réseaux sociaux. Concept, tournage, montage. D'une seule vidéo à la campagne complète."
-                    : "Video and stills for social. Concept, shoot, edit. From a single video to a full campaign."}
-                </p>
-              </div>
-              <div>
-                <h3 className="font-serif text-xl font-bold mb-3">{isFrench ? "Tirages" : "Prints"}</h3>
-                <p className="text-[#525252] leading-relaxed">
-                  {isFrench
-                    ? "Tirages limités, signés, numérotés. Plusieurs formats."
-                    : "Limited prints, signed and numbered. Several sizes."}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About preview */}
-      <section className="py-24 px-6 border-t border-[#e5e5e5]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div className="aspect-[3/4] bg-[#f5f5f5] overflow-hidden relative">
+      {/* ── GRILLE FULL IMAGES ── */}
+      <main
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gridAutoRows: "50vh",
+          gap: "3px",
+        }}
+      >
+        {homeGrid.map((item, i) => (
+          <Link
+            key={i}
+            href={`/${lang}${item.href}`}
+            style={{
+              gridColumn: item.wide ? "span 2" : "span 1",
+              gridRow: item.tall ? "span 2" : "span 1",
+              position: "relative",
+              overflow: "hidden",
+              display: "block",
+              background: "#111",
+            }}
+            className="group"
+          >
+            {/* Photo */}
             <Image
-              src="/images/about-preview.jpg"
-              alt={isFrench ? "Portrait de Sandrine Ceuppens, photographe basée à Bruxelles" : "Portrait of Sandrine Ceuppens, photographer based in Brussels"}
+              src={item.src}
+              alt={item.title || "Sandrine Ceuppens"}
               fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              sizes={item.wide ? "50vw" : "25vw"}
+              priority={i < 2}
             />
-          </div>
-          <div>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#737373] mb-6">
-              {isFrench ? "À propos" : "About"}
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-8 leading-tight">
-              {isFrench
-                ? "Des instants réels, façonnés par l'instinct et l'esthétique."
-                : "Real moments, shaped by instinct and aesthetics."}
-            </h2>
-            <p className="text-[#525252] leading-relaxed mb-10">
-              {isFrench
-                ? "Je photographie les rues, la lumière, les moments qu'on ne remarque pas. Documentaire et mode. Approche instinctive, post-traitement minimal. Basée à Bruxelles, en collaboration avec Ricoh et Pentax Europe."
-                : "I photograph streets, light, and moments that go unnoticed. Documentary and fashion. Instinctive, barely edited. Based in Brussels, in collaboration with Ricoh and Pentax Europe."}
-            </p>
-            <Link
-              href={`/${lang}/about`}
-              className="inline-block px-8 py-3 bg-black text-white text-xs font-medium tracking-widest uppercase hover:bg-[#333] transition-colors"
+
+            {/* Assombrissement au hover */}
+            <span className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 z-10" />
+
+            {/* ── Accroche sur la 1ère cellule (grande) ── */}
+            {i === 0 && (
+              <div
+                className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-14"
+                style={{
+                  background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 55%)",
+                  pointerEvents: "none",
+                }}
+              >
+                {/* Sous-titre */}
+                <p
+                  style={{
+                    fontSize: "10px",
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.5)",
+                    marginBottom: "12px",
+                    fontFamily: "inherit",
+                  }}
+                >
+                  {isFr ? hero.eyebrow.fr : hero.eyebrow.en}
+                </p>
+
+                {/* Titre principal */}
+                <h1
+                  style={{
+                    fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
+                    fontSize: "clamp(26px, 3.2vw, 50px)",
+                    fontWeight: 900,
+                    lineHeight: 1.05,
+                    color: "#fff",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {isFr ? hero.titleLine1.fr : hero.titleLine1.en}
+                  <br />
+                  <em style={{ fontWeight: 400, fontStyle: "italic" }}>
+                    {isFr ? hero.titleLine2.fr : hero.titleLine2.en}
+                  </em>
+                </h1>
+
+                {/* Tagline */}
+                <p
+                  style={{
+                    fontSize: "11px",
+                    letterSpacing: "0.16em",
+                    color: "rgba(255,255,255,0.55)",
+                    fontFamily: "inherit",
+                  }}
+                >
+                  {isFr ? hero.tagline.fr : hero.tagline.en}
+                </p>
+              </div>
+            )}
+
+            {/* ── Légende au hover (toutes les cellules avec un titre) ── */}
+            {item.title && (
+              <div
+                className="absolute bottom-0 left-0 right-0 z-20 p-5 md:p-7
+                           opacity-0 translate-y-2
+                           group-hover:opacity-100 group-hover:translate-y-0
+                           transition-all duration-300"
+                style={{
+                  background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)",
+                  pointerEvents: "none",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "10px",
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "#c8a882",
+                    marginBottom: "5px",
+                  }}
+                >
+                  {isFr ? item.cat.fr : item.cat.en}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
+                    fontSize: "clamp(16px, 1.5vw, 22px)",
+                    fontWeight: 700,
+                    color: "#fff",
+                  }}
+                >
+                  {item.title}
+                </p>
+              </div>
+            )}
+          </Link>
+        ))}
+      </main>
+
+      {/* ── BANDE COLLABORATIONS ── */}
+      {partners.length > 0 && (
+        <div
+          style={{
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            padding: "24px 48px",
+            display: "flex",
+            alignItems: "center",
+            gap: "48px",
+            flexWrap: "wrap",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "9px",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.3)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {isFr ? "Collaborations" : "Selected collaborations"}
+          </span>
+          {partners.map((p) => (
+            <a
+              key={p.name}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
+                fontSize: "15px",
+                fontStyle: "italic",
+                color: "rgba(255,255,255,0.35)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.7)")}
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.35)")}
             >
-              {isFrench ? "En savoir plus" : "Learn more"}
-            </Link>
-          </div>
+              {p.name}
+            </a>
+          ))}
         </div>
-      </section>
+      )}
+
+      {/* ── FOOTER ── */}
+      <footer
+        style={{
+          background: "#050505",
+          padding: "24px 48px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "16px",
+          borderTop: "1px solid rgba(255,255,255,0.04)",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
+            fontSize: "12px",
+            fontWeight: 700,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.4)",
+          }}
+        >
+          Sandrine Ceuppens
+        </span>
+
+        <span
+          style={{
+            fontSize: "10px",
+            letterSpacing: "0.06em",
+            color: "rgba(255,255,255,0.18)",
+          }}
+        >
+          {footer.copyright}
+        </span>
+
+        <div style={{ display: "flex", gap: "20px" }}>
+          {[
+            { label: "Instagram", href: "https://www.instagram.com/sandrinecppns/" },
+          ].map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontSize: "10px",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.3)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.75)")}
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.3)")}
+            >
+              {s.label}
+            </a>
+          ))}
+        </div>
+      </footer>
+
     </div>
   );
 }
