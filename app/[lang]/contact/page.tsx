@@ -31,8 +31,7 @@ const content = {
     deadline: "Ideal timing",
     message: "Tell me about the project",
     messagePh: "Context, intention, references, anything that helps.",
-    consent: "I'll only use this to reply. See the ",
-    consentLink: "privacy policy",
+    consent: "I'll only use this information to reply to you.",
     send: "Send",
     sending: "Sending…",
     success: "Message received. I'll be in touch within 48 working hours.",
@@ -66,8 +65,7 @@ const content = {
     deadline: "Échéance idéale",
     message: "Parlez-moi du projet",
     messagePh: "Contexte, intention, références, tout ce qui peut aider.",
-    consent: "J'utilise ces infos uniquement pour vous répondre. Voir la ",
-    consentLink: "politique de confidentialité",
+    consent: "J'utilise ces informations uniquement pour vous répondre.",
     send: "Envoyer",
     sending: "Envoi…",
     success: "Message reçu. Je reviens vers vous sous 48h ouvrées.",
@@ -201,7 +199,6 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
 
                 <p className="text-xs text-[#737373]">
                   {t.consent}
-                  <a href={`/${lang}/legal/privacy`} className="underline hover:no-underline">{t.consentLink}</a>.
                 </p>
 
                 {status === "error" && <p className="text-red-600 text-sm">{t.error}</p>}
