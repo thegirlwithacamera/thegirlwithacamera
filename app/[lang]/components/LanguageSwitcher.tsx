@@ -17,20 +17,30 @@ export default function LanguageSwitcher({ currentLang }: { currentLang: Lang })
         href={currentLang === "fr" ? pathname : newPath}
         aria-current={currentLang === "fr" ? "true" : undefined}
         hrefLang="fr"
-        className={`transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 ${
-          currentLang === "fr" ? "text-black font-semibold" : "text-[#525252] hover:text-black"
-        }`}
+        style={{
+          fontSize: "11px",
+          letterSpacing: "0.08em",
+          fontWeight: currentLang === "fr" ? 700 : 400,
+          color: currentLang === "fr" ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)",
+          textDecoration: "none",
+          transition: "color 0.2s",
+        }}
       >
         FR
       </Link>
-      <span className="text-[#d4d4d4]" aria-hidden>|</span>
+      <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "10px" }} aria-hidden>|</span>
       <Link
         href={currentLang === "en" ? pathname : newPath}
         aria-current={currentLang === "en" ? "true" : undefined}
         hrefLang="en"
-        className={`transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 ${
-          currentLang === "en" ? "text-black font-semibold" : "text-[#525252] hover:text-black"
-        }`}
+        style={{
+          fontSize: "11px",
+          letterSpacing: "0.08em",
+          fontWeight: currentLang === "en" ? 700 : 400,
+          color: currentLang === "en" ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)",
+          textDecoration: "none",
+          transition: "color 0.2s",
+        }}
       >
         EN
       </Link>
