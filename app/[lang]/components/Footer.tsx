@@ -111,36 +111,28 @@ export default function Footer() {
       </div>
 
       {/* Sitemap row */}
-      <div className="border-t border-[#262626] px-8 md:px-16 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+      <div className="border-t border-[#262626] px-8 md:px-16 py-10 grid grid-cols-2 md:grid-cols-3 gap-8 text-sm">
         <div>
           <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">{isFrench ? "Travail" : "Work"}</p>
           <ul className="space-y-2">
             <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/gallery`}>{isFrench ? "Séries" : "Series"}</Link></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/creation`}>{isFrench ? "Création" : "Creation"}</Link></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/services`}>Services</Link></li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">Studio</p>
-          <ul className="space-y-2">
             <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/about`}>{isFrench ? "À propos" : "About"}</Link></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/press`}>Press</Link></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/blog`}>Journal</Link></li>
+            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/contact`}>Contact</Link></li>
           </ul>
         </div>
         <div>
           <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">Contact</p>
           <ul className="space-y-2">
             <li><a className="text-[#d4d4d4] hover:text-white" href={`mailto:${site.email}`}>{site.email}</a></li>
-            <li><a className="text-[#d4d4d4] hover:text-white" href={`mailto:${site.pressEmail}`}>{site.pressEmail}</a></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/contact`}>{isFrench ? "Formulaire" : "Form"}</Link></li>
+            <li><a className="text-[#d4d4d4] hover:text-white" href={site.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a className="text-[#d4d4d4] hover:text-white" href={site.social.threads} target="_blank" rel="noopener noreferrer">Threads</a></li>
           </ul>
         </div>
         <div>
-          <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">{isFrench ? "Suivre" : "Follow"}</p>
+          <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">{isFrench ? "Partenaires" : "Partners"}</p>
           <ul className="space-y-2">
-            <li><a className="text-[#d4d4d4] hover:text-white" href={site.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a className="text-[#d4d4d4] hover:text-white" href={site.social.threads} target="_blank" rel="noopener noreferrer">Threads</a></li>
+            <li><a className="text-[#d4d4d4] hover:text-white" href="https://www.ricoh-imaging.eu/" target="_blank" rel="noopener noreferrer">Ricoh Europe</a></li>
+            <li><a className="text-[#d4d4d4] hover:text-white" href="https://www.ricoh-imaging.eu/pentax/" target="_blank" rel="noopener noreferrer">Pentax Europe</a></li>
           </ul>
         </div>
       </div>
@@ -148,16 +140,8 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-[#262626] px-8 md:px-16 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs">
         <p className="text-[#737373]">
-          © {new Date().getFullYear()} Sandrine Ceuppens. {isFrench ? "Tous droits réservés" : "All rights reserved"}.
+          © {new Date().getFullYear()} Sandrine Ceuppens · Bruxelles. {isFrench ? "Tous droits réservés" : "All rights reserved"}.
         </p>
-        <div className="flex items-center gap-6 text-[#737373]">
-          <Link className="hover:text-white" href={`/${currentLang}/legal/privacy`}>
-            {isFrench ? "Confidentialité" : "Privacy"}
-          </Link>
-          <Link className="hover:text-white" href={`/${currentLang}/legal/mentions`}>
-            {isFrench ? "Mentions légales" : "Legal notice"}
-          </Link>
-        </div>
       </div>
     </footer>
   );
