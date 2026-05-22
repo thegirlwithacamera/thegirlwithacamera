@@ -16,7 +16,7 @@ export default async function HomePage({ params }: Props) {
   const isFr = lang === "fr";
 
   return (
-    <div className="bg-black" style={{ paddingTop: "72px" }}>
+    <div className="bg-black" style={{ paddingTop: "64px" }}>
 
       {/* ── GRILLE RESPONSIVE ── */}
       <div
@@ -32,7 +32,7 @@ export default async function HomePage({ params }: Props) {
           @media (min-width: 768px) {
             .md-grid {
               grid-template-columns: repeat(4, 1fr) !important;
-              grid-auto-rows: calc((100vh - 72px) / 2) !important;
+              grid-auto-rows: calc((100vh - 64px) / 2) !important;
             }
           }
         `}</style>

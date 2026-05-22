@@ -20,21 +20,13 @@ export default function Header() {
   const otherLang: Lang = currentLang === "fr" ? "en" : "fr";
   const pathWithoutLang = pathname.replace(/^\/(fr|en)/, "");
 
-  // Détecte si on est sur la home (ex: /fr ou /en)
-  const isHome = pathWithoutLang === "" || pathWithoutLang === "/";
-
   useEffect(() => setMenuOpen(false), [pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  // Sur la home : transparent → blanc au scroll. Ailleurs : toujours blanc.
-  const isTransparent = isHome && !scrolled && !menuOpen;
-  const textColor = isTransparent ? "#ffffff" : "#0a0a0a";
-  const mutedColor = isTransparent ? "rgba(255,255,255,0.6)" : "#9a9a9a";
 
   return (
     <header
@@ -42,10 +34,10 @@ export default function Header() {
         position: "fixed",
         top: 0, left: 0, right: 0,
         zIndex: 50,
-        background: isTransparent ? "transparent" : "#ffffff",
-        borderBottom: isTransparent ? "1px solid transparent" : "1px solid #ebebeb",
-        transition: "background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease",
-        boxShadow: scrolled && !isTransparent ? "0 2px 24px rgba(0,0,0,0.05)" : "none",
+        background: "#ffffff",
+        borderBottom: "1px solid #ebebeb",
+        transition: "box-shadow 0.4s ease",
+        boxShadow: scrolled ? "0 2px 24px rgba(0,0,0,0.06)" : "none",
       }}
     >
       <div
@@ -69,10 +61,9 @@ export default function Header() {
             fontWeight: 700,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: textColor,
+            color: "#0a0a0a",
             textDecoration: "none",
             whiteSpace: "nowrap",
-            transition: "color 0.4s ease",
           }}
         >
           Sandrine Ceuppens
@@ -86,11 +77,10 @@ export default function Header() {
               fontSize: "11.5px",
               fontWeight: 400,
               fontStyle: "italic",
-              color: isTransparent ? "rgba(255,255,255,0.9)" : "#3a3a3a",
+              color: "#3a3a3a",
               letterSpacing: "0.01em",
               lineHeight: 1.3,
               margin: 0,
-              transition: "color 0.4s ease",
             }}
           >
             Where photography and fashion meet.
@@ -100,10 +90,9 @@ export default function Header() {
               fontSize: "7.5px",
               letterSpacing: "0.28em",
               textTransform: "uppercase",
-              color: mutedColor,
+              color: "#b0b0b0",
               margin: "4px 0 0",
               fontWeight: 500,
-              transition: "color 0.4s ease",
             }}
           >
             Photographer · Creative · Video
@@ -133,14 +122,14 @@ export default function Header() {
                     fontWeight: 500,
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
-                    color: active ? textColor : mutedColor,
+                    color: active ? "#0a0a0a" : "#9a9a9a",
                     textDecoration: "none",
-                    borderBottom: active ? `1px solid ${textColor}` : "1px solid transparent",
+                    borderBottom: active ? "1px solid #0a0a0a" : "1px solid transparent",
                     paddingBottom: "2px",
-                    transition: "color 0.25s, border-color 0.25s",
+                    transition: "color 0.2s, border-color 0.2s",
                   }}
-                  onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.color = textColor; }}
-                  onMouseLeave={e => { if (!active) (e.currentTarget as HTMLElement).style.color = mutedColor; }}
+                  onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.color = "#0a0a0a"; }}
+                  onMouseLeave={e => { if (!active) (e.currentTarget as HTMLElement).style.color = "#9a9a9a"; }}
                 >
                   {l.label}
                 </Link>
@@ -157,14 +146,13 @@ export default function Header() {
                 fontSize: "9px",
                 letterSpacing: "0.14em",
                 fontWeight: currentLang === "fr" ? 600 : 400,
-                color: currentLang === "fr" ? textColor : mutedColor,
+                color: currentLang === "fr" ? "#0a0a0a" : "#b0b0b0",
                 textDecoration: "none",
-                transition: "color 0.4s",
               }}
             >
               FR
             </Link>
-            <span style={{ color: isTransparent ? "rgba(255,255,255,0.3)" : "#d8d8d8", fontSize: "8px", lineHeight: 1, transition: "color 0.4s" }}>|</span>
+            <span style={{ color: "#d8d8d8", fontSize: "8px", lineHeight: 1 }}>|</span>
             <Link
               href={`/${otherLang}${pathWithoutLang || ""}`}
               hrefLang={otherLang}
@@ -172,9 +160,8 @@ export default function Header() {
                 fontSize: "9px",
                 letterSpacing: "0.14em",
                 fontWeight: currentLang === "en" ? 600 : 400,
-                color: currentLang === "en" ? textColor : mutedColor,
+                color: currentLang === "en" ? "#0a0a0a" : "#b0b0b0",
                 textDecoration: "none",
-                transition: "color 0.4s",
               }}
             >
               EN
@@ -191,17 +178,17 @@ export default function Header() {
           >
             <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
               <span style={{
-                display: "block", width: "20px", height: "1px", background: textColor,
-                transition: "transform 0.25s, background 0.4s",
+                display: "block", width: "20px", height: "1px", background: "#0a0a0a",
+                transition: "transform 0.25s",
                 transform: menuOpen ? "rotate(45deg) translate(4px,4px)" : "none"
               }} />
               <span style={{
-                display: "block", width: "20px", height: "1px", background: textColor,
-                opacity: menuOpen ? 0 : 1, transition: "opacity 0.15s, background 0.4s"
+                display: "block", width: "20px", height: "1px", background: "#0a0a0a",
+                opacity: menuOpen ? 0 : 1, transition: "opacity 0.15s"
               }} />
               <span style={{
-                display: "block", width: "20px", height: "1px", background: textColor,
-                transition: "transform 0.25s, background 0.4s",
+                display: "block", width: "20px", height: "1px", background: "#0a0a0a",
+                transition: "transform 0.25s",
                 transform: menuOpen ? "rotate(-45deg) translate(4px,-4px)" : "none"
               }} />
             </div>
