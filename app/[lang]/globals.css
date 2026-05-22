@@ -2,16 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap');
 
 :root {
-  /* Palette éditoriale */
-  --ink:        #0f0f0d;
-  --warm-white: #f7f5f0;
-  --cream:      #ede9e1;
+  /* Palette */
+  --ink:        #0a0a0a;
+  --warm-white: #ffffff;
+  --cream:      #f0f0f0;
   --stone:      #8c8880;
   --dust:       #c4bfb7;
   --gold:       #b8a98a;
 
   /* Aliases compatibles */
-  --background: var(--warm-white);
+  --background: #ffffff;
   --foreground: var(--ink);
   --muted: var(--stone);
   --muted-soft: var(--dust);
@@ -35,7 +35,7 @@ html {
 }
 
 body {
-  background: var(--warm-white);
+  background: #ffffff;
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;

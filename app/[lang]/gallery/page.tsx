@@ -28,7 +28,30 @@ export default async function GalleryPage({ params }: Props) {
   const isFr = lang === "fr";
 
   return (
-    <main style={{ paddingTop: "64px" }}>
+    <main style={{ paddingTop: "52px" }}>
+
+      {/* Nav Work */}
+      <div style={{ borderBottom: "1px solid #ebebeb", padding: "0 48px" }}>
+        <div style={{ display: "flex", gap: "32px", maxWidth: "1280px", margin: "0 auto" }}>
+          {[
+            { href: `/${lang}/gallery`,    label: isFr ? "Photo" : "Photo" },
+            { href: `/${lang}/work/video`, label: isFr ? "Vidéo" : "Video" },
+            { href: `/${lang}/work/ugc`,   label: "UGC" },
+          ].map((tab) => {
+            const active = tab.href.includes("gallery");
+            return (
+              <a key={tab.href} href={tab.href} style={{
+                fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase",
+                color: active ? "#0a0a0a" : "#9a9a9a", textDecoration: "none",
+                padding: "16px 0", borderBottom: active ? "1px solid #0a0a0a" : "1px solid transparent",
+                fontWeight: active ? 500 : 400,
+              }}>
+                {tab.label}
+              </a>
+            );
+          })}
+        </div>
+      </div>
 
       {/* HERO HEADER éditorial */}
       <section style={{ padding: "72px 64px 56px", borderBottom: "1px solid #ebebeb", maxWidth: "1280px", margin: "0 auto" }}>
@@ -39,9 +62,10 @@ export default async function GalleryPage({ params }: Props) {
               {isFr ? "Travail photographique" : "Photographic work"}
             </p>
             <h1 style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'EB Garamond', serif",
               fontSize: "clamp(48px, 7vw, 100px)",
-              fontWeight: 700,
+              fontWeight: 400,
+              fontStyle: "italic",
               lineHeight: 0.95,
               letterSpacing: "-0.03em",
               color: "#0a0a0a",
@@ -86,9 +110,9 @@ export default async function GalleryPage({ params }: Props) {
                     position: "absolute",
                     top: "-18px",
                     left: "0",
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: "'EB Garamond', serif",
                     fontSize: "11px",
-                    fontWeight: 700,
+                    fontWeight: 400,
                     color: "#d0d0d0",
                     letterSpacing: "0.1em",
                     zIndex: 1,
@@ -113,7 +137,7 @@ export default async function GalleryPage({ params }: Props) {
                     <p style={{ fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#b0b0b0", fontWeight: 600, marginBottom: "6px" }}>
                       {s.year} · {s.photos.length} {isFr ? "photos" : "photos"}
                     </p>
-                    <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "18px", fontWeight: 700, color: "#0a0a0a", letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "6px" }}>
+                    <p style={{ fontFamily: "'EB Garamond', serif", fontSize: "20px", fontWeight: 400, fontStyle: "italic", color: "#0a0a0a", letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "6px" }}>
                       {s.title}
                     </p>
                     <p style={{ fontSize: "12px", color: "#b0b0b0", lineHeight: 1.5 }}>

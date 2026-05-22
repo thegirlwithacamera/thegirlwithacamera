@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Sandrine Ceuppens · Photographe documentaire & éditoriale, Bruxelles",
 };
 
-// Uniquement les séries nommées (on exclut les entrées sans titre)
+// Uniquement les entrées avec un titre (séries nommées)
 function getSeries(items: typeof homeGrid) {
   return items.filter((item) => item.title !== "");
 }
@@ -21,253 +21,81 @@ export default async function HomePage({ params }: Props) {
   const isFr = lang === "fr";
   const series = getSeries(homeGrid);
 
-  // Ligne 1 : 3 premières séries — Ligne 2 : 2 dernières (colonnes 1 et 3)
-  const row1 = series.slice(0, 3);
-  const row2 = series.slice(3, 5);
-
   return (
-    <div style={{ paddingTop: "52px", background: "var(--warm-white)" }}>
+    <div style={{ paddingTop: "52px", background: "#ffffff" }}>
 
-      {/* ── EN-TÊTE DE SECTION ── */}
+      {/* ─── GRILLE MIX PLEIN ÉCRAN ───
+          Layout éditorial : 1 grande à gauche (2 rangées) + 2×2 à droite
+          puis ligne du bas avec les séries restantes en colonnes égales     */}
       <div
         style={{
-          padding: "40px 40px 28px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          borderBottom: "1px solid var(--cream)",
-        }}
-      >
-        <div>
-          <p
-            style={{
-              fontSize: "9px",
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: "var(--stone)",
-              marginBottom: "10px",
-            }}
-          >
-            {isFr ? "Travail photographique" : "Photographic work"}
-          </p>
-          <h1
-            style={{
-              fontFamily: "'EB Garamond', serif",
-              fontSize: "clamp(28px, 3vw, 40px)",
-              fontWeight: 400,
-              letterSpacing: "-0.02em",
-              lineHeight: 1,
-              color: "var(--ink)",
-            }}
-          >
-            {isFr ? (
-              <>Séries <em style={{ fontStyle: "italic", color: "var(--stone)" }}>en cours</em> &amp; archive</>
-            ) : (
-              <>Series <em style={{ fontStyle: "italic", color: "var(--stone)" }}>in progress</em> &amp; archive</>
-            )}
-          </h1>
-        </div>
-        <span
-          style={{
-            fontFamily: "'Bebas Neue', sans-serif",
-            fontSize: "52px",
-            color: "var(--cream)",
-            lineHeight: 1,
-            letterSpacing: "0.02em",
-          }}
-        >
-          {String(series.length).padStart(2, "0")}
-        </span>
-      </div>
-
-      {/* ── GRILLE LIGNE 1 : 3 colonnes ── */}
-      <div
-        style={{
-          padding: "32px 40px 0",
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "16px",
+          /* 3 colonnes : grande | moyenne | moyenne */
+          gridTemplateColumns: "2fr 1fr 1fr",
+          gridTemplateRows: "50vh 50vh",
+          gap: "2px",
+          background: "#e0e0e0",
         }}
+        className="home-grid-top"
       >
-        {row1.map((item, i) => (
-          <SerieCard key={i} item={item} index={i} lang={lang} isFr={isFr} priority />
-        ))}
-      </div>
+        <style>{`
+          @media (max-width: 767px) {
+            .home-grid-top {
+              grid-template-columns: 1fr 1fr !important;
+              grid-template-rows: 50vw 50vw 50vw !important;
+            }
+            .home-grid-top .cell-large {
+              grid-column: 1 / -1 !important;
+              grid-row: 1 !important;
+            }
+          }
+          .home-grid-top a { display: block; position: relative; overflow: hidden; }
+          .home-grid-top a img { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+          .home-grid-top a:hover img { transform: scale(1.04); }
+          .home-grid-top .caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 32px 20px 18px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+            opacity: 0; transition: opacity 0.3s;
+          }
+          .home-grid-top a:hover .caption { opacity: 1; }
+          .cap-cat {
+            font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+            color: rgba(255,255,255,0.5); margin-bottom: 4px;
+          }
+          .cap-title {
+            font-family: 'EB Garamond', serif; font-size: 20px; font-style: italic;
+            color: rgba(255,255,255,0.9); line-height: 1.1;
+          }
+        `}</style>
 
-      {/* ── GRILLE LIGNE 2 : colonnes 1 et 3 seulement ── */}
-      <div
-        style={{
-          padding: "16px 40px 0",
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "16px",
-        }}
-      >
-        {row2.map((item, i) => (
-          <SerieCard
-            key={i}
-            item={item}
-            index={row1.length + i}
-            lang={lang}
-            isFr={isFr}
-            style={{ gridColumn: i === 0 ? 1 : 3 }}
-          />
-        ))}
-      </div>
+        {/* Cellule 0 — grande, span 2 rangées */}
+        {series[0] && (
+          <Link
+            href={`/${lang}${series[0].href}`}
+            className="cell-large"
+            style={{ gridColumn: 1, gridRow: "1 / 3" }}
+          >
+            <Image src={series[0].src} alt={series[0].title} fill className="object-cover" sizes="(max-width:767px) 100vw, 50vw" priority />
+            <div className="caption">
+              <p className="cap-cat">{isFr ? series[0].cat.fr : series[0].cat.en}</p>
+              <p className="cap-title">{series[0].title}</p>
+            </div>
+          </Link>
+        )}
 
-      {/* ── LIEN TOUTES LES SÉRIES ── */}
-      <div
-        style={{
-          padding: "32px 40px 56px",
-          display: "flex",
-          justifyContent: "flex-end",
-          borderTop: "1px solid var(--cream)",
-          marginTop: "32px",
-        }}
-      >
-        <Link
-          href={`/${lang}/gallery`}
-          style={{
-            fontSize: "10px",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "var(--stone)",
-            textDecoration: "none",
-            paddingBottom: "3px",
-            borderBottom: "1px solid var(--dust)",
-          }}
-        >
-          {isFr ? "Voir toutes les séries →" : "View all series →"}
-        </Link>
+        {/* Cellules 1–4 — petites, 2×2 à droite */}
+        {series.slice(1, 5).map((item, i) => (
+          <Link key={i} href={`/${lang}${item.href}`} style={{ gridColumn: (i % 2) + 2, gridRow: Math.floor(i / 2) + 1 }}>
+            <Image src={item.src} alt={item.title} fill className="object-cover" sizes="(max-width:767px) 50vw, 25vw" priority={i < 2} />
+            <div className="caption">
+              <p className="cap-cat">{isFr ? item.cat.fr : item.cat.en}</p>
+              <p className="cap-title">{item.title}</p>
+            </div>
+          </Link>
+        ))}
       </div>
 
     </div>
-  );
-}
-
-/* ── COMPOSANT CARTE SÉRIE ── */
-function SerieCard({
-  item,
-  index,
-  lang,
-  isFr,
-  priority = false,
-  style = {},
-}: {
-  item: (typeof homeGrid)[number];
-  index: number;
-  lang: string;
-  isFr: boolean;
-  priority?: boolean;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <Link
-      href={`/${lang}${item.href}`}
-      className="group"
-      style={{
-        display: "block",
-        textDecoration: "none",
-        color: "inherit",
-        ...style,
-      }}
-    >
-      {/* Image — ratio 2:3 allongé vertical */}
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          aspectRatio: "2 / 3",
-          overflow: "hidden",
-          background: "#1a1815",
-        }}
-      >
-        <Image
-          src={item.src}
-          alt={item.title || "Sandrine Ceuppens"}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-          sizes="(max-width: 767px) 90vw, 33vw"
-          priority={priority}
-        />
-
-        {/* Overlay sombre au hover — CSS pur, pas d'event handlers */}
-        <span className="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/25 transition-colors duration-300" />
-
-        {/* Caption au hover */}
-        <div
-          className="absolute bottom-0 left-0 right-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-          style={{
-            padding: "40px 18px 18px",
-            background: "linear-gradient(to top, rgba(10,10,8,0.75) 0%, transparent 100%)",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "'Bebas Neue', sans-serif",
-              fontSize: "11px",
-              letterSpacing: "0.1em",
-              color: "rgba(255,255,255,0.35)",
-              marginBottom: "3px",
-            }}
-          >
-            {String(index + 1).padStart(2, "0")}
-          </p>
-          <p
-            style={{
-              fontFamily: "'EB Garamond', serif",
-              fontSize: "20px",
-              fontStyle: "italic",
-              color: "rgba(255,255,255,0.88)",
-              lineHeight: 1.1,
-              marginBottom: "3px",
-            }}
-          >
-            {item.title}
-          </p>
-          <p
-            style={{
-              fontSize: "9px",
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
-            }}
-          >
-            {isFr ? item.cat.fr : item.cat.en}
-          </p>
-        </div>
-      </div>
-
-      {/* Meta sous l'image */}
-      <div
-        style={{
-          paddingTop: "10px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "baseline",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "'EB Garamond', serif",
-            fontSize: "16px",
-            fontStyle: "italic",
-            color: "var(--ink)",
-          }}
-        >
-          {item.title}
-        </span>
-        <span
-          style={{
-            fontSize: "9px",
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: "var(--dust)",
-          }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </span>
-      </div>
-    </Link>
   );
 }

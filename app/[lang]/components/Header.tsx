@@ -7,15 +7,15 @@ import { useEffect, useState } from "react";
 type Lang = "fr" | "en";
 
 const NAV_FR = [
-  { href: "/gallery", label: "Séries" },
-  { href: "/about",   label: "À propos" },
-  { href: "/contact", label: "Contact" },
+  { href: "/work",    label: "Work",     sub: [{ href: "/work/photo", label: "Photo" }, { href: "/work/video", label: "Vidéo" }, { href: "/work/ugc", label: "UGC" }] },
+  { href: "/about",   label: "À propos", sub: [] },
+  { href: "/contact", label: "Contact",  sub: [] },
 ];
 
 const NAV_EN = [
-  { href: "/gallery", label: "Series" },
-  { href: "/about",   label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/work",    label: "Work",     sub: [{ href: "/work/photo", label: "Photo" }, { href: "/work/video", label: "Video" }, { href: "/work/ugc", label: "UGC" }] },
+  { href: "/about",   label: "About",    sub: [] },
+  { href: "/contact", label: "Contact",  sub: [] },
 ];
 
 export default function Header() {
@@ -41,8 +41,8 @@ export default function Header() {
         position: "fixed",
         top: 0, left: 0, right: 0,
         zIndex: 50,
-        background: "var(--warm-white)",
-        borderBottom: "1px solid var(--dust)",
+        background: "#ffffff",
+        borderBottom: "1px solid #ebebeb",
         transition: "box-shadow 0.4s ease",
         boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.04)" : "none",
       }}
@@ -76,20 +76,8 @@ export default function Header() {
           {" "}With A Camera
         </Link>
 
-        {/* CENTRE — Numéro de parution */}
-        <div style={{ textAlign: "center", whiteSpace: "nowrap" }}>
-          <p
-            style={{
-              fontSize: "10px",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "var(--dust)",
-              margin: 0,
-            }}
-          >
-            {currentLang === "fr" ? "No. 07 · Mai 2026" : "No. 07 · May 2026"}
-          </p>
-        </div>
+        {/* CENTRE — vide */}
+        <div />
 
         {/* DROITE — Nav + Langue */}
         <div
@@ -105,23 +93,69 @@ export default function Header() {
             {NAV.map((l) => {
               const href = `/${currentLang}${l.href}`;
               const active = pathname.startsWith(href);
+              if (l.sub && l.sub.length > 0) {
+                return (
+                  <div key={href} style={{ position: "relative" }} className="nav-dropdown-wrap">
+                    <style>{`
+                      .nav-dropdown-wrap .nav-dropdown { display: none; }
+                      .nav-dropdown-wrap:hover .nav-dropdown { display: flex; }
+                    `}</style>
+                    <Link
+                      href={href}
+                      style={{
+                        fontSize: "9.5px", fontWeight: 500, letterSpacing: "0.2em",
+                        textTransform: "uppercase",
+                        color: active ? "#0a0a0a" : "#9a9a9a",
+                        textDecoration: "none",
+                        borderBottom: active ? "1px solid #0a0a0a" : "1px solid transparent",
+                        paddingBottom: "2px",
+                      }}
+                    >
+                      {l.label}
+                    </Link>
+                    {/* Dropdown */}
+                    <div className="nav-dropdown" style={{
+                      position: "absolute", top: "100%", left: "50%",
+                      transform: "translateX(-50%)",
+                      paddingTop: "16px",
+                      flexDirection: "column", gap: "0",
+                      zIndex: 100,
+                    }}>
+                      <div style={{
+                        background: "#ffffff", border: "1px solid #ebebeb",
+                        minWidth: "120px", padding: "8px 0",
+                      }}>
+                        {l.sub.map((s) => (
+                          <Link
+                            key={s.href}
+                            href={`/${currentLang}${s.href}`}
+                            style={{
+                              display: "block", padding: "9px 20px",
+                              fontSize: "9.5px", letterSpacing: "0.16em",
+                              textTransform: "uppercase", color: "#6a6a6a",
+                              textDecoration: "none",
+                            }}
+                          >
+                            {s.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <Link
                   key={href}
                   href={href}
                   style={{
-                    fontSize: "9.5px",
-                    fontWeight: 500,
-                    letterSpacing: "0.2em",
+                    fontSize: "9.5px", fontWeight: 500, letterSpacing: "0.2em",
                     textTransform: "uppercase",
-                    color: active ? "var(--ink)" : "var(--stone)",
+                    color: active ? "#0a0a0a" : "#9a9a9a",
                     textDecoration: "none",
-                    borderBottom: active ? "1px solid var(--ink)" : "1px solid transparent",
+                    borderBottom: active ? "1px solid #0a0a0a" : "1px solid transparent",
                     paddingBottom: "2px",
-                    transition: "color 0.2s, border-color 0.2s",
                   }}
-                  onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.color = "var(--ink)"; }}
-                  onMouseLeave={e => { if (!active) (e.currentTarget as HTMLElement).style.color = "var(--stone)"; }}
                 >
                   {l.label}
                 </Link>
@@ -192,8 +226,8 @@ export default function Header() {
       {menuOpen && (
         <div
           style={{
-            background: "var(--warm-white)",
-            borderTop: "1px solid var(--dust)",
+            background: "#ffffff",
+            borderTop: "1px solid #ebebeb",
             padding: "32px 40px 36px",
             display: "flex",
             flexDirection: "column",
@@ -201,23 +235,37 @@ export default function Header() {
           }}
         >
           {NAV.map((l, i) => (
-            <Link
-              key={l.href}
-              href={`/${currentLang}${l.href}`}
-              style={{
-                fontFamily: "'EB Garamond', serif",
-                fontSize: "32px",
-                fontWeight: 400,
-                fontStyle: "italic",
-                letterSpacing: "-0.01em",
-                color: "var(--ink)",
-                textDecoration: "none",
-                padding: "14px 0",
-                borderBottom: i < NAV.length - 1 ? "1px solid var(--cream)" : "none",
-              }}
-            >
-              {l.label}
-            </Link>
+            <div key={l.href}>
+              <Link
+                href={`/${currentLang}${l.href}`}
+                style={{
+                  fontFamily: "'EB Garamond', serif",
+                  fontSize: "32px",
+                  fontWeight: 400,
+                  fontStyle: "italic",
+                  letterSpacing: "-0.01em",
+                  color: "#0a0a0a",
+                  textDecoration: "none",
+                  padding: "14px 0",
+                  display: "block",
+                  borderBottom: (l.sub && l.sub.length > 0) ? "none" : (i < NAV.length - 1 ? "1px solid #f0f0f0" : "none"),
+                }}
+              >
+                {l.label}
+              </Link>
+              {l.sub && l.sub.length > 0 && (
+                <div style={{ display: "flex", gap: "20px", paddingBottom: "14px", borderBottom: i < NAV.length - 1 ? "1px solid #f0f0f0" : "none" }}>
+                  {l.sub.map((s) => (
+                    <Link key={s.href} href={`/${currentLang}${s.href}`} style={{
+                      fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase",
+                      color: "#9a9a9a", textDecoration: "none",
+                    }}>
+                      {s.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
           <div style={{ display: "flex", gap: "16px", marginTop: "28px", paddingTop: "24px", borderTop: "1px solid var(--cream)" }}>
             <Link href={pathname} style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: currentLang === "fr" ? "var(--ink)" : "var(--dust)", fontWeight: currentLang === "fr" ? 600 : 400, textDecoration: "none" }}>FR</Link>

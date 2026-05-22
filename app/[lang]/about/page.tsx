@@ -60,14 +60,14 @@ export default async function AboutPage({ params }: Props) {
   const t = content[lang];
 
   return (
-    <main style={{ paddingTop: "64px" }}>
+    <main style={{ paddingTop: "52px" }}>
 
       {/* HERO : photo pleine hauteur + texte */}
-      <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "calc(100vh - 64px)" }} className="about-hero">
+      <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "calc(100vh - 52px)" }} className="about-hero">
         <style>{`
           @media (max-width: 768px) {
             .about-hero { grid-template-columns: 1fr !important; }
-            .about-hero-img { min-height: 65vw !important; }
+            .about-hero-img { min-height: 65vw !important; order: -1 !important; }
             .about-text { padding: 48px 24px !important; }
             .disciplines-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
             .disc-item { border-right: none !important; padding-left: 0 !important; border-top: 1px solid #ebebeb; padding-top: 40px !important; }
@@ -76,7 +76,7 @@ export default async function AboutPage({ params }: Props) {
         `}</style>
 
         {/* Photo gauche pleine hauteur */}
-        <div className="about-hero-img" style={{ position: "relative", overflow: "hidden", background: "#f0f0f0", minHeight: "calc(100vh - 64px)" }}>
+        <div className="about-hero-img" style={{ position: "relative", overflow: "hidden", background: "#f0f0f0", minHeight: "calc(100vh - 52px)" }}>
           <Image
             src="/images/about.jpg"
             alt={lang === "fr" ? "Portrait de Sandrine Ceuppens" : "Portrait of Sandrine Ceuppens"}
@@ -93,9 +93,10 @@ export default async function AboutPage({ params }: Props) {
             {t.eyebrow}
           </p>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'EB Garamond', serif",
             fontSize: "clamp(32px, 4vw, 58px)",
-            fontWeight: 700,
+            fontWeight: 400,
+            fontStyle: "italic",
             lineHeight: 1.1,
             letterSpacing: "-0.02em",
             color: "#0a0a0a",
@@ -127,7 +128,7 @@ export default async function AboutPage({ params }: Props) {
                 paddingLeft: i > 0 ? "56px" : "0",
                 borderRight: i < 2 ? "1px solid #ebebeb" : "none",
               }}>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "52px", fontWeight: 700, color: "#f0f0f0", lineHeight: 1, marginBottom: "16px" }}>
+                <p style={{ fontFamily: "'EB Garamond', serif", fontSize: "60px", fontWeight: 400, color: "#ebebeb", lineHeight: 1, marginBottom: "16px" }}>
                   {d.num}
                 </p>
                 <h3 style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#0a0a0a", marginBottom: "12px" }}>
@@ -146,9 +147,10 @@ export default async function AboutPage({ params }: Props) {
       <section style={{ borderTop: "1px solid #ebebeb" }}>
         <div className="cta-grid" style={{ maxWidth: "1280px", margin: "0 auto", padding: "100px 64px", display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "center", gap: "80px" }}>
           <h2 style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'EB Garamond', serif",
             fontSize: "clamp(28px, 3.5vw, 52px)",
-            fontWeight: 700,
+            fontWeight: 400,
+            fontStyle: "italic",
             lineHeight: 1.1,
             letterSpacing: "-0.02em",
             color: "#0a0a0a",

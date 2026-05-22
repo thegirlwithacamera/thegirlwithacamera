@@ -114,7 +114,7 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
     "w-full px-4 py-3 bg-white border border-[#d4d4d4] focus:outline-none focus:border-black text-sm placeholder:text-[#a3a3a3]";
 
   return (
-    <main style={{ paddingTop: "64px" }}>
+    <main style={{ paddingTop: "52px" }}>
       <style>{`
         @media(max-width:768px){
           .contact-header { padding: 48px 24px 36px !important; }
@@ -181,9 +181,10 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
               {t.eyebrow}
             </p>
             <h1 style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'EB Garamond', serif",
               fontSize: "clamp(48px, 7vw, 100px)",
-              fontWeight: 700,
+              fontWeight: 400,
+              fontStyle: "italic",
               lineHeight: 0.95,
               letterSpacing: "-0.03em",
               color: "#0a0a0a",
@@ -243,7 +244,7 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
             <p style={{ fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#b0b0b0", fontWeight: 600, marginBottom: "12px" }}>
               {lang === "fr" ? "Réponse sous" : "Response within"}
             </p>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "22px", fontWeight: 700, color: "#0a0a0a", letterSpacing: "-0.01em" }}>
+            <p style={{ fontFamily: "'EB Garamond', serif", fontSize: "24px", fontWeight: 400, fontStyle: "italic", color: "#0a0a0a", letterSpacing: "-0.01em" }}>
               48h
             </p>
           </div>
@@ -253,7 +254,7 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
         <div style={{ flex: 1 }}>
           {status === "success" ? (
             <div style={{ paddingTop: "40px" }}>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "28px", fontWeight: 700, color: "#0a0a0a", marginBottom: "16px", letterSpacing: "-0.01em" }}>
+              <p style={{ fontFamily: "'EB Garamond', serif", fontSize: "30px", fontWeight: 400, fontStyle: "italic", color: "#0a0a0a", marginBottom: "16px", letterSpacing: "-0.01em" }}>
                 {lang === "fr" ? "Bien reçu." : "Got it."}
               </p>
               <p style={{ fontSize: "14px", color: "#9a9a9a", lineHeight: 1.8 }}>{t.success}</p>
