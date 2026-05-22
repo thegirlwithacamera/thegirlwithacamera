@@ -208,7 +208,7 @@ export default async function ServicesPage({ params }: Props) {
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-12">
             {isFr ? "Questions fréquentes" : "Frequently asked"}
           </h2>
-          <FaqAccordion items={f as { q: string; a: string }[]} />
+          <FaqAccordion items={f} />
         </section>
 
         {/* Final CTA — style éditorial, pas noir massif */}

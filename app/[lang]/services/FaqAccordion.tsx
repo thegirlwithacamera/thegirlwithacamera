@@ -3,11 +3,11 @@
 import { useState, useRef, useEffect } from "react";
 
 interface FaqItem {
-  q: string;
-  a: string;
+  readonly q: string;
+  readonly a: string;
 }
 
-export default function FaqAccordion({ items }: { items: FaqItem[] }) {
+export default function FaqAccordion({ items }: { items: readonly FaqItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -31,7 +31,7 @@ function FaqItem({
   onToggle,
   isLast,
 }: {
-  item: FaqItem;
+  item: { readonly q: string; readonly a: string };
   isOpen: boolean;
   onToggle: () => void;
   isLast: boolean;
