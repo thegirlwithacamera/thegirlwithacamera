@@ -90,7 +90,7 @@ export default async function HomePage({ params }: Props) {
         }
         .portfolio-cell {
           display: block;
-          aspect-ratio: 5 / 6;
+          aspect-ratio: 4 / 5;
           overflow: hidden;
           position: relative;
         }
