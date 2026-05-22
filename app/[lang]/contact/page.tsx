@@ -114,107 +114,231 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
     "w-full px-4 py-3 bg-white border border-[#d4d4d4] focus:outline-none focus:border-black text-sm placeholder:text-[#a3a3a3]";
 
   return (
-    <div className="pt-32 pb-24 px-6 md:px-16">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-16 border-b border-[#ebebeb] pb-10">
-          <p className="text-xs tracking-[0.3em] uppercase text-[#9a9a9a] mb-6">{t.eyebrow}</p>
-          <h1 className="font-serif text-[clamp(3rem,9vw,8rem)] font-bold leading-none">
-            {t.title}
-          </h1>
-        </div>
+    <main style={{ paddingTop: "64px" }}>
+      <style>{`
+        @media(max-width:768px){
+          .contact-header { padding: 48px 24px 36px !important; }
+          .contact-body { padding: 48px 24px 80px !important; flex-direction: column !important; }
+          .contact-aside { width: 100% !important; paddingRight: 0 !important; paddingBottom: 40px !important; borderRight: none !important; borderBottom: 1px solid #ebebeb !important; }
+        }
+        .contact-input {
+          width: 100%;
+          padding: 14px 0;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid #d8d8d8;
+          font-size: 14px;
+          color: #0a0a0a;
+          outline: none;
+          transition: border-color 0.2s;
+        }
+        .contact-input:focus { border-bottom-color: #0a0a0a; }
+        .contact-input::placeholder { color: #c0c0c0; }
+        .contact-label {
+          display: block;
+          font-size: 8px;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: #b0b0b0;
+          margin-bottom: 8px;
+          font-weight: 600;
+        }
+        .contact-select {
+          width: 100%;
+          padding: 14px 0;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid #d8d8d8;
+          font-size: 14px;
+          color: #0a0a0a;
+          outline: none;
+          appearance: none;
+          cursor: pointer;
+        }
+        .contact-select:focus { border-bottom-color: #0a0a0a; }
+        .contact-textarea {
+          width: 100%;
+          padding: 14px 0;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid #d8d8d8;
+          font-size: 14px;
+          color: #0a0a0a;
+          outline: none;
+          resize: none;
+          font-family: inherit;
+          transition: border-color 0.2s;
+        }
+        .contact-textarea:focus { border-bottom-color: #0a0a0a; }
+        .contact-textarea::placeholder { color: #c0c0c0; }
+      `}</style>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16">
-          {/* Left column */}
-          <aside>
-            <p className="text-[#6a6a6a] leading-relaxed mb-8 max-w-sm">{t.intro}</p>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#9a9a9a] mb-3">{t.direct}</p>
-            <a href={`mailto:${site.email}`} className="block text-base hover:underline mb-2">{site.email}</a>
-            <a href={`mailto:${site.pressEmail}`} className="block text-sm text-[#9a9a9a] hover:underline">{site.pressEmail}</a>
-          </aside>
-
-          {/* Form */}
+      {/* HERO HEADER */}
+      <section className="contact-header" style={{ padding: "72px 64px 56px", borderBottom: "1px solid #ebebeb", maxWidth: "1280px", margin: "0 auto" }}>
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "32px", flexWrap: "wrap" }}>
           <div>
-            {status === "success" ? (
-              <p className="text-lg text-[#1a1a1a]">{t.success}</p>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                {/* honeypot */}
-                <input
-                  type="text"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  value={hp}
-                  onChange={(e) => setHp(e.target.value)}
-                  aria-hidden="true"
-                  className="hidden"
-                />
+            <p style={{ fontSize: "8.5px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#b0b0b0", fontWeight: 600, marginBottom: "20px" }}>
+              {t.eyebrow}
+            </p>
+            <h1 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "clamp(48px, 7vw, 100px)",
+              fontWeight: 700,
+              lineHeight: 0.95,
+              letterSpacing: "-0.03em",
+              color: "#0a0a0a",
+            }}>
+              {t.title}
+            </h1>
+          </div>
+          <p style={{ fontSize: "13px", color: "#9a9a9a", lineHeight: 1.8, maxWidth: "340px", paddingBottom: "8px" }}>
+            {t.intro}
+          </p>
+        </div>
+      </section>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="name" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.name} *</label>
-                    <input id="name" type="text" required value={form.name} onChange={(e) => update("name", e.target.value)} className={inputCls} />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.email} *</label>
-                    <input id="email" type="email" required value={form.email} onChange={(e) => update("email", e.target.value)} className={inputCls} />
-                  </div>
-                </div>
+      {/* BODY — aside + form */}
+      <div className="contact-body" style={{ maxWidth: "1280px", margin: "0 auto", padding: "64px 64px 96px", display: "flex", gap: "80px" }}>
 
+        {/* ASIDE */}
+        <aside className="contact-aside" style={{ width: "280px", flexShrink: 0, paddingRight: "64px", borderRight: "1px solid #ebebeb" }}>
+          <div style={{ marginBottom: "40px" }}>
+            <p style={{ fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#b0b0b0", fontWeight: 600, marginBottom: "16px" }}>
+              {t.direct}
+            </p>
+            <a href="mailto:hello@thegirlwithacamera.com" style={{ display: "block", fontSize: "13px", color: "#0a0a0a", textDecoration: "none", marginBottom: "6px", borderBottom: "1px solid transparent", transition: "border-color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.borderBottomColor = "#0a0a0a")}
+              onMouseLeave={e => (e.currentTarget.style.borderBottomColor = "transparent")}
+            >
+              hello@thegirlwithacamera.com
+            </a>
+            <a href="mailto:press@thegirlwithacamera.com" style={{ display: "block", fontSize: "12px", color: "#9a9a9a", textDecoration: "none", borderBottom: "1px solid transparent", transition: "border-color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.borderBottomColor = "#9a9a9a")}
+              onMouseLeave={e => (e.currentTarget.style.borderBottomColor = "transparent")}
+            >
+              press@thegirlwithacamera.com
+            </a>
+          </div>
+
+          <div>
+            <p style={{ fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#b0b0b0", fontWeight: 600, marginBottom: "16px" }}>
+              {lang === "fr" ? "Me retrouver" : "Join me on"}
+            </p>
+            {[
+              { label: "Instagram", href: "https://instagram.com/thegirlwithacamera" },
+              { label: "Threads", href: "https://threads.net/@thegirlwithacamera" },
+              { label: "TikTok", href: "https://tiktok.com/@thegirlwithacamera" },
+            ].map((s) => (
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
+                style={{ display: "block", fontSize: "12px", color: "#6a6a6a", textDecoration: "none", marginBottom: "8px", borderBottom: "1px solid transparent", transition: "color 0.2s, border-color 0.2s" }}
+                onMouseEnter={e => { e.currentTarget.style.color = "#0a0a0a"; e.currentTarget.style.borderBottomColor = "#0a0a0a"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "#6a6a6a"; e.currentTarget.style.borderBottomColor = "transparent"; }}
+              >
+                {s.label}
+              </a>
+            ))}
+          </div>
+
+          <div style={{ marginTop: "40px", paddingTop: "32px", borderTop: "1px solid #ebebeb" }}>
+            <p style={{ fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#b0b0b0", fontWeight: 600, marginBottom: "12px" }}>
+              {lang === "fr" ? "Réponse sous" : "Response within"}
+            </p>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "22px", fontWeight: 700, color: "#0a0a0a", letterSpacing: "-0.01em" }}>
+              48h
+            </p>
+          </div>
+        </aside>
+
+        {/* FORM */}
+        <div style={{ flex: 1 }}>
+          {status === "success" ? (
+            <div style={{ paddingTop: "40px" }}>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "28px", fontWeight: 700, color: "#0a0a0a", marginBottom: "16px", letterSpacing: "-0.01em" }}>
+                {lang === "fr" ? "Bien reçu." : "Got it."}
+              </p>
+              <p style={{ fontSize: "14px", color: "#9a9a9a", lineHeight: 1.8 }}>{t.success}</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
+              {/* honeypot */}
+              <input type="text" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} aria-hidden="true" style={{ display: "none" }} />
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
                 <div>
-                  <label htmlFor="company" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.company}</label>
-                  <input id="company" type="text" value={form.company} onChange={(e) => update("company", e.target.value)} className={inputCls} />
+                  <label htmlFor="name" className="contact-label">{t.name} *</label>
+                  <input id="name" type="text" required value={form.name} onChange={(e) => update("name", e.target.value)} className="contact-input" placeholder="—" />
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="type" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.type} *</label>
-                    <select id="type" required value={form.type} onChange={(e) => update("type", e.target.value)} className={inputCls}>
-                      <option value=""></option>
-                      {t.typeOptions.map((o) => (
-                        <option key={o.value} value={o.value}>{o.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="budget" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.budget}</label>
-                    <select id="budget" value={form.budget} onChange={(e) => update("budget", e.target.value)} className={inputCls}>
-                      <option value=""></option>
-                      {t.budgetOptions.map((o) => (
-                        <option key={o.value} value={o.value}>{o.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
                 <div>
-                  <label htmlFor="deadline" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.deadline}</label>
-                  <input id="deadline" type="text" placeholder={lang === "fr" ? "ex. juin 2026" : "e.g. June 2026"} value={form.deadline} onChange={(e) => update("deadline", e.target.value)} className={inputCls} />
+                  <label htmlFor="email" className="contact-label">{t.email} *</label>
+                  <input id="email" type="email" required value={form.email} onChange={(e) => update("email", e.target.value)} className="contact-input" placeholder="—" />
                 </div>
+              </div>
 
+              <div>
+                <label htmlFor="company" className="contact-label">{t.company}</label>
+                <input id="company" type="text" value={form.company} onChange={(e) => update("company", e.target.value)} className="contact-input" placeholder="—" />
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
                 <div>
-                  <label htmlFor="message" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.message} *</label>
-                  <textarea id="message" required rows={6} placeholder={t.messagePh} value={form.message} onChange={(e) => update("message", e.target.value)} className={`${inputCls} resize-none`} />
+                  <label htmlFor="type" className="contact-label">{t.type} *</label>
+                  <select id="type" required value={form.type} onChange={(e) => update("type", e.target.value)} className="contact-select">
+                    <option value="">—</option>
+                    {t.typeOptions.map((o) => (
+                      <option key={o.value} value={o.value}>{o.label}</option>
+                    ))}
+                  </select>
                 </div>
+                <div>
+                  <label htmlFor="budget" className="contact-label">{t.budget}</label>
+                  <select id="budget" value={form.budget} onChange={(e) => update("budget", e.target.value)} className="contact-select">
+                    <option value="">—</option>
+                    {t.budgetOptions.map((o) => (
+                      <option key={o.value} value={o.value}>{o.label}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
 
-                <p className="text-xs text-[#9a9a9a]">
-                  {t.consent}
-                </p>
+              <div>
+                <label htmlFor="deadline" className="contact-label">{t.deadline}</label>
+                <input id="deadline" type="text" placeholder={lang === "fr" ? "ex. juin 2026" : "e.g. June 2026"} value={form.deadline} onChange={(e) => update("deadline", e.target.value)} className="contact-input" />
+              </div>
 
-                {status === "error" && <p className="text-red-600 text-sm">{t.error}</p>}
+              <div>
+                <label htmlFor="message" className="contact-label">{t.message} *</label>
+                <textarea id="message" required rows={5} placeholder={t.messagePh} value={form.message} onChange={(e) => update("message", e.target.value)} className="contact-textarea" />
+              </div>
 
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px", flexWrap: "wrap" }}>
+                <p style={{ fontSize: "11px", color: "#b0b0b0" }}>{t.consent}</p>
+                {status === "error" && <p style={{ fontSize: "12px", color: "#cc3333" }}>{t.error}</p>}
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="w-full md:w-auto px-10 py-4 bg-black text-white text-xs font-medium tracking-widest uppercase hover:bg-[#333] transition-colors disabled:opacity-50"
+                  style={{
+                    padding: "14px 40px",
+                    background: "#0a0a0a",
+                    color: "#fff",
+                    fontSize: "9px",
+                    fontWeight: 600,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    border: "none",
+                    cursor: status === "sending" ? "not-allowed" : "pointer",
+                    opacity: status === "sending" ? 0.5 : 1,
+                    transition: "background 0.2s",
+                  }}
+                  onMouseEnter={e => { if (status !== "sending") (e.currentTarget as HTMLElement).style.background = "#333"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#0a0a0a"; }}
                 >
                   {status === "sending" ? t.sending : t.send}
                 </button>
-              </form>
-            )}
-          </div>
+              </div>
+            </form>
+          )}
         </div>
       </div>
-    </div>
+    </main>
   );
 }

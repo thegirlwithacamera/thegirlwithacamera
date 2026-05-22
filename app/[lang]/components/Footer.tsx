@@ -198,6 +198,7 @@ export default function Footer() {
           </p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
             <li><Link href={`/${currentLang}/gallery`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>{isFrench ? "Séries" : "Series"}</Link></li>
+            <li><Link href={`/${currentLang}/services`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Services</Link></li>
             <li><Link href={`/${currentLang}/about`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>{isFrench ? "À propos" : "About"}</Link></li>
             <li><Link href={`/${currentLang}/contact`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Contact</Link></li>
           </ul>
@@ -205,16 +206,26 @@ export default function Footer() {
         <div>
           <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "16px", fontWeight: 600 }}>Contact</p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
-            <li><a href={`mailto:${site.email}`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>{site.email}</a></li>
-            <li><a href={site.social.instagram} target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Instagram</a></li>
-            <li><a href={site.social.threads} target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Threads</a></li>
+            <li><a href="mailto:hello@thegirlwithacamera.com" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>hello@thegirlwithacamera.com</a></li>
+            <li><a href="mailto:press@thegirlwithacamera.com" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>press@thegirlwithacamera.com</a></li>
+          </ul>
+          <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginTop: "20px", marginBottom: "12px", fontWeight: 600 }}>
+            {isFrench ? "Me retrouver" : "Join me on"}
+          </p>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+            <li><a href="https://instagram.com/thegirlwithacamera" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Instagram</a></li>
+            <li><a href="https://threads.net/@thegirlwithacamera" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Threads</a></li>
+            <li><a href="https://tiktok.com/@thegirlwithacamera" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>TikTok</a></li>
           </ul>
         </div>
         <div>
-          <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "16px", fontWeight: 600 }}>{isFrench ? "Partenaires" : "Partners"}</p>
+          <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "16px", fontWeight: 600 }}>
+            {isFrench ? "Travailler avec" : "Work with"}
+          </p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
             <li><a href="https://www.ricoh-imaging.eu/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Ricoh Europe</a></li>
             <li><a href="https://www.ricoh-imaging.eu/pentax/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Pentax Europe</a></li>
+            <li><a href="https://www.insta360.com/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Insta360</a></li>
           </ul>
         </div>
       </div>

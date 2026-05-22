@@ -59,87 +59,119 @@ export default async function SeriePage({ params }: Props) {
   };
 
   return (
-    <div className="pt-32 pb-24">
-      {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="px-6 mb-8">
-        <ol className="max-w-6xl mx-auto flex flex-wrap gap-2 text-xs tracking-[0.2em] uppercase text-[#737373]">
-          <li><Link className="hover:text-black" href={`/${lang}`}>{isFr ? "Accueil" : "Home"}</Link></li>
-          <li aria-hidden>/</li>
-          <li><Link className="hover:text-black" href={`/${lang}/gallery`}>{isFr ? "Séries" : "Series"}</Link></li>
-          <li aria-hidden>/</li>
-          <li className="text-black">{s.title}</li>
-        </ol>
-      </nav>
+    <main style={{ paddingTop: "64px" }}>
+      <style>{`
+        @media(max-width:768px){
+          .serie-header { padding: 40px 24px 36px !important; }
+          .serie-cover { margin: 0 !important; }
+          .serie-photos { padding: 40px 24px 64px !important; }
+          .serie-nav { padding: 32px 24px 64px !important; flex-direction: column !important; gap: 24px !important; }
+          .serie-nav-next { text-align: left !important; flex-direction: row !important; justify-content: flex-start !important; }
+        }
+      `}</style>
 
-      {/* Header */}
-      <div className="px-6 mb-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="border-b border-[#ebebeb] pb-10">
-            <p className="text-xs tracking-[0.25em] uppercase mb-3" style={{ color: "#b0b0b0" }}>{s.year}</p>
-            <h1 className="font-serif text-5xl md:text-7xl font-bold leading-none mb-8">
+      {/* BREADCRUMB éditorial */}
+      <div style={{ padding: "20px 64px 0", maxWidth: "1280px", margin: "0 auto" }}>
+        <nav aria-label="Breadcrumb">
+          <ol style={{ display: "flex", gap: "8px", alignItems: "center", listStyle: "none", margin: 0, padding: 0 }}>
+            <li>
+              <Link href={`/${lang}/gallery`} style={{ fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#b0b0b0", textDecoration: "none" }}>
+                {isFr ? "Séries" : "Series"}
+              </Link>
+            </li>
+            <li style={{ color: "#d4d4d4", fontSize: "8px" }}>—</li>
+            <li style={{ fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#0a0a0a", fontWeight: 600 }}>{s.title}</li>
+          </ol>
+        </nav>
+      </div>
+
+      {/* HEADER éditorial — titre géant + méta */}
+      <section className="serie-header" style={{ padding: "48px 64px 40px", maxWidth: "1280px", margin: "0 auto", borderBottom: "1px solid #ebebeb" }}>
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "32px", flexWrap: "wrap" }}>
+          <div>
+            <p style={{ fontSize: "8px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#b0b0b0", fontWeight: 600, marginBottom: "16px" }}>
+              {s.year} · {s.photos.length} {isFr ? "photos" : "photos"}
+            </p>
+            <h1 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "clamp(40px, 6vw, 88px)",
+              fontWeight: 700,
+              lineHeight: 0.95,
+              letterSpacing: "-0.03em",
+              color: "#0a0a0a",
+            }}>
               {s.title}
             </h1>
-            <p className="max-w-xl leading-relaxed text-sm md:text-base" style={{ color: "#6a6a6a" }}>
-              {s.description[lang]}
-            </p>
           </div>
+          <p style={{ fontSize: "13px", color: "#9a9a9a", lineHeight: 1.8, maxWidth: "360px", paddingBottom: "6px" }}>
+            {s.description[lang]}
+          </p>
+        </div>
+      </section>
+
+      {/* COVER PHOTO pleine largeur */}
+      <div className="serie-cover" style={{ margin: "0 0" }}>
+        <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden", background: "#f0f0f0" }}>
+          <Image
+            src={s.cover}
+            alt={`${s.title}, ${isFr ? "image de couverture" : "cover image"}`}
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
         </div>
       </div>
 
-      {/* Cover — sans cadre */}
-      <div className="px-6 mb-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="relative aspect-[3/2] overflow-hidden bg-[#f0f0f0]">
-            <Image
-              src={s.cover}
-              alt={`${s.title}, ${isFr ? "image de couverture" : "cover image"}`}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 80vw"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Photos via lightbox */}
+      {/* PHOTOS via lightbox */}
       {s.photos.length > 0 ? (
-        <div className="px-6 mt-6">
+        <div className="serie-photos" style={{ maxWidth: "1280px", margin: "0 auto", padding: "64px 64px 96px" }}>
           <Lightbox photos={s.photos} alt={s.title} lang={lang} />
         </div>
       ) : (
-        <div className="px-6 mt-12 text-center text-xs tracking-widest uppercase" style={{ color: "#b0b0b0" }}>
-          {isFr ? "Photos à venir" : "Photos coming soon"}
+        <div style={{ padding: "80px 64px", textAlign: "center" }}>
+          <p style={{ fontSize: "8px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#c8c8c8" }}>
+            {isFr ? "Photos à venir" : "Photos coming soon"}
+          </p>
         </div>
       )}
 
-      {/* Prev / next series avec thumbnail */}
-      <nav className="px-6 mt-24 max-w-6xl mx-auto border-t border-[#ebebeb] pt-10 grid grid-cols-2 gap-6">
-        {prev && (
-          <Link href={`/${lang}/gallery/${prev.slug}`} className="group flex items-center gap-4">
-            <div className="relative w-16 h-12 overflow-hidden bg-[#f0f0f0] flex-shrink-0">
-              <Image src={prev.cover} alt={prev.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="64px" />
+      {/* PREV / NEXT éditorial */}
+      <div className="serie-nav" style={{ borderTop: "1px solid #ebebeb", display: "flex", justifyContent: "space-between", padding: "40px 64px 80px", maxWidth: "1280px", margin: "0 auto", gap: "24px" }}>
+        {prev ? (
+          <Link href={`/${lang}/gallery/${prev.slug}`} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "20px" }} className="serie-nav-prev group">
+            <div style={{ position: "relative", width: "80px", height: "60px", overflow: "hidden", background: "#f0f0f0", flexShrink: 0 }}>
+              <Image src={prev.cover} alt={prev.title} fill className="object-cover" style={{ transition: "transform 0.5s ease" }} sizes="80px" />
             </div>
             <div>
-              <p className="text-xs tracking-[0.2em] uppercase mb-1" style={{ color: "#b0b0b0" }}>← {isFr ? "Précédente" : "Previous"}</p>
-              <p className="font-serif font-bold" style={{ fontSize: "15px", color: "#0a0a0a" }}>{prev.title}</p>
+              <p style={{ fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "6px" }}>
+                ← {isFr ? "Précédente" : "Previous"}
+              </p>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "17px", fontWeight: 700, color: "#0a0a0a", letterSpacing: "-0.01em" }}>
+                {prev.title}
+              </p>
             </div>
           </Link>
-        )}
-        {next && (
-          <Link href={`/${lang}/gallery/${next.slug}`} className="group flex items-center gap-4 justify-end text-right">
+        ) : <div />}
+
+        {next ? (
+          <Link href={`/${lang}/gallery/${next.slug}`} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "20px", textAlign: "right", justifyContent: "flex-end" }} className="serie-nav-next group">
             <div>
-              <p className="text-xs tracking-[0.2em] uppercase mb-1" style={{ color: "#b0b0b0" }}>{isFr ? "Suivante" : "Next"} →</p>
-              <p className="font-serif font-bold" style={{ fontSize: "15px", color: "#0a0a0a" }}>{next.title}</p>
+              <p style={{ fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "6px" }}>
+                {isFr ? "Suivante" : "Next"} →
+              </p>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "17px", fontWeight: 700, color: "#0a0a0a", letterSpacing: "-0.01em" }}>
+                {next.title}
+              </p>
             </div>
-            <div className="relative w-16 h-12 overflow-hidden bg-[#f0f0f0] flex-shrink-0">
-              <Image src={next.cover} alt={next.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="64px" />
+            <div style={{ position: "relative", width: "80px", height: "60px", overflow: "hidden", background: "#f0f0f0", flexShrink: 0 }}>
+              <Image src={next.cover} alt={next.title} fill className="object-cover" style={{ transition: "transform 0.5s ease" }} sizes="80px" />
             </div>
           </Link>
-        )}
-      </nav>
+        ) : <div />}
+      </div>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    </div>
+    </main>
   );
 }
