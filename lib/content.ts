@@ -20,7 +20,7 @@ export const identity = {
   name: "Sandrine Ceuppens",
 
   // Nom de marque (utilisé dans le logo de nav)
-  brandName: "Sandrine Ceuppens",
+  brandName: "The Girl With A Camera",
 
   // Ta ville
   city: "Brussels",
@@ -83,26 +83,26 @@ export const partners = [
 //  HOMEPAGE — ACCROCHE PRINCIPALE
 // ─────────────────────────────────────────
 export const hero = {
-  // Sous-titre au-dessus de ton nom (petit texte en haut)
+  // Sous-titre au-dessus du titre (petit texte en haut)
   eyebrow: {
-    fr: "Photographe & Créatrice de contenu · Bruxelles",
-    en: "Photographer & Content creator · Brussels",
+    fr: "Photographe documentaire & éditoriale · Bruxelles",
+    en: "Documentary & editorial photographer · Brussels",
   },
 
-  // Titre principal (la première ligne est en gras, la deuxième en italique)
+  // Titre principal
   titleLine1: {
-    fr: "Where photography",
-    en: "Where photography",
+    fr: "Ce qui est là,",
+    en: "What is there,",
   },
   titleLine2: {
-    fr: "and fashion meet.",
-    en: "and fashion meet.",
+    fr: "tel que c'était.",
+    en: "as it was.",
   },
 
-  // Tagline sous le titre principal (ex: Photographer / Creative / Video Diary)
+  // Tagline sous le titre principal
   tagline: {
-    fr: "Photographer / Creative / Video Diary",
-    en: "Photographer / Creative / Video Diary",
+    fr: "Photographie de rue · Mode · Voyage · Ricoh GR",
+    en: "Street photography · Fashion · Travel · Ricoh GR",
   },
 };
 
@@ -121,7 +121,7 @@ export const homeGrid = [
   {
     src: "/images/series/dramatic-bw/cover.JPG",
     href: "/gallery/dramatic-bw",
-    cat: { fr: "Série · 2026", en: "Series · 2026" },
+    cat: { fr: "Autoportraits · 2026", en: "Self-portraits · 2026" },
     title: "Dramatic B&W",
     wide: false,
     tall: false,
@@ -129,7 +129,7 @@ export const homeGrid = [
   {
     src: "/images/series/behind-doors/cover.JPG",
     href: "/gallery/behind-doors",
-    cat: { fr: "Série · 2026", en: "Series · 2026" },
+    cat: { fr: "Sicile · 2026", en: "Sicily · 2026" },
     title: "Behind Doors",
     wide: false,
     tall: false,
@@ -137,7 +137,7 @@ export const homeGrid = [
   {
     src: "/images/series/mercato/cover.jpg",
     href: "/gallery/mercato",
-    cat: { fr: "Série · 2026", en: "Series · 2026" },
+    cat: { fr: "Palerme · 2026", en: "Palermo · 2026" },
     title: "Mercato",
     wide: false,
     tall: false,
@@ -145,7 +145,7 @@ export const homeGrid = [
   {
     src: "/images/series/color-hunting/cover.jpg",
     href: "/gallery/color-hunting",
-    cat: { fr: "Série · 2026", en: "Series · 2026" },
+    cat: { fr: "En cours · 2026", en: "Ongoing · 2026" },
     title: "Color Hunting",
     wide: false,
     tall: false,
@@ -153,32 +153,8 @@ export const homeGrid = [
   {
     src: "/images/series/workers/cover.jpg",
     href: "/gallery/workers",
-    cat: { fr: "Série · 2025", en: "Series · 2025" },
+    cat: { fr: "Osaka · Tokyo · Kyoto", en: "Osaka · Tokyo · Kyoto" },
     title: "Workers",
-    wide: false,
-    tall: false,
-  },
-  {
-    src: "/images/galerie/R0010729.JPG",
-    href: "/gallery",
-    cat: { fr: "Galerie", en: "Gallery" },
-    title: "",
-    wide: false,
-    tall: false,
-  },
-  {
-    src: "/images/galerie/IMG_2246.JPG",
-    href: "/gallery",
-    cat: { fr: "Galerie", en: "Gallery" },
-    title: "",
-    wide: false,
-    tall: false,
-  },
-  {
-    src: "/images/galerie/IMG_2309.JPG",
-    href: "/gallery",
-    cat: { fr: "Galerie", en: "Gallery" },
-    title: "",
     wide: false,
     tall: false,
   },
@@ -265,15 +241,15 @@ export const about = {
 // ─────────────────────────────────────────
 export const contact = {
   fr: {
-    title: "On fait quelque chose ensemble ?",
-    desc: "Que ce soit pour un projet commercial, éditorial ou une collaboration créative — je suis toujours ouverte à la conversation.",
-    btnEmail: "M'écrire un email",
+    title: "Ouvrir une conversation.",
+    desc: "Pour les marques et magazines qui ont quelque chose à dire — projets éditoriaux, collaborations créatives, commandes photographiques.",
+    btnEmail: "Écrire un message",
     btnInstagram: "Instagram",
   },
   en: {
-    title: "Let's make something together.",
-    desc: "Whether it's a brand project, an editorial idea, or something else entirely — I'd love to hear it.",
-    btnEmail: "Send me an email",
+    title: "Start a conversation.",
+    desc: "For brands and publications with something to say — editorial projects, creative collaborations, photographic commissions.",
+    btnEmail: "Send a message",
     btnInstagram: "Instagram",
   },
 };

@@ -1,15 +1,25 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --muted: #525252;
-  --muted-soft: #737373;
-  --border: #e5e5e5;
+  /* Palette éditoriale */
+  --ink:        #0f0f0d;
+  --warm-white: #f7f5f0;
+  --cream:      #ede9e1;
+  --stone:      #8c8880;
+  --dust:       #c4bfb7;
+  --gold:       #b8a98a;
+
+  /* Aliases compatibles */
+  --background: var(--warm-white);
+  --foreground: var(--ink);
+  --muted: var(--stone);
+  --muted-soft: var(--dust);
+  --border: var(--cream);
 }
 
 @theme inline {
-  --font-serif: "Playfair Display", serif;
+  --font-serif: "EB Garamond", serif;
   --font-sans: "Inter", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -25,8 +35,8 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--warm-white);
+  color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -35,21 +45,21 @@ body {
 /* Editorial typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.02em;
 }
 
-/* Visible focus ring for keyboard users (Tailwind handles focus-visible:* per element) */
+/* Scrollbar discret */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--warm-white); }
+::-webkit-scrollbar-thumb { background: var(--dust); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--stone); }
+
+/* Focus ring */
 :focus-visible {
-  outline: 2px solid #0a0a0a;
+  outline: 1px solid var(--stone);
   outline-offset: 2px;
 }
-
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--background); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--muted-soft); }
 
 /* Image hover */
 .image-overlay { position: relative; overflow: hidden; }
