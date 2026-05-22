@@ -83,8 +83,8 @@ export default async function HomePage({ params }: Props) {
         .portfolio-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 4px;
-          max-width: 1160px;
+          gap: 14px;
+          max-width: 1260px;
           margin: 0 auto;
           padding: 0 20px;
         }
