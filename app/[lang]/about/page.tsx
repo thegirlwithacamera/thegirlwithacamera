@@ -1,203 +1,115 @@
-import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
 }
 
-const content = {
-  en: {
-    eyebrow: "About",
-    chapter1: "I've had a camera in my hands since I was a child.",
-    p1: "Then life happened, and I put it down. In 2024, I picked it up again. What came back wasn't just a hobby. It was a way of seeing.",
-    p2: "I photograph streets, light, and quiet moments. The kind that go unnoticed. My work sits at the intersection of documentary and fashion. Minimal editing. I barely touch the image after. Just what's there, as it was.",
-    p3: "Beyond stills, I create video content: scripting, filming, editing. Currently working with Ricoh and Pentax Europe. I'm building a body of personal work I want to see in print.",
-    based: "Based in Brussels. Available to travel.",
-    whatIDo: "What I do",
-    disciplines: [
-      { num: "01", title: "Photography", desc: "Street, documentary, travel, fashion.\nPersonal series and editorial work." },
-      { num: "02", title: "Video & Content", desc: "Scripting, filming, editing.\nBrand content for social media." },
-      { num: "03", title: "Collaborations", desc: "Ricoh Europe · Pentax Europe\nOpen to brands and magazines." },
-    ],
-    cta: "Want to work together?",
-    ctaDesc: "Whether it's a brand project, an editorial idea, or something else — I'd love to hear it.",
-    ctaBtn: "Get in touch",
-  },
-  fr: {
-    eyebrow: "À propos",
-    chapter1: "J'ai eu un appareil photo entre les mains depuis l'enfance.",
-    p1: "Puis la vie a pris le dessus, et je l'ai posé. En 2024, je l'ai repris. Ce qui est revenu n'était pas juste une passion. C'était une façon de voir.",
-    p2: "Je photographie les rues, la lumière, les moments silencieux. Ceux qu'on ne remarque pas. Mon travail se situe à la croisée du documentaire et de la mode. Post-traitement minimal. Je touche à peine l'image. Ce qui est là, tel que c'était.",
-    p3: "Au-delà de la photo, je crée du contenu vidéo : scripting, tournage, montage. Actuellement avec Ricoh et Pentax Europe. Je construis un corpus de travail personnel que j'aimerais voir publié.",
-    based: "Basée à Bruxelles. Disponible pour voyager.",
-    whatIDo: "Ce que je fais",
-    disciplines: [
-      { num: "01", title: "Photographie", desc: "Street, documentaire, voyage, mode.\nSéries personnelles et travail éditorial." },
-      { num: "02", title: "Vidéo & Contenu", desc: "Scripting, tournage, montage.\nContenu de marque pour les réseaux sociaux." },
-      { num: "03", title: "Collaborations", desc: "Ricoh Europe · Pentax Europe\nOuverte aux marques et magazines." },
-    ],
-    cta: "Envie de travailler ensemble ?",
-    ctaDesc: "Que ce soit un projet de marque, une idée éditoriale, ou autre chose — je suis à l'écoute.",
-    ctaBtn: "Me contacter",
-  },
-};
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  const isFr = lang === "fr";
   return {
-    title: isFr ? "À propos" : "About",
-    description: isFr
-      ? "Sandrine Ceuppens, photographe et créatrice de contenu basée à Bruxelles. Documentaire, mode, vidéo."
-      : "Sandrine Ceuppens, photographer and content creator based in Brussels. Documentary, fashion, video.",
+    title: lang === "fr" ? "Info" : "Info",
     alternates: { canonical: `/${lang}/about`, languages: { fr: "/fr/about", en: "/en/about" } },
   };
 }
+
+const content = {
+  fr: {
+    bio: "SANDRINE CEUPPENS EST UNE PHOTOGRAPHE DOCUMENTAIRE ET CRÉATRICE DE CONTENU BASÉE À BRUXELLES. ELLE PHOTOGRAPHIE LES RUES, LA LUMIÈRE ET LES MOMENTS SILENCIEUX — CEUX QU'ON NE REMARQUE PAS. SON TRAVAIL SE SITUE À LA CROISÉE DU DOCUMENTAIRE ET DE LA MODE. POST-TRAITEMENT MINIMAL. SANDRINE COLLABORE AVEC DES MARQUES EUROPÉENNES POUR CRÉER DU CONTENU AUTHENTIQUE ET ÉDITORIAL.",
+    collabLabel: "COLLABORATIONS",
+    based: "BASÉE À BRUXELLES · DISPONIBLE POUR VOYAGER",
+  },
+  en: {
+    bio: "SANDRINE CEUPPENS IS A DOCUMENTARY PHOTOGRAPHER AND CONTENT CREATOR BASED IN BRUSSELS. SHE PHOTOGRAPHS STREETS, LIGHT AND QUIET MOMENTS — THE KIND THAT GO UNNOTICED. HER WORK SITS AT THE INTERSECTION OF DOCUMENTARY AND FASHION. MINIMAL EDITING. SANDRINE COLLABORATES WITH EUROPEAN BRANDS TO CREATE AUTHENTIC AND EDITORIAL CONTENT.",
+    collabLabel: "COLLABORATIONS",
+    based: "BASED IN BRUSSELS · AVAILABLE TO TRAVEL",
+  },
+};
+
+const COLLABORATIONS = [
+  "RICOH EUROPE",
+  "PENTAX EUROPE",
+];
 
 export default async function AboutPage({ params }: Props) {
   const { lang } = await params;
   const t = content[lang];
 
   return (
-    <main style={{ paddingTop: "52px" }}>
+    <main style={{ paddingTop: "120px", paddingBottom: "80px", background: "#ffffff" }}>
+      <style>{`
+        .info-bio {
+          font-size: 11px;
+          line-height: 2;
+          letter-spacing: 0.06em;
+          color: #0a0a0a;
+          text-align: center;
+          max-width: 780px;
+          margin: 0 auto;
+          padding: 0 40px;
+          font-weight: 400;
+        }
+        .info-section-title {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.2em;
+          color: #0a0a0a;
+          text-align: center;
+          margin: 0;
+        }
+        .info-item {
+          font-size: 10px;
+          letter-spacing: 0.12em;
+          color: #0a0a0a;
+          text-align: center;
+          line-height: 2.4;
+        }
+        .info-based {
+          font-size: 9px;
+          letter-spacing: 0.18em;
+          color: #aaaaaa;
+          text-align: center;
+        }
+        @media (max-width: 767px) {
+          .info-bio { font-size: 10px; padding: 0 24px; }
+        }
+      `}</style>
 
-      {/* HERO : photo pleine hauteur + texte */}
-      <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "calc(100vh - 52px)" }} className="about-hero">
-        <style>{`
-          @media (max-width: 768px) {
-            .about-hero { grid-template-columns: 1fr !important; }
-            .about-hero-img { min-height: 65vw !important; order: -1 !important; }
-            .about-text { padding: 48px 24px !important; }
-            .disciplines-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-            .disc-item { border-right: none !important; padding-left: 0 !important; border-top: 1px solid #ebebeb; padding-top: 40px !important; }
-            .cta-grid { grid-template-columns: 1fr !important; padding: 64px 24px !important; }
-          }
-        `}</style>
+      {/* Bio */}
+      <p className="info-bio">{t.bio}</p>
 
-        {/* Photo gauche pleine hauteur */}
-        <div className="about-hero-img" style={{ position: "relative", overflow: "hidden", background: "#f0f0f0", minHeight: "calc(100vh - 52px)" }}>
-          <Image
-            src="/images/about.jpg"
-            alt={lang === "fr" ? "Portrait de Sandrine Ceuppens" : "Portrait of Sandrine Ceuppens"}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
-          />
-        </div>
+      {/* Séparateur */}
+      <div style={{ height: "1px", background: "#ebebeb", maxWidth: "320px", margin: "60px auto" }} />
 
-        {/* Texte droite */}
-        <div className="about-text" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px 72px" }}>
-          <p style={{ fontSize: "8.5px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#b0b0b0", fontWeight: 600, marginBottom: "48px" }}>
-            {t.eyebrow}
-          </p>
-          <h1 style={{
-            fontFamily: "'EB Garamond', serif",
-            fontSize: "clamp(32px, 4vw, 58px)",
-            fontWeight: 400,
-            fontStyle: "italic",
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em",
-            color: "#0a0a0a",
-            marginBottom: "40px",
-          }}>
-            {t.chapter1}
-          </h1>
-          <div style={{ display: "flex", flexDirection: "column", gap: "18px", maxWidth: "440px" }}>
-            <p style={{ fontSize: "14px", color: "#6a6a6a", lineHeight: 1.9 }}>{t.p1}</p>
-            <p style={{ fontSize: "14px", color: "#6a6a6a", lineHeight: 1.9 }}>{t.p2}</p>
-            <p style={{ fontSize: "14px", color: "#6a6a6a", lineHeight: 1.9 }}>{t.p3}</p>
-          </div>
-          <p style={{ marginTop: "48px", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#c0c0c0", fontWeight: 600 }}>
-            {t.based}
-          </p>
-        </div>
-      </section>
+      {/* Collaborations */}
+      <p className="info-section-title">{t.collabLabel}</p>
+      <div style={{ marginTop: "32px" }}>
+        {COLLABORATIONS.map((name) => (
+          <p key={name} className="info-item">{name}</p>
+        ))}
+      </div>
 
-      {/* DISCIPLINES */}
-      <section style={{ borderTop: "1px solid #ebebeb" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "80px 64px" }}>
-          <p style={{ fontSize: "8.5px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#b0b0b0", fontWeight: 600, marginBottom: "56px" }}>
-            {t.whatIDo}
-          </p>
-          <div className="disciplines-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0" }}>
-            {t.disciplines.map((d, i) => (
-              <div key={d.num} className="disc-item" style={{
-                paddingRight: i < 2 ? "56px" : "0",
-                paddingLeft: i > 0 ? "56px" : "0",
-                borderRight: i < 2 ? "1px solid #ebebeb" : "none",
-              }}>
-                <p style={{ fontFamily: "'EB Garamond', serif", fontSize: "60px", fontWeight: 400, color: "#ebebeb", lineHeight: 1, marginBottom: "16px" }}>
-                  {d.num}
-                </p>
-                <h3 style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#0a0a0a", marginBottom: "12px" }}>
-                  {d.title}
-                </h3>
-                <p style={{ fontSize: "13px", color: "#9a9a9a", lineHeight: 1.9, whiteSpace: "pre-line" }}>
-                  {d.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Séparateur */}
+      <div style={{ height: "1px", background: "#ebebeb", maxWidth: "320px", margin: "60px auto" }} />
 
-      {/* CTA */}
-      <section style={{ borderTop: "1px solid #ebebeb" }}>
-        <div className="cta-grid" style={{ maxWidth: "1280px", margin: "0 auto", padding: "100px 64px", display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "center", gap: "80px" }}>
-          <h2 style={{
-            fontFamily: "'EB Garamond', serif",
-            fontSize: "clamp(28px, 3.5vw, 52px)",
-            fontWeight: 400,
-            fontStyle: "italic",
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em",
-            color: "#0a0a0a",
-          }}>
-            {t.cta}
-          </h2>
-          <div>
-            <p style={{ fontSize: "14px", color: "#9a9a9a", lineHeight: 1.8, marginBottom: "36px" }}>
-              {t.ctaDesc}
-            </p>
-            <Link
-              href={`/${lang}/contact`}
-              style={{
-                display: "inline-block",
-                padding: "14px 36px",
-                background: "#0a0a0a",
-                color: "#ffffff",
-                fontSize: "9px",
-                fontWeight: 600,
-                letterSpacing: "0.24em",
-                textTransform: "uppercase",
-                textDecoration: "none",
-              }}
-            >
-              {t.ctaBtn}
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Based */}
+      <p className="info-based">{t.based}</p>
 
       {/* Instagram */}
-      <section style={{ borderTop: "1px solid #ebebeb", padding: "48px 64px", textAlign: "center" }}>
+      <div style={{ marginTop: "60px", textAlign: "center" }}>
         <a
           href="https://www.instagram.com/sandrinecppns/"
           target="_blank"
           rel="noopener noreferrer"
           style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: "12px", textDecoration: "none", color: "#0a0a0a" }}
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
             <circle cx="12" cy="12" r="4"/>
             <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
           </svg>
           <span style={{ fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase" }}>@sandrinecppns</span>
         </a>
-      </section>
-
+      </div>
     </main>
   );
 }

@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
 
   return {
     metadataBase: new URL(site.url),
-    title: { default: isFr ? title : titleEn, template: `%s · ${site.name}` },
+    title: { default: "The Girl With A Camera", template: `%s · The Girl With A Camera` },
     description,
     keywords: [
       "Sandrine Ceuppens",
