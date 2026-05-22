@@ -17,6 +17,7 @@ export default function Header() {
 
   const navLinks = [
     { href: `/${currentLang}`,         label: "Portfolio" },
+    { href: `/${currentLang}/video`,   label: "Video" },
     { href: `/${currentLang}/about`,   label: "Info" },
     { href: `/${currentLang}/contact`, label: "Contact" },
   ];
