@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
+import FaqAccordion from "./FaqAccordion";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -126,14 +127,14 @@ export default async function ServicesPage({ params }: Props) {
     <div className="pt-32 pb-24 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-20 border-b border-[#e5e5e5] pb-10">
-          <p className="text-xs tracking-[0.3em] uppercase text-[#737373] mb-6">
+        <div className="mb-20 border-b border-[#ebebeb] pb-10">
+          <p className="text-xs tracking-[0.3em] uppercase text-[#9a9a9a] mb-6">
             {isFr ? "Services" : "Services"}
           </p>
           <h1 className="font-serif text-5xl md:text-7xl font-bold leading-none mb-8">
             {isFr ? "Travailler ensemble" : "Working together"}
           </h1>
-          <p className="max-w-2xl text-lg text-[#525252] leading-relaxed">
+          <p className="max-w-2xl text-lg text-[#6a6a6a] leading-relaxed">
             {isFr
               ? "Deux façons de collaborer : créer du contenu pour votre marque, ou repartir avec un tirage. Toujours la même approche : peu d'artifice, beaucoup d'attention au réel."
               : "Two ways to collaborate : create content for your brand, or take home a print. Same approach throughout : little artifice, much attention to the real."}
@@ -141,21 +142,21 @@ export default async function ServicesPage({ params }: Props) {
         </div>
 
         {/* Offers */}
-        <div className="space-y-px bg-[#e5e5e5] border border-[#e5e5e5] mb-24">
+        <div className="space-y-px bg-[#e5e5e5] border border-[#ebebeb] mb-24">
           {t.map((o) => (
             <article key={o.tag} className="bg-white p-8 md:p-12 grid grid-cols-1 md:grid-cols-[80px_1fr_auto] gap-8 items-start">
               <p className="font-serif text-3xl text-[#a3a3a3]">{o.tag}</p>
               <div>
                 <h2 className="font-serif text-3xl md:text-4xl font-bold mb-3">{o.title}</h2>
-                <p className="text-[#525252] mb-6 max-w-2xl">{o.sub}</p>
-                <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">
+                <p className="text-[#6a6a6a] mb-6 max-w-2xl">{o.sub}</p>
+                <p className="text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">
                   {isFr ? "Pour qui" : "For whom"}
                 </p>
-                <p className="text-sm text-[#525252] mb-6 max-w-2xl">{o.for}</p>
-                <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">
+                <p className="text-sm text-[#6a6a6a] mb-6 max-w-2xl">{o.for}</p>
+                <p className="text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-3">
                   {isFr ? "Inclus" : "Includes"}
                 </p>
-                <ul className="space-y-2 text-sm text-[#525252] max-w-2xl">
+                <ul className="space-y-2 text-sm text-[#6a6a6a] max-w-2xl">
                   {o.includes.map((i) => (
                     <li key={i} className="flex gap-3">
                       <span className="text-[#a3a3a3] mt-1">·</span>
@@ -163,13 +164,13 @@ export default async function ServicesPage({ params }: Props) {
                     </li>
                   ))}
                 </ul>
-                <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mt-6 mb-2">
+                <p className="text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mt-6 mb-2">
                   {isFr ? "Formats" : "Formats"}
                 </p>
-                <p className="text-sm text-[#525252]">{o.formats}</p>
+                <p className="text-sm text-[#6a6a6a]">{o.formats}</p>
               </div>
               <div className="text-right md:text-left md:min-w-[180px]">
-                <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">
+                <p className="text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">
                   {isFr ? "Tarif" : "Rate"}
                 </p>
                 <p className="font-serif text-2xl font-bold mb-6">{o.from}</p>
@@ -186,7 +187,7 @@ export default async function ServicesPage({ params }: Props) {
 
         {/* Process (only for brand content) */}
         <section className="mb-24">
-          <p className="text-xs tracking-[0.25em] uppercase text-[#737373] mb-3">{isFr ? "Méthode" : "Process"}</p>
+          <p className="text-xs tracking-[0.25em] uppercase text-[#9a9a9a] mb-3">{isFr ? "Méthode" : "Process"}</p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-12">
             {isFr ? "Comment ça se passe" : "How it goes"}
           </h2>
@@ -195,7 +196,7 @@ export default async function ServicesPage({ params }: Props) {
               <div key={s.step} className="border-t-2 border-black pt-6">
                 <p className="font-serif text-2xl text-[#a3a3a3] mb-3">{s.step}</p>
                 <h3 className="font-serif text-xl font-bold mb-3">{s.title}</h3>
-                <p className="text-sm text-[#525252] leading-relaxed">{s.desc}</p>
+                <p className="text-sm text-[#6a6a6a] leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -203,41 +204,48 @@ export default async function ServicesPage({ params }: Props) {
 
         {/* FAQ */}
         <section className="mb-24">
-          <p className="text-xs tracking-[0.25em] uppercase text-[#737373] mb-3">FAQ</p>
+          <p className="text-xs tracking-[0.25em] uppercase mb-3" style={{ color: "#b0b0b0" }}>FAQ</p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-12">
             {isFr ? "Questions fréquentes" : "Frequently asked"}
           </h2>
-          <div className="divide-y divide-[#e5e5e5] border-y border-[#e5e5e5]">
-            {f.map((item) => (
-              <details key={item.q} className="group py-6 px-2">
-                <summary className="flex items-center justify-between cursor-pointer list-none">
-                  <h3 className="font-serif text-xl font-bold pr-6">{item.q}</h3>
-                  <span className="text-2xl text-[#737373] group-open:rotate-45 transition-transform" aria-hidden>+</span>
-                </summary>
-                <p className="mt-4 text-[#525252] leading-relaxed">{item.a}</p>
-              </details>
-            ))}
-          </div>
+          <FaqAccordion items={f as { q: string; a: string }[]} />
         </section>
 
-        {/* Final CTA */}
-        <div className="text-center bg-black text-white px-8 py-20">
-          <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4">
+        {/* Final CTA — style éditorial, pas noir massif */}
+        <div style={{ borderTop: "1px solid #ebebeb", paddingTop: "64px", textAlign: "center" }}>
+          <p style={{ fontSize: "9px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "20px", fontWeight: 600 }}>
+            {isFr ? "Démarrer" : "Get started"}
+          </p>
+          <h2 className="font-serif" style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 700, color: "#0a0a0a", marginBottom: "16px", letterSpacing: "-0.02em" }}>
             {isFr ? "Un projet en tête ?" : "Have a project in mind?"}
           </h2>
-          <p className="text-[#a3a3a3] mb-8 max-w-md mx-auto">
+          <p style={{ color: "#9a9a9a", marginBottom: "36px", maxWidth: "360px", margin: "0 auto 36px", fontSize: "14px", lineHeight: 1.6 }}>
             {isFr ? "Réponse sous 48h ouvrées." : "Reply within 48 working hours."}
           </p>
-          <Link
-            href={`/${lang}/contact`}
-            className="inline-block px-10 py-4 bg-white text-black text-xs font-medium tracking-widest uppercase hover:bg-[#e5e5e5] transition-colors"
-          >
-            {isFr ? "Démarrer une conversation" : "Start a conversation"}
-          </Link>
-          <p className="mt-6 text-sm text-[#737373]">
-            {isFr ? "Ou par email : " : "Or by email : "}
-            <a href={`mailto:${site.email}`} className="underline hover:text-white">{site.email}</a>
-          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "center", alignItems: "center" }}>
+            <Link
+              href={`/${lang}/contact`}
+              style={{
+                display: "inline-block",
+                padding: "13px 32px",
+                background: "#0a0a0a",
+                color: "#fff",
+                fontSize: "9px",
+                fontWeight: 600,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+              }}
+            >
+              {isFr ? "Démarrer une conversation" : "Start a conversation"}
+            </Link>
+            <a
+              href={`mailto:${site.email}`}
+              style={{ fontSize: "12px", color: "#9a9a9a", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            >
+              {site.email}
+            </a>
+          </div>
         </div>
       </div>
     </div>

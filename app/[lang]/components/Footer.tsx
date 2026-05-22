@@ -33,131 +33,209 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-black text-white">
+    <footer style={{ background: "#ffffff", borderTop: "1px solid #ebebeb" }}>
+
       {/* CTA + newsletter */}
-      <div className="px-8 md:px-16 pt-24 pb-16 grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div style={{
+        maxWidth: "1600px",
+        margin: "0 auto",
+        padding: "80px 48px 64px",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "64px",
+      }}
+        className="grid-cols-1 md:grid-cols-2"
+      >
+        {/* CTA gauche */}
         <div>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold leading-tight mb-8 max-w-xl">
+          <p style={{
+            fontSize: "9px",
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            color: "#b0b0b0",
+            marginBottom: "20px",
+            fontWeight: 500,
+          }}>
+            {isFrench ? "Collaboration" : "Collaboration"}
+          </p>
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "clamp(28px, 3vw, 42px)",
+            fontWeight: 700,
+            lineHeight: 1.15,
+            color: "#0a0a0a",
+            marginBottom: "32px",
+            maxWidth: "460px",
+            letterSpacing: "-0.01em",
+          }}>
             {isFrench ? "Et si on créait quelque chose qui reste ?" : "Let's create something worth remembering."}
           </h2>
-          <div className="flex flex-wrap items-center gap-6">
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "20px" }}>
             <Link
               href={`/${currentLang}/contact`}
-              className="inline-block px-8 py-3 border border-white text-white text-xs font-medium tracking-widest uppercase hover:bg-white hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              style={{
+                display: "inline-block",
+                padding: "12px 28px",
+                border: "1px solid #0a0a0a",
+                color: "#0a0a0a",
+                fontSize: "9px",
+                fontWeight: 600,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                transition: "background 0.2s, color 0.2s",
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.background = "#0a0a0a";
+                (e.currentTarget as HTMLElement).style.color = "#fff";
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.background = "transparent";
+                (e.currentTarget as HTMLElement).style.color = "#0a0a0a";
+              }}
             >
               {isFrench ? "Démarrer un projet" : "Start a project"}
             </Link>
             {site.availability.open && (
-              <span className="flex items-center gap-2 text-sm text-[#a3a3a3]">
-                <span className="w-2 h-2 rounded-full bg-green-400 inline-block" aria-hidden />
+              <span style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "#9a9a9a" }}>
+                <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#4ade80", display: "inline-block" }} />
                 {site.availability.nextWindow[currentLang]}
               </span>
             )}
           </div>
         </div>
 
-        {/* Newsletter */}
+        {/* Newsletter droite */}
         <div>
-          <p className="text-xs tracking-[0.25em] uppercase text-[#a3a3a3] mb-4">
-            {isFrench ? "Newsletter" : "Newsletter"}
+          <p style={{
+            fontSize: "9px",
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            color: "#b0b0b0",
+            marginBottom: "20px",
+            fontWeight: 500,
+          }}>
+            Newsletter
           </p>
-          <p className="text-sm text-[#d4d4d4] leading-relaxed mb-6 max-w-md">
+          <p style={{ fontSize: "13px", color: "#6a6a6a", lineHeight: 1.7, marginBottom: "24px", maxWidth: "380px" }}>
             {isFrench
-              ? "Une lettre par mois : nouvelles séries, carnets de tournage, lectures. Pas de spam, désinscription en un clic."
-              : "One letter a month : new series, field notes, things I'm reading. No spam, one-click unsubscribe."}
+              ? "Une lettre par mois : nouvelles séries, carnets de tournage, lectures. Pas de spam."
+              : "One letter a month : new series, field notes, things I'm reading. No spam."}
           </p>
           {status === "success" ? (
-            <p className="text-sm text-[#d4d4d4]">
+            <p style={{ fontSize: "13px", color: "#0a0a0a", fontStyle: "italic", fontFamily: "'Playfair Display', serif" }}>
               {isFrench ? "Merci. À très vite." : "Thanks. See you soon."}
             </p>
           ) : (
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="text"
-                tabIndex={-1}
-                autoComplete="off"
-                value={hp}
-                onChange={(e) => setHp(e.target.value)}
-                aria-hidden="true"
-                className="hidden"
-              />
-              <label htmlFor="newsletter-email" className="sr-only">
-                {isFrench ? "Votre email" : "Your email"}
-              </label>
-              <input
-                id="newsletter-email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={isFrench ? "votre@email.com" : "you@email.com"}
-                className="flex-1 bg-transparent border border-[#525252] text-white placeholder:text-[#737373] px-4 py-3 text-sm focus:outline-none focus:border-white"
-              />
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="px-6 py-3 bg-white text-black text-xs font-medium tracking-widest uppercase hover:bg-[#e5e5e5] transition-colors disabled:opacity-50"
-              >
-                {status === "sending" ? (isFrench ? "..." : "...") : isFrench ? "S'inscrire" : "Subscribe"}
-              </button>
+            <form onSubmit={handleSubscribe} style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+              <input type="text" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} aria-hidden="true" className="hidden" />
+              <label htmlFor="newsletter-email" className="sr-only">{isFrench ? "Votre email" : "Your email"}</label>
+              <div style={{ display: "flex", gap: "0" }}>
+                <input
+                  id="newsletter-email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={isFrench ? "votre@email.com" : "you@email.com"}
+                  style={{
+                    flex: 1,
+                    background: "#f8f8f8",
+                    border: "1px solid #e8e8e8",
+                    borderRight: "none",
+                    color: "#0a0a0a",
+                    padding: "13px 16px",
+                    fontSize: "12px",
+                    outline: "none",
+                  }}
+                  onFocus={e => (e.currentTarget.style.borderColor = "#0a0a0a")}
+                  onBlur={e => (e.currentTarget.style.borderColor = "#e8e8e8")}
+                />
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  style={{
+                    padding: "13px 22px",
+                    background: "#0a0a0a",
+                    color: "#fff",
+                    border: "1px solid #0a0a0a",
+                    fontSize: "9px",
+                    fontWeight: 600,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    cursor: "pointer",
+                    opacity: status === "sending" ? 0.5 : 1,
+                    transition: "background 0.2s",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {status === "sending" ? "…" : isFrench ? "S'inscrire" : "Subscribe"}
+                </button>
+              </div>
             </form>
           )}
           {status === "error" && (
-            <p className="text-sm text-red-400 mt-3">
+            <p style={{ fontSize: "12px", color: "#e53e3e", marginTop: "10px" }}>
               {isFrench ? "Une erreur. Réessayez." : "Something went wrong. Try again."}
             </p>
           )}
         </div>
       </div>
 
-      {/* Sitemap row */}
-      <div className="border-t border-[#262626] px-8 md:px-16 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+      {/* Sitemap */}
+      <div style={{
+        borderTop: "1px solid #ebebeb",
+        maxWidth: "1600px",
+        margin: "0 auto",
+        padding: "40px 48px",
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: "32px",
+      }}>
         <div>
-          <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">{isFrench ? "Travail" : "Work"}</p>
-          <ul className="space-y-2">
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/gallery`}>{isFrench ? "Séries" : "Series"}</Link></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/creation`}>{isFrench ? "Création" : "Creation"}</Link></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/services`}>Services</Link></li>
+          <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "16px", fontWeight: 600 }}>
+            {isFrench ? "Travail" : "Work"}
+          </p>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+            <li><Link href={`/${currentLang}/gallery`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>{isFrench ? "Séries" : "Series"}</Link></li>
+            <li><Link href={`/${currentLang}/about`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>{isFrench ? "À propos" : "About"}</Link></li>
+            <li><Link href={`/${currentLang}/contact`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Contact</Link></li>
           </ul>
         </div>
         <div>
-          <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">Studio</p>
-          <ul className="space-y-2">
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/about`}>{isFrench ? "À propos" : "About"}</Link></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/press`}>Press</Link></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/blog`}>Journal</Link></li>
+          <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "16px", fontWeight: 600 }}>Contact</p>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+            <li><a href={`mailto:${site.email}`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>{site.email}</a></li>
+            <li><a href={site.social.instagram} target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Instagram</a></li>
+            <li><a href={site.social.threads} target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Threads</a></li>
           </ul>
         </div>
         <div>
-          <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">Contact</p>
-          <ul className="space-y-2">
-            <li><a className="text-[#d4d4d4] hover:text-white" href={`mailto:${site.email}`}>{site.email}</a></li>
-            <li><a className="text-[#d4d4d4] hover:text-white" href={`mailto:${site.pressEmail}`}>{site.pressEmail}</a></li>
-            <li><Link className="text-[#d4d4d4] hover:text-white" href={`/${currentLang}/contact`}>{isFrench ? "Formulaire" : "Form"}</Link></li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-3">{isFrench ? "Suivre" : "Follow"}</p>
-          <ul className="space-y-2">
-            <li><a className="text-[#d4d4d4] hover:text-white" href={site.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a className="text-[#d4d4d4] hover:text-white" href={site.social.threads} target="_blank" rel="noopener noreferrer">Threads</a></li>
+          <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "16px", fontWeight: 600 }}>{isFrench ? "Partenaires" : "Partners"}</p>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+            <li><a href="https://www.ricoh-imaging.eu/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Ricoh Europe</a></li>
+            <li><a href="https://www.ricoh-imaging.eu/pentax/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Pentax Europe</a></li>
           </ul>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#262626] px-8 md:px-16 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs">
-        <p className="text-[#737373]">
-          © {new Date().getFullYear()} Sandrine Ceuppens. {isFrench ? "Tous droits réservés" : "All rights reserved"}.
+      <div style={{
+        borderTop: "1px solid #ebebeb",
+        maxWidth: "1600px",
+        margin: "0 auto",
+        padding: "20px 48px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "16px",
+      }}>
+        <p style={{ fontSize: "10px", color: "#c0c0c0", letterSpacing: "0.04em" }}>
+          © {new Date().getFullYear()} Sandrine Ceuppens · Bruxelles
         </p>
-        <div className="flex items-center gap-6 text-[#737373]">
-          <Link className="hover:text-white" href={`/${currentLang}/legal/privacy`}>
-            {isFrench ? "Confidentialité" : "Privacy"}
-          </Link>
-          <Link className="hover:text-white" href={`/${currentLang}/legal/mentions`}>
-            {isFrench ? "Mentions légales" : "Legal notice"}
-          </Link>
-        </div>
+        <p style={{ fontSize: "10px", color: "#c0c0c0", letterSpacing: "0.04em" }}>
+          {isFrench ? "Tous droits réservés" : "All rights reserved"}
+        </p>
       </div>
     </footer>
   );

@@ -99,7 +99,7 @@ export const hero = {
     en: "and fashion meet.",
   },
 
-  // Petite description sous le titre
+  // Tagline sous le titre principal (ex: Photographer / Creative / Video Diary)
   tagline: {
     fr: "Photographer / Creative / Video Diary",
     en: "Photographer / Creative / Video Diary",
@@ -123,8 +123,8 @@ export const homeGrid = [
     href: "/gallery/dramatic-bw",
     cat: { fr: "Série · 2026", en: "Series · 2026" },
     title: "Dramatic B&W",
-    wide: true,   // ← grande cellule (prend 2 colonnes)
-    tall: true,   // ← haute cellule (prend 2 rangées)
+    wide: false,
+    tall: false,
   },
   {
     src: "/images/series/behind-doors/cover.JPG",
@@ -140,7 +140,7 @@ export const homeGrid = [
     cat: { fr: "Série · 2026", en: "Series · 2026" },
     title: "Mercato",
     wide: false,
-    tall: true,   // ← hauteur doublée
+    tall: false,
   },
   {
     src: "/images/series/color-hunting/cover.jpg",
@@ -162,7 +162,7 @@ export const homeGrid = [
     src: "/images/galerie/R0010729.JPG",
     href: "/gallery",
     cat: { fr: "Galerie", en: "Gallery" },
-    title: "",    // ← pas de titre pour cette cellule
+    title: "",
     wide: false,
     tall: false,
   },
@@ -171,7 +171,7 @@ export const homeGrid = [
     href: "/gallery",
     cat: { fr: "Galerie", en: "Gallery" },
     title: "",
-    wide: true,   // ← large, pour finir la rangée en beauté
+    wide: false,
     tall: false,
   },
   {

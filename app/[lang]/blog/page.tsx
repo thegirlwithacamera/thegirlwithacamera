@@ -33,7 +33,7 @@ export default async function BlogPage({ params }: Props) {
     <div className="pt-32 pb-24 px-6">
       <div className="max-w-4xl mx-auto">
 
-        <div className="mb-20 border-b border-[#e5e5e5] pb-10">
+        <div className="mb-20 border-b border-[#ebebeb] pb-10">
           <p className="text-xs tracking-[0.3em] uppercase text-[#737373] mb-6">
             {lang === 'fr' ? 'Carnet' : 'Notebook'}
           </p>
@@ -45,7 +45,7 @@ export default async function BlogPage({ params }: Props) {
             <p className="text-xs tracking-widest uppercase text-[#737373] mb-3">
               {lang === 'fr' ? 'Bientôt' : 'Coming soon'}
             </p>
-            <p className="text-[#525252] max-w-md mx-auto">
+            <p className="text-[#6a6a6a] max-w-md mx-auto">
               {lang === 'fr'
                 ? "Le journal arrive : carnets de tournage, lectures, lieux, technique. Inscrivez-vous à la newsletter pour ne rien manquer."
                 : 'The journal is coming : field notes, readings, places, technique. Subscribe to the newsletter so you don\'t miss it.'}
@@ -58,7 +58,7 @@ export default async function BlogPage({ params }: Props) {
             <Link
               key={post._id}
               href={`/${lang}/blog/${post.slug}`}
-              className="group block border-b border-[#e5e5e5] pb-16"
+              className="group block border-b border-[#ebebeb] pb-16"
             >
               <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 items-start">
                 <div className="relative aspect-[3/2] overflow-hidden bg-[#f5f5f5]">
@@ -80,10 +80,10 @@ export default async function BlogPage({ params }: Props) {
                       {formatDate(post.date, lang)}
                     </span>
                   </div>
-                  <h2 className="font-serif text-2xl md:text-3xl font-bold leading-snug mb-4 group-hover:text-[#525252] transition-colors">
+                  <h2 className="font-serif text-2xl md:text-3xl font-bold leading-snug mb-4 group-hover:text-[#6a6a6a] transition-colors">
                     {post.title[lang]}
                   </h2>
-                  <p className="text-[#525252] leading-relaxed text-sm">
+                  <p className="text-[#6a6a6a] leading-relaxed text-sm">
                     {post.excerpt?.[lang]}
                   </p>
                 </div>

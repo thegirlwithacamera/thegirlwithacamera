@@ -66,8 +66,8 @@ export default async function AboutPage({ params }: Props) {
   return (
     <div className="pt-32 pb-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-16 border-b border-[#e5e5e5] pb-10">
-          <p className="text-xs tracking-[0.3em] uppercase text-[#737373] mb-6">{t.eyebrow}</p>
+        <div className="mb-16 border-b border-[#ebebeb] pb-10">
+          <p className="text-xs tracking-[0.3em] uppercase text-[#9a9a9a] mb-6">{t.eyebrow}</p>
           <h1 className="font-serif text-5xl md:text-7xl font-bold leading-none">
             {t.title}
           </h1>
@@ -88,36 +88,36 @@ export default async function AboutPage({ params }: Props) {
             <h2 className="font-serif text-2xl md:text-3xl font-bold mb-8 leading-snug">
               {t.chapter1}
             </h2>
-            <div className="space-y-5 text-[#525252] leading-relaxed">
+            <div className="space-y-5 text-[#6a6a6a] leading-relaxed">
               <p>{t.p1}</p>
               <p>{t.p2}</p>
               <p>{t.p3}</p>
             </div>
-            <p className="mt-8 text-xs tracking-widest uppercase text-[#737373]">{t.based}</p>
+            <p className="mt-8 text-xs tracking-widest uppercase text-[#9a9a9a]">{t.based}</p>
           </div>
         </div>
 
-        <div className="border-t border-[#e5e5e5] pt-16">
+        <div className="border-t border-[#ebebeb] pt-16">
           <h3 className="font-serif text-2xl font-bold mb-12">{t.whatIDo}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h4 className="font-semibold text-sm tracking-wide mb-3">{t.s1title}</h4>
-              <p className="text-[#525252] text-sm leading-relaxed whitespace-pre-line">{t.s1desc}</p>
+              <p className="text-[#6a6a6a] text-sm leading-relaxed whitespace-pre-line">{t.s1desc}</p>
             </div>
             <div>
               <h4 className="font-semibold text-sm tracking-wide mb-3">{t.s2title}</h4>
-              <p className="text-[#525252] text-sm leading-relaxed whitespace-pre-line">{t.s2desc}</p>
+              <p className="text-[#6a6a6a] text-sm leading-relaxed whitespace-pre-line">{t.s2desc}</p>
             </div>
             <div>
               <h4 className="font-semibold text-sm tracking-wide mb-3">{t.s3title}</h4>
-              <p className="text-[#525252] text-sm leading-relaxed whitespace-pre-line">{t.s3desc}</p>
+              <p className="text-[#6a6a6a] text-sm leading-relaxed whitespace-pre-line">{t.s3desc}</p>
             </div>
           </div>
         </div>
 
         <div className="mt-24 text-center">
           <h3 className="font-serif text-3xl md:text-4xl font-bold mb-4">{t.cta}</h3>
-          <p className="text-[#525252] mb-8 max-w-md mx-auto">{t.ctaDesc}</p>
+          <p className="text-[#6a6a6a] mb-8 max-w-md mx-auto">{t.ctaDesc}</p>
           <Link
             href={`/${lang}/contact`}
             className="inline-block px-8 py-3 bg-black text-white text-xs font-medium tracking-widest uppercase hover:bg-[#333] transition-colors"

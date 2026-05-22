@@ -72,61 +72,69 @@ export default async function SeriePage({ params }: Props) {
       </nav>
 
       {/* Header */}
-      <div className="px-6 mb-16">
+      <div className="px-6 mb-12">
         <div className="max-w-6xl mx-auto">
-          <div className="border-b border-[#e5e5e5] pb-10">
-            <p className="text-xs tracking-[0.25em] uppercase text-[#737373] mb-3">{s.year}</p>
+          <div className="border-b border-[#ebebeb] pb-10">
+            <p className="text-xs tracking-[0.25em] uppercase mb-3" style={{ color: "#b0b0b0" }}>{s.year}</p>
             <h1 className="font-serif text-5xl md:text-7xl font-bold leading-none mb-8">
               {s.title}
             </h1>
-            <p className="max-w-xl text-[#525252] leading-relaxed text-sm md:text-base">
+            <p className="max-w-xl leading-relaxed text-sm md:text-base" style={{ color: "#6a6a6a" }}>
               {s.description[lang]}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Cover */}
+      {/* Cover — sans cadre */}
       <div className="px-6 mb-4">
         <div className="max-w-6xl mx-auto">
-          <div className="border border-[#d4d4d4] p-3 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-            <div className="relative aspect-[3/2] overflow-hidden bg-[#f5f5f5]">
-              <Image
-                src={s.cover}
-                alt={`${s.title}, ${isFr ? "image de couverture" : "cover image"}`}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, 80vw"
-              />
-            </div>
+          <div className="relative aspect-[3/2] overflow-hidden bg-[#f0f0f0]">
+            <Image
+              src={s.cover}
+              alt={`${s.title}, ${isFr ? "image de couverture" : "cover image"}`}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 80vw"
+            />
           </div>
         </div>
       </div>
 
       {/* Photos via lightbox */}
       {s.photos.length > 0 ? (
-        <div className="px-6 mt-8">
+        <div className="px-6 mt-6">
           <Lightbox photos={s.photos} alt={s.title} lang={lang} />
         </div>
       ) : (
-        <div className="px-6 mt-12 text-center text-xs tracking-widest uppercase text-[#b5b5b5]">
+        <div className="px-6 mt-12 text-center text-xs tracking-widest uppercase" style={{ color: "#b0b0b0" }}>
           {isFr ? "Photos à venir" : "Photos coming soon"}
         </div>
       )}
 
-      {/* Prev / next series */}
-      <nav className="px-6 mt-24 max-w-6xl mx-auto border-t border-[#e5e5e5] pt-10 grid grid-cols-2 gap-6">
+      {/* Prev / next series avec thumbnail */}
+      <nav className="px-6 mt-24 max-w-6xl mx-auto border-t border-[#ebebeb] pt-10 grid grid-cols-2 gap-6">
         {prev && (
-          <Link href={`/${lang}/gallery/${prev.slug}`} className="group block">
-            <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">← {isFr ? "Précédente" : "Previous"}</p>
-            <p className="font-serif text-xl font-bold group-hover:text-[#525252]">{prev.title}</p>
+          <Link href={`/${lang}/gallery/${prev.slug}`} className="group flex items-center gap-4">
+            <div className="relative w-16 h-12 overflow-hidden bg-[#f0f0f0] flex-shrink-0">
+              <Image src={prev.cover} alt={prev.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="64px" />
+            </div>
+            <div>
+              <p className="text-xs tracking-[0.2em] uppercase mb-1" style={{ color: "#b0b0b0" }}>← {isFr ? "Précédente" : "Previous"}</p>
+              <p className="font-serif font-bold" style={{ fontSize: "15px", color: "#0a0a0a" }}>{prev.title}</p>
+            </div>
           </Link>
         )}
         {next && (
-          <Link href={`/${lang}/gallery/${next.slug}`} className="group block text-right">
-            <p className="text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{isFr ? "Suivante" : "Next"} →</p>
-            <p className="font-serif text-xl font-bold group-hover:text-[#525252]">{next.title}</p>
+          <Link href={`/${lang}/gallery/${next.slug}`} className="group flex items-center gap-4 justify-end text-right">
+            <div>
+              <p className="text-xs tracking-[0.2em] uppercase mb-1" style={{ color: "#b0b0b0" }}>{isFr ? "Suivante" : "Next"} →</p>
+              <p className="font-serif font-bold" style={{ fontSize: "15px", color: "#0a0a0a" }}>{next.title}</p>
+            </div>
+            <div className="relative w-16 h-12 overflow-hidden bg-[#f0f0f0] flex-shrink-0">
+              <Image src={next.cover} alt={next.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="64px" />
+            </div>
           </Link>
         )}
       </nav>

@@ -3,138 +3,248 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import LanguageSwitcher from "./LanguageSwitcher";
-
-// Retourne true si on est sur la homepage (ex: /fr ou /en)
-function useIsHomePage() {
-  const pathname = usePathname();
-  const parts = pathname.split("/").filter(Boolean);
-  // /fr ou /en → un seul segment
-  return parts.length <= 1;
-}
 
 type Lang = "fr" | "en";
 
 const NAV = [
-  { href: "", label: { fr: "Accueil", en: "Home" } },
-  { href: "/gallery", label: { fr: "Séries", en: "Series" } },
-  { href: "/creation", label: { fr: "Création", en: "Creation" } },
-  { href: "/services", label: { fr: "Services", en: "Services" } },
-  { href: "/blog", label: { fr: "Journal", en: "Journal" } },
-  { href: "/about", label: { fr: "À propos", en: "About" } },
-  { href: "/contact", label: { fr: "Contact", en: "Contact" } },
+  { href: "/gallery", label: "Work" },
+  { href: "/about",   label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const currentLang = (pathname.split("/")[1] || "fr") as Lang;
-  const isHome = useIsHomePage();
+  const otherLang: Lang = currentLang === "fr" ? "en" : "fr";
+  const pathWithoutLang = pathname.replace(/^\/(fr|en)/, "");
 
-  // Close mobile menu on route change.
+  // Détecte si on est sur la home (ex: /fr ou /en)
+  const isHome = pathWithoutLang === "" || pathWithoutLang === "/";
+
   useEffect(() => setMenuOpen(false), [pathname]);
 
-  // Close on Escape.
   useEffect(() => {
-    if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [menuOpen]);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  const links = NAV.map((l) => ({ href: `/${currentLang}${l.href}`, label: l.label[currentLang] }));
-
-  // Sur la homepage : nav transparente avec texte blanc
-  // Sur les autres pages : nav blanche classique
-  const headerBg = isHome
-    ? "bg-transparent"
-    : "bg-white/95 backdrop-blur-sm border-b border-[#e5e5e5]";
-
-  const textColor = isHome ? "text-white" : "text-black";
-  const linkColor = isHome
-    ? "text-white/70 hover:text-white"
-    : "text-[#525252] hover:text-black";
-  const activeColor = isHome
-    ? "text-white border-b border-white/60 pb-1"
-    : "text-black border-b-2 border-black pb-1";
-  const burgerColor = isHome ? "bg-white" : "bg-black";
-  const mobileMenuBg = isHome
-    ? "bg-black/90 backdrop-blur-md"
-    : "bg-white border-b border-[#e5e5e5]";
-  const mobileLinkColor = isHome ? "text-white/80" : "text-[#525252]";
+  // Sur la home : transparent → blanc au scroll. Ailleurs : toujours blanc.
+  const isTransparent = isHome && !scrolled && !menuOpen;
+  const textColor = isTransparent ? "#ffffff" : "#0a0a0a";
+  const mutedColor = isTransparent ? "rgba(255,255,255,0.6)" : "#9a9a9a";
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${headerBg}`}>
-      <nav className="max-w-7xl mx-auto px-6 py-5" aria-label={currentLang === "fr" ? "Navigation principale" : "Main navigation"}>
-        <div className="flex items-center justify-between">
-          <Link
-            href={`/${currentLang}`}
-            className={`font-serif text-base font-bold tracking-[0.12em] uppercase hover:opacity-70 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 ${textColor}`}
+    <header
+      style={{
+        position: "fixed",
+        top: 0, left: 0, right: 0,
+        zIndex: 50,
+        background: isTransparent ? "transparent" : "#ffffff",
+        borderBottom: isTransparent ? "1px solid transparent" : "1px solid #ebebeb",
+        transition: "background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease",
+        boxShadow: scrolled && !isTransparent ? "0 2px 24px rgba(0,0,0,0.05)" : "none",
+      }}
+    >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
+          alignItems: "center",
+          padding: "0 48px",
+          height: "64px",
+          maxWidth: "1600px",
+          margin: "0 auto",
+          width: "100%",
+        }}
+      >
+        {/* GAUCHE — Nom */}
+        <Link
+          href={`/${currentLang}`}
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "11px",
+            fontWeight: 700,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: textColor,
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+            transition: "color 0.4s ease",
+          }}
+        >
+          Sandrine Ceuppens
+        </Link>
+
+        {/* CENTRE — Tagline éditoriale */}
+        <div style={{ textAlign: "center", whiteSpace: "nowrap" }}>
+          <p
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "11.5px",
+              fontWeight: 400,
+              fontStyle: "italic",
+              color: isTransparent ? "rgba(255,255,255,0.9)" : "#3a3a3a",
+              letterSpacing: "0.01em",
+              lineHeight: 1.3,
+              margin: 0,
+              transition: "color 0.4s ease",
+            }}
           >
-            Sandrine Ceuppens
-          </Link>
-
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {links.map((link) => {
-              const active = pathname === link.href || (link.href !== `/${currentLang}` && pathname.startsWith(link.href));
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`text-xs font-medium tracking-[0.1em] uppercase transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 ${
-                    active ? activeColor : linkColor
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-            <LanguageSwitcher currentLang={currentLang} />
-          </div>
-
-          {/* Mobile controls */}
-          <div className="md:hidden flex items-center gap-4">
-            <LanguageSwitcher currentLang={currentLang} />
-            <button
-              type="button"
-              onClick={() => setMenuOpen((v) => !v)}
-              aria-expanded={menuOpen}
-              aria-controls="mobile-menu"
-              aria-label={menuOpen ? (currentLang === "fr" ? "Fermer le menu" : "Close menu") : (currentLang === "fr" ? "Ouvrir le menu" : "Open menu")}
-              className="p-2 focus:outline-none"
-            >
-              <div className="w-6 h-5 flex flex-col justify-between">
-                <span className={`w-full h-0.5 transition-transform ${burgerColor} ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-                <span className={`w-full h-0.5 transition-opacity ${burgerColor} ${menuOpen ? "opacity-0" : "opacity-100"}`} />
-                <span className={`w-full h-0.5 transition-transform ${burgerColor} ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-              </div>
-            </button>
-          </div>
+            Where photography and fashion meet.
+          </p>
+          <p
+            style={{
+              fontSize: "7.5px",
+              letterSpacing: "0.28em",
+              textTransform: "uppercase",
+              color: mutedColor,
+              margin: "4px 0 0",
+              fontWeight: 500,
+              transition: "color 0.4s ease",
+            }}
+          >
+            Photographer · Creative · Video
+          </p>
         </div>
 
-        {menuOpen && (
-          <div
-            id="mobile-menu"
-            className={`md:hidden absolute top-full left-0 right-0 py-6 px-6 flex flex-col gap-5 shadow-md ${mobileMenuBg}`}
-          >
-            {links.map((link) => {
-              const active = pathname === link.href;
+        {/* DROITE — Nav + Langue */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            gap: "36px",
+          }}
+        >
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center" style={{ gap: "28px" }}>
+            {NAV.map((l) => {
+              const href = `/${currentLang}${l.href}`;
+              const active = pathname.startsWith(href);
               return (
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`text-base font-medium ${active ? textColor : mobileLinkColor}`}
+                  key={href}
+                  href={href}
+                  style={{
+                    fontSize: "9.5px",
+                    fontWeight: 500,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: active ? textColor : mutedColor,
+                    textDecoration: "none",
+                    borderBottom: active ? `1px solid ${textColor}` : "1px solid transparent",
+                    paddingBottom: "2px",
+                    transition: "color 0.25s, border-color 0.25s",
+                  }}
+                  onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.color = textColor; }}
+                  onMouseLeave={e => { if (!active) (e.currentTarget as HTMLElement).style.color = mutedColor; }}
                 >
-                  {link.label}
+                  {l.label}
                 </Link>
               );
             })}
+          </nav>
+
+          {/* Langue */}
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <Link
+              href={pathname}
+              hrefLang={currentLang}
+              style={{
+                fontSize: "9px",
+                letterSpacing: "0.14em",
+                fontWeight: currentLang === "fr" ? 600 : 400,
+                color: currentLang === "fr" ? textColor : mutedColor,
+                textDecoration: "none",
+                transition: "color 0.4s",
+              }}
+            >
+              FR
+            </Link>
+            <span style={{ color: isTransparent ? "rgba(255,255,255,0.3)" : "#d8d8d8", fontSize: "8px", lineHeight: 1, transition: "color 0.4s" }}>|</span>
+            <Link
+              href={`/${otherLang}${pathWithoutLang || ""}`}
+              hrefLang={otherLang}
+              style={{
+                fontSize: "9px",
+                letterSpacing: "0.14em",
+                fontWeight: currentLang === "en" ? 600 : 400,
+                color: currentLang === "en" ? textColor : mutedColor,
+                textDecoration: "none",
+                transition: "color 0.4s",
+              }}
+            >
+              EN
+            </Link>
           </div>
-        )}
-      </nav>
+
+          {/* Burger mobile */}
+          <button
+            className="md:hidden"
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Menu"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "6px", lineHeight: 0 }}
+          >
+            <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+              <span style={{
+                display: "block", width: "20px", height: "1px", background: textColor,
+                transition: "transform 0.25s, background 0.4s",
+                transform: menuOpen ? "rotate(45deg) translate(4px,4px)" : "none"
+              }} />
+              <span style={{
+                display: "block", width: "20px", height: "1px", background: textColor,
+                opacity: menuOpen ? 0 : 1, transition: "opacity 0.15s, background 0.4s"
+              }} />
+              <span style={{
+                display: "block", width: "20px", height: "1px", background: textColor,
+                transition: "transform 0.25s, background 0.4s",
+                transform: menuOpen ? "rotate(-45deg) translate(4px,-4px)" : "none"
+              }} />
+            </div>
+          </button>
+        </div>
+      </div>
+
+      {/* Menu mobile */}
+      {menuOpen && (
+        <div
+          style={{
+            background: "#ffffff",
+            borderTop: "1px solid #ebebeb",
+            padding: "32px 48px 36px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0",
+          }}
+        >
+          {NAV.map((l, i) => (
+            <Link
+              key={l.href}
+              href={`/${currentLang}${l.href}`}
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: "28px",
+                fontWeight: 700,
+                letterSpacing: "-0.01em",
+                color: "#0a0a0a",
+                textDecoration: "none",
+                padding: "14px 0",
+                borderBottom: i < NAV.length - 1 ? "1px solid #f0f0f0" : "none",
+              }}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <div style={{ display: "flex", gap: "16px", marginTop: "28px", paddingTop: "24px", borderTop: "1px solid #ebebeb" }}>
+            <Link href={pathname} style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: currentLang === "fr" ? "#0a0a0a" : "#b0b0b0", fontWeight: currentLang === "fr" ? 600 : 400, textDecoration: "none" }}>FR</Link>
+            <Link href={`/${otherLang}${pathWithoutLang || ""}`} style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: currentLang === "en" ? "#0a0a0a" : "#b0b0b0", fontWeight: currentLang === "en" ? 600 : 400, textDecoration: "none" }}>EN</Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

@@ -31,8 +31,7 @@ const content = {
     deadline: "Ideal timing",
     message: "Tell me about the project",
     messagePh: "Context, intention, references, anything that helps.",
-    consent: "I'll only use this to reply. See the ",
-    consentLink: "privacy policy",
+    consent: "I'll only use this information to reply to you.",
     send: "Send",
     sending: "Sending…",
     success: "Message received. I'll be in touch within 48 working hours.",
@@ -66,8 +65,7 @@ const content = {
     deadline: "Échéance idéale",
     message: "Parlez-moi du projet",
     messagePh: "Contexte, intention, références, tout ce qui peut aider.",
-    consent: "J'utilise ces infos uniquement pour vous répondre. Voir la ",
-    consentLink: "politique de confidentialité",
+    consent: "J'utilise ces informations uniquement pour vous répondre.",
     send: "Envoyer",
     sending: "Envoi…",
     success: "Message reçu. Je reviens vers vous sous 48h ouvrées.",
@@ -119,8 +117,8 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
     <div className="pt-32 pb-24 px-6 md:px-16">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-16 border-b border-[#e5e5e5] pb-10">
-          <p className="text-xs tracking-[0.3em] uppercase text-[#737373] mb-6">{t.eyebrow}</p>
+        <div className="mb-16 border-b border-[#ebebeb] pb-10">
+          <p className="text-xs tracking-[0.3em] uppercase text-[#9a9a9a] mb-6">{t.eyebrow}</p>
           <h1 className="font-serif text-[clamp(3rem,9vw,8rem)] font-bold leading-none">
             {t.title}
           </h1>
@@ -129,10 +127,10 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16">
           {/* Left column */}
           <aside>
-            <p className="text-[#525252] leading-relaxed mb-8 max-w-sm">{t.intro}</p>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#737373] mb-3">{t.direct}</p>
+            <p className="text-[#6a6a6a] leading-relaxed mb-8 max-w-sm">{t.intro}</p>
+            <p className="text-xs tracking-[0.25em] uppercase text-[#9a9a9a] mb-3">{t.direct}</p>
             <a href={`mailto:${site.email}`} className="block text-base hover:underline mb-2">{site.email}</a>
-            <a href={`mailto:${site.pressEmail}`} className="block text-sm text-[#737373] hover:underline">{site.pressEmail}</a>
+            <a href={`mailto:${site.pressEmail}`} className="block text-sm text-[#9a9a9a] hover:underline">{site.pressEmail}</a>
           </aside>
 
           {/* Form */}
@@ -154,23 +152,23 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="name" className="block text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{t.name} *</label>
+                    <label htmlFor="name" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.name} *</label>
                     <input id="name" type="text" required value={form.name} onChange={(e) => update("name", e.target.value)} className={inputCls} />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{t.email} *</label>
+                    <label htmlFor="email" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.email} *</label>
                     <input id="email" type="email" required value={form.email} onChange={(e) => update("email", e.target.value)} className={inputCls} />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="company" className="block text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{t.company}</label>
+                  <label htmlFor="company" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.company}</label>
                   <input id="company" type="text" value={form.company} onChange={(e) => update("company", e.target.value)} className={inputCls} />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="type" className="block text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{t.type} *</label>
+                    <label htmlFor="type" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.type} *</label>
                     <select id="type" required value={form.type} onChange={(e) => update("type", e.target.value)} className={inputCls}>
                       <option value=""></option>
                       {t.typeOptions.map((o) => (
@@ -179,7 +177,7 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="budget" className="block text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{t.budget}</label>
+                    <label htmlFor="budget" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.budget}</label>
                     <select id="budget" value={form.budget} onChange={(e) => update("budget", e.target.value)} className={inputCls}>
                       <option value=""></option>
                       {t.budgetOptions.map((o) => (
@@ -190,18 +188,17 @@ export default function ContactPage({ params }: { params: Promise<{ lang: "fr" |
                 </div>
 
                 <div>
-                  <label htmlFor="deadline" className="block text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{t.deadline}</label>
+                  <label htmlFor="deadline" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.deadline}</label>
                   <input id="deadline" type="text" placeholder={lang === "fr" ? "ex. juin 2026" : "e.g. June 2026"} value={form.deadline} onChange={(e) => update("deadline", e.target.value)} className={inputCls} />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-xs tracking-[0.2em] uppercase text-[#737373] mb-2">{t.message} *</label>
+                  <label htmlFor="message" className="block text-xs tracking-[0.2em] uppercase text-[#9a9a9a] mb-2">{t.message} *</label>
                   <textarea id="message" required rows={6} placeholder={t.messagePh} value={form.message} onChange={(e) => update("message", e.target.value)} className={`${inputCls} resize-none`} />
                 </div>
 
-                <p className="text-xs text-[#737373]">
+                <p className="text-xs text-[#9a9a9a]">
                   {t.consent}
-                  <a href={`/${lang}/legal/privacy`} className="underline hover:no-underline">{t.consentLink}</a>.
                 </p>
 
                 {status === "error" && <p className="text-red-600 text-sm">{t.error}</p>}
