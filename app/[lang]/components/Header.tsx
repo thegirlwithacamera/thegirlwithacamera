@@ -16,10 +16,10 @@ export default function Header() {
   useEffect(() => setMenuOpen(false), [pathname]);
 
   const navLinks = [
-    { href: `/${currentLang}`,         label: "Portfolio" },
-    { href: `/${currentLang}/video`,   label: "Video" },
-    { href: `/${currentLang}/about`,   label: "Info" },
-    { href: `/${currentLang}/contact`, label: "Contact" },
+    { href: `/${currentLang}`,          label: "Portfolio" },
+    { href: `/${currentLang}/film`,     label: "Film" },
+    { href: `/${currentLang}/creator`,  label: "Creator" },
+    { href: `/${currentLang}/about`,    label: "Info" },
   ];
 
   return (

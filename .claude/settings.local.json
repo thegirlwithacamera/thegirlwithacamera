@@ -37,7 +37,9 @@
       "Bash(vercel --version)",
       "Bash(npm i *)",
       "Bash(vercel --prod)",
-      "Bash(vercel whoami *)"
+      "Bash(vercel whoami *)",
+      "Bash(npx tsc *)",
+      "Bash(git stash *)"
     ]
   }
 }

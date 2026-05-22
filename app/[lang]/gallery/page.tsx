@@ -80,7 +80,7 @@ export default async function GalleryPage({ params }: Props) {
         .portfolio-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 10px;
+          gap: 4px;
           padding: 0 20px;
         }
         .portfolio-cell {

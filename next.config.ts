@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
       { source: "/da", destination: "/fr/services", permanent: true },
       { source: "/fr/da", destination: "/fr/services", permanent: true },
       { source: "/en/da", destination: "/en/services", permanent: true },
+      { source: "/fr/video", destination: "/fr/film", permanent: true },
+      { source: "/en/video", destination: "/en/film", permanent: true },
     ];
   },
   async headers() {
