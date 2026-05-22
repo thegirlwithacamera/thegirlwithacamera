@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap');
 
 :root {
   /* Palette */
@@ -87,4 +86,12 @@ h1, h2, h3, h4, h5, h6 {
 @media print {
   header, footer, button { display: none !important; }
   body { color: #000; background: #fff; }
+}
+
+/* Header responsive */
+.header-nav { display: flex; }
+.header-burger { display: none; }
+@media (max-width: 767px) {
+  .header-nav { display: none; }
+  .header-burger { display: flex; }
 }

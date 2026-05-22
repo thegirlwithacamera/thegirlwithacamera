@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { EB_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -7,10 +7,11 @@ import { site } from "@/lib/site";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
-const playfair = Playfair_Display({
+const garamond = EB_Garamond({
   subsets: ["latin"],
   variable: "--font-serif",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -95,7 +96,7 @@ export default async function RootLayout({ children, params }: Props) {
   };
 
   return (
-    <html lang={lang} className={`${playfair.variable} ${inter.variable}`}>
+    <html lang={lang} className={`${garamond.variable} ${inter.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">
         <a
           href="#main"
