@@ -16,9 +16,9 @@ export default function Header() {
   useEffect(() => setMenuOpen(false), [pathname]);
 
   const navLinks = [
-    { href: `/${currentLang}/gallery`,  label: "Portfolio" },
-    { href: `/${currentLang}/about`,    label: "Info" },
-    { href: `/${currentLang}/contact`,  label: "Contact" },
+    { href: `/${currentLang}`,         label: "Portfolio" },
+    { href: `/${currentLang}/about`,   label: "Info" },
+    { href: `/${currentLang}/contact`, label: "Contact" },
   ];
 
   return (
@@ -64,13 +64,13 @@ export default function Header() {
         paddingBottom: "14px",
       }}>
         {navLinks.map((l) => {
-          const isActive = !l.external && pathname.startsWith(l.href);
+          const isActive = l.href === `/${currentLang}`
+            ? pathname === `/${currentLang}` || pathname === `/${currentLang}/`
+            : pathname.startsWith(l.href);
           return (
             <Link
               key={l.href}
               href={l.href}
-              target={l.external ? "_blank" : undefined}
-              rel={l.external ? "noopener noreferrer" : undefined}
               style={{
                 fontSize: "10px",
                 letterSpacing: "0.2em",
@@ -140,8 +140,6 @@ export default function Header() {
             <Link
               key={l.href}
               href={l.href}
-              target={l.external ? "_blank" : undefined}
-              rel={l.external ? "noopener noreferrer" : undefined}
               style={{
                 display: "block",
                 fontSize: "11px",
