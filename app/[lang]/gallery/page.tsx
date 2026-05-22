@@ -81,11 +81,13 @@ export default async function GalleryPage({ params }: Props) {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 4px;
+          max-width: 1160px;
+          margin: 0 auto;
           padding: 0 20px;
         }
         .portfolio-cell {
           display: block;
-          aspect-ratio: 3 / 4;
+          aspect-ratio: 5 / 6;
           overflow: hidden;
           position: relative;
         }
