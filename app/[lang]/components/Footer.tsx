@@ -192,41 +192,90 @@ export default function Footer() {
         gridTemplateColumns: "repeat(3, 1fr)",
         gap: "32px",
       }}>
+        {/* Col 1 — Navigation */}
         <div>
           <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "16px", fontWeight: 600 }}>
-            {isFrench ? "Travail" : "Work"}
+            {isFrench ? "Navigation" : "Navigation"}
           </p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
-            <li><Link href={`/${currentLang}/gallery`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>{isFrench ? "Séries" : "Series"}</Link></li>
-            <li><Link href={`/${currentLang}/services`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Services</Link></li>
-            <li><Link href={`/${currentLang}/about`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>{isFrench ? "À propos" : "About"}</Link></li>
-            <li><Link href={`/${currentLang}/contact`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Contact</Link></li>
+            {[
+              { href: "/gallery", label: isFrench ? "Séries" : "Series" },
+              { href: "/about",   label: isFrench ? "À propos" : "About" },
+              { href: "/contact", label: "Contact" },
+            ].map((l) => (
+              <li key={l.href}>
+                <Link href={`/${currentLang}${l.href}`} style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>
+                  {l.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
+
+        {/* Col 2 — Contact + réseaux */}
         <div>
           <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "16px", fontWeight: 600 }}>Contact</p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
             <li><a href="mailto:hello@thegirlwithacamera.com" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>hello@thegirlwithacamera.com</a></li>
             <li><a href="mailto:press@thegirlwithacamera.com" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>press@thegirlwithacamera.com</a></li>
           </ul>
-          <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginTop: "20px", marginBottom: "12px", fontWeight: 600 }}>
+
+          <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginTop: "24px", marginBottom: "14px", fontWeight: 600 }}>
             {isFrench ? "Me retrouver" : "Join me on"}
           </p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
-            <li><a href="https://instagram.com/thegirlwithacamera" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Instagram</a></li>
-            <li><a href="https://threads.net/@thegirlwithacamera" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Threads</a></li>
-            <li><a href="https://tiktok.com/@thegirlwithacamera" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>TikTok</a></li>
+            {[
+              { label: "Instagram", href: "https://instagram.com/sandrinecppns" },
+              { label: "Threads",   href: "https://threads.net/@sandrinecppns" },
+              { label: "TikTok",    href: "https://tiktok.com/@sandrinecppns" },
+            ].map((s) => (
+              <li key={s.label}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer"
+                  style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>
+                  {s.label} <span style={{ color: "#c0c0c0", fontSize: "11px" }}>@sandrinecppns</span>
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
-        <div>
-          <p style={{ fontSize: "8.5px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#b0b0b0", marginBottom: "16px", fontWeight: 600 }}>
-            {isFrench ? "Travailler avec" : "Work with"}
+
+        {/* Col 3 — vide (les partenaires passent en bannière) */}
+        <div />
+      </div>
+
+      {/* BANNIÈRE "Trusted by" */}
+      <div style={{ borderTop: "1px solid #ebebeb", padding: "28px 48px", maxWidth: "1600px", margin: "0 auto" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "40px", flexWrap: "wrap" }}>
+          <p style={{ fontSize: "8px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#c8c8c8", fontWeight: 600, whiteSpace: "nowrap", flexShrink: 0 }}>
+            {isFrench ? "Confiance de" : "Trusted by"}
           </p>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
-            <li><a href="https://www.ricoh-imaging.eu/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Ricoh Europe</a></li>
-            <li><a href="https://www.ricoh-imaging.eu/pentax/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Pentax Europe</a></li>
-            <li><a href="https://www.insta360.com/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#6a6a6a", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#0a0a0a"} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}>Insta360</a></li>
-          </ul>
+          <div style={{ display: "flex", alignItems: "center", gap: "40px", flexWrap: "wrap" }}>
+            {[
+              { label: "Ricoh Europe",   href: "https://www.ricoh-imaging.eu/" },
+              { label: "Pentax Europe",  href: "https://www.ricoh-imaging.eu/pentax/" },
+              { label: "Insta360",       href: "https://www.insta360.com/" },
+            ].map((p) => (
+              <a key={p.label} href={p.href} target="_blank" rel="noopener noreferrer"
+                style={{
+                  fontSize: "11px",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "#c0c0c0",
+                  textDecoration: "none",
+                  fontWeight: 500,
+                  transition: "color 0.2s",
+                }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#6a6a6a"}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#c0c0c0"}
+              >
+                {p.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
