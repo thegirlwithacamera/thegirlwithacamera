@@ -45,7 +45,7 @@ export default function Header() {
         style={{
           display: "block",
           fontFamily: "'EB Garamond', serif",
-          fontSize: "17px",
+          fontSize: "22px",
           fontWeight: 400,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
