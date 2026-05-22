@@ -53,7 +53,7 @@ export default async function FilmPage({ params }: Props) {
         }
       `}</style>
 
-      <main style={{ paddingTop: "90px", paddingBottom: "60px", background: "#ffffff" }}>
+      <main style={{ paddingTop: "16px", paddingBottom: "60px", background: "#ffffff" }}>
         {ALL_FILMS.length === 0 ? (
           <p style={{
             textAlign: "center",

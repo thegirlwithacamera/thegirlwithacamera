@@ -39,7 +39,8 @@
       "Bash(vercel --prod)",
       "Bash(vercel whoami *)",
       "Bash(npx tsc *)",
-      "Bash(git stash *)"
+      "Bash(git stash *)",
+      "Bash(git commit *)"
     ]
   }
 }

@@ -81,7 +81,7 @@ export default async function AboutPage({ params }: Props) {
   const t = content[lang];
 
   return (
-    <main style={{ paddingTop: "120px", paddingBottom: "80px", background: "#ffffff" }}>
+    <main style={{ paddingTop: "60px", paddingBottom: "80px", background: "#ffffff" }}>
       <style>{`
         .info-bio {
           font-size: 11px;

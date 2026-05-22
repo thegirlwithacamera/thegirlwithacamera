@@ -109,7 +109,7 @@ export default async function HomePage({ params }: Props) {
         }
       `}</style>
 
-      <main style={{ paddingTop: "90px", background: "#ffffff" }}>
+      <main style={{ paddingTop: "16px", background: "#ffffff" }}>
         <div className="portfolio-grid">
           {ALL_PHOTOS.map((img, i) => (
             <div key={i} className="portfolio-cell">

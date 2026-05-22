@@ -24,12 +24,9 @@ export default function Header() {
 
   return (
     <header style={{
-      position: "fixed",
-      top: 0, left: 0, right: 0,
-      zIndex: 50,
       background: "#ffffff",
       textAlign: "center",
-      padding: "20px 40px 0",
+      padding: "48px 40px 0",
     }}>
       <style>{`
         .header-nav { display: flex; }
