@@ -191,13 +191,8 @@ function SerieCard({
           priority={priority}
         />
 
-        {/* Overlay sombre au hover */}
-        <span
-          className="absolute inset-0 z-10 transition-colors duration-300"
-          style={{ background: "rgba(0,0,0,0)" }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.28)")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0)")}
-        />
+        {/* Overlay sombre au hover — CSS pur, pas d'event handlers */}
+        <span className="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/25 transition-colors duration-300" />
 
         {/* Caption au hover */}
         <div
