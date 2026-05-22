@@ -78,19 +78,23 @@ export default async function GalleryPage({ params }: Props) {
     <>
       <style>{`
         .portfolio-grid {
-          columns: 3;
-          column-gap: 10px;
-          padding: 10px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 40px;
         }
         .portfolio-cell {
-          break-inside: avoid;
           display: block;
-          margin-bottom: 10px;
+          aspect-ratio: 3 / 4;
           overflow: hidden;
+          position: relative;
         }
         .portfolio-cell img {
           width: 100%;
-          height: auto;
+          height: 100%;
+          object-fit: cover;
           display: block;
           transition: transform 0.5s ease;
         }
@@ -99,12 +103,9 @@ export default async function GalleryPage({ params }: Props) {
         }
         @media (max-width: 767px) {
           .portfolio-grid {
-            columns: 2;
-            column-gap: 6px;
-            padding: 6px;
-          }
-          .portfolio-cell {
-            margin-bottom: 6px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            padding: 0 16px;
           }
         }
       `}</style>
@@ -124,7 +125,7 @@ export default async function GalleryPage({ params }: Props) {
                 height={img.h}
                 sizes="(max-width: 767px) 50vw, 33vw"
                 priority={i < 6}
-                style={{ width: "100%", height: "auto" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </Link>
           ))}
