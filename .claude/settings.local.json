@@ -33,7 +33,11 @@
       "mcp__Desktop_Commander__write_file",
       "Bash(pkill -f \"next dev\")",
       "Bash(cat >> *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(vercel --version)",
+      "Bash(npm i *)",
+      "Bash(vercel --prod)",
+      "Bash(vercel whoami *)"
     ]
   }
 }

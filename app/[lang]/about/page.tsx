@@ -181,6 +181,23 @@ export default async function AboutPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Instagram */}
+      <section style={{ borderTop: "1px solid #ebebeb", padding: "48px 64px", textAlign: "center" }}>
+        <a
+          href="https://www.instagram.com/sandrinecppns/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: "12px", textDecoration: "none", color: "#0a0a0a" }}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+          </svg>
+          <span style={{ fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase" }}>@sandrinecppns</span>
+        </a>
+      </section>
+
     </main>
   );
 }

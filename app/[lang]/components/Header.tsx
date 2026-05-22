@@ -15,19 +15,11 @@ export default function Header() {
 
   useEffect(() => setMenuOpen(false), [pathname]);
 
-  const navLinks = currentLang === "fr"
-    ? [
-        { href: `/${currentLang}/gallery`,  label: "Portfolio" },
-        { href: `/${currentLang}/about`,    label: "Info" },
-        { href: `/${currentLang}/contact`,  label: "Contact" },
-        { href: "https://www.instagram.com/sandrinecppns/", label: "Instagram", external: true },
-      ]
-    : [
-        { href: `/${currentLang}/gallery`,  label: "Portfolio" },
-        { href: `/${currentLang}/about`,    label: "Info" },
-        { href: `/${currentLang}/contact`,  label: "Contact" },
-        { href: "https://www.instagram.com/sandrinecppns/", label: "Instagram", external: true },
-      ];
+  const navLinks = [
+    { href: `/${currentLang}/gallery`,  label: "Portfolio" },
+    { href: `/${currentLang}/about`,    label: "Info" },
+    { href: `/${currentLang}/contact`,  label: "Contact" },
+  ];
 
   return (
     <header style={{
