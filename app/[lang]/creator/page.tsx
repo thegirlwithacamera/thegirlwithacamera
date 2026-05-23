@@ -194,11 +194,13 @@ export default function CreatorPage({ params }: Props) {
         .phone-sound:hover { background: rgba(0,0,0,0.7); }
         /* Stats */
         .stats-grid {
-          display: flex;
-          justify-content: center;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
           gap: 40px;
-          flex-wrap: wrap;
+          max-width: 480px;
+          margin: 0 auto;
           padding: 0 40px;
+          align-items: center;
         }
         .stat-block {
           text-align: center;
@@ -327,6 +329,7 @@ export default function CreatorPage({ params }: Props) {
         }
         @media (max-width: 767px) {
           .creator-bio { font-size: 12px; padding: 0 24px; }
+          .stats-grid { max-width: 100%; gap: 20px; }
           .phones-row { display: none; }
           .phones-carousel {
             display: block;
