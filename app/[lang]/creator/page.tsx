@@ -198,6 +198,44 @@ export default function CreatorPage({ params }: Props) {
           color: #666666;
           margin-top: 4px;
         }
+        /* Fan carousel for videos on mobile */
+        .phones-carousel {
+          display: none;
+          overflow-x: auto;
+          overflow-y: hidden;
+          scroll-behavior: smooth;
+          padding: 60px 0;
+          margin: 0 -40px;
+          padding-left: 40px;
+          padding-right: 40px;
+          scroll-snap-type: x mandatory;
+          align-items: flex-end;
+        }
+        .phones-carousel::-webkit-scrollbar {
+          height: 4px;
+        }
+        .phones-carousel::-webkit-scrollbar-track {
+          background: #f0f0f0;
+        }
+        .phones-carousel::-webkit-scrollbar-thumb {
+          background: #999999;
+          border-radius: 2px;
+        }
+        .carousel-phone-wrap {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          flex-shrink: 0;
+          scroll-snap-align: center;
+          transform-origin: bottom center;
+        }
+        .carousel-phone-wrap:nth-child(1) { transform: scale(0.75) translateY(32px) skewY(-8deg); }
+        .carousel-phone-wrap:nth-child(2) { transform: scale(0.85) translateY(20px) skewY(-4deg); }
+        .carousel-phone-wrap:nth-child(3) { transform: scale(0.92) translateY(8px) skewY(-2deg); }
+        .carousel-phone-wrap:nth-child(4) { transform: scale(0.92) translateY(8px) skewY(2deg); }
+        .carousel-phone-wrap:nth-child(5) { transform: scale(0.85) translateY(20px) skewY(4deg); }
+        .carousel-phone-wrap:nth-child(6) { transform: scale(0.75) translateY(32px) skewY(8deg); }
         /* Formats */
         .formats-list {
           display: flex;
@@ -246,8 +284,35 @@ export default function CreatorPage({ params }: Props) {
         }
         @media (max-width: 767px) {
           .creator-bio { font-size: 12px; padding: 0 24px; }
-          .phones-row { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 16px; }
-          .stats-grid { gap: 36px; }
+          .phones-row { display: none; }
+          .phones-carousel { display: flex; }
+          .carousel-phone-wrap {
+            width: 120px;
+            margin: 0 6px;
+          }
+          .phone {
+            border-width: 1.5px;
+          }
+          .phone::before {
+            width: 26px;
+            height: 3px;
+          }
+          .phone-sound {
+            width: 22px;
+            height: 22px;
+            bottom: 12px;
+            right: 10px;
+          }
+          .phone-label {
+            font-size: 8px;
+            line-height: 1.2;
+          }
+          .stat-platform { font-size: 8px; margin-bottom: 6px; }
+          .stat-number { font-size: 20px; }
+          .stat-sub { font-size: 9px; margin-top: 2px; }
+          .stats-grid { gap: 14px; padding: 0 24px; }
+          .section-title { margin: 0 0 16px; font-size: 10px; }
+          .creator-hr { margin: 14px auto; max-width: 200px; }
         }
       `}</style>
 
@@ -281,7 +346,7 @@ export default function CreatorPage({ params }: Props) {
 
       <hr className="creator-hr" />
 
-      {/* Phone mockups */}
+      {/* Phone mockups - Desktop grid */}
       <div className="phones-row">
         {[
           { src: "/videos/creator/unboxing.mp4",           label: "Unboxing" },
@@ -292,6 +357,48 @@ export default function CreatorPage({ params }: Props) {
           { src: "/videos/creator/product-vs-results.mp4",label: "Product vs\nResults" },
         ].map((phone, i) => (
           <div key={i} className="phone-wrap">
+            <div className="phone">
+              <div className="phone-screen">
+                <video
+                  ref={el => { videoRefs.current[i] = el; }}
+                  src={phone.src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controlsList="nodownload nofullscreen"
+                  onContextMenu={(e) => e.preventDefault()}
+                  title={`Creator content: ${phone.label}`}
+                />
+              </div>
+              <button className="phone-sound" onClick={() => toggleSound(i)} aria-label="toggle sound">
+                {unmutedIndex === i ? (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                  </svg>
+                ) : (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                  </svg>
+                )}
+              </button>
+            </div>
+            <span className="phone-label" style={{ whiteSpace: "pre-line" }}>{phone.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Phone mockups - Mobile carousel (fan effect) */}
+      <div className="phones-carousel">
+        {[
+          { src: "/videos/creator/unboxing.mp4",           label: "Unboxing" },
+          { src: "/videos/creator/product-in-use.mp4",    label: "Product\nin Use" },
+          { src: "/videos/creator/unboxing-face-cam.mp4", label: "Unboxing\nFace Cam" },
+          { src: "/videos/creator/lifestyle.mp4",         label: "Lifestyle" },
+          { src: "/videos/creator/unboxing-2.mp4",        label: "Unboxing" },
+          { src: "/videos/creator/product-vs-results.mp4",label: "Product vs\nResults" },
+        ].map((phone, i) => (
+          <div key={i} className="carousel-phone-wrap">
             <div className="phone">
               <div className="phone-screen">
                 <video

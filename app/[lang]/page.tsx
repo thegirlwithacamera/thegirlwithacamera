@@ -56,9 +56,9 @@ export default async function HomePage({ params }: Props) {
         }
         @media (max-width: 767px) {
           .portfolio-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4px;
-            padding: 0 12px;
+            grid-template-columns: 1fr;
+            gap: 0;
+            padding: 0 0;
           }
         }
       `}</style>
