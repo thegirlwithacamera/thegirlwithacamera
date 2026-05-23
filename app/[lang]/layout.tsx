@@ -32,14 +32,15 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   const title = `${site.tagline} · Photographe et créatrice de contenu, Bruxelles`;
   const titleEn = `${site.tagline} · Photographer and content creator, Brussels`;
   const description = isFr
-    ? "Photographe et créatrice de contenu basée à Bruxelles. Street, documentaire, mode, vidéo. Collaborations avec Ricoh et Pentax Europe."
-    : "Photographer and content creator based in Brussels. Street, documentary, fashion, video. Collaborations with Ricoh and Pentax Europe.";
+    ? "The Girl With A Camera - Photographe et créatrice de contenu basée à Bruxelles. Street, documentaire, mode, vidéo. Collaborations avec Ricoh et Pentax Europe."
+    : "The Girl With A Camera - Photographer and content creator based in Brussels. Street, documentary, fashion, video. Collaborations with Ricoh and Pentax Europe.";
 
   return {
     metadataBase: new URL(site.url),
     title: { default: "The Girl With A Camera", template: `%s · The Girl With A Camera` },
     description,
     keywords: [
+      "The Girl With A Camera",
       "Sandrine Ceuppens",
       "photographe Bruxelles",
       "Brussels photographer",
@@ -47,6 +48,7 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
       "documentary photography",
       "content creator Brussels",
       "créateur de contenu Bruxelles",
+      "girl with camera",
       "Ricoh GR",
       "Pentax",
       "brand content",
@@ -66,7 +68,7 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
     openGraph: {
       type: "website",
       url: `${site.url}/${lang}`,
-      siteName: site.tagline,
+      siteName: "The Girl With A Camera",
       title: isFr ? title : titleEn,
       description,
       locale: isFr ? "fr_BE" : "en_GB",
@@ -76,7 +78,7 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
           url: `${site.url}/og-image.jpg`,
           width: 1200,
           height: 630,
-          alt: site.tagline,
+          alt: "The Girl With A Camera",
           type: "image/jpeg",
         },
       ],
@@ -103,8 +105,8 @@ export default async function RootLayout({ children, params }: Props) {
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: site.name,
-    alternateName: site.tagline,
+    name: site.tagline,
+    alternateName: site.name,
     url: site.url,
     email: `mailto:${site.email}`,
     jobTitle: lang === "fr" ? "Photographe & Créatrice de contenu" : "Photographer & Content Creator",
@@ -118,9 +120,12 @@ export default async function RootLayout({ children, params }: Props) {
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: site.name,
+    name: site.tagline,
+    alternateName: site.name,
     image: `${site.url}/og-image.jpg`,
-    description: site.tagline,
+    description: lang === "fr"
+      ? "Photographe et créatrice de contenu documentaire, mode et marque basée à Bruxelles"
+      : "Documentary, fashion and brand photographer and content creator based in Brussels",
     url: site.url,
     email: `mailto:${site.email}`,
     address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: site.country },

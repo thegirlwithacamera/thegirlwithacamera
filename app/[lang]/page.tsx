@@ -34,6 +34,7 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       <style>{`
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
         .portfolio-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -63,6 +64,7 @@ export default async function HomePage({ params }: Props) {
         }
       `}</style>
 
+      <h1 className="sr-only">The Girl With A Camera - Photography Portfolio</h1>
       <main style={{ paddingTop: "16px", background: "#ffffff" }}>
         <div className="portfolio-grid">
           {ALL_PHOTOS.map((img, i) => (

@@ -34,9 +34,16 @@ export default async function FilmPage() {
   };
 
   return (
-    <main style={{ paddingTop: "16px", paddingBottom: "60px", background: "#ffffff" }}>
-      <FilmPlayer />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(videoSchema)}} />
-    </main>
+    <>
+      <style>{`
+        @media (max-width: 767px) {
+          .film-page-mobile { display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
+        }
+      `}</style>
+      <main className="film-page-mobile" style={{ paddingTop: "16px", paddingBottom: "60px", background: "#ffffff" }}>
+        <FilmPlayer />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(videoSchema)}} />
+      </main>
+    </>
   );
 }
