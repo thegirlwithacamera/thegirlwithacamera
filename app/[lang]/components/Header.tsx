@@ -43,10 +43,25 @@ export default function Header() {
         .header-burger { display: none; }
 
         @media (max-width: 767px) {
-          .header-inner { padding: 22px 20px 0; }
-          .header-title { font-size: 16px; letter-spacing: 0.16em; margin-bottom: 6px; }
+          .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 20px 0;
+          }
+          .header-title {
+            font-size: 16px;
+            letter-spacing: 0.16em;
+            margin-bottom: 0;
+            order: 2;
+          }
           .header-nav { display: none; }
-          .header-burger { display: flex; }
+          .header-burger {
+            display: flex !important;
+            order: 1;
+            padding-bottom: 0 !important;
+            justify-content: flex-start !important;
+          }
         }
       `}</style>
 

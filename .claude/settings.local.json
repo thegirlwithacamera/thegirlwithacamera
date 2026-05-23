@@ -101,7 +101,9 @@
       "Bash(vercel --prod --confirm)",
       "mcp__Desktop_Commander__read_process_output",
       "mcp__Control_Chrome__list_tabs",
-      "mcp__Control_Chrome__get_page_content"
+      "mcp__Control_Chrome__get_page_content",
+      "mcp__Control_Chrome__reload_tab",
+      "mcp__Control_Chrome__execute_javascript"
     ]
   }
 }
