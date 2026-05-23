@@ -35,7 +35,7 @@ const content = {
       "Sandrine Ceuppens is a documentary photographer and filmmaker based in Brussels.",
       "She captures streets, light and quiet moments. Fragments of reality that barely register but tell everything. Her work evolves at the border of documentary and fashion aesthetics, with a clean approach and minimal post-processing.",
       "Through both photography and film, she builds sensitive, editorial visual narratives centred on authenticity, atmosphere and the storytelling of everyday life.",
-      "She collaborates with European brands to create sincere and intentional visual content — conceived as fragments of life rather than traditional campaigns.",
+      "She collaborates with European brands to create sincere and intentional visual content: moments and fragments of life, not advertising campaigns.",
     ],
     workingWith: "ALREADY WORKING WITH",
     skills: "SKILLS",
