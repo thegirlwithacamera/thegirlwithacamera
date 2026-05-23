@@ -152,12 +152,14 @@ export default function Header() {
             href={`/${otherLang}${pathWithoutLang || ""}`}
             style={{
               display: "block",
-              fontSize: "11px",
-              letterSpacing: "0.2em",
+              fontSize: "9px",
+              letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "#0a0a0a",
+              color: "#999999",
               textDecoration: "none",
               padding: "12px 0",
+              marginTop: "8px",
+              borderTop: "1px solid #f0f0f0",
             }}
           >
             {otherLang.toUpperCase()}
