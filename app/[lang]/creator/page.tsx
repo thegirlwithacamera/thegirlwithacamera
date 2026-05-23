@@ -256,22 +256,23 @@ export default function CreatorPage({ params }: Props) {
           z-index: 20;
         }
         .carousel-phone-wrap.next {
-          transform: translateX(100px) scale(0.92) rotateY(-12deg);
+          transform: translateX(130px) scale(0.88) rotateY(-8deg);
           z-index: 9;
-          opacity: 0.7;
+          opacity: 0.6;
         }
         .carousel-phone-wrap.next-2 {
-          transform: translateX(160px) scale(0.85) rotateY(-20deg);
+          transform: translateX(200px) scale(0.8) rotateY(-12deg);
           z-index: 8;
-          opacity: 0.5;
+          opacity: 0;
+          pointer-events: none;
         }
         .carousel-phone-wrap.prev {
-          transform: translateX(-100px) scale(0.92) rotateY(12deg);
+          transform: translateX(-130px) scale(0.88) rotateY(8deg);
           z-index: 11;
-          opacity: 0.7;
+          opacity: 0.6;
         }
         .carousel-phone-wrap.hidden {
-          transform: translateX(-160px) scale(0.75) rotateY(20deg);
+          transform: translateX(-200px) scale(0.8) rotateY(12deg);
           z-index: 0;
           opacity: 0;
           pointer-events: none;
@@ -337,16 +338,17 @@ export default function CreatorPage({ params }: Props) {
             margin-left: -70px;
           }
           .carousel-phone-wrap.next {
-            transform: translateX(90px) scale(0.92) rotateY(-12deg);
+            transform: translateX(110px) scale(0.88) rotateY(-8deg);
           }
           .carousel-phone-wrap.next-2 {
-            transform: translateX(140px) scale(0.85) rotateY(-20deg);
+            transform: translateX(170px) scale(0.8) rotateY(-12deg);
+            opacity: 0;
           }
           .carousel-phone-wrap.prev {
-            transform: translateX(-90px) scale(0.92) rotateY(12deg);
+            transform: translateX(-110px) scale(0.88) rotateY(8deg);
           }
           .carousel-phone-wrap.hidden {
-            transform: translateX(-140px) scale(0.75) rotateY(20deg);
+            transform: translateX(-170px) scale(0.8) rotateY(12deg);
           }
           .phone {
             border-width: 1.5px;
