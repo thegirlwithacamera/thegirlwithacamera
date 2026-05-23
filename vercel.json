@@ -4,17 +4,5 @@
   "installCommand": "npm install",
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "api/**/*.ts": {
-      "runtime": "nodejs20.x",
-      "maxDuration": 60
-    }
-  },
-  "redirects": [
-    {
-      "source": "/robots.txt",
-      "destination": "/api/robots"
-    }
-  ]
+  }
 }
