@@ -92,7 +92,14 @@
       "Bash(python3 -)",
       "Bash(/opt/homebrew/bin/ffprobe -v quiet -show_entries format=duration -of csv=p=0 https://3cwvdrhaucmdleep.public.blob.vercel-storage.com/film/film__TRACKED_VAR__.mp4)",
       "Bash(node upload-final.mjs)",
-      "Bash(node upload-v3.mjs)"
+      "Bash(node upload-v3.mjs)",
+      "mcp__Claude_in_Chrome__resize_window",
+      "Bash(pkill -f \"npm run dev\")",
+      "mcp__Claude_in_Chrome__tabs_close_mcp",
+      "mcp__Claude_in_Chrome__browser_batch",
+      "mcp__Desktop_Commander__list_processes",
+      "Bash(vercel --prod --confirm)",
+      "mcp__Desktop_Commander__read_process_output"
     ]
   }
 }

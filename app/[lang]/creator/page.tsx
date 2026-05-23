@@ -236,9 +236,6 @@ export default function CreatorPage({ params }: Props) {
           cursor: grab;
           overflow: hidden;
         }
-        .phones-carousel.active {
-          display: block;
-        }
         .carousel-phone-wrap {
           position: absolute;
           width: 160px;
@@ -329,6 +326,7 @@ export default function CreatorPage({ params }: Props) {
           .creator-bio { font-size: 12px; padding: 0 24px; }
           .phones-row { display: none; }
           .phones-carousel {
+            display: block;
             max-width: 360px;
             height: 280px;
             margin: 60px auto;
@@ -450,7 +448,7 @@ export default function CreatorPage({ params }: Props) {
 
       {/* Phone mockups - Mobile stack carousel */}
       <div
-        className="phones-carousel active"
+        className="phones-carousel"
         onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
         onTouchEnd={handleSwipe}
       >
