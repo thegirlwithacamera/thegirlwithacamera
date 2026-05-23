@@ -36,9 +36,9 @@ export default async function HomePage({ params }: Props) {
       <style>{`
         .portfolio-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(2, 1fr);
           gap: 22px;
-          max-width: 1260px;
+          max-width: 900px;
           margin: 0 auto;
           padding: 0 20px;
         }
