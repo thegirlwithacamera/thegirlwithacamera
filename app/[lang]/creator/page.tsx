@@ -228,48 +228,53 @@ export default function CreatorPage({ params }: Props) {
         .phones-carousel {
           display: none;
           position: relative;
-          width: 160px;
+          width: 100%;
+          max-width: 400px;
           height: 320px;
           margin: 80px auto;
-          perspective: 1000px;
+          perspective: 1200px;
           cursor: grab;
+          overflow: hidden;
         }
         .phones-carousel.active {
           display: block;
         }
         .carousel-phone-wrap {
           position: absolute;
-          width: 100%;
-          height: 100%;
+          width: 160px;
+          height: 320px;
+          left: 50%;
+          top: 0;
+          transform-origin: center center;
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 8px;
           transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-          transform-origin: center center;
           z-index: 10;
+          margin-left: -80px;
         }
         .carousel-phone-wrap.active {
-          transform: translateY(0) scale(1) rotateY(0deg);
+          transform: translateX(0) scale(1) rotateY(0deg);
           z-index: 20;
         }
         .carousel-phone-wrap.next {
-          transform: translateY(20px) scale(0.92) rotateY(-8deg);
+          transform: translateX(100px) scale(0.92) rotateY(-12deg);
           z-index: 9;
-          opacity: 0.8;
+          opacity: 0.7;
         }
         .carousel-phone-wrap.next-2 {
-          transform: translateY(32px) scale(0.85) rotateY(-15deg);
+          transform: translateX(160px) scale(0.85) rotateY(-20deg);
           z-index: 8;
-          opacity: 0.6;
+          opacity: 0.5;
         }
         .carousel-phone-wrap.prev {
-          transform: translateY(-20px) scale(0.92) rotateY(8deg);
+          transform: translateX(-100px) scale(0.92) rotateY(12deg);
           z-index: 11;
-          opacity: 0.8;
+          opacity: 0.7;
         }
         .carousel-phone-wrap.hidden {
-          transform: translateY(40px) scale(0.75);
+          transform: translateX(-160px) scale(0.75) rotateY(20deg);
           z-index: 0;
           opacity: 0;
           pointer-events: none;
@@ -324,9 +329,26 @@ export default function CreatorPage({ params }: Props) {
           .creator-bio { font-size: 12px; padding: 0 24px; }
           .phones-row { display: none; }
           .phones-carousel {
-            width: 140px;
+            max-width: 360px;
             height: 280px;
             margin: 60px auto;
+          }
+          .carousel-phone-wrap {
+            width: 140px;
+            height: 280px;
+            margin-left: -70px;
+          }
+          .carousel-phone-wrap.next {
+            transform: translateX(90px) scale(0.92) rotateY(-12deg);
+          }
+          .carousel-phone-wrap.next-2 {
+            transform: translateX(140px) scale(0.85) rotateY(-20deg);
+          }
+          .carousel-phone-wrap.prev {
+            transform: translateX(-90px) scale(0.92) rotateY(12deg);
+          }
+          .carousel-phone-wrap.hidden {
+            transform: translateX(-140px) scale(0.75) rotateY(20deg);
           }
           .phone {
             border-width: 1.5px;
