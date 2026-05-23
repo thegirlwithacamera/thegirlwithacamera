@@ -7,6 +7,17 @@ interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: "Creator",
+    description: lang === "fr"
+      ? "Contenu authentique pour les marques. 31K abonnés Instagram, 302K vues reels, 217K comptes touchés. Création de contenu de marque unique."
+      : "Authentic content creation for brands. 31K Instagram followers, 302K reel views, 217K reach. Brand content creator with European collaborations.",
+    alternates: { canonical: `/${lang}/creator`, languages: { fr: "/fr/creator", en: "/en/creator" } },
+  };
+}
+
 // Tes stats sociales — mets à jour les chiffres quand tu veux
 const STATS = {
   instagram: { followers: "31K", reelViews: "302K", reach: "217K" },

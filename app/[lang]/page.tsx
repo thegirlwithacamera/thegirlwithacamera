@@ -8,7 +8,10 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   return {
-    title: "The Girl With A Camera",
+    title: "Portfolio",
+    description: lang === "fr"
+      ? "Portfolio photographique de Sandrine Ceuppens. Street photography, documentaire et création de contenu pour les marques. Bruxelles."
+      : "Photography portfolio by Sandrine Ceuppens. Street, documentary and brand content creation. Brussels-based photographer.",
     alternates: { canonical: `/${lang}`, languages: { fr: "/fr", en: "/en" } },
   };
 }
@@ -77,6 +80,20 @@ export default async function HomePage({ params }: Props) {
           ))}
         </div>
       </main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ImageGallery",
+        name: "Portfolio by Sandrine Ceuppens",
+        description: "Photography portfolio featuring street, documentary, and brand content creation work",
+        associatedMedia: ALL_PHOTOS.map((img, i) => ({
+          "@type": "ImageObject",
+          url: `https://thegirlwithacamera.com${img.src}`,
+          name: `Portfolio photograph ${i + 1}`,
+          width: img.w,
+          height: img.h,
+          creator: { "@type": "Person", name: "Sandrine Ceuppens" }
+        }))
+      })}} />
     </>
   );
 }
