@@ -58,7 +58,7 @@ export default async function HomePage({ params }: Props) {
           .portfolio-grid {
             grid-template-columns: 1fr;
             gap: 48px;
-            padding: 0 40px;
+            padding: 0 10px;
           }
         }
       `}</style>

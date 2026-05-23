@@ -458,13 +458,17 @@ export default function CreatorPage({ params }: Props) {
       >
         {videos.map((phone, i) => {
           let cardClass = "carousel-phone-wrap";
+          const nextIdx = (activeIndex + 1) % videos.length;
+          const next2Idx = (activeIndex + 2) % videos.length;
+          const prevIdx = (activeIndex - 1 + videos.length) % videos.length;
+
           if (i === activeIndex) {
             cardClass += " active";
-          } else if (i === activeIndex + 1) {
+          } else if (i === nextIdx) {
             cardClass += " next";
-          } else if (i === activeIndex + 2) {
+          } else if (i === next2Idx) {
             cardClass += " next-2";
-          } else if (i === activeIndex - 1) {
+          } else if (i === prevIdx) {
             cardClass += " prev";
           } else {
             cardClass += " hidden";
