@@ -282,7 +282,6 @@ export default function CreatorPage({ params }: Props) {
       <hr className="creator-hr" />
 
       {/* Phone mockups */}
-      <p className="section-title">{t.formats}</p>
       <div className="phones-row">
         {[
           { src: "/videos/creator/unboxing.mp4",           label: "Unboxing" },
