@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useRef, useState } from "react";
+import { use, useRef, useState, useEffect } from "react";
 import type { Metadata } from "next";
 
 interface Props {
@@ -56,6 +56,17 @@ export default function CreatorPage({ params }: Props) {
   const t = content[lang];
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [unmutedIndex, setUnmutedIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = useRef(0);
+
+  const videos = [
+    { src: "/videos/creator/unboxing.mp4",           label: "Unboxing" },
+    { src: "/videos/creator/product-in-use.mp4",    label: "Product\nin Use" },
+    { src: "/videos/creator/unboxing-face-cam.mp4", label: "Unboxing\nFace Cam" },
+    { src: "/videos/creator/lifestyle.mp4",         label: "Lifestyle" },
+    { src: "/videos/creator/unboxing-2.mp4",        label: "Unboxing" },
+    { src: "/videos/creator/product-vs-results.mp4",label: "Product vs\nResults" },
+  ];
 
   function toggleSound(i: number) {
     const next = unmutedIndex === i ? null : i;
@@ -63,6 +74,21 @@ export default function CreatorPage({ params }: Props) {
     videoRefs.current.forEach((v, idx) => {
       if (v) v.muted = (next === null || idx !== next);
     });
+  }
+
+  function handleSwipe(e: React.TouchEvent) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && activeIndex < videos.length - 1) {
+        setActiveIndex(activeIndex + 1);
+        setUnmutedIndex(null);
+      } else if (diff < 0 && activeIndex > 0) {
+        setActiveIndex(activeIndex - 1);
+        setUnmutedIndex(null);
+      }
+    }
   }
 
   return (
@@ -198,44 +224,56 @@ export default function CreatorPage({ params }: Props) {
           color: #666666;
           margin-top: 4px;
         }
-        /* Fan carousel for videos on mobile */
+        /* Stack carousel for videos on mobile */
         .phones-carousel {
           display: none;
-          overflow-x: auto;
-          overflow-y: hidden;
-          scroll-behavior: smooth;
-          padding: 60px 0;
-          margin: 0 -40px;
-          padding-left: 40px;
-          padding-right: 40px;
-          scroll-snap-type: x mandatory;
-          align-items: flex-end;
+          position: relative;
+          width: 160px;
+          height: 320px;
+          margin: 80px auto;
+          perspective: 1000px;
+          cursor: grab;
         }
-        .phones-carousel::-webkit-scrollbar {
-          height: 4px;
-        }
-        .phones-carousel::-webkit-scrollbar-track {
-          background: #f0f0f0;
-        }
-        .phones-carousel::-webkit-scrollbar-thumb {
-          background: #999999;
-          border-radius: 2px;
+        .phones-carousel.active {
+          display: block;
         }
         .carousel-phone-wrap {
+          position: absolute;
+          width: 100%;
+          height: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 8px;
-          flex-shrink: 0;
-          scroll-snap-align: center;
-          transform-origin: bottom center;
+          transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transform-origin: center center;
+          z-index: 10;
         }
-        .carousel-phone-wrap:nth-child(1) { transform: scale(0.75) translateY(32px) skewY(-8deg); }
-        .carousel-phone-wrap:nth-child(2) { transform: scale(0.85) translateY(20px) skewY(-4deg); }
-        .carousel-phone-wrap:nth-child(3) { transform: scale(0.92) translateY(8px) skewY(-2deg); }
-        .carousel-phone-wrap:nth-child(4) { transform: scale(0.92) translateY(8px) skewY(2deg); }
-        .carousel-phone-wrap:nth-child(5) { transform: scale(0.85) translateY(20px) skewY(4deg); }
-        .carousel-phone-wrap:nth-child(6) { transform: scale(0.75) translateY(32px) skewY(8deg); }
+        .carousel-phone-wrap.active {
+          transform: translateY(0) scale(1) rotateY(0deg);
+          z-index: 20;
+        }
+        .carousel-phone-wrap.next {
+          transform: translateY(20px) scale(0.92) rotateY(-8deg);
+          z-index: 9;
+          opacity: 0.8;
+        }
+        .carousel-phone-wrap.next-2 {
+          transform: translateY(32px) scale(0.85) rotateY(-15deg);
+          z-index: 8;
+          opacity: 0.6;
+        }
+        .carousel-phone-wrap.prev {
+          transform: translateY(-20px) scale(0.92) rotateY(8deg);
+          z-index: 11;
+          opacity: 0.8;
+        }
+        .carousel-phone-wrap.hidden {
+          transform: translateY(40px) scale(0.75);
+          z-index: 0;
+          opacity: 0;
+          pointer-events: none;
+        }
         /* Formats */
         .formats-list {
           display: flex;
@@ -285,10 +323,10 @@ export default function CreatorPage({ params }: Props) {
         @media (max-width: 767px) {
           .creator-bio { font-size: 12px; padding: 0 24px; }
           .phones-row { display: none; }
-          .phones-carousel { display: flex; }
-          .carousel-phone-wrap {
-            width: 120px;
-            margin: 0 6px;
+          .phones-carousel {
+            width: 140px;
+            height: 280px;
+            margin: 60px auto;
           }
           .phone {
             border-width: 1.5px;
@@ -388,46 +426,58 @@ export default function CreatorPage({ params }: Props) {
         ))}
       </div>
 
-      {/* Phone mockups - Mobile carousel (fan effect) */}
-      <div className="phones-carousel">
-        {[
-          { src: "/videos/creator/unboxing.mp4",           label: "Unboxing" },
-          { src: "/videos/creator/product-in-use.mp4",    label: "Product\nin Use" },
-          { src: "/videos/creator/unboxing-face-cam.mp4", label: "Unboxing\nFace Cam" },
-          { src: "/videos/creator/lifestyle.mp4",         label: "Lifestyle" },
-          { src: "/videos/creator/unboxing-2.mp4",        label: "Unboxing" },
-          { src: "/videos/creator/product-vs-results.mp4",label: "Product vs\nResults" },
-        ].map((phone, i) => (
-          <div key={i} className="carousel-phone-wrap">
-            <div className="phone">
-              <div className="phone-screen">
-                <video
-                  ref={el => { videoRefs.current[i] = el; }}
-                  src={phone.src}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  controlsList="nodownload nofullscreen"
-                  onContextMenu={(e) => e.preventDefault()}
-                  title={`Creator content: ${phone.label}`}
-                />
+      {/* Phone mockups - Mobile stack carousel */}
+      <div
+        className="phones-carousel active"
+        onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+        onTouchEnd={handleSwipe}
+      >
+        {videos.map((phone, i) => {
+          let cardClass = "carousel-phone-wrap";
+          if (i === activeIndex) {
+            cardClass += " active";
+          } else if (i === activeIndex + 1) {
+            cardClass += " next";
+          } else if (i === activeIndex + 2) {
+            cardClass += " next-2";
+          } else if (i === activeIndex - 1) {
+            cardClass += " prev";
+          } else {
+            cardClass += " hidden";
+          }
+
+          return (
+            <div key={i} className={cardClass}>
+              <div className="phone">
+                <div className="phone-screen">
+                  <video
+                    ref={el => { videoRefs.current[i] = el; }}
+                    src={phone.src}
+                    autoPlay={i === activeIndex}
+                    muted={unmutedIndex !== i}
+                    loop
+                    playsInline
+                    controlsList="nodownload nofullscreen"
+                    onContextMenu={(e) => e.preventDefault()}
+                    title={`Creator content: ${phone.label}`}
+                  />
+                </div>
+                <button className="phone-sound" onClick={() => toggleSound(i)} aria-label="toggle sound">
+                  {unmutedIndex === i ? (
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                    </svg>
+                  ) : (
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                    </svg>
+                  )}
+                </button>
               </div>
-              <button className="phone-sound" onClick={() => toggleSound(i)} aria-label="toggle sound">
-                {unmutedIndex === i ? (
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
-                  </svg>
-                ) : (
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-                  </svg>
-                )}
-              </button>
+              <span className="phone-label" style={{ whiteSpace: "pre-line" }}>{phone.label}</span>
             </div>
-            <span className="phone-label" style={{ whiteSpace: "pre-line" }}>{phone.label}</span>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <hr className="creator-hr" />
