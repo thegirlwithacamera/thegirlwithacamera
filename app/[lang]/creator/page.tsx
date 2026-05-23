@@ -196,8 +196,8 @@ export default function CreatorPage({ params }: Props) {
         .stats-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 40px;
-          max-width: 480px;
+          gap: 80px;
+          max-width: 800px;
           margin: 0 auto;
           padding: 0 40px;
           align-items: center;
@@ -329,7 +329,7 @@ export default function CreatorPage({ params }: Props) {
         }
         @media (max-width: 767px) {
           .creator-bio { font-size: 12px; padding: 0 24px; }
-          .stats-grid { max-width: 100%; gap: 20px; }
+          .stats-grid { max-width: 100%; gap: 40px; padding: 0 24px; }
           .phones-row { display: none; }
           .phones-carousel {
             display: block;
