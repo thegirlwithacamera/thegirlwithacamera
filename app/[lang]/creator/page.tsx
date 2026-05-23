@@ -66,7 +66,7 @@ export default function CreatorPage({ params }: Props) {
   }
 
   return (
-    <main style={{ paddingTop: "60px", paddingBottom: "80px", background: "#ffffff" }}>
+    <main style={{ paddingTop: "30px", paddingBottom: "80px", background: "#ffffff" }}>
       <style>{`
         .creator-bio {
           font-size: 11px;
@@ -75,14 +75,14 @@ export default function CreatorPage({ params }: Props) {
           color: #0a0a0a;
           text-align: center;
           max-width: 680px;
-          margin: 0 auto;
+          margin: 0 auto 24px;
           padding: 0 40px;
         }
         .creator-hr {
           height: 1px;
           background: #ebebeb;
           max-width: 280px;
-          margin: 52px auto;
+          margin: 32px auto;
           border: none;
         }
         .section-title {
