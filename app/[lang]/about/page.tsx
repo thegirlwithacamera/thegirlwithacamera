@@ -105,7 +105,7 @@ export default async function AboutPage({ params }: Props) {
     <main style={{ paddingTop: "60px", paddingBottom: "80px", background: "#ffffff" }}>
       <style>{`
         .info-bio {
-          font-size: 11px;
+          font-size: 13px;
           line-height: 2;
           letter-spacing: 0.06em;
           color: #0a0a0a;
@@ -115,7 +115,7 @@ export default async function AboutPage({ params }: Props) {
           padding: 0 40px;
         }
         .info-section-title {
-          font-size: 9px;
+          font-size: 11px;
           font-weight: 700;
           letter-spacing: 0.22em;
           color: #0a0a0a;
@@ -123,16 +123,16 @@ export default async function AboutPage({ params }: Props) {
           margin: 0;
         }
         .info-item {
-          font-size: 10px;
+          font-size: 12px;
           letter-spacing: 0.12em;
           color: #0a0a0a;
           text-align: center;
           line-height: 2.6;
         }
         .info-based {
-          font-size: 9px;
+          font-size: 11px;
           letter-spacing: 0.18em;
-          color: #aaaaaa;
+          color: #666666;
           text-align: center;
         }
         .info-hr {
@@ -149,9 +149,9 @@ export default async function AboutPage({ params }: Props) {
           gap: 0;
         }
         .skills-row span {
-          font-size: 9px;
+          font-size: 11px;
           letter-spacing: 0.14em;
-          color: #888;
+          color: #666666;
           padding: 4px 14px;
         }
         .social-row {
@@ -169,10 +169,10 @@ export default async function AboutPage({ params }: Props) {
           color: #0a0a0a;
         }
         .social-handle {
-          font-size: 8px;
+          font-size: 11px;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: #888;
+          color: #666666;
         }
         .email-row {
           display: flex;
@@ -181,7 +181,7 @@ export default async function AboutPage({ params }: Props) {
           gap: 6px;
         }
         .email-link {
-          font-size: 10px;
+          font-size: 12px;
           letter-spacing: 0.1em;
           color: #0a0a0a;
           text-decoration: none;
@@ -190,7 +190,7 @@ export default async function AboutPage({ params }: Props) {
         }
         .email-link:hover { border-bottom-color: #0a0a0a; }
         @media (max-width: 767px) {
-          .info-bio { font-size: 10px; padding: 0 24px; }
+          .info-bio { font-size: 12px; padding: 0 24px; }
           .social-row { gap: 28px; }
         }
       `}</style>
@@ -207,7 +207,7 @@ export default async function AboutPage({ params }: Props) {
       <div className="skills-row" style={{ marginTop: "24px" }}>
         {SKILLS[lang].map((s, i) => (
           <span key={s}>
-            {s}{i < SKILLS[lang].length - 1 && <span style={{ color: "#d0d0d0" }}> · </span>}
+            {s}{i < SKILLS[lang].length - 1 && <span style={{ color: "#999999" }}> · </span>}
           </span>
         ))}
       </div>
@@ -240,7 +240,7 @@ export default async function AboutPage({ params }: Props) {
       </div>
 
       {/* CTA */}
-      <p style={{ textAlign: "center", fontSize: "12px", color: "#9a9a9a", letterSpacing: "0.04em", marginTop: "52px", marginBottom: "16px" }}>{t.cta}</p>
+      <p style={{ textAlign: "center", fontSize: "13px", color: "#666666", letterSpacing: "0.04em", marginTop: "52px", marginBottom: "16px" }}>{t.cta}</p>
 
       {/* Emails */}
       <div className="email-row">

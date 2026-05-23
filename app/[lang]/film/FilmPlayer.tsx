@@ -79,10 +79,10 @@ export default function FilmPlayer() {
           border: none;
           border-bottom: 2px solid transparent;
           padding: 8px 20px;
-          font-size: 8px;
+          font-size: 11px;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: #aaa;
+          color: #666666;
           cursor: pointer;
           transition: color 0.2s, border-color 0.2s;
           margin-bottom: -1px;
@@ -125,7 +125,7 @@ export default function FilmPlayer() {
           bottom: 0; left: 0; right: 0;
           padding: 3px 5px;
           background: rgba(0,0,0,0.5);
-          font-size: 7px;
+          font-size: 10px;
           letter-spacing: 0.1em;
           color: rgba(255,255,255,0.85);
           text-transform: uppercase;
@@ -136,7 +136,7 @@ export default function FilmPlayer() {
 
         @media (max-width: 767px) {
           .film-wrap { padding: 0 12px; }
-          .film-cat-btn { padding: 8px 12px; font-size: 7px; }
+          .film-cat-btn { padding: 8px 12px; font-size: 10px; }
           .film-thumbs { grid-template-columns: repeat(4, 1fr); gap: 2px; }
         }
       `}</style>
@@ -152,6 +152,7 @@ export default function FilmPlayer() {
           autoPlay
           controlsList="nodownload"
           onContextMenu={(e) => e.preventDefault()}
+          title={`Film: ${current.label}`}
         />
 
         {/* Category tabs */}
@@ -175,7 +176,7 @@ export default function FilmPlayer() {
               className={`film-thumb${f.id === activeId ? " film-thumb--active" : ""}`}
               onClick={() => setActiveId(f.id)}
             >
-              <video src={f.src} muted playsInline preload="metadata" onContextMenu={(e) => e.preventDefault()} />
+              <video src={f.src} muted playsInline preload="metadata" onContextMenu={(e) => e.preventDefault()} title={`Film thumbnail: ${f.label}`} />
               <span className="film-thumb-label">{f.label}</span>
             </div>
           ))}

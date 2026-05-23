@@ -69,7 +69,7 @@ export default function CreatorPage({ params }: Props) {
     <main style={{ paddingTop: "20px", paddingBottom: "80px", background: "#ffffff" }}>
       <style>{`
         .creator-bio {
-          font-size: 11px;
+          font-size: 13px;
           line-height: 2;
           letter-spacing: 0.06em;
           color: #0a0a0a;
@@ -86,7 +86,7 @@ export default function CreatorPage({ params }: Props) {
           border: none;
         }
         .section-title {
-          font-size: 9px;
+          font-size: 11px;
           font-weight: 700;
           letter-spacing: 0.22em;
           color: #0a0a0a;
@@ -141,10 +141,10 @@ export default function CreatorPage({ params }: Props) {
           display: block;
         }
         .phone-label {
-          font-size: 8px;
+          font-size: 11px;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: #aaa;
+          color: #666666;
           text-align: center;
         }
         .phone-sound {
@@ -178,10 +178,10 @@ export default function CreatorPage({ params }: Props) {
           text-align: center;
         }
         .stat-platform {
-          font-size: 8px;
+          font-size: 11px;
           letter-spacing: 0.22em;
           font-weight: 700;
-          color: #b0b0b0;
+          color: #666666;
           margin-bottom: 16px;
         }
         .stat-number {
@@ -193,9 +193,9 @@ export default function CreatorPage({ params }: Props) {
           line-height: 1;
         }
         .stat-sub {
-          font-size: 8px;
+          font-size: 11px;
           letter-spacing: 0.14em;
-          color: #c0c0c0;
+          color: #666666;
           margin-top: 4px;
         }
         /* Formats */
@@ -206,7 +206,7 @@ export default function CreatorPage({ params }: Props) {
           gap: 0;
         }
         .format-item {
-          font-size: 10px;
+          font-size: 12px;
           letter-spacing: 0.14em;
           color: #0a0a0a;
           padding: 10px 0;
@@ -217,7 +217,7 @@ export default function CreatorPage({ params }: Props) {
         }
         /* Brands */
         .brand-item {
-          font-size: 10px;
+          font-size: 12px;
           letter-spacing: 0.12em;
           color: #0a0a0a;
           text-align: center;
@@ -228,13 +228,13 @@ export default function CreatorPage({ params }: Props) {
           text-align: center;
         }
         .creator-cta p {
-          font-size: 12px;
-          color: #9a9a9a;
+          font-size: 13px;
+          color: #666666;
           letter-spacing: 0.04em;
           margin-bottom: 16px;
         }
         .creator-cta a {
-          font-size: 10px;
+          font-size: 12px;
           letter-spacing: 0.14em;
           color: #0a0a0a;
           text-decoration: none;
@@ -245,7 +245,7 @@ export default function CreatorPage({ params }: Props) {
           .phones-row { grid-template-columns: repeat(3, 1fr); gap: 12px; }
         }
         @media (max-width: 767px) {
-          .creator-bio { font-size: 10px; padding: 0 24px; }
+          .creator-bio { font-size: 12px; padding: 0 24px; }
           .phones-row { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 16px; }
           .stats-grid { gap: 36px; }
         }
@@ -258,7 +258,7 @@ export default function CreatorPage({ params }: Props) {
 
       {/* Stats */}
       <p className="section-title">{t.reach}</p>
-      <p style={{ textAlign: "center", fontSize: "8px", letterSpacing: "0.16em", color: "#c0c0c0", marginBottom: "36px" }}>
+      <p style={{ textAlign: "center", fontSize: "10px", letterSpacing: "0.16em", color: "#999999", marginBottom: "36px" }}>
         {lang === "fr" ? "sur les 30 derniers jours" : "over the last 30 days"}
       </p>
       <div className="stats-grid">
@@ -303,6 +303,7 @@ export default function CreatorPage({ params }: Props) {
                   playsInline
                   controlsList="nodownload nofullscreen"
                   onContextMenu={(e) => e.preventDefault()}
+                  title={`Creator content: ${phone.label}`}
                 />
               </div>
               <button className="phone-sound" onClick={() => toggleSound(i)} aria-label="toggle sound">

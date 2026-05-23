@@ -72,7 +72,7 @@ export default function Header() {
                 key={l.href}
                 href={l.href}
                 style={{
-                  fontSize: "10px",
+                  fontSize: "11px",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
                   color: "#0a0a0a",
@@ -85,10 +85,10 @@ export default function Header() {
               </Link>
             );
           })}
-          <span style={{ color: "#d8d8d8", fontSize: "9px" }}>|</span>
+          <span style={{ color: "#999999", fontSize: "9px" }}>|</span>
           <Link
             href={`/${otherLang}${pathWithoutLang || ""}`}
-            style={{ fontSize: "10px", letterSpacing: "0.15em", color: "#0a0a0a", textDecoration: "none" }}
+            style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#0a0a0a", textDecoration: "none" }}
           >
             {otherLang.toUpperCase()}
           </Link>
@@ -103,7 +103,7 @@ export default function Header() {
           {/* Lang switcher left on mobile */}
           <Link
             href={`/${otherLang}${pathWithoutLang || ""}`}
-            style={{ fontSize: "9px", letterSpacing: "0.15em", color: "#aaa", textDecoration: "none" }}
+            style={{ fontSize: "10px", letterSpacing: "0.15em", color: "#666666", textDecoration: "none" }}
           >
             {otherLang.toUpperCase()}
           </Link>

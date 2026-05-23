@@ -66,7 +66,7 @@ export default async function HomePage({ params }: Props) {
             <div key={i} className="portfolio-cell">
               <Image
                 src={img.src}
-                alt=""
+                alt={`Portfolio photograph number ${i + 1} by Sandrine Ceuppens`}
                 width={img.w}
                 height={img.h}
                 sizes="(max-width: 767px) 50vw, 33vw"
