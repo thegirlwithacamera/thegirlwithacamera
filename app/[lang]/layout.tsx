@@ -29,11 +29,11 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   const { lang } = await params;
   const isFr = lang === "fr";
 
-  const title = `${site.tagline} · Photographe et créatrice de contenu, Bruxelles`;
-  const titleEn = `${site.tagline} · Photographer and content creator, Brussels`;
+  const title = `${site.tagline} · Photographe, vidéaste et créatrice de contenu, Bruxelles`;
+  const titleEn = `${site.tagline} · Photographer, videographer and content creator, Brussels`;
   const description = isFr
-    ? "The Girl With A Camera - Sandrine Ceuppens, créatrice de contenu basée à Bruxelles. Photography, vidéo, création de contenu pour marques. Street, documentaire, mode. Collaborations Ricoh, Pentax."
-    : "The Girl With A Camera - Sandrine Ceuppens, content creator based in Brussels. Photography, video, brand content creation. Street, documentary, fashion. Collaborations with Ricoh, Pentax.";
+    ? "The Girl With A Camera - Sandrine Ceuppens. Photographe, vidéaste et créatrice de contenu indépendante à Bruxelles. Photographie de rue, documentaire, mode, vidéo. Création de contenu pour les marques. Collaborations Ricoh Europe, Pentax Europe, Insta360. Services: shooting photo, production vidéo, montage, direction créative, création de contenu pour Instagram, TikTok, réseaux sociaux."
+    : "The Girl With A Camera - Sandrine Ceuppens. Photographer, videographer and independent content creator in Brussels. Street photography, documentary, fashion, video production. Brand content creation. Collaborations with Ricoh Europe, Pentax Europe, Insta360. Services: photo shoots, video production, editing, creative direction, content creation for Instagram, TikTok, social media.";
 
   return {
     metadataBase: new URL(site.url),
@@ -42,32 +42,75 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
     keywords: [
       "The Girl With A Camera",
       "Sandrine Ceuppens",
+      "photographe",
+      "photographer",
+      "vidéaste",
+      "videographer",
       "créatrice de contenu",
       "content creator",
-      "créatrice de contenu Bruxelles",
+      "créatrice indépendante",
+      "freelance photographer",
+      "vidéographe",
+      "productrice vidéo",
+      "video producer",
+      "Bruxelles",
+      "Brussels",
+      "Belgique",
+      "Belgium",
+      "photographe Bruxelles",
+      "vidéaste Bruxelles",
+      "vidéaste professionnel",
+      "professional videographer",
+      "photographe professionnel",
+      "professional photographer",
+      "création de contenu Bruxelles",
       "content creator Brussels",
-      "content creator Belgium",
-      "créatrice vidéo Bruxelles",
-      "video content creator",
+      "créatrice de contenu indépendante",
+      "independent content creator",
       "création de contenu pour marques",
       "brand content creation",
-      "photographe Bruxelles",
-      "Brussels photographer",
+      "contenu de marque",
       "street photography",
+      "photographie de rue",
       "documentary photography",
+      "photographie documentaire",
       "fashion photography",
+      "photographie de mode",
       "editorial photography",
-      "Instagram creator",
-      "social media creator",
-      "TikTok creator",
-      "créateur TikTok",
+      "photographie éditoriale",
       "video production",
       "production vidéo",
+      "video editing",
+      "montage vidéo",
+      "video creation",
+      "création vidéo",
+      "Instagram content creator",
+      "créatrice Instagram",
+      "TikTok creator",
+      "créatrice TikTok",
+      "social media creator",
+      "créatrice réseaux sociaux",
+      "contenu pour réseaux sociaux",
+      "social media content",
       "girl with camera",
+      "fille avec caméra",
+      "creative direction",
+      "direction créative",
+      "photoshoot",
+      "séance photo",
+      "video shooting",
+      "tournage vidéo",
       "Ricoh GR",
       "Pentax",
+      "Insta360",
       "creator economy",
       "économie créative",
+      "freelance",
+      "indépendant",
+      "disponible pour projets",
+      "available for projects",
+      "collaboration",
+      "partenariat",
     ],
     authors: [{ name: site.name, url: site.url }],
     creator: site.name,
@@ -122,26 +165,43 @@ export default async function RootLayout({ children, params }: Props) {
     alternateName: site.name,
     url: site.url,
     email: `mailto:${site.email}`,
-    jobTitle: lang === "fr" ? "Photographe & Créatrice de contenu" : "Photographer & Content Creator",
+    jobTitle: lang === "fr" ? "Photographe, vidéaste et créatrice de contenu" : "Photographer, videographer and content creator",
     address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: site.country },
     image: `${site.url}/og-image.jpg`,
     sameAs: [site.social.instagram, site.social.threads, site.social.tiktok],
     knowsAbout: [
       "Content creation",
+      "Photography",
+      "Videography",
       "Street photography",
       "Documentary photography",
+      "Fashion photography",
+      "Editorial photography",
       "Brand content creation",
       "Video production",
-      "Editorial photography",
+      "Video editing",
       "Social media content",
-      "Fashion photography",
-      "Video editing"
+      "Creative direction",
+      "Photo shoots",
+      "Video shooting",
+      "Instagram content",
+      "TikTok content"
     ],
     workLocation: { "@type": "City", name: site.city },
     hasOccupation: [
       { "@type": "Occupation", name: lang === "fr" ? "Créatrice de contenu" : "Content Creator" },
       { "@type": "Occupation", name: lang === "fr" ? "Photographe" : "Photographer" },
-      { "@type": "Occupation", name: lang === "fr" ? "Vidéographe" : "Videographer" }
+      { "@type": "Occupation", name: lang === "fr" ? "Vidéaste" : "Videographer" },
+      { "@type": "Occupation", name: lang === "fr" ? "Productrice vidéo" : "Video Producer" },
+      { "@type": "Occupation", name: lang === "fr" ? "Créatrice indépendante" : "Freelance Creator" }
+    ],
+    skills: [
+      "Photography",
+      "Videography",
+      "Video editing",
+      "Creative direction",
+      "Content creation",
+      "Social media management"
     ]
   };
 
@@ -152,8 +212,8 @@ export default async function RootLayout({ children, params }: Props) {
     alternateName: site.name,
     image: `${site.url}/og-image.jpg`,
     description: lang === "fr"
-      ? "Photographe et créatrice de contenu documentaire, mode et marque basée à Bruxelles. Création de contenu vidéo et photo pour les marques."
-      : "Documentary, fashion and brand photographer and content creator based in Brussels. Video and photography content creation for brands.",
+      ? "Photographe, vidéaste et créatrice de contenu indépendante basée à Bruxelles. Services: photographie de rue, documentaire, mode, vidéo, création de contenu pour les marques, production vidéo, montage, direction créative, contenu pour réseaux sociaux."
+      : "Independent photographer, videographer and content creator based in Brussels. Services: street photography, documentary, fashion, video, brand content creation, video production, editing, creative direction, social media content.",
     url: site.url,
     email: `mailto:${site.email}`,
     telephone: "+32",
@@ -161,27 +221,101 @@ export default async function RootLayout({ children, params }: Props) {
     sameAs: [site.social.instagram, site.social.threads, site.social.tiktok],
     serviceArea: { "@type": "Country", name: "European Union" },
     knowsAbout: [
+      "Photography",
+      "Videography",
       "Content Creation",
-      "Brand Photography",
+      "Brand Content",
       "Video Production",
-      "Social Media Content",
+      "Street Photography",
+      "Documentary Photography",
+      "Fashion Photography",
       "Editorial Photography",
-      "Documentary Photography"
+      "Social Media Content",
+      "Video Editing",
+      "Creative Direction"
     ],
     offers: [
       {
         "@type": "Service",
-        name: lang === "fr" ? "Création de contenu de marque" : "Brand content creation",
+        name: lang === "fr" ? "Photographie" : "Photography",
         description: lang === "fr"
-          ? "Création de contenu photo et vidéo pour les marques"
-          : "Photography and video content creation for brands"
+          ? "Services de photographie: street, documentaire, mode, photographie éditoriale, séances photo"
+          : "Photography services: street, documentary, fashion, editorial, photo shoots"
       },
       {
         "@type": "Service",
         name: lang === "fr" ? "Production vidéo" : "Video production",
         description: lang === "fr"
-          ? "Production et montage vidéo documentaire et de mode"
-          : "Documentary and fashion video production and editing"
+          ? "Production vidéo complète: tournage, montage, direction créative pour marques"
+          : "Complete video production: shooting, editing, creative direction for brands"
+      },
+      {
+        "@type": "Service",
+        name: lang === "fr" ? "Création de contenu" : "Content creation",
+        description: lang === "fr"
+          ? "Création de contenu pour réseaux sociaux: Instagram, TikTok, contenus de marque"
+          : "Content creation for social media: Instagram, TikTok, brand content"
+      },
+      {
+        "@type": "Service",
+        name: lang === "fr" ? "Direction créative" : "Creative direction",
+        description: lang === "fr"
+          ? "Direction créative et stratégie visuelle pour projets de contenu"
+          : "Creative direction and visual strategy for content projects"
+      },
+      {
+        "@type": "Service",
+        name: lang === "fr" ? "Montage vidéo" : "Video editing",
+        description: lang === "fr"
+          ? "Montage vidéo professionnel pour documentaires, publicités, réseaux sociaux"
+          : "Professional video editing for documentaries, advertisements, social media"
+      }
+    ]
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: lang === "fr" ? "Qui est Sandrine Ceuppens?" : "Who is Sandrine Ceuppens?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: lang === "fr"
+            ? "Sandrine Ceuppens est une photographe, vidéaste et créatrice de contenu indépendante basée à Bruxelles. Elle crée du contenu de photographie de rue, documentaire, mode et vidéo pour les marques."
+            : "Sandrine Ceuppens is an independent photographer, videographer and content creator based in Brussels. She creates street, documentary, fashion photography and video content for brands."
+        }
+      },
+      {
+        "@type": "Question",
+        name: lang === "fr" ? "Quels services propose Sandrine?" : "What services does Sandrine offer?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: lang === "fr"
+            ? "Services: photographie (street, documentaire, mode), production vidéo, montage vidéo, création de contenu pour réseaux sociaux (Instagram, TikTok), direction créative, création de contenu pour marques."
+            : "Services: photography (street, documentary, fashion), video production, video editing, social media content creation (Instagram, TikTok), creative direction, brand content creation."
+        }
+      },
+      {
+        "@type": "Question",
+        name: lang === "fr" ? "Où est basée Sandrine?" : "Where is Sandrine based?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: lang === "fr"
+            ? "Sandrine est basée à Bruxelles, en Belgique, et travaille avec des clients dans l'Union Européenne."
+            : "Sandrine is based in Brussels, Belgium, and works with clients across the European Union."
+        }
+      },
+      {
+        "@type": "Question",
+        name: lang === "fr" ? "Comment contacter Sandrine?" : "How to contact Sandrine?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: lang === "fr"
+            ? "Vous pouvez contacter Sandrine par email à hello@thegirlwithacamera.com ou press@thegirlwithacamera.com, ou via Instagram @sandrinecppns."
+            : "You can contact Sandrine via email at hello@thegirlwithacamera.com or press@thegirlwithacamera.com, or on Instagram @sandrinecppns."
+        }
       }
     ]
   };
@@ -218,6 +352,7 @@ export default async function RootLayout({ children, params }: Props) {
         <main id="main" className="flex-1">{children}</main>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         <SpeedInsights />
         <Analytics />
