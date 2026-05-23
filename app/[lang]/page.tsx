@@ -42,13 +42,6 @@ export default async function HomePage({ params }: Props) {
           margin: 0 auto;
           padding: 0 20px;
         }
-        @media (max-width: 767px) {
-          .portfolio-grid {
-            grid-template-columns: 1fr;
-            gap: 88px;
-            padding: 0 16px;
-          }
-        }
         .portfolio-cell {
           display: block;
           aspect-ratio: 4 / 5;
@@ -64,8 +57,8 @@ export default async function HomePage({ params }: Props) {
         @media (max-width: 767px) {
           .portfolio-grid {
             grid-template-columns: 1fr;
-            gap: 0;
-            padding: 0 0;
+            gap: 88px;
+            padding: 0 16px;
           }
         }
       `}</style>

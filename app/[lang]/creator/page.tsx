@@ -229,12 +229,12 @@ export default function CreatorPage({ params }: Props) {
           display: none;
           position: relative;
           width: 100%;
-          max-width: 400px;
+          max-width: 500px;
           height: 320px;
           margin: 80px auto;
           perspective: 1200px;
           cursor: grab;
-          overflow: hidden;
+          overflow: visible;
         }
         .carousel-phone-wrap {
           position: absolute;
@@ -328,7 +328,7 @@ export default function CreatorPage({ params }: Props) {
           .phones-row { display: none; }
           .phones-carousel {
             display: block;
-            max-width: 360px;
+            max-width: 440px;
             height: 280px;
             margin: 60px auto;
           }
