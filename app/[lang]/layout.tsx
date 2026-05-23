@@ -93,9 +93,6 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
     icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
     formatDetection: { email: false, telephone: false, address: false },
     appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "The Girl With A Camera" },
-    appLinks: [
-      { url: `${site.url}/${lang}`, app_name: "The Girl With A Camera", app_store_id: "", play_app_id: "" },
-    ],
   };
 }
 
