@@ -69,7 +69,7 @@ export default function CreatorPage({ params }: Props) {
     <main style={{ paddingTop: "20px", paddingBottom: "80px", background: "#ffffff" }}>
       <style>{`
         .creator-bio {
-          font-size: 13px;
+          font-size: 11px;
           line-height: 2;
           letter-spacing: 0.06em;
           color: #0a0a0a;
@@ -178,9 +178,9 @@ export default function CreatorPage({ params }: Props) {
           text-align: center;
         }
         .stat-platform {
-          font-size: 11px;
+          font-size: 9px;
           letter-spacing: 0.22em;
-          font-weight: 700;
+          font-weight: 400;
           color: #666666;
           margin-bottom: 16px;
         }
