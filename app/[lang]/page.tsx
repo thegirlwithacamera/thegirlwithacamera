@@ -64,7 +64,7 @@ export default async function HomePage({ params }: Props) {
         }
       `}</style>
 
-      <h1 className="sr-only">The Girl With A Camera - Photography Portfolio</h1>
+      <h1 className="sr-only">The Girl With A Camera - Créatrice de contenu & Photographe Portfolio</h1>
       <main style={{ paddingTop: "16px", background: "#ffffff" }}>
         <div className="portfolio-grid">
           {ALL_PHOTOS.map((img, i) => (

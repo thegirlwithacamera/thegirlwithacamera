@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   const title = `${site.tagline} · Photographe et créatrice de contenu, Bruxelles`;
   const titleEn = `${site.tagline} · Photographer and content creator, Brussels`;
   const description = isFr
-    ? "The Girl With A Camera - Photographe et créatrice de contenu basée à Bruxelles. Street, documentaire, mode, vidéo. Collaborations avec Ricoh et Pentax Europe."
-    : "The Girl With A Camera - Photographer and content creator based in Brussels. Street, documentary, fashion, video. Collaborations with Ricoh and Pentax Europe.";
+    ? "The Girl With A Camera - Sandrine Ceuppens, créatrice de contenu basée à Bruxelles. Photography, vidéo, création de contenu pour marques. Street, documentaire, mode. Collaborations Ricoh, Pentax."
+    : "The Girl With A Camera - Sandrine Ceuppens, content creator based in Brussels. Photography, video, brand content creation. Street, documentary, fashion. Collaborations with Ricoh, Pentax.";
 
   return {
     metadataBase: new URL(site.url),
@@ -42,19 +42,32 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
     keywords: [
       "The Girl With A Camera",
       "Sandrine Ceuppens",
+      "créatrice de contenu",
+      "content creator",
+      "créatrice de contenu Bruxelles",
+      "content creator Brussels",
+      "content creator Belgium",
+      "créatrice vidéo Bruxelles",
+      "video content creator",
+      "création de contenu pour marques",
+      "brand content creation",
       "photographe Bruxelles",
       "Brussels photographer",
       "street photography",
       "documentary photography",
-      "content creator Brussels",
-      "créateur de contenu Bruxelles",
+      "fashion photography",
+      "editorial photography",
+      "Instagram creator",
+      "social media creator",
+      "TikTok creator",
+      "créateur TikTok",
+      "video production",
+      "production vidéo",
       "girl with camera",
       "Ricoh GR",
       "Pentax",
-      "brand content",
-      "editorial photography",
-      "video content creation",
       "creator economy",
+      "économie créative",
     ],
     authors: [{ name: site.name, url: site.url }],
     creator: site.name,
@@ -113,8 +126,23 @@ export default async function RootLayout({ children, params }: Props) {
     address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: site.country },
     image: `${site.url}/og-image.jpg`,
     sameAs: [site.social.instagram, site.social.threads, site.social.tiktok],
-    knowsAbout: ["Street photography", "Documentary photography", "Brand content", "Video creation", "Editorial photography"],
+    knowsAbout: [
+      "Content creation",
+      "Street photography",
+      "Documentary photography",
+      "Brand content creation",
+      "Video production",
+      "Editorial photography",
+      "Social media content",
+      "Fashion photography",
+      "Video editing"
+    ],
     workLocation: { "@type": "City", name: site.city },
+    hasOccupation: [
+      { "@type": "Occupation", name: lang === "fr" ? "Créatrice de contenu" : "Content Creator" },
+      { "@type": "Occupation", name: lang === "fr" ? "Photographe" : "Photographer" },
+      { "@type": "Occupation", name: lang === "fr" ? "Vidéographe" : "Videographer" }
+    ]
   };
 
   const organizationJsonLd = {
@@ -124,13 +152,38 @@ export default async function RootLayout({ children, params }: Props) {
     alternateName: site.name,
     image: `${site.url}/og-image.jpg`,
     description: lang === "fr"
-      ? "Photographe et créatrice de contenu documentaire, mode et marque basée à Bruxelles"
-      : "Documentary, fashion and brand photographer and content creator based in Brussels",
+      ? "Photographe et créatrice de contenu documentaire, mode et marque basée à Bruxelles. Création de contenu vidéo et photo pour les marques."
+      : "Documentary, fashion and brand photographer and content creator based in Brussels. Video and photography content creation for brands.",
     url: site.url,
     email: `mailto:${site.email}`,
+    telephone: "+32",
     address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: site.country },
     sameAs: [site.social.instagram, site.social.threads, site.social.tiktok],
     serviceArea: { "@type": "Country", name: "European Union" },
+    knowsAbout: [
+      "Content Creation",
+      "Brand Photography",
+      "Video Production",
+      "Social Media Content",
+      "Editorial Photography",
+      "Documentary Photography"
+    ],
+    offers: [
+      {
+        "@type": "Service",
+        name: lang === "fr" ? "Création de contenu de marque" : "Brand content creation",
+        description: lang === "fr"
+          ? "Création de contenu photo et vidéo pour les marques"
+          : "Photography and video content creation for brands"
+      },
+      {
+        "@type": "Service",
+        name: lang === "fr" ? "Production vidéo" : "Video production",
+        description: lang === "fr"
+          ? "Production et montage vidéo documentaire et de mode"
+          : "Documentary and fashion video production and editing"
+      }
+    ]
   };
 
   const breadcrumbJsonLd = {
