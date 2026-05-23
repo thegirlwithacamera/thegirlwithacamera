@@ -1,0 +1,15 @@
+# Large uncompressed film files (use public/videos/film/ for compressed versions)
+public/images/film/
+
+# Old series folders no longer used in main portfolio
+public/images/series/
+
+# Old galerie folder
+public/images/galerie/
+
+# Large video originals & unused video folders
+public/videos/_originals/
+public/videos/city-diary/
+
+# Creator originals (compressed versions are in public/videos/creator/)
+public/images/creator/

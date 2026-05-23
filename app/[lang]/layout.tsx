@@ -29,8 +29,8 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   const { lang } = await params;
   const isFr = lang === "fr";
 
-  const title = `${site.name} · Photographe et créatrice de contenu, Bruxelles`;
-  const titleEn = `${site.name} · Photographer and content creator, Brussels`;
+  const title = `${site.tagline} · Photographe et créatrice de contenu, Bruxelles`;
+  const titleEn = `${site.tagline} · Photographer and content creator, Brussels`;
   const description = isFr
     ? "Photographe et créatrice de contenu basée à Bruxelles. Street, documentaire, mode, vidéo. Collaborations avec Ricoh et Pentax Europe."
     : "Photographer and content creator based in Brussels. Street, documentary, fashion, video. Collaborations with Ricoh and Pentax Europe.";

@@ -14,18 +14,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const content = {
   fr: {
-    bio: "SANDRINE CEUPPENS EST PHOTOGRAPHE ET VIDÉASTE DOCUMENTAIRE, BASÉE À BRUXELLES. ELLE CAPTURE LES RUES, LA LUMIÈRE ET LES INSTANTS SILENCIEUX — CES FRAGMENTS DU RÉEL QU'ON REMARQUE À PEINE MAIS QUI RACONTENT TOUT. SON TRAVAIL ÉVOLUE À LA FRONTIÈRE DU DOCUMENTAIRE ET DE L'ESTHÉTIQUE MODE, AVEC UNE APPROCHE ÉPURÉE ET UN POST-TRAITEMENT MINIMAL. ELLE CONSTRUIT DES RÉCITS VISUELS SENSIBLES ET ÉDITORIAUX, CENTRÉS SUR L'AUTHENTICITÉ, L'ATMOSPHÈRE ET LA NARRATION DU QUOTIDIEN.",
-    workingWith: "ALREADY WORKING WITH",
-    skills: "OUTILS & COMPÉTENCES",
+    bio: [
+      "Sandrine Ceuppens est photographe et vidéaste documentaire, basée à Bruxelles.",
+      "Elle capture les rues, la lumière et les instants silencieux. Ces fragments du réel qu'on remarque à peine mais qui racontent tout. Son travail évolue à la frontière du documentaire et de l'esthétique mode, avec une approche épurée et un post-traitement minimal.",
+      "À travers la photo comme la vidéo, elle construit des récits visuels sensibles et éditoriaux, centrés sur l'authenticité, l'atmosphère et la narration du quotidien.",
+      "Elle collabore avec des marques européennes pour créer du contenu visuel sincère et intentionnel, pensé comme des fragments de vie plutôt que comme des campagnes classiques.",
+    ],
+    workingWith: "ILS ME FONT CONFIANCE",
+    skills: "COMPÉTENCES",
     based: "BASÉE À BRUXELLES · DISPONIBLE POUR VOYAGER",
+    cta: "On travaille ensemble ?",
     contact: "CONTACT",
     socials: "RÉSEAUX",
   },
   en: {
-    bio: "SANDRINE CEUPPENS IS A DOCUMENTARY PHOTOGRAPHER AND FILMMAKER BASED IN BRUSSELS. SHE CAPTURES STREETS, LIGHT AND QUIET MOMENTS — FRAGMENTS OF REALITY THAT BARELY REGISTER BUT TELL EVERYTHING. HER WORK EVOLVES AT THE BORDER OF DOCUMENTARY AND FASHION AESTHETICS, WITH A CLEAN APPROACH AND MINIMAL POST-PROCESSING. SHE BUILDS SENSITIVE, EDITORIAL VISUAL NARRATIVES CENTRED ON AUTHENTICITY, ATMOSPHERE AND THE STORYTELLING OF EVERYDAY LIFE.",
+    bio: [
+      "Sandrine Ceuppens is a documentary photographer and filmmaker based in Brussels.",
+      "She captures streets, light and quiet moments. Fragments of reality that barely register but tell everything. Her work evolves at the border of documentary and fashion aesthetics, with a clean approach and minimal post-processing.",
+      "Through both photography and film, she builds sensitive, editorial visual narratives centred on authenticity, atmosphere and the storytelling of everyday life.",
+      "She collaborates with European brands to create sincere and intentional visual content — conceived as fragments of life rather than traditional campaigns.",
+    ],
     workingWith: "ALREADY WORKING WITH",
-    skills: "TOOLS & SKILLS",
+    skills: "SKILLS",
     based: "BASED IN BRUSSELS · AVAILABLE TO TRAVEL",
+    cta: "Want to work together?",
     contact: "CONTACT",
     socials: "SOCIALS",
   },
@@ -33,13 +45,22 @@ const content = {
 
 const BRANDS = ["RICOH EUROPE", "PENTAX EUROPE", "INSTA360"];
 
-const SKILLS = [
-  "ADOBE LIGHTROOM",
-  "ADOBE PREMIERE PRO",
-  "CANVA",
-  "CAPCUT",
-  "CLAUDE AI",
-];
+const SKILLS = {
+  en: [
+    "DIGITAL & FILM PHOTOGRAPHY",
+    "VIDEO EDITING",
+    "CREATIVE DIRECTION",
+    "BRAND CONTENT CREATION",
+    "SOCIAL MEDIA",
+  ],
+  fr: [
+    "PHOTOGRAPHIE NUMÉRIQUE & ARGENTIQUE",
+    "MONTAGE VIDÉO",
+    "DIRECTION CRÉATIVE",
+    "CRÉATION DE CONTENU DE MARQUE",
+    "RÉSEAUX SOCIAUX",
+  ],
+};
 
 const SOCIALS = [
   {
@@ -175,7 +196,21 @@ export default async function AboutPage({ params }: Props) {
       `}</style>
 
       {/* Bio */}
-      <p className="info-bio">{t.bio}</p>
+      {t.bio.map((para, i) => (
+        <p key={i} className="info-bio" style={{ marginBottom: i < t.bio.length - 1 ? "1.6em" : 0 }}>{para}</p>
+      ))}
+
+      <hr className="info-hr" />
+
+      {/* Skills */}
+      <p className="info-section-title">{t.skills}</p>
+      <div className="skills-row" style={{ marginTop: "24px" }}>
+        {SKILLS[lang].map((s, i) => (
+          <span key={s}>
+            {s}{i < SKILLS[lang].length - 1 && <span style={{ color: "#d0d0d0" }}> · </span>}
+          </span>
+        ))}
+      </div>
 
       <hr className="info-hr" />
 
@@ -184,18 +219,6 @@ export default async function AboutPage({ params }: Props) {
       <div style={{ marginTop: "28px" }}>
         {BRANDS.map((name) => (
           <p key={name} className="info-item">{name}</p>
-        ))}
-      </div>
-
-      <hr className="info-hr" />
-
-      {/* Skills */}
-      <p className="info-section-title">{t.skills}</p>
-      <div className="skills-row" style={{ marginTop: "24px" }}>
-        {SKILLS.map((s, i) => (
-          <span key={s}>
-            {s}{i < SKILLS.length - 1 && <span style={{ color: "#d0d0d0" }}> · </span>}
-          </span>
         ))}
       </div>
 
@@ -216,8 +239,11 @@ export default async function AboutPage({ params }: Props) {
         ))}
       </div>
 
+      {/* CTA */}
+      <p style={{ textAlign: "center", fontSize: "12px", color: "#9a9a9a", letterSpacing: "0.04em", marginTop: "52px", marginBottom: "16px" }}>{t.cta}</p>
+
       {/* Emails */}
-      <div className="email-row" style={{ marginTop: "36px" }}>
+      <div className="email-row">
         <a href="mailto:hello@thegirlwithacamera.com" className="email-link">
           hello@thegirlwithacamera.com
         </a>
