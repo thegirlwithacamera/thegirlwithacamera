@@ -45,7 +45,7 @@ export default async function HomePage({ params }: Props) {
         @media (max-width: 767px) {
           .portfolio-grid {
             grid-template-columns: 1fr;
-            gap: 64px;
+            gap: 88px;
             padding: 0 16px;
           }
         }

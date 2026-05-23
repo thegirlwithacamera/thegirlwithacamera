@@ -81,11 +81,11 @@ export default function CreatorPage({ params }: Props) {
     const diff = touchStartX.current - touchEndX;
 
     if (Math.abs(diff) > 50) {
-      if (diff > 0 && activeIndex < videos.length - 1) {
-        setActiveIndex(activeIndex + 1);
+      if (diff > 0) {
+        setActiveIndex((activeIndex + 1) % videos.length);
         setUnmutedIndex(null);
-      } else if (diff < 0 && activeIndex > 0) {
-        setActiveIndex(activeIndex - 1);
+      } else if (diff < 0) {
+        setActiveIndex((activeIndex - 1 + videos.length) % videos.length);
         setUnmutedIndex(null);
       }
     }
