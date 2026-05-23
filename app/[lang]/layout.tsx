@@ -91,6 +91,7 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
     },
     robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
     icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
+    manifest: "/manifest.json",
     formatDetection: { email: false, telephone: false, address: false },
     appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "The Girl With A Camera" },
   };
@@ -127,8 +128,27 @@ export default async function RootLayout({ children, params }: Props) {
     serviceArea: { "@type": "Country", name: "European Union" },
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: site.tagline,
+        item: `${site.url}/${lang}`,
+      },
+    ],
+  };
+
   return (
     <html lang={lang} className={`${garamond.variable} ${inter.variable}`}>
+      <head>
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className="min-h-screen flex flex-col antialiased">
         <a
           href="#main"
@@ -140,6 +160,7 @@ export default async function RootLayout({ children, params }: Props) {
         <main id="main" className="flex-1">{children}</main>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         <SpeedInsights />
         <Analytics />
       </body>
