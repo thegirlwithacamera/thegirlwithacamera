@@ -51,10 +51,14 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
       "Pentax",
       "brand content",
       "editorial photography",
+      "video content creation",
+      "creator economy",
     ],
     authors: [{ name: site.name, url: site.url }],
     creator: site.name,
     publisher: site.name,
+    category: "Photography",
+    classification: "Photography & Content Creation",
     alternates: {
       canonical: `/${lang}`,
       languages: { fr: "/fr", en: "/en" },
@@ -67,14 +71,31 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
       description,
       locale: isFr ? "fr_BE" : "en_GB",
       alternateLocale: isFr ? ["en_GB"] : ["fr_BE"],
+      images: [
+        {
+          url: `${site.url}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: site.tagline,
+          type: "image/jpeg",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
+      site: "@sandrinecppns",
+      creator: "@sandrinecppns",
       title: isFr ? title : titleEn,
       description,
+      images: [`${site.url}/twitter-image.jpg`],
     },
-    robots: { index: true, follow: true },
-    icons: { icon: "/favicon.ico" },
+    robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+    icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
+    formatDetection: { email: false, telephone: false, address: false },
+    appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "The Girl With A Camera" },
+    appLinks: [
+      { url: `${site.url}/${lang}`, app_name: "The Girl With A Camera", app_store_id: "", play_app_id: "" },
+    ],
   };
 }
 
@@ -90,8 +111,23 @@ export default async function RootLayout({ children, params }: Props) {
     email: `mailto:${site.email}`,
     jobTitle: lang === "fr" ? "Photographe & Créatrice de contenu" : "Photographer & Content Creator",
     address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: site.country },
-    sameAs: [site.social.instagram, site.social.threads],
-    knowsAbout: ["Street photography", "Documentary photography", "Brand content", "Video"],
+    image: `${site.url}/og-image.jpg`,
+    sameAs: [site.social.instagram, site.social.threads, site.social.tiktok],
+    knowsAbout: ["Street photography", "Documentary photography", "Brand content", "Video creation", "Editorial photography"],
+    workLocation: { "@type": "City", name: site.city },
+  };
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: site.name,
+    image: `${site.url}/og-image.jpg`,
+    description: site.tagline,
+    url: site.url,
+    email: `mailto:${site.email}`,
+    address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: site.country },
+    sameAs: [site.social.instagram, site.social.threads, site.social.tiktok],
+    serviceArea: { "@type": "Country", name: "European Union" },
   };
 
   return (
@@ -105,10 +141,8 @@ export default async function RootLayout({ children, params }: Props) {
         </a>
         <Header />
         <main id="main" className="flex-1">{children}</main>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <SpeedInsights />
         <Analytics />
       </body>

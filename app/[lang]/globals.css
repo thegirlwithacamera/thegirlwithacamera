@@ -15,6 +15,9 @@
   --muted: var(--stone);
   --muted-soft: var(--dust);
   --border: var(--cream);
+
+  /* Performance optimization */
+  color-scheme: light;
 }
 
 @theme inline {
@@ -31,6 +34,7 @@
 html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -39,6 +43,8 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
 }
 
 /* Editorial typography */
@@ -62,15 +68,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Image hover */
 .image-overlay { position: relative; overflow: hidden; }
-.image-overlay img { transition: transform 0.5s ease; }
+.image-overlay img { transition: transform 0.5s ease; will-change: transform; }
 .image-overlay:hover img { transform: scale(1.05); }
 
 /* Fade in */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-.fade-in { animation: fadeIn 0.6s ease forwards; }
+.fade-in { animation: fadeIn 0.6s ease-out forwards; will-change: opacity; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {

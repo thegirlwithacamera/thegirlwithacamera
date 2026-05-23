@@ -7,7 +7,10 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   return {
-    title: "Info",
+    title: "About",
+    description: lang === "fr"
+      ? "À propos de Sandrine Ceuppens. Photographe documentaire et créatrice de contenu basée à Bruxelles. Collaborations avec Ricoh Europe, Pentax Europe et Insta360."
+      : "About Sandrine Ceuppens. Documentary photographer and content creator based in Brussels. Collaborations with Ricoh Europe, Pentax Europe and Insta360.",
     alternates: { canonical: `/${lang}/about`, languages: { fr: "/fr/about", en: "/en/about" } },
   };
 }
@@ -252,6 +255,22 @@ export default async function AboutPage({ params }: Props) {
         </a>
       </div>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: lang === "fr" ? "À propos" : "About",
+        description: t.bio.join(" "),
+        mainEntity: {
+          "@type": "Person",
+          name: "Sandrine Ceuppens",
+          jobTitle: lang === "fr" ? "Photographe & Créatrice de contenu" : "Photographer & Content Creator",
+          url: "https://thegirlwithacamera.com",
+          image: "https://thegirlwithacamera.com/og-image.jpg",
+          sameAs: ["https://www.instagram.com/sandrinecppns/", "https://www.threads.net/@sandrinecppns", "https://www.tiktok.com/@sandrinecppns"],
+          address: { "@type": "PostalAddress", addressLocality: "Brussels", addressCountry: "Belgium" },
+          knowsAbout: ["DIGITAL & FILM PHOTOGRAPHY", "VIDEO EDITING", "CREATIVE DIRECTION", "BRAND CONTENT CREATION", "SOCIAL MEDIA"]
+        }
+      })}} />
     </main>
   );
 }
