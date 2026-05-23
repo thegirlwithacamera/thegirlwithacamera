@@ -103,7 +103,17 @@
       "mcp__Control_Chrome__list_tabs",
       "mcp__Control_Chrome__get_page_content",
       "mcp__Control_Chrome__reload_tab",
-      "mcp__Control_Chrome__execute_javascript"
+      "mcp__Control_Chrome__execute_javascript",
+      "mcp__Claude_in_Chrome__find",
+      "mcp__Claude_in_Chrome__form_input",
+      "mcp__Desktop_Commander__create_directory",
+      "Bash(curl -s http://localhost:3000/en/shop)",
+      "mcp__Claude_in_Chrome__read_console_messages",
+      "mcp__Claude_in_Chrome__read_network_requests",
+      "Bash(find /Users/sandrine/Documents -name \"ShopContent.tsx\" -type f 2>/dev/null | head -5)",
+      "mcp__Desktop_Commander__start_search",
+      "mcp__Desktop_Commander__start_process",
+      "mcp__Desktop_Commander__interact_with_process"
     ]
   }
 }
