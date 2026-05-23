@@ -99,7 +99,9 @@
       "mcp__Claude_in_Chrome__browser_batch",
       "mcp__Desktop_Commander__list_processes",
       "Bash(vercel --prod --confirm)",
-      "mcp__Desktop_Commander__read_process_output"
+      "mcp__Desktop_Commander__read_process_output",
+      "mcp__Control_Chrome__list_tabs",
+      "mcp__Control_Chrome__get_page_content"
     ]
   }
 }

@@ -236,6 +236,7 @@ export default function CreatorPage({ params }: Props) {
           cursor: grab;
           overflow: visible;
           padding: 0 20px;
+          touch-action: none;
         }
         .carousel-phone-wrap {
           position: absolute;
