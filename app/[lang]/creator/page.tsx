@@ -170,7 +170,7 @@ export default function CreatorPage({ params }: Props) {
         .stats-grid {
           display: flex;
           justify-content: center;
-          gap: 60px;
+          gap: 40px;
           flex-wrap: wrap;
           padding: 0 40px;
         }
