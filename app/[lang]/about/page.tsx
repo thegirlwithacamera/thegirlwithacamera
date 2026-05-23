@@ -196,8 +196,8 @@ export default async function AboutPage({ params }: Props) {
           .info-bio { font-size: 12px; padding: 0 24px; }
           .social-row { gap: 28px; }
           .skills-row { flex-direction: column; gap: 8px; align-items: center; }
-          .skills-row span { padding: 0; display: block; }
-          .skills-row span::after { display: none; }
+          .skills-row > span { padding: 0; display: block; }
+          .skills-row > span > span { display: none; }
         }
       `}</style>
 
