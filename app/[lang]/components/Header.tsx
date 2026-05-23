@@ -96,17 +96,10 @@ export default function Header() {
 
         {/* Burger */}
         <div className="header-burger" style={{
-          justifyContent: "space-between",
+          justifyContent: "flex-end",
           alignItems: "center",
           paddingBottom: "12px",
         }}>
-          {/* Lang switcher left on mobile */}
-          <Link
-            href={`/${otherLang}${pathWithoutLang || ""}`}
-            style={{ fontSize: "10px", letterSpacing: "0.15em", color: "#666666", textDecoration: "none" }}
-          >
-            {otherLang.toUpperCase()}
-          </Link>
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
@@ -155,6 +148,20 @@ export default function Header() {
               {l.label}
             </Link>
           ))}
+          <Link
+            href={`/${otherLang}${pathWithoutLang || ""}`}
+            style={{
+              display: "block",
+              fontSize: "11px",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "#0a0a0a",
+              textDecoration: "none",
+              padding: "12px 0",
+            }}
+          >
+            {otherLang.toUpperCase()}
+          </Link>
         </div>
       )}
     </header>
