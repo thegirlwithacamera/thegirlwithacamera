@@ -162,15 +162,29 @@ export default async function AboutPage({ params }: Props) {
           color: #0a0a0a;
           line-height: 1.8;
           text-align: center;
-          margin: 12px 0;
+          margin: 0;
+        }
+        .project-month {
+          font-size: 11px;
+          letter-spacing: 0.08em;
+          color: #0a0a0a;
+          margin: 20px 0 4px 0;
+          font-weight: 500;
+        }
+        .project-details {
+          font-size: 10px;
+          letter-spacing: 0.08em;
+          color: #666666;
+          margin: 0 0 16px 0;
         }
         .project-year {
-          font-size: 10px;
+          font-size: 11px;
           letter-spacing: 0.16em;
-          color: #666666;
+          color: #0a0a0a;
           text-transform: uppercase;
-          margin-top: 16px;
-          margin-bottom: 8px;
+          margin-top: 32px;
+          margin-bottom: 20px;
+          font-weight: 600;
         }
         .info-based {
           font-size: 11px;
@@ -238,6 +252,9 @@ export default async function AboutPage({ params }: Props) {
           .skills-row { flex-direction: column; gap: 8px; align-items: center; }
           .skills-row > span { padding: 0; display: block; }
           .skills-row > span > span { display: none; }
+          .projects-container { padding: 0 24px; }
+          .project-month { font-size: 10px; margin: 16px 0 3px 0; }
+          .project-details { font-size: 9px; margin: 0 0 12px 0; }
         }
       `}</style>
 
@@ -285,7 +302,10 @@ export default async function AboutPage({ params }: Props) {
             <div key={year}>
               <p className="project-year">{year}</p>
               {grouped[year].map((p, i) => (
-                <p key={i} className="project-item">{p.month} · {p.client} · {p.desc}</p>
+                <div key={i}>
+                  <p className="project-month">{p.month}</p>
+                  <p className="project-details">{p.client} · {p.desc}</p>
+                </div>
               ))}
             </div>
           ));
