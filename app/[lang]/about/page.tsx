@@ -152,9 +152,10 @@ export default async function AboutPage({ params }: Props) {
           line-height: 2.6;
         }
         .projects-container {
-          max-width: 600px;
+          max-width: 500px;
           margin: 28px auto 0;
           padding: 0 40px;
+          text-align: center;
         }
         .project-item {
           font-size: 11px;
