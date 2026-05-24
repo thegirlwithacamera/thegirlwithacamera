@@ -43,6 +43,13 @@ yarn-error.log*
 public/images/_originals/
 public/videos/_originals/
 
+# Large video files (use external hosting or CDN)
+public/images/**/*.mp4
+public/images/**/*.MP4
+public/videos/
+*.mp4
+*.MP4
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
