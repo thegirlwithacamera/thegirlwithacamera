@@ -52,26 +52,22 @@ const BRANDS = ["RICOH EUROPE", "PENTAX EUROPE", "INSTA360"];
 
 const RECENT_PROJECTS = {
   fr: [
-    { year: "2026", month: "Mars - Avril", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Production vidéo UGC" },
-    { year: "2026", month: "Mars", client: "The Girl with a Camera", desc: "Mission photographique en Sicile • Série personnelle en vue de tirages et édition" },
-    { year: "2026", month: "Janvier", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Début de collaboration • Développement des concepts" },
-    { year: "2025", month: "Novembre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC" },
-    { year: "2025", month: "Octobre - Novembre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC" },
-    { year: "2025", month: "Octobre - Novembre", client: "The Girl with a Camera", desc: "Mission photo et vidéo au Japon • Série personnelle en vue de tirages et édition" },
-    { year: "2025", month: "Septembre - Octobre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC" },
-    { year: "2025", month: "Juillet - Août", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC" },
-    { year: "2025", month: "Juin", client: "Ricoh Imaging Europe", desc: "Début de collaboration • Développement des concepts créatifs" },
+    { year: "2026", month: "Mars - Mai", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Production vidéo UGC", secondary: "" },
+    { year: "2026", month: "Mars", client: "The Girl with a Camera", desc: "Mission photographique en Sicile", secondary: "Série personnelle en vue de tirages et édition" },
+    { year: "2026", month: "Février", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Début de collaboration • Développement des concepts", secondary: "" },
+    { year: "2025", month: "Novembre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC", secondary: "" },
+    { year: "2025", month: "Octobre - Novembre", client: "The Girl with a Camera", desc: "Mission photo et vidéo au Japon", secondary: "Série personnelle en vue de tirages et édition" },
+    { year: "2025", month: "Juillet - Octobre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC", secondary: "" },
+    { year: "2025", month: "Juin", client: "Ricoh Imaging Europe", desc: "Début de collaboration • Développement des concepts créatifs", secondary: "" },
   ],
   en: [
-    { year: "2026", month: "March - April", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "UGC video production" },
-    { year: "2026", month: "March", client: "The Girl with a Camera", desc: "Photography mission in Sicily • Personal series for prints and publication" },
-    { year: "2026", month: "January", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Collaboration start • Creative concept development" },
-    { year: "2025", month: "November", client: "Ricoh Imaging Europe", desc: "UGC video production" },
-    { year: "2025", month: "October - November", client: "Ricoh Imaging Europe", desc: "UGC video production" },
-    { year: "2025", month: "October - November", client: "The Girl with a Camera", desc: "Photography and video mission in Japan • Personal series for prints and publication" },
-    { year: "2025", month: "September - October", client: "Ricoh Imaging Europe", desc: "UGC video production" },
-    { year: "2025", month: "July - August", client: "Ricoh Imaging Europe", desc: "UGC video production" },
-    { year: "2025", month: "June", client: "Ricoh Imaging Europe", desc: "Collaboration start • Creative concept development" },
+    { year: "2026", month: "March - May", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "UGC video production", secondary: "" },
+    { year: "2026", month: "March", client: "The Girl with a Camera", desc: "Photography mission in Sicily", secondary: "Personal series for prints and publication" },
+    { year: "2026", month: "February", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Collaboration start • Creative concept development", secondary: "" },
+    { year: "2025", month: "November", client: "Ricoh Imaging Europe", desc: "UGC video production", secondary: "" },
+    { year: "2025", month: "October - November", client: "The Girl with a Camera", desc: "Photography and video mission in Japan", secondary: "Personal series for prints and publication" },
+    { year: "2025", month: "July - October", client: "Ricoh Imaging Europe", desc: "UGC video production", secondary: "" },
+    { year: "2025", month: "June", client: "Ricoh Imaging Europe", desc: "Collaboration start • Creative concept development", secondary: "" },
   ],
 };
 
@@ -314,6 +310,7 @@ export default async function AboutPage({ params }: Props) {
                 <div key={i}>
                   <p className="project-month">{p.month}</p>
                   <p className="project-details">{p.client} · {p.desc}</p>
+                  {p.secondary && <p className="project-details">{p.secondary}</p>}
                 </div>
               ))}
             </div>

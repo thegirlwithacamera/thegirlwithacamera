@@ -132,7 +132,19 @@
       "Bash(pgrep -q \"git push\\\\|git-remote-https\\\\|git pack-objects\")",
       "Bash(pgrep -q \"git push\\\\|git-remote\")",
       "mcp__Desktop_Commander__get_file_info",
-      "mcp__Desktop_Commander__kill_process"
+      "mcp__Desktop_Commander__kill_process",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --tree-filter 'find public/images -type f \\\\\\( -name \"*.mp4\" -o -name \"*.MP4\" \\\\\\) -delete 2>/dev/null; true' --force --all)",
+      "Bash(git reflog *)",
+      "Bash(git gc *)",
+      "Bash(pip3 install *)",
+      "Bash(git filter-repo *)",
+      "Bash(killall git-gc *)",
+      "Bash(git remote *)",
+      "Bash(git fetch *)",
+      "Bash(git show *)",
+      "Read(//tmp/**)",
+      "Bash(git checkout *)",
+      "Bash(vercel deploy *)"
     ]
   }
 }
