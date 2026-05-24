@@ -6,7 +6,10 @@ export async function POST(request: NextRequest) {
   try {
     // Verify this is an authorized request (from admin or scheduled task)
     const authHeader = request.headers.get('authorization');
-    if (authHeader !== `Bearer ${process.env.ADMIN_SECRET_KEY}`) {
+    const expectedToken = `Bearer ${process.env.ADMIN_SECRET_KEY}`;
+
+    if (!authHeader || authHeader !== expectedToken) {
+      console.error('Auth failed:', { authHeader: authHeader?.substring(0, 20), expected: expectedToken?.substring(0, 20) });
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
