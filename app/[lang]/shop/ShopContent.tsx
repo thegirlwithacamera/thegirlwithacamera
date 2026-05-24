@@ -160,6 +160,30 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
           grid-auto-rows: auto;
           align-items: start;
         }
+        .products-section {
+          margin-bottom: 60px;
+        }
+        .products-section-title {
+          font-size: 13px;
+          letter-spacing: 0.08em;
+          color: #666666;
+          margin-bottom: 28px;
+          text-align: center;
+        }
+        .horizontal-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 22px;
+          grid-auto-rows: auto;
+          align-items: start;
+        }
+        .vertical-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 22px;
+          grid-auto-rows: auto;
+          align-items: start;
+        }
         .product-card {
           display: block;
           overflow: hidden;
@@ -226,6 +250,14 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
             grid-template-columns: 1fr;
             gap: 12px;
           }
+          .horizontal-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          .vertical-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
           .shop-title {
             font-size: 24px;
           }
@@ -241,33 +273,68 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
             <p className="shop-description">{t.description}</p>
           </div>
 
-          {/* Products Grid */}
-          <div className="products-grid">
-            {products.length === 0 && (
-              <div className="shop-loading">{t.noProducts}</div>
-            )}
-            {products.map((product) => (
-              <Link 
-                key={product.id} 
-                href={`/${lang}/shop/${product.id}`}
-                style={{ textDecoration: 'none' }}
-              >
-                <div className="product-card">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="product-card-image"
-                  />
-                  <div className="product-info">
-                    <div className="product-name">{product.name}</div>
-                    <div className="product-price">
-                      {t.from} €{getMinPrice(product.id)}
+          {/* Products Grid - Grouped by Orientation */}
+          {products.length === 0 && (
+            <div className="shop-loading">{t.noProducts}</div>
+          )}
+
+          {/* Horizontal Images */}
+          {products.filter(p => p.orientation === 'horizontal').length > 0 && (
+            <div className="products-section">
+              <div className="horizontal-grid">
+                {products.filter(p => p.orientation === 'horizontal').map((product) => (
+                  <Link
+                    key={product.id}
+                    href={`/${lang}/shop/${product.id}`}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <div className="product-card">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="product-card-image"
+                      />
+                      <div className="product-info">
+                        <div className="product-name">{product.name}</div>
+                        <div className="product-price">
+                          {t.from} €{getMinPrice(product.id)}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Vertical Images */}
+          {products.filter(p => p.orientation === 'vertical').length > 0 && (
+            <div className="products-section">
+              <div className="vertical-grid">
+                {products.filter(p => p.orientation === 'vertical').map((product) => (
+                  <Link
+                    key={product.id}
+                    href={`/${lang}/shop/${product.id}`}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <div className="product-card">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="product-card-image"
+                      />
+                      <div className="product-info">
+                        <div className="product-name">{product.name}</div>
+                        <div className="product-price">
+                          {t.from} €{getMinPrice(product.id)}
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Sidebar Cart */}

@@ -8,6 +8,7 @@ export interface Product {
   id: string;
   name: string;
   image: string;
+  orientation: 'horizontal' | 'vertical';
   variants: ProductVariant[];
   descriptionEn: string;
   descriptionFr: string;
@@ -24,6 +25,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-01',
     name: 'Geometry in Motion',
     image: '/images/portfolio/shop-1.JPG',
+    orientation: 'horizontal',
     descriptionEn: 'Clean lines, bold colors, human presence. A study in composition where every element serves the narrative.',
     descriptionFr: 'Des lignes épurées, des couleurs audacieuses, une présence humaine. Une étude de composition où chaque élément raconte une histoire.',
     variants: [
@@ -36,6 +38,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-02',
     name: 'Stillness',
     image: '/images/portfolio/shop-2.JPG',
+    orientation: 'horizontal',
     descriptionEn: 'In quiet moments, I find truth. This image captures the essence of patience and presence.',
     descriptionFr: 'Dans les moments de silence, je trouve la vérité. Cette image capture l\'essence de la patience et de la présence.',
     variants: [
@@ -122,6 +125,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-09',
     name: 'Moment of Grace',
     image: '/images/portfolio/shop-9.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Caught between seconds. That fleeting instant where everything aligns perfectly.',
     descriptionFr: 'Pris entre les secondes. Cet instant fugace où tout s\'aligne parfaitement.',
     variants: [
@@ -133,6 +137,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-10',
     name: 'Documentary Heart',
     image: '/images/portfolio/shop-10.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Real people, real moments. Documentary photography at its core.',
     descriptionFr: 'Des gens vrais, des moments vrais. La photographie documentaire à l\'état pur.',
     variants: [
@@ -144,6 +149,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-11',
     name: 'Urban Narrative',
     image: '/images/portfolio/shop-11.JPG',
+    orientation: 'horizontal',
     descriptionEn: 'Cities tell stories. Every corner, every facade, every shadow speaks.',
     descriptionFr: 'Les villes racontent des histoires. Chaque coin, chaque façade, chaque ombre parle.',
     variants: [
@@ -155,6 +161,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-12',
     name: 'Parallel Worlds',
     image: '/images/portfolio/shop-12.JPG',
+    orientation: 'horizontal',
     descriptionEn: 'Contrasts create meaning. Light against dark, presence against absence.',
     descriptionFr: 'Les contrastes créent du sens. La lumière contre l\'obscurité, la présence contre l\'absence.',
     variants: [
@@ -166,6 +173,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-13',
     name: 'Whispered Stories',
     image: '/images/portfolio/shop-13.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Soft narratives. Not loud, but deeply felt. Subtle truths in muted tones.',
     descriptionFr: 'Récits doux. Pas bruyants, mais profondément ressentis. Vérités subtiles dans des tons étouffés.',
     variants: [
@@ -177,6 +185,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-14',
     name: 'Presence & Space',
     image: '/images/portfolio/shop-14.JPG',
+    orientation: 'vertical',
     descriptionEn: 'How we occupy space. The relationship between the figure and the void.',
     descriptionFr: 'Comment on occupe l\'espace. La relation entre la figure et le vide.',
     variants: [
@@ -188,6 +197,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-15',
     name: 'Archive of Light',
     image: '/images/portfolio/shop-15.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Golden hour doesn\'t last long. I chase the light that reveals truth.',
     descriptionFr: 'L\'heure d\'or ne dure pas longtemps. Je chasse la lumière qui révèle la vérité.',
     variants: [
@@ -199,6 +209,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-16',
     name: 'Solitude & Connection',
     image: '/images/portfolio/shop-16.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Alone yet together. The paradox of human experience captured in a single frame.',
     descriptionFr: 'Seul mais ensemble. Le paradoxe de l\'expérience humaine capturé dans un seul cadre.',
     variants: [
@@ -210,6 +221,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-17',
     name: 'Framed Silence',
     image: '/images/portfolio/shop-17.JPG',
+    orientation: 'vertical',
     descriptionEn: 'What\'s not said is often the most important. Silence has a language all its own.',
     descriptionFr: 'Ce qui n\'est pas dit est souvent le plus important. Le silence a son propre langage.',
     variants: [
@@ -221,6 +233,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-18',
     name: 'Between Moments',
     image: '/images/portfolio/shop-18.JPG',
+    orientation: 'vertical',
     descriptionEn: 'The in-between spaces. Where anticipation meets reflection.',
     descriptionFr: 'Les espaces entre-deux. Où l\'anticipation rencontre la réflexion.',
     variants: [
@@ -232,6 +245,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-19',
     name: 'Visual Rhythm',
     image: '/images/portfolio/shop-19.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Patterns and repetitions. The music of the visual world.',
     descriptionFr: 'Les modèles et les répétitions. La musique du monde visuel.',
     variants: [
@@ -245,6 +259,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-20',
     name: 'Fragment of Time',
     image: '/images/portfolio/shop-20.JPG',
+    orientation: 'vertical',
     descriptionEn: 'A small window into a larger story.',
     descriptionFr: 'Une petite fenêtre sur une plus grande histoire.',
     variants: [
@@ -255,6 +270,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-21',
     name: 'Sketched Moment',
     image: '/images/portfolio/shop-21.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Quick studies of light and form.',
     descriptionFr: 'Des études rapides de lumière et de forme.',
     variants: [
@@ -265,6 +281,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-22',
     name: 'Detail & Nuance',
     image: '/images/portfolio/shop-22.JPG',
+    orientation: 'horizontal',
     descriptionEn: 'Sometimes the small things matter most.',
     descriptionFr: 'Parfois, les petites choses comptent le plus.',
     variants: [
@@ -275,6 +292,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-23',
     name: 'Study in Softness',
     image: '/images/portfolio/shop-23.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Gentle observation of everyday moments.',
     descriptionFr: 'Observation douce des moments quotidiens.',
     variants: [
@@ -285,6 +303,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-24',
     name: 'Layered Composition',
     image: '/images/portfolio/shop-24.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Building depth through visual layers.',
     descriptionFr: 'Construire de la profondeur par des couches visuelles.',
     variants: [
@@ -295,6 +314,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-25',
     name: 'Minimal Truth',
     image: '/images/portfolio/shop-25.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Less is more. Purity in simplicity.',
     descriptionFr: 'Moins c\'est plus. La pureté dans la simplicité.',
     variants: [
@@ -305,6 +325,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-26',
     name: 'Textured Dreams',
     image: '/images/portfolio/shop-26.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Where texture becomes emotion.',
     descriptionFr: 'Où la texture devient émotion.',
     variants: [
@@ -315,6 +336,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-27',
     name: 'Quiet Observation',
     image: '/images/portfolio/shop-27.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Patient watching of the ordinary.',
     descriptionFr: 'Observation patiente de l\'ordinaire.',
     variants: [
