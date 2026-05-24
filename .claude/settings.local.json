@@ -144,7 +144,11 @@
       "Bash(git show *)",
       "Read(//tmp/**)",
       "Bash(git checkout *)",
-      "Bash(vercel deploy *)"
+      "Bash(vercel deploy *)",
+      "Bash(openssl rand *)",
+      "Bash(curl -X POST http://localhost:3000/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')",
+      "Bash(curl -s -X POST http://localhost:3000/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')",
+      "Bash(python3 -c \"import sys, json; data = json.load\\(sys.stdin\\); print\\(json.dumps\\({k: v for k, v in data.items\\(\\) if k != 'results'}, indent=2\\)\\); failures = [r for r in data['results'] if r['status'] == 'error']; print\\(f'\\\\\\\\nFirst error \\(if any\\): {failures[0] if failures else \\\\\"None\\\\\"}'\\)\")"
     ]
   }
 }

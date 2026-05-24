@@ -1,4 +1,4 @@
-const PRINTFUL_API_BASE = 'https://api.printful.com';
+const PRINTFUL_API_BASE = 'https://api.printful.com/v1';
 const PRINTFUL_API_KEY = process.env.PRINTFUL_API_KEY;
 
 interface PrintfulProduct {
