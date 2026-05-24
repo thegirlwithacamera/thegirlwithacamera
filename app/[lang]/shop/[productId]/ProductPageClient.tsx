@@ -142,7 +142,33 @@ function ProductPageInner({
 
   return (
     <main style={{ paddingTop: '60px', paddingBottom: '80px', background: '#ffffff' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 40px 40px 40px' }}>
+      <style>{`
+        .product-grid {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 40px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 80px;
+          align-items: start;
+        }
+        .product-back {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 40px 40px 40px;
+        }
+        @media (max-width: 767px) {
+          .product-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            padding: 0 20px;
+          }
+          .product-back {
+            padding: 0 20px 32px 20px;
+          }
+        }
+      `}</style>
+      <div className="product-back">
         <Link href={`/${lang}/shop`}>
           <span style={{
             fontSize: '13px',
@@ -155,15 +181,7 @@ function ProductPageInner({
         </Link>
       </div>
 
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 40px',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '80px',
-        alignItems: 'start',
-      }}>
+      <div className="product-grid">
         <div style={{ position: 'relative', width: '100%', paddingBottom: '100%' }}>
           <Image
             src={product.image}

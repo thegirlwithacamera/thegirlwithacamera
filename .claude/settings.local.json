@@ -113,7 +113,21 @@
       "Bash(find /Users/sandrine/Documents -name \"ShopContent.tsx\" -type f 2>/dev/null | head -5)",
       "mcp__Desktop_Commander__start_search",
       "mcp__Desktop_Commander__start_process",
-      "mcp__Desktop_Commander__interact_with_process"
+      "mcp__Desktop_Commander__interact_with_process",
+      "Bash(yt-dlp -f best -q \"https://www.instagram.com/reel/DYrwp_bNhQa/\" -o \"pentax-sicily-1.mp4\")",
+      "Bash(yt-dlp -f best -q \"https://www.instagram.com/reel/DYkCMzYtIVz/\" -o \"pentax-sicily-2.mp4\")",
+      "Bash(yt-dlp -f best -q \"https://www.instagram.com/reel/DYhdaEsNqxd/\" -o \"pentax-sicily-3.mp4\")",
+      "Bash(yt-dlp -f best -q \"https://www.instagram.com/reel/DYSAsOENsPh/\" -o \"pentax-sicily-4.mp4\")",
+      "Bash(yt-dlp -f best -q \"https://www.instagram.com/reel/DYPb5uOt4ju/\" -o \"pentax-sicily-5.mp4\")",
+      "Bash(mkdir -p \"/Users/sandrine/Documents/THE GIRL WITH A CAMERA/WEBSITE/app/[lang]/seen/tiktok-ricoh-europe\" \"/Users/sandrine/Documents/THE GIRL WITH A CAMERA/WEBSITE/app/[lang]/seen/instagram-pentax-europe\" \"/Users/sandrine/Documents/THE GIRL WITH A CAMERA/WEBSITE/app/[lang]/seen/instagram-ricoh-france\")",
+      "Bash(curl -s http://localhost:3000/fr/seen)",
+      "Bash(curl -s http://localhost:3000/fr/seen/tiktok-ricoh-europe)",
+      "Bash(curl -s http://localhost:3000/fr/seen/instagram-pentax-europe)",
+      "Bash(curl -s http://localhost:3000/fr/seen/instagram-ricoh-france)",
+      "Bash(git config *)",
+      "Bash(ls ~/.ssh/id_rsa* 2>/dev/null && echo \"SSH keys found\" || echo \"No SSH keys\")",
+      "Bash(GIT_TRACE=1 git push origin main)",
+      "Bash(gh --version)"
     ]
   }
 }

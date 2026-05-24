@@ -19,7 +19,6 @@ export default function Header() {
     { href: `/${currentLang}`,          label: "Portfolio" },
     { href: `/${currentLang}/film`,     label: "Film" },
     { href: `/${currentLang}/creator`,  label: "Creator" },
-    { href: `/${currentLang}/shop`,     label: "Shop" },
     { href: `/${currentLang}/seen`,     label: "Seen In" },
     { href: `/${currentLang}/about`,    label: "Info" },
   ];
