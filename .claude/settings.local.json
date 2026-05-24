@@ -153,7 +153,23 @@
       "Bash(python3 -c \"import sys, json; d=json.load\\(sys.stdin\\); print\\(f'✓ {d[\\\\\"successCount\\\\\"]}/{d[\\\\\"totalProducts\\\\\"]} products created successfully'\\); errors = [r for r in d['results'] if r['status']=='error']; print\\(f'\\\\\\\\nErrors: {len\\(errors\\)}'\\); [print\\(f' {e[\\\\\"shopProductId\\\\\"]}: {e[\\\\\"error\\\\\"][:60]}...'\\) for e in errors[:3]]\")",
       "Bash(curl -sL -X POST https://thegirlwithacamera.com/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')",
       "Bash(python3 -c \"import sys, json; d=json.load\\(sys.stdin\\); print\\(f'Status: {d.get\\(\\\\\"message\\\\\", d.get\\(\\\\\"error\\\\\"\\)\\)}'\\); results = d.get\\('results', []\\); success = [r for r in results if r.get\\('status'\\)=='created']; errors = [r for r in results if r.get\\('status'\\)=='error']; print\\(f'✓ Created: {len\\(success\\)}'\\); print\\(f'✗ Errors: {len\\(errors\\)}'\\); errors and print\\(f' Sample: {errors[0][\\\\\"shopProductId\\\\\"]}: {errors[0][\\\\\"error\\\\\"][:80]}'\\)\")",
-      "Bash(curl -v -X POST https://thegirlwithacamera.com/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')"
+      "Bash(curl -v -X POST https://thegirlwithacamera.com/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')",
+      "Bash(curl -sL -X POST https://thegirlwithacamera.com/api/printful/init-products -H 'Content-Type: application/json')",
+      "Bash(python3 -c \"import sys, json; d=json.load\\(sys.stdin\\); print\\(f'{d.get\\(\\\\\"message\\\\\", d.get\\(\\\\\"error\\\\\", \\\\\"Unknown\\\\\"\\)\\)}'\\); success = len\\([r for r in d.get\\('results', []\\) if r.get\\('status'\\)=='created']\\); errors = len\\([r for r in d.get\\('results', []\\) if r.get\\('status'\\)=='error']\\); print\\(f'✓ Created: {success}'\\); print\\(f'✗ Errors: {errors}'\\)\")",
+      "Bash(python3 -c \"import sys, json; d=json.load\\(sys.stdin\\); errors = [r for r in d.get\\('results', []\\) if r.get\\('status'\\)=='error']; print\\('Sample errors:'\\); [print\\(f'{e[\\\\\"shopProductId\\\\\"]}: {e[\\\\\"error\\\\\"]}'\\) for e in errors[:5]]\")",
+      "Bash(curl -s -X POST https://api.printful.com/v1/store/products -H 'Authorization: Bearer 6hhT65otIwHxi9wIWmpXMrfx86OFu3WTjn7IuPxd' -H 'Content-Type: application/json' -d '{\"external_id\":\"test-01\",\"name\":\"Test Product\"}')",
+      "Bash(curl -s -X POST https://api.printful.com/v1/products -H 'Authorization: Bearer 6hhT65otIwHxi9wIWmpXMrfx86OFu3WTjn7IuPxd' -H 'Content-Type: application/json' -d '{\"external_id\":\"test-01\",\"name\":\"Test Product\"}')",
+      "Bash(curl -s -X GET https://api.printful.com/v1/account -H 'Authorization: Bearer 6hhT65otIwHxi9wIWmpXMrfx86OFu3WTjn7IuPxd')",
+      "Bash(curl -s -X GET https://api.printful.com/v1/account -H 'Authorization: Basic __CMDSUB_OUTPUT__')",
+      "Bash(curl -s -X GET https://api.printful.com/v1/account -H 'Authorization: Bearer AToXQVtgLqsdSEhEyTJssKZxRoQj5Ev3kdJv5er6')",
+      "Bash(curl -s -X GET https://api.printful.com/v1/account -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6')",
+      "Bash(curl -s -X GET https://api.printful.com/v1/orders -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6')",
+      "Bash(curl -s -X GET https://api.printful.com/orders -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6')",
+      "Bash(curl -s -X GET https://api.printful.com/account -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6')",
+      "Bash(curl -s -X POST https://api.printful.com/store/products -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6' -H 'Content-Type: application/json' -d '{ *)",
+      "Bash(curl -s -X GET https://api.printful.com/stores -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6')",
+      "Bash(cat /tmp/dev_server.log)",
+      "Bash(curl -s -w '\\\\nHTTP Status: %{http_code}\\\\n' -X POST http://localhost:3000/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')"
     ]
   }
 }

@@ -1,5 +1,6 @@
-const PRINTFUL_API_BASE = 'https://api.printful.com/v1';
+const PRINTFUL_API_BASE = 'https://api.printful.com';
 const PRINTFUL_API_KEY = process.env.PRINTFUL_API_KEY;
+const STORE_ID = process.env.PRINTFUL_STORE_ID || '18221540';
 
 interface PrintfulProduct {
   external_id: string;
@@ -58,7 +59,7 @@ export async function createOrUpdatePrintfulProduct(
 ) {
   try {
     // Create sync product (represents the product in Printful)
-    const syncProduct = await callPrintfulAPI('/store/products', 'POST', {
+    const syncProduct = await callPrintfulAPI(`/store/${STORE_ID}/products`, 'POST', {
       external_id: shopProductId,
       name: name,
     } as PrintfulProduct);
@@ -75,7 +76,7 @@ export async function createOrUpdatePrintfulProduct(
     for (const [variantKey, printfulVariantId] of Object.entries(variantMappings)) {
       const price = variantPrices[variantKey];
       if (price) {
-        await callPrintfulAPI(`/store/products/${syncProductId}/variants`, 'POST', {
+        await callPrintfulAPI(`/store/${STORE_ID}/products/${syncProductId}/variants`, 'POST', {
           external_id: `${shopProductId}-${variantKey}`,
           variant_id: printfulVariantId,
           price: (price / 100).toFixed(2), // Convert cents to euros

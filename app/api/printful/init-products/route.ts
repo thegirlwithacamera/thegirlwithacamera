@@ -4,13 +4,12 @@ import { createOrUpdatePrintfulProduct } from '@/lib/printful';
 
 export async function POST(request: NextRequest) {
   try {
-    // TODO: Re-enable auth check after testing
     // Verify this is an authorized request (from admin or scheduled task)
-    // const authHeader = request.headers.get('authorization');
-    // const adminKey = process.env.ADMIN_SECRET_KEY || '';
-    // if (!authHeader?.startsWith('Bearer ') || authHeader.substring(7) !== adminKey) {
-    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    // }
+    const authHeader = request.headers.get('authorization');
+    const adminKey = process.env.ADMIN_SECRET_KEY || '';
+    if (!authHeader?.startsWith('Bearer ') || authHeader.substring(7) !== adminKey) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 
     const results = [];
 
