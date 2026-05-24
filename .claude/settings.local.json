@@ -127,7 +127,8 @@
       "Bash(git config *)",
       "Bash(ls ~/.ssh/id_rsa* 2>/dev/null && echo \"SSH keys found\" || echo \"No SSH keys\")",
       "Bash(GIT_TRACE=1 git push origin main)",
-      "Bash(gh --version)"
+      "Bash(gh --version)",
+      "Bash(curl -s http://localhost:3000/en/seen)"
     ]
   }
 }

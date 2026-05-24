@@ -75,15 +75,6 @@ export default async function SeenPage({ params }: Props) {
   return (
     <main style={{ paddingTop: "60px", paddingBottom: "80px", background: "#ffffff" }}>
       <style>{`
-        .seen-title {
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.22em;
-          color: #0a0a0a;
-          text-align: center;
-          margin: 0 0 48px 0;
-        }
-
         .seen-container {
           max-width: 1200px;
           margin: 0 auto;
@@ -108,9 +99,6 @@ export default async function SeenPage({ params }: Props) {
           overflow: hidden;
           cursor: pointer;
           transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
         }
 
         .seen-card:hover {
@@ -127,10 +115,17 @@ export default async function SeenPage({ params }: Props) {
           text-decoration: none;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
+          align-items: flex-start;
+          justify-content: flex-end;
+          padding: 24px;
           z-index: 1;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .seen-card:hover .seen-card-link {
+          opacity: 1;
         }
 
         .seen-card-title {
@@ -138,22 +133,23 @@ export default async function SeenPage({ params }: Props) {
           font-weight: 700;
           letter-spacing: 0.16em;
           color: #ffffff;
-          text-align: center;
-          background: rgba(0, 0, 0, 0.5);
-          backdrop-filter: blur(4px);
-          padding: 10px 20px;
-          border-radius: 6px;
+          text-align: left;
+          background: transparent;
+          padding: 0;
+          border-radius: 0;
           text-transform: uppercase;
+          margin: 0 0 8px 0;
         }
 
         .seen-card-desc {
           font-size: 11px;
           letter-spacing: 0.12em;
-          color: rgba(255, 255, 255, 0.8);
-          text-align: center;
+          color: rgba(255, 255, 255, 0.9);
+          text-align: left;
           background: transparent;
-          padding: 4px 12px;
-          border-radius: 4px;
+          padding: 0;
+          border-radius: 0;
+          margin: 0;
         }
 
         @media (max-width: 1024px) {
@@ -184,13 +180,10 @@ export default async function SeenPage({ params }: Props) {
         }
       `}</style>
 
-      <h1 className="seen-title">{t.pageTitle}</h1>
-
       <div className="seen-container">
         <ul className="seen-grid">
           {t.categories.map((cat) => (
             <li key={cat.id} className="seen-card" style={{ backgroundImage: `url(${cat.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.1)', zIndex: 0 }} />
               <Link href={`/${lang}/seen/${cat.id}`} className="seen-card-link">
                 <span className="seen-card-title">{cat.title}</span>
                 <span className="seen-card-desc">{cat.description}</span>
