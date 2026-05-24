@@ -2,7 +2,6 @@
 
 import { useState, FormEvent } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ShopCart } from '@/app/components/shop/Cart';
 import { CartProvider, useCart } from '@/app/components/shop/CartContext';
 import { SHOP_PRODUCTS } from '@/lib/shop-products';
@@ -254,12 +253,10 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
                 style={{ textDecoration: 'none' }}
               >
                 <div className="product-card">
-                  <Image
+                  <img
                     src={product.image}
                     alt={product.name}
-                    fill
                     className="product-card-image"
-                    sizes="(max-width: 1024px) 100vw, (max-width: 1400px) 45vw, 35vw"
                   />
                   <div className="product-info">
                     <div className="product-name">{product.name}</div>
