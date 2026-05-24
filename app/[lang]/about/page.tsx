@@ -24,6 +24,7 @@ const content = {
       "Elle collabore avec des marques européennes pour créer du contenu visuel sincère et intentionnel, pensé comme des fragments de vie plutôt que comme des campagnes classiques.",
     ],
     workingWith: "ILS ME FONT CONFIANCE",
+    recentProjects: "PROJETS RÉCENTS",
     skills: "COMPÉTENCES",
     based: "BASÉE À BRUXELLES · DISPONIBLE POUR VOYAGER",
     cta: "On travaille ensemble ?",
@@ -38,6 +39,7 @@ const content = {
       "She collaborates with European brands to create sincere and intentional visual content: moments and fragments of life, not advertising campaigns.",
     ],
     workingWith: "ALREADY WORKING WITH",
+    recentProjects: "RECENT PROJECTS",
     skills: "SKILLS",
     based: "BASED IN BRUSSELS · AVAILABLE TO TRAVEL",
     cta: "Want to work together?",
@@ -47,6 +49,23 @@ const content = {
 };
 
 const BRANDS = ["RICOH EUROPE", "PENTAX EUROPE", "INSTA360"];
+
+const RECENT_PROJECTS = {
+  fr: [
+    { year: "2026", month: "Mars - Avril", client: "Pentax Europe", desc: "Production vidéo UGC • Pack 5 vidéos Pentax 17" },
+    { year: "2026", month: "Mars", client: "The Girl with a Camera", desc: "Mission photographique en Sicile • Série personnelle" },
+    { year: "2026", month: "Janvier", client: "Pentax Europe", desc: "Début de collaboration • Réception Pentax 17" },
+    { year: "2025", month: "Novembre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC • 4 vidéos stop motions" },
+    { year: "2025", month: "Octobre - Novembre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC • 6 micro-content Japon" },
+  ],
+  en: [
+    { year: "2026", month: "March - April", client: "Pentax Europe", desc: "UGC video production • 5-video Pentax 17 pack" },
+    { year: "2026", month: "March", client: "The Girl with a Camera", desc: "Photography mission in Sicily • Personal series" },
+    { year: "2026", month: "January", client: "Pentax Europe", desc: "Collaboration start • Pentax 17 reception" },
+    { year: "2025", month: "November", client: "Ricoh Imaging Europe", desc: "UGC video production • 4 stop-motion videos" },
+    { year: "2025", month: "October - November", client: "Ricoh Imaging Europe", desc: "UGC video production • 6 Japan micro-content" },
+  ],
+};
 
 const SKILLS = {
   en: [
@@ -131,6 +150,27 @@ export default async function AboutPage({ params }: Props) {
           color: #0a0a0a;
           text-align: center;
           line-height: 2.6;
+        }
+        .projects-container {
+          max-width: 600px;
+          margin: 28px auto 0;
+          padding: 0 40px;
+        }
+        .project-item {
+          font-size: 11px;
+          letter-spacing: 0.08em;
+          color: #0a0a0a;
+          line-height: 1.8;
+          text-align: center;
+          margin: 12px 0;
+        }
+        .project-year {
+          font-size: 10px;
+          letter-spacing: 0.16em;
+          color: #666666;
+          text-transform: uppercase;
+          margin-top: 16px;
+          margin-bottom: 8px;
         }
         .info-based {
           font-size: 11px;
@@ -226,6 +266,30 @@ export default async function AboutPage({ params }: Props) {
         {BRANDS.map((name) => (
           <p key={name} className="info-item">{name}</p>
         ))}
+      </div>
+
+      <hr className="info-hr" />
+
+      {/* Recent Projects */}
+      <p className="info-section-title">{t.recentProjects}</p>
+      <div className="projects-container">
+        {(() => {
+          const projects = RECENT_PROJECTS[lang];
+          const grouped: Record<string, typeof projects> = {};
+          projects.forEach(p => {
+            if (!grouped[p.year]) grouped[p.year] = [];
+            grouped[p.year].push(p);
+          });
+          const years = Object.keys(grouped).sort((a, b) => parseInt(b) - parseInt(a));
+          return years.map(year => (
+            <div key={year}>
+              <p className="project-year">{year}</p>
+              {grouped[year].map((p, i) => (
+                <p key={i} className="project-item">{p.month} · {p.client} · {p.desc}</p>
+              ))}
+            </div>
+          ));
+        })()}
       </div>
 
       <hr className="info-hr" />
