@@ -51,6 +51,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-03',
     name: 'Urban Texture',
     image: '/images/portfolio/shop-3.JPG',
+    orientation: 'vertical',
     descriptionEn: 'The city speaks through layers. Weathered surfaces, worn details, stories written in time.',
     descriptionFr: 'La ville s\'exprime par couches. Des surfaces usées, des détails patinés, des histoires écrites dans le temps.',
     variants: [
@@ -63,6 +64,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-04',
     name: 'Contemplation',
     image: '/images/portfolio/shop-4.JPG',
+    orientation: 'vertical',
     descriptionEn: 'A moment suspended in time. Introspection captured in light and shadow.',
     descriptionFr: 'Un moment suspendu dans le temps. L\'introspection capturée dans la lumière et l\'ombre.',
     variants: [
@@ -75,6 +77,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-05',
     name: 'Authentic Light',
     image: '/images/portfolio/shop-5.JPG',
+    orientation: 'vertical',
     descriptionEn: 'No filters, no pretense. Just natural light finding its way through the frame.',
     descriptionFr: 'Pas de filtres, pas de prétention. Juste la lumière naturelle qui trouve son chemin dans le cadre.',
     variants: [
@@ -87,6 +90,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-06',
     name: 'Everyday Poetry',
     image: '/images/portfolio/shop-6.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Beauty exists in the mundane. I photograph the extraordinary within ordinary moments.',
     descriptionFr: 'La beauté existe dans le quotidien. Je photographie l\'extraordinaire dans les moments ordinaires.',
     variants: [
@@ -99,6 +103,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-07',
     name: 'Depth & Emotion',
     image: '/images/portfolio/shop-7.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Layered narratives. What we see on the surface only hints at the stories beneath.',
     descriptionFr: 'Des récits en couches. Ce que nous voyons en surface ne suggère que les histoires cachées.',
     variants: [
@@ -111,6 +116,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'shop-08',
     name: 'Raw Elegance',
     image: '/images/portfolio/shop-8.JPG',
+    orientation: 'vertical',
     descriptionEn: 'Refined simplicity. Where minimalism meets emotion, and silence speaks volumes.',
     descriptionFr: 'Simplicité raffinée. Où le minimalisme rencontre l\'émotion, et le silence parle fort.',
     variants: [
