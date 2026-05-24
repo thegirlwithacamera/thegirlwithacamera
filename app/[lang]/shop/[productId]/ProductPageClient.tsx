@@ -182,14 +182,11 @@ function ProductPageInner({
       </div>
 
       <div className="product-grid">
-        <div style={{ position: 'relative', width: '100%', paddingBottom: '100%' }}>
-          <Image
+        <div style={{ width: '100%' }}>
+          <img
             src={product.image}
             alt={product.name}
-            fill
-            className="object-cover"
-            priority
-            sizes="(max-width: 1200px) 50vw, 45vw"
+            style={{ width: '100%', height: 'auto', display: 'block' }}
           />
         </div>
 

@@ -158,10 +158,11 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 22px;
+          grid-auto-rows: auto;
+          align-items: start;
         }
         .product-card {
           display: block;
-          aspect-ratio: 1066 / 1600;
           overflow: hidden;
           position: relative;
           background: #f5f5f5;
@@ -170,8 +171,7 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
         }
         .product-card-image {
           width: 100%;
-          height: 100%;
-          object-fit: cover;
+          height: auto;
           display: block;
         }
         .product-info {
