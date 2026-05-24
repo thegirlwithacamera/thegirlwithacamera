@@ -151,7 +151,9 @@
       "Bash(python3 -c \"import sys, json; data = json.load\\(sys.stdin\\); print\\(json.dumps\\({k: v for k, v in data.items\\(\\) if k != 'results'}, indent=2\\)\\); failures = [r for r in data['results'] if r['status'] == 'error']; print\\(f'\\\\\\\\nFirst error \\(if any\\): {failures[0] if failures else \\\\\"None\\\\\"}'\\)\")",
       "Bash(curl -s -X POST https://thegirlwithacamera.com/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')",
       "Bash(python3 -c \"import sys, json; d=json.load\\(sys.stdin\\); print\\(f'✓ {d[\\\\\"successCount\\\\\"]}/{d[\\\\\"totalProducts\\\\\"]} products created successfully'\\); errors = [r for r in d['results'] if r['status']=='error']; print\\(f'\\\\\\\\nErrors: {len\\(errors\\)}'\\); [print\\(f' {e[\\\\\"shopProductId\\\\\"]}: {e[\\\\\"error\\\\\"][:60]}...'\\) for e in errors[:3]]\")",
-      "Bash(curl -sL -X POST https://thegirlwithacamera.com/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')"
+      "Bash(curl -sL -X POST https://thegirlwithacamera.com/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')",
+      "Bash(python3 -c \"import sys, json; d=json.load\\(sys.stdin\\); print\\(f'Status: {d.get\\(\\\\\"message\\\\\", d.get\\(\\\\\"error\\\\\"\\)\\)}'\\); results = d.get\\('results', []\\); success = [r for r in results if r.get\\('status'\\)=='created']; errors = [r for r in results if r.get\\('status'\\)=='error']; print\\(f'✓ Created: {len\\(success\\)}'\\); print\\(f'✗ Errors: {len\\(errors\\)}'\\); errors and print\\(f' Sample: {errors[0][\\\\\"shopProductId\\\\\"]}: {errors[0][\\\\\"error\\\\\"][:80]}'\\)\")",
+      "Bash(curl -v -X POST https://thegirlwithacamera.com/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')"
     ]
   }
 }
