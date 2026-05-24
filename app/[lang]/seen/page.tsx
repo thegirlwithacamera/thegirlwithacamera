@@ -120,12 +120,6 @@ export default async function SeenPage({ params }: Props) {
           padding: 24px;
           z-index: 1;
           background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-
-        .seen-card:hover .seen-card-link {
-          opacity: 1;
         }
 
         .seen-card-title {
