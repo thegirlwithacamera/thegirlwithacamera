@@ -6,12 +6,20 @@ export async function POST(request: NextRequest) {
   try {
     // Verify this is an authorized request (from admin or scheduled task)
     const authHeader = request.headers.get('authorization');
-    const expectedToken = `Bearer ${process.env.ADMIN_SECRET_KEY}`;
+    const adminKey = process.env.ADMIN_SECRET_KEY || '';
 
-    if (!authHeader || authHeader !== expectedToken) {
-      console.error('Auth failed:', { authHeader: authHeader?.substring(0, 20), expected: expectedToken?.substring(0, 20) });
+    // Allow requests with valid bearer token
+    if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: 'Missing authorization header' },
+        { status: 401 }
+      );
+    }
+
+    const token = authHeader.substring(7); // Remove "Bearer " prefix
+    if (token !== adminKey) {
+      return NextResponse.json(
+        { error: 'Invalid token' },
         { status: 401 }
       );
     }
