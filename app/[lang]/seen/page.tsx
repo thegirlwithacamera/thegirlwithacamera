@@ -24,33 +24,15 @@ const content = {
     pageTitle: "SEEN IN",
     categories: [
       {
-        id: "tiktok-ricoh-europe",
-        title: "TIKTOK RICOH EUROPE",
-        description: "2 contenus",
-        image: "/images/seen/RICOH%20EU.JPG",
-      },
-      {
-        id: "instagram-pentax-europe",
-        title: "INSTAGRAM PENTAX EUROPE",
-        description: "5 contenus",
-        image: "/images/seen/PENTAX%20EU.JPG",
-      },
-      {
-        id: "instagram-ricoh-france",
-        title: "INSTAGRAM RICOH FRANCE",
-        description: "1 contenu",
-        image: "/images/seen/RICOH%20FR.JPG",
-      },
-      {
         id: "ricoh-social-media",
         title: "RICOH SOCIAL MEDIA",
-        description: "6 contenus",
+        description: "8 contenus",
         image: "/images/seen/RICOH%20EU.JPG",
       },
       {
         id: "pentax-social-media",
         title: "PENTAX SOCIAL MEDIA",
-        description: "6 contenus",
+        description: "5 contenus",
         image: "/images/seen/PENTAX%20EU.JPG",
       },
     ],
@@ -59,33 +41,15 @@ const content = {
     pageTitle: "SEEN IN",
     categories: [
       {
-        id: "tiktok-ricoh-europe",
-        title: "TIKTOK RICOH EUROPE",
-        description: "2 contents",
-        image: "/images/seen/RICOH%20EU.JPG",
-      },
-      {
-        id: "instagram-pentax-europe",
-        title: "INSTAGRAM PENTAX EUROPE",
-        description: "5 contents",
-        image: "/images/seen/PENTAX%20EU.JPG",
-      },
-      {
-        id: "instagram-ricoh-france",
-        title: "INSTAGRAM RICOH FRANCE",
-        description: "1 content",
-        image: "/images/seen/RICOH%20FR.JPG",
-      },
-      {
         id: "ricoh-social-media",
         title: "RICOH SOCIAL MEDIA",
-        description: "6 contents",
+        description: "8 contents",
         image: "/images/seen/RICOH%20EU.JPG",
       },
       {
         id: "pentax-social-media",
         title: "PENTAX SOCIAL MEDIA",
-        description: "6 contents",
+        description: "5 contents",
         image: "/images/seen/PENTAX%20EU.JPG",
       },
     ],
