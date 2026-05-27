@@ -52,22 +52,24 @@ const BRANDS = ["RICOH EUROPE", "PENTAX EUROPE", "INSTA360"];
 
 const RECENT_PROJECTS = {
   fr: [
-    { year: "2026", month: "Mars - Mai", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Production vidéo UGC", secondary: "" },
+    { year: "2026", month: "Mars - Mai", client: "Pentax Europe", desc: "Production vidéo UGC", secondary: "" },
     { year: "2026", month: "Mars", client: "The Girl with a Camera", desc: "Mission photographique en Sicile", secondary: "Série personnelle en vue de tirages et édition" },
-    { year: "2026", month: "Février", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Début de collaboration • Développement des concepts", secondary: "" },
+    { year: "2026", month: "Février", client: "Pentax Europe", desc: "Production vidéo UGC", secondary: "" },
+    { year: "2026", month: "Janvier", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Début de collaboration", secondary: "Développement des concepts" },
     { year: "2025", month: "Novembre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC", secondary: "" },
     { year: "2025", month: "Octobre - Novembre", client: "The Girl with a Camera", desc: "Mission photo et vidéo au Japon", secondary: "Série personnelle en vue de tirages et édition" },
     { year: "2025", month: "Juillet - Octobre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC", secondary: "" },
-    { year: "2025", month: "Juin", client: "Ricoh Imaging Europe", desc: "Début de collaboration • Développement des concepts créatifs", secondary: "" },
+    { year: "2025", month: "Juin", client: "Ricoh Imaging Europe", desc: "Début de collaboration", secondary: "Développement des concepts créatifs" },
   ],
   en: [
-    { year: "2026", month: "March - May", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "UGC video production", secondary: "" },
+    { year: "2026", month: "March - May", client: "Pentax Europe", desc: "UGC video production", secondary: "" },
     { year: "2026", month: "March", client: "The Girl with a Camera", desc: "Photography mission in Sicily", secondary: "Personal series for prints and publication" },
-    { year: "2026", month: "February", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Collaboration start • Creative concept development", secondary: "" },
+    { year: "2026", month: "February", client: "Pentax Europe", desc: "UGC video production", secondary: "" },
+    { year: "2026", month: "January", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Collaboration start", secondary: "Creative concept development" },
     { year: "2025", month: "November", client: "Ricoh Imaging Europe", desc: "UGC video production", secondary: "" },
     { year: "2025", month: "October - November", client: "The Girl with a Camera", desc: "Photography and video mission in Japan", secondary: "Personal series for prints and publication" },
     { year: "2025", month: "July - October", client: "Ricoh Imaging Europe", desc: "UGC video production", secondary: "" },
-    { year: "2025", month: "June", client: "Ricoh Imaging Europe", desc: "Collaboration start • Creative concept development", secondary: "" },
+    { year: "2025", month: "June", client: "Ricoh Imaging Europe", desc: "Collaboration start", secondary: "Creative concept development" },
   ],
 };
 
@@ -294,28 +296,96 @@ export default async function AboutPage({ params }: Props) {
 
       {/* Recent Projects */}
       <p className="info-section-title">{t.recentProjects}</p>
-      <div className="projects-container">
-        {(() => {
-          const projects = RECENT_PROJECTS[lang];
-          const grouped: Record<string, typeof projects> = {};
-          projects.forEach(p => {
-            if (!grouped[p.year]) grouped[p.year] = [];
-            grouped[p.year].push(p);
-          });
-          const years = Object.keys(grouped).sort((a, b) => parseInt(b) - parseInt(a));
-          return years.map(year => (
-            <div key={year}>
-              <p className="project-year">{year}</p>
-              {grouped[year].map((p, i) => (
-                <div key={i}>
-                  <p className="project-month">{p.month}</p>
-                  <p className="project-details">{p.client} · {p.desc}</p>
-                  {p.secondary && <p className="project-details">{p.secondary}</p>}
-                </div>
-              ))}
-            </div>
-          ));
-        })()}
+      <div className="projects-container" style={{ whiteSpace: "pre-wrap", textAlign: "center", fontSize: "11px", lineHeight: "1.8", letterSpacing: "0.08em", color: "#0a0a0a", marginTop: "28px" }}>
+        {lang === "fr" ? (
+          <>
+            <strong style={{ fontSize: "11px" }}>2026</strong>
+            {`
+
+Mars - Mai
+
+Pentax Europe · Production vidéo UGC
+
+Mars
+
+The Girl with a Camera · Mission photographique en Sicile
+Série personnelle en vue de tirages et édition
+
+Février
+
+Pentax Europe · Production vidéo UGC
+
+Janvier
+
+Pentax Europe (via Ricoh Imaging Europe) · Début de collaboration
+Développement des concepts
+
+`}
+            <strong style={{ fontSize: "11px" }}>2025</strong>
+            {`
+
+Novembre
+
+Ricoh Imaging Europe · Production vidéo UGC
+
+Octobre - Novembre
+The Girl with a Camera · Mission photo et vidéo au Japon
+Série personnelle en vue de tirages et édition
+
+Juillet - Octobre
+
+Ricoh Imaging Europe · Production vidéo UGC
+
+Juin
+
+Ricoh Imaging Europe · Début de collaboration
+Développement des concepts créatifs`}
+          </>
+        ) : (
+          <>
+            <strong style={{ fontSize: "11px" }}>2026</strong>
+            {`
+
+March - May
+
+Pentax Europe · UGC video production
+
+March
+
+The Girl with a Camera · Photography mission in Sicily
+Personal series for prints and publication
+
+February
+
+Pentax Europe · UGC video production
+
+January
+
+Pentax Europe (via Ricoh Imaging Europe) · Collaboration start
+Creative concept development
+
+`}
+            <strong style={{ fontSize: "11px" }}>2025</strong>
+            {`
+
+November
+
+Ricoh Imaging Europe · UGC video production
+
+October - November
+The Girl with a Camera · Photography and video mission in Japan
+Personal series for prints and publication
+
+July - October
+
+Ricoh Imaging Europe · UGC video production
+
+June
+
+Ricoh Imaging Europe · Collaboration start
+Creative concept development`}
+          </>
+        )}
       </div>
 
       <hr className="info-hr" />

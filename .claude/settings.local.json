@@ -169,7 +169,14 @@
       "Bash(curl -s -X POST https://api.printful.com/store/products -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6' -H 'Content-Type: application/json' -d '{ *)",
       "Bash(curl -s -X GET https://api.printful.com/stores -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6')",
       "Bash(cat /tmp/dev_server.log)",
-      "Bash(curl -s -w '\\\\nHTTP Status: %{http_code}\\\\n' -X POST http://localhost:3000/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')"
+      "Bash(curl -s -w '\\\\nHTTP Status: %{http_code}\\\\n' -X POST http://localhost:3000/api/printful/init-products -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')",
+      "Bash(curl -s https://www.thegirlwithacamera.com/api/printful/init-products -X POST -H 'Authorization: Bearer 452c89124a12def20b3e4e9245b80b020e58d6edee0b0db083963cf096f2b33c' -H 'Content-Type: application/json')",
+      "Bash(curl -s -X POST https://api.printful.com/store/products?store_id=18221540 -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6' -H 'Content-Type: application/json' -d '{ *)",
+      "Bash(curl -s -X POST https://api.printful.com/v1/store/products -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6' -H 'Content-Type: application/json' -d '{ *)",
+      "Bash(curl -s -X POST https://api.printful.com/sync/products -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6' -H 'Content-Type: application/json' -d '{\"external_id\":\"test\",\"name\":\"Test\"}')",
+      "Bash(curl -s -X POST https://api.printful.com/sync/products -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6' -H 'Content-Type: application/json' -d '{\"store_id\":18221540,\"external_id\":\"test\",\"name\":\"Test\"}')",
+      "Bash(curl -s -X POST https://api.printful.com/products -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6' -H 'Content-Type: application/json' -d '{\"external_id\":\"test\",\"name\":\"Test\"}')",
+      "Bash(curl -s http://localhost:3000/fr/about)"
     ]
   }
 }
