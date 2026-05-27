@@ -38,7 +38,48 @@ interface GalleryItem {
   brand?: string;
 }
 
-const GALLERY_ITEMS: GalleryItem[] = [];
+const GALLERY_ITEMS: GalleryItem[] = [
+  {
+    id: "pentax-sicily-1",
+    type: "video",
+    src: "/videos/pentax-sicily-1.mp4",
+    thumbnail: "/images/gallery/pentax-sicily-1.jpg",
+    link: "https://www.instagram.com/reel/DYrwp_bNhQa/",
+    brand: "PENTAX EUROPE",
+  },
+  {
+    id: "pentax-sicily-2",
+    type: "video",
+    src: "/videos/pentax-sicily-2.mp4",
+    thumbnail: "/images/gallery/pentax-sicily-2.jpg",
+    link: "https://www.instagram.com/reel/DYkCMzYtIVz/",
+    brand: "PENTAX EUROPE",
+  },
+  {
+    id: "pentax-sicily-3",
+    type: "video",
+    src: "/videos/pentax-sicily-3.mp4",
+    thumbnail: "/images/gallery/pentax-sicily-3.jpg",
+    link: "https://www.instagram.com/reel/DYhdaEsNqxd/",
+    brand: "PENTAX EUROPE",
+  },
+  {
+    id: "pentax-sicily-4",
+    type: "video",
+    src: "/videos/pentax-sicily-4.mp4",
+    thumbnail: "/images/gallery/pentax-sicily-4.jpg",
+    link: "https://www.instagram.com/reel/DYSAsOENsPh/",
+    brand: "PENTAX EUROPE",
+  },
+  {
+    id: "pentax-sicily-5",
+    type: "video",
+    src: "/videos/pentax-sicily-5.mp4",
+    thumbnail: "/images/gallery/pentax-sicily-5.jpg",
+    link: "https://www.instagram.com/reel/DYPb5uOt4ju/",
+    brand: "PENTAX EUROPE",
+  },
+];
 
 export default async function Page({ params }: Props) {
   const { lang } = await params;
