@@ -38,24 +38,7 @@ interface GalleryItem {
   brand?: string;
 }
 
-const GALLERY_ITEMS: GalleryItem[] = [
-  {
-    id: "ricoh-tiktok-1",
-    type: "video",
-    src: "/videos/ricoh-tiktok-1.mp4",
-    thumbnail: "/images/gallery/ricoh-tiktok-1.jpg",
-    link: "https://www.tiktok.com/@ricoh_gr/video/7583019198180314390",
-    brand: "RICOH EUROPE",
-  },
-  {
-    id: "ricoh-tiktok-2",
-    type: "video",
-    src: "/videos/ricoh-tiktok-2.mp4",
-    thumbnail: "/images/gallery/ricoh-tiktok-2.jpg",
-    link: "https://www.tiktok.com/@ricoh_gr/video/7575548335138917654",
-    brand: "RICOH EUROPE",
-  },
-];
+const GALLERY_ITEMS: GalleryItem[] = [];
 
 export default async function Page({ params }: Props) {
   const { lang } = await params;
