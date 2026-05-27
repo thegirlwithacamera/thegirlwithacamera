@@ -82,7 +82,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "pentax-new",
     type: "image",
-    src: "https://www.instagram.com/p/DVeNMguCePa/media/?size=l",
+    src: "/images/gallery/pentax-new.jpg",
     link: "https://www.instagram.com/p/DVeNMguCePa/",
     brand: "PENTAX EUROPE - IG",
   },
