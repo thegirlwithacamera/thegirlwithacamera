@@ -12,7 +12,15 @@ const STATS = {
   instagram: { followers: "31K", reelViews: "302K", reach: "217K" },
 };
 
-const BRANDS = ["RICOH EUROPE", "PENTAX EUROPE", "INSTA360"];
+const BRANDS = [
+  { name: "EDIFIER", position: "left" },
+  { name: "TELESIN", position: "left" },
+  { name: "RICOH EUROPE", position: "center" },
+  { name: "PENTAX EUROPE", position: "center" },
+  { name: "INSTA360", position: "center" },
+  { name: "KIEHL'S", position: "right" },
+  { name: "LA ROCHE POSAY", position: "right" },
+];
 
 // Tes formats de contenu — ajouter des thumbnails quand tu as du contenu
 // { type: "Reviews & Unboxing", thumb: "/images/creator/01.jpg" }
@@ -379,6 +387,7 @@ export default function CreatorPage({ params }: Props) {
           .stats-grid { gap: 14px; padding: 0 24px; }
           .section-title { margin: 0 0 16px; font-size: 10px; }
           .creator-hr { margin: 14px auto; max-width: 200px; }
+          .brands-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
         }
       `}</style>
 
@@ -516,9 +525,13 @@ export default function CreatorPage({ params }: Props) {
 
       {/* Already working with */}
       <p className="section-title">{t.workingWith}</p>
-      <div>
-        {BRANDS.map((b) => (
-          <p key={b} className="brand-item">{b}</p>
+      <div className="brands-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "40px", maxWidth: "800px", margin: "0 auto", padding: "0 40px" }}>
+        {["left", "center", "right"].map((pos) => (
+          <div key={pos} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
+            {BRANDS.filter((b) => b.position === pos).map((b) => (
+              <p key={b.name} className="brand-item">{b.name}</p>
+            ))}
+          </div>
         ))}
       </div>
 
