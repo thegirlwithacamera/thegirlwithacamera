@@ -23,7 +23,6 @@ const content = {
       "À travers la photo comme la vidéo, elle construit des récits visuels sensibles et éditoriaux, centrés sur l'authenticité, l'atmosphère et la narration du quotidien.",
       "Elle collabore avec des marques européennes pour créer du contenu visuel sincère et intentionnel, pensé comme des fragments de vie plutôt que comme des campagnes classiques.",
     ],
-    workingWith: "ILS ME FONT CONFIANCE",
     recentProjects: "PROJETS RÉCENTS",
     skills: "COMPÉTENCES",
     based: "BASÉE À BRUXELLES · DISPONIBLE POUR VOYAGER",
@@ -38,7 +37,6 @@ const content = {
       "Through both photography and film, she builds sensitive, editorial visual narratives centred on authenticity, atmosphere and the storytelling of everyday life.",
       "She collaborates with European brands to create sincere and intentional visual content: moments and fragments of life, not advertising campaigns.",
     ],
-    workingWith: "ALREADY WORKING WITH",
     recentProjects: "RECENT PROJECTS",
     skills: "SKILLS",
     based: "BASED IN BRUSSELS · AVAILABLE TO TRAVEL",
@@ -48,7 +46,6 @@ const content = {
   },
 };
 
-const BRANDS = ["RICOH EUROPE", "PENTAX EUROPE", "INSTA360"];
 
 const RECENT_PROJECTS = {
   fr: [
@@ -279,16 +276,6 @@ export default async function AboutPage({ params }: Props) {
           <span key={s}>
             {s}{i < SKILLS[lang].length - 1 && <span style={{ color: "#999999" }}> · </span>}
           </span>
-        ))}
-      </div>
-
-      <hr className="info-hr" />
-
-      {/* Already working with */}
-      <p className="info-section-title">{t.workingWith}</p>
-      <div style={{ marginTop: "28px" }}>
-        {BRANDS.map((name) => (
-          <p key={name} className="info-item">{name}</p>
         ))}
       </div>
 
