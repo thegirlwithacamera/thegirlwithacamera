@@ -177,7 +177,8 @@
       "Bash(curl -s -X POST https://api.printful.com/sync/products -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6' -H 'Content-Type: application/json' -d '{\"store_id\":18221540,\"external_id\":\"test\",\"name\":\"Test\"}')",
       "Bash(curl -s -X POST https://api.printful.com/products -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6' -H 'Content-Type: application/json' -d '{\"external_id\":\"test\",\"name\":\"Test\"}')",
       "Bash(curl -s http://localhost:3000/fr/about)",
-      "mcp__Control_Chrome__get_current_tab"
+      "mcp__Control_Chrome__get_current_tab",
+      "Bash(mv \"/Users/sandrine/Documents/THE GIRL WITH A CAMERA/WEBSITE/app/[lang]/api/shop\" \"/Users/sandrine/Documents/THE GIRL WITH A CAMERA/WEBSITE/app/[lang]/api/_shop\")"
     ]
   }
 }
