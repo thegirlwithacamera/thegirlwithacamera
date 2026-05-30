@@ -76,6 +76,7 @@ export default async function HomePage({ params }: Props) {
                 height={img.h}
                 sizes="(max-width: 767px) 33vw, (max-width: 1300px) 33vw, 420px"
                 priority={i < 6}
+                quality={75}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>

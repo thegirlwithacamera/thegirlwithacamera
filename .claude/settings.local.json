@@ -178,7 +178,16 @@
       "Bash(curl -s -X POST https://api.printful.com/products -H 'Authorization: Bearer AToxQVtqLgsdSEhEyTJssK2xRoOj5Ev3kdJv5er6' -H 'Content-Type: application/json' -d '{\"external_id\":\"test\",\"name\":\"Test\"}')",
       "Bash(curl -s http://localhost:3000/fr/about)",
       "mcp__Control_Chrome__get_current_tab",
-      "Bash(mv \"/Users/sandrine/Documents/THE GIRL WITH A CAMERA/WEBSITE/app/[lang]/api/shop\" \"/Users/sandrine/Documents/THE GIRL WITH A CAMERA/WEBSITE/app/[lang]/api/_shop\")"
+      "Bash(mv \"/Users/sandrine/Documents/THE GIRL WITH A CAMERA/WEBSITE/app/[lang]/api/shop\" \"/Users/sandrine/Documents/THE GIRL WITH A CAMERA/WEBSITE/app/[lang]/api/_shop\")",
+      "Bash(curl -s http://localhost:3000/en)",
+      "Bash(tail -50 /tmp/next-dev.log 2>/dev/null || echo \"No log file found\")",
+      "Bash(tee /tmp/next.log)",
+      "Bash(curl -s -m 5 http://localhost:3000/en)",
+      "Bash(pkill -9 -f \"node\")",
+      "Bash(pkill -9 -f \"npm\")",
+      "Bash(tee /tmp/vercel-deploy.log)",
+      "Bash(tee /tmp/vercel-prod.log)",
+      "Bash(cd \"/Users/sandrine/Documents/THE GIRL WITH A CAMERA/WEBSITE\" && rm -rf \"app/[lang]/_seen\" && echo \"✓ Dossier _seen supprimé\")"
     ]
   }
 }
