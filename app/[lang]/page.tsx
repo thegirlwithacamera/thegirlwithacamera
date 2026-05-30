@@ -57,9 +57,9 @@ export default async function HomePage({ params }: Props) {
         }
         @media (max-width: 767px) {
           .portfolio-grid {
-            grid-template-columns: 1fr;
-            gap: 12px;
-            padding: 0 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 0 12px;
           }
         }
       `}</style>
@@ -74,7 +74,7 @@ export default async function HomePage({ params }: Props) {
                 alt={`Portfolio photograph number ${i + 1} by Sandrine Ceuppens`}
                 width={img.w}
                 height={img.h}
-                sizes="(max-width: 767px) 100vw, (max-width: 1300px) 33vw, 420px"
+                sizes="(max-width: 767px) 33vw, (max-width: 1300px) 33vw, 420px"
                 priority={i < 6}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
