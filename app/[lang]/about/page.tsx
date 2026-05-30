@@ -21,7 +21,7 @@ const content = {
       "Sandrine Ceuppens est photographe et vidéaste documentaire, basée à Bruxelles.",
       "Elle capture les rues, la lumière et les instants silencieux. Ces fragments du réel qu'on remarque à peine mais qui racontent tout. Son travail évolue à la frontière du documentaire et de l'esthétique mode, avec une approche épurée et un post-traitement minimal.",
       "À travers la photo comme la vidéo, elle construit des récits visuels sensibles et éditoriaux, centrés sur l'authenticité, l'atmosphère et la narration du quotidien.",
-      "Elle collabore avec des marques européennes pour créer du contenu visuel sincère et intentionnel, pensé comme des fragments de vie plutôt que comme des campagnes classiques.",
+      "Elle collabore avec des marques pour créer du contenu visuel sincère et intentionnel, pensé comme des fragments de vie plutôt que comme des campagnes classiques.",
     ],
     recentProjects: "PROJETS RÉCENTS",
     skills: "COMPÉTENCES",
@@ -35,7 +35,7 @@ const content = {
       "Sandrine Ceuppens is a documentary photographer and filmmaker based in Brussels.",
       "She captures streets, light and quiet moments. Fragments of reality that barely register but tell everything. Her work evolves at the border of documentary and fashion aesthetics, with a clean approach and minimal post-processing.",
       "Through both photography and film, she builds sensitive, editorial visual narratives centred on authenticity, atmosphere and the storytelling of everyday life.",
-      "She collaborates with European brands to create sincere and intentional visual content: moments and fragments of life, not advertising campaigns.",
+      "She collaborates with brands to create sincere and intentional visual content: moments and fragments of life, not advertising campaigns.",
     ],
     recentProjects: "RECENT PROJECTS",
     skills: "SKILLS",
@@ -289,6 +289,16 @@ export default async function AboutPage({ params }: Props) {
             <strong style={{ fontSize: "11px" }}>2026</strong>
             {`
 
+Mai
+
+Insta360 · Début de collaboration
+Développement des concepts
+
+The Girl with a Camera · Projet photo Back pain
+Série personnelle
+
+Kiehl's Benelux · Production vidéo
+
 Mars - Mai
 
 Pentax Europe · Production vidéo UGC
@@ -332,6 +342,16 @@ Développement des concepts créatifs`}
           <>
             <strong style={{ fontSize: "11px" }}>2026</strong>
             {`
+
+May
+
+Insta360 · Collaboration start
+Creative concept development
+
+The Girl with a Camera · Back pain photography project
+Personal series
+
+Kiehl's Benelux · Video production
 
 March - May
 
