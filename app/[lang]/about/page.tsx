@@ -289,16 +289,6 @@ export default async function AboutPage({ params }: Props) {
             <strong style={{ fontSize: "11px" }}>2026</strong>
             {`
 
-Mai
-
-Insta360 · Début de collaboration
-Développement des concepts
-
-The Girl with a Camera · Projet photo Back pain
-Série personnelle
-
-Kiehl's Benelux · Production vidéo
-
 Mars - Mai
 
 Pentax Europe · Production vidéo UGC
@@ -342,16 +332,6 @@ Développement des concepts créatifs`}
           <>
             <strong style={{ fontSize: "11px" }}>2026</strong>
             {`
-
-May
-
-Insta360 · Collaboration start
-Creative concept development
-
-The Girl with a Camera · Back pain photography project
-Personal series
-
-Kiehl's Benelux · Video production
 
 March - May
 
