@@ -67,6 +67,18 @@ export default function CreatorPage({ params }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const touchStartX = useRef(0);
 
+  useEffect(() => {
+    // Force videos to start loading and autoplay on mount
+    videoRefs.current.forEach((video) => {
+      if (video) {
+        video.load();
+        video.play().catch(() => {
+          // Autoplay might be blocked, that's OK
+        });
+      }
+    });
+  }, []);
+
   const videos = [
     { src: "/videos/creator/unboxing.mp4",           label: "Unboxing" },
     { src: "/videos/creator/product-in-use.mp4",    label: "Product\nin Use" },
