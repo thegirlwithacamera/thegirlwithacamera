@@ -5,89 +5,69 @@ import {
   sendCustomerOrderEmail,
   sendShopOwnerOrderEmail,
 } from '@/lib/email/send-order-confirmation';
+import { isPrintfulConfigured, createPrintfulDraftOrder } from '@/lib/printful';
 
 // ─────────────────────────────────────────────────────────
-// Printful — activer dès que PRINTFUL_API_KEY est configurée
+// Printful — creates a DRAFT order (confirmed manually in the
+// Printful dashboard, so nothing is produced or charged automatically).
+// Sync variants are referenced by external_variant_id = cart item id
+// (e.g. "shop-01-a4-print"), carried through Stripe product metadata.
 // ─────────────────────────────────────────────────────────
-// async function createPrintfulOrder(session: Stripe.Checkout.Session, lineItems: Stripe.LineItem[]) {
-//   const printfulApiKey = process.env.PRINTFUL_API_KEY;
-//   if (!printfulApiKey || printfulApiKey === 'your_printful_api_key_here') {
-//     console.warn('⚠️  Printful API key not configured — skipping order creation');
-//     return null;
-//   }
-//
-//   // Mapping produit → Printful variant ID
-//   // À remplir avec les vrais IDs depuis le dashboard Printful
-//   // Dashboard : https://www.printful.com/dashboard/store/products
-//   const PRINTFUL_VARIANT_MAP: Record<string, number> = {
-//     // 'img-01-a4-print': 12345,
-//     // 'img-01-a3-print': 12346,
-//     // 'img-01-a4-frame': 12347,
-//     // 'img-01-a3-frame': 12348,
-//   };
-//
-//   const shipping = session.shipping_details;
-//   if (!shipping?.address) {
-//     console.warn('⚠️  No shipping address in session — cannot create Printful order');
-//     return null;
-//   }
-//
-//   const printfulItems = lineItems
-//     .map((item) => {
-//       const productId = item.price?.metadata?.product_id as string;
-//       const variantId = PRINTFUL_VARIANT_MAP[productId];
-//       if (!variantId) {
-//         console.warn(`⚠️  No Printful variant mapped for product: ${productId}`);
-//         return null;
-//       }
-//       return {
-//         sync_variant_id: variantId,
-//         quantity: item.quantity || 1,
-//       };
-//     })
-//     .filter(Boolean);
-//
-//   if (printfulItems.length === 0) {
-//     console.warn('⚠️  No Printful items to create — all variants unmapped');
-//     return null;
-//   }
-//
-//   const printfulOrder = {
-//     external_id: session.id,
-//     shipping: 'STANDARD',
-//     recipient: {
-//       name: shipping.name || session.customer_details?.name || 'Customer',
-//       address1: shipping.address.line1 || '',
-//       address2: shipping.address.line2 || '',
-//       city: shipping.address.city || '',
-//       state_code: shipping.address.state || '',
-//       country_code: shipping.address.country || 'BE',
-//       zip: shipping.address.postal_code || '',
-//       email: session.customer_email || '',
-//     },
-//     items: printfulItems,
-//   };
-//
-//   const response = await fetch('https://api.printful.com/orders', {
-//     method: 'POST',
-//     headers: {
-//       'Authorization': `Bearer ${printfulApiKey}`,
-//       'Content-Type': 'application/json',
-//       'X-PF-Store-Id': process.env.PRINTFUL_STORE_ID || '',
-//     },
-//     body: JSON.stringify(printfulOrder),
-//   });
-//
-//   if (!response.ok) {
-//     const error = await response.json();
-//     throw new Error(`Printful order failed: ${JSON.stringify(error)}`);
-//   }
-//
-//   const result = await response.json();
-//   console.log('✅ Printful order created:', result.result?.id);
-//   return result.result;
-// }
-// ─────────────────────────────────────────────────────────
+type ShippingDetails = { name?: string; address?: Stripe.Address };
+
+function getShippingDetails(session: Stripe.Checkout.Session): ShippingDetails | undefined {
+  const s = session as unknown as {
+    collected_information?: { shipping_details?: ShippingDetails };
+    shipping_details?: ShippingDetails;
+  };
+  return s.collected_information?.shipping_details ?? s.shipping_details;
+}
+
+async function createPrintfulOrder(
+  session: Stripe.Checkout.Session,
+  lineItems: Stripe.LineItem[]
+) {
+  const shipping = getShippingDetails(session);
+
+  if (!shipping?.address) {
+    console.warn('No shipping address in session — skipping Printful order');
+    return null;
+  }
+
+  const printfulItems = lineItems
+    .map((item) => {
+      const product = item.price?.product;
+      const itemId =
+        typeof product === 'object' && product !== null && 'metadata' in product
+          ? (product.metadata as Record<string, string>).item_id
+          : undefined;
+      if (!itemId) {
+        console.warn(`No item_id metadata on line item: ${item.description}`);
+        return null;
+      }
+      return { external_variant_id: itemId, quantity: item.quantity || 1 };
+    })
+    .filter((item): item is { external_variant_id: string; quantity: number } => item !== null);
+
+  if (printfulItems.length === 0) {
+    console.warn('No Printful items resolved from line items — skipping');
+    return null;
+  }
+
+  const order = await createPrintfulDraftOrder(session.id, printfulItems, {
+    name: shipping.name || session.customer_details?.name || 'Customer',
+    address1: shipping.address.line1 || '',
+    address2: shipping.address.line2 || undefined,
+    city: shipping.address.city || '',
+    state_code: shipping.address.state || undefined,
+    country_code: shipping.address.country || 'BE',
+    zip: shipping.address.postal_code || '',
+    email: session.customer_email || undefined,
+  });
+
+  console.log('Printful draft order created:', order?.id);
+  return order;
+}
 
 /**
  * POST /api/webhooks/stripe
@@ -135,9 +115,10 @@ export async function POST(request: NextRequest) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
 
-        // Retrieve full session with line items
+        // Retrieve full session with line items (products expanded for
+        // the item_id metadata used by the Printful order)
         const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
-          expand: ['line_items'],
+          expand: ['line_items.data.price.product'],
         });
 
         // Save order to database
@@ -150,7 +131,7 @@ export async function POST(request: NextRequest) {
             currency: session.currency || 'eur',
             status: 'completed',
             billing_address: session.customer_details?.address || null,
-            shipping_address: (session as any).shipping_details?.address || null,
+            shipping_address: getShippingDetails(session)?.address || null,
           })
           .select('id')
           .single();
@@ -215,14 +196,15 @@ export async function POST(request: NextRequest) {
           console.error('Error sending confirmation emails:', emailError);
         }
 
-        // Printful order creation — décommenter la fonction createPrintfulOrder ci-dessus
-        // et activer ces lignes une fois PRINTFUL_API_KEY configurée :
-        // try {
-        //   await createPrintfulOrder(session, fullSession.line_items?.data || []);
-        // } catch (printfulError) {
-        //   console.error('Printful order creation failed:', printfulError);
-        //   // Non-blocking — order is saved, email sent, Printful can be retried manually
-        // }
+        // Printful draft order — non-blocking: the order is already saved
+        // and emails sent, so a Printful failure can be retried manually
+        if (isPrintfulConfigured()) {
+          try {
+            await createPrintfulOrder(fullSession, fullSession.line_items?.data || []);
+          } catch (printfulError) {
+            console.error('Printful order creation failed:', printfulError);
+          }
+        }
 
         break;
       }

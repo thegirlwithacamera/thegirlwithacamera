@@ -65,13 +65,15 @@ export async function POST(
       );
     }
 
-    // Create line items for Stripe
+    // Create line items for Stripe.
+    // metadata.item_id is the shop variant id (e.g. "shop-01-a4-print"),
+    // read back by the webhook to create the Printful order.
     const lineItems = items.map((item: CheckoutItem) => ({
       price_data: {
         currency: 'eur',
         product_data: {
           name: item.name,
-          description: undefined, // Stripe accepts description
+          metadata: { item_id: item.id },
         },
         unit_amount: Math.round(item.price), // Ensure price is in cents and rounded
       },

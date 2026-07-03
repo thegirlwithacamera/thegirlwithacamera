@@ -17,15 +17,17 @@ export interface Product {
 // Curated collection — 12 prints, all available in A5 / A4 / A3.
 // Image ids map to files in public/images/portfolio/ (shop-01 -> shop-1.JPG).
 
+// 'a5-print' is fulfilled as a 6″×8″ poster (Printful has no true A5) —
+// keep the internal type stable, the label is what customers see.
 const ALL_SIZES: ProductVariant[] = [
-  { type: 'a5-print', label: 'A5 Print', price: 4000 },
+  { type: 'a5-print', label: '15×20 cm Print', price: 4000 },
   { type: 'a4-print', label: 'A4 Print', price: 6500 },
   { type: 'a3-print', label: 'A3 Print', price: 8500 },
 ];
 
 // Files under ~2300px on the short side can't hold 200 DPI on A3
 const UP_TO_A4: ProductVariant[] = [
-  { type: 'a5-print', label: 'A5 Print', price: 4000 },
+  { type: 'a5-print', label: '15×20 cm Print', price: 4000 },
   { type: 'a4-print', label: 'A4 Print', price: 6500 },
 ];
 

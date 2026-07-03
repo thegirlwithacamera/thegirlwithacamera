@@ -1,60 +1,58 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SHOP_PRODUCTS } from '@/lib/shop-products';
-import { createOrUpdatePrintfulProduct } from '@/lib/printful';
+import { isPrintfulConfigured, syncProductToPrintful } from '@/lib/printful';
 
+const SITE_BASE_URL = 'https://www.thegirlwithacamera.com';
+
+/**
+ * POST /api/printful/init-products
+ * Push the shop catalog to the Printful store (idempotent — existing
+ * products are skipped). Requires: Authorization: Bearer <ADMIN_SECRET_KEY>
+ */
 export async function POST(request: NextRequest) {
-  try {
-    // Verify this is an authorized request (from admin or scheduled task)
-    const authHeader = request.headers.get('authorization');
-    const adminKey = process.env.ADMIN_SECRET_KEY || '';
-    if (!authHeader?.startsWith('Bearer ') || authHeader.substring(7) !== adminKey) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const adminKey = process.env.ADMIN_SECRET_KEY;
+  const authHeader = request.headers.get('authorization');
+  if (!adminKey || !authHeader?.startsWith('Bearer ') || authHeader.substring(7) !== adminKey) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
-    const results = [];
-
-    for (const product of SHOP_PRODUCTS) {
-      try {
-        const variantPrices: { [key: string]: number } = {};
-
-        for (const variant of product.variants) {
-          variantPrices[variant.type] = variant.price;
-        }
-
-        const syncProductId = await createOrUpdatePrintfulProduct(
-          product.id,
-          product.name,
-          `https://www.thegirlwithacamera.com${product.image}`,
-          variantPrices
-        );
-
-        results.push({
-          shopProductId: product.id,
-          name: product.name,
-          syncProductId,
-          status: 'created',
-        });
-      } catch (error) {
-        results.push({
-          shopProductId: product.id,
-          name: product.name,
-          status: 'error',
-          error: error instanceof Error ? error.message : 'Unknown error',
-        });
-      }
-    }
-
-    return NextResponse.json({
-      message: 'Printful products initialization completed',
-      results,
-      totalProducts: SHOP_PRODUCTS.length,
-      successCount: results.filter(r => r.status === 'created').length,
-    });
-  } catch (error) {
-    console.error('Error initializing Printful products:', error);
+  if (!isPrintfulConfigured()) {
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Internal server error' },
+      { error: 'PRINTFUL_API_KEY is not configured' },
       { status: 500 }
     );
   }
+
+  const results = [];
+
+  for (const product of SHOP_PRODUCTS) {
+    try {
+      const { syncProductId, alreadyExisted } = await syncProductToPrintful(
+        product,
+        SITE_BASE_URL
+      );
+      results.push({
+        shopProductId: product.id,
+        name: product.name,
+        syncProductId,
+        status: alreadyExisted ? 'already-exists' : 'created',
+      });
+    } catch (error) {
+      results.push({
+        shopProductId: product.id,
+        name: product.name,
+        status: 'error',
+        error: error instanceof Error ? error.message : 'Unknown error',
+      });
+    }
+  }
+
+  return NextResponse.json({
+    message: 'Printful products initialization completed',
+    results,
+    totalProducts: SHOP_PRODUCTS.length,
+    createdCount: results.filter(r => r.status === 'created').length,
+    existingCount: results.filter(r => r.status === 'already-exists').length,
+    errorCount: results.filter(r => r.status === 'error').length,
+  });
 }
