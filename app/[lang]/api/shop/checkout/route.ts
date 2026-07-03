@@ -26,6 +26,25 @@ const localeMap: Record<string, LocaleType> = {
 const SHIPPING_RATE_CENTS = 695;
 const FREE_SHIPPING_THRESHOLD_CENTS = 10000;
 
+// Markets Printful fulfills from a regional facility (EU, UK, US, CA,
+// AU, JP...), keeping delivery times and shipping costs predictable.
+const SHIPPING_COUNTRIES: Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[] = [
+  // Union européenne
+  'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR',
+  'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK',
+  'SI', 'ES', 'SE',
+  // Europe hors UE
+  'GB', 'CH', 'NO', 'IS', 'LI', 'MC', 'AD',
+  // Amérique du Nord
+  'US', 'CA', 'MX',
+  // Océanie
+  'AU', 'NZ',
+  // Asie
+  'JP', 'KR', 'SG', 'HK', 'TW',
+  // Moyen-Orient
+  'AE', 'IL',
+];
+
 /**
  * POST /[lang]/api/shop/checkout
  * Create a Stripe checkout session with language support
@@ -101,7 +120,7 @@ export async function POST(
       locale: stripeLocale,
       billing_address_collection: 'required',
       shipping_address_collection: {
-        allowed_countries: ['BE', 'FR', 'DE', 'NL', 'LU', 'CH'],
+        allowed_countries: SHIPPING_COUNTRIES,
       },
       shipping_options: [
         {
