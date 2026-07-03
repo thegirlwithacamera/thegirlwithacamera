@@ -14,8 +14,8 @@ export interface Product {
   descriptionFr: string;
 }
 
-// Curated collection — 12 prints, all available in A5 / A4 / A3.
-// Image ids map to files in public/images/portfolio/ (shop-01 -> shop-1.JPG).
+// Curated collection — 8 prints selected by Sandrine (2026-07).
+// Image ids map to files in public/images/portfolio/ (shop-06 -> shop-6.JPG).
 
 // 'a5-print' is fulfilled as a 6″×8″ poster (Printful has no true A5) —
 // keep the internal type stable, the label is what customers see.
@@ -32,33 +32,6 @@ const UP_TO_A4: ProductVariant[] = [
 ];
 
 export const SHOP_PRODUCTS: Product[] = [
-  {
-    id: 'shop-01',
-    name: 'La Passeggiata',
-    image: '/images/portfolio/shop-1.JPG',
-    orientation: 'horizontal',
-    descriptionEn: 'A couple strolls arm in arm through the old town — leopard print, orange leather, and the easy elegance of everyday life in southern Italy.',
-    descriptionFr: 'Un couple se promène bras dessus bras dessous dans la vieille ville — imprimé léopard, cuir orange, et l\'élégance simple du quotidien dans le sud de l\'Italie.',
-    variants: ALL_SIZES,
-  },
-  {
-    id: 'shop-03',
-    name: 'The Basket Shop',
-    image: '/images/portfolio/shop-3.JPG',
-    orientation: 'vertical',
-    descriptionEn: 'Woven baskets tumble over crates of vegetables in a storefront that hasn\'t changed in decades. Texture, craft and warmth in one frame.',
-    descriptionFr: 'Des paniers tressés débordent au-dessus des cagettes de légumes, dans une devanture qui n\'a pas changé depuis des décennies. Texture, artisanat et chaleur dans un seul cadre.',
-    variants: ALL_SIZES,
-  },
-  {
-    id: 'shop-05',
-    name: 'Umbrella Over Florence',
-    image: '/images/portfolio/shop-5.JPG',
-    orientation: 'vertical',
-    descriptionEn: 'A rainbow umbrella against a stormy Florentine sky, the Duomo on the horizon. One spot of colour holding back the grey.',
-    descriptionFr: 'Un parapluie arc-en-ciel face au ciel d\'orage de Florence, le Duomo à l\'horizon. Une touche de couleur qui tient tête au gris.',
-    variants: ALL_SIZES,
-  },
   {
     id: 'shop-06',
     name: 'Burano in Two Colours',
@@ -87,15 +60,6 @@ export const SHOP_PRODUCTS: Product[] = [
     variants: ALL_SIZES,
   },
   {
-    id: 'shop-11',
-    name: 'Rush Hour Lullaby',
-    image: '/images/portfolio/shop-11.JPG',
-    orientation: 'horizontal',
-    descriptionEn: 'Two schoolgirls asleep on a Tokyo train, perfectly mirrored by the carriage doors. A quiet moment inside the world\'s busiest city.',
-    descriptionFr: 'Deux écolières endormies dans un train de Tokyo, parfaitement symétriques entre les portes du wagon. Un moment de calme au cœur de la ville la plus animée du monde.',
-    variants: ALL_SIZES,
-  },
-  {
     id: 'shop-14',
     name: 'Laundry Day, Burano',
     image: '/images/portfolio/shop-14.JPG',
@@ -105,30 +69,30 @@ export const SHOP_PRODUCTS: Product[] = [
     variants: ALL_SIZES,
   },
   {
-    id: 'shop-16',
-    name: 'The Gondolier',
-    image: '/images/portfolio/shop-16.JPG',
+    id: 'shop-17',
+    name: 'The Koi Pond',
+    image: '/images/portfolio/shop-17.JPG',
     orientation: 'vertical',
-    descriptionEn: 'Golden light falls on a Venetian façade as a gondolier glides past, framed by shutters and still water.',
-    descriptionFr: 'La lumière dorée tombe sur une façade vénitienne tandis qu\'un gondolier glisse devant, encadré par les volets et l\'eau calme.',
+    descriptionEn: 'A wooden walkway zigzags over dark water while orange koi drift below. A quiet moment in a Japanese garden.',
+    descriptionFr: 'Une passerelle de bois zigzague au-dessus de l\'eau sombre, les carpes orange glissent en dessous. Un moment suspendu dans un jardin japonais.',
     variants: ALL_SIZES,
   },
   {
-    id: 'shop-22',
-    name: 'Café Leone',
-    image: '/images/portfolio/shop-22.JPG',
-    orientation: 'horizontal',
-    descriptionEn: 'Red awning, empty chairs, a passer-by in motion — a Paris café waiting for the day to begin.',
-    descriptionFr: 'Store rouge, chaises vides, une passante en mouvement — un café parisien qui attend que la journée commence.',
-    variants: UP_TO_A4,
+    id: 'shop-19',
+    name: 'Lakeside Riders',
+    image: '/images/portfolio/shop-19.JPG',
+    orientation: 'vertical',
+    descriptionEn: 'Orange bicycles pause along the lake shore, mountains rising across the water. A morning ride in rural Japan.',
+    descriptionFr: 'Des vélos orange font halte au bord du lac, les montagnes se dressent de l\'autre côté de l\'eau. Une balade matinale dans le Japon rural.',
+    variants: ALL_SIZES,
   },
   {
-    id: 'shop-24',
-    name: 'Orange Backpack',
-    image: '/images/portfolio/shop-24.JPG',
+    id: 'shop-21',
+    name: 'The Bookshop',
+    image: '/images/portfolio/shop-21.JPG',
     orientation: 'vertical',
-    descriptionEn: 'One figure, one splash of orange, and the clean lines of a Tokyo crosswalk. Minimalism found on the street.',
-    descriptionFr: 'Une silhouette, une touche d\'orange et les lignes nettes d\'un passage piéton de Tokyo. Le minimalisme trouvé dans la rue.',
+    descriptionEn: 'Books stacked to the ceiling, a reader lost between the shelves. A secondhand bookshop where time slows down.',
+    descriptionFr: 'Des livres empilés jusqu\'au plafond, une silhouette perdue entre les rayonnages. Une librairie d\'occasion où le temps ralentit.',
     variants: UP_TO_A4,
   },
   {
