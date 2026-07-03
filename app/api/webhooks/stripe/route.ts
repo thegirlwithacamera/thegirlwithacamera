@@ -1,16 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { supabaseAdmin } from '@/lib/supabase/client';
+import { getSupabaseAdmin } from '@/lib/supabase/client';
 import {
   sendCustomerOrderEmail,
   sendShopOwnerOrderEmail,
 } from '@/lib/email/send-order-confirmation';
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-04-22.dahlia',
-});
-
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
 // ─────────────────────────────────────────────────────────
 // Printful — activer dès que PRINTFUL_API_KEY est configurée
@@ -101,6 +95,22 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
  * Register this URL in: https://dashboard.stripe.com/webhooks
  */
 export async function POST(request: NextRequest) {
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  if (!stripeSecretKey || !webhookSecret) {
+    console.error('Stripe webhook not configured: missing STRIPE_SECRET_KEY or STRIPE_WEBHOOK_SECRET');
+    return NextResponse.json(
+      { error: 'Webhook not configured' },
+      { status: 500 }
+    );
+  }
+
+  const stripe = new Stripe(stripeSecretKey, {
+    apiVersion: '2026-04-22.dahlia',
+  });
+  const supabaseAdmin = getSupabaseAdmin();
+
   const body = await request.text();
   const signature = request.headers.get('stripe-signature');
 

@@ -30,25 +30,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ShopPage({ params }: Props) {
   const { lang } = await params;
 
-  const messages = {
-    fr: {
-      title: 'Boutique hors ligne',
-      message: 'La boutique est actuellement hors ligne. Veuillez réessayer plus tard.',
-    },
-    en: {
-      title: 'Shop Offline',
-      message: 'The shop is currently offline. Please try again later.',
-    },
-  };
-
-  const m = messages[lang];
-
-  return (
-    <div className="min-h-[600px] flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-serif mb-4">{m.title}</h1>
-        <p className="text-lg text-muted">{m.message}</p>
-      </div>
-    </div>
-  );
+  return <ShopContent lang={lang} />;
 }

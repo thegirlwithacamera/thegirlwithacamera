@@ -1,6 +1,14 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resendClient: Resend | null = null;
+
+// Lazy-initialized so the app builds without a Resend API key.
+function getResend(): Resend {
+  if (!resendClient) {
+    resendClient = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resendClient;
+}
 
 interface OrderItem {
   product_name: string;
@@ -120,7 +128,7 @@ export async function sendCustomerOrderEmail(params: SendOrderEmailParams) {
     ? `Confirmation de commande — The Girl With A Camera`
     : `Order Confirmation — The Girl With A Camera`;
 
-  return resend.emails.send({
+  return getResend().emails.send({
     from: 'orders@thegirlwithacamera.com',
     to: customerEmail,
     subject,
@@ -196,7 +204,7 @@ export async function sendShopOwnerOrderEmail(params: SendOrderEmailParams) {
   </body>
 </html>`;
 
-  return resend.emails.send({
+  return getResend().emails.send({
     from: 'orders@thegirlwithacamera.com',
     to: shopOwnerEmail,
     subject: `Nouvelle commande — ${formatPrice(totalCents, currency)} — The Girl With A Camera`,
