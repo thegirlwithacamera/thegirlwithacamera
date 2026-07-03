@@ -28,7 +28,8 @@ const FREE_SHIPPING_THRESHOLD_CENTS = 10000;
 
 // Markets Printful fulfills from a regional facility (EU, UK, US, CA,
 // AU, JP...), keeping delivery times and shipping costs predictable.
-const SHIPPING_COUNTRIES: Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[] = [
+type ShippingCollection = NonNullable<Stripe.Checkout.SessionCreateParams['shipping_address_collection']>;
+const SHIPPING_COUNTRIES: ShippingCollection['allowed_countries'] = [
   // Union européenne
   'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR',
   'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK',
