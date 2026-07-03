@@ -23,6 +23,12 @@ const ALL_SIZES: ProductVariant[] = [
   { type: 'a3-print', label: 'A3 Print', price: 8500 },
 ];
 
+// Files under ~2300px on the short side can't hold 200 DPI on A3
+const UP_TO_A4: ProductVariant[] = [
+  { type: 'a5-print', label: 'A5 Print', price: 4000 },
+  { type: 'a4-print', label: 'A4 Print', price: 6500 },
+];
+
 export const SHOP_PRODUCTS: Product[] = [
   {
     id: 'shop-01',
@@ -112,7 +118,7 @@ export const SHOP_PRODUCTS: Product[] = [
     orientation: 'horizontal',
     descriptionEn: 'Red awning, empty chairs, a passer-by in motion — a Paris café waiting for the day to begin.',
     descriptionFr: 'Store rouge, chaises vides, une passante en mouvement — un café parisien qui attend que la journée commence.',
-    variants: ALL_SIZES,
+    variants: UP_TO_A4,
   },
   {
     id: 'shop-24',
@@ -121,7 +127,7 @@ export const SHOP_PRODUCTS: Product[] = [
     orientation: 'vertical',
     descriptionEn: 'One figure, one splash of orange, and the clean lines of a Tokyo crosswalk. Minimalism found on the street.',
     descriptionFr: 'Une silhouette, une touche d\'orange et les lignes nettes d\'un passage piéton de Tokyo. Le minimalisme trouvé dans la rue.',
-    variants: ALL_SIZES,
+    variants: UP_TO_A4,
   },
   {
     id: 'shop-25',
@@ -130,7 +136,7 @@ export const SHOP_PRODUCTS: Product[] = [
     orientation: 'vertical',
     descriptionEn: 'Mount Fuji reflected in the lake at dawn, a lone figure in red watching from the shore.',
     descriptionFr: 'Le mont Fuji se reflète dans le lac à l\'aube, une silhouette en rouge l\'observe depuis la rive.',
-    variants: ALL_SIZES,
+    variants: UP_TO_A4,
   },
 ];
 
