@@ -10,7 +10,8 @@ const content = {
   fr: {
     title: 'Boutique',
     subtitle: 'Photographs & Prints',
-    description: 'Éditions Limitées de Tirages Photographiques - Une sélection curatée de mes images favorites, imprimées et encadrées avec soin.',
+    description: 'Tirages photographiques — une sélection curatée de mes images favorites, imprimées avec soin.',
+    shippingNote: 'Livraison 6,95 € — offerte dès 100 € · Expédition sous 5 à 10 jours ouvrés (BE · FR · DE · NL · LU · CH) · Retours sous 14 jours',
     loadingProducts: 'Chargement des produits...',
     error: 'Erreur lors du chargement des produits',
     cartTitle: 'Panier',
@@ -31,7 +32,8 @@ const content = {
   en: {
     title: 'Shop',
     subtitle: 'Photographs & Prints',
-    description: 'Limited Edition Photograph Prints - A curated selection of my favorite images, printed and framed with care.',
+    description: 'Photographic prints — a curated selection of my favorite images, printed with care.',
+    shippingNote: 'Shipping €6.95 — free over €100 · Ships within 5-10 business days (BE · FR · DE · NL · LU · CH) · 14-day returns',
     loadingProducts: 'Loading products...',
     error: 'Error loading products',
     cartTitle: 'Cart',
@@ -271,6 +273,16 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
             <div className="shop-subtitle">{t.subtitle}</div>
             <h1 className="shop-title">{t.title}</h1>
             <p className="shop-description">{t.description}</p>
+            <p style={{
+              fontSize: '11px',
+              letterSpacing: '0.06em',
+              color: '#999999',
+              maxWidth: '600px',
+              margin: '16px auto 0',
+              lineHeight: 1.8,
+            }}>
+              {t.shippingNote}
+            </p>
           </div>
 
           {/* Products Grid - Grouped by Orientation */}

@@ -261,9 +261,9 @@ export default function SuccessPage({ params }: { params: Promise<{ lang: 'fr' |
           <Link href={`/${lang}/shop`} className="btn btn-primary">
             {t.backShop}
           </Link>
-          <Link href={`/${lang}/contact`} className="btn">
+          <a href="mailto:hello@thegirlwithacamera.com" className="btn">
             {t.contact}
-          </Link>
+          </a>
         </div>
       </div>
     </main>

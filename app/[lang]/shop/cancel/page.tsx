@@ -157,9 +157,9 @@ export default function CancelPage({ params }: { params: Promise<{ lang: 'fr' | 
           <Link href={`/${lang}/shop`} className="btn btn-primary">
             {t.keepShopping}
           </Link>
-          <Link href={`/${lang}/contact`} className="btn">
+          <a href="mailto:hello@thegirlwithacamera.com" className="btn">
             {t.contactUs}
-          </Link>
+          </a>
         </div>
       </div>
     </main>

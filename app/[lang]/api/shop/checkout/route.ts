@@ -23,6 +23,9 @@ const localeMap: Record<string, LocaleType> = {
   en: 'auto',
 };
 
+const SHIPPING_RATE_CENTS = 695;
+const FREE_SHIPPING_THRESHOLD_CENTS = 10000;
+
 /**
  * POST /[lang]/api/shop/checkout
  * Create a Stripe checkout session with language support
@@ -78,6 +81,13 @@ export async function POST(
     // Map language to Stripe locale
     const stripeLocale = localeMap[lang] || 'auto';
 
+    // Flat-rate shipping, free above the threshold
+    const subtotal = items.reduce(
+      (sum, item) => sum + Math.round(item.price) * item.quantity,
+      0
+    );
+    const freeShipping = subtotal >= FREE_SHIPPING_THRESHOLD_CENTS;
+
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -91,6 +101,24 @@ export async function POST(
       shipping_address_collection: {
         allowed_countries: ['BE', 'FR', 'DE', 'NL', 'LU', 'CH'],
       },
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: {
+              amount: freeShipping ? 0 : SHIPPING_RATE_CENTS,
+              currency: 'eur',
+            },
+            display_name: freeShipping
+              ? (lang === 'fr' ? 'Livraison offerte' : 'Free shipping')
+              : (lang === 'fr' ? 'Livraison standard' : 'Standard shipping'),
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: 5 },
+              maximum: { unit: 'business_day', value: 10 },
+            },
+          },
+        },
+      ],
     });
 
     if (!session.url) {
