@@ -12,6 +12,14 @@ export interface Product {
   variants: ProductVariant[];
   descriptionEn: string;
   descriptionFr: string;
+  /** Total copies across all sizes — fine-art convention, not per-format. */
+  editionSize?: number;
+}
+
+// Cart/line-item ids are `${productId}-${variantType}` (e.g. "shop-06-a4-print").
+// Strips the variant suffix to recover the base product id.
+export function getBaseProductId(itemId: string): string {
+  return itemId.replace(/-(a5|a4|a3)-print$/, '');
 }
 
 // Curated collection — 8 prints selected by Sandrine (2026-07).
@@ -34,6 +42,7 @@ const UP_TO_A4: ProductVariant[] = [
 export const SHOP_PRODUCTS: Product[] = [
   {
     id: 'shop-06',
+    editionSize: 30,
     name: 'Burano in Two Colours',
     image: '/images/portfolio/shop-6.JPG',
     orientation: 'vertical',
@@ -43,6 +52,7 @@ export const SHOP_PRODUCTS: Product[] = [
   },
   {
     id: 'shop-09',
+    editionSize: 30,
     name: 'Dusk in Kyoto',
     image: '/images/portfolio/shop-9.JPG',
     orientation: 'vertical',
@@ -52,6 +62,7 @@ export const SHOP_PRODUCTS: Product[] = [
   },
   {
     id: 'shop-10',
+    editionSize: 30,
     name: 'The Crossing',
     image: '/images/portfolio/shop-10.JPG',
     orientation: 'vertical',
@@ -61,6 +72,7 @@ export const SHOP_PRODUCTS: Product[] = [
   },
   {
     id: 'shop-14',
+    editionSize: 30,
     name: 'Laundry Day, Burano',
     image: '/images/portfolio/shop-14.JPG',
     orientation: 'vertical',
@@ -70,6 +82,7 @@ export const SHOP_PRODUCTS: Product[] = [
   },
   {
     id: 'shop-17',
+    editionSize: 30,
     name: 'The Koi Pond',
     image: '/images/portfolio/shop-17.JPG',
     orientation: 'vertical',
@@ -79,6 +92,7 @@ export const SHOP_PRODUCTS: Product[] = [
   },
   {
     id: 'shop-19',
+    editionSize: 30,
     name: 'Lakeside Riders',
     image: '/images/portfolio/shop-19.JPG',
     orientation: 'vertical',
@@ -88,6 +102,7 @@ export const SHOP_PRODUCTS: Product[] = [
   },
   {
     id: 'shop-21',
+    editionSize: 10,
     name: 'The Bookshop',
     image: '/images/portfolio/shop-21.JPG',
     orientation: 'vertical',
@@ -97,6 +112,7 @@ export const SHOP_PRODUCTS: Product[] = [
   },
   {
     id: 'shop-25',
+    editionSize: 10,
     name: 'Fuji, Morning',
     image: '/images/portfolio/shop-25.JPG',
     orientation: 'vertical',

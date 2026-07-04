@@ -14,6 +14,7 @@ interface OrderItem {
   product_name: string;
   quantity: number;
   unit_price_cents: number;
+  editionLabel?: string;
 }
 
 interface SendOrderEmailParams {
@@ -60,7 +61,7 @@ export async function sendCustomerOrderEmail(params: SendOrderEmailParams) {
     .map(
       (item) =>
         `<tr style="border-bottom: 1px solid #e5e5e5;">
-          <td style="padding: 12px 0; text-align: left;">${item.product_name}</td>
+          <td style="padding: 12px 0; text-align: left;">${item.product_name}${item.editionLabel ? `<br><span style="font-size: 11px; color: #999;">${item.editionLabel}</span>` : ''}</td>
           <td style="padding: 12px 0; text-align: center;">${item.quantity}</td>
           <td style="padding: 12px 0; text-align: right;">${formatPrice(item.unit_price_cents, currency)}</td>
           <td style="padding: 12px 0; text-align: right; font-weight: 600;">${formatPrice(item.unit_price_cents * item.quantity, currency)}</td>
@@ -144,7 +145,7 @@ export async function sendShopOwnerOrderEmail(params: SendOrderEmailParams) {
     .map(
       (item) =>
         `<tr style="border-bottom: 1px solid #e5e5e5;">
-          <td style="padding: 12px 0; text-align: left;">${item.product_name}</td>
+          <td style="padding: 12px 0; text-align: left;">${item.product_name}${item.editionLabel ? `<br><span style="font-size: 11px; color: #999;">${item.editionLabel}</span>` : ''}</td>
           <td style="padding: 12px 0; text-align: center;">${item.quantity}</td>
           <td style="padding: 12px 0; text-align: right;">${formatPrice(item.unit_price_cents, currency)}</td>
           <td style="padding: 12px 0; text-align: right; font-weight: 600;">${formatPrice(item.unit_price_cents * item.quantity, currency)}</td>

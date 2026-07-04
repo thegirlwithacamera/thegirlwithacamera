@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { getBaseProductId, getProductById } from '@/lib/shop-products';
+import { getEditionAvailability } from '@/lib/editions';
 
 interface CheckoutItem {
   id: string;
@@ -83,6 +85,32 @@ export async function POST(
         { error: 'Customer email is required' },
         { status: 400 }
       );
+    }
+
+    // Reject items that exceed remaining stock for limited-edition prints.
+    // The webhook does the authoritative atomic claim at payment time —
+    // this is a fast pre-check to avoid selling clearly sold-out prints.
+    const limitedItems = items
+      .map((item) => ({ item, productId: getBaseProductId(item.id) }))
+      .filter(({ productId }) => getProductById(productId)?.editionSize);
+
+    if (limitedItems.length > 0) {
+      const availability = await getEditionAvailability(
+        limitedItems.map(({ productId }) => productId)
+      );
+      for (const { item, productId } of limitedItems) {
+        const stock = availability[productId];
+        if (stock && item.quantity > stock.remaining) {
+          const message = stock.remaining > 0
+            ? (lang === 'fr'
+              ? `Il ne reste que ${stock.remaining} exemplaire(s) de « ${item.name} ».`
+              : `Only ${stock.remaining} cop${stock.remaining > 1 ? 'ies' : 'y'} of "${item.name}" left.`)
+            : (lang === 'fr'
+              ? `« ${item.name} » — édition épuisée.`
+              : `"${item.name}" — this edition is sold out.`);
+          return NextResponse.json({ error: message }, { status: 409 });
+        }
+      }
     }
 
     // Create line items for Stripe.

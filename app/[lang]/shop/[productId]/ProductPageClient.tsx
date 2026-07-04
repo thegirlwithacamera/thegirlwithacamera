@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CartProvider, useCart } from '@/app/components/shop/CartContext';
@@ -11,6 +11,7 @@ const content = {
     backToShop: 'Retour à la boutique',
     selectFormat: 'Sélectionner un format',
     addToCart: 'Ajouter au panier',
+    soldOut: 'Édition épuisée',
     price: 'Prix',
     description: 'Description',
     formats: 'Formats disponibles',
@@ -23,11 +24,15 @@ const content = {
     continueCheckout: 'Continuer',
     invalidEmail: 'Veuillez entrer une adresse email valide',
     checkoutError: 'Erreur lors du paiement',
+    editionOf: (size: number) => `Édition limitée à ${size} exemplaires`,
+    remaining: (n: number) => n === 1 ? 'Dernier exemplaire' : `${n} exemplaires restants`,
+    editionSoldOut: 'Édition épuisée',
   },
   en: {
     backToShop: 'Back to Shop',
     selectFormat: 'Select Format',
     addToCart: 'Add to Cart',
+    soldOut: 'Sold Out',
     price: 'Price',
     description: 'Description',
     formats: 'Available Formats',
@@ -40,6 +45,9 @@ const content = {
     continueCheckout: 'Continue',
     invalidEmail: 'Please enter a valid email address',
     checkoutError: 'Error during checkout',
+    editionOf: (size: number) => `Limited edition of ${size} prints`,
+    remaining: (n: number) => n === 1 ? 'Last one left' : `${n} left`,
+    editionSoldOut: 'Sold out',
   },
 };
 
@@ -57,7 +65,21 @@ function ProductPageInner({
   const [customerEmail, setCustomerEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [remaining, setRemaining] = useState<number | null>(null);
   const { addItem } = useCart();
+
+  useEffect(() => {
+    if (!product?.editionSize) return;
+    fetch('/api/shop/editions')
+      .then((res) => res.json())
+      .then((data) => {
+        const stock = data.editions?.[product.id];
+        if (stock) setRemaining(stock.remaining);
+      })
+      .catch(() => {
+        // Fail open — availability info is a nice-to-have, not a blocker
+      });
+  }, [product?.id, product?.editionSize]);
 
   if (!product) {
     return (
@@ -74,10 +96,11 @@ function ProductPageInner({
 
   const description = lang === 'fr' ? product.descriptionFr : product.descriptionEn;
   const minPrice = Math.min(...product.variants.map(v => v.price)) / 100;
+  const isSoldOut = product.editionSize !== undefined && remaining === 0;
 
   const handleAddToCart = () => {
-    if (!selectedVariant) return;
-    
+    if (!selectedVariant || isSoldOut) return;
+
     addItem({
       id: `${product.id}-${selectedVariant.type}`,
       name: `${product.name} - ${selectedVariant.label}`,
@@ -206,11 +229,26 @@ function ProductPageInner({
             fontSize: '18px',
             letterSpacing: '0.05em',
             color: '#0a0a0a',
-            marginBottom: '40px',
+            marginBottom: product.editionSize !== undefined ? '8px' : '40px',
             fontWeight: 500,
           }}>
             À partir de €{minPrice.toFixed(2)}
           </p>
+
+          {product.editionSize !== undefined && (
+            <p style={{
+              fontSize: '11px',
+              letterSpacing: '0.08em',
+              color: isSoldOut ? '#b03030' : '#666666',
+              marginBottom: '40px',
+              textTransform: 'uppercase',
+            }}>
+              {t.editionOf(product.editionSize)}
+              {isSoldOut
+                ? ` — ${t.editionSoldOut}`
+                : (remaining !== null ? ` — ${t.remaining(remaining)}` : '')}
+            </p>
+          )}
 
           <div style={{ marginBottom: '60px' }}>
             <h2 style={{
@@ -274,6 +312,7 @@ function ProductPageInner({
 
           <button
             onClick={handleAddToCart}
+            disabled={isSoldOut}
             style={{
               width: '100%',
               padding: '16px',
@@ -282,19 +321,19 @@ function ProductPageInner({
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               border: 'none',
-              background: '#0a0a0a',
+              background: isSoldOut ? '#cccccc' : '#0a0a0a',
               color: '#ffffff',
-              cursor: 'pointer',
+              cursor: isSoldOut ? 'not-allowed' : 'pointer',
               transition: 'all 0.3s',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.opacity = '0.8';
+              if (!isSoldOut) e.currentTarget.style.opacity = '0.8';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = '1';
+              if (!isSoldOut) e.currentTarget.style.opacity = '1';
             }}
           >
-            {t.addToCart}
+            {isSoldOut ? t.soldOut : t.addToCart}
           </button>
         </div>
       </div>

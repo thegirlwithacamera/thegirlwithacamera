@@ -6,6 +6,15 @@ import {
   sendShopOwnerOrderEmail,
 } from '@/lib/email/send-order-confirmation';
 import { isPrintfulConfigured, createPrintfulDraftOrder } from '@/lib/printful';
+import { getBaseProductId, getProductById } from '@/lib/shop-products';
+import { claimEditionNumbers } from '@/lib/editions';
+
+function getLineItemId(item: Stripe.LineItem): string | undefined {
+  const product = item.price?.product;
+  return typeof product === 'object' && product !== null && 'metadata' in product
+    ? (product.metadata as Record<string, string>).item_id
+    : undefined;
+}
 
 // ─────────────────────────────────────────────────────────
 // Printful — creates a DRAFT order (confirmed manually in the
@@ -36,11 +45,7 @@ async function createPrintfulOrder(
 
   const printfulItems = lineItems
     .map((item) => {
-      const product = item.price?.product;
-      const itemId =
-        typeof product === 'object' && product !== null && 'metadata' in product
-          ? (product.metadata as Record<string, string>).item_id
-          : undefined;
+      const itemId = getLineItemId(item);
       if (!itemId) {
         console.warn(`No item_id metadata on line item: ${item.description}`);
         return null;
@@ -140,14 +145,60 @@ export async function POST(request: NextRequest) {
           throw new Error(`Failed to save order: ${orderError.message}`);
         }
 
-        // Save order items
-        if (fullSession.line_items?.data) {
-          const items = fullSession.line_items.data.map((item) => ({
-            order_id: orderData.id,
-            product_id: item.price?.product as string,
-            product_name: item.description || 'Unknown Product',
-            quantity: item.quantity || 1,
-            unit_price_cents: item.price?.unit_amount || 0,
+        // Save order items — claiming edition numbers for limited prints
+        // as we go (non-blocking: a claim failure just leaves that item
+        // unnumbered rather than failing the whole paid order).
+        const lineItemsData = fullSession.line_items?.data || [];
+        const emailItems: Array<{
+          product_name: string;
+          quantity: number;
+          unit_price_cents: number;
+          editionLabel?: string;
+        }> = [];
+
+        if (lineItemsData.length > 0) {
+          const items = await Promise.all(lineItemsData.map(async (item) => {
+            const quantity = item.quantity || 1;
+            const itemId = getLineItemId(item);
+            const shopProductId = itemId ? getBaseProductId(itemId) : undefined;
+            const editionSize = shopProductId ? getProductById(shopProductId)?.editionSize : undefined;
+
+            let editionNumbers: number[] | null = null;
+            if (shopProductId && editionSize) {
+              try {
+                editionNumbers = await claimEditionNumbers(shopProductId, quantity);
+                if (editionNumbers && editionNumbers.length < quantity) {
+                  console.error(
+                    `Oversold edition ${shopProductId}: claimed ${editionNumbers.length}/${quantity} for session ${session.id} — review manually`
+                  );
+                }
+              } catch (claimError) {
+                console.error(`Failed to claim edition numbers for ${shopProductId}:`, claimError);
+              }
+            }
+
+            const editionLabel = editionNumbers && editionNumbers.length > 0
+              ? (editionNumbers.length === 1
+                ? `Édition n° ${editionNumbers[0]}/${editionSize}`
+                : `Édition n° ${editionNumbers[0]}-${editionNumbers[editionNumbers.length - 1]}/${editionSize}`)
+              : undefined;
+
+            emailItems.push({
+              product_name: item.description || 'Unknown Product',
+              quantity,
+              unit_price_cents: item.price?.unit_amount || 0,
+              editionLabel,
+            });
+
+            return {
+              order_id: orderData.id,
+              product_id: item.price?.product as string,
+              shop_product_id: shopProductId || null,
+              product_name: item.description || 'Unknown Product',
+              quantity,
+              unit_price_cents: item.price?.unit_amount || 0,
+              edition_numbers: editionNumbers,
+            };
           }));
 
           const { error: itemsError } = await supabaseAdmin
@@ -166,13 +217,6 @@ export async function POST(request: NextRequest) {
           payload: event.data,
           processed: true,
         });
-
-        // Send confirmation emails (non-blocking)
-        const emailItems = fullSession.line_items?.data.map((item) => ({
-          product_name: item.description || 'Unknown Product',
-          quantity: item.quantity || 1,
-          unit_price_cents: item.price?.unit_amount || 0,
-        })) || [];
 
         try {
           await Promise.all([

@@ -1,10 +1,16 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import Link from 'next/link';
 import { ShopCart } from '@/app/components/shop/Cart';
 import { CartProvider, useCart } from '@/app/components/shop/CartContext';
 import { SHOP_PRODUCTS } from '@/lib/shop-products';
+
+interface EditionStock {
+  editionSize: number;
+  soldCount: number;
+  remaining: number;
+}
 
 const content = {
   fr: {
@@ -28,6 +34,9 @@ const content = {
     remove: 'Supprimer',
     each: 'chacun',
     from: 'À partir de',
+    soldOut: 'Épuisé',
+    lastOne: 'Dernier exemplaire',
+    left: (n: number) => `${n} restants`,
   },
   en: {
     title: 'Shop',
@@ -50,6 +59,9 @@ const content = {
     remove: 'Remove',
     each: 'each',
     from: 'From',
+    soldOut: 'Sold out',
+    lastOne: 'Last one left',
+    left: (n: number) => `${n} left`,
   },
 };
 
@@ -61,12 +73,34 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
   const [customerEmail, setCustomerEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [editions, setEditions] = useState<Record<string, EditionStock>>({});
+
+  useEffect(() => {
+    fetch('/api/shop/editions')
+      .then((res) => res.json())
+      .then((data) => setEditions(data.editions || {}))
+      .catch(() => {
+        // Fail open — availability badges are a nice-to-have, not a blocker
+      });
+  }, []);
 
   const getMinPrice = (productId: string) => {
     const product = products.find(p => p.id === productId);
     if (!product) return 0;
     const minPrice = Math.min(...product.variants.map(v => v.price));
     return (minPrice / 100).toFixed(2);
+  };
+
+  const renderStockBadge = (productId: string) => {
+    const stock = editions[productId];
+    if (!stock) return null;
+    if (stock.remaining <= 0) {
+      return <div className="stock-badge sold-out">{t.soldOut}</div>;
+    }
+    if (stock.remaining === 1) {
+      return <div className="stock-badge">{t.lastOne}</div>;
+    }
+    return null;
   };
 
   const handleCheckout = () => {
@@ -224,6 +258,30 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
           letter-spacing: 0.08em;
           color: #666666;
         }
+        .product-edition {
+          font-size: 10px;
+          letter-spacing: 0.06em;
+          color: #999999;
+          margin-top: 4px;
+        }
+        .stock-badge {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          background: #0a0a0a;
+          color: #ffffff;
+          font-size: 9px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          padding: 6px 10px;
+          z-index: 2;
+        }
+        .stock-badge.sold-out {
+          background: #b03030;
+        }
+        .product-card.sold-out .product-card-image {
+          opacity: 0.5;
+        }
         .shop-loading {
           text-align: center;
           padding: 60px 40px;
@@ -300,7 +358,8 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
                     href={`/${lang}/shop/${product.id}`}
                     style={{ textDecoration: 'none' }}
                   >
-                    <div className="product-card">
+                    <div className={`product-card${editions[product.id]?.remaining === 0 ? ' sold-out' : ''}`}>
+                      {renderStockBadge(product.id)}
                       <img
                         src={product.image}
                         alt={product.name}
@@ -311,6 +370,13 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
                         <div className="product-price">
                           {t.from} €{getMinPrice(product.id)}
                         </div>
+                        {product.editionSize !== undefined && editions[product.id] && (
+                          <div className="product-edition">
+                            {editions[product.id].remaining > 0
+                              ? `${t.left(editions[product.id].remaining)} / ${product.editionSize}`
+                              : t.soldOut}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </Link>
@@ -329,7 +395,8 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
                     href={`/${lang}/shop/${product.id}`}
                     style={{ textDecoration: 'none' }}
                   >
-                    <div className="product-card">
+                    <div className={`product-card${editions[product.id]?.remaining === 0 ? ' sold-out' : ''}`}>
+                      {renderStockBadge(product.id)}
                       <img
                         src={product.image}
                         alt={product.name}
@@ -340,6 +407,13 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
                         <div className="product-price">
                           {t.from} €{getMinPrice(product.id)}
                         </div>
+                        {product.editionSize !== undefined && editions[product.id] && (
+                          <div className="product-edition">
+                            {editions[product.id].remaining > 0
+                              ? `${t.left(editions[product.id].remaining)} / ${product.editionSize}`
+                              : t.soldOut}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </Link>
