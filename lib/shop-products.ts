@@ -27,16 +27,19 @@ export function getBaseProductId(itemId: string): string {
 
 // 'a5-print' is fulfilled as a 6″×8″ poster (Printful has no true A5) —
 // keep the internal type stable, the label is what customers see.
+// Limited-edition pricing (2026-07): a modest premium over the prior
+// open-edition prices, with a further step-up for the scarcer 10-copy
+// tier (Fuji, Bookshop) vs the 30-copy tier (the other six prints).
 const ALL_SIZES: ProductVariant[] = [
-  { type: 'a5-print', label: '15×20 cm Print', price: 2900 },
-  { type: 'a4-print', label: 'A4 Print', price: 5900 },
-  { type: 'a3-print', label: 'A3 Print', price: 8500 },
+  { type: 'a5-print', label: '15×20 cm Print', price: 3500 },
+  { type: 'a4-print', label: 'A4 Print', price: 6900 },
+  { type: 'a3-print', label: 'A3 Print', price: 9900 },
 ];
 
 // Files under ~2300px on the short side can't hold 200 DPI on A3
 const UP_TO_A4: ProductVariant[] = [
-  { type: 'a5-print', label: '15×20 cm Print', price: 2900 },
-  { type: 'a4-print', label: 'A4 Print', price: 5900 },
+  { type: 'a5-print', label: '15×20 cm Print', price: 3900 },
+  { type: 'a4-print', label: 'A4 Print', price: 7900 },
 ];
 
 export const SHOP_PRODUCTS: Product[] = [
