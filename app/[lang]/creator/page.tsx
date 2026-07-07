@@ -28,12 +28,12 @@ const BRANDS = [
 //  dans le tableau du bloc concerne ci-dessous.
 //
 //  DEUX CAS :
-//  1) UNBOXING et EXPERIENCE (format vertical, clips courts)
+//  1) GEAR / EXPERIENCES / UNBOXING / TALK (format vertical, telephones)
 //     Depose ton fichier .mp4 dans  public/videos/creator/
 //     puis pointe src sur "/videos/creator/mon-fichier.mp4".
 //     Ces fichiers sont dans le repo et se deploient tout seuls.
 //
-//  2) CINEMATIQUE (format horizontal 16:9, video diaries)
+//  2) CINEMATIQUE (format horizontal 16:9, tablettes, video diaries)
 //     Ces clips sont plus lourds et heberges sur Vercel Blob.
 //     Envoie-moi le fichier et je l'ajoute au Blob, OU depose une
 //     version compressee dans public/videos/creator/ et pointe src
@@ -43,7 +43,35 @@ const FILM_BASE = "https://3cwvdrhaucmdleep.public.blob.vercel-storage.com/film"
 
 type Clip = { src: string; label: string; poster?: string };
 
-// Bloc 1 — video diaries contemplatifs (city / travel)
+// ── Blocs verticaux (telephones) ─────────────────────────────
+// Bloc 1 — Gear (materiel, produit en main, resultats)
+const GEAR: Clip[] = [
+  { src: "/videos/creator/product-in-use.mp4",     label: "Product in Use" },
+  { src: "/videos/creator/product-vs-results.mp4", label: "Product vs Results" },
+  // AJOUTE TES REELS GEAR ICI
+];
+
+// Bloc 2 — Experiences (coiffeur, tatouage, head spa, lifestyle)
+const EXPERIENCES: Clip[] = [
+  { src: "/videos/creator/lifestyle.mp4", label: "Lifestyle" },
+  // AJOUTE TES REELS EXPERIENCES ICI
+];
+
+// Bloc 3 — Unboxing
+const UNBOXING: Clip[] = [
+  { src: "/videos/creator/unboxing.mp4",   label: "Unboxing" },
+  { src: "/videos/creator/unboxing-2.mp4", label: "Unboxing" },
+  // AJOUTE TES REELS UNBOXING ICI
+];
+
+// Bloc 4 — Talk (face cam, prise de parole)
+const TALK: Clip[] = [
+  { src: "/videos/creator/unboxing-face-cam.mp4", label: "Face cam" },
+  // AJOUTE TES REELS TALK ICI
+];
+
+// ── Bloc horizontal premium (tablettes) ──────────────────────
+// Bloc 5 — Cinematique : video diaries contemplatifs (city / travel)
 const CINEMATIC: Clip[] = [
   { src: `${FILM_BASE}/citydiary-01-tokyo.mp4`,   label: "Tokyo",       poster: "/videos/city-diary/01-tokyo-poster.jpg" },
   { src: `${FILM_BASE}/citydiary-02-osaka.mp4`,   label: "Osaka",       poster: "/videos/city-diary/02-osaka-poster.jpg" },
@@ -52,24 +80,7 @@ const CINEMATIC: Clip[] = [
   { src: `${FILM_BASE}/citydiary-05-kyoto.mp4`,   label: "Kyoto",       poster: "/videos/city-diary/05-kyoto-poster.jpg" },
   { src: `${FILM_BASE}/citydiary-06-cefalu.mp4`,  label: "Cefalu" },
   { src: `${FILM_BASE}/citydiary-07-palermo.mp4`, label: "Palermo" },
-  // AJOUTE TES NOUVEAUX VIDEO DIARIES ICI (voir cas 2 ci-dessus)
-];
-
-// Bloc 2 — unboxing (le face cam vit ici aussi)
-const UNBOXING: Clip[] = [
-  { src: "/videos/creator/unboxing.mp4",          label: "Unboxing" },
-  { src: "/videos/creator/unboxing-2.mp4",        label: "Unboxing" },
-  { src: "/videos/creator/unboxing-face-cam.mp4", label: "Face cam" },
-  // AJOUTE TES NOUVEAUX UNBOXING ICI (fichier dans public/videos/creator/)
-];
-
-// Bloc 3 — experience & lifestyle (coiffeur, tatouage, head spa,
-// gear, reels ou on te voit shooter). Ajoute tes clips ici.
-const EXPERIENCE: Clip[] = [
-  { src: "/videos/creator/lifestyle.mp4",          label: "Lifestyle" },
-  { src: "/videos/creator/product-in-use.mp4",     label: "Product in Use" },
-  { src: "/videos/creator/product-vs-results.mp4", label: "Product vs Results" },
-  // AJOUTE TES REELS EXPERIENCE ICI (fichier dans public/videos/creator/)
+  // AJOUTE TES NOUVEAUX VIDEO DIARIES ICI (voir cas 2 plus haut)
 ];
 
 const content = {
@@ -85,9 +96,11 @@ const content = {
     reelViews: "vues de reel",
     avgReach: "comptes touchés",
     tiers: {
-      cinematic:  { title: "CINÉMATIQUE", tag: "", desc: "Mes video diaries. Des séquences contemplatives et cinématiques." },
-      unboxing:   { title: "UNBOXING",    tag: "", desc: "" },
-      experience: { title: "EXPÉRIENCE",  tag: "", desc: "" },
+      gear:        { title: "GEAR",        desc: "" },
+      experiences: { title: "EXPÉRIENCES", desc: "" },
+      unboxing:    { title: "UNBOXING",    desc: "" },
+      talk:        { title: "TALK",        desc: "" },
+      cinematic:   { title: "CINÉMATIQUE", desc: "Mes video diaries. Des séquences contemplatives et cinématiques." },
     },
   },
   en: {
@@ -102,9 +115,11 @@ const content = {
     reelViews: "reel views",
     avgReach: "accounts reached",
     tiers: {
-      cinematic:  { title: "CINEMATIC",  tag: "", desc: "My video diaries. Contemplative, cinematic sequences." },
-      unboxing:   { title: "UNBOXING",   tag: "", desc: "" },
-      experience: { title: "EXPERIENCE", tag: "", desc: "" },
+      gear:        { title: "GEAR",        desc: "" },
+      experiences: { title: "EXPERIENCES", desc: "" },
+      unboxing:    { title: "UNBOXING",    desc: "" },
+      talk:        { title: "TALK",        desc: "" },
+      cinematic:   { title: "CINEMATIC",   desc: "My video diaries. Contemplative, cinematic sequences." },
     },
   },
 };
@@ -155,6 +170,8 @@ export default function CreatorPage({ params }: Props) {
       </button>
     );
   }
+
+  const phoneProps = { unmutedKey, toggleSound, registerRef, SoundBtn };
 
   return (
     <main style={{ paddingTop: "20px", paddingBottom: "80px", background: "#ffffff" }}>
@@ -242,25 +259,7 @@ export default function CreatorPage({ params }: Props) {
           font-style: italic;
         }
 
-        /* Ecrans horizontaux 16:9 (Cinematique) */
-        .screens-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
-          max-width: 1080px;
-          margin: 0 auto;
-        }
-        .screen {
-          position: relative;
-          aspect-ratio: 16 / 9;
-          border: 1.5px solid #0a0a0a;
-          border-radius: 10px;
-          overflow: hidden;
-          background: #0a0a0a;
-        }
-        .screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        /* Telephones verticaux 9:16 (Unboxing, Face cam, Experience) */
+        /* Telephones verticaux 9:16 */
         .phones-row {
           display: flex;
           flex-wrap: wrap;
@@ -298,6 +297,50 @@ export default function CreatorPage({ params }: Props) {
           z-index: 2;
         }
         .phone video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* Tablettes horizontales 16:9 (Cinematique) */
+        .tablets-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+          max-width: 1080px;
+          margin: 0 auto;
+        }
+        .tablet-wrap {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+        }
+        .tablet {
+          width: 100%;
+          border: 2px solid #0a0a0a;
+          border-radius: 18px;
+          padding: 10px 14px;
+          background: #1a1a1a;
+          position: relative;
+        }
+        .tablet::before {
+          content: '';
+          position: absolute;
+          left: 5px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: #333;
+          z-index: 2;
+        }
+        .tablet-screen {
+          aspect-ratio: 16 / 9;
+          border-radius: 8px;
+          overflow: hidden;
+          background: #000;
+          position: relative;
+        }
+        .tablet-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
         .vid-label {
           font-size: 10px;
           letter-spacing: 0.16em;
@@ -362,10 +405,10 @@ export default function CreatorPage({ params }: Props) {
           .section-title { margin: 0 0 16px; font-size: 10px; }
           .creator-hr { margin: 28px auto; max-width: 200px; }
           .tier { padding: 0 20px; }
-          .screens-grid { grid-template-columns: 1fr; gap: 12px; }
           .phone-wrap { width: 132px; }
           .phone { border-width: 1.5px; }
           .phone::before { width: 26px; height: 3px; }
+          .tablets-grid { grid-template-columns: 1fr; gap: 14px; }
           .brands-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
         }
       `}</style>
@@ -400,63 +443,52 @@ export default function CreatorPage({ params }: Props) {
 
       <hr className="creator-hr" />
 
-      {/* Bloc 1 : Cinematique (horizontal 16:9) */}
+      {/* Blocs verticaux (telephones) */}
+      <TierPhones tier={t.tiers.gear}        clips={GEAR}        prefix="gear"        {...phoneProps} />
+      <hr className="creator-hr" />
+      <TierPhones tier={t.tiers.experiences} clips={EXPERIENCES} prefix="experiences" {...phoneProps} />
+      <hr className="creator-hr" />
+      <TierPhones tier={t.tiers.unboxing}    clips={UNBOXING}    prefix="unboxing"    {...phoneProps} />
+      <hr className="creator-hr" />
+      <TierPhones tier={t.tiers.talk}        clips={TALK}        prefix="talk"        {...phoneProps} />
+
+      <hr className="creator-hr" />
+
+      {/* Bloc horizontal premium (tablettes) */}
       <section className="tier">
         <div className="tier-head">
-          {t.tiers.cinematic.tag && <p className="tier-tag">{t.tiers.cinematic.tag}</p>}
           <h2 className="tier-title">{t.tiers.cinematic.title}</h2>
           {t.tiers.cinematic.desc && <p className="tier-desc">{t.tiers.cinematic.desc}</p>}
         </div>
-        <div className="screens-grid">
+        <div className="tablets-grid">
           {CINEMATIC.map((clip, i) => {
             const key = `cinematic-${i}`;
             return (
-              <div key={key} className="screen">
-                <video
-                  ref={(el) => registerRef(key, el)}
-                  src={clip.src}
-                  poster={clip.poster}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  controlsList="nodownload nofullscreen"
-                  onContextMenu={(e) => e.preventDefault()}
-                  title={`Cinematic content: ${clip.label}`}
-                />
-                <SoundBtn on={unmutedKey === key} onClick={() => toggleSound(key)} />
+              <div key={key} className="tablet-wrap">
+                <div className="tablet">
+                  <div className="tablet-screen">
+                    <video
+                      ref={(el) => registerRef(key, el)}
+                      src={clip.src}
+                      poster={clip.poster}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      controlsList="nodownload nofullscreen"
+                      onContextMenu={(e) => e.preventDefault()}
+                      title={`Cinematic content: ${clip.label}`}
+                    />
+                    <SoundBtn on={unmutedKey === key} onClick={() => toggleSound(key)} />
+                  </div>
+                </div>
+                <span className="vid-label">{clip.label}</span>
               </div>
             );
           })}
         </div>
       </section>
-
-      <hr className="creator-hr" />
-
-      {/* Bloc 2 : Unboxing (vertical) */}
-      <TierPhones
-        tier={t.tiers.unboxing}
-        clips={UNBOXING}
-        prefix="unboxing"
-        unmutedKey={unmutedKey}
-        toggleSound={toggleSound}
-        registerRef={registerRef}
-        SoundBtn={SoundBtn}
-      />
-
-      <hr className="creator-hr" />
-
-      {/* Bloc 3 : Experience (vertical) */}
-      <TierPhones
-        tier={t.tiers.experience}
-        clips={EXPERIENCE}
-        prefix="experience"
-        unmutedKey={unmutedKey}
-        toggleSound={toggleSound}
-        registerRef={registerRef}
-        SoundBtn={SoundBtn}
-      />
 
       <hr className="creator-hr" />
 
@@ -493,7 +525,7 @@ function TierPhones({
   registerRef,
   SoundBtn,
 }: {
-  tier: { title: string; tag: string; desc: string };
+  tier: { title: string; desc: string };
   clips: Clip[];
   prefix: string;
   unmutedKey: string | null;
@@ -504,7 +536,6 @@ function TierPhones({
   return (
     <section className="tier">
       <div className="tier-head">
-        {tier.tag && <p className="tier-tag">{tier.tag}</p>}
         <h2 className="tier-title">{tier.title}</h2>
         {tier.desc && <p className="tier-desc">{tier.desc}</p>}
       </div>
