@@ -26,15 +26,8 @@ const STATS = {
   instagram: { followers: "32,4K", reelViews: "381K", reach: "174K" },
 };
 
-const BRANDS = [
-  { name: "EDIFIER", position: "left" },
-  { name: "TELESIN", position: "left" },
-  { name: "RICOH EUROPE", position: "center" },
-  { name: "PENTAX EUROPE", position: "center" },
-  { name: "INSTA360", position: "center" },
-  { name: "KIEHL'S", position: "right" },
-  { name: "LA ROCHE POSAY", position: "right" },
-];
+// Clients, dans l'ordre d'importance. Ricoh, Pentax et Insta360 en tete.
+const BRANDS = ["RICOH EUROPE", "PENTAX EUROPE", "INSTA360", "EDIFIER", "TELESIN"];
 
 const content = {
   fr: {
@@ -501,19 +494,19 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         }
       `}</style>
 
-      {/* Bio */}
-      <p className="creator-bio">{t.bio}</p>
-
-      {/* Ils me font confiance (au-dessus des stats, gras noir) */}
-      <p className="trust-label" style={{ marginTop: "28px" }}>{t.workingWith}</p>
-      <div className="brands-strip">
+      {/* Ils me font confiance, tout en haut (gras noir) */}
+      <p className="trust-label">{t.workingWith}</p>
+      <div className="brands-strip" style={{ marginBottom: "40px" }}>
         {BRANDS.map((b) => (
-          <span key={b.name} className="brand-chip">{b.name}</span>
+          <span key={b} className="brand-chip">{b}</span>
         ))}
       </div>
 
-      {/* Stats */}
-      <div className="stats-grid" style={{ marginTop: "44px" }}>
+      {/* Gear en premier : les telephones sautent aux yeux */}
+      <PhoneTier title={t.gear} clips={data.gear} prefix="gear" sound={sound} />
+
+      {/* Stats, sous Gear */}
+      <div className="stats-grid">
         <div className="stat-block">
           <p className="stat-platform">{t.igLabel}</p>
           <p className="stat-number">{STATS.instagram.followers}</p>
@@ -533,8 +526,10 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
 
       <hr className="creator-hr" />
 
-      {/* Blocs verticaux (telephones) en carrousel */}
-      <PhoneTier title={t.gear}        clips={data.gear}        prefix="gear"        sound={sound} />
+      {/* Phrase contenu visuel, entre les telephones */}
+      <p className="creator-bio">{t.bio}</p>
+
+      {/* Suite des blocs telephone */}
       <PhoneTier title={t.experiences} clips={data.experiences} prefix="experiences" sound={sound} />
       <PhoneTier title={t.unboxing}    clips={data.unboxing}    prefix="unboxing"    sound={sound} />
       <PhoneTier title={t.talk}        clips={data.talk}        prefix="talk"        sound={sound} />
