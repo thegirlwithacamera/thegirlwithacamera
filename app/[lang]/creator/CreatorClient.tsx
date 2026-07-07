@@ -458,7 +458,7 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         /* Brands */
         .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; color: #999999; text-align: center; margin: 4px 0 14px; }
         .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 16px; max-width: 640px; margin: 0 auto; padding: 0 24px; }
-        .brand-chip { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
+        .brand-chip { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
 
         /* CTA */
         .creator-cta { text-align: center; }
@@ -490,7 +490,7 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           .phone { border-width: 1.5px; }
           .phone::before { width: 26px; height: 3px; }
           .diary-tab { padding: 8px 11px; font-size: 9px; letter-spacing: 0.16em; }
-          .brand-chip { font-size: 9px; letter-spacing: 0.1em; }
+          .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
         }
       `}</style>
 
