@@ -54,6 +54,7 @@ public/videos/*
 # Includes the per-category subfolders: GEAR, EXPERIENCES, UNBOXING, TALK, CINEMATIC
 !public/videos/creator
 !public/videos/creator/**
+public/videos/creator/**/.DS_Store
 
 # typescript
 *.tsbuildinfo
