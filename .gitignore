@@ -51,7 +51,7 @@ public/videos/*
 *.MP4
 
 # Creator page videos are compressed and served from the repo.
-# Includes the per-category subfolders: GEAR, EXPERIENCES, UNBOXING, TALK, CINEMATIQUE
+# Includes the per-category subfolders: GEAR, EXPERIENCES, UNBOXING, TALK, CINEMATIC
 !public/videos/creator
 !public/videos/creator/**
 

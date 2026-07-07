@@ -68,7 +68,7 @@ function readFolder(folder: string): Clip[] {
 }
 
 // Clips de secours (Vercel Blob), utilises tant que le dossier
-// CINEMATIQUE est vide. Ce sont des city diaries, ils s'affichent
+// CINEMATIC est vide. Ce sont des city diaries, ils s'affichent
 // donc sous l'onglet City.
 const FILM_BASE = "https://3cwvdrhaucmdleep.public.blob.vercel-storage.com/film";
 const CITY_FALLBACK: Clip[] = [
@@ -81,10 +81,10 @@ const CITY_FALLBACK: Clip[] = [
   { src: `${FILM_BASE}/citydiary-07-palermo.mp4`, label: "Palermo" },
 ];
 
-// Lit le dossier CINEMATIQUE et regroupe par categorie (Life, Photographer,
+// Lit le dossier CINEMATIC et regroupe par categorie (Life, Photographer,
 // City, Fashion) selon le nom des fichiers.
 function readDiary(): Diary {
-  const dir = path.join(CREATOR_DIR, "CINEMATIQUE");
+  const dir = path.join(CREATOR_DIR, "CINEMATIC");
   let files: string[] = [];
   try {
     files = fs.readdirSync(dir);
@@ -96,9 +96,9 @@ function readDiary(): Diary {
 
   for (const f of videos) {
     groups[categoryOf(f)].push({
-      src: `/videos/creator/CINEMATIQUE/${f}`,
+      src: `/videos/creator/CINEMATIC/${f}`,
       label: diaryLabel(f),
-      poster: posterFor(files, "CINEMATIQUE", f),
+      poster: posterFor(files, "CINEMATIC", f),
     });
   }
 
