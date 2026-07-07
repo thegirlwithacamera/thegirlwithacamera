@@ -526,11 +526,11 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
 
       <hr className="creator-hr" />
 
-      {/* Phrase contenu visuel, entre les telephones */}
+      <PhoneTier title={t.experiences} clips={data.experiences} prefix="experiences" sound={sound} />
+
+      {/* Phrase contenu visuel, entre Experiences et Unboxing */}
       <p className="creator-bio">{t.bio}</p>
 
-      {/* Suite des blocs telephone */}
-      <PhoneTier title={t.experiences} clips={data.experiences} prefix="experiences" sound={sound} />
       <PhoneTier title={t.unboxing}    clips={data.unboxing}    prefix="unboxing"    sound={sound} />
       <PhoneTier title={t.talk}        clips={data.talk}        prefix="talk"        sound={sound} />
 
