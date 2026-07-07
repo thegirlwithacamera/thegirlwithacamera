@@ -18,9 +18,13 @@ const VIDEO_RE = /\.(mp4|mov|webm)$/i;
 const POSTER_EXTS = [".jpg", ".jpeg", ".png", ".webp"];
 
 // "product-in-use.mp4" -> "Product In Use"
+// Une apostrophe finale sert juste a differencier deux fichiers de meme
+// titre dans le dossier (macOS interdit deux noms identiques). On la retire
+// du label pour que les deux clips affichent le meme titre.
 function toLabel(file: string): string {
   return file
     .replace(/\.[^.]+$/, "")
+    .replace(/['’]+$/, "")
     .replace(/[-_]+/g, " ")
     .trim()
     .replace(/\b\w/g, (c) => c.toUpperCase());
