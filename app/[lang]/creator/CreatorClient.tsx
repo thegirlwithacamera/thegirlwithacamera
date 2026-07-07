@@ -463,7 +463,9 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         .vid-sound:hover { background: rgba(0,0,0,0.7); }
 
         /* Brands */
-        .brand-item { font-size: 12px; letter-spacing: 0.12em; color: #0a0a0a; text-align: center; line-height: 2.6; }
+        .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; color: #999999; text-align: center; margin: 4px 0 14px; }
+        .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 16px; max-width: 640px; margin: 0 auto; padding: 0 24px; }
+        .brand-chip { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #777777; }
 
         /* CTA */
         .creator-cta { text-align: center; }
@@ -495,7 +497,7 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           .phone { border-width: 1.5px; }
           .phone::before { width: 26px; height: 3px; }
           .diary-tab { padding: 8px 11px; font-size: 9px; letter-spacing: 0.16em; }
-          .brands-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .brand-chip { font-size: 9px; letter-spacing: 0.1em; }
         }
       `}</style>
 
@@ -527,6 +529,14 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         </div>
       </div>
 
+      {/* Ils me font confiance (compact, groupe avec les stats) */}
+      <p className="trust-label" style={{ marginTop: "32px" }}>{t.workingWith}</p>
+      <div className="brands-strip">
+        {BRANDS.map((b) => (
+          <span key={b.name} className="brand-chip">{b.name}</span>
+        ))}
+      </div>
+
       <hr className="creator-hr" />
 
       {/* Blocs verticaux (telephones) en carrousel */}
@@ -543,20 +553,6 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         catLabels={t.cat}
         sound={sound}
       />
-
-      <hr className="creator-hr" />
-
-      {/* Ils me font confiance */}
-      <p className="section-title">{t.workingWith}</p>
-      <div className="brands-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "40px", maxWidth: "800px", margin: "0 auto", padding: "0 40px" }}>
-        {["left", "center", "right"].map((pos) => (
-          <div key={pos} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
-            {BRANDS.filter((b) => b.position === pos).map((b) => (
-              <p key={b.name} className="brand-item">{b.name}</p>
-            ))}
-          </div>
-        ))}
-      </div>
 
       <hr className="creator-hr" />
 
