@@ -14,7 +14,7 @@ export async function GET() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
-    <loc>${baseUrl}/en/film</loc>
+    <loc>${baseUrl}/en/creator</loc>
 ${videos
   .map(
     (v) => `
@@ -31,7 +31,7 @@ ${videos
   .join('')}
   </url>
   <url>
-    <loc>${baseUrl}/fr/film</loc>
+    <loc>${baseUrl}/fr/creator</loc>
 ${videos
   .map(
     (v) => `

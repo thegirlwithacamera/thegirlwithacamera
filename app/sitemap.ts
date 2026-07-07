@@ -1,9 +1,8 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
-import { series } from "@/lib/series";
-import { getAllPosts } from "@/lib/sanity.queries";
+import { getPublishedTrips } from "@/lib/diary";
 
-const STATIC_PATHS = ["", "/film", "/creator", "/shop", "/about"];
+const STATIC_PATHS = ["", "/shop", "/creator", "/diary", "/about"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const langs: Array<"fr" | "en"> = ["fr", "en"];
@@ -24,5 +23,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  return staticEntries;
+  const diaryEntries: MetadataRoute.Sitemap = langs.flatMap((lang) =>
+    getPublishedTrips().map((trip) => ({
+      url: `${site.url}/${lang}/diary/${trip.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: {
+        languages: {
+          fr: `${site.url}/fr/diary/${trip.slug}`,
+          en: `${site.url}/en/diary/${trip.slug}`,
+        },
+      },
+    })),
+  );
+
+  return [...staticEntries, ...diaryEntries];
 }
