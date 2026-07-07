@@ -17,10 +17,10 @@ export default function Header() {
 
   const navLinks = [
     { href: `/${currentLang}`,          label: "Portfolio" },
-    { href: `/${currentLang}/film`,     label: "Film" },
+    { href: `/${currentLang}/shop`,     label: "Prints" },
     { href: `/${currentLang}/creator`,  label: "Creator" },
-    { href: `/${currentLang}/shop`,     label: "Shop" },
-    { href: `/${currentLang}/about`,    label: "Info" },
+    { href: `/${currentLang}/diary`,    label: "Diary" },
+    { href: `/${currentLang}/about`,    label: "About" },
   ];
 
   return (
