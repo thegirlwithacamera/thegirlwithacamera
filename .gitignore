@@ -50,9 +50,10 @@ public/videos/*
 *.mp4
 *.MP4
 
-# Creator page videos are compressed and served from the repo
+# Creator page videos are compressed and served from the repo.
+# Includes the per-category subfolders: GEAR, EXPERIENCES, UNBOXING, TALK, CINEMATIQUE
 !public/videos/creator
-!public/videos/creator/*.mp4
+!public/videos/creator/**
 
 # typescript
 *.tsbuildinfo
