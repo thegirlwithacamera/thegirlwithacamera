@@ -494,18 +494,23 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         }
       `}</style>
 
-      {/* Ils me font confiance, tout en haut (gras noir) */}
+      {/* 1. Gear : les telephones sautent aux yeux des l'arrivee */}
+      <PhoneTier title={t.gear} clips={data.gear} prefix="gear" sound={sound} />
+
+      {/* 2. Clients */}
       <p className="trust-label">{t.workingWith}</p>
-      <div className="brands-strip" style={{ marginBottom: "40px" }}>
+      <div className="brands-strip">
         {BRANDS.map((b) => (
           <span key={b} className="brand-chip">{b}</span>
         ))}
       </div>
 
-      {/* Gear en premier : les telephones sautent aux yeux */}
-      <PhoneTier title={t.gear} clips={data.gear} prefix="gear" sound={sound} />
+      <hr className="creator-hr" />
 
-      {/* Stats, sous Gear */}
+      {/* 3. Experiences */}
+      <PhoneTier title={t.experiences} clips={data.experiences} prefix="experiences" sound={sound} />
+
+      {/* 4. Stats */}
       <div className="stats-grid">
         <div className="stat-block">
           <p className="stat-platform">{t.igLabel}</p>
@@ -526,13 +531,16 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
 
       <hr className="creator-hr" />
 
-      <PhoneTier title={t.experiences} clips={data.experiences} prefix="experiences" sound={sound} />
+      {/* 5. Unboxing */}
+      <PhoneTier title={t.unboxing} clips={data.unboxing} prefix="unboxing" sound={sound} />
 
-      {/* Phrase contenu visuel, entre Experiences et Unboxing */}
+      {/* 6. Phrase contenu visuel */}
       <p className="creator-bio">{t.bio}</p>
 
-      <PhoneTier title={t.unboxing}    clips={data.unboxing}    prefix="unboxing"    sound={sound} />
-      <PhoneTier title={t.talk}        clips={data.talk}        prefix="talk"        sound={sound} />
+      <hr className="creator-hr" />
+
+      {/* 7. Talk */}
+      <PhoneTier title={t.talk} clips={data.talk} prefix="talk" sound={sound} />
 
       {/* Diary (video diaries) en carrousel de tablettes, par categorie */}
       <DiaryBlock
