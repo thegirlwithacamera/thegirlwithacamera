@@ -1,16 +1,26 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 export type Clip = { src: string; label: string; poster?: string };
+export type Diary = { life: Clip[]; photographer: Clip[]; city: Clip[]; fashion: Clip[] };
 
 type Data = {
   gear: Clip[];
   experiences: Clip[];
   unboxing: Clip[];
   talk: Clip[];
-  cinematic: Clip[];
+  diary: Diary;
 };
+
+type Sound = {
+  unmutedKey: string | null;
+  toggleSound: (key: string) => void;
+  registerRef: (key: string, el: HTMLVideoElement | null) => void;
+};
+
+const DIARY_CATS = ["life", "photographer", "city", "fashion"] as const;
+type DiaryCat = (typeof DIARY_CATS)[number];
 
 const STATS = {
   instagram: { followers: "32,4K", reelViews: "381K", reach: "174K" },
@@ -38,14 +48,13 @@ const content = {
     followers: "abonnés",
     reelViews: "vues de reel",
     avgReach: "comptes touchés",
-    tiers: {
-      gear: "GEAR",
-      experiences: "EXPÉRIENCES",
-      unboxing: "UNBOXING",
-      talk: "TALK",
-      cinematic: "CINÉMATIQUE",
-      cinematicDesc: "Mes video diaries. Des séquences contemplatives et cinématiques.",
-    },
+    gear: "GEAR",
+    experiences: "EXPÉRIENCES",
+    unboxing: "UNBOXING",
+    talk: "TALK",
+    diaryTitle: "DIARY",
+    diaryDesc: "Mes video diaries. Des séquences contemplatives et cinématiques.",
+    cat: { life: "LIFE", photographer: "PHOTOGRAPHER", city: "CITY", fashion: "FASHION" },
   },
   en: {
     bio: "AUTHENTIC VISUAL CONTENT FOR BRANDS THAT WANT TO EXIST ON SOCIAL MEDIA WITHOUT LOOKING LIKE AN AD.",
@@ -58,24 +67,175 @@ const content = {
     followers: "followers",
     reelViews: "reel views",
     avgReach: "accounts reached",
-    tiers: {
-      gear: "GEAR",
-      experiences: "EXPERIENCES",
-      unboxing: "UNBOXING",
-      talk: "TALK",
-      cinematic: "CINEMATIC",
-      cinematicDesc: "My video diaries. Contemplative, cinematic sequences.",
-    },
+    gear: "GEAR",
+    experiences: "EXPERIENCES",
+    unboxing: "UNBOXING",
+    talk: "TALK",
+    diaryTitle: "DIARY",
+    diaryDesc: "My video diaries. Contemplative, cinematic sequences.",
+    cat: { life: "LIFE", photographer: "PHOTOGRAPHER", city: "CITY", fashion: "FASHION" },
   },
 };
+
+function SoundBtn({ on, onClick }: { on: boolean; onClick: () => void }) {
+  return (
+    <button className="vid-sound" onClick={onClick} aria-label={on ? "Mute video" : "Unmute video"}>
+      {on ? (
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+        </svg>
+      ) : (
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+        </svg>
+      )}
+    </button>
+  );
+}
+
+function Mock({ clip, cardKey, kind, sound }: { clip: Clip; cardKey: string; kind: "phone" | "tablet"; sound: Sound }) {
+  const video = (
+    <video
+      ref={(el) => sound.registerRef(cardKey, el)}
+      src={clip.src}
+      poster={clip.poster}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      controlsList="nodownload nofullscreen"
+      onContextMenu={(e) => e.preventDefault()}
+      title={`Creator content: ${clip.label}`}
+    />
+  );
+  const btn = <SoundBtn on={sound.unmutedKey === cardKey} onClick={() => sound.toggleSound(cardKey)} />;
+
+  return (
+    <div className="slide">
+      {kind === "tablet" ? (
+        <div className="tablet">
+          <div className="tablet-screen">
+            {video}
+            {btn}
+          </div>
+        </div>
+      ) : (
+        <div className="phone">
+          {video}
+          {btn}
+        </div>
+      )}
+      <span className="vid-label">{clip.label}</span>
+    </div>
+  );
+}
+
+function Carousel({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound }) {
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [overflow, setOverflow] = useState(false);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const check = () => setOverflow(el.scrollWidth > el.clientWidth + 4);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [clips.length]);
+
+  function scroll(dir: 1 | -1) {
+    const el = trackRef.current;
+    if (!el) return;
+    const first = el.querySelector(".slide") as HTMLElement | null;
+    const step = first ? first.offsetWidth + 16 : 280;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  }
+
+  return (
+    <div className={`carousel carousel--${kind}`}>
+      {overflow && (
+        <button className="carousel-arrow carousel-arrow--prev" onClick={() => scroll(-1)} aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+      )}
+      <div className="carousel-track" ref={trackRef}>
+        {clips.map((clip, i) => (
+          <Mock key={`${prefix}-${i}`} clip={clip} cardKey={`${prefix}-${i}`} kind={kind} sound={sound} />
+        ))}
+      </div>
+      {overflow && (
+        <button className="carousel-arrow carousel-arrow--next" onClick={() => scroll(1)} aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6" /></svg>
+        </button>
+      )}
+    </div>
+  );
+}
+
+function PhoneTier({ title, clips, prefix, sound }: { title: string; clips: Clip[]; prefix: string; sound: Sound }) {
+  if (clips.length === 0) return null;
+  return (
+    <>
+      <section className="tier">
+        <div className="tier-head">
+          <h2 className="tier-title">{title}</h2>
+        </div>
+        <Carousel clips={clips} kind="phone" prefix={prefix} sound={sound} />
+      </section>
+      <hr className="creator-hr" />
+    </>
+  );
+}
+
+function DiaryBlock({
+  diary,
+  title,
+  desc,
+  catLabels,
+  sound,
+}: {
+  diary: Diary;
+  title: string;
+  desc: string;
+  catLabels: Record<DiaryCat, string>;
+  sound: Sound;
+}) {
+  const cats = DIARY_CATS.filter((c) => diary[c].length > 0);
+  const [active, setActive] = useState<DiaryCat>(cats[0] ?? "city");
+  if (cats.length === 0) return null;
+
+  const current = cats.includes(active) ? active : cats[0];
+
+  return (
+    <section className="tier">
+      <div className="tier-head">
+        <h2 className="tier-title">{title}</h2>
+        <p className="tier-desc">{desc}</p>
+      </div>
+      {cats.length > 1 && (
+        <div className="diary-tabs">
+          {cats.map((c) => (
+            <button
+              key={c}
+              className={`diary-tab${c === current ? " diary-tab--active" : ""}`}
+              onClick={() => setActive(c)}
+            >
+              {catLabels[c]}
+            </button>
+          ))}
+        </div>
+      )}
+      <Carousel clips={diary[current]} kind="tablet" prefix={`diary-${current}`} sound={sound} />
+    </section>
+  );
+}
 
 export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data: Data }) {
   const t = content[lang];
 
-  // Un seul son actif a la fois, sur toute la page.
   const videoRefs = useRef<Map<string, HTMLVideoElement>>(new Map());
   const [unmutedKey, setUnmutedKey] = useState<string | null>(null);
-  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     videoRefs.current.forEach((v) => {
@@ -83,83 +243,22 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
     });
   }, []);
 
-  function toggleSound(key: string) {
-    const next = unmutedKey === key ? null : key;
-    setUnmutedKey(next);
-    videoRefs.current.forEach((v, k) => {
-      if (v) v.muted = next === null || k !== next;
-    });
-  }
-
-  function registerRef(key: string, el: HTMLVideoElement | null) {
+  const registerRef = useCallback((key: string, el: HTMLVideoElement | null) => {
     if (el) videoRefs.current.set(key, el);
     else videoRefs.current.delete(key);
-  }
+  }, []);
 
-  function scrollCarousel(dir: 1 | -1) {
-    const track = carouselRef.current;
-    if (!track) return;
-    const first = track.querySelector(".tablet-wrap") as HTMLElement | null;
-    const step = first ? first.offsetWidth + 18 : 320;
-    track.scrollBy({ left: dir * step, behavior: "smooth" });
-  }
+  const toggleSound = useCallback((key: string) => {
+    setUnmutedKey((prev) => {
+      const next = prev === key ? null : key;
+      videoRefs.current.forEach((v, k) => {
+        if (v) v.muted = next === null || k !== next;
+      });
+      return next;
+    });
+  }, []);
 
-  function SoundBtn({ on, onClick }: { on: boolean; onClick: () => void }) {
-    return (
-      <button className="vid-sound" onClick={onClick} aria-label={on ? "Mute video" : "Unmute video"}>
-        {on ? (
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
-          </svg>
-        ) : (
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
-          </svg>
-        )}
-      </button>
-    );
-  }
-
-  // Bloc vertical (telephones). Masque si aucun clip.
-  function PhoneTier({ title, clips, prefix }: { title: string; clips: Clip[]; prefix: string }) {
-    if (clips.length === 0) return null;
-    return (
-      <>
-        <section className="tier">
-          <div className="tier-head">
-            <h2 className="tier-title">{title}</h2>
-          </div>
-          <div className="phones-row">
-            {clips.map((clip, i) => {
-              const key = `${prefix}-${i}`;
-              return (
-                <div key={key} className="phone-wrap">
-                  <div className="phone">
-                    <video
-                      ref={(el) => registerRef(key, el)}
-                      src={clip.src}
-                      poster={clip.poster}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      controlsList="nodownload nofullscreen"
-                      onContextMenu={(e) => e.preventDefault()}
-                      title={`Creator content: ${clip.label}`}
-                    />
-                    <SoundBtn on={unmutedKey === key} onClick={() => toggleSound(key)} />
-                  </div>
-                  <span className="vid-label">{clip.label}</span>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-        <hr className="creator-hr" />
-      </>
-    );
-  }
+  const sound: Sound = { unmutedKey, toggleSound, registerRef };
 
   return (
     <main style={{ paddingTop: "20px", paddingBottom: "80px", background: "#ffffff" }}>
@@ -174,13 +273,7 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           margin: 0 auto 24px;
           padding: 0 40px;
         }
-        .creator-hr {
-          height: 1px;
-          background: #ebebeb;
-          max-width: 280px;
-          margin: 40px auto;
-          border: none;
-        }
+        .creator-hr { height: 1px; background: #ebebeb; max-width: 280px; margin: 40px auto; border: none; }
         .section-title {
           font-size: 11px;
           font-weight: 700;
@@ -213,14 +306,8 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
 
         /* Tiers */
         .tier { max-width: 1260px; margin: 0 auto; padding: 0 40px; }
-        .tier-head { text-align: center; margin-bottom: 28px; }
-        .tier-title {
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 0.22em;
-          color: #0a0a0a;
-          margin: 0 0 12px;
-        }
+        .tier-head { text-align: center; margin-bottom: 24px; }
+        .tier-title { font-size: 13px; font-weight: 700; letter-spacing: 0.22em; color: #0a0a0a; margin: 0 0 12px; }
         .tier-desc {
           font-size: 11px;
           line-height: 1.9;
@@ -231,16 +318,79 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           font-style: italic;
         }
 
-        /* Telephones verticaux 9:16 */
-        .phones-row {
+        /* Diary tabs */
+        .diary-tabs {
           display: flex;
-          flex-wrap: wrap;
           justify-content: center;
-          gap: 18px;
-          max-width: 900px;
-          margin: 0 auto;
+          flex-wrap: wrap;
+          gap: 4px;
+          margin: 0 auto 24px;
+          border-bottom: 1px solid #ebebeb;
+          max-width: 560px;
         }
-        .phone-wrap { width: 180px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .diary-tab {
+          background: none;
+          border: none;
+          border-bottom: 2px solid transparent;
+          padding: 8px 16px;
+          font-size: 10px;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #999999;
+          cursor: pointer;
+          transition: color 0.2s, border-color 0.2s;
+          margin-bottom: -1px;
+        }
+        .diary-tab:hover { color: #555; }
+        .diary-tab--active { color: #0a0a0a; border-bottom-color: #0a0a0a; }
+
+        /* Carrousel commun */
+        .carousel { position: relative; max-width: 1100px; margin: 0 auto; padding: 0 8px; }
+        .carousel-track {
+          display: flex;
+          gap: 16px;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          padding: 4px 4px 8px;
+        }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        .slide {
+          flex: 0 0 auto;
+          scroll-snap-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+        .carousel--phone .slide { width: 160px; }
+        .carousel--tablet .slide { width: 300px; }
+
+        .carousel-arrow {
+          position: absolute;
+          top: 45%;
+          transform: translateY(-50%);
+          z-index: 5;
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          border: 1px solid #e5e5e5;
+          background: #ffffff;
+          color: #0a0a0a;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+          transition: background 0.2s, border-color 0.2s;
+        }
+        .carousel-arrow:hover { background: #0a0a0a; color: #ffffff; border-color: #0a0a0a; }
+        .carousel-arrow--prev { left: -6px; }
+        .carousel-arrow--next { right: -6px; }
+
+        /* Telephone 9:16 */
         .phone {
           width: 100%;
           aspect-ratio: 9 / 16;
@@ -264,28 +414,7 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         }
         .phone video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* Carrousel de tablettes horizontales 16:9 (Cinematique) */
-        .carousel { position: relative; max-width: 1100px; margin: 0 auto; padding: 0 8px; }
-        .carousel-track {
-          display: flex;
-          gap: 18px;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          scroll-behavior: smooth;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-          padding: 4px 4px 8px;
-        }
-        .carousel-track::-webkit-scrollbar { display: none; }
-        .tablet-wrap {
-          flex: 0 0 auto;
-          width: 300px;
-          scroll-snap-align: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 12px;
-        }
+        /* Tablette 16:9 */
         .tablet {
           width: 100%;
           border: 2px solid #0a0a0a;
@@ -309,31 +438,9 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         .tablet-screen { aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; background: #000; position: relative; }
         .tablet-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        .carousel-arrow {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 5;
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          border: 1px solid #e5e5e5;
-          background: #ffffff;
-          color: #0a0a0a;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          box-shadow: 0 1px 6px rgba(0,0,0,0.08);
-          transition: background 0.2s, border-color 0.2s;
-        }
-        .carousel-arrow:hover { background: #0a0a0a; color: #ffffff; border-color: #0a0a0a; }
-        .carousel-arrow--prev { left: -6px; }
-        .carousel-arrow--next { right: -6px; }
-
         .vid-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #666666; text-align: center; }
 
-        /* Bouton son commun */
+        /* Bouton son */
         .vid-sound {
           position: absolute;
           bottom: 10px;
@@ -377,15 +484,16 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           .stat-sub { font-size: 9px; margin-top: 2px; }
           .section-title { margin: 0 0 16px; font-size: 10px; }
           .creator-hr { margin: 28px auto; max-width: 200px; }
-          .tier { padding: 0 20px; }
-          .phone-wrap { width: 132px; }
-          .phone { border-width: 1.5px; }
-          .phone::before { width: 26px; height: 3px; }
+          .tier { padding: 0 12px; }
           .carousel { padding: 0; }
-          .tablet-wrap { width: 230px; }
-          .carousel-arrow { width: 32px; height: 32px; }
+          .carousel--phone .slide { width: 132px; }
+          .carousel--tablet .slide { width: 240px; }
+          .carousel-arrow { width: 30px; height: 30px; }
           .carousel-arrow--prev { left: 0; }
           .carousel-arrow--next { right: 0; }
+          .phone { border-width: 1.5px; }
+          .phone::before { width: 26px; height: 3px; }
+          .diary-tab { padding: 8px 11px; font-size: 9px; letter-spacing: 0.16em; }
           .brands-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
         }
       `}</style>
@@ -420,55 +528,20 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
 
       <hr className="creator-hr" />
 
-      {/* Blocs verticaux (telephones) */}
-      <PhoneTier title={t.tiers.gear}        clips={data.gear}        prefix="gear" />
-      <PhoneTier title={t.tiers.experiences} clips={data.experiences} prefix="experiences" />
-      <PhoneTier title={t.tiers.unboxing}    clips={data.unboxing}    prefix="unboxing" />
-      <PhoneTier title={t.tiers.talk}        clips={data.talk}        prefix="talk" />
+      {/* Blocs verticaux (telephones) en carrousel */}
+      <PhoneTier title={t.gear}        clips={data.gear}        prefix="gear"        sound={sound} />
+      <PhoneTier title={t.experiences} clips={data.experiences} prefix="experiences" sound={sound} />
+      <PhoneTier title={t.unboxing}    clips={data.unboxing}    prefix="unboxing"    sound={sound} />
+      <PhoneTier title={t.talk}        clips={data.talk}        prefix="talk"        sound={sound} />
 
-      {/* Bloc horizontal premium (carrousel de tablettes) */}
-      <section className="tier">
-        <div className="tier-head">
-          <h2 className="tier-title">{t.tiers.cinematic}</h2>
-          <p className="tier-desc">{t.tiers.cinematicDesc}</p>
-        </div>
-        <div className="carousel">
-          <button className="carousel-arrow carousel-arrow--prev" onClick={() => scrollCarousel(-1)} aria-label="Previous">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
-          </button>
-          <div className="carousel-track" ref={carouselRef}>
-            {data.cinematic.map((clip, i) => {
-              const key = `cinematic-${i}`;
-              return (
-                <div key={key} className="tablet-wrap">
-                  <div className="tablet">
-                    <div className="tablet-screen">
-                      <video
-                        ref={(el) => registerRef(key, el)}
-                        src={clip.src}
-                        poster={clip.poster}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
-                        controlsList="nodownload nofullscreen"
-                        onContextMenu={(e) => e.preventDefault()}
-                        title={`Cinematic content: ${clip.label}`}
-                      />
-                      <SoundBtn on={unmutedKey === key} onClick={() => toggleSound(key)} />
-                    </div>
-                  </div>
-                  <span className="vid-label">{clip.label}</span>
-                </div>
-              );
-            })}
-          </div>
-          <button className="carousel-arrow carousel-arrow--next" onClick={() => scrollCarousel(1)} aria-label="Next">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6" /></svg>
-          </button>
-        </div>
-      </section>
+      {/* Diary (video diaries) en carrousel de tablettes, par categorie */}
+      <DiaryBlock
+        diary={data.diary}
+        title={t.diaryTitle}
+        desc={t.diaryDesc}
+        catLabels={t.cat}
+        sound={sound}
+      />
 
       <hr className="creator-hr" />
 
