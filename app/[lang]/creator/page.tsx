@@ -8,7 +8,7 @@ interface Props {
 
 // Tes stats sociales, mets a jour les chiffres quand tu veux
 const STATS = {
-  instagram: { followers: "31K", reelViews: "302K", reach: "217K" },
+  instagram: { followers: "32,4K", reelViews: "381K", reach: "174K" },
 };
 
 const BRANDS = [
@@ -21,41 +21,55 @@ const BRANDS = [
   { name: "LA ROCHE POSAY", position: "right" },
 ];
 
-// ─────────────────────────────────────────────────────────────
-//  VIDEOS PAR BLOC
-//  Pour ajouter une video, ajoute une ligne { src, label, poster? }.
-//  Cinematique : fichiers heberges sur Vercel Blob (format horizontal 16:9).
-//  Les 3 autres blocs : fichiers dans /public/videos/creator/ (format vertical).
-// ─────────────────────────────────────────────────────────────
+// ═════════════════════════════════════════════════════════════
+//  VIDEOS PAR BLOC  —  OU AJOUTER TON NOUVEAU CONTENU
+// ═════════════════════════════════════════════════════════════
+//  Pour ajouter une video, ajoute une ligne { src, label, poster? }
+//  dans le tableau du bloc concerne ci-dessous.
+//
+//  DEUX CAS :
+//  1) UNBOXING et EXPERIENCE (format vertical, clips courts)
+//     Depose ton fichier .mp4 dans  public/videos/creator/
+//     puis pointe src sur "/videos/creator/mon-fichier.mp4".
+//     Ces fichiers sont dans le repo et se deploient tout seuls.
+//
+//  2) CINEMATIQUE (format horizontal 16:9, video diaries)
+//     Ces clips sont plus lourds et heberges sur Vercel Blob.
+//     Envoie-moi le fichier et je l'ajoute au Blob, OU depose une
+//     version compressee dans public/videos/creator/ et pointe src
+//     dessus comme au cas 1.
+// ═════════════════════════════════════════════════════════════
 const FILM_BASE = "https://3cwvdrhaucmdleep.public.blob.vercel-storage.com/film";
 
 type Clip = { src: string; label: string; poster?: string };
 
+// Bloc 1 — video diaries contemplatifs (city / travel)
 const CINEMATIC: Clip[] = [
-  { src: `${FILM_BASE}/citydiary-01-tokyo.mp4`,   label: "Tokyo",         poster: "/videos/city-diary/01-tokyo-poster.jpg" },
-  { src: `${FILM_BASE}/citydiary-02-osaka.mp4`,   label: "Osaka",         poster: "/videos/city-diary/02-osaka-poster.jpg" },
-  { src: `${FILM_BASE}/citydiary-03-tokyo.mp4`,   label: "Tokyo Night",   poster: "/videos/city-diary/03-tokyo-poster.jpg" },
-  { src: `${FILM_BASE}/citydiary-04-nara.mp4`,    label: "Nara",          poster: "/videos/city-diary/04-nara-poster.jpg" },
-  { src: `${FILM_BASE}/citydiary-05-kyoto.mp4`,   label: "Kyoto",         poster: "/videos/city-diary/05-kyoto-poster.jpg" },
+  { src: `${FILM_BASE}/citydiary-01-tokyo.mp4`,   label: "Tokyo",       poster: "/videos/city-diary/01-tokyo-poster.jpg" },
+  { src: `${FILM_BASE}/citydiary-02-osaka.mp4`,   label: "Osaka",       poster: "/videos/city-diary/02-osaka-poster.jpg" },
+  { src: `${FILM_BASE}/citydiary-03-tokyo.mp4`,   label: "Tokyo Night", poster: "/videos/city-diary/03-tokyo-poster.jpg" },
+  { src: `${FILM_BASE}/citydiary-04-nara.mp4`,    label: "Nara",        poster: "/videos/city-diary/04-nara-poster.jpg" },
+  { src: `${FILM_BASE}/citydiary-05-kyoto.mp4`,   label: "Kyoto",       poster: "/videos/city-diary/05-kyoto-poster.jpg" },
   { src: `${FILM_BASE}/citydiary-06-cefalu.mp4`,  label: "Cefalu" },
   { src: `${FILM_BASE}/citydiary-07-palermo.mp4`, label: "Palermo" },
-  { src: `${FILM_BASE}/lifediary-01-cherryblossom.mp4`, label: "Cherry Blossom", poster: "/videos/life-diary/01-cherry-blossom-poster.jpg" },
-  { src: `${FILM_BASE}/sequence-01.mp4`,          label: "Self Portrait" },
+  // AJOUTE TES NOUVEAUX VIDEO DIARIES ICI (voir cas 2 ci-dessus)
 ];
 
+// Bloc 2 — unboxing (le face cam vit ici aussi)
 const UNBOXING: Clip[] = [
-  { src: "/videos/creator/unboxing.mp4",   label: "Unboxing" },
-  { src: "/videos/creator/unboxing-2.mp4", label: "Unboxing" },
+  { src: "/videos/creator/unboxing.mp4",          label: "Unboxing" },
+  { src: "/videos/creator/unboxing-2.mp4",        label: "Unboxing" },
+  { src: "/videos/creator/unboxing-face-cam.mp4", label: "Face cam" },
+  // AJOUTE TES NOUVEAUX UNBOXING ICI (fichier dans public/videos/creator/)
 ];
 
-const FACECAM: Clip[] = [
-  { src: "/videos/creator/unboxing-face-cam.mp4", label: "Face Cam" },
-];
-
+// Bloc 3 — experience & lifestyle (coiffeur, tatouage, head spa,
+// gear, reels ou on te voit shooter). Ajoute tes clips ici.
 const EXPERIENCE: Clip[] = [
-  { src: "/videos/creator/product-in-use.mp4",     label: "Product in Use" },
   { src: "/videos/creator/lifestyle.mp4",          label: "Lifestyle" },
+  { src: "/videos/creator/product-in-use.mp4",     label: "Product in Use" },
   { src: "/videos/creator/product-vs-results.mp4", label: "Product vs Results" },
+  // AJOUTE TES REELS EXPERIENCE ICI (fichier dans public/videos/creator/)
 ];
 
 const content = {
@@ -71,10 +85,9 @@ const content = {
     reelViews: "vues de reel",
     avgReach: "comptes touchés",
     tiers: {
-      cinematic:  { title: "CINÉMATIQUE", tag: "TIER PREMIUM", desc: "[ Courte description à remplir, 1 à 2 lignes ]" },
-      unboxing:   { title: "UNBOXING",    tag: "",             desc: "[ Courte description à remplir, 1 à 2 lignes ]" },
-      facecam:    { title: "FACE CAM",    tag: "",             desc: "[ Courte description à remplir, 1 à 2 lignes ]" },
-      experience: { title: "EXPÉRIENCE",  tag: "",             desc: "[ Courte description à remplir, 1 à 2 lignes ]" },
+      cinematic:  { title: "CINÉMATIQUE", tag: "", desc: "Mes video diaries. Des séquences contemplatives et cinématiques." },
+      unboxing:   { title: "UNBOXING",    tag: "", desc: "" },
+      experience: { title: "EXPÉRIENCE",  tag: "", desc: "" },
     },
   },
   en: {
@@ -89,10 +102,9 @@ const content = {
     reelViews: "reel views",
     avgReach: "accounts reached",
     tiers: {
-      cinematic:  { title: "CINEMATIC",   tag: "PREMIUM TIER", desc: "[ Short description to fill in, 1 to 2 lines ]" },
-      unboxing:   { title: "UNBOXING",    tag: "",             desc: "[ Short description to fill in, 1 to 2 lines ]" },
-      facecam:    { title: "FACE CAM",    tag: "",             desc: "[ Short description to fill in, 1 to 2 lines ]" },
-      experience: { title: "EXPERIENCE",  tag: "",             desc: "[ Short description to fill in, 1 to 2 lines ]" },
+      cinematic:  { title: "CINEMATIC",  tag: "", desc: "My video diaries. Contemplative, cinematic sequences." },
+      unboxing:   { title: "UNBOXING",   tag: "", desc: "" },
+      experience: { title: "EXPERIENCE", tag: "", desc: "" },
     },
   },
 };
@@ -393,7 +405,7 @@ export default function CreatorPage({ params }: Props) {
         <div className="tier-head">
           {t.tiers.cinematic.tag && <p className="tier-tag">{t.tiers.cinematic.tag}</p>}
           <h2 className="tier-title">{t.tiers.cinematic.title}</h2>
-          <p className="tier-desc">{t.tiers.cinematic.desc}</p>
+          {t.tiers.cinematic.desc && <p className="tier-desc">{t.tiers.cinematic.desc}</p>}
         </div>
         <div className="screens-grid">
           {CINEMATIC.map((clip, i) => {
@@ -435,20 +447,7 @@ export default function CreatorPage({ params }: Props) {
 
       <hr className="creator-hr" />
 
-      {/* Bloc 3 : Face cam (vertical) */}
-      <TierPhones
-        tier={t.tiers.facecam}
-        clips={FACECAM}
-        prefix="facecam"
-        unmutedKey={unmutedKey}
-        toggleSound={toggleSound}
-        registerRef={registerRef}
-        SoundBtn={SoundBtn}
-      />
-
-      <hr className="creator-hr" />
-
-      {/* Bloc 4 : Experience (vertical) */}
+      {/* Bloc 3 : Experience (vertical) */}
       <TierPhones
         tier={t.tiers.experience}
         clips={EXPERIENCE}
@@ -507,7 +506,7 @@ function TierPhones({
       <div className="tier-head">
         {tier.tag && <p className="tier-tag">{tier.tag}</p>}
         <h2 className="tier-title">{tier.title}</h2>
-        <p className="tier-desc">{tier.desc}</p>
+        {tier.desc && <p className="tier-desc">{tier.desc}</p>}
       </div>
       <div className="phones-row">
         {clips.map((clip, i) => {
