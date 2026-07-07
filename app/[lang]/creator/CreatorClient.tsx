@@ -124,18 +124,101 @@ function Mock({ clip, cardKey, kind, sound }: { clip: Clip; cardKey: string; kin
   );
 }
 
+// Pile 3D facon coverflow, un item centre, voisins en biais, swipe au doigt.
+// Utilisee sur mobile (tactile). Un seul item joue a la fois.
+function MobileStack({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound }) {
+  const [active, setActive] = useState(0);
+  const startX = useRef(0);
+  const localRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
+  const n = clips.length;
+
+  useEffect(() => {
+    localRefs.current.forEach((v, i) => {
+      if (!v) return;
+      if (i === active) v.play().catch(() => {});
+      else v.pause();
+    });
+  }, [active]);
+
+  function onTouchEnd(e: React.TouchEvent) {
+    const diff = startX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40 && n > 1) {
+      setActive((a) => (diff > 0 ? (a + 1) % n : (a - 1 + n) % n));
+    }
+  }
+
+  function posClass(i: number) {
+    if (i === active) return "pos-active";
+    if (n > 1 && i === (active + 1) % n) return "pos-next";
+    if (n > 2 && i === (active - 1 + n) % n) return "pos-prev";
+    return "pos-hidden";
+  }
+
+  return (
+    <div
+      className={`stack stack--${kind}`}
+      onTouchStart={(e) => { startX.current = e.touches[0].clientX; }}
+      onTouchEnd={onTouchEnd}
+    >
+      {clips.map((clip, i) => {
+        const key = `${prefix}-${i}`;
+        const video = (
+          <video
+            ref={(el) => {
+              if (el) localRefs.current.set(i, el);
+              else localRefs.current.delete(i);
+              sound.registerRef(key, el);
+            }}
+            src={clip.src}
+            poster={clip.poster}
+            autoPlay={i === active}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            controlsList="nodownload nofullscreen"
+            onContextMenu={(e) => e.preventDefault()}
+            title={`Creator content: ${clip.label}`}
+          />
+        );
+        const btn = <SoundBtn on={sound.unmutedKey === key} onClick={() => sound.toggleSound(key)} />;
+        return (
+          <div key={key} className={`stack-card ${posClass(i)}`}>
+            {kind === "tablet" ? (
+              <div className="tablet"><div className="tablet-screen">{video}{btn}</div></div>
+            ) : (
+              <div className="phone">{video}{btn}</div>
+            )}
+            {i === active && <span className="vid-label">{clip.label}</span>}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function Carousel({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound }) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [overflow, setOverflow] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
     const el = trackRef.current;
     if (!el) return;
     const check = () => setOverflow(el.scrollWidth > el.clientWidth + 4);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
-  }, [clips.length]);
+  }, [clips.length, isMobile]);
 
   function scroll(dir: 1 | -1) {
     const el = trackRef.current;
@@ -143,6 +226,11 @@ function Carousel({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "phone"
     const first = el.querySelector(".slide") as HTMLElement | null;
     const step = first ? first.offsetWidth + 16 : 280;
     el.scrollBy({ left: dir * step, behavior: "smooth" });
+  }
+
+  // Mobile : pile 3D tactile. Desktop : rangee avec fleches.
+  if (isMobile) {
+    return <MobileStack clips={clips} kind={kind} prefix={prefix} sound={sound} />;
   }
 
   return (
@@ -230,11 +318,8 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
   const videoRefs = useRef<Map<string, HTMLVideoElement>>(new Map());
   const [unmutedKey, setUnmutedKey] = useState<string | null>(null);
 
-  useEffect(() => {
-    videoRefs.current.forEach((v) => {
-      if (v) v.play().catch(() => {});
-    });
-  }, []);
+  // Desktop : autoplay via l'attribut sur chaque video.
+  // Mobile : la pile 3D ne joue que la carte active (voir MobileStack).
 
   const registerRef = useCallback((key: string, el: HTMLVideoElement | null) => {
     if (el) videoRefs.current.set(key, el);
@@ -383,6 +468,37 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         .carousel-arrow:hover { background: #0a0a0a; color: #ffffff; border-color: #0a0a0a; }
         .carousel-arrow--prev { left: -6px; }
         .carousel-arrow--next { right: -6px; }
+
+        /* Pile 3D (mobile, tactile) */
+        .stack {
+          position: relative;
+          width: 100%;
+          margin: 0 auto;
+          perspective: 1100px;
+          overflow: hidden;
+          touch-action: pan-y;
+        }
+        .stack--phone { height: 420px; }
+        .stack--tablet { height: 220px; }
+        .stack-card {
+          position: absolute;
+          left: 50%;
+          top: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          transform-origin: center center;
+          transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.45s;
+        }
+        .stack--phone .stack-card { width: 210px; margin-left: -105px; }
+        .stack--tablet .stack-card { width: 300px; margin-left: -150px; }
+        .stack-card.pos-active { transform: translateX(0) scale(1) rotateY(0deg); opacity: 1; z-index: 20; }
+        .stack-card.pos-next { transform: translateX(118px) scale(0.84) rotateY(-12deg); opacity: 0.45; z-index: 9; }
+        .stack-card.pos-prev { transform: translateX(-118px) scale(0.84) rotateY(12deg); opacity: 0.45; z-index: 9; }
+        .stack-card.pos-hidden { transform: scale(0.7); opacity: 0; z-index: 0; pointer-events: none; }
+        .stack--tablet .stack-card.pos-next { transform: translateX(150px) scale(0.82) rotateY(-12deg); }
+        .stack--tablet .stack-card.pos-prev { transform: translateX(-150px) scale(0.82) rotateY(12deg); }
 
         /* Telephone 9:16 */
         .phone {
