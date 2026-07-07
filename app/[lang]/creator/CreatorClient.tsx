@@ -482,11 +482,11 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           .creator-hr { margin: 28px auto; max-width: 200px; }
           .tier { padding: 0 12px; }
           .carousel { padding: 0; }
-          .carousel--phone .slide { width: 132px; }
-          .carousel--tablet .slide { width: 240px; }
-          .carousel-arrow { width: 30px; height: 30px; }
-          .carousel-arrow--prev { left: 0; }
-          .carousel-arrow--next { right: 0; }
+          /* Mobile : slider tactile, un item centre a la fois, swipe au doigt */
+          .carousel--phone .slide { width: 62vw; max-width: 240px; }
+          .carousel--tablet .slide { width: 86vw; max-width: 340px; }
+          .carousel-track { gap: 12px; }
+          .carousel-arrow { display: none; }
           .phone { border-width: 1.5px; }
           .phone::before { width: 26px; height: 3px; }
           .diary-tab { padding: 8px 11px; font-size: 9px; letter-spacing: 0.16em; }
