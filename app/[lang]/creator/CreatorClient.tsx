@@ -159,7 +159,7 @@ function Carousel({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "phone"
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
         </button>
       )}
-      <div className="carousel-track" ref={trackRef}>
+      <div className={`carousel-track${overflow ? "" : " carousel-track--center"}`} ref={trackRef}>
         {clips.map((clip, i) => (
           <Mock key={`${prefix}-${i}`} clip={clip} cardKey={`${prefix}-${i}`} kind={kind} sound={sound} />
         ))}
@@ -357,6 +357,7 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           padding: 4px 4px 8px;
         }
         .carousel-track::-webkit-scrollbar { display: none; }
+        .carousel-track--center { justify-content: center; }
         .slide {
           flex: 0 0 auto;
           scroll-snap-align: center;
