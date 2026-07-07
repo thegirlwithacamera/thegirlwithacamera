@@ -465,7 +465,7 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         /* Brands */
         .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; color: #999999; text-align: center; margin: 4px 0 14px; }
         .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 16px; max-width: 640px; margin: 0 auto; padding: 0 24px; }
-        .brand-chip { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #777777; }
+        .brand-chip { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
 
         /* CTA */
         .creator-cta { text-align: center; }
@@ -504,14 +504,16 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
       {/* Bio */}
       <p className="creator-bio">{t.bio}</p>
 
-      <hr className="creator-hr" />
+      {/* Ils me font confiance (au-dessus des stats, gras noir) */}
+      <p className="trust-label" style={{ marginTop: "28px" }}>{t.workingWith}</p>
+      <div className="brands-strip">
+        {BRANDS.map((b) => (
+          <span key={b.name} className="brand-chip">{b.name}</span>
+        ))}
+      </div>
 
       {/* Stats */}
-      <p className="section-title" style={{ marginBottom: "8px" }}>{t.reach}</p>
-      <p style={{ textAlign: "center", fontSize: "10px", letterSpacing: "0.16em", color: "#999999", marginBottom: "36px" }}>
-        {t.reachSub}
-      </p>
-      <div className="stats-grid">
+      <div className="stats-grid" style={{ marginTop: "44px" }}>
         <div className="stat-block">
           <p className="stat-platform">{t.igLabel}</p>
           <p className="stat-number">{STATS.instagram.followers}</p>
@@ -527,14 +529,6 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           <p className="stat-number">{STATS.instagram.reach}</p>
           <p className="stat-sub">{t.avgReach}</p>
         </div>
-      </div>
-
-      {/* Ils me font confiance (compact, groupe avec les stats) */}
-      <p className="trust-label" style={{ marginTop: "32px" }}>{t.workingWith}</p>
-      <div className="brands-strip">
-        {BRANDS.map((b) => (
-          <span key={b.name} className="brand-chip">{b.name}</span>
-        ))}
       </div>
 
       <hr className="creator-hr" />
