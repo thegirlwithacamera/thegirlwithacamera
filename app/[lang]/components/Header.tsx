@@ -19,8 +19,10 @@ export default function Header() {
     { href: `/${currentLang}`,          label: "Portfolio" },
     { href: `/${currentLang}/shop`,     label: "Prints" },
     { href: `/${currentLang}/creator`,  label: "Creator" },
-    { href: `/${currentLang}/diary`,    label: "Diary" },
     { href: `/${currentLang}/about`,    label: "About" },
+    // Diary : pret mais masque pour l'instant. Pour le remettre,
+    // decommente la ligne ci-dessous.
+    // { href: `/${currentLang}/diary`,    label: "Diary" },
   ];
 
   return (

@@ -15,8 +15,8 @@ interface EditionStock {
 const content = {
   fr: {
     title: 'Boutique',
-    subtitle: 'Photographs & Prints',
-    description: 'Tirages photographiques — une sélection curatée de mes images favorites, imprimées avec soin.',
+    subtitle: '',
+    description: 'Tirages en édition limitée de mes photos favorites.',
     shippingNote: 'Livraison internationale 6,95 € — offerte dès 100 € · Impression locale (Europe, UK, USA, Canada, Australie, Japon…) · Expédition sous 5 à 10 jours ouvrés · Retours sous 14 jours',
     loadingProducts: 'Chargement des produits...',
     error: 'Erreur lors du chargement des produits',
@@ -40,8 +40,8 @@ const content = {
   },
   en: {
     title: 'Shop',
-    subtitle: 'Photographs & Prints',
-    description: 'Photographic prints — a curated selection of my favorite images, printed with care.',
+    subtitle: '',
+    description: 'Limited edition prints of my favorite photos.',
     shippingNote: 'Worldwide shipping €6.95 — free over €100 · Printed locally (Europe, UK, USA, Canada, Australia, Japan…) · Ships within 5-10 business days · 14-day returns',
     loadingProducts: 'Loading products...',
     error: 'Error loading products',
@@ -328,7 +328,6 @@ function ShopContentInner({ lang }: { lang: 'fr' | 'en' }) {
         <div className="shop-products">
           {/* Header */}
           <div className="shop-header">
-            <div className="shop-subtitle">{t.subtitle}</div>
             <h1 className="shop-title">{t.title}</h1>
             <p className="shop-description">{t.description}</p>
             <p style={{
