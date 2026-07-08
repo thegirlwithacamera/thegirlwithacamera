@@ -17,6 +17,7 @@ type Sound = {
   unmutedKey: string | null;
   toggleSound: (key: string) => void;
   registerRef: (key: string, el: HTMLVideoElement | null) => void;
+  openFocus: (clip: Clip, kind: "phone" | "tablet") => void;
 };
 
 const DIARY_CATS = ["life", "photographer", "city", "fashion"] as const;
@@ -72,7 +73,11 @@ const content = {
 
 function SoundBtn({ on, onClick }: { on: boolean; onClick: () => void }) {
   return (
-    <button className="vid-sound" onClick={onClick} aria-label={on ? "Mute video" : "Unmute video"}>
+    <button
+      className="vid-sound"
+      onClick={(e) => { e.stopPropagation(); onClick(); }}
+      aria-label={on ? "Mute video" : "Unmute video"}
+    >
       {on ? (
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
           <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
@@ -107,14 +112,14 @@ function Mock({ clip, cardKey, kind, sound }: { clip: Clip; cardKey: string; kin
   return (
     <div className="slide">
       {kind === "tablet" ? (
-        <div className="tablet">
+        <div className="tablet focusable" onClick={() => sound.openFocus(clip, kind)}>
           <div className="tablet-screen">
             {video}
             {btn}
           </div>
         </div>
       ) : (
-        <div className="phone">
+        <div className="phone focusable" onClick={() => sound.openFocus(clip, kind)}>
           {video}
           {btn}
         </div>
@@ -185,9 +190,9 @@ function MobileStack({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "pho
         return (
           <div key={key} className={`stack-card ${posClass(i)}`}>
             {kind === "tablet" ? (
-              <div className="tablet"><div className="tablet-screen">{video}{btn}</div></div>
+              <div className="tablet focusable" onClick={() => sound.openFocus(clip, kind)}><div className="tablet-screen">{video}{btn}</div></div>
             ) : (
-              <div className="phone">{video}{btn}</div>
+              <div className="phone focusable" onClick={() => sound.openFocus(clip, kind)}>{video}{btn}</div>
             )}
             {i === active && <span className="vid-label">{clip.label}</span>}
           </div>
@@ -312,11 +317,69 @@ function DiaryBlock({
   );
 }
 
+// Mise en avant : clic sur un device, il s'agrandit et passe devant.
+function FocusOverlay({ clip, kind, onClose }: { clip: Clip; kind: "phone" | "tablet"; onClose: () => void }) {
+  const [muted, setMuted] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  const video = (
+    <video
+      src={clip.src}
+      poster={clip.poster}
+      autoPlay
+      muted={muted}
+      loop
+      playsInline
+      controlsList="nodownload nofullscreen"
+      onContextMenu={(e) => e.preventDefault()}
+      title={`Creator content: ${clip.label}`}
+    />
+  );
+  const btn = (
+    <button
+      className="vid-sound"
+      onClick={(e) => { e.stopPropagation(); setMuted((m) => !m); }}
+      aria-label={muted ? "Unmute video" : "Mute video"}
+    >
+      {!muted ? (
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z" /></svg>
+      ) : (
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
+      )}
+    </button>
+  );
+
+  return (
+    <div className="focus-overlay" onClick={onClose}>
+      <div className="focus-inner" onClick={(e) => e.stopPropagation()}>
+        <button className="focus-close" onClick={onClose} aria-label="Close">&times;</button>
+        {kind === "tablet" ? (
+          <div className="tablet focus-tablet"><div className="tablet-screen">{video}{btn}</div></div>
+        ) : (
+          <div className="phone focus-phone">{video}{btn}</div>
+        )}
+        <span className="focus-label">{clip.label}</span>
+      </div>
+    </div>
+  );
+}
+
 export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data: Data }) {
   const t = content[lang];
 
   const videoRefs = useRef<Map<string, HTMLVideoElement>>(new Map());
   const [unmutedKey, setUnmutedKey] = useState<string | null>(null);
+  const [focused, setFocused] = useState<{ clip: Clip; kind: "phone" | "tablet" } | null>(null);
 
   // Desktop : autoplay via l'attribut sur chaque video.
   // Mobile : la pile 3D ne joue que la carte active (voir MobileStack).
@@ -336,7 +399,11 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
     });
   }, []);
 
-  const sound: Sound = { unmutedKey, toggleSound, registerRef };
+  const openFocus = useCallback((clip: Clip, kind: "phone" | "tablet") => {
+    setFocused({ clip, kind });
+  }, []);
+
+  const sound: Sound = { unmutedKey, toggleSound, registerRef, openFocus };
 
   return (
     <main style={{ paddingTop: "20px", paddingBottom: "80px", background: "#ffffff" }}>
@@ -588,6 +655,47 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           padding-bottom: 2px;
         }
 
+        /* Clic pour agrandir : device cliquable + overlay de mise en avant */
+        .focusable { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .focusable:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,0.18); }
+        .focus-overlay {
+          position: fixed;
+          inset: 0;
+          z-index: 200;
+          background: rgba(0,0,0,0.72);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 28px;
+          animation: focusFade 0.2s ease;
+        }
+        @keyframes focusFade { from { opacity: 0; } to { opacity: 1; } }
+        .focus-inner {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          animation: focusPop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes focusPop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .focus-phone { width: min(72vw, 300px); box-shadow: 0 24px 70px rgba(0,0,0,0.55); }
+        .focus-tablet { width: min(92vw, 760px); box-shadow: 0 24px 70px rgba(0,0,0,0.55); }
+        .focus-label { color: rgba(255,255,255,0.85); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+        .focus-close {
+          position: absolute;
+          top: -38px;
+          right: 0;
+          background: none;
+          border: none;
+          color: #ffffff;
+          font-size: 30px;
+          line-height: 1;
+          cursor: pointer;
+          opacity: 0.85;
+        }
+        .focus-close:hover { opacity: 1; }
+
         @media (max-width: 767px) {
           .creator-bio { font-size: 12px; padding: 0 24px; }
           .stats-grid { gap: 14px; padding: 0 24px; }
@@ -674,6 +782,11 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         <p>{t.cta}</p>
         <a href={`mailto:${t.ctaLink}`}>{t.ctaLink}</a>
       </div>
+
+      {/* Mise en avant au clic */}
+      {focused && (
+        <FocusOverlay clip={focused.clip} kind={focused.kind} onClose={() => setFocused(null)} />
+      )}
     </main>
   );
 }
