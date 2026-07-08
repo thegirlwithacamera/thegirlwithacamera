@@ -30,6 +30,137 @@ const STATS = {
 // Clients, dans l'ordre d'importance. Ricoh, Pentax et Insta360 en tete.
 const BRANDS = ["RICOH EUROPE", "PENTAX EUROPE", "INSTA360", "EDIFIER", "TELESIN"];
 
+// ── Work with me : 3 offres, sans prix, CTA commun "Let's talk" ──
+type Offer = {
+  emoji: string;
+  title: string;
+  subtitle: string;
+  packageName?: string;
+  items: string[];
+  addonsLabel?: string;
+  addons?: string[];
+};
+type Work = { title: string; letsTalk: string; talkMail: string; offers: Offer[] };
+
+const TALK_MAIL = "sandrine@thegirlwithacamera.com";
+
+const WORK: Record<"fr" | "en", Work> = {
+  en: {
+    title: "WORK WITH ME",
+    letsTalk: "Let's talk",
+    talkMail: TALK_MAIL,
+    offers: [
+      {
+        emoji: "🎬",
+        title: "UGC Content Creation",
+        subtitle: "Content for your brand's channels. I create, you post.",
+        packageName: "Starter Package",
+        items: [
+          "1 UGC video (Reel format)",
+          "2 hook variations (3 videos total)",
+          "Concept & scripting",
+          "Filming & retention editing",
+          "Filmed on Luna Ultra (photography: Ricoh GR III), cinematic, editorial look",
+          "Organic usage rights",
+          "30-day ad usage rights",
+        ],
+        addonsLabel: "Add-ons",
+        addons: [
+          "Raw footage",
+          "Lifestyle & product photography",
+          "Extra hooks/CTA variations",
+          "Whitelisting / dark posting",
+          "Full usage rights in perpetuity",
+          "Rush delivery (1-3 days)",
+          "Monthly retainers",
+        ],
+      },
+      {
+        emoji: "📸",
+        title: "Influencer Partnership",
+        subtitle: "Your brand on my feed. 32k+ engaged Worldwide audience.",
+        packageName: "Organic + Ad-Ready Package",
+        items: [
+          "1 IG Reel (organic post)",
+          "Story set (3-5 slides)",
+          "7 days link in bio",
+          "Organic reposting rights",
+          "30-day boosting rights",
+          "Crossposting to TikTok & Threads",
+        ],
+      },
+      {
+        emoji: "🖼️",
+        title: "Brand Photography",
+        subtitle: "Editorial photography for your campaigns.",
+        items: [
+          "Street-style & lifestyle shoots (Brussels & Europe)",
+          "Product-in-context photography",
+          "Editorial series for campaigns",
+          "Licensing options",
+        ],
+      },
+    ],
+  },
+  fr: {
+    title: "TRAVAILLER AVEC MOI",
+    letsTalk: "Let's talk",
+    talkMail: TALK_MAIL,
+    offers: [
+      {
+        emoji: "🎬",
+        title: "Création de contenu UGC",
+        subtitle: "Du contenu pour les canaux de ta marque. Je crée, tu publies.",
+        packageName: "Starter Package",
+        items: [
+          "1 vidéo UGC (format Reel)",
+          "2 variations de hook (3 vidéos au total)",
+          "Concept et scénario",
+          "Tournage et montage rétention",
+          "Filmé sur Luna Ultra (photo : Ricoh GR III), rendu cinématique et éditorial",
+          "Droits d'usage organique",
+          "Droits d'usage publicitaire 30 jours",
+        ],
+        addonsLabel: "Options",
+        addons: [
+          "Rushes bruts",
+          "Photographie lifestyle et produit",
+          "Variations de hooks/CTA supplémentaires",
+          "Whitelisting / dark posting",
+          "Droits d'usage complets à perpétuité",
+          "Livraison express (1-3 jours)",
+          "Forfaits mensuels",
+        ],
+      },
+      {
+        emoji: "📸",
+        title: "Partenariat influence",
+        subtitle: "Ta marque sur mon feed. 32k+ d'audience engagée dans le monde.",
+        packageName: "Organic + Ad-Ready Package",
+        items: [
+          "1 Reel IG (post organique)",
+          "Série de Stories (3-5 slides)",
+          "Lien en bio pendant 7 jours",
+          "Droits de repartage organique",
+          "Droits de boost 30 jours",
+          "Crosspost sur TikTok et Threads",
+        ],
+      },
+      {
+        emoji: "🖼️",
+        title: "Photographie de marque",
+        subtitle: "Photographie éditoriale pour tes campagnes.",
+        items: [
+          "Shootings street-style et lifestyle (Bruxelles et Europe)",
+          "Photographie de produit en contexte",
+          "Séries éditoriales pour campagnes",
+          "Options de licence",
+        ],
+      },
+    ],
+  },
+};
+
 const content = {
   fr: {
     bio: "CONTENU VISUEL AUTHENTIQUE POUR LES MARQUES QUI VEULENT EXISTER SUR LES RÉSEAUX SANS RESSEMBLER À UNE PUBLICITÉ.",
@@ -313,6 +444,45 @@ function DiaryBlock({
         </div>
       )}
       <Carousel clips={diary[current]} kind="tablet" prefix={`diary-${current}`} sound={sound} />
+    </section>
+  );
+}
+
+// Work with me : 3 offres en colonnes (desktop) / carrousel swipe (mobile).
+function WorkWithMe({ work }: { work: Work }) {
+  return (
+    <section className="tier">
+      <div className="tier-head">
+        <h2 className="tier-title">{work.title}</h2>
+      </div>
+      <div className="offers">
+        {work.offers.map((o, i) => (
+          <div key={i} className="offer">
+            <div className="offer-emoji">{o.emoji}</div>
+            <h3 className="offer-title">{o.title}</h3>
+            <p className="offer-sub">{o.subtitle}</p>
+            {o.packageName && <p className="offer-pkg">{o.packageName}</p>}
+            <ul className="offer-list">
+              {o.items.map((it, j) => (
+                <li key={j}>{it}</li>
+              ))}
+            </ul>
+            {o.addons && o.addons.length > 0 && (
+              <>
+                {o.addonsLabel && <p className="offer-pkg offer-addons-label">{o.addonsLabel}</p>}
+                <ul className="offer-list offer-addons">
+                  {o.addons.map((a, j) => (
+                    <li key={j}>{a}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+            <div className="offer-cta-wrap">
+              <a className="offer-cta" href={`mailto:${work.talkMail}`}>{work.letsTalk}</a>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
@@ -696,6 +866,74 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         }
         .focus-close:hover { opacity: 1; }
 
+        /* Work with me : offres */
+        .offers {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 22px;
+          max-width: 1120px;
+          margin: 0 auto;
+          padding: 0 40px;
+        }
+        .offer {
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #ebebeb;
+          padding: 32px 26px;
+          text-align: left;
+        }
+        .offer-emoji { font-size: 22px; line-height: 1; margin-bottom: 14px; }
+        .offer-title {
+          font-family: var(--font-serif), Georgia, serif;
+          font-size: 21px;
+          color: #0a0a0a;
+          margin: 0 0 8px;
+        }
+        .offer-sub {
+          font-size: 12px;
+          line-height: 1.6;
+          font-style: italic;
+          color: #666666;
+          margin: 0 0 20px;
+        }
+        .offer-pkg {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          margin: 0 0 12px;
+        }
+        .offer-addons-label { margin-top: 20px; color: #999999; }
+        .offer-list { list-style: none; padding: 0; margin: 0; }
+        .offer-list li {
+          position: relative;
+          font-size: 12.5px;
+          line-height: 1.5;
+          color: #333333;
+          padding: 5px 0 5px 16px;
+        }
+        .offer-list li::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 13px;
+          width: 6px;
+          height: 1px;
+          background: #b8a98a;
+        }
+        .offer-addons li { color: #777777; font-size: 11.5px; }
+        .offer-cta-wrap { margin-top: auto; padding-top: 26px; }
+        .offer-cta {
+          font-size: 12px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          text-decoration: none;
+          border-bottom: 1px solid #0a0a0a;
+          padding-bottom: 3px;
+        }
+
         @media (max-width: 767px) {
           .creator-bio { font-size: 12px; padding: 0 24px; }
           .stats-grid { gap: 14px; padding: 0 24px; }
@@ -715,6 +953,19 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           .phone::before { width: 26px; height: 3px; }
           .diary-tab { padding: 8px 11px; font-size: 9px; letter-spacing: 0.16em; }
           .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
+          /* Offres : carrousel swipe, une carte a la fois */
+          .offers {
+            display: flex;
+            grid-template-columns: none;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 14px;
+            padding: 4px 16px 10px;
+            max-width: none;
+            scrollbar-width: none;
+          }
+          .offers::-webkit-scrollbar { display: none; }
+          .offer { flex: 0 0 82vw; scroll-snap-align: center; padding: 26px 22px; }
         }
       `}</style>
 
@@ -774,6 +1025,11 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         catLabels={t.cat}
         sound={sound}
       />
+
+      <hr className="creator-hr" />
+
+      {/* Work with me : offres */}
+      <WorkWithMe work={WORK[lang]} />
 
       <hr className="creator-hr" />
 
