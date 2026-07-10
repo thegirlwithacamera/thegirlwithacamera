@@ -69,7 +69,7 @@ export function SoundBtn({ on, onClick }: { on: boolean; onClick: () => void }) 
   );
 }
 
-function Mock({ clip, cardKey, kind, sound }: { clip: Clip; cardKey: string; kind: "phone" | "tablet"; sound: Sound }) {
+function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: string; kind: "phone" | "tablet"; sound: Sound; badge?: string }) {
   const video = (
     <video
       ref={(el) => sound.registerRef(cardKey, el)}
@@ -86,6 +86,7 @@ function Mock({ clip, cardKey, kind, sound }: { clip: Clip; cardKey: string; kin
     />
   );
   const btn = <SoundBtn on={sound.unmutedKey === cardKey} onClick={() => sound.toggleSound(cardKey)} />;
+  const badgeEl = badge && <span className="vid-badge">{badge}</span>;
 
   return (
     <div className="slide">
@@ -94,12 +95,14 @@ function Mock({ clip, cardKey, kind, sound }: { clip: Clip; cardKey: string; kin
           <div className="tablet-screen">
             {video}
             {btn}
+            {badgeEl}
           </div>
         </div>
       ) : (
         <div className="phone focusable" onClick={() => sound.openFocus(clip, kind)}>
           {video}
           {btn}
+          {badgeEl}
         </div>
       )}
       {clip.label && <span className="vid-label">{clip.label}</span>}
@@ -109,7 +112,7 @@ function Mock({ clip, cardKey, kind, sound }: { clip: Clip; cardKey: string; kin
 
 // Pile 3D facon coverflow, un item centre, voisins en biais, swipe au doigt.
 // Utilisee sur mobile (tactile). Un seul item joue a la fois.
-function MobileStack({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound }) {
+function MobileStack({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound; badge?: string }) {
   const [active, setActive] = useState(0);
   const startX = useRef(0);
   const localRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
@@ -165,12 +168,13 @@ function MobileStack({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "pho
           />
         );
         const btn = <SoundBtn on={sound.unmutedKey === key} onClick={() => sound.toggleSound(key)} />;
+        const badgeEl = badge && <span className="vid-badge">{badge}</span>;
         return (
           <div key={key} className={`stack-card ${posClass(i)}`}>
             {kind === "tablet" ? (
-              <div className="tablet focusable" onClick={() => sound.openFocus(clip, kind)}><div className="tablet-screen">{video}{btn}</div></div>
+              <div className="tablet focusable" onClick={() => sound.openFocus(clip, kind)}><div className="tablet-screen">{video}{btn}{badgeEl}</div></div>
             ) : (
-              <div className="phone focusable" onClick={() => sound.openFocus(clip, kind)}>{video}{btn}</div>
+              <div className="phone focusable" onClick={() => sound.openFocus(clip, kind)}>{video}{btn}{badgeEl}</div>
             )}
             {i === active && clip.label && <span className="vid-label">{clip.label}</span>}
           </div>
@@ -180,7 +184,7 @@ function MobileStack({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "pho
   );
 }
 
-export function Carousel({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound }) {
+export function Carousel({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound; badge?: string }) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [overflow, setOverflow] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -213,7 +217,7 @@ export function Carousel({ clips, kind, prefix, sound }: { clips: Clip[]; kind: 
 
   // Mobile : pile 3D tactile. Desktop : rangee avec fleches.
   if (isMobile) {
-    return <MobileStack clips={clips} kind={kind} prefix={prefix} sound={sound} />;
+    return <MobileStack clips={clips} kind={kind} prefix={prefix} sound={sound} badge={badge} />;
   }
 
   return (
@@ -225,7 +229,7 @@ export function Carousel({ clips, kind, prefix, sound }: { clips: Clip[]; kind: 
       )}
       <div className={`carousel-track${overflow ? "" : " carousel-track--center"}`} ref={trackRef}>
         {clips.map((clip, i) => (
-          <Mock key={`${prefix}-${i}`} clip={clip} cardKey={`${prefix}-${i}`} kind={kind} sound={sound} />
+          <Mock key={`${prefix}-${i}`} clip={clip} cardKey={`${prefix}-${i}`} kind={kind} sound={sound} badge={badge} />
         ))}
       </div>
       {overflow && (
@@ -445,6 +449,22 @@ export const SHOWCASE_CSS = `
     transition: background 0.2s;
   }
   .vid-sound:hover { background: rgba(0,0,0,0.7); }
+
+  /* Petit badge de stat, coin oppose au bouton son */
+  .vid-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
 
   /* Clic pour agrandir : device cliquable + overlay de mise en avant */
   .focusable { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; }
