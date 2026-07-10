@@ -11,12 +11,12 @@ interface Props {
   params: Promise<{ lang: "fr" | "en"; category: string }>;
 }
 
-const CAT_TITLES: Record<DiaryCat, string> = {
-  places: "Places",
-  cities: "Cities",
-  lifestyle: "Lifestyle",
-  fashion: "Fashion",
-  bts: "BTS",
+const CAT_TITLES: Record<DiaryCat, { fr: string; en: string }> = {
+  places: { fr: "Venues", en: "Places" },
+  cities: { fr: "Voyage", en: "Cities" },
+  lifestyle: { fr: "Quotidien", en: "Lifestyle" },
+  fashion: { fr: "Mode", en: "Fashion" },
+  bts: { fr: "Coulisses", en: "BTS" },
 };
 
 function parseCat(category: string): DiaryCat | null {
@@ -34,9 +34,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cat = parseCat(category);
   if (!cat) return {};
 
-  const name = CAT_TITLES[cat];
+  const name = CAT_TITLES[cat][lang];
   return {
-    title: `Filmmaker — ${name}`,
+    title: `${lang === "fr" ? "Vidéaste" : "Filmmaker"} — ${name}`,
     description:
       lang === "fr"
         ? `${name} — films par Sandrine Ceuppens, The Girl With A Camera. Séquences contemplatives et cinématiques.`

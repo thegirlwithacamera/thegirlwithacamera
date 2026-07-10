@@ -7,11 +7,11 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   return {
-    title: "Filmmaker",
+    title: lang === "fr" ? "Vidéaste" : "Filmmaker",
     description:
       lang === "fr"
-        ? "Films par Sandrine Ceuppens. Séquences contemplatives et cinématiques : fashion, lifestyle, places, travel, work."
-        : "Films by Sandrine Ceuppens. Contemplative, cinematic sequences: fashion, lifestyle, places, travel, work.",
+        ? "Films par Sandrine Ceuppens. Séquences contemplatives et cinématiques : mode, quotidien, venues, voyage, coulisses."
+        : "Films by Sandrine Ceuppens. Contemplative, cinematic sequences: fashion, lifestyle, places, cities, bts.",
     alternates: { canonical: `/${lang}/filmmaker`, languages: { fr: "/fr/filmmaker", en: "/en/filmmaker" } },
   };
 }

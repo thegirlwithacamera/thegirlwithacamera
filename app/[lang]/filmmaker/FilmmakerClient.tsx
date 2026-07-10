@@ -11,9 +11,9 @@ import {
 
 const content = {
   fr: {
-    title: "FILMMAKER",
+    title: "VIDÉASTE",
     desc: "Des séquences contemplatives et cinématiques.",
-    cat: { places: "PLACES", cities: "CITIES", lifestyle: "LIFESTYLE", fashion: "FASHION", bts: "BTS" },
+    cat: { places: "VENUES", cities: "VOYAGE", lifestyle: "QUOTIDIEN", fashion: "MODE", bts: "COULISSES" },
     cta: "On travaille ensemble ?",
     ctaLink: "hello@thegirlwithacamera.com",
   },
