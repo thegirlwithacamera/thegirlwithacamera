@@ -2,7 +2,23 @@ import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { getPublishedTrips } from "@/lib/diary";
 
-const STATIC_PATHS = ["", "/shop", "/creator", "/diary", "/about"];
+// "/shop" retire tant que la boutique est hors ligne.
+const STATIC_PATHS = [
+  "",
+  "/creator",
+  "/creator/gear",
+  "/creator/lifestyle",
+  "/creator/unboxing",
+  "/creator/talk",
+  "/filmmaker",
+  "/filmmaker/fashion",
+  "/filmmaker/lifestyle",
+  "/filmmaker/places",
+  "/filmmaker/travel",
+  "/filmmaker/work",
+  "/diary",
+  "/about",
+];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const langs: Array<"fr" | "en"> = ["fr", "en"];

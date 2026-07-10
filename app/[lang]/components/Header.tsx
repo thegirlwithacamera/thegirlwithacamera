@@ -17,8 +17,12 @@ export default function Header() {
 
   const navLinks = [
     { href: `/${currentLang}`,          label: "Portfolio" },
-    { href: `/${currentLang}/shop`,     label: "Prints" },
+    // Prints : boutique hors ligne le temps de revoir la selection d'images.
+    // Pour la remettre, decommente la ligne ci-dessous et retire le
+    // notFound() dans app/[lang]/shop/page.tsx et shop/[productId]/page.tsx.
+    // { href: `/${currentLang}/shop`,     label: "Prints" },
     { href: `/${currentLang}/creator`,  label: "Creator" },
+    { href: `/${currentLang}/filmmaker`, label: "Filmmaker" },
     { href: `/${currentLang}/about`,    label: "About" },
     // Diary : pret mais masque pour l'instant. Pour le remettre,
     // decommente la ligne ci-dessous.

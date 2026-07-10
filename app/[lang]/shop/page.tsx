@@ -1,5 +1,11 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { ShopContent } from './ShopContent';
+
+// Boutique HORS LIGNE le temps de revoir la selection d'images.
+// Pour la remettre : passer SHOP_OFFLINE a false (idem dans
+// [productId]/page.tsx) et decommenter le lien Prints dans Header.tsx.
+const SHOP_OFFLINE = true;
 
 interface Props {
   params: Promise<{ lang: 'fr' | 'en' }>;
@@ -28,6 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ShopPage({ params }: Props) {
+  if (SHOP_OFFLINE) notFound();
   const { lang } = await params;
 
   return <ShopContent lang={lang} />;

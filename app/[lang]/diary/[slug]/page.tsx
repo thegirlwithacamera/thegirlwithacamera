@@ -5,6 +5,10 @@ import type { Metadata } from "next";
 import { getPublishedTrips, getTripBySlug } from "@/lib/diary";
 import NewsletterCta from "./NewsletterCta";
 
+// Boutique hors ligne : on masque le lien vers les tirages.
+// Remettre a false en meme temps que app/[lang]/shop/page.tsx.
+const SHOP_OFFLINE = true;
+
 interface Props {
   params: Promise<{ lang: "fr" | "en"; slug: string }>;
 }
@@ -202,11 +206,15 @@ export default async function TripPage({ params }: Props) {
           })}
         </article>
 
-        {/* CTA : tirages + newsletter */}
+        {/* CTA : tirages + newsletter.
+            Lien tirages masque tant que la boutique est hors ligne
+            (voir SHOP_OFFLINE dans app/[lang]/shop/page.tsx). */}
         <div className="trip-ctas">
-          <Link href={`/${lang}${trip.printsHref}`} className="trip-prints-link">
-            {t.prints}
-          </Link>
+          {SHOP_OFFLINE ? null : (
+            <Link href={`/${lang}${trip.printsHref}`} className="trip-prints-link">
+              {t.prints}
+            </Link>
+          )}
           <NewsletterCta lang={lang} />
         </div>
 

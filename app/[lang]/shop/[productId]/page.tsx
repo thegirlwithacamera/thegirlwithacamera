@@ -1,6 +1,10 @@
 import { Suspense } from 'react';
+import { notFound } from 'next/navigation';
 import ProductPageInner from './ProductPageClient';
 import { getProductById } from '@/lib/shop-products';
+
+// Boutique HORS LIGNE — voir app/[lang]/shop/page.tsx pour la remettre.
+const SHOP_OFFLINE = true;
 
 type PageProps = {
   params: Promise<{ lang: 'fr' | 'en'; productId: string }>;
@@ -24,6 +28,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function ProductPage({ params }: PageProps) {
+  if (SHOP_OFFLINE) notFound();
   const { lang, productId } = await params;
 
   return (

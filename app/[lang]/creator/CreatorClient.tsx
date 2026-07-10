@@ -1,27 +1,23 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
+import Link from "next/link";
+import { SECTIONS, type Clip, type Section } from "./constants";
+import {
+  Carousel,
+  FocusOverlay,
+  SHOWCASE_CSS,
+  useVideoSound,
+  type Sound,
+} from "../components/VideoShowcase";
 
-export type Clip = { src: string; label: string; poster?: string };
-export type Diary = { life: Clip[]; photographer: Clip[]; city: Clip[]; fashion: Clip[] };
+export type { Clip, Section };
 
 type Data = {
   gear: Clip[];
-  experiences: Clip[];
+  lifestyle: Clip[];
   unboxing: Clip[];
   talk: Clip[];
-  diary: Diary;
 };
-
-type Sound = {
-  unmutedKey: string | null;
-  toggleSound: (key: string) => void;
-  registerRef: (key: string, el: HTMLVideoElement | null) => void;
-  openFocus: (clip: Clip, kind: "phone" | "tablet") => void;
-};
-
-const DIARY_CATS = ["life", "photographer", "city", "fashion"] as const;
-type DiaryCat = (typeof DIARY_CATS)[number];
 
 const STATS = {
   instagram: { followers: "32,4K", reelViews: "381K", reach: "174K" },
@@ -174,12 +170,9 @@ const content = {
     reelViews: "vues de reel",
     avgReach: "comptes touchés",
     gear: "GEAR",
-    experiences: "EXPÉRIENCES",
+    lifestyle: "LIFESTYLE",
     unboxing: "UNBOXING",
     talk: "TALK",
-    diaryTitle: "DIARY",
-    diaryDesc: "Mes video diaries. Des séquences contemplatives et cinématiques.",
-    cat: { life: "LIFE", photographer: "PHOTOGRAPHER", city: "CITY", fashion: "FASHION" },
   },
   en: {
     bio: "AUTHENTIC VISUAL CONTENT FOR BRANDS THAT WANT TO EXIST ON SOCIAL MEDIA WITHOUT LOOKING LIKE AN AD.",
@@ -193,200 +186,28 @@ const content = {
     reelViews: "reel views",
     avgReach: "accounts reached",
     gear: "GEAR",
-    experiences: "EXPERIENCES",
+    lifestyle: "LIFESTYLE",
     unboxing: "UNBOXING",
     talk: "TALK",
-    diaryTitle: "DIARY",
-    diaryDesc: "My video diaries. Contemplative, cinematic sequences.",
-    cat: { life: "LIFE", photographer: "PHOTOGRAPHER", city: "CITY", fashion: "FASHION" },
   },
 };
 
-function SoundBtn({ on, onClick }: { on: boolean; onClick: () => void }) {
+// Barre de navigation des sections creator. Pas de vue "tout" : on navigue
+// uniquement par categorie, chacune avec sa propre URL partageable.
+function CreatorNav({ lang, active, labels }: { lang: "fr" | "en"; active: Section; labels: Record<Section, string> }) {
+  const base = `/${lang}/creator`;
   return (
-    <button
-      className="vid-sound"
-      onClick={(e) => { e.stopPropagation(); onClick(); }}
-      aria-label={on ? "Mute video" : "Unmute video"}
-    >
-      {on ? (
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
-        </svg>
-      ) : (
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
-        </svg>
-      )}
-    </button>
-  );
-}
-
-function Mock({ clip, cardKey, kind, sound }: { clip: Clip; cardKey: string; kind: "phone" | "tablet"; sound: Sound }) {
-  const video = (
-    <video
-      ref={(el) => sound.registerRef(cardKey, el)}
-      src={clip.src}
-      poster={clip.poster}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      controlsList="nodownload nofullscreen"
-      onContextMenu={(e) => e.preventDefault()}
-      title={`Creator content: ${clip.label}`}
-    />
-  );
-  const btn = <SoundBtn on={sound.unmutedKey === cardKey} onClick={() => sound.toggleSound(cardKey)} />;
-
-  return (
-    <div className="slide">
-      {kind === "tablet" ? (
-        <div className="tablet focusable" onClick={() => sound.openFocus(clip, kind)}>
-          <div className="tablet-screen">
-            {video}
-            {btn}
-          </div>
-        </div>
-      ) : (
-        <div className="phone focusable" onClick={() => sound.openFocus(clip, kind)}>
-          {video}
-          {btn}
-        </div>
-      )}
-      <span className="vid-label">{clip.label}</span>
-    </div>
-  );
-}
-
-// Pile 3D facon coverflow, un item centre, voisins en biais, swipe au doigt.
-// Utilisee sur mobile (tactile). Un seul item joue a la fois.
-function MobileStack({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound }) {
-  const [active, setActive] = useState(0);
-  const startX = useRef(0);
-  const localRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
-  const n = clips.length;
-
-  useEffect(() => {
-    localRefs.current.forEach((v, i) => {
-      if (!v) return;
-      if (i === active) v.play().catch(() => {});
-      else v.pause();
-    });
-  }, [active]);
-
-  function onTouchEnd(e: React.TouchEvent) {
-    const diff = startX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40 && n > 1) {
-      setActive((a) => (diff > 0 ? (a + 1) % n : (a - 1 + n) % n));
-    }
-  }
-
-  function posClass(i: number) {
-    if (i === active) return "pos-active";
-    if (n > 1 && i === (active + 1) % n) return "pos-next";
-    if (n > 2 && i === (active - 1 + n) % n) return "pos-prev";
-    return "pos-hidden";
-  }
-
-  return (
-    <div
-      className={`stack stack--${kind}`}
-      onTouchStart={(e) => { startX.current = e.touches[0].clientX; }}
-      onTouchEnd={onTouchEnd}
-    >
-      {clips.map((clip, i) => {
-        const key = `${prefix}-${i}`;
-        const video = (
-          <video
-            ref={(el) => {
-              if (el) localRefs.current.set(i, el);
-              else localRefs.current.delete(i);
-              sound.registerRef(key, el);
-            }}
-            src={clip.src}
-            poster={clip.poster}
-            autoPlay={i === active}
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            controlsList="nodownload nofullscreen"
-            onContextMenu={(e) => e.preventDefault()}
-            title={`Creator content: ${clip.label}`}
-          />
-        );
-        const btn = <SoundBtn on={sound.unmutedKey === key} onClick={() => sound.toggleSound(key)} />;
-        return (
-          <div key={key} className={`stack-card ${posClass(i)}`}>
-            {kind === "tablet" ? (
-              <div className="tablet focusable" onClick={() => sound.openFocus(clip, kind)}><div className="tablet-screen">{video}{btn}</div></div>
-            ) : (
-              <div className="phone focusable" onClick={() => sound.openFocus(clip, kind)}>{video}{btn}</div>
-            )}
-            {i === active && <span className="vid-label">{clip.label}</span>}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function Carousel({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound }) {
-  const trackRef = useRef<HTMLDivElement | null>(null);
-  const [overflow, setOverflow] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    if (isMobile) return;
-    const el = trackRef.current;
-    if (!el) return;
-    const check = () => setOverflow(el.scrollWidth > el.clientWidth + 4);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, [clips.length, isMobile]);
-
-  function scroll(dir: 1 | -1) {
-    const el = trackRef.current;
-    if (!el) return;
-    const first = el.querySelector(".slide") as HTMLElement | null;
-    const step = first ? first.offsetWidth + 16 : 280;
-    el.scrollBy({ left: dir * step, behavior: "smooth" });
-  }
-
-  // Mobile : pile 3D tactile. Desktop : rangee avec fleches.
-  if (isMobile) {
-    return <MobileStack clips={clips} kind={kind} prefix={prefix} sound={sound} />;
-  }
-
-  return (
-    <div className={`carousel carousel--${kind}`}>
-      {overflow && (
-        <button className="carousel-arrow carousel-arrow--prev" onClick={() => scroll(-1)} aria-label="Previous">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
-        </button>
-      )}
-      <div className={`carousel-track${overflow ? "" : " carousel-track--center"}`} ref={trackRef}>
-        {clips.map((clip, i) => (
-          <Mock key={`${prefix}-${i}`} clip={clip} cardKey={`${prefix}-${i}`} kind={kind} sound={sound} />
-        ))}
-      </div>
-      {overflow && (
-        <button className="carousel-arrow carousel-arrow--next" onClick={() => scroll(1)} aria-label="Next">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6" /></svg>
-        </button>
-      )}
-    </div>
+    <nav className="creator-nav" aria-label="Creator sections">
+      {SECTIONS.map((s) => (
+        <Link
+          key={s}
+          href={`${base}/${s}`}
+          className={`creator-nav-link${active === s ? " creator-nav-link--active" : ""}`}
+        >
+          {labels[s]}
+        </Link>
+      ))}
+    </nav>
   );
 }
 
@@ -402,49 +223,6 @@ function PhoneTier({ title, clips, prefix, sound }: { title: string; clips: Clip
       </section>
       <hr className="creator-hr" />
     </>
-  );
-}
-
-function DiaryBlock({
-  diary,
-  title,
-  desc,
-  catLabels,
-  sound,
-}: {
-  diary: Diary;
-  title: string;
-  desc: string;
-  catLabels: Record<DiaryCat, string>;
-  sound: Sound;
-}) {
-  const cats = DIARY_CATS.filter((c) => diary[c].length > 0);
-  const [active, setActive] = useState<DiaryCat>(cats[0] ?? "city");
-  if (cats.length === 0) return null;
-
-  const current = cats.includes(active) ? active : cats[0];
-
-  return (
-    <section className="tier">
-      <div className="tier-head">
-        <h2 className="tier-title">{title}</h2>
-        <p className="tier-desc">{desc}</p>
-      </div>
-      {cats.length > 1 && (
-        <div className="diary-tabs">
-          {cats.map((c) => (
-            <button
-              key={c}
-              className={`diary-tab${c === current ? " diary-tab--active" : ""}`}
-              onClick={() => setActive(c)}
-            >
-              {catLabels[c]}
-            </button>
-          ))}
-        </div>
-      )}
-      <Carousel clips={diary[current]} kind="tablet" prefix={`diary-${current}`} sound={sound} />
-    </section>
   );
 }
 
@@ -487,93 +265,20 @@ function WorkWithMe({ work }: { work: Work }) {
   );
 }
 
-// Mise en avant : clic sur un device, il s'agrandit et passe devant.
-function FocusOverlay({ clip, kind, onClose }: { clip: Clip; kind: "phone" | "tablet"; onClose: () => void }) {
-  const [muted, setMuted] = useState(false);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
-    document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [onClose]);
-
-  const video = (
-    <video
-      src={clip.src}
-      poster={clip.poster}
-      autoPlay
-      muted={muted}
-      loop
-      playsInline
-      controlsList="nodownload nofullscreen"
-      onContextMenu={(e) => e.preventDefault()}
-      title={`Creator content: ${clip.label}`}
-    />
-  );
-  const btn = (
-    <button
-      className="vid-sound"
-      onClick={(e) => { e.stopPropagation(); setMuted((m) => !m); }}
-      aria-label={muted ? "Unmute video" : "Mute video"}
-    >
-      {!muted ? (
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z" /></svg>
-      ) : (
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
-      )}
-    </button>
-  );
-
-  return (
-    <div className="focus-overlay" onClick={onClose}>
-      <div className="focus-inner" onClick={(e) => e.stopPropagation()}>
-        <button className="focus-close" onClick={onClose} aria-label="Close">&times;</button>
-        {kind === "tablet" ? (
-          <div className="tablet focus-tablet"><div className="tablet-screen">{video}{btn}</div></div>
-        ) : (
-          <div className="phone focus-phone">{video}{btn}</div>
-        )}
-        <span className="focus-label">{clip.label}</span>
-      </div>
-    </div>
-  );
-}
-
-export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data: Data }) {
+export default function CreatorClient({
+  lang,
+  data,
+  section = "gear", // /creator sans section = Gear, la premiere categorie
+}: {
+  lang: "fr" | "en";
+  data: Data;
+  section?: Section;
+}) {
   const t = content[lang];
-
-  const videoRefs = useRef<Map<string, HTMLVideoElement>>(new Map());
-  const [unmutedKey, setUnmutedKey] = useState<string | null>(null);
-  const [focused, setFocused] = useState<{ clip: Clip; kind: "phone" | "tablet" } | null>(null);
 
   // Desktop : autoplay via l'attribut sur chaque video.
   // Mobile : la pile 3D ne joue que la carte active (voir MobileStack).
-
-  const registerRef = useCallback((key: string, el: HTMLVideoElement | null) => {
-    if (el) videoRefs.current.set(key, el);
-    else videoRefs.current.delete(key);
-  }, []);
-
-  const toggleSound = useCallback((key: string) => {
-    setUnmutedKey((prev) => {
-      const next = prev === key ? null : key;
-      videoRefs.current.forEach((v, k) => {
-        if (v) v.muted = next === null || k !== next;
-      });
-      return next;
-    });
-  }, []);
-
-  const openFocus = useCallback((clip: Clip, kind: "phone" | "tablet") => {
-    setFocused({ clip, kind });
-  }, []);
-
-  const sound: Sound = { unmutedKey, toggleSound, registerRef, openFocus };
+  const { sound, focused, closeFocus } = useVideoSound();
 
   return (
     <main style={{ paddingTop: "20px", paddingBottom: "80px", background: "#ffffff" }}>
@@ -633,180 +338,30 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           font-style: italic;
         }
 
-        /* Diary tabs */
-        .diary-tabs {
+        /* Navigation des sections creator */
+        .creator-nav {
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
-          gap: 4px;
-          margin: 0 auto 24px;
-          border-bottom: 1px solid #ebebeb;
-          max-width: 560px;
+          gap: 6px 22px;
+          margin: 0 auto 36px;
+          padding: 0 16px;
         }
-        .diary-tab {
-          background: none;
-          border: none;
-          border-bottom: 2px solid transparent;
-          padding: 8px 16px;
+        .creator-nav-link {
           font-size: 10px;
           letter-spacing: 0.2em;
           text-transform: uppercase;
           color: #999999;
-          cursor: pointer;
-          transition: color 0.2s, border-color 0.2s;
-          margin-bottom: -1px;
+          text-decoration: none;
+          padding: 4px 0;
+          transition: color 0.2s;
         }
-        .diary-tab:hover { color: #555; }
-        .diary-tab--active { color: #0a0a0a; border-bottom-color: #0a0a0a; }
-
-        /* Carrousel commun */
-        .carousel { position: relative; max-width: 1100px; margin: 0 auto; padding: 0 8px; }
-        .carousel-track {
-          display: flex;
-          gap: 16px;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          scroll-behavior: smooth;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-          padding: 4px 4px 8px;
-        }
-        .carousel-track::-webkit-scrollbar { display: none; }
-        .carousel-track--center { justify-content: center; }
-        .slide {
-          flex: 0 0 auto;
-          scroll-snap-align: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
-        }
-        .carousel--phone .slide { width: 160px; }
-        .carousel--tablet .slide { width: 300px; }
-
-        .carousel-arrow {
-          position: absolute;
-          top: 45%;
-          transform: translateY(-50%);
-          z-index: 5;
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          border: 1px solid #e5e5e5;
-          background: #ffffff;
+        .creator-nav-link:hover { color: #0a0a0a; }
+        .creator-nav-link--active {
           color: #0a0a0a;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          box-shadow: 0 1px 6px rgba(0,0,0,0.08);
-          transition: background 0.2s, border-color 0.2s;
+          text-decoration: underline;
+          text-underline-offset: 4px;
         }
-        .carousel-arrow:hover { background: #0a0a0a; color: #ffffff; border-color: #0a0a0a; }
-        .carousel-arrow--prev { left: -6px; }
-        .carousel-arrow--next { right: -6px; }
-
-        /* Pile 3D (mobile, tactile) */
-        .stack {
-          position: relative;
-          width: 100%;
-          margin: 0 auto;
-          perspective: 1100px;
-          overflow: hidden;
-          touch-action: pan-y;
-        }
-        .stack--phone { height: 420px; }
-        .stack--tablet { height: 220px; }
-        .stack-card {
-          position: absolute;
-          left: 50%;
-          top: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
-          transform-origin: center center;
-          transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.45s;
-        }
-        .stack--phone .stack-card { width: 210px; margin-left: -105px; }
-        .stack--tablet .stack-card { width: 300px; margin-left: -150px; }
-        .stack-card.pos-active { transform: translateX(0) scale(1) rotateY(0deg); opacity: 1; z-index: 20; }
-        .stack-card.pos-next { transform: translateX(118px) scale(0.84) rotateY(-12deg); opacity: 0.45; z-index: 9; }
-        .stack-card.pos-prev { transform: translateX(-118px) scale(0.84) rotateY(12deg); opacity: 0.45; z-index: 9; }
-        .stack-card.pos-hidden { transform: scale(0.7); opacity: 0; z-index: 0; pointer-events: none; }
-        .stack--tablet .stack-card.pos-next { transform: translateX(150px) scale(0.82) rotateY(-12deg); }
-        .stack--tablet .stack-card.pos-prev { transform: translateX(-150px) scale(0.82) rotateY(12deg); }
-
-        /* Telephone 9:16 */
-        .phone {
-          width: 100%;
-          aspect-ratio: 9 / 16;
-          border: 2px solid #0a0a0a;
-          border-radius: 24px;
-          overflow: hidden;
-          position: relative;
-          background: #1a1a1a;
-        }
-        .phone::before {
-          content: '';
-          position: absolute;
-          top: 10px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 36px;
-          height: 4px;
-          background: #333;
-          border-radius: 2px;
-          z-index: 2;
-        }
-        .phone video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        /* Tablette 16:9 */
-        .tablet {
-          width: 100%;
-          border: 2px solid #0a0a0a;
-          border-radius: 16px;
-          padding: 8px 12px;
-          background: #1a1a1a;
-          position: relative;
-        }
-        .tablet::before {
-          content: '';
-          position: absolute;
-          left: 4px;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 3px;
-          height: 3px;
-          border-radius: 50%;
-          background: #333;
-          z-index: 2;
-        }
-        .tablet-screen { aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; background: #000; position: relative; }
-        .tablet-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        .vid-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #666666; text-align: center; }
-
-        /* Bouton son */
-        .vid-sound {
-          position: absolute;
-          bottom: 10px;
-          right: 10px;
-          z-index: 3;
-          background: rgba(0,0,0,0.45);
-          border: none;
-          border-radius: 50%;
-          width: 26px;
-          height: 26px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          color: #fff;
-          backdrop-filter: blur(4px);
-          transition: background 0.2s;
-        }
-        .vid-sound:hover { background: rgba(0,0,0,0.7); }
 
         /* Brands */
         .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; color: #999999; text-align: center; margin: 4px 0 14px; }
@@ -824,47 +379,6 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           border-bottom: 1px solid #0a0a0a;
           padding-bottom: 2px;
         }
-
-        /* Clic pour agrandir : device cliquable + overlay de mise en avant */
-        .focusable { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; }
-        .focusable:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,0.18); }
-        .focus-overlay {
-          position: fixed;
-          inset: 0;
-          z-index: 200;
-          background: rgba(0,0,0,0.72);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 28px;
-          animation: focusFade 0.2s ease;
-        }
-        @keyframes focusFade { from { opacity: 0; } to { opacity: 1; } }
-        .focus-inner {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 16px;
-          animation: focusPop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        @keyframes focusPop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .focus-phone { width: min(72vw, 300px); box-shadow: 0 24px 70px rgba(0,0,0,0.55); }
-        .focus-tablet { width: min(92vw, 760px); box-shadow: 0 24px 70px rgba(0,0,0,0.55); }
-        .focus-label { color: rgba(255,255,255,0.85); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
-        .focus-close {
-          position: absolute;
-          top: -38px;
-          right: 0;
-          background: none;
-          border: none;
-          color: #ffffff;
-          font-size: 30px;
-          line-height: 1;
-          cursor: pointer;
-          opacity: 0.85;
-        }
-        .focus-close:hover { opacity: 1; }
 
         /* Work with me : offres */
         .offers {
@@ -934,6 +448,8 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           padding-bottom: 3px;
         }
 
+        ${SHOWCASE_CSS}
+
         @media (max-width: 767px) {
           .creator-bio { font-size: 12px; padding: 0 24px; }
           .stats-grid { gap: 14px; padding: 0 24px; }
@@ -943,15 +459,6 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
           .section-title { margin: 0 0 16px; font-size: 10px; }
           .creator-hr { margin: 28px auto; max-width: 200px; }
           .tier { padding: 0 12px; }
-          .carousel { padding: 0; }
-          /* Mobile : slider tactile, un item centre a la fois, swipe au doigt */
-          .carousel--phone .slide { width: 62vw; max-width: 240px; }
-          .carousel--tablet .slide { width: 86vw; max-width: 340px; }
-          .carousel-track { gap: 12px; }
-          .carousel-arrow { display: none; }
-          .phone { border-width: 1.5px; }
-          .phone::before { width: 26px; height: 3px; }
-          .diary-tab { padding: 8px 11px; font-size: 9px; letter-spacing: 0.16em; }
           .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
           /* Offres : carrousel swipe, une carte a la fois */
           .offers {
@@ -969,8 +476,15 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
         }
       `}</style>
 
-      {/* 1. Gear : les telephones sautent aux yeux des l'arrivee */}
-      <PhoneTier title={t.gear} clips={data.gear} prefix="gear" sound={sound} />
+      {/* Navigation par categorie : Gear, Lifestyle, Unboxing, Talk */}
+      <CreatorNav
+        lang={lang}
+        active={section}
+        labels={{ gear: t.gear, lifestyle: t.lifestyle, unboxing: t.unboxing, talk: t.talk }}
+      />
+
+      {/* 1. La categorie active */}
+      <PhoneTier title={t[section]} clips={data[section]} prefix={section} sound={sound} />
 
       {/* 2. Clients */}
       <p className="trust-label">{t.workingWith}</p>
@@ -982,10 +496,7 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
 
       <hr className="creator-hr" />
 
-      {/* 3. Experiences */}
-      <PhoneTier title={t.experiences} clips={data.experiences} prefix="experiences" sound={sound} />
-
-      {/* 4. Stats */}
+      {/* 3. Stats */}
       <div className="stats-grid">
         <div className="stat-block">
           <p className="stat-platform">{t.igLabel}</p>
@@ -1006,29 +517,12 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
 
       <hr className="creator-hr" />
 
-      {/* 5. Unboxing */}
-      <PhoneTier title={t.unboxing} clips={data.unboxing} prefix="unboxing" sound={sound} />
-
-      {/* 6. Phrase contenu visuel */}
+      {/* 4. Phrase contenu visuel */}
       <p className="creator-bio">{t.bio}</p>
 
       <hr className="creator-hr" />
 
-      {/* 7. Talk */}
-      <PhoneTier title={t.talk} clips={data.talk} prefix="talk" sound={sound} />
-
-      {/* Diary (video diaries) en carrousel de tablettes, par categorie */}
-      <DiaryBlock
-        diary={data.diary}
-        title={t.diaryTitle}
-        desc={t.diaryDesc}
-        catLabels={t.cat}
-        sound={sound}
-      />
-
-      <hr className="creator-hr" />
-
-      {/* Work with me : offres */}
+      {/* 5. Work with me : offres */}
       <WorkWithMe work={WORK[lang]} />
 
       <hr className="creator-hr" />
@@ -1041,7 +535,7 @@ export default function CreatorClient({ lang, data }: { lang: "fr" | "en"; data:
 
       {/* Mise en avant au clic */}
       {focused && (
-        <FocusOverlay clip={focused.clip} kind={focused.kind} onClose={() => setFocused(null)} />
+        <FocusOverlay clip={focused.clip} kind={focused.kind} onClose={closeFocus} />
       )}
     </main>
   );
