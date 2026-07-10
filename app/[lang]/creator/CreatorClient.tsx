@@ -503,52 +503,58 @@ export default function CreatorClient({
       {/* 1. La categorie active */}
       <PhoneTier title={t[section]} clips={data[section]} prefix={section} sound={sound} />
 
-      {/* 2. Clients */}
-      <p className="trust-label">{t.workingWith}</p>
-      <div className="brands-strip">
-        {BRANDS.map((b) =>
-          b.logo ? (
-            <img key={b.name} src={b.logo} alt={b.name} className="brand-logo" />
-          ) : (
-            <span key={b.name} className="brand-chip">{b.name}</span>
-          )
-        )}
-      </div>
+      {/* Clients + stats + bio + offres : un seul bloc, affiche uniquement
+          sur la page d'entree (Gear), pas repete sur chaque categorie. */}
+      {section === "gear" && (
+        <>
+          {/* 2. Clients */}
+          <p className="trust-label">{t.workingWith}</p>
+          <div className="brands-strip">
+            {BRANDS.map((b) =>
+              b.logo ? (
+                <img key={b.name} src={b.logo} alt={b.name} className="brand-logo" />
+              ) : (
+                <span key={b.name} className="brand-chip">{b.name}</span>
+              )
+            )}
+          </div>
 
-      <hr className="creator-hr" />
+          <hr className="creator-hr" />
 
-      {/* 3. Stats */}
-      <div className="stats-grid">
-        <div className="stat-block">
-          <p className="stat-platform">{t.igLabel}</p>
-          <p className="stat-number">{STATS.instagram.followers}</p>
-          <p className="stat-sub">{t.followers}</p>
-        </div>
-        <div className="stat-block">
-          <p className="stat-platform">{t.igLabel}</p>
-          <p className="stat-number">{STATS.instagram.reelViews}</p>
-          <p className="stat-sub">{t.reelViews}</p>
-        </div>
-        <div className="stat-block">
-          <p className="stat-platform">{t.igLabel}</p>
-          <p className="stat-number">{STATS.instagram.reach}</p>
-          <p className="stat-sub">{t.avgReach}</p>
-        </div>
-      </div>
+          {/* 3. Stats */}
+          <div className="stats-grid">
+            <div className="stat-block">
+              <p className="stat-platform">{t.igLabel}</p>
+              <p className="stat-number">{STATS.instagram.followers}</p>
+              <p className="stat-sub">{t.followers}</p>
+            </div>
+            <div className="stat-block">
+              <p className="stat-platform">{t.igLabel}</p>
+              <p className="stat-number">{STATS.instagram.reelViews}</p>
+              <p className="stat-sub">{t.reelViews}</p>
+            </div>
+            <div className="stat-block">
+              <p className="stat-platform">{t.igLabel}</p>
+              <p className="stat-number">{STATS.instagram.reach}</p>
+              <p className="stat-sub">{t.avgReach}</p>
+            </div>
+          </div>
 
-      <hr className="creator-hr" />
+          <hr className="creator-hr" />
 
-      {/* 4. Phrase contenu visuel */}
-      <p className="creator-bio">{t.bio}</p>
+          {/* 4. Phrase contenu visuel */}
+          <p className="creator-bio">{t.bio}</p>
 
-      <hr className="creator-hr" />
+          <hr className="creator-hr" />
 
-      {/* 5. Work with me : offres */}
-      <WorkWithMe work={WORK[lang]} />
+          {/* 5. Work with me : offres */}
+          <WorkWithMe work={WORK[lang]} />
 
-      <hr className="creator-hr" />
+          <hr className="creator-hr" />
+        </>
+      )}
 
-      {/* CTA */}
+      {/* CTA : reste present sur chaque page */}
       <div className="creator-cta">
         <p>{t.cta}</p>
         <a href={`mailto:${t.ctaLink}`}>{t.ctaLink}</a>
