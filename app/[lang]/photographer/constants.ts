@@ -20,17 +20,18 @@ export type PhotoCategory = {
   cover: string;
 };
 
+// Convention : dans chaque dossier, la photo "1" est aussi la couverture
+// affichée sur la tuile d'accueil.
 export const PHOTO_CATEGORIES: PhotoCategory[] = [
-  { slug: "street",       label: "Street",       cover: "/images/portfolio/street/7.jpg" },
-  { slug: "portrait",     label: "Portrait",     cover: "/images/portfolio/portrait/2.jpg" },
-  { slug: "fashion",      label: "Fashion",      cover: "/images/portfolio/fashion/3.jpg" },
-  { slug: "studio",       label: "Studio",       cover: "/images/portfolio/studio/3.jpg" },
-  { slug: "travel",       label: "Travel",       cover: "/images/portfolio/travel/5.jpg" },
-  // Details : photos a venir (mardi). Couverture provisoire en attendant.
-  { slug: "details",      label: "Details",      cover: "/images/portfolio/12.JPG" },
+  { slug: "street",       label: "Street",       cover: "/images/portfolio/street/1.jpg" },
+  { slug: "portrait",     label: "Portrait",     cover: "/images/portfolio/portrait/1.jpg" },
+  { slug: "fashion",      label: "Fashion",      cover: "/images/portfolio/fashion/1.jpg" },
+  { slug: "studio",       label: "Studio",       cover: "/images/portfolio/studio/1.jpg" },
+  { slug: "travel",       label: "Travel",       cover: "/images/portfolio/travel/1.jpg" },
+  { slug: "details",      label: "Details",      cover: "/images/portfolio/details/1.jpg" },
   { slug: "beauty",       label: "Beauty",       cover: "/images/portfolio/beauty/1.jpg" },
-  { slug: "architecture", label: "Architecture", cover: "/images/portfolio/architecture/2.jpg" },
-  { slug: "art",          label: "Art",          cover: "/images/portfolio/art/4.jpg" },
+  { slug: "architecture", label: "Architecture", cover: "/images/portfolio/architecture/1.jpg" },
+  { slug: "creative",     label: "Creative",     cover: "/images/portfolio/creative/1.jpg" },
 ];
 
 export const PHOTO_CATEGORY_SLUGS = PHOTO_CATEGORIES.map((c) => c.slug);
