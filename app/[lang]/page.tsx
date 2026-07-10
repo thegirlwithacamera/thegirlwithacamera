@@ -64,10 +64,10 @@ export default async function HomePage({ params }: Props) {
       <main style={{ paddingTop: "16px", background: "#ffffff" }}>
         <div className="cat-grid">
           {PHOTO_CATEGORIES.map((cat, i) => (
-            <Link key={cat.slug} href={`/${lang}/photographer/${cat.slug}`} className="cat-tile" aria-label={cat.label}>
+            <Link key={cat.slug} href={`/${lang}/photographer/${cat.slug}`} className="cat-tile" aria-label={cat.label[lang]}>
               <Image
                 src={cat.cover}
-                alt={`${cat.label} — photography by Sandrine Ceuppens`}
+                alt={`${cat.label.en} — photography by Sandrine Ceuppens`}
                 width={1066}
                 height={1600}
                 sizes="(max-width: 767px) 33vw, 360px"
@@ -86,7 +86,7 @@ export default async function HomePage({ params }: Props) {
         associatedMedia: PHOTO_CATEGORIES.map((cat) => ({
           "@type": "ImageObject",
           url: `https://thegirlwithacamera.com${cat.cover}`,
-          name: `${cat.label} photography`,
+          name: `${cat.label.en} photography`,
           creator: { "@type": "Person", name: "Sandrine Ceuppens" }
         }))
       })}} />

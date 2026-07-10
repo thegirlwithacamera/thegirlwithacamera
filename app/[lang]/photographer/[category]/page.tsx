@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cat = PHOTO_CATEGORIES.find((c) => c.slug === category);
   if (!cat) return {};
   return {
-    title: `${cat.label} — Photographer`,
+    title: `${cat.label[lang]} — Photographer`,
     description:
       lang === "fr"
-        ? `${cat.label} — photographies par Sandrine Ceuppens, The Girl With A Camera. Bruxelles.`
-        : `${cat.label} — photography by Sandrine Ceuppens, The Girl With A Camera. Brussels-based.`,
+        ? `${cat.label.fr} — photographies par Sandrine Ceuppens, The Girl With A Camera. Bruxelles.`
+        : `${cat.label.en} — photography by Sandrine Ceuppens, The Girl With A Camera. Brussels-based.`,
     alternates: {
       canonical: `/${lang}/photographer/${cat.slug}`,
       languages: { fr: `/fr/photographer/${cat.slug}`, en: `/en/photographer/${cat.slug}` },
@@ -92,7 +92,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
           <div>
             <Link href={`/${lang}`} className="cat-back">{backLabel}</Link>
           </div>
-          <h1>{cat.label}</h1>
+          <h1>{cat.label[lang]}</h1>
           {empty && <p className="cat-note">{emptyNote}</p>}
         </div>
 
@@ -101,7 +101,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
             <div key={i} className="photo-cell">
               <Image
                 src={p.src}
-                alt={`${cat.label} photograph ${i + 1} by Sandrine Ceuppens`}
+                alt={`${cat.label.en} photograph ${i + 1} by Sandrine Ceuppens`}
                 width={1066}
                 height={1600}
                 sizes="(max-width: 767px) 33vw, 420px"
