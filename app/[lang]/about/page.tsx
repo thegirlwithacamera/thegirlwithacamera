@@ -55,6 +55,7 @@ type Work = { title: string; letsTalk: string; talkMail: string; offers: Offer[]
 
 const TALK_MAIL = "sandrine@thegirlwithacamera.com";
 
+// Les 3 offres matchent les 3 onglets du site : Creator, Filmmaker, Photographer.
 const WORK: Record<"fr" | "en", Work> = {
   en: {
     title: "WORK WITH ME",
@@ -63,46 +64,45 @@ const WORK: Record<"fr" | "en", Work> = {
     offers: [
       {
         emoji: "🎬",
-        title: "UGC Content Creation",
-        subtitle: "Content for your brand's channels. I create, you post.",
-        packageName: "Starter Package",
+        title: "Creator",
+        subtitle: "UGC content or influencer partnership — whichever fits your brand.",
+        packageName: "UGC Package",
         items: [
           "1 UGC video (Reel format)",
           "2 hook variations (3 videos total)",
-          "Concept & scripting",
-          "Filming & retention editing",
-          "Filmed on Luna Ultra (photography: Ricoh GR III), cinematic, editorial look",
-          "Organic usage rights",
-          "30-day ad usage rights",
+          "Concept & scripting, filming & retention editing",
+          "Organic usage rights + 30-day ad usage rights",
+        ],
+        addonsLabel: "Or influencer partnership",
+        addons: [
+          "1 IG Reel on my feed — 32k+ engaged Worldwide audience",
+          "Story set (3-5 slides), 7 days link in bio",
+          "Organic reposting + 30-day boosting rights",
+          "Crossposting to TikTok & YouTube",
+        ],
+      },
+      {
+        emoji: "🎞️",
+        title: "Filmmaker",
+        subtitle: "Cinematic brand films — the Filmmaker look, for your campaigns.",
+        packageName: "Brand Film",
+        items: [
+          "Concept & creative direction",
+          "Filmed on Luna Ultra, cinematic editorial look",
+          "Long-form film + short cutdowns (Reels/Stories)",
+          "Narrative editing, sound design",
+          "Organic usage rights + option for ad usage",
         ],
         addonsLabel: "Add-ons",
         addons: [
           "Raw footage",
-          "Lifestyle & product photography",
-          "Extra hooks/CTA variations",
-          "Whitelisting / dark posting",
-          "Full usage rights in perpetuity",
           "Rush delivery (1-3 days)",
           "Monthly retainers",
         ],
       },
       {
-        emoji: "📸",
-        title: "Influencer Partnership",
-        subtitle: "Your brand on my feed. 32k+ engaged Worldwide audience.",
-        packageName: "Organic + Ad-Ready Package",
-        items: [
-          "1 IG Reel (organic post)",
-          "Story set (3-5 slides)",
-          "7 days link in bio",
-          "Organic reposting rights",
-          "30-day boosting rights",
-          "Crossposting to TikTok & Threads",
-        ],
-      },
-      {
         emoji: "🖼️",
-        title: "Brand Photography",
+        title: "Photographer",
         subtitle: "Editorial photography for your campaigns.",
         items: [
           "Street-style & lifestyle shoots (Brussels & Europe)",
@@ -120,46 +120,45 @@ const WORK: Record<"fr" | "en", Work> = {
     offers: [
       {
         emoji: "🎬",
-        title: "Création de contenu UGC",
-        subtitle: "Du contenu pour les canaux de ta marque. Je crée, tu publies.",
-        packageName: "Starter Package",
+        title: "Créatrice",
+        subtitle: "Contenu UGC ou partenariat influence — selon les besoins de ta marque.",
+        packageName: "Package UGC",
         items: [
           "1 vidéo UGC (format Reel)",
           "2 variations de hook (3 vidéos au total)",
-          "Concept et scénario",
-          "Tournage et montage rétention",
-          "Filmé sur Luna Ultra (photo : Ricoh GR III), rendu cinématique et éditorial",
-          "Droits d'usage organique",
-          "Droits d'usage publicitaire 30 jours",
+          "Concept, scénario, tournage et montage rétention",
+          "Droits d'usage organique + publicitaire 30 jours",
+        ],
+        addonsLabel: "Ou partenariat influence",
+        addons: [
+          "1 Reel IG sur mon feed — 32k+ d'audience engagée dans le monde",
+          "Série de Stories (3-5 slides), lien en bio 7 jours",
+          "Droits de repartage organique + boost 30 jours",
+          "Crosspost sur TikTok et YouTube",
+        ],
+      },
+      {
+        emoji: "🎞️",
+        title: "Vidéaste",
+        subtitle: "Films de marque cinématiques — le rendu Vidéaste, pour tes campagnes.",
+        packageName: "Brand Film",
+        items: [
+          "Concept et direction créative",
+          "Filmé sur Luna Ultra, rendu cinématique et éditorial",
+          "Film long format + déclinaisons courtes (Reels/Stories)",
+          "Montage narratif, sound design",
+          "Droits d'usage organique + option publicitaire",
         ],
         addonsLabel: "Options",
         addons: [
           "Rushes bruts",
-          "Photographie lifestyle et produit",
-          "Variations de hooks/CTA supplémentaires",
-          "Whitelisting / dark posting",
-          "Droits d'usage complets à perpétuité",
           "Livraison express (1-3 jours)",
           "Forfaits mensuels",
         ],
       },
       {
-        emoji: "📸",
-        title: "Partenariat influence",
-        subtitle: "Ta marque sur mon feed. 32k+ d'audience engagée dans le monde.",
-        packageName: "Organic + Ad-Ready Package",
-        items: [
-          "1 Reel IG (post organique)",
-          "Série de Stories (3-5 slides)",
-          "Lien en bio pendant 7 jours",
-          "Droits de repartage organique",
-          "Droits de boost 30 jours",
-          "Crosspost sur TikTok et Threads",
-        ],
-      },
-      {
         emoji: "🖼️",
-        title: "Photographie de marque",
+        title: "Photographe",
         subtitle: "Photographie éditoriale pour tes campagnes.",
         items: [
           "Shootings street-style et lifestyle (Bruxelles et Europe)",
@@ -228,12 +227,12 @@ const SOCIALS = [
     ),
   },
   {
-    label: "Threads",
-    handle: "@sandrinecppns",
-    href: "https://www.threads.net/@sandrinecppns",
+    label: "YouTube",
+    handle: "@sandrineceuppens",
+    href: "https://www.youtube.com/@sandrineceuppens",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.018 5.101.806 6.997 2.34 1.801 1.47 2.904 3.512 3.026 5.644l-2.773.163c-.089-1.417-.714-2.672-1.815-3.584-1.086-.9-2.603-1.402-4.455-1.414-2.65.018-4.648.812-5.938 2.36C5.987 6.81 5.376 9.02 5.354 12c.022 2.978.633 5.187 1.882 6.491 1.29 1.549 3.288 2.343 5.941 2.36 2.203-.015 3.768-.526 4.784-1.563.876-.896 1.328-2.176 1.385-3.907H12.22v-2.57h9.561v1.32c0 3.199-.871 5.676-2.588 7.364C17.563 23.26 15.148 24 12.186 24z"/>
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
       </svg>
     ),
   },
@@ -610,7 +609,7 @@ export default async function AboutPage({ params }: Props) {
           jobTitle: lang === "fr" ? "Photographe & Créatrice de contenu" : "Photographer & Content Creator",
           url: "https://thegirlwithacamera.com",
           image: "https://thegirlwithacamera.com/og-image.jpg",
-          sameAs: ["https://www.instagram.com/sandrinecppns/", "https://www.threads.net/@sandrinecppns", "https://www.tiktok.com/@sandrinecppns"],
+          sameAs: ["https://www.instagram.com/sandrinecppns/", "https://www.youtube.com/@sandrineceuppens", "https://www.tiktok.com/@sandrinecppns"],
           address: { "@type": "PostalAddress", addressLocality: "Brussels", addressCountry: "Belgium" },
           knowsAbout: ["DIGITAL & FILM PHOTOGRAPHY", "VIDEO EDITING", "CREATIVE DIRECTION", "BRAND CONTENT CREATION", "SOCIAL MEDIA"]
         }
