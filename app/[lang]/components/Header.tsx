@@ -16,12 +16,11 @@ export default function Header() {
   useEffect(() => setMenuOpen(false), [pathname]);
 
   // Ordre : Photographer (accueil) > Filmmaker > Creator > About.
-  // Labels adaptes par langue (le lien "creator" pointe vers /creator
-  // mais s'affiche "Creative").
+  // Labels adaptes par langue.
   const labels =
     currentLang === "fr"
-      ? { home: "Photographe", filmmaker: "Vidéaste", creator: "Creative", about: "À propos" }
-      : { home: "Photographer", filmmaker: "Filmmaker", creator: "Creative", about: "About" };
+      ? { home: "Photographe", filmmaker: "Vidéaste", creator: "Créatrice", about: "À propos" }
+      : { home: "Photographer", filmmaker: "Filmmaker", creator: "Creator", about: "About" };
 
   const navLinks = [
     { href: `/${currentLang}`,           label: labels.home },
