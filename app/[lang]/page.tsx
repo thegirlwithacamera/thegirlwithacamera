@@ -55,31 +55,8 @@ export default async function HomePage({ params }: Props) {
           transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
         }
         .cat-tile:hover img { transform: scale(1.05); }
-        .cat-scrim {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to bottom, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%);
-          transition: background 0.3s;
-        }
-        .cat-tile:hover .cat-scrim {
-          background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
-        }
-        .cat-label {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 16px;
-          text-align: center;
-          font-family: var(--font-serif), Georgia, serif;
-          font-size: 17px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: #ffffff;
-          text-shadow: 0 1px 8px rgba(0,0,0,0.35);
-        }
         @media (max-width: 767px) {
           .cat-grid { gap: 8px; padding: 0 12px; }
-          .cat-label { font-size: 10px; letter-spacing: 0.1em; bottom: 8px; }
         }
       `}</style>
 
@@ -97,8 +74,6 @@ export default async function HomePage({ params }: Props) {
                 priority={i < 3}
                 quality={78}
               />
-              <span className="cat-scrim" />
-              <span className="cat-label">{cat.label}</span>
             </Link>
           ))}
         </div>
