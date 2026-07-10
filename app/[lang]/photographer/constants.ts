@@ -21,15 +21,16 @@ export type PhotoCategory = {
 };
 
 export const PHOTO_CATEGORIES: PhotoCategory[] = [
-  { slug: "street",       label: "Street",        cover: "/images/portfolio/4.JPG" },
-  { slug: "portrait",     label: "Portrait",      cover: "/images/portfolio/9.JPG" },
-  { slug: "fashion",      label: "Fashion",       cover: "/images/portfolio/7.JPG" },
-  { slug: "studio",       label: "Studio",        cover: "/images/portfolio/13.JPG" },
-  { slug: "travel",       label: "Travel",        cover: "/images/portfolio/16.JPG" },
-  { slug: "details",      label: "Details",       cover: "/images/portfolio/12.JPG" },
-  { slug: "beauty",       label: "Beauty",        cover: "/images/portfolio/5.JPG" },
-  { slug: "architecture", label: "Architecture",  cover: "/images/portfolio/22.JPG" },
-  { slug: "black-white",  label: "Black & White", cover: "/images/portfolio/26.JPG" },
+  { slug: "street",       label: "Street",       cover: "/images/portfolio/street/7.jpg" },
+  { slug: "portrait",     label: "Portrait",     cover: "/images/portfolio/portrait/2.jpg" },
+  { slug: "fashion",      label: "Fashion",      cover: "/images/portfolio/fashion/3.jpg" },
+  { slug: "studio",       label: "Studio",       cover: "/images/portfolio/studio/3.jpg" },
+  { slug: "travel",       label: "Travel",       cover: "/images/portfolio/travel/5.jpg" },
+  // Details : photos a venir (mardi). Couverture provisoire en attendant.
+  { slug: "details",      label: "Details",      cover: "/images/portfolio/12.JPG" },
+  { slug: "beauty",       label: "Beauty",       cover: "/images/portfolio/beauty/1.jpg" },
+  { slug: "architecture", label: "Architecture", cover: "/images/portfolio/architecture/2.jpg" },
+  { slug: "art",          label: "Art",          cover: "/images/portfolio/art/4.jpg" },
 ];
 
 export const PHOTO_CATEGORY_SLUGS = PHOTO_CATEGORIES.map((c) => c.slug);
