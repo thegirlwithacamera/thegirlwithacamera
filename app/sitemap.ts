@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { getPublishedTrips } from "@/lib/diary";
+import { PHOTO_CATEGORY_SLUGS } from "@/app/[lang]/photographer/constants";
 
 // "/shop" retire tant que la boutique est hors ligne.
 const STATIC_PATHS = [
   "",
+  ...PHOTO_CATEGORY_SLUGS.map((s) => `/photographer/${s}`),
   "/creator",
   "/creator/gear",
   "/creator/lifestyle",
