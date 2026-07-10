@@ -332,9 +332,9 @@ export default async function AboutPage({ params }: Props) {
 
         /* Clients */
         .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; color: #999999; text-align: center; margin: 0 0 20px; }
-        .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px 32px; max-width: 860px; margin: 0 auto; padding: 0 24px; }
+        .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 36px; max-width: 920px; margin: 0 auto; padding: 0 24px; }
         .brand-chip { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
-        .brand-logo { height: 24px; width: auto; max-width: 130px; object-fit: contain; opacity: 0.88; transition: opacity 0.2s; }
+        .brand-logo { height: 38px; width: auto; max-width: 170px; object-fit: contain; opacity: 0.88; transition: opacity 0.2s; }
         .brand-logo:hover { opacity: 1; }
 
         /* Skills : pills */
@@ -458,7 +458,7 @@ export default async function AboutPage({ params }: Props) {
         }
         @media (max-width: 767px) {
           .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
-          .brand-logo { height: 19px; max-width: 96px; }
+          .brand-logo { height: 28px; max-width: 120px; }
           .offers {
             display: flex;
             grid-template-columns: none;
