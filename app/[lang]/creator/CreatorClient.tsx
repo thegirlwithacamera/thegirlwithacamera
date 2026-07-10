@@ -25,17 +25,17 @@ const STATS = {
 
 // Clients, dans l'ordre d'importance. Ricoh, Pentax et Insta360 en tete.
 // Clients : logo reel si dispo (public/images/brands/), sinon nom en texte.
-// Bao Liege et Ce-Pages : logos pas encore recuperes (sites proteges /
-// identite a confirmer) -> en texte pour l'instant.
+// Van der Valk Selys, Bao Liege et Ce-Pages : logos pas encore recuperes
+// (sites proteges / identite a confirmer) -> en texte pour l'instant.
 type Brand = { name: string; logo?: string };
 const BRANDS: Brand[] = [
   { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg" },
   { name: "PENTAX EUROPE", logo: "/images/brands/pentax.svg" },
   { name: "INSTA360", logo: "/images/brands/insta360.svg" },
-  { name: "EDIFIER" },
-  { name: "TELESIN" },
+  { name: "EDIFIER", logo: "/images/brands/edifier.png" },
+  { name: "TELESIN", logo: "/images/brands/telesin.png" },
   { name: "L'ORÉAL", logo: "/images/brands/loreal.svg" },
-  { name: "COLOC HOUSING" },
+  { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png" },
   { name: "VAN DER VALK SELYS" },
   { name: "BAO LIÈGE" },
   { name: "CÉ-PAGES" },
