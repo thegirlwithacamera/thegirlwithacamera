@@ -24,7 +24,22 @@ const STATS = {
 };
 
 // Clients, dans l'ordre d'importance. Ricoh, Pentax et Insta360 en tete.
-const BRANDS = ["RICOH EUROPE", "PENTAX EUROPE", "INSTA360", "EDIFIER", "TELESIN"];
+// Clients : logo reel si dispo (public/images/brands/), sinon nom en texte.
+// Bao Liege et Ce-Pages : logos pas encore recuperes (sites proteges /
+// identite a confirmer) -> en texte pour l'instant.
+type Brand = { name: string; logo?: string };
+const BRANDS: Brand[] = [
+  { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg" },
+  { name: "PENTAX EUROPE", logo: "/images/brands/pentax.svg" },
+  { name: "INSTA360", logo: "/images/brands/insta360.svg" },
+  { name: "EDIFIER" },
+  { name: "TELESIN" },
+  { name: "L'ORÉAL", logo: "/images/brands/loreal.svg" },
+  { name: "COLOC HOUSING" },
+  { name: "VAN DER VALK SELYS" },
+  { name: "BAO LIÈGE" },
+  { name: "CÉ-PAGES" },
+];
 
 // ── Work with me : 3 offres, sans prix, CTA commun "Let's talk" ──
 type Offer = {
@@ -365,8 +380,9 @@ export default function CreatorClient({
 
         /* Brands */
         .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; color: #999999; text-align: center; margin: 4px 0 14px; }
-        .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 16px; max-width: 640px; margin: 0 auto; padding: 0 24px; }
+        .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 26px; max-width: 720px; margin: 0 auto; padding: 0 24px; }
         .brand-chip { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
+        .brand-logo { height: 22px; width: auto; max-width: 120px; object-fit: contain; }
 
         /* CTA */
         .creator-cta { text-align: center; }
@@ -460,6 +476,7 @@ export default function CreatorClient({
           .creator-hr { margin: 28px auto; max-width: 200px; }
           .tier { padding: 0 12px; }
           .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
+          .brand-logo { height: 18px; max-width: 90px; }
           /* Offres : carrousel swipe, une carte a la fois */
           .offers {
             display: flex;
@@ -489,9 +506,13 @@ export default function CreatorClient({
       {/* 2. Clients */}
       <p className="trust-label">{t.workingWith}</p>
       <div className="brands-strip">
-        {BRANDS.map((b) => (
-          <span key={b} className="brand-chip">{b}</span>
-        ))}
+        {BRANDS.map((b) =>
+          b.logo ? (
+            <img key={b.name} src={b.logo} alt={b.name} className="brand-logo" />
+          ) : (
+            <span key={b.name} className="brand-chip">{b.name}</span>
+          )
+        )}
       </div>
 
       <hr className="creator-hr" />
