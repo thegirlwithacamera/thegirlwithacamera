@@ -32,7 +32,7 @@ const BRANDS: Brand[] = [
 ];
 
 const STATS = {
-  instagram: { followers: "32,4K", reelViews: "381K", reach: "174K" },
+  instagram: { followers: "32,4K" },
 };
 
 // ── Work with me : 3 offres, sans prix, CTA commun "Let's talk" ──
@@ -177,10 +177,7 @@ const content = {
       "Elle collabore avec des marques pour créer du contenu visuel sincère et intentionnel, pensé comme des fragments de vie plutôt que comme des campagnes classiques.",
     ],
     workingWith: "ILS ME FONT CONFIANCE",
-    igLabel: "Instagram",
-    followers: "abonnés",
-    reelViews: "vues de reel",
-    avgReach: "comptes touchés",
+    followersLabel: "ABONNÉS INSTAGRAM",
     recentProjects: "PROJETS RÉCENTS",
     skills: "COMPÉTENCES",
     based: "Bruxelles · disponible pour voyager",
@@ -197,10 +194,7 @@ const content = {
       "She collaborates with brands to create sincere and intentional visual content: moments and fragments of life, not advertising campaigns.",
     ],
     workingWith: "ALREADY WORKING WITH",
-    igLabel: "Instagram",
-    followers: "followers",
-    reelViews: "reel views",
-    avgReach: "accounts reached",
+    followersLabel: "INSTAGRAM FOLLOWERS",
     recentProjects: "RECENT PROJECTS",
     skills: "SKILLS",
     based: "Brussels · available to travel",
@@ -338,19 +332,21 @@ export default async function AboutPage({ params }: Props) {
           max-width: 480px;
           margin: 0 0 32px;
         }
-        .hero-stats {
-          display: flex;
-          gap: 36px;
-          margin-bottom: 30px;
+        .hero-stats { margin-bottom: 30px; }
+        .hero-stat-label {
+          font-size: 10px;
+          letter-spacing: 0.18em;
+          color: #999999;
+          text-transform: uppercase;
+          margin: 0 0 8px;
         }
         .hero-stat-num {
           font-family: var(--font-serif), Georgia, serif;
-          font-size: 26px;
+          font-size: 48px;
           font-style: italic;
           color: #0a0a0a;
           line-height: 1;
         }
-        .hero-stat-label { font-size: 10px; letter-spacing: 0.1em; color: #999999; margin-top: 6px; text-transform: uppercase; }
         .hero-cta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
         .hero-cta {
           display: inline-block;
@@ -553,18 +549,8 @@ export default async function AboutPage({ params }: Props) {
           <p className="hero-role">{t.role}</p>
           <p className="hero-hook">{t.hook}</p>
           <div className="hero-stats">
-            <div>
-              <p className="hero-stat-num">{STATS.instagram.followers}</p>
-              <p className="hero-stat-label">{t.followers}</p>
-            </div>
-            <div>
-              <p className="hero-stat-num">{STATS.instagram.reelViews}</p>
-              <p className="hero-stat-label">{t.reelViews}</p>
-            </div>
-            <div>
-              <p className="hero-stat-num">{STATS.instagram.reach}</p>
-              <p className="hero-stat-label">{t.avgReach}</p>
-            </div>
+            <p className="hero-stat-label">{t.followersLabel}</p>
+            <p className="hero-stat-num">{STATS.instagram.followers}</p>
           </div>
           <div className="hero-cta-row">
             <a className="hero-cta" href="mailto:hello@thegirlwithacamera.com">{t.letsTalk}</a>
