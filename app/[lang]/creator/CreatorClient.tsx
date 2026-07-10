@@ -31,7 +31,7 @@ type Brand = { name: string; logo?: string };
 const BRANDS: Brand[] = [
   { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg" },
   { name: "PENTAX EUROPE", logo: "/images/brands/pentax.svg" },
-  { name: "INSTA360", logo: "/images/brands/insta360.svg" },
+  { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg" },
   { name: "EDIFIER", logo: "/images/brands/edifier.png" },
   { name: "TELESIN", logo: "/images/brands/telesin.png" },
   { name: "L'ORÉAL", logo: "/images/brands/loreal.svg" },
