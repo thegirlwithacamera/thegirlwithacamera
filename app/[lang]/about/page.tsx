@@ -16,11 +16,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Photo du hero. A remplacer par le nouveau portrait (Mont Fuji / vending
-// machine Tokyo) des qu'il est depose dans public/images/about/ — pour
-// l'instant fichier pas encore recupere (image collee dans le chat, pas
-// sauvegardee sur le Bureau).
-const HERO_PHOTO = "/images/portfolio/portrait/1.jpg";
+// Photo du hero (Mont Fuji, IMG_8304).
+const HERO_PHOTO = "/images/about/hero.jpg";
 
 // Clients : logo reel si dispo (public/images/brands/), sinon nom en texte.
 type Brand = { name: string; logo?: string };
