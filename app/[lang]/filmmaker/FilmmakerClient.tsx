@@ -13,14 +13,14 @@ const content = {
   fr: {
     title: "FILMMAKER",
     desc: "Des séquences contemplatives et cinématiques.",
-    cat: { fashion: "FASHION", lifestyle: "LIFESTYLE", places: "PLACES", travel: "TRAVEL", work: "WORK" },
+    cat: { places: "PLACES", cities: "CITIES", lifestyle: "LIFESTYLE", fashion: "FASHION", bts: "BTS" },
     cta: "On travaille ensemble ?",
     ctaLink: "hello@thegirlwithacamera.com",
   },
   en: {
     title: "FILMMAKER",
     desc: "Contemplative, cinematic sequences.",
-    cat: { fashion: "FASHION", lifestyle: "LIFESTYLE", places: "PLACES", travel: "TRAVEL", work: "WORK" },
+    cat: { places: "PLACES", cities: "CITIES", lifestyle: "LIFESTYLE", fashion: "FASHION", bts: "BTS" },
     cta: "Want to work together?",
     ctaLink: "hello@thegirlwithacamera.com",
   },

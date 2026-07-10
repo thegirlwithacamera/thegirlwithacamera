@@ -12,11 +12,11 @@ interface Props {
 }
 
 const CAT_TITLES: Record<DiaryCat, string> = {
-  fashion: "Fashion",
-  lifestyle: "Lifestyle",
   places: "Places",
-  travel: "Travel",
-  work: "Work",
+  cities: "Cities",
+  lifestyle: "Lifestyle",
+  fashion: "Fashion",
+  bts: "BTS",
 };
 
 function parseCat(category: string): DiaryCat | null {

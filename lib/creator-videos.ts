@@ -36,17 +36,17 @@ function diaryLabel(file: string): string {
 }
 
 // Categorie d'apres un nom (de dossier ou de fichier).
-// Categories : Fashion, Lifestyle, Places, Travel, Work.
-// Les anciens mots-cles restent compatibles : life -> Lifestyle,
-// photographer -> Work, city -> Places.
+// Categories : Places, Cities, Lifestyle, Fashion, BTS.
+// Les anciens mots-cles restent compatibles : travel -> Cities,
+// life -> Lifestyle, photographer/work -> BTS.
 function matchCat(name: string): DiaryCat | null {
   const n = name.toLowerCase();
-  if (n.includes("travel")) return "travel";
+  // "BEHIND THE SCENE(S)", "BTS", "Photographer", "Work" -> BTS.
+  if (n.includes("bts") || n.includes("behind") || n.includes("scene") || n.includes("work") || n.includes("photographer")) return "bts";
   if (n.includes("fashion")) return "fashion";
   if (n.includes("life")) return "lifestyle"; // couvre "lifestyle" aussi
-  // "BEHIND THE SCENE(S)" et "Photographer Diary" tombent dans Work.
-  if (n.includes("work") || n.includes("photographer") || n.includes("behind") || n.includes("scene")) return "work";
-  if (n.includes("place") || n.includes("city")) return "places";
+  if (n.includes("cities") || n.includes("city") || n.includes("travel")) return "cities";
+  if (n.includes("place")) return "places";
   return null;
 }
 
@@ -111,7 +111,7 @@ const PLACES_FALLBACK: Clip[] = [
 // Compatibilite : des videos posees en vrac a la racine sont classees
 // d'apres le mot-cle dans leur nom de fichier.
 export function readDiary(): Diary {
-  const groups: Diary = { fashion: [], lifestyle: [], places: [], travel: [], work: [] };
+  const groups: Diary = { places: [], cities: [], lifestyle: [], fashion: [], bts: [] };
 
   const root = ["FILMMAKER", "CINEMATIC"]
     .map((d) => path.join(CREATOR_DIR, d))

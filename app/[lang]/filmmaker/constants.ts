@@ -3,9 +3,9 @@
 
 import type { Clip } from "../creator/constants";
 
-// Categories des video diaries ; chacune a son URL /filmmaker/[categorie],
-// partageable directement avec les marques.
-export const DIARY_CATS = ["fashion", "lifestyle", "places", "travel", "work"] as const;
+// Categories des films ; chacune a son URL /filmmaker/[categorie],
+// partageable directement avec les marques. L'ordre ici = l'ordre des onglets.
+export const DIARY_CATS = ["places", "cities", "lifestyle", "fashion", "bts"] as const;
 export type DiaryCat = (typeof DIARY_CATS)[number];
 
 export type Diary = Record<DiaryCat, Clip[]>;

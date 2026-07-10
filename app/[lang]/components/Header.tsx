@@ -15,15 +15,22 @@ export default function Header() {
 
   useEffect(() => setMenuOpen(false), [pathname]);
 
+  // Ordre : Photographer (accueil) > Filmmaker > Creator > About.
+  // Labels adaptes par langue.
+  const labels =
+    currentLang === "fr"
+      ? { home: "Photographe", filmmaker: "Filmmaker", creator: "Creator", about: "À propos" }
+      : { home: "Photographer", filmmaker: "Filmmaker", creator: "Creator", about: "About" };
+
   const navLinks = [
-    { href: `/${currentLang}`,          label: "Portfolio" },
+    { href: `/${currentLang}`,           label: labels.home },
+    { href: `/${currentLang}/filmmaker`, label: labels.filmmaker },
+    { href: `/${currentLang}/creator`,   label: labels.creator },
+    { href: `/${currentLang}/about`,     label: labels.about },
     // Prints : boutique hors ligne le temps de revoir la selection d'images.
     // Pour la remettre, decommente la ligne ci-dessous et retire le
     // notFound() dans app/[lang]/shop/page.tsx et shop/[productId]/page.tsx.
     // { href: `/${currentLang}/shop`,     label: "Prints" },
-    { href: `/${currentLang}/creator`,  label: "Creator" },
-    { href: `/${currentLang}/filmmaker`, label: "Filmmaker" },
-    { href: `/${currentLang}/about`,    label: "About" },
     // Diary : pret mais masque pour l'instant. Pour le remettre,
     // decommente la ligne ci-dessous.
     // { href: `/${currentLang}/diary`,    label: "Diary" },
