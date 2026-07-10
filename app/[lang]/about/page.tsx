@@ -16,6 +16,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// Photo du hero. A remplacer par le nouveau portrait (Mont Fuji / vending
+// machine Tokyo) des qu'il est depose dans public/images/about/ — pour
+// l'instant fichier pas encore recupere (image collee dans le chat, pas
+// sauvegardee sur le Bureau).
+const HERO_PHOTO = "/images/portfolio/portrait/1.jpg";
+
 // Clients : logo reel si dispo (public/images/brands/), sinon nom en texte.
 type Brand = { name: string; logo?: string };
 const BRANDS: Brand[] = [
@@ -170,16 +176,10 @@ const content = {
   fr: {
     name: "SANDRINE CEUPPENS",
     role: "Photographe & Vidéaste documentaire · Bruxelles",
-    hook: "Elle capture les rues, la lumière et les instants silencieux — des fragments du réel qu'on remarque à peine mais qui racontent tout.",
-    bio: [
-      "Son travail évolue à la frontière du documentaire et de l'esthétique mode, avec une approche épurée et un post-traitement minimal.",
-      "À travers la photo comme la vidéo, elle construit des récits visuels sensibles et éditoriaux, centrés sur l'authenticité, l'atmosphère et la narration du quotidien.",
-      "Elle collabore avec des marques pour créer du contenu visuel sincère et intentionnel, pensé comme des fragments de vie plutôt que comme des campagnes classiques.",
-    ],
     workingWith: "ILS ME FONT CONFIANCE",
     followersLabel: "ABONNÉS INSTAGRAM",
-    recentProjects: "PROJETS RÉCENTS",
     skills: "COMPÉTENCES",
+    projectsPdf: "Projets récents (PDF)",
     based: "Bruxelles · disponible pour voyager",
     cta: "On travaille ensemble ?",
     letsTalk: "Écrire un mail",
@@ -187,45 +187,14 @@ const content = {
   en: {
     name: "SANDRINE CEUPPENS",
     role: "Documentary Photographer & Filmmaker · Brussels",
-    hook: "She captures streets, light and quiet moments — fragments of reality that barely register but tell everything.",
-    bio: [
-      "Her work evolves at the border of documentary and fashion aesthetics, with a clean approach and minimal post-processing.",
-      "Through both photography and film, she builds sensitive, editorial visual narratives centred on authenticity, atmosphere and the storytelling of everyday life.",
-      "She collaborates with brands to create sincere and intentional visual content: moments and fragments of life, not advertising campaigns.",
-    ],
     workingWith: "ALREADY WORKING WITH",
     followersLabel: "INSTAGRAM FOLLOWERS",
-    recentProjects: "RECENT PROJECTS",
     skills: "SKILLS",
+    projectsPdf: "Recent projects (PDF)",
     based: "Brussels · available to travel",
     cta: "Want to work together?",
     letsTalk: "Send an email",
   },
-};
-
-type Project = { year: string; month: string; client: string; desc: string; secondary?: string };
-
-const RECENT_PROJECTS: Record<"fr" | "en", Project[]> = {
-  fr: [
-    { year: "2026", month: "Mars - Mai", client: "Pentax Europe", desc: "Production vidéo UGC" },
-    { year: "2026", month: "Mars", client: "The Girl with a Camera", desc: "Mission photographique en Sicile", secondary: "Série personnelle en vue de tirages et édition" },
-    { year: "2026", month: "Février", client: "Pentax Europe", desc: "Production vidéo UGC" },
-    { year: "2026", month: "Janvier", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Début de collaboration", secondary: "Développement des concepts" },
-    { year: "2025", month: "Novembre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC" },
-    { year: "2025", month: "Octobre - Novembre", client: "The Girl with a Camera", desc: "Mission photo et vidéo au Japon", secondary: "Série personnelle en vue de tirages et édition" },
-    { year: "2025", month: "Juillet - Octobre", client: "Ricoh Imaging Europe", desc: "Production vidéo UGC" },
-    { year: "2025", month: "Juin", client: "Ricoh Imaging Europe", desc: "Début de collaboration", secondary: "Développement des concepts créatifs" },
-  ],
-  en: [
-    { year: "2026", month: "March - May", client: "Pentax Europe", desc: "UGC video production" },
-    { year: "2026", month: "March", client: "The Girl with a Camera", desc: "Photography mission in Sicily", secondary: "Personal series for prints and publication" },
-    { year: "2026", month: "February", client: "Pentax Europe", desc: "UGC video production" },
-    { year: "2026", month: "January", client: "Pentax Europe (via Ricoh Imaging Europe)", desc: "Collaboration start", secondary: "Creative concept development" },
-    { year: "2025", month: "November", client: "Ricoh Imaging Europe", desc: "UGC video production" },
-    { year: "2025", month: "October - November", client: "The Girl with a Camera", desc: "Photography and video mission in Japan", secondary: "Personal series for prints and publication" },
-    { year: "2025", month: "July - October", client: "Ricoh Imaging Europe", desc: "UGC video production" },
-    { year: "2025", month: "June", client: "Ricoh Imaging Europe", desc: "Collaboration start", secondary: "Creative concept development" },
-  ],
 };
 
 const SKILLS = {
@@ -284,12 +253,11 @@ export default async function AboutPage({ params }: Props) {
   const { lang } = await params;
   const t = content[lang];
   const work = WORK[lang];
-  const projects = RECENT_PROJECTS[lang];
 
   return (
-    <main style={{ paddingBottom: "90px", background: "#ffffff" }}>
+    <main style={{ paddingBottom: "80px", background: "#ffffff" }}>
       <style>{`
-        /* ── Hero : photo + nom + accroche + stats + CTA ── */
+        /* ── Hero : photo + nom + stats + CTA ── */
         .hero {
           display: grid;
           grid-template-columns: minmax(0, 420px) 1fr;
@@ -321,15 +289,6 @@ export default async function AboutPage({ params }: Props) {
           letter-spacing: 0.18em;
           text-transform: uppercase;
           color: #999999;
-          margin: 0 0 26px;
-        }
-        .hero-hook {
-          font-family: var(--font-serif), Georgia, serif;
-          font-style: italic;
-          font-size: 19px;
-          line-height: 1.55;
-          color: #262626;
-          max-width: 480px;
           margin: 0 0 32px;
         }
         .hero-stats { margin-bottom: 30px; }
@@ -365,8 +324,7 @@ export default async function AboutPage({ params }: Props) {
         .hero-social-link:hover { color: #0a0a0a; }
 
         /* ── Sections generales ── */
-        .info-section { max-width: 780px; margin: 0 auto; padding: 0 40px; }
-        .info-hr { height: 1px; background: #ebebeb; max-width: 960px; margin: 56px auto; border: none; }
+        .info-hr { height: 1px; background: #ebebeb; max-width: 960px; margin: 48px auto; border: none; }
         .info-section-title {
           font-size: 11px;
           font-weight: 700;
@@ -374,13 +332,6 @@ export default async function AboutPage({ params }: Props) {
           color: #0a0a0a;
           text-align: center;
           margin: 0 0 28px;
-        }
-        .info-bio {
-          font-size: 13px;
-          line-height: 1.95;
-          letter-spacing: 0.02em;
-          color: #333333;
-          text-align: center;
         }
 
         /* Clients */
@@ -469,29 +420,21 @@ export default async function AboutPage({ params }: Props) {
           padding-bottom: 3px;
         }
 
-        /* Recent projects : timeline */
-        .timeline { max-width: 640px; margin: 0 auto; }
-        .timeline-year {
-          font-family: var(--font-serif), Georgia, serif;
-          font-style: italic;
-          font-size: 22px;
+        /* Projets recents : simple lien PDF, pas de bloc sur la page */
+        .pdf-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 12px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
           color: #0a0a0a;
-          text-align: center;
-          margin: 40px 0 20px;
+          text-decoration: none;
+          border: 1px solid #0a0a0a;
+          padding: 12px 22px;
         }
-        .timeline-year:first-child { margin-top: 0; }
-        .timeline-item {
-          display: grid;
-          grid-template-columns: 100px 1fr;
-          gap: 20px;
-          padding: 14px 0;
-          border-top: 1px solid #f0f0f0;
-        }
-        .timeline-item:first-of-type { border-top: none; }
-        .timeline-month { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #999999; padding-top: 2px; }
-        .timeline-client { font-size: 13px; font-weight: 600; color: #0a0a0a; margin: 0 0 2px; }
-        .timeline-desc { font-size: 12px; color: #555555; margin: 0; }
-        .timeline-secondary { font-size: 11px; font-style: italic; color: #999999; margin: 4px 0 0; }
+        .pdf-link:hover { background: #0a0a0a; color: #ffffff; }
+        .pdf-link-wrap { text-align: center; }
 
         /* Footer : based / socials / contact */
         .info-based { font-size: 11px; letter-spacing: 0.14em; color: #999999; text-align: center; text-transform: uppercase; }
@@ -514,13 +457,10 @@ export default async function AboutPage({ params }: Props) {
           .hero-photo { max-width: 340px; margin: 0 auto; }
           .hero-name { font-size: 30px; text-align: center; }
           .hero-role { text-align: center; }
-          .hero-hook { font-size: 16px; text-align: center; margin-left: auto; margin-right: auto; }
-          .hero-stats { justify-content: center; }
+          .hero-stats { text-align: center; }
           .hero-cta-row { justify-content: center; }
         }
         @media (max-width: 767px) {
-          .info-section { padding: 0 24px; }
-          .info-bio { font-size: 12px; }
           .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
           .brand-logo { height: 19px; max-width: 96px; }
           .offers {
@@ -535,19 +475,17 @@ export default async function AboutPage({ params }: Props) {
           }
           .offers::-webkit-scrollbar { display: none; }
           .offer { flex: 0 0 82vw; scroll-snap-align: center; padding: 26px 22px; }
-          .timeline-item { grid-template-columns: 78px 1fr; gap: 12px; }
         }
       `}</style>
 
-      {/* Hero */}
+      {/* Hero : photo, nom, role, stat, contact — droit au but */}
       <section className="hero">
         <div className="hero-photo">
-          <Image src="/images/portfolio/portrait/1.jpg" alt="Sandrine Ceuppens" fill sizes="(max-width: 900px) 340px, 420px" priority quality={82} />
+          <Image src={HERO_PHOTO} alt="Sandrine Ceuppens" fill sizes="(max-width: 900px) 340px, 420px" priority quality={82} />
         </div>
         <div>
           <h1 className="hero-name">{t.name}</h1>
           <p className="hero-role">{t.role}</p>
-          <p className="hero-hook">{t.hook}</p>
           <div className="hero-stats">
             <p className="hero-stat-label">{t.followersLabel}</p>
             <p className="hero-stat-num">{STATS.instagram.followers}</p>
@@ -564,15 +502,6 @@ export default async function AboutPage({ params }: Props) {
           </div>
         </div>
       </section>
-
-      <hr className="info-hr" />
-
-      {/* Bio */}
-      <div className="info-section">
-        {t.bio.map((para, i) => (
-          <p key={i} className="info-bio" style={{ marginBottom: i < t.bio.length - 1 ? "1.3em" : 0 }}>{para}</p>
-        ))}
-      </div>
 
       <hr className="info-hr" />
 
@@ -633,25 +562,12 @@ export default async function AboutPage({ params }: Props) {
 
       <hr className="info-hr" />
 
-      {/* Recent Projects : timeline structuree */}
-      <p className="info-section-title">{t.recentProjects}</p>
-      <div className="timeline">
-        {projects.map((p, i) => {
-          const showYear = i === 0 || projects[i - 1].year !== p.year;
-          return (
-            <div key={i}>
-              {showYear && <p className="timeline-year">{p.year}</p>}
-              <div className="timeline-item">
-                <span className="timeline-month">{p.month}</span>
-                <div>
-                  <p className="timeline-client">{p.client}</p>
-                  <p className="timeline-desc">{p.desc}</p>
-                  {p.secondary && <p className="timeline-secondary">{p.secondary}</p>}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      {/* Projets recents : PDF telechargeable, pas de bloc sur la page */}
+      <div className="pdf-link-wrap">
+        <a className="pdf-link" href={`/documents/recent-projects-${lang}.pdf`} target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          {t.projectsPdf}
+        </a>
       </div>
 
       <hr className="info-hr" />
@@ -685,7 +601,9 @@ export default async function AboutPage({ params }: Props) {
         "@context": "https://schema.org",
         "@type": "WebPage",
         name: lang === "fr" ? "À propos" : "About",
-        description: [t.hook, ...t.bio].join(" "),
+        description: lang === "fr"
+          ? "Sandrine Ceuppens, photographe et vidéaste documentaire basée à Bruxelles."
+          : "Sandrine Ceuppens, documentary photographer and filmmaker based in Brussels.",
         mainEntity: {
           "@type": "Person",
           name: "Sandrine Ceuppens",
