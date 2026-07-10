@@ -102,7 +102,7 @@ function Mock({ clip, cardKey, kind, sound }: { clip: Clip; cardKey: string; kin
           {btn}
         </div>
       )}
-      <span className="vid-label">{clip.label}</span>
+      {clip.label && <span className="vid-label">{clip.label}</span>}
     </div>
   );
 }
@@ -172,7 +172,7 @@ function MobileStack({ clips, kind, prefix, sound }: { clips: Clip[]; kind: "pho
             ) : (
               <div className="phone focusable" onClick={() => sound.openFocus(clip, kind)}>{video}{btn}</div>
             )}
-            {i === active && <span className="vid-label">{clip.label}</span>}
+            {i === active && clip.label && <span className="vid-label">{clip.label}</span>}
           </div>
         );
       })}
@@ -288,7 +288,7 @@ export function FocusOverlay({ clip, kind, onClose }: { clip: Clip; kind: "phone
         ) : (
           <div className="phone focus-phone">{video}{btn}</div>
         )}
-        <span className="focus-label">{clip.label}</span>
+        {clip.label && <span className="focus-label">{clip.label}</span>}
       </div>
     </div>
   );
@@ -320,7 +320,7 @@ export const SHOWCASE_CSS = `
     gap: 10px;
   }
   .carousel--phone .slide { width: 160px; }
-  .carousel--tablet .slide { width: 300px; }
+  .carousel--tablet .slide { width: 380px; }
 
   .carousel-arrow {
     position: absolute;
@@ -354,7 +354,7 @@ export const SHOWCASE_CSS = `
     touch-action: pan-y;
   }
   .stack--phone { height: 420px; }
-  .stack--tablet { height: 220px; }
+  .stack--tablet { height: 270px; }
   .stack-card {
     position: absolute;
     left: 50%;
@@ -367,13 +367,13 @@ export const SHOWCASE_CSS = `
     transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.45s;
   }
   .stack--phone .stack-card { width: 210px; margin-left: -105px; }
-  .stack--tablet .stack-card { width: 300px; margin-left: -150px; }
+  .stack--tablet .stack-card { width: 380px; margin-left: -190px; }
   .stack-card.pos-active { transform: translateX(0) scale(1) rotateY(0deg); opacity: 1; z-index: 20; }
   .stack-card.pos-next { transform: translateX(118px) scale(0.84) rotateY(-12deg); opacity: 0.45; z-index: 9; }
   .stack-card.pos-prev { transform: translateX(-118px) scale(0.84) rotateY(12deg); opacity: 0.45; z-index: 9; }
   .stack-card.pos-hidden { transform: scale(0.7); opacity: 0; z-index: 0; pointer-events: none; }
-  .stack--tablet .stack-card.pos-next { transform: translateX(150px) scale(0.82) rotateY(-12deg); }
-  .stack--tablet .stack-card.pos-prev { transform: translateX(-150px) scale(0.82) rotateY(12deg); }
+  .stack--tablet .stack-card.pos-next { transform: translateX(180px) scale(0.82) rotateY(-12deg); }
+  .stack--tablet .stack-card.pos-prev { transform: translateX(-180px) scale(0.82) rotateY(12deg); }
 
   /* Telephone 9:16 */
   .phone {
@@ -471,7 +471,7 @@ export const SHOWCASE_CSS = `
   }
   @keyframes focusPop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
   .focus-phone { width: min(72vw, 300px); box-shadow: 0 24px 70px rgba(0,0,0,0.55); }
-  .focus-tablet { width: min(92vw, 760px); box-shadow: 0 24px 70px rgba(0,0,0,0.55); }
+  .focus-tablet { width: min(94vw, 900px); box-shadow: 0 24px 70px rgba(0,0,0,0.55); }
   .focus-label { color: rgba(255,255,255,0.85); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
   .focus-close {
     position: absolute;
@@ -491,7 +491,7 @@ export const SHOWCASE_CSS = `
     .carousel { padding: 0; }
     /* Mobile : slider tactile, un item centre a la fois, swipe au doigt */
     .carousel--phone .slide { width: 62vw; max-width: 240px; }
-    .carousel--tablet .slide { width: 86vw; max-width: 340px; }
+    .carousel--tablet .slide { width: 92vw; max-width: 400px; }
     .carousel-track { gap: 12px; }
     .carousel-arrow { display: none; }
     .phone { border-width: 1.5px; }

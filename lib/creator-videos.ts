@@ -26,7 +26,10 @@ function toLabel(file: string): string {
 // Le nom du fichier est le titre affiche : "Palermo.mp4" -> "Palermo".
 // Les prefixes de l'ancienne convention ("City Diary Kyoto" -> "Kyoto")
 // sont retires pour ne garder que le lieu ou le concept.
+// Un fichier sans vrai titre ("sans nom", "untitled"...) -> aucun label.
 function diaryLabel(file: string): string {
+  const base = file.replace(/\.[^.]+$/, "").trim();
+  if (/^(sans[\s-]*nom|sans[\s-]*titre|untitled|no[\s-]*name)$/i.test(base)) return "";
   const label = toLabel(file)
     .replace(/^(City|Life|Lifestyle|Photographer|Fashion|Travel|Places|Work)\s+Diary\s*/i, "")
     .replace(/\bDiary\b/i, "")
