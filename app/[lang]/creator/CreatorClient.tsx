@@ -18,10 +18,6 @@ type Data = {
   talk: Clip[];
 };
 
-// Petit badge de stat affiche dans le coin de chaque video (voir VideoShowcase).
-// Les stats completes (clients, chiffres, offres) vivent maintenant sur /about.
-const CORNER_BADGE = "32.4K";
-
 const content = {
   fr: {
     cta: "On travaille ensemble ?",
@@ -140,7 +136,7 @@ export default function CreatorClient({
         <div className="tier-head">
           <h1 className="tier-title">{t[section]}</h1>
         </div>
-        <Carousel clips={clips} kind="phone" prefix={section} sound={sound} badge={CORNER_BADGE} />
+        <Carousel clips={clips} kind="phone" prefix={section} sound={sound} />
       </section>
 
       <hr className="creator-hr" />
