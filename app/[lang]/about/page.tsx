@@ -450,7 +450,7 @@ export default async function AboutPage({ params }: Props) {
 
         @media (max-width: 900px) {
           .hero { grid-template-columns: 1fr; gap: 28px; padding: 0 24px; }
-          .hero-photo { max-width: 340px; margin: 0 auto; }
+          .hero-photo { width: 100%; max-width: 340px; margin: 0 auto; }
           .hero-name { font-size: 30px; text-align: center; }
           .hero-role { text-align: center; }
           .hero-stats { text-align: center; }
