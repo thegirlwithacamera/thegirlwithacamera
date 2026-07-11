@@ -20,7 +20,12 @@ function toLabel(file: string): string {
     .replace(/['’]+$/, "")
     .replace(/[-_]+/g, " ")
     .trim()
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+    // Capitalise la 1ere lettre de chaque mot. Fait a la main (pas via
+    // regex \b\w) car \b ne reconnait pas les lettres accentuees en JS :
+    // "Liège" se retrouvait affiche "LièGe".
+    .split(" ")
+    .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(" ");
 }
 
 // Le nom du fichier est le titre affiche : "Palermo.mp4" -> "Palermo".
