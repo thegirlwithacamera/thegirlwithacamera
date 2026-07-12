@@ -9,8 +9,9 @@
 //
 // Les photos de chaque catégorie se rangent dans
 //   public/images/portfolio/<slug>/
-// La page /photographer/<slug> les liste. Convention : la photo "1" de
-// chaque dossier est aussi la couverture affichée sur la tuile d'accueil.
+// La page /photographer/<slug> les liste, triées par nom de fichier (ordre
+// éditorial choisi manuellement). Le champ `cover` peut pointer vers
+// n'importe quel fichier du dossier — pas forcément le "1.jpg".
 //
 // Pour renommer une catégorie : change label.fr/label.en (et slug si tu veux
 // une nouvelle URL — pense alors à renommer le dossier).
@@ -23,13 +24,13 @@ export type PhotoCategory = {
 
 export const PHOTO_CATEGORIES: PhotoCategory[] = [
   { slug: "studio",       label: { fr: "Studio",       en: "Studio" },       cover: "/images/portfolio/studio/1.jpg" },
-  { slug: "travel",       label: { fr: "Voyage",       en: "Travel" },       cover: "/images/portfolio/travel/1.jpg" },
+  { slug: "travel",       label: { fr: "Voyage",       en: "Travel" },       cover: "/images/portfolio/travel/30.jpg" },
   { slug: "fashion",      label: { fr: "Mode",         en: "Fashion" },      cover: "/images/portfolio/fashion/1.jpg" },
   { slug: "details",      label: { fr: "Détails",      en: "Details" },      cover: "/images/portfolio/details/1.jpg" },
   { slug: "portrait",     label: { fr: "Portrait",     en: "Portrait" },     cover: "/images/portfolio/portrait/1.jpg" },
-  { slug: "street",       label: { fr: "Rue",          en: "Street" },       cover: "/images/portfolio/street/1.jpg" },
+  { slug: "street",       label: { fr: "Rue",          en: "Street" },       cover: "/images/portfolio/street/3.jpg" },
   { slug: "beauty",       label: { fr: "Beauté",       en: "Beauty" },       cover: "/images/portfolio/beauty/1.jpg" },
-  { slug: "architecture", label: { fr: "Architecture", en: "Architecture" }, cover: "/images/portfolio/architecture/1.jpg" },
+  { slug: "architecture", label: { fr: "Architecture", en: "Architecture" }, cover: "/images/portfolio/architecture/10.jpg" },
   { slug: "creative",     label: { fr: "Créatif",      en: "Creative" },     cover: "/images/portfolio/creative/1.jpg" },
 ];
 
