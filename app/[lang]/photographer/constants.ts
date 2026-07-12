@@ -30,7 +30,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
   { slug: "portrait",     label: { fr: "Portrait",     en: "Portrait" },     cover: "/images/portfolio/portrait/1.jpg" },
   { slug: "street",       label: { fr: "Rue",          en: "Street" },       cover: "/images/portfolio/street/3.jpg" },
   { slug: "beauty",       label: { fr: "Beauté",       en: "Beauty" },       cover: "/images/portfolio/beauty/1.jpg" },
-  { slug: "architecture", label: { fr: "Architecture", en: "Architecture" }, cover: "/images/portfolio/architecture/10.jpg" },
+  { slug: "architecture", label: { fr: "Architecture", en: "Architecture" }, cover: "/images/portfolio/architecture/1.jpg" },
   { slug: "creative",     label: { fr: "Créatif",      en: "Creative" },     cover: "/images/portfolio/creative/1.jpg" },
 ];
 
