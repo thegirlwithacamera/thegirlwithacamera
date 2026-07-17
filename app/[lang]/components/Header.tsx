@@ -34,6 +34,8 @@ export default function Header() {
     // Diary : pret mais masque pour l'instant. Pour le remettre,
     // decommente la ligne ci-dessous.
     // { href: `/${currentLang}/diary`,    label: "Diary" },
+    // Presets : boutique presets Lightroom (paiement via Gumroad).
+    { href: `/${currentLang}/presets`,  label: "Presets" },
   ];
 
   return (
