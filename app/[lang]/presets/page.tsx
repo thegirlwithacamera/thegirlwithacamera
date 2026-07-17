@@ -37,8 +37,9 @@ const content = {
     title: 'Ricoh Signature Presets',
     subtitle:
       'Mon look cinématique et filmique en 10 presets Lightroom. Compatibles desktop, Classic et mobile.',
-    cta: `Obtenir les presets — dès ${PRICE_SINGLE}`,
-    ctaNote: `${PRICE_SINGLE} le preset · pack complet des 10 à ${PRICE_PACK} · guide inclus`,
+    ctaPack: `Pack complet — les 10 presets · ${PRICE_PACK}`,
+    ctaSingle: `Ou choisir un preset · ${PRICE_SINGLE}`,
+    ctaNote: `Guide d’installation et licence commerciale inclus · pack à ${PRICE_PACK} au lieu de 190 €`,
     beforeAfter: 'Avant / Après',
     before: 'Avant',
     after: 'Après',
@@ -65,8 +66,9 @@ const content = {
     title: 'Ricoh Signature Presets',
     subtitle:
       'My cinematic, film-inspired look in 10 Lightroom presets. Works on desktop, Classic and mobile.',
-    cta: `Get the presets — from ${PRICE_SINGLE}`,
-    ctaNote: `${PRICE_SINGLE} per preset · full pack of 10 for ${PRICE_PACK} · guide included`,
+    ctaPack: `Full pack — all 10 presets · ${PRICE_PACK}`,
+    ctaSingle: `Or pick a single preset · ${PRICE_SINGLE}`,
+    ctaNote: `Installation guide and commercial licence included · pack at ${PRICE_PACK} instead of €190`,
     beforeAfter: 'Before / After',
     before: 'Before',
     after: 'After',
@@ -114,26 +116,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function GumroadButton({ label }: { label: string }) {
+// Nom exact de la version pack sur Gumroad (preselectionnee via ?variant=).
+const PACK_VARIANT = 'PACK COMPLET — Les 10 presets';
+
+// Deux CTA :
+// - le pack : va directement au paiement avec la bonne version
+// - "choisir" : ouvre la fiche Gumroad en overlay avec les 11 options
+function BuyButtons({ pack, single }: { pack: string; single: string }) {
+  const btn = {
+    display: 'inline-block',
+    padding: '16px 40px',
+    fontSize: '10px',
+    fontWeight: 500,
+    letterSpacing: '0.18em',
+    textTransform: 'uppercase' as const,
+    textDecoration: 'none',
+  };
   return (
-    <a
-      className="gumroad-button"
-      href={GUMROAD_URL}
-      data-gumroad-overlay-checkout="true"
-      style={{
-        display: 'inline-block',
-        padding: '16px 40px',
-        fontSize: '10px',
-        fontWeight: 500,
-        letterSpacing: '0.18em',
-        textTransform: 'uppercase',
-        background: '#0a0a0a',
-        color: '#ffffff',
-        textDecoration: 'none',
-      }}
-    >
-      {label}
-    </a>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+      <a
+        className="gumroad-button"
+        href={`${GUMROAD_URL}?variant=${encodeURIComponent(PACK_VARIANT)}`}
+        data-gumroad-overlay-checkout="true"
+        style={{ ...btn, background: '#0a0a0a', color: '#ffffff' }}
+      >
+        {pack}
+      </a>
+      <a
+        className="gumroad-button"
+        href={GUMROAD_URL}
+        style={{ ...btn, background: '#ffffff', color: '#0a0a0a', border: '1px solid #d8d8d8', padding: '14px 32px' }}
+      >
+        {single}
+      </a>
+    </div>
   );
 }
 
@@ -208,7 +224,7 @@ export default async function PresetsPage({ params }: Props) {
           }}>
             {t.subtitle}
           </p>
-          <GumroadButton label={t.cta} />
+          <BuyButtons pack={t.ctaPack} single={t.ctaSingle} />
           <p style={{ fontSize: '10px', letterSpacing: '0.08em', color: '#b0b0b0', marginTop: '14px' }}>
             {t.ctaNote}
           </p>
@@ -262,7 +278,7 @@ export default async function PresetsPage({ params }: Props) {
           }}>
             {t.includedText}
           </p>
-          <GumroadButton label={t.cta} />
+          <BuyButtons pack={t.ctaPack} single={t.ctaSingle} />
         </section>
 
         {/* FAQ */}
