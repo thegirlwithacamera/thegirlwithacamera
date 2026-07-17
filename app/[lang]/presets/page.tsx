@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
+import PresetCarousel from './PresetCarousel';
 
 // Pour retirer la page (produit Gumroad depublie, etc.) :
 // passer PRESETS_LIVE a false et re-commenter le lien Presets
@@ -11,36 +12,31 @@ const PRESETS_LIVE = true;
 const GUMROAD_URL = 'https://sandrine783.gumroad.com/l/ricoh-presets';
 
 const PRICE_SINGLE = '19 €';
-const PRICE_FAMILY = '90 €';
-const PRICE_PACK = '255 €';
+const PRICE_FAMILY = '49 €';
+const PRICE_PACK = '99 €';
 
-// Avant/apres : chaque preset applique a une des deux scenes de reference
-// (Froid sur la photo de nuit, Douce et Chaude sur celle de jour).
-// Images generees dans public/presets/ depuis Desktop/day et Desktop/night.
-const SHOW_BEFORE_AFTER = true;
+// Avant/apres : pour chaque scene (nuit / jour), le Raw reste fixe et un
+// carrousel fait defiler les 15 rendus. Images dans public/presets/
+// (sources : Desktop/day et Desktop/night, memes scenes avec chaque preset).
+const ALL_PRESETS = [
+  ['Froid', 'Bluehour'], ['Froid', 'Coldpress'], ['Froid', 'Frostfilm'], ['Froid', 'Nightfall'], ['Froid', 'Seafoam'],
+  ['Douce', 'Haze'], ['Douce', 'Linen'], ['Douce', 'Mist'], ['Douce', 'Petal'], ['Douce', 'Whisper'],
+  ['Chaude', 'Redwood'], ['Chaude', 'Retroglow'], ['Chaude', 'RoseFilm'], ['Chaude', 'Slidepop'], ['Chaude', 'Sunfaded'],
+] as const;
 
-const NIGHT_RAW = '/presets/night-raw.jpg';
-const DAY_RAW = '/presets/day-raw.jpg';
+const slidesFor = (scene: 'day' | 'night', startFamily: string) => {
+  const ordered = [...ALL_PRESETS.filter(([f]) => f === startFamily), ...ALL_PRESETS.filter(([f]) => f !== startFamily)];
+  return ordered.map(([fam, name]) => ({
+    name: `${fam} — ${name}`,
+    src: `/presets/${scene}-${name.toLowerCase()}.jpg`,
+  }));
+};
 
-const PRESET_PAIRS = [
-  { name: 'Froid — Bluehour', before: NIGHT_RAW, after: '/presets/night-bluehour.jpg' },
-  { name: 'Froid — Coldpress', before: NIGHT_RAW, after: '/presets/night-coldpress.jpg' },
-  { name: 'Froid — Frostfilm', before: NIGHT_RAW, after: '/presets/night-frostfilm.jpg' },
-  { name: 'Froid — Nightfall', before: NIGHT_RAW, after: '/presets/night-nightfall.jpg' },
-  { name: 'Froid — Seafoam', before: NIGHT_RAW, after: '/presets/night-seafoam.jpg' },
-  { name: 'Douce — Haze', before: DAY_RAW, after: '/presets/day-haze.jpg' },
-  { name: 'Douce — Linen', before: DAY_RAW, after: '/presets/day-linen.jpg' },
-  { name: 'Douce — Mist', before: DAY_RAW, after: '/presets/day-mist.jpg' },
-  { name: 'Douce — Petal', before: DAY_RAW, after: '/presets/day-petal.jpg' },
-  { name: 'Douce — Whisper', before: DAY_RAW, after: '/presets/day-whisper.jpg' },
-  { name: 'Chaude — Redwood', before: DAY_RAW, after: '/presets/day-redwood.jpg' },
-  { name: 'Chaude — Retroglow', before: DAY_RAW, after: '/presets/day-retroglow.jpg' },
-  { name: 'Chaude — RoseFilm', before: DAY_RAW, after: '/presets/day-rosefilm.jpg' },
-  { name: 'Chaude — Slidepop', before: DAY_RAW, after: '/presets/day-slidepop.jpg' },
-  { name: 'Chaude — Sunfaded', before: DAY_RAW, after: '/presets/day-sunfaded.jpg' },
-];
-
-const PRESETS = SHOW_BEFORE_AFTER ? PRESET_PAIRS : [];
+// La nuit s'ouvre sur la famille Froid, le jour sur la famille Douce.
+const SCENES = [
+  { key: 'night', raw: '/presets/night-raw.jpg', slides: slidesFor('night', 'Froid') },
+  { key: 'day', raw: '/presets/day-raw.jpg', slides: slidesFor('day', 'Douce') },
+] as const;
 
 interface Props {
   params: Promise<{ lang: 'fr' | 'en' }>;
@@ -58,6 +54,9 @@ const content = {
     beforeAfter: 'Avant / Après',
     before: 'Avant',
     after: 'Après',
+    scenes: { night: 'De nuit — les 15 presets sur la même photo', day: 'De jour — les 15 presets sur la même photo' },
+    prev: 'Preset précédent',
+    next: 'Preset suivant',
     includedTitle: 'Ce que vous recevez',
     includedText:
       `Trois familles de 5 presets : Froid (Bluehour, Coldpress, Frostfilm, Nightfall, Seafoam) · Douce (Haze, Linen, Mist, Petal, Whisper) · Chaude (Redwood, Retroglow, RoseFilm, Slidepop, Sunfaded). Chaque preset : fichier .xmp pour Lightroom desktop et Classic, compatible Lightroom mobile via la synchronisation Adobe, guide d’installation, licence usage personnel & commercial. À l’unité (${PRICE_SINGLE}), par famille (${PRICE_FAMILY}) ou les 15 (${PRICE_PACK}).`,
@@ -87,6 +86,9 @@ const content = {
     beforeAfter: 'Before / After',
     before: 'Before',
     after: 'After',
+    scenes: { night: 'By night — all 15 presets on the same photo', day: 'By day — all 15 presets on the same photo' },
+    prev: 'Previous preset',
+    next: 'Next preset',
     includedTitle: 'What you get',
     includedText:
       `Three families of 5 presets: Cold Tones (Bluehour, Coldpress, Frostfilm, Nightfall, Seafoam) · Vivid Tones (Haze, Linen, Mist, Petal, Whisper) · Vintage Tones (Redwood, Retroglow, RoseFilm, Slidepop, Sunfaded). Each preset: .xmp file for Lightroom desktop and Classic, works with Lightroom mobile via Adobe sync, installation guide, personal & commercial use licence. Single (${PRICE_SINGLE}), family (${PRICE_FAMILY}) or all 15 (${PRICE_PACK}).`,
@@ -245,8 +247,7 @@ export default async function PresetsPage({ params }: Props) {
           </p>
         </section>
 
-        {/* Avant / Apres — masque tant que les images ne sont pas dans public/presets/ */}
-        {PRESETS.length > 0 && (
+        {/* Avant / Apres : Raw fixe + carrousel des 15 presets, de nuit puis de jour */}
         <section style={{ marginTop: '90px' }}>
           <p style={{
             fontSize: '9px', letterSpacing: '0.22em', textTransform: 'uppercase',
@@ -254,30 +255,31 @@ export default async function PresetsPage({ params }: Props) {
           }}>
             {t.beforeAfter}
           </p>
-          <div className="presets-grid">
-            {PRESETS.map((p) => (
-              <figure key={p.name} style={{ margin: 0 }}>
+          <div style={{ display: 'grid', gap: '48px' }}>
+            {SCENES.map((scene) => (
+              <figure key={scene.key} style={{ margin: 0 }}>
                 <div className="presets-pair">
                   <div style={{ position: 'relative' }}>
-                    <img src={p.before} alt={`${p.name} — ${t.before}`} loading="lazy" />
-                    <span className="presets-pair-label">{t.before}</span>
+                    <img src={scene.raw} alt={t.before} loading="lazy" />
+                    <span className="presets-pair-label">{t.before} · RAW</span>
                   </div>
-                  <div style={{ position: 'relative' }}>
-                    <img src={p.after} alt={`${p.name} — ${t.after}`} loading="lazy" />
-                    <span className="presets-pair-label">{t.after}</span>
-                  </div>
+                  <PresetCarousel
+                    slides={[...scene.slides]}
+                    afterLabel={t.after}
+                    prevLabel={t.prev}
+                    nextLabel={t.next}
+                  />
                 </div>
                 <figcaption style={{
                   marginTop: '10px', textAlign: 'center', fontSize: '10px',
                   letterSpacing: '0.12em', textTransform: 'uppercase', color: '#8c8880',
                 }}>
-                  {p.name}
+                  {t.scenes[scene.key]}
                 </figcaption>
               </figure>
             ))}
           </div>
         </section>
-        )}
 
         {/* Ce que vous recevez */}
         <section style={{ marginTop: '90px', textAlign: 'center' }}>
@@ -324,7 +326,7 @@ export default async function PresetsPage({ params }: Props) {
         offers: {
           '@type': 'AggregateOffer',
           lowPrice: '19.00',
-          highPrice: '255.00',
+          highPrice: '99.00',
           offerCount: 19,
           priceCurrency: 'EUR',
           availability: 'https://schema.org/InStock',
