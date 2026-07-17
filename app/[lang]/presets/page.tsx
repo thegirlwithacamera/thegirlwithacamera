@@ -11,7 +11,8 @@ const PRESETS_LIVE = true;
 const GUMROAD_URL = 'https://sandrine783.gumroad.com/l/ricoh-presets';
 
 const PRICE_SINGLE = '19 €';
-const PRICE_PACK = '79 €';
+const PRICE_FAMILY = '90 €';
+const PRICE_PACK = '255 €';
 
 // Avant/apres montres sur la page (4 des 10 presets).
 // 1. Deposer les images dans public/presets/ (export JPG ~1200px de large,
@@ -19,10 +20,9 @@ const PRICE_PACK = '79 €';
 const SHOW_BEFORE_AFTER = false;
 
 const PRESET_PAIRS = [
-  { name: '01 Signature', before: '/presets/signature-before.jpg', after: '/presets/signature-after.jpg' },
-  { name: '02 Golden Hour', before: '/presets/golden-before.jpg', after: '/presets/golden-after.jpg' },
-  { name: '07 Terracotta', before: '/presets/terracotta-before.jpg', after: '/presets/terracotta-after.jpg' },
-  { name: '10 Street B&W', before: '/presets/bw-before.jpg', after: '/presets/bw-after.jpg' },
+  { name: 'Froid · Cold Tones', before: '/presets/froid-avant.jpg', after: '/presets/froid-apres.jpg' },
+  { name: 'Douce · Vivid Tones', before: '/presets/douce-avant.jpg', after: '/presets/douce-apres.jpg' },
+  { name: 'Chaude · Vintage Tones', before: '/presets/chaude-avant.jpg', after: '/presets/chaude-apres.jpg' },
 ];
 
 const PRESETS = SHOW_BEFORE_AFTER ? PRESET_PAIRS : [];
@@ -36,16 +36,16 @@ const content = {
     eyebrow: 'The Girl With A Camera',
     title: 'Ricoh Signature Presets',
     subtitle:
-      'Mon look cinématique et filmique en 10 presets Lightroom. Compatibles desktop, Classic et mobile.',
-    ctaPack: `Pack complet — les 10 presets · ${PRICE_PACK}`,
-    ctaSingle: `Ou choisir un preset · ${PRICE_SINGLE}`,
-    ctaNote: `Guide d’installation et licence commerciale inclus · pack à ${PRICE_PACK} au lieu de 190 €`,
+      'Mon look cinématique et filmique en 15 presets Lightroom, en 3 familles : Froid, Douce et Chaude. Desktop, Classic et mobile.',
+    ctaPack: `Pack complet — les 15 presets · ${PRICE_PACK}`,
+    ctaSingle: `Ou choisir un preset (${PRICE_SINGLE}) ou une famille (${PRICE_FAMILY})`,
+    ctaNote: `Guide d’installation et licence commerciale inclus · ${PRICE_SINGLE} le preset · ${PRICE_FAMILY} la famille de 5 · ${PRICE_PACK} les 15`,
     beforeAfter: 'Avant / Après',
     before: 'Avant',
     after: 'Après',
     includedTitle: 'Ce que vous recevez',
     includedText:
-      `Chaque preset (${PRICE_SINGLE}) : fichier .xmp pour Lightroom desktop et Classic · compatible Lightroom mobile via la synchronisation Adobe · guide d’installation · licence usage personnel & commercial. Ou le pack complet des 10 (Signature, Golden Hour, Blue Hour, Warm Film, Cool Film, Faded Matte, Terracotta, Moody Muted, Vivid Film, Street B&W) pour ${PRICE_PACK} au lieu de 190 €.`,
+      `Trois familles de 5 presets : Froid (Bluehour, Coldpress, Frostfilm, Nightfall, Seafoam) · Douce (Haze, Linen, Mist, Petal, Whisper) · Chaude (Redwood, Retroglow, RoseFilm, Slidepop, Sunfaded). Chaque preset : fichier .xmp pour Lightroom desktop et Classic, compatible Lightroom mobile via la synchronisation Adobe, guide d’installation, licence usage personnel & commercial. À l’unité (${PRICE_SINGLE}), par famille (${PRICE_FAMILY}) ou les 15 (${PRICE_PACK}).`,
     faq: [
       {
         q: 'Pour quel Lightroom ?',
@@ -65,16 +65,16 @@ const content = {
     eyebrow: 'The Girl With A Camera',
     title: 'Ricoh Signature Presets',
     subtitle:
-      'My cinematic, film-inspired look in 10 Lightroom presets. Works on desktop, Classic and mobile.',
-    ctaPack: `Full pack — all 10 presets · ${PRICE_PACK}`,
-    ctaSingle: `Or pick a single preset · ${PRICE_SINGLE}`,
-    ctaNote: `Installation guide and commercial licence included · pack at ${PRICE_PACK} instead of €190`,
+      'My cinematic, film-inspired look in 15 Lightroom presets, in 3 families: Cold, Vivid and Vintage Tones. Desktop, Classic and mobile.',
+    ctaPack: `Full pack — all 15 presets · ${PRICE_PACK}`,
+    ctaSingle: `Or pick a single preset (${PRICE_SINGLE}) or a family (${PRICE_FAMILY})`,
+    ctaNote: `Installation guide and commercial licence included · ${PRICE_SINGLE} per preset · ${PRICE_FAMILY} per 5-preset family · ${PRICE_PACK} for all 15`,
     beforeAfter: 'Before / After',
     before: 'Before',
     after: 'After',
     includedTitle: 'What you get',
     includedText:
-      `Each preset (${PRICE_SINGLE}): .xmp file for Lightroom desktop and Classic · works with Lightroom mobile via Adobe sync · installation guide · personal & commercial use licence. Or the full pack of 10 (Signature, Golden Hour, Blue Hour, Warm Film, Cool Film, Faded Matte, Terracotta, Moody Muted, Vivid Film, Street B&W) for ${PRICE_PACK} instead of €190.`,
+      `Three families of 5 presets: Cold Tones (Bluehour, Coldpress, Frostfilm, Nightfall, Seafoam) · Vivid Tones (Haze, Linen, Mist, Petal, Whisper) · Vintage Tones (Redwood, Retroglow, RoseFilm, Slidepop, Sunfaded). Each preset: .xmp file for Lightroom desktop and Classic, works with Lightroom mobile via Adobe sync, installation guide, personal & commercial use licence. Single (${PRICE_SINGLE}), family (${PRICE_FAMILY}) or all 15 (${PRICE_PACK}).`,
     faq: [
       {
         q: 'Which Lightroom?',
@@ -99,12 +99,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     fr: {
       title: 'Presets',
       description:
-        'Ricoh Signature Presets — le look cinématique de Sandrine Ceuppens en 10 presets Lightroom. Desktop + mobile, guide inclus.',
+        'Ricoh Signature Presets — le look cinématique de Sandrine Ceuppens en 15 presets Lightroom. Desktop + mobile, guide inclus.',
     },
     en: {
       title: 'Presets',
       description:
-        'Ricoh Signature Presets — Sandrine Ceuppens’ cinematic look in 10 Lightroom presets. Desktop + mobile, guide included.',
+        'Ricoh Signature Presets — Sandrine Ceuppens’ cinematic look in 15 Lightroom presets. Desktop + mobile, guide included.',
     },
   };
 
@@ -117,7 +117,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // Nom exact de la version pack sur Gumroad (preselectionnee via ?variant=).
-const PACK_VARIANT = 'PACK COMPLET — Les 10 presets';
+const PACK_VARIANT = 'PACK COMPLET — Les 15 presets';
 
 // Deux CTA :
 // - le pack : va directement au paiement avec la bonne version
@@ -303,14 +303,14 @@ export default async function PresetsPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Product',
-        name: 'Ricoh Signature Presets — 10 Lightroom Presets',
+        name: 'Ricoh Signature Presets — 15 Lightroom Presets',
         description: content[lang].subtitle,
         brand: { '@type': 'Brand', name: 'The Girl With A Camera' },
         offers: {
           '@type': 'AggregateOffer',
           lowPrice: '19.00',
-          highPrice: '79.00',
-          offerCount: 11,
+          highPrice: '255.00',
+          offerCount: 19,
           priceCurrency: 'EUR',
           availability: 'https://schema.org/InStock',
           url: `https://thegirlwithacamera.com/${lang}/presets`,
