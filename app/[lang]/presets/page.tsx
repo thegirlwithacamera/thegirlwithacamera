@@ -14,15 +14,30 @@ const PRICE_SINGLE = '19 €';
 const PRICE_FAMILY = '90 €';
 const PRICE_PACK = '255 €';
 
-// Avant/apres montres sur la page (4 des 10 presets).
-// 1. Deposer les images dans public/presets/ (export JPG ~1200px de large,
-//    noms ci-dessous), 2. passer SHOW_BEFORE_AFTER a true.
-const SHOW_BEFORE_AFTER = false;
+// Avant/apres : chaque preset applique a une des deux scenes de reference
+// (Froid sur la photo de nuit, Douce et Chaude sur celle de jour).
+// Images generees dans public/presets/ depuis Desktop/day et Desktop/night.
+const SHOW_BEFORE_AFTER = true;
+
+const NIGHT_RAW = '/presets/night-raw.jpg';
+const DAY_RAW = '/presets/day-raw.jpg';
 
 const PRESET_PAIRS = [
-  { name: 'Froid · Cold Tones', before: '/presets/froid-avant.jpg', after: '/presets/froid-apres.jpg' },
-  { name: 'Douce · Vivid Tones', before: '/presets/douce-avant.jpg', after: '/presets/douce-apres.jpg' },
-  { name: 'Chaude · Vintage Tones', before: '/presets/chaude-avant.jpg', after: '/presets/chaude-apres.jpg' },
+  { name: 'Froid — Bluehour', before: NIGHT_RAW, after: '/presets/night-bluehour.jpg' },
+  { name: 'Froid — Coldpress', before: NIGHT_RAW, after: '/presets/night-coldpress.jpg' },
+  { name: 'Froid — Frostfilm', before: NIGHT_RAW, after: '/presets/night-frostfilm.jpg' },
+  { name: 'Froid — Nightfall', before: NIGHT_RAW, after: '/presets/night-nightfall.jpg' },
+  { name: 'Froid — Seafoam', before: NIGHT_RAW, after: '/presets/night-seafoam.jpg' },
+  { name: 'Douce — Haze', before: DAY_RAW, after: '/presets/day-haze.jpg' },
+  { name: 'Douce — Linen', before: DAY_RAW, after: '/presets/day-linen.jpg' },
+  { name: 'Douce — Mist', before: DAY_RAW, after: '/presets/day-mist.jpg' },
+  { name: 'Douce — Petal', before: DAY_RAW, after: '/presets/day-petal.jpg' },
+  { name: 'Douce — Whisper', before: DAY_RAW, after: '/presets/day-whisper.jpg' },
+  { name: 'Chaude — Redwood', before: DAY_RAW, after: '/presets/day-redwood.jpg' },
+  { name: 'Chaude — Retroglow', before: DAY_RAW, after: '/presets/day-retroglow.jpg' },
+  { name: 'Chaude — RoseFilm', before: DAY_RAW, after: '/presets/day-rosefilm.jpg' },
+  { name: 'Chaude — Slidepop', before: DAY_RAW, after: '/presets/day-slidepop.jpg' },
+  { name: 'Chaude — Sunfaded', before: DAY_RAW, after: '/presets/day-sunfaded.jpg' },
 ];
 
 const PRESETS = SHOW_BEFORE_AFTER ? PRESET_PAIRS : [];
