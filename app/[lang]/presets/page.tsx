@@ -1,5 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
@@ -16,9 +14,10 @@ const PRICE_SINGLE = '19 €';
 const PRICE_PACK = '79 €';
 
 // Avant/apres montres sur la page (4 des 10 presets).
-// Images attendues dans public/presets/ — export JPG ~1200px de large.
-// Une paire ne s'affiche que si ses deux fichiers existent : on peut donc
-// mettre la page en ligne avant d'avoir les images.
+// 1. Deposer les images dans public/presets/ (export JPG ~1200px de large,
+//    noms ci-dessous), 2. passer SHOW_BEFORE_AFTER a true.
+const SHOW_BEFORE_AFTER = false;
+
 const PRESET_PAIRS = [
   { name: '01 Signature', before: '/presets/signature-before.jpg', after: '/presets/signature-after.jpg' },
   { name: '02 Golden Hour', before: '/presets/golden-before.jpg', after: '/presets/golden-after.jpg' },
@@ -26,8 +25,7 @@ const PRESET_PAIRS = [
   { name: '10 Street B&W', before: '/presets/bw-before.jpg', after: '/presets/bw-after.jpg' },
 ];
 
-const inPublic = (p: string) => fs.existsSync(path.join(process.cwd(), 'public', p));
-const PRESETS = PRESET_PAIRS.filter((p) => inPublic(p.before) && inPublic(p.after));
+const PRESETS = SHOW_BEFORE_AFTER ? PRESET_PAIRS : [];
 
 interface Props {
   params: Promise<{ lang: 'fr' | 'en' }>;
