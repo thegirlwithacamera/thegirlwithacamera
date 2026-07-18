@@ -73,6 +73,7 @@ export default async function HomePage({ params }: Props) {
                 sizes="(max-width: 767px) 33vw, 360px"
                 priority={i < 3}
                 quality={78}
+                style={cat.coverPosition ? { objectPosition: cat.coverPosition } : undefined}
               />
             </Link>
           ))}

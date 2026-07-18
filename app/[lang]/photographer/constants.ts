@@ -21,18 +21,23 @@ export type PhotoCategory = {
   slug: string;
   label: { fr: string; en: string };
   cover: string;
+  // Position CSS object-position pour le crop de la tuile d'accueil (4:5).
+  // À utiliser quand le sujet n'est pas centré verticalement dans la photo
+  // (ex: portraits N&B avec beaucoup d'espace vide au-dessus de la tête),
+  // pour que le crop garde le sujet plutôt que le vide. Défaut : "center".
+  coverPosition?: string;
 };
 
 export const PHOTO_CATEGORIES: PhotoCategory[] = [
-  { slug: "studio",       label: { fr: "Studio",       en: "Studio" },       cover: "/images/portfolio/studio/1.jpg" },
-  { slug: "travel",       label: { fr: "Voyage",       en: "Travel" },       cover: "/images/portfolio/travel/1.jpg" },
-  { slug: "fashion",      label: { fr: "Mode",         en: "Fashion" },      cover: "/images/portfolio/fashion/1.jpg" },
-  { slug: "details",      label: { fr: "Détails",      en: "Details" },      cover: "/images/portfolio/details/1.jpg" },
-  { slug: "portrait",     label: { fr: "Portrait",     en: "Portrait" },     cover: "/images/portfolio/portrait/1.jpg" },
-  { slug: "street",       label: { fr: "Rue",          en: "Street" },       cover: "/images/portfolio/street/1.jpg" },
-  { slug: "beauty",       label: { fr: "Beauté",       en: "Beauty" },       cover: "/images/portfolio/beauty/1.jpg" },
-  { slug: "architecture", label: { fr: "Architecture", en: "Architecture" }, cover: "/images/portfolio/architecture/1.jpg" },
-  { slug: "creative",     label: { fr: "Créatif",      en: "Creative" },     cover: "/images/portfolio/creative/1.jpg" },
+  { slug: "jewelry",    label: { fr: "Bijoux",     en: "Jewelry" },    cover: "/images/portfolio/jewelry/1.jpg" },
+  { slug: "product",    label: { fr: "Objet",      en: "Product" },    cover: "/images/portfolio/product/1.JPG" },
+  { slug: "fashion",    label: { fr: "Mode",       en: "Fashion" },    cover: "/images/portfolio/fashion/1.jpg",       coverPosition: "center 80%" },
+  { slug: "venues",     label: { fr: "Lieux",      en: "Venues" },     cover: "/images/portfolio/venues/1.JPG" },
+  { slug: "portrait",   label: { fr: "Portrait",   en: "Portrait" },   cover: "/images/portfolio/portrait/1.jpg" },
+  { slug: "travel",     label: { fr: "Voyage",     en: "Travel" },     cover: "/images/portfolio/travel/1.jpg" },
+  { slug: "street",     label: { fr: "Rue",        en: "Street" },     cover: "/images/portfolio/street/1.jpg" },
+  { slug: "conceptual", label: { fr: "Conceptuel", en: "Conceptual" }, cover: "/images/portfolio/conceptual/1.jpg", coverPosition: "center 75%" },
+  { slug: "beauty",     label: { fr: "Beauté",     en: "Beauty" },     cover: "/images/portfolio/beauty/1.JPG" },
 ];
 
 export const PHOTO_CATEGORY_SLUGS = PHOTO_CATEGORIES.map((c) => c.slug);

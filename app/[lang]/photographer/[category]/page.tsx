@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PHOTO_CATEGORIES } from "../constants";
 import { readCategoryPhotos } from "@/lib/portfolio";
+import PhotoPager from "./PhotoPager";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en"; category: string }>;
@@ -81,8 +82,31 @@ export default async function PhotographerCategoryPage({ params }: Props) {
         .photo-grid.is-empty { max-width: 460px; grid-template-columns: 1fr; }
         .photo-cell { display: block; aspect-ratio: 1066 / 1600; overflow: hidden; position: relative; background: #f2f2f2; }
         .photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .pager-outer { max-width: 1260px; margin: 0 auto; padding: 0 20px; }
+        .pager-viewport { overflow: hidden; outline: none; }
+        .pager-track { display: flex; transition: transform 0.45s ease; }
+        .pager-page {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 22px;
+        }
+        .pager-dots { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 28px; }
+        .pager-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #d4d4d4;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .pager-dot:hover { background: #999; }
+        .pager-dot.is-active { background: #0a0a0a; transform: scale(1.4); }
         @media (max-width: 767px) {
           .photo-grid { gap: 8px; padding: 0 12px; }
+          .pager-outer { padding: 0 12px; }
+          .pager-page { gap: 8px; }
           .cat-head h1 { font-size: 18px; }
         }
       `}</style>
@@ -96,21 +120,25 @@ export default async function PhotographerCategoryPage({ params }: Props) {
           {empty && <p className="cat-note">{emptyNote}</p>}
         </div>
 
-        <div className={`photo-grid${empty ? " is-empty" : ""}`}>
-          {list.map((p, i) => (
-            <div key={i} className="photo-cell">
-              <Image
-                src={p.src}
-                alt={`${cat.label.en} photograph ${i + 1} by Sandrine Ceuppens`}
-                width={1066}
-                height={1600}
-                sizes="(max-width: 767px) 33vw, 420px"
-                priority={i < 6}
-                quality={75}
-              />
-            </div>
-          ))}
-        </div>
+        {list.length > 9 ? (
+          <PhotoPager photos={list} catLabel={cat.label.en} />
+        ) : (
+          <div className={`photo-grid${empty ? " is-empty" : ""}`}>
+            {list.map((p, i) => (
+              <div key={i} className="photo-cell">
+                <Image
+                  src={p.src}
+                  alt={`${cat.label.en} photograph ${i + 1} by Sandrine Ceuppens`}
+                  width={1066}
+                  height={1600}
+                  sizes="(max-width: 767px) 33vw, 420px"
+                  priority={i < 6}
+                  quality={75}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </main>
     </>
   );

@@ -15,6 +15,15 @@ const nextConfig: NextConfig = {
       { source: "/en/da", destination: "/en/services", permanent: true },
       { source: "/fr/video", destination: "/fr/film", permanent: true },
       { source: "/en/video", destination: "/en/film", permanent: true },
+      // Portfolio : catégories renommées (2026-07-16)
+      { source: "/fr/photographer/studio", destination: "/fr/photographer/jewelry", permanent: true },
+      { source: "/en/photographer/studio", destination: "/en/photographer/jewelry", permanent: true },
+      { source: "/fr/photographer/details", destination: "/fr/photographer/venues", permanent: true },
+      { source: "/en/photographer/details", destination: "/en/photographer/venues", permanent: true },
+      { source: "/fr/photographer/architecture", destination: "/fr/photographer/product", permanent: true },
+      { source: "/en/photographer/architecture", destination: "/en/photographer/product", permanent: true },
+      { source: "/fr/photographer/creative", destination: "/fr/photographer/conceptual", permanent: true },
+      { source: "/en/photographer/creative", destination: "/en/photographer/conceptual", permanent: true },
     ];
   },
   async headers() {
