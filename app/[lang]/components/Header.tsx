@@ -33,8 +33,8 @@ export default function Header() {
   // Pages secondaires, rangees dans le "+".
   const moreLinks = [
     { href: `/${currentLang}/about`,    label: labels.about },
-    // Presets : boutique presets Lightroom (paiement via Gumroad).
-    { href: `/${currentLang}/presets`,  label: "Presets" },
+    // Shop : boutique presets Lightroom (paiement via Gumroad).
+    { href: `/${currentLang}/presets`,  label: "Shop" },
     // Prints : boutique hors ligne le temps de revoir la selection d'images.
     // Pour la remettre, decommente la ligne ci-dessous et retire le
     // notFound() dans app/[lang]/shop/page.tsx et shop/[productId]/page.tsx.
