@@ -45,7 +45,7 @@ export default function Header() {
   ];
 
   return (
-    <header style={{ background: "#ffffff", textAlign: "center" }}>
+    <header style={{ background: "#ffffff", textAlign: "center", position: "relative" }}>
       <style>{`
         .header-inner {
           padding: 48px 40px 0;
@@ -63,6 +63,8 @@ export default function Header() {
         }
         .header-nav { display: flex; }
         .header-burger { display: none; }
+        /* Switch de langue : coin haut droite (desktop). */
+        .header-lang { position: absolute; top: 52px; right: 40px; }
 
         @media (max-width: 767px) {
           .header-inner {
@@ -78,6 +80,7 @@ export default function Header() {
             order: 2;
           }
           .header-nav { display: none; }
+          .header-lang { display: none; }
           .header-burger {
             display: flex !important;
             order: 1;
@@ -179,14 +182,17 @@ export default function Header() {
             )}
           </div>
 
-          <span style={{ color: "#999999", fontSize: "9px" }}>|</span>
+        </nav>
+
+        {/* Switch de langue : coin haut droite */}
+        <div className="header-lang">
           <Link
             href={`/${otherLang}${pathWithoutLang || ""}`}
             style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#0a0a0a", textDecoration: "none" }}
           >
             {otherLang.toUpperCase()}
           </Link>
-        </nav>
+        </div>
 
         {/* Burger */}
         <div className="header-burger" style={{
