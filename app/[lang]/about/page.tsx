@@ -28,6 +28,7 @@ const BRANDS: Brand[] = [
   { name: "EDIFIER", logo: "/images/brands/edifier.png" },
   { name: "TELESIN", logo: "/images/brands/telesin.png" },
   { name: "L'ORÉAL", logo: "/images/brands/loreal.svg" },
+  { name: "YES THEORY", logo: "/images/brands/yes-theory.png" },
   { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png" },
   { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png" },
   { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png" },
