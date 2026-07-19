@@ -20,16 +20,12 @@ type Data = {
 
 const content = {
   fr: {
-    cta: "On travaille ensemble ?",
-    ctaLink: "hello@thegirlwithacamera.com",
     gear: "GEAR",
     lifestyle: "LIFESTYLE",
     unboxing: "UNBOXING",
     talk: "TALK",
   },
   en: {
-    cta: "Want to work together?",
-    ctaLink: "hello@thegirlwithacamera.com",
     gear: "GEAR",
     lifestyle: "LIFESTYLE",
     unboxing: "UNBOXING",
@@ -104,18 +100,6 @@ export default function CreatorClient({
           text-underline-offset: 4px;
         }
 
-        /* CTA */
-        .creator-cta { text-align: center; }
-        .creator-cta p { font-size: 13px; color: #666666; letter-spacing: 0.04em; margin-bottom: 16px; }
-        .creator-cta a {
-          font-size: 12px;
-          letter-spacing: 0.14em;
-          color: #0a0a0a;
-          text-decoration: none;
-          border-bottom: 1px solid #0a0a0a;
-          padding-bottom: 2px;
-        }
-
         ${SHOWCASE_CSS}
 
         @media (max-width: 767px) {
@@ -140,12 +124,6 @@ export default function CreatorClient({
       </section>
 
       <hr className="creator-hr" />
-
-      {/* CTA */}
-      <div className="creator-cta">
-        <p>{t.cta}</p>
-        <a href={`mailto:${t.ctaLink}`}>{t.ctaLink}</a>
-      </div>
 
       {/* Mise en avant au clic */}
       {focused && (

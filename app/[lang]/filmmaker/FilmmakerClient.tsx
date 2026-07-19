@@ -14,15 +14,11 @@ const content = {
     title: "VIDÉASTE",
     desc: "Des séquences contemplatives et cinématiques.",
     cat: { places: "VENUES", cities: "VOYAGE", lifestyle: "QUOTIDIEN", fashion: "MODE", bts: "COULISSES" },
-    cta: "On travaille ensemble ?",
-    ctaLink: "hello@thegirlwithacamera.com",
   },
   en: {
     title: "FILMMAKER",
     desc: "Contemplative, cinematic sequences.",
     cat: { places: "PLACES", cities: "CITIES", lifestyle: "LIFESTYLE", fashion: "FASHION", bts: "BTS" },
-    cta: "Want to work together?",
-    ctaLink: "hello@thegirlwithacamera.com",
   },
 };
 
@@ -88,18 +84,6 @@ export default function FilmmakerClient({
         .diary-tab:hover { color: #555; }
         .diary-tab--active { color: #0a0a0a; border-bottom-color: #0a0a0a; }
 
-        /* CTA */
-        .creator-cta { text-align: center; }
-        .creator-cta p { font-size: 13px; color: #666666; letter-spacing: 0.04em; margin-bottom: 16px; }
-        .creator-cta a {
-          font-size: 12px;
-          letter-spacing: 0.14em;
-          color: #0a0a0a;
-          text-decoration: none;
-          border-bottom: 1px solid #0a0a0a;
-          padding-bottom: 2px;
-        }
-
         ${SHOWCASE_CSS}
 
         @media (max-width: 767px) {
@@ -133,12 +117,6 @@ export default function FilmmakerClient({
       </section>
 
       <hr className="creator-hr" />
-
-      {/* CTA */}
-      <div className="creator-cta">
-        <p>{t.cta}</p>
-        <a href={`mailto:${t.ctaLink}`}>{t.ctaLink}</a>
-      </div>
 
       {/* Mise en avant au clic */}
       {focused && (
