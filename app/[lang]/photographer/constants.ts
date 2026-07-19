@@ -29,14 +29,14 @@ export type PhotoCategory = {
 };
 
 export const PHOTO_CATEGORIES: PhotoCategory[] = [
-  { slug: "jewelry",    label: { fr: "Bijoux",     en: "Jewelry" },    cover: "/images/portfolio/jewelry/1.jpg" },
+  { slug: "studio",     label: { fr: "Studio",     en: "Studio" },     cover: "/images/portfolio/studio/1.jpg" },
   { slug: "product",    label: { fr: "Objet",      en: "Product" },    cover: "/images/portfolio/product/1.JPG" },
   { slug: "fashion",    label: { fr: "Mode",       en: "Fashion" },    cover: "/images/portfolio/fashion/1.jpg",       coverPosition: "center 80%" },
   { slug: "venues",     label: { fr: "Lieux",      en: "Venues" },     cover: "/images/portfolio/venues/1.JPG" },
   { slug: "portrait",   label: { fr: "Portrait",   en: "Portrait" },   cover: "/images/portfolio/portrait/1.jpg" },
   { slug: "travel",     label: { fr: "Voyage",     en: "Travel" },     cover: "/images/portfolio/travel/1.jpg" },
   { slug: "street",     label: { fr: "Rue",        en: "Street" },     cover: "/images/portfolio/street/1.jpg" },
-  { slug: "conceptual", label: { fr: "Conceptuel", en: "Conceptual" }, cover: "/images/portfolio/conceptual/1.jpg", coverPosition: "center 75%" },
+  { slug: "events",     label: { fr: "Événements", en: "Events" },     cover: "/images/portfolio/events/1.jpg" },
   { slug: "beauty",     label: { fr: "Beauté",     en: "Beauty" },     cover: "/images/portfolio/beauty/1.JPG" },
 ];
 
