@@ -30,13 +30,13 @@ export type PhotoCategory = {
 
 export const PHOTO_CATEGORIES: PhotoCategory[] = [
   { slug: "studio",     label: { fr: "Studio",     en: "Studio" },     cover: "/images/portfolio/studio/1.jpg" },
-  { slug: "events",     label: { fr: "Events",     en: "Events" },     cover: "/images/portfolio/events/1.jpg" },
-  { slug: "portrait",   label: { fr: "Portraits",  en: "Portraits" },  cover: "/images/portfolio/portrait/1.jpg" },
   { slug: "venues",     label: { fr: "Lieux",      en: "Venues" },     cover: "/images/portfolio/venues/1.JPG" },
-  { slug: "fashion",    label: { fr: "Mode",       en: "Fashion" },    cover: "/images/portfolio/fashion/1.jpg",       coverPosition: "center 80%" },
-  { slug: "travel",     label: { fr: "Voyage",     en: "Travel" },     cover: "/images/portfolio/travel/1.jpg" },
-  { slug: "product",    label: { fr: "Produit",    en: "Product" },    cover: "/images/portfolio/product/1.JPG" },
+  { slug: "portrait",   label: { fr: "Portraits",  en: "Portraits" },  cover: "/images/portfolio/portrait/1.jpg" },
   { slug: "street",     label: { fr: "Street",     en: "Street" },     cover: "/images/portfolio/street/1.jpg" },
+  { slug: "fashion",    label: { fr: "Mode",       en: "Fashion" },    cover: "/images/portfolio/fashion/1.jpg",       coverPosition: "center 80%" },
+  { slug: "events",     label: { fr: "Events",     en: "Events" },     cover: "/images/portfolio/events/1.jpg" },
+  { slug: "product",    label: { fr: "Produit",    en: "Product" },    cover: "/images/portfolio/product/1.JPG" },
+  { slug: "travel",     label: { fr: "Voyage",     en: "Travel" },     cover: "/images/portfolio/travel/1.jpg" },
   { slug: "beauty",     label: { fr: "Beauté",     en: "Beauty" },     cover: "/images/portfolio/beauty/1.JPG" },
 ];
 
