@@ -9,13 +9,15 @@ type Lang = "fr" | "en";
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const currentLang = (pathname.split("/")[1] || "fr") as Lang;
   const otherLang: Lang = currentLang === "fr" ? "en" : "fr";
   const pathWithoutLang = pathname.replace(/^\/(fr|en)/, "");
 
-  useEffect(() => setMenuOpen(false), [pathname]);
+  useEffect(() => { setMenuOpen(false); setMoreOpen(false); }, [pathname]);
 
-  // Ordre : Photographer (accueil) > Filmmaker > Creator > About.
+  // Ordre : Photographer (accueil) > Filmmaker > Creator, puis un petit "+"
+  // qui regroupe les pages secondaires (About, Presets, Shop/Diary...).
   // Labels adaptes par langue.
   const labels =
     currentLang === "fr"
@@ -26,7 +28,13 @@ export default function Header() {
     { href: `/${currentLang}`,           label: labels.home },
     { href: `/${currentLang}/filmmaker`, label: labels.filmmaker },
     { href: `/${currentLang}/creator`,   label: labels.creator },
-    { href: `/${currentLang}/about`,     label: labels.about },
+  ];
+
+  // Pages secondaires, rangees dans le "+".
+  const moreLinks = [
+    { href: `/${currentLang}/about`,    label: labels.about },
+    // Presets : boutique presets Lightroom (paiement via Gumroad).
+    { href: `/${currentLang}/presets`,  label: "Presets" },
     // Prints : boutique hors ligne le temps de revoir la selection d'images.
     // Pour la remettre, decommente la ligne ci-dessous et retire le
     // notFound() dans app/[lang]/shop/page.tsx et shop/[productId]/page.tsx.
@@ -34,8 +42,6 @@ export default function Header() {
     // Diary : pret mais masque pour l'instant. Pour le remettre,
     // decommente la ligne ci-dessous.
     // { href: `/${currentLang}/diary`,    label: "Diary" },
-    // Presets : boutique presets Lightroom (paiement via Gumroad).
-    { href: `/${currentLang}/presets`,  label: "Presets" },
   ];
 
   return (
@@ -116,6 +122,63 @@ export default function Header() {
               </Link>
             );
           })}
+
+          {/* "+" : pages secondaires en petit menu deroulant */}
+          <div style={{ position: "relative" }}>
+            <button
+              type="button"
+              onClick={() => setMoreOpen((v) => !v)}
+              aria-label={currentLang === "fr" ? "Plus de pages" : "More pages"}
+              aria-expanded={moreOpen}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "0 2px",
+                fontSize: "14px",
+                lineHeight: 1,
+                color: "#0a0a0a",
+                transform: moreOpen ? "rotate(45deg)" : "none",
+                transition: "transform 0.2s",
+              }}
+            >
+              +
+            </button>
+            {moreOpen && (
+              <div style={{
+                position: "absolute",
+                top: "calc(100% + 12px)",
+                left: "50%",
+                transform: "translateX(-50%)",
+                background: "#ffffff",
+                border: "1px solid #ebebeb",
+                boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+                padding: "6px 22px",
+                whiteSpace: "nowrap",
+                zIndex: 50,
+              }}>
+                {moreLinks.map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    style={{
+                      display: "block",
+                      fontSize: "11px",
+                      letterSpacing: "0.2em",
+                      textTransform: "uppercase",
+                      color: "#0a0a0a",
+                      textDecoration: pathname.startsWith(l.href) ? "underline" : "none",
+                      textUnderlineOffset: "3px",
+                      padding: "8px 0",
+                    }}
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
           <span style={{ color: "#999999", fontSize: "9px" }}>|</span>
           <Link
             href={`/${otherLang}${pathWithoutLang || ""}`}
@@ -161,7 +224,7 @@ export default function Header() {
           padding: "20px 40px 24px",
           textAlign: "center",
         }}>
-          {navLinks.map((l) => (
+          {[...navLinks, ...moreLinks].map((l) => (
             <Link
               key={l.href}
               href={l.href}
