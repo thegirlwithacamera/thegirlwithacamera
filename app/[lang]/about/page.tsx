@@ -20,7 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const HERO_PHOTO = "/images/about/hero.jpg";
 
 // Clients : logo reel si dispo (public/images/brands/), sinon nom en texte.
-type Brand = { name: string; logo?: string };
+// tall : pour les logos ronds/carres (badge), qui paraissent trop petits
+// a la hauteur standard pensee pour les wordmarks larges.
+type Brand = { name: string; logo?: string; tall?: boolean };
 const BRANDS: Brand[] = [
   { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg" },
   { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png" },
@@ -28,7 +30,7 @@ const BRANDS: Brand[] = [
   { name: "EDIFIER", logo: "/images/brands/edifier.png" },
   { name: "TELESIN", logo: "/images/brands/telesin.png" },
   { name: "L'ORÉAL", logo: "/images/brands/loreal.svg" },
-  { name: "YES THEORY", logo: "/images/brands/yes-theory.png" },
+  { name: "YES THEORY", logo: "/images/brands/yes-theory.png", tall: true },
   { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png" },
   { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png" },
   { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png" },
@@ -337,6 +339,7 @@ export default async function AboutPage({ params }: Props) {
         .brand-chip { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
         .brand-logo { height: 38px; width: auto; max-width: 170px; object-fit: contain; opacity: 0.88; transition: opacity 0.2s; }
         .brand-logo:hover { opacity: 1; }
+        .brand-logo--tall { height: 58px; }
 
         /* Skills : pills */
         .skills-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
@@ -460,6 +463,7 @@ export default async function AboutPage({ params }: Props) {
         @media (max-width: 767px) {
           .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
           .brand-logo { height: 28px; max-width: 120px; }
+          .brand-logo--tall { height: 42px; }
           .offers {
             display: flex;
             grid-template-columns: none;
@@ -507,7 +511,7 @@ export default async function AboutPage({ params }: Props) {
       <div className="brands-strip">
         {BRANDS.map((b) =>
           b.logo ? (
-            <img key={b.name} src={b.logo} alt={b.name} className="brand-logo" />
+            <img key={b.name} src={b.logo} alt={b.name} className={`brand-logo${b.tall ? " brand-logo--tall" : ""}`} />
           ) : (
             <span key={b.name} className="brand-chip">{b.name}</span>
           )
