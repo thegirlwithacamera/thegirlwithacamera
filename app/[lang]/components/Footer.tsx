@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 type Lang = "fr" | "en";
@@ -8,8 +9,42 @@ export default function Footer() {
   const pathname = usePathname();
   const currentLang = (pathname.split("/")[1] || "fr") as Lang;
 
+  // Bande "Work with me" au-dessus du footer, sur toutes les pages sauf
+  // About (elle y mènerait vers la page en cours).
+  const onAbout = pathname.startsWith(`/${currentLang}/about`);
+  const cta =
+    currentLang === "fr"
+      ? { eyebrow: "Un projet en tête ?", label: "Travaillons ensemble" }
+      : { eyebrow: "Have a project in mind?", label: "Work with me" };
+
   return (
     <footer style={{ background: "#ffffff", borderTop: "1px solid #ebebeb" }}>
+      {!onAbout && (
+        <div style={{ textAlign: "center", padding: "56px 24px", borderBottom: "1px solid #ebebeb" }}>
+          <p style={{
+            fontSize: "11px",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "#737373",
+            margin: "0 0 14px",
+          }}>
+            {cta.eyebrow}
+          </p>
+          <Link
+            href={`/${currentLang}/about`}
+            style={{
+              fontFamily: "var(--font-serif), Georgia, serif",
+              fontSize: "26px",
+              color: "#0a0a0a",
+              textDecoration: "none",
+              borderBottom: "1px solid #0a0a0a",
+              paddingBottom: "3px",
+            }}
+          >
+            {cta.label} →
+          </Link>
+        </div>
+      )}
       <div style={{
         maxWidth: "1600px",
         margin: "0 auto",
