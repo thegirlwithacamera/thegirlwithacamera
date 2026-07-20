@@ -40,7 +40,6 @@ export default function FilmmakerClient({
   return (
     <main style={{ paddingTop: "20px", paddingBottom: "24px", background: "#ffffff" }}>
       <style>{`
-        .creator-hr { height: 1px; background: #ebebeb; max-width: 280px; margin: 40px auto; border: none; }
 
         /* Tiers */
         .tier { max-width: 1260px; margin: 0 auto; padding: 0 40px; }
@@ -87,7 +86,6 @@ export default function FilmmakerClient({
         ${SHOWCASE_CSS}
 
         @media (max-width: 767px) {
-          .creator-hr { margin: 28px auto; max-width: 200px; }
           .tier { padding: 0 12px; }
           .diary-tab { padding: 8px 11px; font-size: 9px; letter-spacing: 0.16em; }
         }
@@ -116,7 +114,6 @@ export default function FilmmakerClient({
         )}
       </section>
 
-      <hr className="creator-hr" />
 
       {/* Mise en avant au clic */}
       {focused && (

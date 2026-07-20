@@ -68,7 +68,6 @@ export default function CreatorClient({
   return (
     <main style={{ paddingTop: "20px", paddingBottom: "24px", background: "#ffffff" }}>
       <style>{`
-        .creator-hr { height: 1px; background: #ebebeb; max-width: 280px; margin: 40px auto; border: none; }
 
         /* Tiers */
         .tier { max-width: 1260px; margin: 0 auto; padding: 0 40px; }
@@ -103,7 +102,6 @@ export default function CreatorClient({
         ${SHOWCASE_CSS}
 
         @media (max-width: 767px) {
-          .creator-hr { margin: 28px auto; max-width: 200px; }
           .tier { padding: 0 12px; }
         }
       `}</style>
@@ -123,7 +121,6 @@ export default function CreatorClient({
         <Carousel clips={clips} kind="phone" prefix={section} sound={sound} />
       </section>
 
-      <hr className="creator-hr" />
 
       {/* Mise en avant au clic */}
       {focused && (
