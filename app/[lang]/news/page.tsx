@@ -120,7 +120,7 @@ export default async function NewsPage({ params }: Props) {
   const t = content[lang];
 
   return (
-    <main style={{ paddingTop: "60px", paddingBottom: "80px", background: "#ffffff" }}>
+    <main style={{ paddingTop: "60px", paddingBottom: "24px", background: "#ffffff" }}>
       <style>{`
         .gallery-title {
           font-size: 11px;

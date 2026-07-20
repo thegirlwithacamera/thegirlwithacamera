@@ -95,7 +95,7 @@ export default async function DiaryPage({ params }: Props) {
         }
       `}</style>
 
-      <main style={{ paddingTop: "16px", paddingBottom: "80px", background: "#ffffff" }}>
+      <main style={{ paddingTop: "16px", paddingBottom: "24px", background: "#ffffff" }}>
         <p className="diary-intro">{t.intro}</p>
 
         <div className="diary-grid">

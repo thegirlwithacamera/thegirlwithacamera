@@ -111,7 +111,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
         }
       `}</style>
 
-      <main style={{ paddingTop: "16px", paddingBottom: "60px", background: "#ffffff" }}>
+      <main style={{ paddingTop: "16px", paddingBottom: "24px", background: "#ffffff" }}>
         <div className="cat-head">
           <div>
             <Link href={`/${lang}`} className="cat-back">{backLabel}</Link>

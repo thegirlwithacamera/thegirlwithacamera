@@ -176,7 +176,7 @@ export default async function PresetsPage({ params }: Props) {
   const t = content[lang];
 
   return (
-    <main style={{ paddingTop: '60px', paddingBottom: '100px', background: '#ffffff' }}>
+    <main style={{ paddingTop: '60px', paddingBottom: '24px', background: '#ffffff' }}>
       {/* Lib Gumroad : ouvre le paiement en overlay sans quitter le site */}
       <Script src="https://gumroad.com/js/gumroad.js" strategy="afterInteractive" />
 
