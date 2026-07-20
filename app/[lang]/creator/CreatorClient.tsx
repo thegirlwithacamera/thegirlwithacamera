@@ -66,7 +66,7 @@ export default function CreatorClient({
   const clips = data[section];
 
   return (
-    <main style={{ paddingTop: "20px", paddingBottom: "80px", background: "#ffffff" }}>
+    <main style={{ paddingTop: "20px", paddingBottom: "24px", background: "#ffffff" }}>
       <style>{`
         .creator-hr { height: 1px; background: #ebebeb; max-width: 280px; margin: 40px auto; border: none; }
 

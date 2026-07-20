@@ -20,13 +20,13 @@ export default function Footer() {
   return (
     <footer style={{ background: "#ffffff", borderTop: "1px solid #ebebeb" }}>
       {!onAbout && (
-        <div style={{ textAlign: "center", padding: "56px 24px", borderBottom: "1px solid #ebebeb" }}>
+        <div style={{ textAlign: "center", padding: "32px 24px", borderBottom: "1px solid #ebebeb" }}>
           <p style={{
             fontSize: "11px",
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "#737373",
-            margin: "0 0 14px",
+            margin: "0 0 10px",
           }}>
             {cta.eyebrow}
           </p>
