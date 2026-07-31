@@ -20,7 +20,6 @@ const STATIC_PATHS = [
   "/filmmaker/bts",
   "/diary",
   "/about",
-  "/presets",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

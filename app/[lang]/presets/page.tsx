@@ -3,10 +3,11 @@ import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import PresetCarousel from './PresetCarousel';
 
-// Pour retirer la page (produit Gumroad depublie, etc.) :
-// passer PRESETS_LIVE a false et re-commenter le lien Presets
-// dans components/Header.tsx + "/presets" dans app/sitemap.ts.
-const PRESETS_LIVE = true;
+// Page retiree du site a la demande de Sandrine (18 juil. 2026).
+// Pour la remettre en ligne : passer PRESETS_LIVE a true, decommenter
+// le lien Presets dans components/Header.tsx et remettre "/presets"
+// dans app/sitemap.ts. Le produit Gumroad, lui, reste publie.
+const PRESETS_LIVE = false;
 
 // Lien du produit Gumroad (overlay de paiement sans quitter le site).
 const GUMROAD_URL = 'https://sandrine783.gumroad.com/l/ricoh-presets';
