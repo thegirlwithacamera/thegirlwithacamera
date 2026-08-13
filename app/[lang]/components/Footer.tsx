@@ -31,7 +31,7 @@ export default function Footer() {
             {cta.eyebrow}
           </p>
           <Link
-            href={`/${currentLang}/about`}
+            href={`/${currentLang}/about#travailler-avec-moi`}
             style={{
               fontFamily: "var(--font-serif), Georgia, serif",
               fontSize: "26px",
