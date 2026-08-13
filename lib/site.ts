@@ -9,6 +9,9 @@ export const site = {
   pressEmail: "press@thegirlwithacamera.com",
   city: "Brussels",
   country: "Belgium",
+  // Compteur d'abonnes Instagram, source unique. Format decimal par langue
+  // (virgule en FR, point en EN). Mettre a jour ici uniquement.
+  instagramFollowers: { fr: "33,3K", en: "33.3K" },
   // Set to false if you go off-grid for a while (sabbatical, full project pipeline).
   availability: {
     open: true,
