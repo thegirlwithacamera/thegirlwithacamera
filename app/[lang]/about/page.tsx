@@ -1,5 +1,8 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import { site } from "@/lib/site";
+import TrustLogos from "../components/TrustLogos";
+import HashScroll from "../components/HashScroll";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -19,27 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // Photo du hero (Mont Fuji, IMG_8304).
 const HERO_PHOTO = "/images/about/hero.jpg";
 
-// Clients : logo reel si dispo (public/images/brands/), sinon nom en texte.
-// tall : pour les logos ronds/carres (badge), qui paraissent trop petits
-// a la hauteur standard pensee pour les wordmarks larges.
-type Brand = { name: string; logo?: string; tall?: boolean };
-const BRANDS: Brand[] = [
-  { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg" },
-  { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png" },
-  { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg" },
-  { name: "EDIFIER", logo: "/images/brands/edifier.png" },
-  { name: "TELESIN", logo: "/images/brands/telesin.png" },
-  { name: "L'ORÉAL", logo: "/images/brands/loreal.svg" },
-  { name: "YES THEORY", logo: "/images/brands/yes-theory.png", tall: true },
-  { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png" },
-  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png" },
-  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png" },
-  { name: "CÉ-PAGES", logo: "/images/brands/ce-pages.png" },
-];
-
-const STATS = {
-  instagram: { followers: "32,4K" },
-};
+// Clients (bande "Ils me font confiance") : donnees dans lib/brands.ts,
+// rendu via le composant partage TrustLogos (reutilise aussi sur /creator).
 
 // ── Work with me : 3 offres, sans prix, CTA commun "Let's talk" ──
 type Offer = {
@@ -65,26 +49,27 @@ const WORK: Record<"fr" | "en", Work> = {
       {
         emoji: "🎬",
         title: "Creator",
-        subtitle: "UGC content or influencer partnership — whichever fits your brand.",
+        subtitle: "UGC content or influencer partnership, whichever fits your brand.",
         packageName: "UGC Package",
         items: [
           "1 UGC video (Reel format)",
           "2 hook variations (3 videos total)",
           "Concept & scripting, filming & retention editing",
-          "Organic usage rights + 30-day ad usage rights",
+          "Usage rights on the brand's organic channels, worldwide, 12 months",
+          "Paid social, exclusivity, all media and raw files: quoted separately",
         ],
         addonsLabel: "Or influencer partnership",
         addons: [
-          "1 IG Reel on my feed — 32k+ engaged Worldwide audience",
+          `1 IG Reel on my account, ${site.instagramFollowers.en.toLowerCase()}+ engaged followers worldwide`,
           "Story set (3-5 slides), 7 days link in bio",
-          "Organic reposting + 30-day boosting rights",
+          "Organic repost rights. Boost and paid quoted separately",
           "Crossposting to TikTok & YouTube",
         ],
       },
       {
         emoji: "🎞️",
         title: "Filmmaker",
-        subtitle: "Cinematic brand films — the Filmmaker look, for your campaigns.",
+        subtitle: "Cinematic brand films, the Filmmaker look, for your campaigns.",
         packageName: "Brand Film",
         items: [
           "Concept & creative direction",
@@ -115,33 +100,34 @@ const WORK: Record<"fr" | "en", Work> = {
   },
   fr: {
     title: "TRAVAILLER AVEC MOI",
-    letsTalk: "Let's talk",
+    letsTalk: "Parlons-en",
     talkMail: TALK_MAIL,
     offers: [
       {
         emoji: "🎬",
         title: "Créatrice",
-        subtitle: "Contenu UGC ou partenariat influence — selon les besoins de ta marque.",
-        packageName: "Package UGC",
+        subtitle: "Contenu UGC ou partenariat influence, selon les besoins de ta marque.",
+        packageName: "Formule UGC",
         items: [
           "1 vidéo UGC (format Reel)",
-          "2 variations de hook (3 vidéos au total)",
-          "Concept, scénario, tournage et montage rétention",
-          "Droits d'usage organique + publicitaire 30 jours",
+          "2 variations d'accroche (3 vidéos au total)",
+          "Concept, scénario, tournage et montage optimisé pour la rétention",
+          "Droits d'usage sur les canaux organiques de la marque, monde, 12 mois",
+          "Paid social, exclusivité, tous médias et fichiers bruts : sur devis",
         ],
         addonsLabel: "Ou partenariat influence",
         addons: [
-          "1 Reel IG sur mon feed — 32k+ d'audience engagée dans le monde",
-          "Série de Stories (3-5 slides), lien en bio 7 jours",
-          "Droits de repartage organique + boost 30 jours",
-          "Crosspost sur TikTok et YouTube",
+          `1 Reel IG sur mon compte, ${site.instagramFollowers.fr.toLowerCase()}+ d'abonnés engagés dans le monde`,
+          "Série de Stories (3 à 5 écrans), lien en bio 7 jours",
+          "Droits de repartage organique. Boost et paid sur devis",
+          "Republication sur TikTok et YouTube",
         ],
       },
       {
         emoji: "🎞️",
         title: "Vidéaste",
-        subtitle: "Films de marque cinématiques — le rendu Vidéaste, pour tes campagnes.",
-        packageName: "Brand Film",
+        subtitle: "Films de marque cinématiques, le rendu Vidéaste, pour tes campagnes.",
+        packageName: "Film de marque",
         items: [
           "Concept et direction créative",
           "Filmé sur Luna Ultra, rendu cinématique et éditorial",
@@ -175,7 +161,6 @@ const content = {
   fr: {
     name: "SANDRINE CEUPPENS",
     role: "Photographe & Vidéaste documentaire · Bruxelles",
-    workingWith: "ILS ME FONT CONFIANCE",
     followersLabel: "ABONNÉS INSTAGRAM",
     skills: "COMPÉTENCES",
     projectsPdf: "Projets récents (PDF)",
@@ -186,7 +171,6 @@ const content = {
   en: {
     name: "SANDRINE CEUPPENS",
     role: "Documentary Photographer & Filmmaker · Brussels",
-    workingWith: "ALREADY WORKING WITH",
     followersLabel: "INSTAGRAM FOLLOWERS",
     skills: "SKILLS",
     projectsPdf: "Recent projects (PDF)",
@@ -255,6 +239,7 @@ export default async function AboutPage({ params }: Props) {
 
   return (
     <main style={{ paddingBottom: "80px", background: "#ffffff" }}>
+      <HashScroll />
       <style>{`
         /* ── Hero : photo + nom + stats + CTA ── */
         .hero {
@@ -331,15 +316,8 @@ export default async function AboutPage({ params }: Props) {
           color: #0a0a0a;
           text-align: center;
           margin: 0 0 28px;
+          scroll-margin-top: 90px;
         }
-
-        /* Clients */
-        .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; color: #999999; text-align: center; margin: 0 0 20px; }
-        .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 36px; max-width: 920px; margin: 0 auto; padding: 0 24px; }
-        .brand-chip { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
-        .brand-logo { height: 38px; width: auto; max-width: 170px; object-fit: contain; opacity: 0.88; transition: opacity 0.2s; }
-        .brand-logo:hover { opacity: 1; }
-        .brand-logo--tall { height: 58px; }
 
         /* Skills : pills */
         .skills-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
@@ -461,9 +439,6 @@ export default async function AboutPage({ params }: Props) {
           .hero-cta-row { justify-content: center; }
         }
         @media (max-width: 767px) {
-          .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
-          .brand-logo { height: 28px; max-width: 120px; }
-          .brand-logo--tall { height: 42px; }
           .offers {
             display: flex;
             grid-template-columns: none;
@@ -489,7 +464,7 @@ export default async function AboutPage({ params }: Props) {
           <p className="hero-role">{t.role}</p>
           <div className="hero-stats">
             <p className="hero-stat-label">{t.followersLabel}</p>
-            <p className="hero-stat-num">{STATS.instagram.followers}</p>
+            <p className="hero-stat-num">{site.instagramFollowers[lang]}</p>
           </div>
           <div className="hero-cta-row">
             <a className="hero-cta" href="mailto:hello@thegirlwithacamera.com">{t.letsTalk}</a>
@@ -507,16 +482,7 @@ export default async function AboutPage({ params }: Props) {
       <hr className="info-hr" />
 
       {/* Clients */}
-      <p className="trust-label">{t.workingWith}</p>
-      <div className="brands-strip">
-        {BRANDS.map((b) =>
-          b.logo ? (
-            <img key={b.name} src={b.logo} alt={b.name} className={`brand-logo${b.tall ? " brand-logo--tall" : ""}`} />
-          ) : (
-            <span key={b.name} className="brand-chip">{b.name}</span>
-          )
-        )}
-      </div>
+      <TrustLogos lang={lang} />
 
       <hr className="info-hr" />
 
@@ -531,7 +497,7 @@ export default async function AboutPage({ params }: Props) {
       <hr className="info-hr" />
 
       {/* Work with me : offres */}
-      <p className="info-section-title">{work.title}</p>
+      <p className="info-section-title" id="travailler-avec-moi">{work.title}</p>
       <div className="offers">
         {work.offers.map((o, i) => (
           <div key={i} className="offer">
