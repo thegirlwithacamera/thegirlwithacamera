@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { SECTIONS, type Clip, type Section } from "./constants";
+import TrustLogos from "../components/TrustLogos";
 import {
   Carousel,
   FocusOverlay,
@@ -24,12 +25,16 @@ const content = {
     lifestyle: "LIFESTYLE",
     unboxing: "UNBOXING",
     talk: "TALK",
+    framing: "Ces formats se produisent aussi pour les marques, avec ou sans publication sur mes propres canaux.",
+    deliverables: "Vidéo verticale · Photos éditées · Concept, tournage et montage · Droits d'usage chiffrés séparément",
   },
   en: {
     gear: "GEAR",
     lifestyle: "LIFESTYLE",
     unboxing: "UNBOXING",
     talk: "TALK",
+    framing: "These formats are also produced for brands, with or without posting on my own channels.",
+    deliverables: "Vertical video · Edited stills · Concept, shooting and editing · Usage rights quoted separately",
   },
 };
 
@@ -101,8 +106,16 @@ export default function CreatorClient({
 
         ${SHOWCASE_CSS}
 
+        /* Bloc offre : cadrage + livrables, puis bande clients.
+           Meme direction artistique, texte sobre facon legende. */
+        .creator-pitch { max-width: 720px; margin: 52px auto 0; padding: 0 24px; text-align: center; }
+        .creator-pitch-line { font-size: 12px; line-height: 1.7; color: #666666; margin: 0 0 14px; }
+        .creator-pitch-deliverables { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #999999; margin: 0; }
+        .creator-hr { height: 1px; background: #ebebeb; max-width: 280px; margin: 40px auto; border: none; }
+
         @media (max-width: 767px) {
           .tier { padding: 0 12px; }
+          .creator-pitch { margin-top: 40px; }
         }
       `}</style>
 
@@ -121,6 +134,16 @@ export default function CreatorClient({
         <Carousel clips={clips} kind="phone" prefix={section} sound={sound} />
       </section>
 
+      {/* Ce qui est vendu : cadrage + livrables (sur les 4 onglets) */}
+      <div className="creator-pitch">
+        <p className="creator-pitch-line">{t.framing}</p>
+        <p className="creator-pitch-deliverables">{t.deliverables}</p>
+      </div>
+
+      <hr className="creator-hr" />
+
+      {/* Bande clients, meme composant que sur About */}
+      <TrustLogos lang={lang} />
 
       {/* Mise en avant au clic */}
       {focused && (
