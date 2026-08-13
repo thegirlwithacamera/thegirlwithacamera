@@ -35,7 +35,7 @@ type Offer = {
   addonsLabel?: string;
   addons?: string[];
 };
-type Work = { title: string; letsTalk: string; talkMail: string; offers: Offer[] };
+type Work = { title: string; intro: string; letsTalk: string; talkMail: string; offers: Offer[] };
 
 const TALK_MAIL = "sandrine@thegirlwithacamera.com";
 
@@ -43,46 +43,48 @@ const TALK_MAIL = "sandrine@thegirlwithacamera.com";
 const WORK: Record<"fr" | "en", Work> = {
   en: {
     title: "WORK WITH ME",
+    intro: "Documentary and editorial, natural light, shot in real places. Nothing is posted on my channels unless you want it to be.",
     letsTalk: "Let's talk",
     talkMail: TALK_MAIL,
     offers: [
       {
         emoji: "🎬",
         title: "Creator",
-        subtitle: "UGC content or influencer partnership, whichever fits your brand.",
-        packageName: "UGC Package",
+        subtitle: "Vertical video and edited stills for your channels. I create, you post.",
+        packageName: "Ways to work",
         items: [
-          "1 UGC video (Reel format)",
-          "2 hook variations (3 videos total)",
-          "Concept & scripting, filming & retention editing",
-          "Usage rights on the brand's organic channels, worldwide, 12 months",
-          "Paid social, exclusivity, all media and raw files: quoted separately",
+          "Essential: 4 videos a month",
+          "Signature: 4 videos and 10 edited stills a month",
+          "Intensive: 8 videos and 15 edited stills a month",
+          "Or start with a test, or book a one-off",
+          "Concept, scripting and editing included",
+          "Usage rights on your organic channels, worldwide, 12 months",
+          "Paid social, all media, exclusivity, raw files: quoted separately",
         ],
-        addonsLabel: "Or influencer partnership",
+        addonsLabel: "Or on my channels",
         addons: [
-          `1 IG Reel on my account, ${site.instagramFollowers.en.toLowerCase()}+ engaged followers worldwide`,
-          "Story set (3-5 slides), 7 days link in bio",
-          "Organic repost rights. Boost and paid quoted separately",
-          "Crossposting to TikTok & YouTube",
+          "Reel cross-posted to TikTok, with Stories",
+          "Reel and a series of edited stills, or three Reels",
+          `${site.instagramFollowers.en.toLowerCase()}+ followers, 497k views in 30 days`,
         ],
       },
       {
         emoji: "🎞️",
         title: "Filmmaker",
         subtitle: "Cinematic brand films, the Filmmaker look, for your campaigns.",
-        packageName: "Brand Film",
+        packageName: "Brand film",
         items: [
           "Concept & creative direction",
           "Filmed on Luna Ultra, cinematic editorial look",
           "Long-form film + short cutdowns (Reels/Stories)",
           "Narrative editing, sound design",
-          "Organic usage rights + option for ad usage",
+          "Usage rights on your organic channels, worldwide, 12 months",
         ],
-        addonsLabel: "Add-ons",
+        addonsLabel: "On location",
         addons: [
-          "Raw footage",
-          "Rush delivery (1-3 days)",
-          "Monthly retainers",
+          "Destination pack: 6 videos and 15 stills in one city on my route",
+          "Additional city on the same trip",
+          "I travel regularly across Europe and to Japan",
         ],
       },
       {
@@ -91,36 +93,39 @@ const WORK: Record<"fr" | "en", Work> = {
         subtitle: "Editorial photography for your campaigns.",
         items: [
           "Street-style & lifestyle shoots (Brussels & Europe)",
+          "Edited stills, editorial series for campaigns",
           "Product-in-context photography",
-          "Editorial series for campaigns",
-          "Licensing options",
+          "Documentary and editorial, natural light",
+          "Licensing options, no perpetual licences",
         ],
       },
     ],
   },
   fr: {
     title: "TRAVAILLER AVEC MOI",
+    intro: "Documentaire et éditorial, lumière naturelle, tourné dans de vrais lieux. Rien n'est publié sur mes canaux sauf si tu le veux.",
     letsTalk: "Parlons-en",
     talkMail: TALK_MAIL,
     offers: [
       {
         emoji: "🎬",
         title: "Créatrice",
-        subtitle: "Contenu UGC ou partenariat influence, selon les besoins de ta marque.",
-        packageName: "Formule UGC",
+        subtitle: "Vidéo verticale et photos éditées pour tes canaux. Je crée, tu publies.",
+        packageName: "Comment on travaille",
         items: [
-          "1 vidéo UGC (format Reel)",
-          "2 variations d'accroche (3 vidéos au total)",
-          "Concept, scénario, tournage et montage optimisé pour la rétention",
-          "Droits d'usage sur les canaux organiques de la marque, monde, 12 mois",
-          "Paid social, exclusivité, tous médias et fichiers bruts : sur devis",
+          "Essential : 4 vidéos par mois",
+          "Signature : 4 vidéos et 10 photos par mois",
+          "Intensive : 8 vidéos et 15 photos par mois",
+          "Ou un premier test, ou une session à l'unité",
+          "Concept, scénario et montage inclus",
+          "Droits d'usage sur tes canaux organiques, monde, 12 mois",
+          "Paid social, tous médias, exclusivité, fichiers bruts : sur devis",
         ],
-        addonsLabel: "Ou partenariat influence",
+        addonsLabel: "Ou sur mes canaux",
         addons: [
-          `1 Reel IG sur mon compte, ${site.instagramFollowers.fr.toLowerCase()}+ d'abonnés engagés dans le monde`,
-          "Série de Stories (3 à 5 écrans), lien en bio 7 jours",
-          "Droits de repartage organique. Boost et paid sur devis",
-          "Republication sur TikTok et YouTube",
+          "1 Reel republié sur TikTok, avec Stories",
+          "1 Reel et une série de photos éditées, ou trois Reels",
+          `${site.instagramFollowers.fr.toLowerCase()}+ abonnés, 497k vues sur 30 jours`,
         ],
       },
       {
@@ -133,13 +138,13 @@ const WORK: Record<"fr" | "en", Work> = {
           "Filmé sur Luna Ultra, rendu cinématique et éditorial",
           "Film long format + déclinaisons courtes (Reels/Stories)",
           "Montage narratif, sound design",
-          "Droits d'usage organique + option publicitaire",
+          "Droits d'usage sur tes canaux organiques, monde, 12 mois",
         ],
-        addonsLabel: "Options",
+        addonsLabel: "En déplacement",
         addons: [
-          "Rushes bruts",
-          "Livraison express (1-3 jours)",
-          "Forfaits mensuels",
+          "Pack destination : 6 vidéos et 15 photos dans une ville sur ma route",
+          "Ville supplémentaire sur le même voyage",
+          "Je voyage régulièrement en Europe et au Japon",
         ],
       },
       {
@@ -148,9 +153,10 @@ const WORK: Record<"fr" | "en", Work> = {
         subtitle: "Photographie éditoriale pour tes campagnes.",
         items: [
           "Shootings street-style et lifestyle (Bruxelles et Europe)",
+          "Photos éditées, séries éditoriales pour campagnes",
           "Photographie de produit en contexte",
-          "Séries éditoriales pour campagnes",
-          "Options de licence",
+          "Documentaire et éditorial, lumière naturelle",
+          "Options de licence, pas de licence perpétuelle",
         ],
       },
     ],
@@ -331,6 +337,16 @@ export default async function AboutPage({ params }: Props) {
         }
 
         /* Work with me : offres */
+        .offers-intro {
+          max-width: 620px;
+          margin: -14px auto 32px;
+          padding: 0 24px;
+          text-align: center;
+          font-size: 12px;
+          line-height: 1.7;
+          font-style: italic;
+          color: #666666;
+        }
         .offers {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -498,6 +514,7 @@ export default async function AboutPage({ params }: Props) {
 
       {/* Work with me : offres */}
       <p className="info-section-title" id="travailler-avec-moi">{work.title}</p>
+      <p className="offers-intro">{work.intro}</p>
       <div className="offers">
         {work.offers.map((o, i) => (
           <div key={i} className="offer">
