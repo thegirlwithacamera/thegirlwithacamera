@@ -153,6 +153,7 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
     manifest: "/manifest.json",
     formatDetection: { email: false, telephone: false, address: false },
     appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "The Girl With A Camera" },
+    other: { "p:domain_verify": "fb7bde9a9a231fda174f9d3b3a13f9fa" },
   };
 }
 
