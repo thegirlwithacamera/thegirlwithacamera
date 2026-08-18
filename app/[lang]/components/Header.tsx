@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type Lang = "fr" | "en";
+type NavLink = { href: string; label: string; external?: boolean };
 
 export default function Header() {
   const pathname = usePathname();
@@ -24,16 +25,19 @@ export default function Header() {
       ? { home: "Photographe", filmmaker: "Vidéaste", creator: "Créatrice", about: "À propos" }
       : { home: "Photographer", filmmaker: "Filmmaker", creator: "Creator", about: "About" };
 
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { href: `/${currentLang}`,           label: labels.home },
     { href: `/${currentLang}/filmmaker`, label: labels.filmmaker },
     { href: `/${currentLang}/creator`,   label: labels.creator },
+    // Journal : sorti du menu "+" le 18/08. Un lien replié n’est cliqué que
+    // par ceux qui le cherchaient déjà, or personne ne cherche un journal
+    // dont il ignore l’existence.
+    { href: "https://thegirlwithacamera.substack.com/", label: "Journal", external: true },
   ];
 
   // Pages secondaires, rangees dans le "+".
-  const moreLinks = [
+  const moreLinks: NavLink[] = [
     { href: `/${currentLang}/about`,    label: labels.about },
-    { href: "https://thegirlwithacamera.substack.com/", label: "Journal" },
     // Shop/Presets : page retiree du site (la boutique Gumroad reste en ligne).
     // Pour la remettre : decommente la ligne ci-dessous et passe
     // PRESETS_LIVE a true dans app/[lang]/presets/page.tsx.
@@ -107,13 +111,17 @@ export default function Header() {
           paddingBottom: "14px",
         }}>
           {navLinks.map((l) => {
-            const isActive = l.href === `/${currentLang}`
+            const isActive = l.external
+              ? false
+              : l.href === `/${currentLang}`
               ? pathname === `/${currentLang}` || pathname === `/${currentLang}/`
               : pathname.startsWith(l.href);
             return (
               <Link
                 key={l.href}
                 href={l.href}
+                target={l.external ? "_blank" : undefined}
+                rel={l.external ? "noopener noreferrer" : undefined}
                 style={{
                   fontSize: "11px",
                   letterSpacing: "0.2em",
@@ -237,6 +245,8 @@ export default function Header() {
             <Link
               key={l.href}
               href={l.href}
+              target={l.external ? "_blank" : undefined}
+              rel={l.external ? "noopener noreferrer" : undefined}
               style={{
                 display: "block",
                 fontSize: "11px",

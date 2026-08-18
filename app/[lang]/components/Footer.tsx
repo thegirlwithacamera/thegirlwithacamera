@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import NewsletterCta from "./NewsletterCta";
 
 type Lang = "fr" | "en";
 
@@ -45,6 +46,13 @@ export default function Footer() {
           </Link>
         </div>
       )}
+      {/* Bande journal : capture email sur toutes les pages du site.
+          Le formulaire poste sur /api/newsletter, qui inscrit en abonne
+          gratuit sur Substack (copie Resend en secours). */}
+      <div style={{ padding: "44px 24px", borderBottom: "1px solid #ebebeb" }}>
+        <NewsletterCta lang={currentLang} variant="footer" />
+      </div>
+
       <div style={{
         maxWidth: "1600px",
         margin: "0 auto",
