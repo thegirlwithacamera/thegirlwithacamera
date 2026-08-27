@@ -124,7 +124,6 @@ export type HomeTile = {
   key: string;
   href: string;
   label: { fr: string; en: string };
-  note?: { fr: string; en: string };
   cover?: string;
   coverPosition?: string;
 };
@@ -134,13 +133,11 @@ export const HOME_TILES: HomeTile[] = [
     key: "film",
     href: "/filmmaker",
     label: { fr: "Film", en: "Film" },
-    note: { fr: "Films de marque et séries", en: "Brand films and series" },
     cover: "/videos/city-diary/05-kyoto-poster.jpg",
   },
   {
     key: "work",
     href: "/about#travailler-avec-moi",
     label: { fr: "Travaillons ensemble", en: "Work with me" },
-    note: { fr: "Hôtels, tables, marques", en: "Hotels, tables, brands" },
   },
 ];

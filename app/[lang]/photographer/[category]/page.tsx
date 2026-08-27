@@ -102,30 +102,29 @@ export default async function PhotographerCategoryPage({ params }: Props) {
           transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
         }
         .case-card:hover .case-thumb img { transform: scale(1.05); }
-        .case-meta { padding: 12px 2px 0; text-align: center; }
+        /* Même légende que sur l'accueil : sous l'image, discrète.
+           Le nom du client ou de la ville en noir, le lieu en gris juste après,
+           sur la même ligne, pour ne pas empiler deux blocs de texte sous
+           chaque photo. */
+        .case-meta { padding: 10px 2px 0; text-align: center; }
         .case-title {
-          font-family: var(--font-serif), Georgia, serif;
-          font-size: 15px;
-          letter-spacing: 0.1em;
+          margin: 0;
+          font-size: 10px;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: #0a0a0a;
-          margin: 0;
           font-weight: 400;
         }
         .case-place {
-          display: block;
-          margin-top: 4px;
-          font-size: 10px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: #999;
+          color: #b3aca2;
+          margin-left: 6px;
         }
         @media (max-width: 767px) {
           .case-grid { gap: 10px; padding: 0 12px; }
           .cat-head h1 { font-size: 18px; }
-          .case-title { font-size: 11px; letter-spacing: 0.08em; }
-          .case-place { font-size: 9px; }
-          .case-meta { padding-top: 8px; }
+          .case-title { font-size: 8px; letter-spacing: 0.12em; }
+          .case-place { margin-left: 4px; }
+          .case-meta { padding-top: 6px; }
         }
       `}</style>
 
@@ -159,8 +158,10 @@ export default async function PhotographerCategoryPage({ params }: Props) {
                   />
                 </div>
                 <div className="case-meta">
-                  <p className="case-title">{c.label[lang]}</p>
-                  {c.place && <span className="case-place">{c.place[lang]}</span>}
+                  <p className="case-title">
+                    {c.label[lang]}
+                    {c.place && <span className="case-place">{c.place[lang]}</span>}
+                  </p>
                 </div>
               </Link>
             ))}

@@ -42,66 +42,48 @@ export default async function HomePage({ params }: Props) {
           margin: 0 auto;
           padding: 0 20px;
         }
-        .cat-tile {
-          display: block;
+        .cat-tile { display: block; text-decoration: none; }
+        .tile-thumb {
           position: relative;
           aspect-ratio: 4 / 5;
           overflow: hidden;
           background: #f2f2f2;
         }
-        .cat-tile img {
+        .tile-thumb img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
           transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
         }
-        .cat-tile:hover img { transform: scale(1.05); }
+        .cat-tile:hover .tile-thumb img { transform: scale(1.05); }
 
-        /* Tuiles de porte : titre lisible sur l'image, ou sur fond crème. */
-        .door-tile { background: #f4f1ec; text-decoration: none; }
-        .door-tile .door-inner {
-          position: absolute;
-          inset: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          padding: 18px;
-          gap: 8px;
-          z-index: 2;
-        }
-        .door-tile .door-label {
-          font-family: var(--font-serif), Georgia, serif;
-          font-size: 17px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          font-weight: 400;
-        }
-        .door-tile .door-note {
+        /* Une seule légende pour tout le site : sous l'image, discrète,
+           elle ne recouvre jamais la photo. Les catégories sont en gris,
+           les deux portes en noir avec une flèche : même taille, signal
+           suffisant pour qu'on ne les confonde pas avec du travail. */
+        .tile-cap {
+          display: block;
+          margin-top: 10px;
           font-size: 10px;
-          letter-spacing: 0.14em;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: #8a8175;
+          color: #999;
+          text-align: center;
+          transition: color 0.25s ease;
         }
-        .door-tile.has-cover .door-label,
-        .door-tile.has-cover .door-note { color: #fff; }
-        .door-tile.has-cover .door-note { color: rgba(255,255,255,0.82); }
-        .door-tile .door-scrim {
+        .cat-tile:hover .tile-cap { color: #0a0a0a; }
+        .tile-cap.is-door { color: #0a0a0a; }
+        .tile-cap.is-door::after { content: " →"; letter-spacing: 0; }
+        .door-empty {
           position: absolute;
           inset: 0;
-          background: rgba(10,10,10,0.32);
-          z-index: 1;
-          transition: background 0.4s ease;
+          background: #f4f1ec;
         }
-        .door-tile:hover .door-scrim { background: rgba(10,10,10,0.44); }
 
         @media (max-width: 767px) {
           .cat-grid { gap: 8px; padding: 0 12px; }
-          .door-tile .door-label { font-size: 11px; letter-spacing: 0.12em; }
-          .door-tile .door-note { display: none; }
+          .tile-cap { font-size: 8px; letter-spacing: 0.12em; margin-top: 6px; }
         }
       `}</style>
 
@@ -109,29 +91,27 @@ export default async function HomePage({ params }: Props) {
       <main style={{ paddingTop: "16px", background: "#ffffff" }}>
         <div className="cat-grid">
           {PHOTO_CATEGORIES.map((cat, i) => (
-            <Link key={cat.slug} href={`/${lang}/photographer/${cat.slug}`} className="cat-tile" aria-label={cat.label[lang]}>
-              <Image
-                src={cat.cover}
-                alt={`${cat.label.en} — photography by Sandrine Ceuppens`}
-                width={1066}
-                height={1600}
-                sizes="(max-width: 767px) 33vw, 360px"
-                priority={i < 3}
-                quality={78}
-                style={cat.coverPosition ? { objectPosition: cat.coverPosition } : undefined}
-              />
+            <Link key={cat.slug} href={`/${lang}/photographer/${cat.slug}`} className="cat-tile">
+              <span className="tile-thumb">
+                <Image
+                  src={cat.cover}
+                  alt={`${cat.label.en} — photography by Sandrine Ceuppens`}
+                  width={1066}
+                  height={1600}
+                  sizes="(max-width: 767px) 33vw, 360px"
+                  priority={i < 3}
+                  quality={78}
+                  style={cat.coverPosition ? { objectPosition: cat.coverPosition } : undefined}
+                />
+              </span>
+              <span className="tile-cap">{cat.label[lang]}</span>
             </Link>
           ))}
 
           {HOME_TILES.map((tile) => (
-            <Link
-              key={tile.key}
-              href={`/${lang}${tile.href}`}
-              className={`cat-tile door-tile${tile.cover ? " has-cover" : ""}`}
-              aria-label={tile.label[lang]}
-            >
-              {tile.cover && (
-                <>
+            <Link key={tile.key} href={`/${lang}${tile.href}`} className="cat-tile">
+              <span className="tile-thumb">
+                {tile.cover ? (
                   <Image
                     src={tile.cover}
                     alt=""
@@ -141,13 +121,11 @@ export default async function HomePage({ params }: Props) {
                     quality={70}
                     style={tile.coverPosition ? { objectPosition: tile.coverPosition } : undefined}
                   />
-                  <span className="door-scrim" />
-                </>
-              )}
-              <span className="door-inner">
-                <span className="door-label">{tile.label[lang]}</span>
-                {tile.note && <span className="door-note">{tile.note[lang]}</span>}
+                ) : (
+                  <span className="door-empty" />
+                )}
               </span>
+              <span className="tile-cap is-door">{tile.label[lang]}</span>
             </Link>
           ))}
         </div>
