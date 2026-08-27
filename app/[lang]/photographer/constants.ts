@@ -1,43 +1,147 @@
-// Les 9 catégories de la grille d'accueil (Photographer).
-// L'ordre ici = l'ordre dans la grille 3×3.
+// ─────────────────────────────────────────────────────────────
+// Structure du portfolio photo.
 //
-// Pour chaque catégorie :
-//   - slug        : segment d'URL (/photographer/<slug>) + nom du dossier photos
-//   - label.fr/en : texte affiché (utilisé dans les titres de page, alt text, JSON-LD —
-//                   la grille d'accueil elle-même n'affiche aucun texte sur les tuiles)
-//   - cover       : photo représentative montrée dans la tuile d'accueil
+// Deux niveaux :
+//   catégorie          /photographer/<catégorie>
+//   cas                /photographer/<catégorie>/<cas>
 //
-// Les photos de chaque catégorie se rangent dans
-//   public/images/portfolio/<slug>/
-// La page /photographer/<slug> les liste, triées par nom de fichier (ordre
-// choisi à la main en renumérotant les fichiers). Convention : la photo
-// "1" de chaque dossier est aussi la couverture affichée sur la tuile
-// d'accueil.
+// Un cas, c'est un client, une destination ou une série. Jamais une image seule.
 //
-// Pour renommer une catégorie : change label.fr/label.en (et slug si tu veux
-// une nouvelle URL — pense alors à renommer le dossier).
+// Les fichiers se rangent dans
+//   public/images/portfolio/<catégorie>/<cas>/
+// numérotés 1, 2, 3... L'ordre des numéros est l'ordre d'affichage, et le
+// fichier 1 sert de couverture à la vignette du cas.
+//
+// Règles de remplissage (voir aussi _MAPPING.md dans le dossier des images) :
+//   - le nombre d'images d'un cas est un multiple de 3
+//   - en dessous du plancher, le cas part dans _en-attente/ plutôt que sur le site
+//   - deux cadrages proches ne se suivent jamais
+//
+// Un cas déclaré ici mais dont le dossier est vide n'est pas affiché : la
+// déclaration dit l'intention, le système de fichiers décide de la visibilité.
+// C'est ce qui permet de préparer un cas avant d'avoir les images.
+// ─────────────────────────────────────────────────────────────
+
+export type PhotoCase = {
+  slug: string;
+  label: { fr: string; en: string };
+  // Lieu affiché sous le titre du cas : ville et pays, ou rien.
+  place?: { fr: string; en: string };
+  // Position CSS object-position pour le crop 4:5 de la vignette du cas.
+  coverPosition?: string;
+};
 
 export type PhotoCategory = {
   slug: string;
   label: { fr: string; en: string };
+  // Photo représentative montrée sur la tuile d'accueil.
   cover: string;
-  // Position CSS object-position pour le crop de la tuile d'accueil (4:5).
-  // À utiliser quand le sujet n'est pas centré verticalement dans la photo
-  // (ex: portraits N&B avec beaucoup d'espace vide au-dessus de la tête),
-  // pour que le crop garde le sujet plutôt que le vide. Défaut : "center".
   coverPosition?: string;
+  cases: PhotoCase[];
 };
 
 export const PHOTO_CATEGORIES: PhotoCategory[] = [
-  { slug: "studio",     label: { fr: "Studio",     en: "Studio" },     cover: "/images/portfolio/studio/1.jpg" },
-  { slug: "venues",     label: { fr: "Lieux",      en: "Venues" },     cover: "/images/portfolio/venues/1.JPG" },
-  { slug: "portrait",   label: { fr: "Portraits",  en: "Portraits" },  cover: "/images/portfolio/portrait/1.jpg" },
-  { slug: "street",     label: { fr: "Street",     en: "Street" },     cover: "/images/portfolio/street/1.jpg" },
-  { slug: "fashion",    label: { fr: "Mode",       en: "Fashion" },    cover: "/images/portfolio/fashion/1.jpg",       coverPosition: "center 80%" },
-  { slug: "events",     label: { fr: "Events",     en: "Events" },     cover: "/images/portfolio/events/1.jpg" },
-  { slug: "product",    label: { fr: "Produit",    en: "Product" },    cover: "/images/portfolio/product/1.PNG" },
-  { slug: "travel",     label: { fr: "Voyage",     en: "Travel" },     cover: "/images/portfolio/travel/1.jpg" },
-  { slug: "beauty",     label: { fr: "Beauté",     en: "Beauty" },     cover: "/images/portfolio/beauty/1.JPG" },
+  {
+    slug: "hospitality",
+    label: { fr: "Hôtels & maisons", en: "Hotels & venues" },
+    cover: "/images/portfolio/hospitality/naturel-dorf-schonleitn/3.jpg",
+    cases: [
+      {
+        slug: "naturel-dorf-schonleitn",
+        label: { fr: "Naturel Dorf Schönleitn", en: "Naturel Dorf Schönleitn" },
+        place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
+      },
+      {
+        slug: "coloc-housing",
+        label: { fr: "Coloc Housing", en: "Coloc Housing" },
+        place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
+      },
+    ],
+  },
+  {
+    slug: "restaurants",
+    label: { fr: "Restaurants & bars", en: "Restaurants & bars" },
+    cover: "/images/portfolio/restaurants/ce-pages/1.jpg",
+    cases: [
+      {
+        slug: "ce-pages",
+        label: { fr: "Cé Pages", en: "Cé Pages" },
+        place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
+      },
+      // En attente : selys-liege, 6 images sur un disque non disponible.
+    ],
+  },
+  {
+    slug: "travel",
+    label: { fr: "Voyage", en: "Travel" },
+    cover: "/images/portfolio/travel/tokyo/1.jpg",
+    cases: [
+      { slug: "tokyo",   label: { fr: "Tokyo",   en: "Tokyo" },   place: { fr: "Japon", en: "Japan" } },
+      { slug: "kyoto",   label: { fr: "Kyoto",   en: "Kyoto" },   place: { fr: "Japon", en: "Japan" } },
+      { slug: "napoli",  label: { fr: "Napoli",  en: "Napoli" },  place: { fr: "Italie", en: "Italy" } },
+      { slug: "venezia", label: { fr: "Venezia", en: "Venezia" }, place: { fr: "Italie", en: "Italy" } },
+      { slug: "burano",  label: { fr: "Burano",  en: "Burano" },  place: { fr: "Italie", en: "Italy" } },
+      { slug: "palermo", label: { fr: "Palermo", en: "Palermo" }, place: { fr: "Italie", en: "Italy" } },
+      // En attente : koln, firenze, cefalu, faro, kawaguchiko, osaka, nara.
+    ],
+  },
+  {
+    slug: "portraits",
+    label: { fr: "Portraits", en: "Portraits" },
+    cover: "/images/portfolio/portraits/studio-nb/1.jpg",
+    cases: [
+      // Dossier encore vide : le cas apparaîtra tout seul dès que les images y seront.
+      { slug: "silke-hamers", label: { fr: "Silke Hamers", en: "Silke Hamers" } },
+      {
+        slug: "studio-nb",
+        label: { fr: "Studio, noir et blanc", en: "Studio, black & white" },
+      },
+    ],
+  },
+  // En attente : editorial, un seul cas de 3 images (bijoux).
 ];
 
 export const PHOTO_CATEGORY_SLUGS = PHOTO_CATEGORIES.map((c) => c.slug);
+
+export function findCategory(slug: string) {
+  return PHOTO_CATEGORIES.find((c) => c.slug === slug);
+}
+
+export function findCase(categorySlug: string, caseSlug: string) {
+  const cat = findCategory(categorySlug);
+  if (!cat) return undefined;
+  const item = cat.cases.find((c) => c.slug === caseSlug);
+  return item ? { cat, item } : undefined;
+}
+
+// ─────────────────────────────────────────────────────────────
+// Tuiles d'accueil qui ne sont pas des catégories.
+// Elles complètent la grille et se lisent comme des portes, pas comme du travail :
+// pas de titre sur les tuiles de catégorie, un titre sur celles-ci.
+// L'ordre ci-dessous est l'ordre d'affichage, après les catégories.
+// ─────────────────────────────────────────────────────────────
+
+export type HomeTile = {
+  key: string;
+  href: string;
+  label: { fr: string; en: string };
+  note?: { fr: string; en: string };
+  cover?: string;
+  coverPosition?: string;
+};
+
+export const HOME_TILES: HomeTile[] = [
+  {
+    key: "film",
+    href: "/filmmaker",
+    label: { fr: "Film", en: "Film" },
+    note: { fr: "Films de marque et séries", en: "Brand films and series" },
+    cover: "/videos/city-diary/05-kyoto-poster.jpg",
+  },
+  {
+    key: "work",
+    href: "/about#travailler-avec-moi",
+    label: { fr: "Travaillons ensemble", en: "Work with me" },
+    note: { fr: "Hôtels, tables, marques", en: "Hotels, tables, brands" },
+  },
+];

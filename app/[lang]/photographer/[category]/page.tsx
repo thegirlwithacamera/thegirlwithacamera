@@ -2,9 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PHOTO_CATEGORIES } from "../constants";
-import { readCategoryPhotos } from "@/lib/portfolio";
-import PhotoPager from "./PhotoPager";
+import { PHOTO_CATEGORIES, findCategory } from "../constants";
+import { readCaseCover, countCasePhotos } from "@/lib/portfolio";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en"; category: string }>;
@@ -18,7 +17,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, category } = await params;
-  const cat = PHOTO_CATEGORIES.find((c) => c.slug === category);
+  const cat = findCategory(category);
   if (!cat) return {};
   return {
     title: `${cat.label[lang]} — Photographer`,
@@ -33,18 +32,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// ─────────────────────────────────────────────────────────────
+// Page d'une catégorie : la grille des cas (un client, une destination,
+// une série). Un cas déclaré dans constants.ts mais dont le dossier d'images
+// est vide n'apparaît pas.
+// ─────────────────────────────────────────────────────────────
+
 export default async function PhotographerCategoryPage({ params }: Props) {
   const { lang, category } = await params;
-  const cat = PHOTO_CATEGORIES.find((c) => c.slug === category);
+  const cat = findCategory(category);
   if (!cat) notFound();
 
-  // Photos triées dans public/images/portfolio/<slug>/. Tant que le dossier
-  // est vide, on montre la photo de couverture seule.
-  const photos = readCategoryPhotos(cat.slug);
-  const list = photos.length > 0 ? photos : [{ src: cat.cover }];
-  const empty = photos.length === 0;
-  const emptyNote = lang === "fr" ? "Sélection à venir." : "Selection coming soon.";
+  const cases = cat.cases
+    .map((c) => ({
+      ...c,
+      cover: readCaseCover(cat.slug, c.slug),
+      count: countCasePhotos(cat.slug, c.slug),
+    }))
+    .filter((c) => c.cover !== null);
+
   const backLabel = lang === "fr" ? "← Toutes les catégories" : "← All categories";
+  const emptyNote = lang === "fr" ? "Sélection à venir." : "Selection coming soon.";
 
   return (
     <>
@@ -71,7 +79,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
           text-decoration: none;
         }
         .cat-back:hover { color: #0a0a0a; }
-        .photo-grid {
+        .case-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 22px;
@@ -79,63 +87,82 @@ export default async function PhotographerCategoryPage({ params }: Props) {
           margin: 0 auto;
           padding: 0 20px;
         }
-        .photo-grid.is-empty { max-width: 460px; grid-template-columns: 1fr; }
-        .photo-cell { display: block; aspect-ratio: 1066 / 1600; overflow: hidden; position: relative; background: #f2f2f2; }
-        .photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .pager-outer { max-width: 1260px; margin: 0 auto; padding: 0 20px; }
-        .pager-viewport { overflow: hidden; outline: none; }
-        .pager-track { display: flex; transition: transform 0.45s ease; }
-        .pager-page {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 22px;
+        .case-card { display: block; text-decoration: none; }
+        .case-thumb {
+          position: relative;
+          aspect-ratio: 4 / 5;
+          overflow: hidden;
+          background: #f2f2f2;
         }
-        .pager-dots { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 28px; }
-        .pager-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #d4d4d4;
-          border: none;
-          padding: 0;
-          cursor: pointer;
-          transition: background 0.2s ease, transform 0.2s ease;
+        .case-thumb img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
         }
-        .pager-dot:hover { background: #999; }
-        .pager-dot.is-active { background: #0a0a0a; transform: scale(1.4); }
+        .case-card:hover .case-thumb img { transform: scale(1.05); }
+        .case-meta { padding: 12px 2px 0; text-align: center; }
+        .case-title {
+          font-family: var(--font-serif), Georgia, serif;
+          font-size: 15px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          margin: 0;
+          font-weight: 400;
+        }
+        .case-place {
+          display: block;
+          margin-top: 4px;
+          font-size: 10px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #999;
+        }
         @media (max-width: 767px) {
-          .photo-grid { gap: 8px; padding: 0 12px; }
-          .pager-outer { padding: 0 12px; }
-          .pager-page { gap: 8px; }
+          .case-grid { gap: 10px; padding: 0 12px; }
           .cat-head h1 { font-size: 18px; }
+          .case-title { font-size: 11px; letter-spacing: 0.08em; }
+          .case-place { font-size: 9px; }
+          .case-meta { padding-top: 8px; }
         }
       `}</style>
 
-      <main style={{ paddingTop: "16px", paddingBottom: "24px", background: "#ffffff" }}>
+      <main style={{ paddingTop: "16px", paddingBottom: "48px", background: "#ffffff" }}>
         <div className="cat-head">
           <div>
             <Link href={`/${lang}`} className="cat-back">{backLabel}</Link>
           </div>
           <h1>{cat.label[lang]}</h1>
-          {empty && <p className="cat-note">{emptyNote}</p>}
+          {cases.length === 0 && <p className="cat-note">{emptyNote}</p>}
         </div>
 
-        {list.length > 9 ? (
-          <PhotoPager photos={list} catLabel={cat.label.en} />
-        ) : (
-          <div className={`photo-grid${empty ? " is-empty" : ""}`}>
-            {list.map((p, i) => (
-              <div key={i} className="photo-cell">
-                <Image
-                  src={p.src}
-                  alt={`${cat.label.en} photograph ${i + 1} by Sandrine Ceuppens`}
-                  width={1066}
-                  height={1600}
-                  sizes="(max-width: 767px) 33vw, 420px"
-                  priority={i < 6}
-                  quality={75}
-                />
-              </div>
+        {cases.length > 0 && (
+          <div className="case-grid">
+            {cases.map((c, i) => (
+              <Link
+                key={c.slug}
+                href={`/${lang}/photographer/${cat.slug}/${c.slug}`}
+                className="case-card"
+              >
+                <div className="case-thumb">
+                  <Image
+                    src={c.cover as string}
+                    alt={`${c.label.en} — ${cat.label.en} photography by Sandrine Ceuppens`}
+                    width={1066}
+                    height={1600}
+                    sizes="(max-width: 767px) 33vw, 420px"
+                    priority={i < 3}
+                    quality={78}
+                    style={c.coverPosition ? { objectPosition: c.coverPosition } : undefined}
+                  />
+                </div>
+                <div className="case-meta">
+                  <p className="case-title">{c.label[lang]}</p>
+                  {c.place && <span className="case-place">{c.place[lang]}</span>}
+                </div>
+              </Link>
             ))}
           </div>
         )}

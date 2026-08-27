@@ -1,12 +1,20 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { getPublishedTrips } from "@/lib/diary";
-import { PHOTO_CATEGORY_SLUGS } from "@/app/[lang]/photographer/constants";
+import { PHOTO_CATEGORIES, PHOTO_CATEGORY_SLUGS } from "@/app/[lang]/photographer/constants";
+import { countCasePhotos } from "@/lib/portfolio";
 
 // "/shop" retire tant que la boutique est hors ligne.
 const STATIC_PATHS = [
   "",
   ...PHOTO_CATEGORY_SLUGS.map((s) => `/photographer/${s}`),
+  // Une URL par cas : un client, une destination, une série. C'est la page
+  // qu'on colle dans un pitch, donc elle doit être indexée.
+  ...PHOTO_CATEGORIES.flatMap((cat) =>
+    cat.cases
+      .filter((c) => countCasePhotos(cat.slug, c.slug) > 0)
+      .map((c) => `/photographer/${cat.slug}/${c.slug}`),
+  ),
   "/creator",
   "/creator/gear",
   "/creator/lifestyle",

@@ -62,3 +62,7 @@ public/videos/creator/**/.DS_Store
 *.tsbuildinfo
 next-env.d.ts
 tsconfig.check.json
+
+# Sélections mises de côté (non servies, non versionnées) et corbeille manuelle
+/_attente/
+/_to_delete/
