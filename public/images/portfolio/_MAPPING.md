@@ -327,3 +327,12 @@ Deux raisons : 831 Mo n'ont rien à faire dans un dépôt git, et tout ce qui vi
 
 `_attente/` et `_to_delete/` sont dans .gitignore. Ils ne sont donc pas versionnés :
 ce sont les seules copies. Les 33 sources du shooting Dorf Schönleitn y sont.
+
+## Silke Hamers, 27 août 2026
+
+8 images fournies, 6 retenues. Ordre : 1 le rideau métallique bras levé (couverture du cas
+et de la catégorie Portraits), 2 la façade rouge jambe sur la rambarde, 3 le ciel assise,
+4 l'escalier, 5 le ciel bras ouverts, 6 le rideau métallique accroupie.
+Aucun décor ne se suit deux fois.
+Écartées dans `_attente/portraits/silke-ecartees/` : R0020404, troisième variante de ciel
+entre deux meilleures, et R0020458, allongée sur la rambarde, visage peu lisible.
