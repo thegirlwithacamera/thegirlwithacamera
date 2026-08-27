@@ -29,15 +29,15 @@ export default function Header() {
     { href: `/${currentLang}`,           label: labels.home },
     { href: `/${currentLang}/filmmaker`, label: labels.filmmaker },
     { href: `/${currentLang}/creator`,   label: labels.creator },
-    // Journal : sorti du menu "+" le 18/08. Un lien replié n’est cliqué que
-    // par ceux qui le cherchaient déjà, or personne ne cherche un journal
-    // dont il ignore l’existence.
-    { href: "https://thegirlwithacamera.substack.com/", label: "Journal", external: true },
+    // À propos remplace Journal dans la nav principale le 27/08 : c'est la page
+    // qui porte les offres, donc le seul lien que doit trouver un client.
+    { href: `/${currentLang}/about`,     label: labels.about },
   ];
 
   // Pages secondaires, rangees dans le "+".
   const moreLinks: NavLink[] = [
-    { href: `/${currentLang}/about`,    label: labels.about },
+    // Journal replié ici le 27/08, il a laissé sa place à À propos.
+    { href: "https://thegirlwithacamera.substack.com/", label: "Journal", external: true },
     // Shop/Presets : page retiree du site (la boutique Gumroad reste en ligne).
     // Pour la remettre : decommente la ligne ci-dessous et passe
     // PRESETS_LIVE a true dans app/[lang]/presets/page.tsx.

@@ -342,6 +342,7 @@ export default async function AboutPage({ params }: Props) {
 
         /* ── Sections generales ── */
         .info-hr { height: 1px; background: #ebebeb; max-width: 960px; margin: 48px auto; border: none; }
+        .about-first { padding-top: 44px; }
         .info-section-title {
           font-size: 11px;
           font-weight: 700;
@@ -364,6 +365,17 @@ export default async function AboutPage({ params }: Props) {
         }
 
         /* Work with me : offres */
+        /* Indice de défilement, visible seulement là où les offres deviennent
+           un carrousel horizontal. */
+        .offers-hint {
+          display: none;
+          text-align: center;
+          font-size: 9px;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #b3aca2;
+          margin: 14px 0 0;
+        }
         .offers-intro {
           max-width: 620px;
           margin: -14px auto 32px;
@@ -494,53 +506,15 @@ export default async function AboutPage({ params }: Props) {
           }
           .offers::-webkit-scrollbar { display: none; }
           .offer { flex: 0 0 82vw; scroll-snap-align: center; padding: 26px 22px; }
+          .about-first { padding-top: 28px; }
+          .offers-hint { display: block; }
         }
       `}</style>
 
-      {/* Hero : photo, nom, role, stat, contact — droit au but */}
-      <section className="hero">
-        <div className="hero-photo">
-          <Image src={HERO_PHOTO} alt="Sandrine Ceuppens" fill sizes="(max-width: 900px) 340px, 420px" priority quality={82} />
-        </div>
-        <div>
-          <h1 className="hero-name">{t.name}</h1>
-          <p className="hero-role">{t.role}</p>
-          <div className="hero-stats">
-            <p className="hero-stat-label">{t.followersLabel}</p>
-            <p className="hero-stat-num">{site.instagramFollowers[lang]}</p>
-          </div>
-          <div className="hero-cta-row">
-            <a className="hero-cta" href="mailto:hello@thegirlwithacamera.com">{t.letsTalk}</a>
-            <div className="hero-socials">
-              {SOCIALS.map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="hero-social-link" aria-label={s.label}>
-                  {s.icon}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <hr className="info-hr" />
-
-      {/* Clients */}
-      <TrustLogos lang={lang} />
-
-      <hr className="info-hr" />
-
-      {/* Skills */}
-      <p className="info-section-title">{t.skills}</p>
-      <div className="skills-row">
-        {SKILLS[lang].map((s) => (
-          <span key={s} className="skill-pill">{s}</span>
-        ))}
-      </div>
-
-      <hr className="info-hr" />
-
-      {/* Work with me : offres */}
-      <p className="info-section-title" id="travailler-avec-moi">{work.title}</p>
+      {/* Work with me : offres. Remonté en tête de page le 27/08 : un client
+          arrive ici pour savoir ce qu'on vend, pas pour lire une biographie.
+          La présentation est descendue en bas. */}
+      <p className="info-section-title about-first" id="travailler-avec-moi">{work.title}</p>
       <p className="offers-intro">{work.intro}</p>
       <div className="offers">
         {work.offers.map((o, i) => (
@@ -570,6 +544,12 @@ export default async function AboutPage({ params }: Props) {
           </div>
         ))}
       </div>
+      <p className="offers-hint">{lang === "fr" ? "Faites défiler →" : "Swipe →"}</p>
+
+      <hr className="info-hr" />
+
+      {/* Clients */}
+      <TrustLogos lang={lang} />
 
       <hr className="info-hr" />
 
@@ -580,6 +560,43 @@ export default async function AboutPage({ params }: Props) {
           {t.projectsPdf}
         </a>
       </div>
+
+      <hr className="info-hr" />
+
+      {/* Skills */}
+      <p className="info-section-title">{t.skills}</p>
+      <div className="skills-row">
+        {SKILLS[lang].map((s) => (
+          <span key={s} className="skill-pill">{s}</span>
+        ))}
+      </div>
+
+      <hr className="info-hr" />
+
+      {/* Présentation, descendue en bas de page le 27/08. */}
+      <section className="hero">
+        <div className="hero-photo">
+          <Image src={HERO_PHOTO} alt="Sandrine Ceuppens" fill sizes="(max-width: 900px) 340px, 420px" priority quality={82} />
+        </div>
+        <div>
+          <h1 className="hero-name">{t.name}</h1>
+          <p className="hero-role">{t.role}</p>
+          <div className="hero-stats">
+            <p className="hero-stat-label">{t.followersLabel}</p>
+            <p className="hero-stat-num">{site.instagramFollowers[lang]}</p>
+          </div>
+          <div className="hero-cta-row">
+            <a className="hero-cta" href="mailto:hello@thegirlwithacamera.com">{t.letsTalk}</a>
+            <div className="hero-socials">
+              {SOCIALS.map((s) => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="hero-social-link" aria-label={s.label}>
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <hr className="info-hr" />
 
