@@ -44,6 +44,9 @@ export default async function HomePage({ params }: Props) {
         }
         .cat-tile { display: block; text-decoration: none; }
         .tile-thumb {
+          /* span : sans display block, aspect-ratio et position sont ignorés
+             et la grille s'effondre. */
+          display: block;
           position: relative;
           aspect-ratio: 4 / 5;
           overflow: hidden;
