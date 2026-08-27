@@ -88,7 +88,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
   {
     slug: "portraits",
     label: { fr: "Portraits", en: "Portraits" },
-    cover: "/images/portfolio/portraits/silke-hamers/1.jpg",
+    cover: "/images/portfolio/portraits/silke-hamers/2.jpg",
     cases: [
       { slug: "silke-hamers", label: { fr: "Silke Hamers", en: "Silke Hamers" } },
       {
@@ -133,11 +133,14 @@ export const HOME_TILES: HomeTile[] = [
     key: "film",
     href: "/filmmaker",
     label: { fr: "Film", en: "Film" },
-    cover: "/videos/city-diary/05-kyoto-poster.jpg",
+    // Image extraite d'un original City Diary. Les posters de /videos portent
+    // un titre incrusté et sont en 16:9, illisibles en tuile 4:5.
+    cover: "/images/film/cover.jpg",
   },
   {
     key: "work",
     href: "/about#travailler-avec-moi",
     label: { fr: "Travaillons ensemble", en: "Work with me" },
+    cover: "/images/about/hero.jpg",
   },
 ];

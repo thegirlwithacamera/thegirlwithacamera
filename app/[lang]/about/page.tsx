@@ -553,15 +553,9 @@ export default async function AboutPage({ params }: Props) {
 
       <hr className="info-hr" />
 
-      {/* Projets recents : PDF telechargeable, pas de bloc sur la page */}
-      <div className="pdf-link-wrap">
-        <a className="pdf-link" href={`/documents/recent-projects-${lang}.pdf`} target="_blank" rel="noopener noreferrer">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-          {t.projectsPdf}
-        </a>
-      </div>
-
-      <hr className="info-hr" />
+      {/* Projets récents (PDF) : retiré le 27/08, le dossier doit être remis à
+          jour avant de le remettre en ligne. Le fichier et les libellés
+          t.projectsPdf existent toujours, il suffit de rétablir ce bloc. */}
 
       {/* Skills */}
       <p className="info-section-title">{t.skills}</p>
