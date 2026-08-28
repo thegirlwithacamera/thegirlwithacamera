@@ -24,11 +24,12 @@ export default function Header() {
   // tuile Film, et une nav qui énumère trois métiers (Photographe, Vidéaste,
   // Créatrice) vend un organigramme plutôt qu'une prestation. "Work" nomme le
   // travail, la grille se charge de l'orienter.
-  // Labels adaptes par langue.
-  const labels =
-    currentLang === "fr"
-      ? { home: "Work", filmmaker: "Vidéaste", creator: "Créatrice", about: "À propos" }
-      : { home: "Work", filmmaker: "Filmmaker", creator: "Creator", about: "About" };
+  //
+  // Les trois libellés sont en anglais dans les deux langues (28/08). Ce ne
+  // sont pas des phrases mais des enseignes : "Work" était déjà en anglais
+  // côté français, et une nav moitié anglaise moitié française se lisait
+  // comme un oubli. Le contenu des pages, lui, reste traduit.
+  const labels = { home: "Work", creator: "Creator", about: "About" };
 
   const navLinks: NavLink[] = [
     { href: `/${currentLang}`,           label: labels.home },
