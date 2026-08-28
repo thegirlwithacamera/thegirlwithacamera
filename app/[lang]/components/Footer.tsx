@@ -10,9 +10,13 @@ export default function Footer() {
   const pathname = usePathname();
   const currentLang = (pathname.split("/")[1] || "fr") as Lang;
 
-  // Bande "Work with me" au-dessus du footer, sur toutes les pages sauf
-  // About (elle y mènerait vers la page en cours).
+  // Bande "Work with me" au-dessus du footer, sauf sur About (elle y mènerait
+  // vers la page en cours) et sauf sur l'accueil, où la grille contient déjà
+  // une tuile Travaillons ensemble : les deux se suivaient à l'écran et
+  // disaient la même chose.
   const onAbout = pathname.startsWith(`/${currentLang}/about`);
+  const onHome = pathname === `/${currentLang}` || pathname === `/${currentLang}/`;
+  const hideCta = onAbout || onHome;
   const cta =
     currentLang === "fr"
       ? { eyebrow: "Un projet en tête ?", label: "Travaillons ensemble" }
@@ -20,7 +24,7 @@ export default function Footer() {
 
   return (
     <footer style={{ background: "#ffffff", borderTop: "1px solid #ebebeb" }}>
-      {!onAbout && (
+      {!hideCta && (
         <div style={{ textAlign: "center", padding: "32px 24px", borderBottom: "1px solid #ebebeb" }}>
           <p style={{
             fontSize: "11px",
