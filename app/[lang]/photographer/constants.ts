@@ -169,11 +169,19 @@ export const HOME_TILES: HomeTile[] = [
     key: "film",
     href: "/filmmaker",
     label: { fr: "Film", en: "Film" },
-    // Image extraite d'un original City Diary. Rangée dans /images/tiles et
-    // surtout pas dans /images/film ni /videos/city-diary : ces deux dossiers
-    // sont listés dans .vercelignore, donc jamais déployés. Un fichier peut
-    // être dans git et absent du site.
-    cover: "/images/tiles/film.jpg",
+    // Vue aérienne de Naturel Dorf Schönleitn, image extraite du rush drone du
+    // 27/08. Elle remplace une bambouseraie : jolie, mais elle disait "voyage"
+    // à un hôtelier venu chercher un film de sa maison.
+    //
+    // Deux règles apprises à leurs dépens :
+    // - le fichier vit dans /images/tiles et surtout pas dans /images/film ni
+    //   /videos/city-diary, tous deux listés dans .vercelignore : un fichier
+    //   peut être dans git et absent du site ;
+    // - nouveau nom plutôt qu'un écrasement de film.jpg. next/image sert les
+    //   versions optimisées avec un cache long sur une URL inchangée, donc
+    //   remplacer un fichier sous le même nom laisse l'ancienne image en place
+    //   dans les navigateurs qui l'ont déjà vue.
+    cover: "/images/tiles/film-schonleitn.jpg",
   },
   {
     key: "work",
