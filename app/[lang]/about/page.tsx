@@ -48,7 +48,7 @@ const TALK_MAIL = "sandrine@thegirlwithacamera.com";
 const WORK: Record<"fr" | "en", Work> = {
   en: {
     title: "WORK WITH ME",
-    intro: "Documentary photographer and filmmaker based in Brussels. I mostly work with houses, hotels and tables, in natural light, in real places. Nothing is posted on my channels unless you want it to be.",
+    intro: "Documentary photographer and filmmaker based in Brussels. I mostly work with houses, hotels and tables, in natural light, in real places. Depending on the package, the content goes to your channels, to mine, or to both.",
     letsTalk: "Let's talk",
     talkMail: TALK_MAIL,
     offers: [
@@ -82,14 +82,13 @@ const WORK: Record<"fr" | "en", Work> = {
         packageName: "What's included",
         items: [
           "Concept and creative direction",
-          "Filmed on Luna Ultra, cinematic editorial look",
+          "Cinematic editorial look",
           "Long-form film and short cutdowns, Reels and Stories",
           "Narrative editing, sound design",
           "Worldwide usage rights on your organic channels, 12 months",
         ],
         addonsLabel: "Options",
         addons: [
-          "Raw footage on request",
           "Rush delivery",
           "Yearly package, several films across the year",
         ],
@@ -106,7 +105,7 @@ const WORK: Record<"fr" | "en", Work> = {
           "Or start with a test, or book a one-off",
           "Concept, scripting and editing included",
           "Worldwide usage rights on your organic channels, 12 months",
-          "Paid social, all media, exclusivity, raw files: quoted separately",
+          "Paid social, all media, exclusivity: quoted separately. Raw files are never handed over",
         ],
         addonsLabel: "Or on my channels",
         addons: [
@@ -119,7 +118,7 @@ const WORK: Record<"fr" | "en", Work> = {
   },
   fr: {
     title: "TRAVAILLER AVEC MOI",
-    intro: "Photographe et vidéaste documentaire, basée à Bruxelles. Je travaille surtout avec des maisons, des hôtels et des tables, en lumière naturelle, dans de vrais lieux. Rien n'est publié sur mes canaux sauf si vous le voulez.",
+    intro: "Photographe et vidéaste documentaire, basée à Bruxelles. Je travaille surtout avec des maisons, des hôtels et des tables, en lumière naturelle, dans de vrais lieux. Selon la formule, le contenu part sur vos canaux, sur les miens, ou sur les deux.",
     letsTalk: "Parlons-en",
     talkMail: TALK_MAIL,
     offers: [
@@ -153,14 +152,13 @@ const WORK: Record<"fr" | "en", Work> = {
         packageName: "Ce qui est inclus",
         items: [
           "Concept et direction créative",
-          "Filmé sur Luna Ultra, rendu cinématique et éditorial",
+          "Rendu cinématique et éditorial",
           "Film long format et déclinaisons courtes, Reels et Stories",
           "Montage narratif, sound design",
           "Droits d'usage monde sur vos canaux organiques, 12 mois",
         ],
         addonsLabel: "Options",
         addons: [
-          "Rushes bruts sur demande",
           "Livraison express",
           "Forfait annuel, plusieurs films dans l'année",
         ],
@@ -177,7 +175,7 @@ const WORK: Record<"fr" | "en", Work> = {
           "Ou un premier test, ou une session à l'unité",
           "Concept, scénario et montage inclus",
           "Droits d'usage monde sur vos canaux organiques, 12 mois",
-          "Paid social, tous médias, exclusivité, fichiers bruts : sur devis",
+          "Paid social, tous médias, exclusivité : sur devis. Les fichiers bruts ne se cèdent pas",
         ],
         addonsLabel: "Ou sur mes canaux",
         addons: [
