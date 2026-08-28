@@ -344,3 +344,28 @@ la catégorie Portraits. C'est le seul plan rapproché face caméra de la série
 les cinq autres sont des plans larges en mouvement.
 Écartée pour rester à 6 : l'ancienne 3, ciel assise, trop proche du ciel bras
 ouverts. Elle est dans `_attente/portraits/silke-ecartees/`.
+
+## Coloc Housing corrigé, 28 août 2026
+
+Le grand salon (ancienne venues/1) revient en 1 et devient la couverture du cas.
+Je l'avais écartée la veille pour doublon d'échelle avec la salle à manger :
+erreur, c'est une autre pièce et c'est la meilleure image du lot, la seule qui
+montre le volume, les moulures, le lustre et les panneaux peints d'un coup.
+
+Sortie à la place : la vue sombre de la table basse, dans
+`_attente/hospitality/coloc-table-basse-sombre.jpg`.
+
+Ordre : 1 grand salon, 2 salle à manger, 3 plafond et lustre.
+Le reflet de la signalétique de secours sur l'image 3 a été retouché par Sandrine le 28 août.
+
+## Films rattachables aux cas, relevé du 28 août 2026
+
+`public/videos/creator/CINEMATIC/PLACES/` contient quatre films de lieu :
+Coloc Housing, Cé-Pages, Dao Liège, VanDerValk Sélys. Ce dernier est le
+restaurant, donc il se rattache au cas `restaurants/selys-liege`, aujourd'hui
+en attente faute de photos.
+`CITIES/` contient cinq City Diary : Kyoto, Nara, Osaka, Tokyo, Tokyo Night.
+
+Dao Liège est un spa qui n'a jamais été photographié : il n'existe qu'en film.
+C'est donc un cas vidéo sans cas photo, et la raison pour laquelle la page
+Vidéaste doit survivre à la fusion plutôt que de disparaître dans les cas.
