@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { PHOTO_CATEGORIES, HOME_TILES } from "./photographer/constants";
+import { PHOTO_CATEGORIES } from "./photographer/constants";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -19,16 +19,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // ─────────────────────────────────────────────────────────────
-// ACCUEIL — grille de 3 colonnes.
-// Une tuile par catégorie, puis les tuiles de HOME_TILES (Film, Travaillons
-// ensemble). Les tuiles de catégorie n'affichent aucun texte, celles de
-// HOME_TILES en affichent : la grille se lit ainsi comme des travaux d'un côté
-// et des portes de l'autre.
+// ACCUEIL — une tuile par catégorie, rien d'autre.
+//
+// Les tuiles Film et Travaillons ensemble ont été retirées le 27/08 : elles
+// dupliquaient Vidéaste et À propos, déjà dans le menu, et une tuile qui est
+// un bouton déguisé en photo se repère tout de suite. Le lien commercial
+// reste, en une ligne sous la grille.
+//
+// Nombre de colonnes : 3 si le nombre de catégories est un multiple de 3,
+// 2 sinon. Avec 4 catégories, 2 colonnes donnent des images deux fois plus
+// grandes et aucune rangée bancale.
+//
 // Tout se règle dans app/[lang]/photographer/constants.ts
 // ─────────────────────────────────────────────────────────────
 
 export default async function HomePage({ params }: Props) {
   const { lang } = await params;
+  const cols = PHOTO_CATEGORIES.length % 3 === 0 ? 3 : 2;
+  const workLabel = lang === "fr" ? "Travaillons ensemble" : "Work with me";
 
   return (
     <>
@@ -36,12 +44,27 @@ export default async function HomePage({ params }: Props) {
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
         .cat-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
           gap: 22px;
           max-width: 1100px;
           margin: 0 auto;
           padding: 0 20px;
         }
+        /* Lien commercial : une ligne sous la grille, pas une tuile. */
+        .home-work {
+          display: block;
+          margin: 44px auto 8px;
+          text-align: center;
+          font-size: 11px;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          text-decoration: none;
+          border-bottom: 1px solid #d8d2c8;
+          padding-bottom: 5px;
+          width: fit-content;
+          transition: border-color 0.25s ease;
+        }
+        .home-work:hover { border-color: #0a0a0a; }
         .cat-tile { display: block; text-decoration: none; }
         .tile-thumb {
           /* span : sans display block, aspect-ratio et position sont ignorés
@@ -76,23 +99,17 @@ export default async function HomePage({ params }: Props) {
           transition: color 0.25s ease;
         }
         .cat-tile:hover .tile-cap { color: #0a0a0a; }
-        .tile-cap.is-door { color: #0a0a0a; }
-        .tile-cap.is-door::after { content: " →"; letter-spacing: 0; }
-        .door-empty {
-          position: absolute;
-          inset: 0;
-          background: #f4f1ec;
-        }
 
         @media (max-width: 767px) {
-          .cat-grid { gap: 8px; padding: 0 12px; }
-          .tile-cap { font-size: 8px; letter-spacing: 0.12em; margin-top: 6px; }
+          .cat-grid { gap: 10px; padding: 0 12px; grid-template-columns: repeat(2, 1fr) !important; }
+          .tile-cap { font-size: 9px; letter-spacing: 0.14em; margin-top: 7px; }
+          .home-work { margin-top: 34px; font-size: 10px; }
         }
       `}</style>
 
       <h1 className="sr-only">The Girl With A Camera — Sandrine Ceuppens, Photographer Portfolio</h1>
       <main style={{ paddingTop: "16px", background: "#ffffff" }}>
-        <div className="cat-grid">
+        <div className="cat-grid" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
           {PHOTO_CATEGORIES.map((cat, i) => (
             <Link key={cat.slug} href={`/${lang}/photographer/${cat.slug}`} className="cat-tile">
               <span className="tile-thumb">
@@ -101,8 +118,8 @@ export default async function HomePage({ params }: Props) {
                   alt={`${cat.label.en} — photography by Sandrine Ceuppens`}
                   width={1066}
                   height={1600}
-                  sizes="(max-width: 767px) 33vw, 360px"
-                  priority={i < 3}
+                  sizes="(max-width: 767px) 50vw, 540px"
+                  priority={i < 2}
                   quality={78}
                   style={cat.coverPosition ? { objectPosition: cat.coverPosition } : undefined}
                 />
@@ -111,27 +128,11 @@ export default async function HomePage({ params }: Props) {
             </Link>
           ))}
 
-          {HOME_TILES.map((tile) => (
-            <Link key={tile.key} href={`/${lang}${tile.href}`} className="cat-tile">
-              <span className="tile-thumb">
-                {tile.cover ? (
-                  <Image
-                    src={tile.cover}
-                    alt=""
-                    width={1066}
-                    height={1600}
-                    sizes="(max-width: 767px) 33vw, 360px"
-                    quality={70}
-                    style={tile.coverPosition ? { objectPosition: tile.coverPosition } : undefined}
-                  />
-                ) : (
-                  <span className="door-empty" />
-                )}
-              </span>
-              <span className="tile-cap is-door">{tile.label[lang]}</span>
-            </Link>
-          ))}
         </div>
+
+        <Link href={`/${lang}/about#travailler-avec-moi`} className="home-work">
+          {workLabel} →
+        </Link>
       </main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
         "@context": "https://schema.org",

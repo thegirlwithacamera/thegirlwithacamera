@@ -113,34 +113,6 @@ export function findCase(categorySlug: string, caseSlug: string) {
   return item ? { cat, item } : undefined;
 }
 
-// ─────────────────────────────────────────────────────────────
-// Tuiles d'accueil qui ne sont pas des catégories.
-// Elles complètent la grille et se lisent comme des portes, pas comme du travail :
-// pas de titre sur les tuiles de catégorie, un titre sur celles-ci.
-// L'ordre ci-dessous est l'ordre d'affichage, après les catégories.
-// ─────────────────────────────────────────────────────────────
-
-export type HomeTile = {
-  key: string;
-  href: string;
-  label: { fr: string; en: string };
-  cover?: string;
-  coverPosition?: string;
-};
-
-export const HOME_TILES: HomeTile[] = [
-  {
-    key: "film",
-    href: "/filmmaker",
-    label: { fr: "Film", en: "Film" },
-    // Image extraite d'un original City Diary. Les posters de /videos portent
-    // un titre incrusté et sont en 16:9, illisibles en tuile 4:5.
-    cover: "/images/film/cover.jpg",
-  },
-  {
-    key: "work",
-    href: "/about#travailler-avec-moi",
-    label: { fr: "Travaillons ensemble", en: "Work with me" },
-    cover: "/images/about/hero.jpg",
-  },
-];
+// Les tuiles Film et Travaillons ensemble ont été retirées de l'accueil le
+// 27/08 : elles dupliquaient des liens déjà présents dans le menu. Le lien
+// commercial vit maintenant en une ligne sous la grille, dans page.tsx.

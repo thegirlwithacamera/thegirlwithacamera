@@ -51,6 +51,10 @@ export default async function PhotographerCategoryPage({ params }: Props) {
     }))
     .filter((c) => c.cover !== null);
 
+  // Même règle que l'accueil : 3 colonnes si le nombre de cas est un multiple
+  // de 3, sinon 2, et une seule colonne quand il n'y a qu'un cas. Une grille
+  // de 3 avec un seul client ressemble à une page vide.
+  const cols = cases.length === 1 ? 1 : cases.length % 3 === 0 ? 3 : 2;
   const backLabel = lang === "fr" ? "← Toutes les catégories" : "← All categories";
   const emptyNote = lang === "fr" ? "Sélection à venir." : "Selection coming soon.";
 
@@ -81,7 +85,6 @@ export default async function PhotographerCategoryPage({ params }: Props) {
         .cat-back:hover { color: #0a0a0a; }
         .case-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
           gap: 22px;
           max-width: 1260px;
           margin: 0 auto;
@@ -120,7 +123,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
           margin-left: 6px;
         }
         @media (max-width: 767px) {
-          .case-grid { gap: 10px; padding: 0 12px; }
+          .case-grid { gap: 10px; padding: 0 12px; grid-template-columns: repeat(2, 1fr) !important; max-width: none !important; }
           .cat-head h1 { font-size: 18px; }
           .case-title { font-size: 8px; letter-spacing: 0.12em; }
           .case-place { margin-left: 4px; }
@@ -138,7 +141,13 @@ export default async function PhotographerCategoryPage({ params }: Props) {
         </div>
 
         {cases.length > 0 && (
-          <div className="case-grid">
+          <div
+            className="case-grid"
+            style={{
+              gridTemplateColumns: `repeat(${cols}, 1fr)`,
+              maxWidth: cols === 1 ? "460px" : cols === 2 ? "900px" : undefined,
+            }}
+          >
             {cases.map((c, i) => (
               <Link
                 key={c.slug}
@@ -151,7 +160,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
                     alt={`${c.label.en} — ${cat.label.en} photography by Sandrine Ceuppens`}
                     width={1066}
                     height={1600}
-                    sizes="(max-width: 767px) 33vw, 420px"
+                    sizes="(max-width: 767px) 50vw, 420px"
                     priority={i < 3}
                     quality={78}
                     style={c.coverPosition ? { objectPosition: c.coverPosition } : undefined}
