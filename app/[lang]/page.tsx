@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { PHOTO_CATEGORIES } from "./photographer/constants";
+import { PHOTO_CATEGORIES, HOME_TILES } from "./photographer/constants";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -19,24 +19,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // ─────────────────────────────────────────────────────────────
-// ACCUEIL — une tuile par catégorie, rien d'autre.
+// ACCUEIL — une tuile par catégorie, puis les tuiles de HOME_TILES
+// (Film, Travaillons ensemble).
 //
-// Les tuiles Film et Travaillons ensemble ont été retirées le 27/08 : elles
-// dupliquaient Vidéaste et À propos, déjà dans le menu, et une tuile qui est
-// un bouton déguisé en photo se repère tout de suite. Le lien commercial
-// reste, en une ligne sous la grille.
+// Nombre de colonnes calculé sur le total des tuiles : 3 si c'est un multiple
+// de 3, 2 sinon. Aujourd'hui 4 catégories + 2 portes = 6, donc 3 colonnes et
+// deux rangées pleines. Le jour où une catégorie s'ajoute ou disparaît, la
+// grille se réajuste seule au lieu de laisser une rangée bancale.
 //
-// Nombre de colonnes : 3 si le nombre de catégories est un multiple de 3,
-// 2 sinon. Avec 4 catégories, 2 colonnes donnent des images deux fois plus
-// grandes et aucune rangée bancale.
+// Pas de lien répété sous la grille : la tuile Travaillons ensemble suffit.
 //
 // Tout se règle dans app/[lang]/photographer/constants.ts
 // ─────────────────────────────────────────────────────────────
 
 export default async function HomePage({ params }: Props) {
   const { lang } = await params;
-  const cols = PHOTO_CATEGORIES.length % 3 === 0 ? 3 : 2;
-  const workLabel = lang === "fr" ? "Travaillons ensemble" : "Work with me";
+  const tileCount = PHOTO_CATEGORIES.length + HOME_TILES.length;
+  const cols = tileCount % 3 === 0 ? 3 : 2;
 
   return (
     <>
@@ -49,22 +48,7 @@ export default async function HomePage({ params }: Props) {
           margin: 0 auto;
           padding: 0 20px;
         }
-        /* Lien commercial : une ligne sous la grille, pas une tuile. */
-        .home-work {
-          display: block;
-          margin: 44px auto 8px;
-          text-align: center;
-          font-size: 11px;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          text-decoration: none;
-          border-bottom: 1px solid #d8d2c8;
-          padding-bottom: 5px;
-          width: fit-content;
-          transition: border-color 0.25s ease;
-        }
-        .home-work:hover { border-color: #0a0a0a; }
+
         .cat-tile { display: block; text-decoration: none; }
         .tile-thumb {
           /* span : sans display block, aspect-ratio et position sont ignorés
@@ -99,11 +83,13 @@ export default async function HomePage({ params }: Props) {
           transition: color 0.25s ease;
         }
         .cat-tile:hover .tile-cap { color: #0a0a0a; }
+        .tile-cap.is-door { color: #0a0a0a; }
+        .tile-cap.is-door::after { content: " →"; letter-spacing: 0; }
+        .door-empty { position: absolute; inset: 0; background: #f4f1ec; }
 
         @media (max-width: 767px) {
           .cat-grid { gap: 10px; padding: 0 12px; grid-template-columns: repeat(2, 1fr) !important; }
           .tile-cap { font-size: 9px; letter-spacing: 0.14em; margin-top: 7px; }
-          .home-work { margin-top: 34px; font-size: 10px; }
         }
       `}</style>
 
@@ -118,7 +104,7 @@ export default async function HomePage({ params }: Props) {
                   alt={`${cat.label.en} — photography by Sandrine Ceuppens`}
                   width={1066}
                   height={1600}
-                  sizes="(max-width: 767px) 50vw, 540px"
+                  sizes="(max-width: 767px) 50vw, 380px"
                   priority={i < 2}
                   quality={78}
                   style={cat.coverPosition ? { objectPosition: cat.coverPosition } : undefined}
@@ -128,11 +114,28 @@ export default async function HomePage({ params }: Props) {
             </Link>
           ))}
 
-        </div>
+          {HOME_TILES.map((tile) => (
+            <Link key={tile.key} href={`/${lang}${tile.href}`} className="cat-tile">
+              <span className="tile-thumb">
+                {tile.cover ? (
+                  <Image
+                    src={tile.cover}
+                    alt=""
+                    width={1066}
+                    height={1600}
+                    sizes="(max-width: 767px) 50vw, 380px"
+                    quality={72}
+                    style={tile.coverPosition ? { objectPosition: tile.coverPosition } : undefined}
+                  />
+                ) : (
+                  <span className="door-empty" />
+                )}
+              </span>
+              <span className="tile-cap is-door">{tile.label[lang]}</span>
+            </Link>
+          ))}
 
-        <Link href={`/${lang}/about#travailler-avec-moi`} className="home-work">
-          {workLabel} →
-        </Link>
+        </div>
       </main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
         "@context": "https://schema.org",
