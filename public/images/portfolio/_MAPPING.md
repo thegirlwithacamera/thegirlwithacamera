@@ -336,3 +336,11 @@ et de la catégorie Portraits), 2 la façade rouge jambe sur la rambarde, 3 le c
 Aucun décor ne se suit deux fois.
 Écartées dans `_attente/portraits/silke-ecartees/` : R0020404, troisième variante de ciel
 entre deux meilleures, et R0020458, allongée sur la rambarde, visage peu lisible.
+
+## Silke, nouvelle couverture, 28 août 2026
+
+Portrait sur portes vertes ajouté en 1, il devient la couverture du cas et de
+la catégorie Portraits. C'est le seul plan rapproché face caméra de la série,
+les cinq autres sont des plans larges en mouvement.
+Écartée pour rester à 6 : l'ancienne 3, ciel assise, trop proche du ciel bras
+ouverts. Elle est dans `_attente/portraits/silke-ecartees/`.

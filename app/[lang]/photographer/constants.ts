@@ -88,7 +88,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
   {
     slug: "portraits",
     label: { fr: "Portraits", en: "Portraits" },
-    cover: "/images/portfolio/portraits/silke-hamers/2.jpg",
+    cover: "/images/portfolio/portraits/silke-hamers/1.jpg",
     cases: [
       { slug: "silke-hamers", label: { fr: "Silke Hamers", en: "Silke Hamers" } },
       {
