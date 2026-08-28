@@ -98,19 +98,11 @@ export function readCreatorData() {
   };
 }
 
-// Clips de secours (Vercel Blob), utilises tant que le dossier
-// CINEMATIC est vide. Ce sont des city diaries, ils s'affichent
-// donc sous l'onglet Places.
-const FILM_BASE = "https://3cwvdrhaucmdleep.public.blob.vercel-storage.com/film";
-const PLACES_FALLBACK: Clip[] = [
-  { src: `${FILM_BASE}/citydiary-01-tokyo.mp4`,   label: "Tokyo",       poster: "/videos/city-diary/01-tokyo-poster.jpg" },
-  { src: `${FILM_BASE}/citydiary-02-osaka.mp4`,   label: "Osaka",       poster: "/videos/city-diary/02-osaka-poster.jpg" },
-  { src: `${FILM_BASE}/citydiary-03-tokyo.mp4`,   label: "Tokyo Night", poster: "/videos/city-diary/03-tokyo-poster.jpg" },
-  { src: `${FILM_BASE}/citydiary-04-nara.mp4`,    label: "Nara",        poster: "/videos/city-diary/04-nara-poster.jpg" },
-  { src: `${FILM_BASE}/citydiary-05-kyoto.mp4`,   label: "Kyoto",       poster: "/videos/city-diary/05-kyoto-poster.jpg" },
-  { src: `${FILM_BASE}/citydiary-06-cefalu.mp4`,  label: "Cefalu" },
-  { src: `${FILM_BASE}/citydiary-07-palermo.mp4`, label: "Palermo" },
-];
+// Plus de clips de secours. Une liste d'anciens montages hebergee sur Vercel
+// Blob prenait la main si le dossier CINEMATIC etait vide : un deploiement
+// rate aurait remis en ligne des films ecartes. Le site ne montre que ce qui
+// est dans le depot ; un dossier vide affiche une categorie vide, ce qui se
+// voit et se corrige.
 
 // Videos de la page Filmmaker : un sous-dossier par categorie
 // (FASHION, LIFESTYLE, PLACES, TRAVEL, WORK) dans le dossier CINEMATIC
@@ -124,13 +116,9 @@ export function readDiary(): Diary {
   const root = ["FILMMAKER", "CINEMATIC"]
     .map((d) => path.join(CREATOR_DIR, d))
     .find((p) => fs.existsSync(p));
-  if (!root) {
-    groups.places = PLACES_FALLBACK;
-    return groups;
-  }
+  if (!root) return groups;
   const rootName = path.basename(root);
 
-  let total = 0;
   const entries = fs.readdirSync(root, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name));
 
   for (const e of entries) {
@@ -145,7 +133,6 @@ export function readDiary(): Diary {
           label: diaryLabel(f),
           poster: posterFor(files, `${rootName}/${e.name}`, f),
         });
-        total++;
       }
     } else if (VIDEO_RE.test(e.name)) {
       // Fichier en vrac (ancienne convention) : categorie via le nom.
@@ -155,11 +142,9 @@ export function readDiary(): Diary {
         label: diaryLabel(e.name),
         poster: posterFor(rootFiles, rootName, e.name),
       });
-      total++;
     }
   }
 
-  if (total === 0) groups.places = PLACES_FALLBACK;
   return groups;
 }
 
