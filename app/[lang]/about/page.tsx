@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import TrustLogos from "../components/TrustLogos";
@@ -34,6 +35,8 @@ type Offer = {
   items: string[];
   addonsLabel?: string;
   addons?: string[];
+  // Lien de preuve : la page qui montre ce que la carte décrit.
+  proof?: { href: string; label: string };
 };
 type Work = { title: string; intro: string; letsTalk: string; talkMail: string; offers: Offer[] };
 
@@ -113,6 +116,7 @@ const WORK: Record<"fr" | "en", Work> = {
           "Reel and a series of edited stills, or three Reels",
           `${site.instagramFollowers.en.toLowerCase()}+ followers, 497k views in 30 days`,
         ],
+        proof: { href: "/creator", label: "See the formats" },
       },
     ],
   },
@@ -183,6 +187,7 @@ const WORK: Record<"fr" | "en", Work> = {
           "1 Reel et une série de photos éditées, ou trois Reels",
           `${site.instagramFollowers.fr.toLowerCase()}+ abonnés, 497k vues sur 30 jours`,
         ],
+        proof: { href: "/creator", label: "Voir les formats" },
       },
     ],
   },
@@ -412,6 +417,19 @@ export default async function AboutPage({ params }: Props) {
         }
         .offer-addons li { color: #777777; font-size: 11.5px; }
         .offer-cta-wrap { margin-top: auto; padding-top: 26px; }
+        .offer-proof {
+          display: inline-block;
+          margin-top: 14px;
+          font-size: 10px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #8a8175;
+          text-decoration: none;
+          border-bottom: 1px solid #e2ddd4;
+          padding-bottom: 3px;
+          transition: color 0.2s, border-color 0.2s;
+        }
+        .offer-proof:hover { color: #0a0a0a; border-color: #0a0a0a; }
         .offer-cta {
           font-size: 12px;
           letter-spacing: 0.14em;
@@ -504,6 +522,11 @@ export default async function AboutPage({ params }: Props) {
                   ))}
                 </ul>
               </>
+            )}
+            {o.proof && (
+              <Link href={`/${lang}${o.proof.href}`} className="offer-proof">
+                {o.proof.label} →
+              </Link>
             )}
             <div className="offer-cta-wrap">
               <a className="offer-cta" href={`mailto:${work.talkMail}`}>{work.letsTalk}</a>
