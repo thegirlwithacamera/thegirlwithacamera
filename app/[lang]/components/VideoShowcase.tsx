@@ -18,30 +18,12 @@ export type Sound = {
 
 export type Focused = { clip: Clip; kind: "phone" | "tablet" };
 
-// Durée affichée sous chaque clip. Lue côté client sur l'évènement
-// loadedmetadata du <video> plutôt que précalculée au build : aucune
-// dépendance à ffprobe, et une vidéo ajoutée plus tard affiche sa durée
-// toute seule.
-//
-// Pourquoi l'afficher : un 15 secondes annoncé se lit comme un format court
-// choisi ; le même clip sans indication, dans une page qui parle de films,
-// se lit comme un film raté.
-function formatDuration(seconds: number): string {
-  if (!isFinite(seconds) || seconds <= 0) return "";
-  const m = Math.floor(seconds / 60);
-  const sec = Math.round(seconds % 60);
-  return m > 0 ? `${m}:${String(sec).padStart(2, "0")}` : `${sec}s`;
-}
-
-function ClipMeta({ label, duration }: { label?: string; duration: number | null }) {
-  const d = duration ? formatDuration(duration) : "";
-  if (!label && !d) return null;
-  return (
-    <span className="vid-label">
-      {label}
-      {label && d ? <span className="vid-dur">{d}</span> : d}
-    </span>
-  );
+// Le titre sous chaque clip. La durée y a été affichée le 28/08 puis retirée
+// le jour même : un chiffre collé sous une image salit la légende. La
+// longueur des films se dit dans les formules, pas sur les vignettes.
+function ClipMeta({ label }: { label?: string }) {
+  if (!label) return null;
+  return <span className="vid-label">{label}</span>;
 }
 
 // Etat son + mise en avant, partage par tous les carrousels d'une page.
@@ -96,7 +78,6 @@ export function SoundBtn({ on, onClick }: { on: boolean; onClick: () => void }) 
 }
 
 function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: string; kind: "phone" | "tablet"; sound: Sound; badge?: string }) {
-  const [duration, setDuration] = useState<number | null>(null);
   const video = (
     <video
       ref={(el) => sound.registerRef(cardKey, el)}
@@ -109,7 +90,6 @@ function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: stri
       preload="metadata"
       controlsList="nodownload nofullscreen"
       onContextMenu={(e) => e.preventDefault()}
-      onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
       title={`Creator content: ${clip.label}`}
     />
   );
@@ -133,7 +113,7 @@ function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: stri
           {badgeEl}
         </div>
       )}
-      <ClipMeta label={clip.label} duration={duration} />
+      <ClipMeta label={clip.label} />
     </div>
   );
 }
@@ -144,7 +124,6 @@ function MobileStack({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kin
   const [active, setActive] = useState(0);
   const startX = useRef(0);
   const localRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
-  const [durations, setDurations] = useState<Record<number, number>>({});
   const n = clips.length;
 
   useEffect(() => {
@@ -177,7 +156,6 @@ function MobileStack({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kin
     >
       {clips.map((clip, i) => {
         const key = `${prefix}-${i}`;
-        const duration = durations[i] ?? null;
         const video = (
           <video
             ref={(el) => {
@@ -194,10 +172,6 @@ function MobileStack({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kin
             preload="metadata"
             controlsList="nodownload nofullscreen"
             onContextMenu={(e) => e.preventDefault()}
-            onLoadedMetadata={(e) => {
-              const d = e.currentTarget.duration;
-              setDurations((prev) => (prev[i] === d ? prev : { ...prev, [i]: d }));
-            }}
             title={`Creator content: ${clip.label}`}
           />
         );
@@ -210,7 +184,7 @@ function MobileStack({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kin
             ) : (
               <div className="phone focusable" onClick={() => sound.openFocus(clip, kind)}>{video}{btn}{badgeEl}</div>
             )}
-            {i === active && <ClipMeta label={clip.label} duration={duration} />}
+            {i === active && <ClipMeta label={clip.label} />}
           </div>
         );
       })}
@@ -462,7 +436,6 @@ export const SHOWCASE_CSS = `
   .tablet-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .vid-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #666666; text-align: center; }
-  .vid-dur { margin-left: 8px; color: #b3aca2; }
 
   /* Bouton son */
   .vid-sound {

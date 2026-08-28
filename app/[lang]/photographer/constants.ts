@@ -70,10 +70,9 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         slug: "coloc-housing",
         label: { fr: "Coloc Housing", en: "Coloc Housing" },
         place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
-        films: [
-          { src: "/videos/creator/CINEMATIC/PLACES/Coloc Housing.mp4", label: { fr: "La maison", en: "The house" } },
-          { src: "/videos/creator/CINEMATIC/LIFESTYLE/Coloc Housing.mp4", label: { fr: "La vie sur place", en: "Living there" } },
-        ],
+        // Un seul film, celui de la maison. Le second montrait la vie sur
+        // place et tirait la page vers le reportage.
+        films: [{ src: "/videos/creator/CINEMATIC/PLACES/Coloc Housing.mp4" }],
       },
     ],
   },

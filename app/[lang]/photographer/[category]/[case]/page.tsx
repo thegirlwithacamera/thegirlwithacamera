@@ -186,7 +186,6 @@ export default async function PhotographerCasePage({ params }: Props) {
           color: #999;
           text-align: center;
         }
-        .case-film-dur { margin-left: 8px; color: #b3aca2; }
         @media (max-width: 767px) {
           .photo-grid { gap: 8px; padding: 0 12px; }
           .pager-outer { padding: 0 12px; }

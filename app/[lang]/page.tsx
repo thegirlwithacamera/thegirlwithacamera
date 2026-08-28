@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withContentTag } from "@/lib/portfolio";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { PHOTO_CATEGORIES, HOME_TILES } from "./photographer/constants";
@@ -100,7 +101,7 @@ export default async function HomePage({ params }: Props) {
             <Link key={cat.slug} href={`/${lang}/photographer/${cat.slug}`} className="cat-tile">
               <span className="tile-thumb">
                 <Image
-                  src={cat.cover}
+                  src={withContentTag(cat.cover)}
                   alt={`${cat.label.en} — photography by Sandrine Ceuppens`}
                   width={1066}
                   height={1600}
@@ -119,7 +120,7 @@ export default async function HomePage({ params }: Props) {
               <span className="tile-thumb">
                 {tile.cover ? (
                   <Image
-                    src={tile.cover}
+                    src={withContentTag(tile.cover)}
                     alt=""
                     width={1066}
                     height={1600}

@@ -15,9 +15,9 @@
 //    l'écran. Au dessus c'est un film : il attend qu'on le lance, et il part
 //    avec le son. Personne n'impose un 2 minutes en autoplay à un visiteur.
 //
-// 3. La durée est affichée. Un 18 secondes annoncé est un format court
-//    assumé ; le même clip sans indication, sur une page qui dit "film",
-//    se lit comme un film raté.
+// 3. La durée n'est pas écrite. Elle sert en interne à choisir le
+//    comportement, jamais à l'affichage : un chiffre sous une image, sur une
+//    page qui se lit comme un portfolio, casse la lecture.
 // ─────────────────────────────────────────────────────────────
 
 import { useEffect, useRef, useState } from "react";
@@ -26,13 +26,6 @@ export type CaseFilmItem = { src: string; poster?: string; label?: string };
 
 // Seuil entre une séquence (démarre seule, muette) et un film (attend le clic).
 const SHORT_MAX_SECONDS = 30;
-
-function formatDuration(seconds: number): string {
-  if (!isFinite(seconds) || seconds <= 0) return "";
-  const m = Math.floor(seconds / 60);
-  const s = Math.round(seconds % 60);
-  return m > 0 ? `${m}:${String(s).padStart(2, "0")}` : `${s}s`;
-}
 
 function Film({ item, lang }: { item: CaseFilmItem; lang: "fr" | "en" }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -77,7 +70,6 @@ function Film({ item, lang }: { item: CaseFilmItem; lang: "fr" | "en" }) {
     setMuted(el.muted);
   }
 
-  const d = duration ? formatDuration(duration) : "";
   const playLabel = lang === "fr" ? "Lire le film" : "Play film";
 
   return (
@@ -129,12 +121,7 @@ function Film({ item, lang }: { item: CaseFilmItem; lang: "fr" | "en" }) {
         )}
       </div>
 
-      {(item.label || d) && (
-        <figcaption className="case-film-cap">
-          {item.label}
-          {item.label && d ? <span className="case-film-dur">{d}</span> : d}
-        </figcaption>
-      )}
+      {item.label && <figcaption className="case-film-cap">{item.label}</figcaption>}
     </figure>
   );
 }
