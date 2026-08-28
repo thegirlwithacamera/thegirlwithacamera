@@ -17,17 +17,21 @@ export default function Header() {
 
   useEffect(() => { setMenuOpen(false); setMoreOpen(false); }, [pathname]);
 
-  // Ordre : Photographer (accueil) > Filmmaker > Creator, puis un petit "+"
-  // qui regroupe les pages secondaires (About, Presets, Shop/Diary...).
+  // Ordre : Work (accueil) > Creator > About, puis un petit "+" qui regroupe
+  // les liens externes.
+  //
+  // Vidéaste est sorti de la nav le 28/08 : la grille d'accueil porte une
+  // tuile Film, et une nav qui énumère trois métiers (Photographe, Vidéaste,
+  // Créatrice) vend un organigramme plutôt qu'une prestation. "Work" nomme le
+  // travail, la grille se charge de l'orienter.
   // Labels adaptes par langue.
   const labels =
     currentLang === "fr"
-      ? { home: "Photographe", filmmaker: "Vidéaste", creator: "Créatrice", about: "À propos" }
-      : { home: "Photographer", filmmaker: "Filmmaker", creator: "Creator", about: "About" };
+      ? { home: "Work", filmmaker: "Vidéaste", creator: "Créatrice", about: "À propos" }
+      : { home: "Work", filmmaker: "Filmmaker", creator: "Creator", about: "About" };
 
   const navLinks: NavLink[] = [
     { href: `/${currentLang}`,           label: labels.home },
-    { href: `/${currentLang}/filmmaker`, label: labels.filmmaker },
     { href: `/${currentLang}/creator`,   label: labels.creator },
     // À propos remplace Journal dans la nav principale le 27/08 : c'est la page
     // qui porte les offres, donc le seul lien que doit trouver un client.
