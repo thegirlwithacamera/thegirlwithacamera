@@ -95,13 +95,29 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     label: { fr: "Voyage", en: "Travel" },
     cover: "/images/portfolio/travel/tokyo/1.jpg",
     cases: [
-      { slug: "tokyo",   label: { fr: "Tokyo",   en: "Tokyo" },   place: { fr: "Japon", en: "Japan" } },
-      { slug: "kyoto",   label: { fr: "Kyoto",   en: "Kyoto" },   place: { fr: "Japon", en: "Japan" } },
+      {
+        slug: "tokyo",
+        label: { fr: "Tokyo", en: "Tokyo" },
+        place: { fr: "Japon", en: "Japan" },
+        films: [
+          { src: "/videos/creator/CINEMATIC/CITIES/City Diary Tokyo.mp4", label: { fr: "Le jour", en: "Daytime" } },
+          { src: "/videos/creator/CINEMATIC/CITIES/City Diary Tokyo Night.mp4", label: { fr: "La nuit", en: "By night" } },
+        ],
+      },
+      {
+        slug: "kyoto",
+        label: { fr: "Kyoto", en: "Kyoto" },
+        place: { fr: "Japon", en: "Japan" },
+        films: [{ src: "/videos/creator/CINEMATIC/CITIES/City Diary Kyoto.mp4" }],
+      },
       { slug: "napoli",  label: { fr: "Napoli",  en: "Napoli" },  place: { fr: "Italie", en: "Italy" } },
       { slug: "venezia", label: { fr: "Venezia", en: "Venezia" }, place: { fr: "Italie", en: "Italy" } },
       { slug: "burano",  label: { fr: "Burano",  en: "Burano" },  place: { fr: "Italie", en: "Italy" } },
       { slug: "palermo", label: { fr: "Palermo", en: "Palermo" }, place: { fr: "Italie", en: "Italy" } },
       // En attente : koln, firenze, cefalu, faro, kawaguchiko, osaka, nara.
+      // Osaka et Nara ont leur film dans CITIES mais pas encore assez de
+      // photos : un cas s'ouvre sur des images, le film vient après.
+      // Napoli, Venezia et Burano n'ont pas de film.
     ],
   },
   {
