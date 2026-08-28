@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { DIARY_CATS, type Diary, type DiaryCat } from "./constants";
+import { PUBLISHED_DIARY_CATS, type Diary, type DiaryCat } from "./constants";
 import {
   Carousel,
   FocusOverlay,
@@ -42,7 +42,7 @@ export default function FilmmakerClient({
   // Une catégorie s'affiche à partir de 2 films. En dessous, l'onglet promet
   // une série et ouvre sur une vidéo seule. Mode est dans ce cas aujourd'hui,
   // avec un seul clip sans titre.
-  const cats = DIARY_CATS.filter((c) => diary[c].length >= 2);
+  const cats = PUBLISHED_DIARY_CATS.filter((c) => diary[c].length >= 2);
   const current = activeCat && cats.includes(activeCat) ? activeCat : cats[0];
 
   return (

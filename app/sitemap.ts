@@ -23,9 +23,6 @@ const STATIC_PATHS = [
   "/filmmaker",
   "/filmmaker/places",
   "/filmmaker/cities",
-  "/filmmaker/lifestyle",
-  "/filmmaker/fashion",
-  "/filmmaker/bts",
   "/diary",
   "/about",
 ];

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import FilmmakerClient from "../FilmmakerClient";
-import { DIARY_CATS, type DiaryCat } from "../constants";
+import { PUBLISHED_DIARY_CATS, type DiaryCat } from "../constants";
 import { readDiary } from "@/lib/creator-videos";
 
 // Une URL par categorie de video diary : /filmmaker/fashion, /lifestyle,
@@ -20,12 +20,12 @@ const CAT_TITLES: Record<DiaryCat, { fr: string; en: string }> = {
 };
 
 function parseCat(category: string): DiaryCat | null {
-  return (DIARY_CATS as readonly string[]).includes(category) ? (category as DiaryCat) : null;
+  return (PUBLISHED_DIARY_CATS as readonly string[]).includes(category) ? (category as DiaryCat) : null;
 }
 
 export function generateStaticParams() {
   return (["fr", "en"] as const).flatMap((lang) =>
-    DIARY_CATS.map((category) => ({ lang, category })),
+    PUBLISHED_DIARY_CATS.map((category) => ({ lang, category })),
   );
 }
 

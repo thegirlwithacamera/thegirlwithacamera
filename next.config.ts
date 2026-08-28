@@ -51,6 +51,15 @@ const nextConfig: NextConfig = {
       { source: "/fr/photographer/product", destination: "/fr/creator", permanent: true },
       { source: "/en/photographer/product", destination: "/en/creator", permanent: true },
       { source: "/fr/photographer/beauty", destination: "/fr/photographer/portraits", permanent: true },
+      // Vidéaste : Quotidien, Coulisses et Mode retirés le 28/08, la page ne
+      // montre plus que du travail de lieu.
+      { source: "/fr/filmmaker/lifestyle", destination: "/fr/filmmaker", permanent: true },
+      { source: "/en/filmmaker/lifestyle", destination: "/en/filmmaker", permanent: true },
+      { source: "/fr/filmmaker/bts", destination: "/fr/filmmaker", permanent: true },
+      { source: "/en/filmmaker/bts", destination: "/en/filmmaker", permanent: true },
+      { source: "/fr/filmmaker/fashion", destination: "/fr/filmmaker", permanent: true },
+      { source: "/en/filmmaker/fashion", destination: "/en/filmmaker", permanent: true },
+
       { source: "/en/photographer/beauty", destination: "/en/photographer/portraits", permanent: true },
     ];
   },

@@ -3,9 +3,18 @@
 
 import type { Clip } from "../creator/constants";
 
-// Categories des films ; chacune a son URL /filmmaker/[categorie],
-// partageable directement avec les marques. L'ordre ici = l'ordre des onglets.
+// Vocabulaire de lecture des dossiers : toutes les catégories que le lecteur
+// sait reconnaître. Ne pas y toucher sans adapter matchCat dans
+// lib/creator-videos.ts.
 export const DIARY_CATS = ["places", "cities", "lifestyle", "fashion", "bts"] as const;
 export type DiaryCat = (typeof DIARY_CATS)[number];
+
+// Ce qui est réellement publié, et l'ordre des onglets. Chacune a son URL
+// /filmmaker/[categorie], partageable directement.
+//
+// Quotidien, Coulisses et Mode sont sortis le 28/08 : la page ne montre plus
+// que du travail de lieu. Les fichiers restent en place, il suffit de remettre
+// la catégorie dans cette liste pour la republier.
+export const PUBLISHED_DIARY_CATS: readonly DiaryCat[] = ["places", "cities"];
 
 export type Diary = Record<DiaryCat, Clip[]>;
