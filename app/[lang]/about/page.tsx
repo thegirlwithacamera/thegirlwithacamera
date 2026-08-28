@@ -193,7 +193,7 @@ const WORK: Record<"fr" | "en", Work> = {
 const content = {
   fr: {
     name: "SANDRINE CEUPPENS",
-    role: "Photographe & Vidéaste documentaire · Bruxelles",
+    role: "Photographe et vidéaste documentaire · Hôtels, tables et maisons · Bruxelles",
     followersLabel: "ABONNÉS INSTAGRAM",
     skills: "COMPÉTENCES",
     projectsPdf: "Projets récents (PDF)",
@@ -203,7 +203,7 @@ const content = {
   },
   en: {
     name: "SANDRINE CEUPPENS",
-    role: "Documentary Photographer & Filmmaker · Brussels",
+    role: "Documentary photographer and filmmaker · Hotels, tables and venues · Brussels",
     followersLabel: "INSTAGRAM FOLLOWERS",
     skills: "SKILLS",
     projectsPdf: "Recent projects (PDF)",
@@ -215,18 +215,20 @@ const content = {
 
 const SKILLS = {
   en: [
-    "Digital & Film Photography",
-    "Video Editing",
-    "Creative Direction",
-    "Brand Content Creation",
-    "Social Media",
+    "Natural light",
+    "Interiors & architecture",
+    "Table & food",
+    "Team portraits",
+    "Short film",
+    "Digital & film photography",
   ],
   fr: [
+    "Lumière naturelle",
+    "Intérieurs & architecture",
+    "Art de la table",
+    "Portraits d'équipe",
+    "Film court",
     "Photographie numérique & argentique",
-    "Montage vidéo",
-    "Direction créative",
-    "Création de contenu de marque",
-    "Réseaux sociaux",
   ],
 };
 
@@ -308,37 +310,6 @@ export default async function AboutPage({ params }: Props) {
           color: #999999;
           margin: 0 0 32px;
         }
-        .hero-stats { margin-bottom: 30px; }
-        .hero-stat-label {
-          font-size: 10px;
-          letter-spacing: 0.18em;
-          color: #999999;
-          text-transform: uppercase;
-          margin: 0 0 8px;
-        }
-        .hero-stat-num {
-          font-family: var(--font-serif), Georgia, serif;
-          font-size: 48px;
-          font-style: italic;
-          color: #0a0a0a;
-          line-height: 1;
-        }
-        .hero-cta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-        .hero-cta {
-          display: inline-block;
-          font-size: 11px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: #ffffff;
-          background: #0a0a0a;
-          text-decoration: none;
-          padding: 13px 26px;
-          transition: opacity 0.2s;
-        }
-        .hero-cta:hover { opacity: 0.8; }
-        .hero-socials { display: flex; gap: 16px; }
-        .hero-social-link { color: #666666; transition: color 0.2s; }
-        .hero-social-link:hover { color: #0a0a0a; }
 
         /* ── Sections generales ── */
         .info-hr { height: 1px; background: #ebebeb; max-width: 960px; margin: 48px auto; border: none; }
@@ -490,8 +461,6 @@ export default async function AboutPage({ params }: Props) {
           .hero-photo { width: 100%; max-width: 340px; margin: 0 auto; }
           .hero-name { font-size: 30px; text-align: center; }
           .hero-role { text-align: center; }
-          .hero-stats { text-align: center; }
-          .hero-cta-row { justify-content: center; }
         }
         @media (max-width: 767px) {
           .offers {
@@ -575,20 +544,6 @@ export default async function AboutPage({ params }: Props) {
         <div>
           <h1 className="hero-name">{t.name}</h1>
           <p className="hero-role">{t.role}</p>
-          <div className="hero-stats">
-            <p className="hero-stat-label">{t.followersLabel}</p>
-            <p className="hero-stat-num">{site.instagramFollowers[lang]}</p>
-          </div>
-          <div className="hero-cta-row">
-            <a className="hero-cta" href="mailto:hello@thegirlwithacamera.com">{t.letsTalk}</a>
-            <div className="hero-socials">
-              {SOCIALS.map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="hero-social-link" aria-label={s.label}>
-                  {s.icon}
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -608,14 +563,12 @@ export default async function AboutPage({ params }: Props) {
         ))}
       </div>
 
-      <p style={{ textAlign: "center", fontSize: "13px", color: "#666666", letterSpacing: "0.04em", marginTop: "52px", marginBottom: "16px" }}>{t.cta}</p>
-
-      <div className="email-row">
+      <div className="email-row" style={{ marginTop: "44px" }}>
         <a href="mailto:hello@thegirlwithacamera.com" className="email-link">
-          hello@thegirlwithacamera.com
+          {lang === "fr" ? "Projets" : "Projects"} · hello@thegirlwithacamera.com
         </a>
         <a href="mailto:press@thegirlwithacamera.com" className="email-link">
-          press@thegirlwithacamera.com
+          {lang === "fr" ? "Presse" : "Press"} · press@thegirlwithacamera.com
         </a>
       </div>
 
@@ -629,12 +582,12 @@ export default async function AboutPage({ params }: Props) {
         mainEntity: {
           "@type": "Person",
           name: "Sandrine Ceuppens",
-          jobTitle: lang === "fr" ? "Photographe & Créatrice de contenu" : "Photographer & Content Creator",
+          jobTitle: lang === "fr" ? "Photographe et vidéaste documentaire" : "Documentary photographer and filmmaker",
           url: "https://thegirlwithacamera.com",
           image: "https://thegirlwithacamera.com/og-image.jpg",
           sameAs: ["https://www.instagram.com/sandrinecppns/", "https://www.youtube.com/@sandrineceuppens", "https://www.tiktok.com/@sandrinecppns"],
           address: { "@type": "PostalAddress", addressLocality: "Brussels", addressCountry: "Belgium" },
-          knowsAbout: ["DIGITAL & FILM PHOTOGRAPHY", "VIDEO EDITING", "CREATIVE DIRECTION", "BRAND CONTENT CREATION", "SOCIAL MEDIA"]
+          knowsAbout: ["HOTEL PHOTOGRAPHY", "INTERIORS & ARCHITECTURE", "FOOD & TABLE", "NATURAL LIGHT", "SHORT FILM", "DIGITAL & FILM PHOTOGRAPHY"]
         }
       })}} />
     </main>
