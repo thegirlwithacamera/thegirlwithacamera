@@ -134,9 +134,11 @@ export const HOME_TILES: HomeTile[] = [
     key: "film",
     href: "/filmmaker",
     label: { fr: "Film", en: "Film" },
-    // Image extraite d'un original City Diary. Les posters de /videos portent
-    // un titre incrusté et sont en 16:9, illisibles en tuile 4:5.
-    cover: "/images/film/cover.jpg",
+    // Image extraite d'un original City Diary. Rangée dans /images/tiles et
+    // surtout pas dans /images/film ni /videos/city-diary : ces deux dossiers
+    // sont listés dans .vercelignore, donc jamais déployés. Un fichier peut
+    // être dans git et absent du site.
+    cover: "/images/tiles/film.jpg",
   },
   {
     key: "work",
