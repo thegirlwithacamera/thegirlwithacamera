@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: lang === "fr" ? "Vidéaste" : "Filmmaker",
     description:
       lang === "fr"
-        ? "Films par Sandrine Ceuppens. Séquences contemplatives et cinématiques : mode, quotidien, venues, voyage, coulisses."
-        : "Films by Sandrine Ceuppens. Contemplative, cinematic sequences: fashion, lifestyle, places, cities, bts.",
+        ? "Films de marque et verticales par Sandrine Ceuppens : hôtels, restaurants, voyage, coulisses. Lumière naturelle, montage narratif, sound design. Bruxelles."
+        : "Brand films and verticals by Sandrine Ceuppens: hotels, restaurants, travel, behind the scenes. Natural light, narrative editing, sound design. Brussels-based.",
     alternates: { canonical: `/${lang}/filmmaker`, languages: { fr: "/fr/filmmaker", en: "/en/filmmaker" } },
   };
 }

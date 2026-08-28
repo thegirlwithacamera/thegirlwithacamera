@@ -9,16 +9,21 @@ import {
   useVideoSound,
 } from "../components/VideoShowcase";
 
+// Vocabulaire aligné sur la grille photo : un hôtelier retrouve les mêmes
+// mots d'une page à l'autre. La description dit la prestation, pas seulement
+// l'esthétique : le film fait partie des formules, il doit se commander.
 const content = {
   fr: {
     title: "VIDÉASTE",
-    desc: "Des séquences contemplatives et cinématiques.",
-    cat: { places: "VENUES", cities: "VOYAGE", lifestyle: "QUOTIDIEN", fashion: "MODE", bts: "COULISSES" },
+    desc: "Films de marque et verticales pour les maisons, les tables et les marques. Lumière naturelle, montage narratif, sound design.",
+    offer: "Voir les formules",
+    cat: { places: "MAISONS & TABLES", cities: "VOYAGE", lifestyle: "QUOTIDIEN", fashion: "MODE", bts: "COULISSES" },
   },
   en: {
     title: "FILMMAKER",
-    desc: "Contemplative, cinematic sequences.",
-    cat: { places: "PLACES", cities: "CITIES", lifestyle: "LIFESTYLE", fashion: "FASHION", bts: "BTS" },
+    desc: "Brand films and verticals for hotels, tables and brands. Natural light, narrative editing, sound design.",
+    offer: "See the packages",
+    cat: { places: "HOTELS & VENUES", cities: "TRAVEL", lifestyle: "LIFESTYLE", fashion: "FASHION", bts: "BTS" },
   },
 };
 
@@ -34,7 +39,10 @@ export default function FilmmakerClient({
   const t = content[lang];
   const { sound, focused, closeFocus } = useVideoSound();
 
-  const cats = DIARY_CATS.filter((c) => diary[c].length > 0);
+  // Une catégorie s'affiche à partir de 2 films. En dessous, l'onglet promet
+  // une série et ouvre sur une vidéo seule. Mode est dans ce cas aujourd'hui,
+  // avec un seul clip sans titre.
+  const cats = DIARY_CATS.filter((c) => diary[c].length >= 2);
   const current = activeCat && cats.includes(activeCat) ? activeCat : cats[0];
 
   return (
@@ -83,6 +91,23 @@ export default function FilmmakerClient({
         .diary-tab:hover { color: #555; }
         .diary-tab--active { color: #0a0a0a; border-bottom-color: #0a0a0a; }
 
+        /* Lien vers les formules : le film est vendu dans les packs hôteliers,
+           la page doit donc mener quelque part. */
+        .film-offer {
+          display: block;
+          width: fit-content;
+          margin: 18px auto 0;
+          font-size: 10px;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          text-decoration: none;
+          border-bottom: 1px solid #d8d2c8;
+          padding-bottom: 4px;
+          transition: border-color 0.25s ease;
+        }
+        .film-offer:hover { border-color: #0a0a0a; }
+
         ${SHOWCASE_CSS}
 
         @media (max-width: 767px) {
@@ -95,6 +120,9 @@ export default function FilmmakerClient({
         <div className="tier-head">
           <h1 className="tier-title">{t.title}</h1>
           <p className="tier-desc">{t.desc}</p>
+          <Link href={`/${lang}/about#travailler-avec-moi`} className="film-offer">
+            {t.offer} →
+          </Link>
         </div>
         {cats.length > 1 && (
           <div className="diary-tabs">

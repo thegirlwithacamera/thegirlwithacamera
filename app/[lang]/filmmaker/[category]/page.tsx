@@ -12,8 +12,8 @@ interface Props {
 }
 
 const CAT_TITLES: Record<DiaryCat, { fr: string; en: string }> = {
-  places: { fr: "Venues", en: "Places" },
-  cities: { fr: "Voyage", en: "Cities" },
+  places: { fr: "Maisons & tables", en: "Hotels & venues" },
+  cities: { fr: "Voyage", en: "Travel" },
   lifestyle: { fr: "Quotidien", en: "Lifestyle" },
   fashion: { fr: "Mode", en: "Fashion" },
   bts: { fr: "Coulisses", en: "BTS" },
