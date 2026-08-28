@@ -162,3 +162,19 @@ export function readDiary(): Diary {
   if (total === 0) groups.places = PLACES_FALLBACK;
   return groups;
 }
+
+// Poster d'une vidéo désignée par son chemin public ("/videos/creator/...").
+// Convention du dossier : l'image porte le nom du fichier vidéo, une des
+// extensions de POSTER_EXTS. Rien à déclarer, il suffit de poser le .jpg à
+// côté du .mp4. Renvoie undefined si aucune image n'existe : mieux vaut pas
+// de poster qu'un poster mort.
+export function posterForPath(src: string): string | undefined {
+  if (!src.startsWith("/")) return undefined;
+  const base = src.replace(/\.[^./]+$/, "");
+  for (const ext of POSTER_EXTS) {
+    if (fs.existsSync(path.join(process.cwd(), "public", base + ext))) {
+      return base + ext;
+    }
+  }
+  return undefined;
+}

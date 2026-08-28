@@ -4,7 +4,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PHOTO_CATEGORIES, findCase } from "../../constants";
 import { readCasePhotos, countCasePhotos } from "@/lib/portfolio";
+import { posterForPath } from "@/lib/creator-videos";
 import PhotoPager from "../PhotoPager";
+import CaseFilms from "./CaseFilms";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en"; category: string; case: string }>;
@@ -56,6 +58,14 @@ export default async function PhotographerCasePage({ params }: Props) {
 
   const photos = readCasePhotos(cat.slug, item.slug);
   if (photos.length === 0) notFound();
+
+  // Les films du lieu, sous les photos. Le label ne s'affiche que s'il y en a
+  // plusieurs : avec un seul film, le titre de la page le nomme déjà.
+  const films = (item.films ?? []).map((f) => ({
+    src: f.src,
+    poster: posterForPath(f.src),
+    label: item.films!.length > 1 ? f.label?.[lang] : undefined,
+  }));
 
   const backLabel =
     lang === "fr" ? `← ${cat.label.fr}` : `← ${cat.label.en}`;
@@ -115,11 +125,76 @@ export default async function PhotographerCasePage({ params }: Props) {
         }
         .pager-dot:hover { background: #999; }
         .pager-dot.is-active { background: #0a0a0a; transform: scale(1.4); }
+        .case-films { max-width: 1260px; margin: 0 auto; padding: 64px 20px 0; }
+        .case-films-head {
+          font-size: 10px;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #999;
+          font-weight: 400;
+          text-align: center;
+          margin: 0 0 22px;
+        }
+        .case-film { margin: 0 0 40px; }
+        .case-film:last-child { margin-bottom: 0; }
+        .case-film-frame {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          background: #0a0a0a;
+          overflow: hidden;
+        }
+        /* Un vertical ne s'étire pas sur 1260px : il garde sa colonne. */
+        .case-film.is-vertical .case-film-frame { max-width: 420px; margin: 0 auto; }
+        .case-film-frame video { width: 100%; height: 100%; display: block; object-fit: contain; }
+        .case-film-play,
+        .case-film-sound {
+          position: absolute;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          background: rgba(10, 10, 10, 0.45);
+          backdrop-filter: blur(4px);
+          transition: background 0.2s ease;
+        }
+        .case-film-play {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 58px;
+          height: 58px;
+          border-radius: 50%;
+          padding-left: 3px;
+        }
+        .case-film-play:hover { background: rgba(10, 10, 10, 0.7); }
+        .case-film-sound {
+          right: 12px;
+          bottom: 12px;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+        }
+        .case-film-sound:hover { background: rgba(10, 10, 10, 0.7); }
+        .case-film-cap {
+          margin-top: 10px;
+          font-size: 10px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #999;
+          text-align: center;
+        }
+        .case-film-dur { margin-left: 8px; color: #b3aca2; }
         @media (max-width: 767px) {
           .photo-grid { gap: 8px; padding: 0 12px; }
           .pager-outer { padding: 0 12px; }
           .pager-page { gap: 8px; }
           .cat-head h1 { font-size: 18px; }
+          .case-films { padding: 44px 12px 0; }
+          .case-film { margin-bottom: 28px; }
+          .case-film-play { width: 46px; height: 46px; }
         }
       `}</style>
 
@@ -151,6 +226,8 @@ export default async function PhotographerCasePage({ params }: Props) {
             ))}
           </div>
         )}
+
+        <CaseFilms films={films} lang={lang} />
       </main>
     </>
   );

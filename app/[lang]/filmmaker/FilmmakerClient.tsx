@@ -17,14 +17,24 @@ const content = {
     title: "VIDÉASTE",
     desc: "Films de marque et verticales pour les maisons, les tables et les marques. Lumière naturelle, montage narratif, sound design.",
     offer: "Voir les formules",
+    photos: "Les mêmes lieux en photo",
     cat: { places: "MAISONS & TABLES", cities: "VOYAGE", lifestyle: "QUOTIDIEN", fashion: "MODE", bts: "COULISSES" },
   },
   en: {
     title: "FILMMAKER",
     desc: "Brand films and verticals for hotels, tables and brands. Natural light, narrative editing, sound design.",
     offer: "See the packages",
+    photos: "The same places in photographs",
     cat: { places: "HOTELS & VENUES", cities: "TRAVEL", lifestyle: "LIFESTYLE", fashion: "FASHION", bts: "BTS" },
   },
+};
+
+// Retour vers la grille photo : une adresse filmée a presque toujours des
+// photos, et l'inverse est vrai aussi. Les deux pages se renvoient l'une à
+// l'autre plutôt que de vivre côte à côte sans se connaître.
+const CAT_TO_PHOTO: Partial<Record<DiaryCat, string>> = {
+  places: "hospitality",
+  cities: "travel",
 };
 
 export default function FilmmakerClient({
@@ -139,6 +149,11 @@ export default function FilmmakerClient({
         )}
         {current && (
           <Carousel clips={diary[current]} kind="tablet" prefix={`diary-${current}`} sound={sound} />
+        )}
+        {current && CAT_TO_PHOTO[current] && (
+          <Link href={`/${lang}/photographer/${CAT_TO_PHOTO[current]}`} className="film-offer">
+            {t.photos} →
+          </Link>
         )}
       </section>
 

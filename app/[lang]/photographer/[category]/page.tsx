@@ -105,6 +105,24 @@ export default async function PhotographerCategoryPage({ params }: Props) {
           transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
         }
         .case-card:hover .case-thumb img { transform: scale(1.05); }
+        /* Pastille sur les cas qui ont un film. Un triangle, pas un mot :
+           le visiteur sait avant de cliquer qu'il y a du mouvement là dedans,
+           sans qu'une étiquette vienne s'ajouter aux légendes. */
+        .case-film-flag {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          background: rgba(10, 10, 10, 0.45);
+          backdrop-filter: blur(4px);
+          padding-left: 2px;
+        }
         /* Même légende que sur l'accueil : sous l'image, discrète.
            Le nom du client ou de la ville en noir, le lieu en gris juste après,
            sur la même ligne, pour ne pas empiler deux blocs de texte sous
@@ -165,6 +183,13 @@ export default async function PhotographerCategoryPage({ params }: Props) {
                     quality={78}
                     style={c.coverPosition ? { objectPosition: c.coverPosition } : undefined}
                   />
+                  {(c.films?.length ?? 0) > 0 && (
+                    <span className="case-film-flag" aria-hidden="true">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  )}
                 </div>
                 <div className="case-meta">
                   <p className="case-title">

@@ -22,6 +22,17 @@
 // C'est ce qui permet de préparer un cas avant d'avoir les images.
 // ─────────────────────────────────────────────────────────────
 
+// Un film rattaché à un cas. Le chemin doit pointer dans
+// public/videos/creator/ : c'est le seul dossier vidéo réellement déployé.
+// public/videos/* est ignoré par git, _originals/ et city-diary/ le sont par
+// Vercel. Un fichier posé ailleurs s'affiche en local et nulle part ailleurs.
+// Le label ne sert que quand un cas a plusieurs films ; avec un seul film,
+// le titre de la page suffit.
+export type CaseFilm = {
+  src: string;
+  label?: { fr: string; en: string };
+};
+
 export type PhotoCase = {
   slug: string;
   label: { fr: string; en: string };
@@ -29,6 +40,10 @@ export type PhotoCase = {
   place?: { fr: string; en: string };
   // Position CSS object-position pour le crop 4:5 de la vignette du cas.
   coverPosition?: string;
+  // Films tournés sur place, affichés sous les photos, dans leur format natif.
+  // Une adresse se visite en photo et en mouvement : les deux vivent sur la
+  // même page. La page Vidéaste reste pour les lieux sans photos.
+  films?: CaseFilm[];
 };
 
 export type PhotoCategory = {
@@ -55,6 +70,10 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         slug: "coloc-housing",
         label: { fr: "Coloc Housing", en: "Coloc Housing" },
         place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
+        films: [
+          { src: "/videos/creator/CINEMATIC/PLACES/Coloc Housing.mp4", label: { fr: "La maison", en: "The house" } },
+          { src: "/videos/creator/CINEMATIC/LIFESTYLE/Coloc Housing.mp4", label: { fr: "La vie sur place", en: "Living there" } },
+        ],
       },
     ],
   },
@@ -67,6 +86,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         slug: "ce-pages",
         label: { fr: "Cé Pages", en: "Cé Pages" },
         place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
+        films: [{ src: "/videos/creator/CINEMATIC/PLACES/Cé-Pages.mp4" }],
       },
       // En attente : selys-liege, 6 images sur un disque non disponible.
     ],
