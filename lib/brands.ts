@@ -14,16 +14,30 @@
 // Intertitres traduits, contrairement a la nav : la nav est faite d'enseignes,
 // ces intertitres sont du contenu et se lisent dans la langue de la page.
 export type BrandCat = "stays" | "travel" | "brand";
-export type Brand = { name: string; logo?: string; tall?: boolean; cat: BrandCat };
+// href : chemin interne, sans prefixe de langue, vers le travail fait pour ce
+// client. Un logo n'est cliquable que s'il mene quelque part de reel : une
+// page vide derriere un logo vaut moins que pas de lien du tout. Les clients
+// dont le contenu n'est pas encore en ligne restent de simples images, et le
+// jour ou leur page existe il suffit d'ajouter la ligne.
+export type Brand = {
+  name: string;
+  logo?: string;
+  tall?: boolean;
+  cat: BrandCat;
+  href?: string;
+  // Ce que le lien montre vraiment, affiche en infobulle. "Le film" quand il
+  // n'y a pas encore de photos, "les photos" quand c'est une page de cas.
+  hrefLabel?: { fr: string; en: string };
+};
 
 export const BRANDS: Brand[] = [
   // Stays & places : les adresses ou l'on dort et ou l'on mange.
   { name: "MK HOTELS", logo: "/images/brands/mk-hotels.png", cat: "stays" },
-  { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays" },
-  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png", cat: "stays" },
-  { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png", cat: "stays" },
-  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays" },
-  { name: "CÉ-PAGES", logo: "/images/brands/ce-pages.png", cat: "stays" },
+  { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Voir les photos", en: "See the photographs" } },
+  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Voir le film", en: "See the film" } },
+  { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png", cat: "stays", href: "/photographer/hospitality/coloc-housing", hrefLabel: { fr: "Voir les photos et le film", en: "See the photographs and the film" } },
+  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Voir le film", en: "See the film" } },
+  { name: "CÉ-PAGES", logo: "/images/brands/ce-pages.png", cat: "stays", href: "/photographer/restaurants/ce-pages", hrefLabel: { fr: "Voir les photos et le film", en: "See the photographs and the film" } },
 
   // City & travel : ceux qui font venir les gens, transporteurs et offices de
   // tourisme. C'est l'autre moitie du marche hotelier, et pour une maison

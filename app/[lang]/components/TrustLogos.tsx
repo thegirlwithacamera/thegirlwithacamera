@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BRAND_CATS, CAT_LABEL, CAT_NOTE, TRUST_LABEL, brandsIn, type BrandCat } from "@/lib/brands";
 
 // Bande "Ils me font confiance" partagee entre About et Creator.
@@ -17,6 +18,11 @@ import { BRAND_CATS, CAT_LABEL, CAT_NOTE, TRUST_LABEL, brandsIn, type BrandCat }
 //    d'etablissement y figure. En mobile la ligne devient un defilement
 //    horizontal, au doigt et jamais automatique : c'est le seul endroit ou
 //    l'empilement est trop long.
+//
+// 4. Un logo qui mene au travail fait pour ce client devient un lien. Pas tous :
+//    seulement ceux dont le contenu est en ligne. Un logo cliquable qui ouvre
+//    une page vide coute plus cher que pas de lien. Au repos rien ne les
+//    distingue, pour ne degrader aucun client ; le survol revele.
 //
 // 3. Deux tailles de logo, pas une. Les marques ont des wordmarks larges qui
 //    remplissent toute leur hauteur ; les adresses ont des marques compactes,
@@ -48,8 +54,11 @@ export default function TrustLogos({
         .trust-note { font-size: 11px; line-height: 1.8; font-style: italic; color: #999999; text-align: center; max-width: 520px; margin: 14px auto 0; padding: 0 24px; }
         .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 22px 34px; max-width: 920px; margin: 0 auto; padding: 0 24px; }
         .brand-chip { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
-        .brand-logo { width: auto; object-fit: contain; opacity: 0.9; transition: opacity 0.2s; }
+        .brand-logo { width: auto; object-fit: contain; opacity: 0.9; transition: opacity 0.2s; display: block; }
         .brand-logo:hover { opacity: 1; }
+        .brand-link { display: block; transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        .brand-link:hover { transform: translateY(-3px); }
+        .brand-link:hover .brand-logo { opacity: 1; }
 
         .trust-group--stays .brand-logo,
         .trust-group--travel .brand-logo { height: 48px; max-width: 200px; }
@@ -93,19 +102,28 @@ export default function TrustLogos({
         <div className={`trust-group trust-group--${g.cat}`} key={g.cat}>
           {showCatLabels && <p className="trust-cat">{CAT_LABEL[g.cat][lang]}</p>}
           <div className="brands-strip">
-            {g.brands.map((b) =>
-              b.logo ? (
+            {g.brands.map((b) => {
+              if (!b.logo) return <span key={b.name} className="brand-chip">{b.name}</span>;
+              const logo = (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  key={b.name}
                   src={b.logo}
                   alt={b.name}
                   className={`brand-logo${b.tall ? " brand-logo--tall" : ""}`}
                 />
-              ) : (
-                <span key={b.name} className="brand-chip">{b.name}</span>
-              ),
-            )}
+              );
+              if (!b.href) return <span key={b.name}>{logo}</span>;
+              return (
+                <Link
+                  key={b.name}
+                  href={`/${lang}${b.href}`}
+                  className="brand-link"
+                  title={b.hrefLabel ? `${b.name} — ${b.hrefLabel[lang]}` : b.name}
+                >
+                  {logo}
+                </Link>
+              );
+            })}
           </div>
           {CAT_NOTE[g.cat] && <p className="trust-note">{CAT_NOTE[g.cat]![lang]}</p>}
         </div>
