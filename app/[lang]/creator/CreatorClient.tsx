@@ -142,8 +142,10 @@ export default function CreatorClient({
 
       <hr className="creator-hr" />
 
-      {/* Bande clients, meme composant que sur About */}
-      <TrustLogos lang={lang} />
+      {/* Bande clients, meme composant que sur About, mais limitee aux
+          marques : cette page vend des formats de creation, les hotels n'y
+          disent rien au visiteur qui la lit. */}
+      <TrustLogos lang={lang} cats={["brand"]} />
 
       {/* Mise en avant au clic */}
       {focused && (
