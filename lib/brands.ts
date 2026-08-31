@@ -17,22 +17,23 @@ export type BrandCat = "stays" | "travel" | "brand";
 export type Brand = { name: string; logo?: string; tall?: boolean; cat: BrandCat };
 
 export const BRANDS: Brand[] = [
-  // Stays & places. Kärnten y figure pour l'instant : c'est un office de
-  // tourisme, donc un "travel", mais un groupe d'un seul logo se lit comme une
-  // section vide. Des qu'un deuxieme partenaire destination arrive, on bascule
-  // les deux en cat "travel" et la section apparait toute seule.
+  // Stays & places : les adresses ou l'on dort et ou l'on mange.
   { name: "MK HOTELS", logo: "/images/brands/mk-hotels.png", cat: "stays" },
   { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays" },
   { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png", cat: "stays" },
   { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png", cat: "stays" },
   { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays" },
   { name: "CÉ-PAGES", logo: "/images/brands/ce-pages.png", cat: "stays" },
+
+  // City & travel : ceux qui font venir les gens, transporteurs et offices de
+  // tourisme. C'est l'autre moitie du marche hotelier, et pour une maison
+  // c'est la preuve qu'une destination entiere a confie son image.
+  { name: "INTERRAIL", cat: "travel" },
+  { name: "EUROPEAN SLEEPER", cat: "travel" },
   // Logo en pastille, avec sa carte blanche et son ombre : il a besoin de la
   // hauteur des badges pour rester lisible entre deux wordmarks larges.
-  { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "stays" },
-
-  // City & travel : vide pour l'instant, la categorie existe et attend
-  // ses deux premiers noms. Un groupe sans entree ne s'affiche pas.
+  { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "travel" },
+  { name: "VISIT GRAZ", cat: "travel" },
 
   // Brands. Sans logo, le nom s'affiche en toutes lettres : mieux vaut citer
   // le client que l'omettre en attendant son fichier.
