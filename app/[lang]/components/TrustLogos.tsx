@@ -1,4 +1,4 @@
-import { BRAND_CATS, CAT_LABEL, TRUST_LABEL, brandsIn, type BrandCat } from "@/lib/brands";
+import { BRAND_CATS, CAT_LABEL, CAT_NOTE, TRUST_LABEL, brandsIn, type BrandCat } from "@/lib/brands";
 
 // Bande "Ils me font confiance" partagee entre About et Creator.
 // Source unique des donnees : lib/brands.ts. Composant presentationnel sans
@@ -45,6 +45,7 @@ export default function TrustLogos({
         .trust-group { margin: 0 auto 30px; }
         .trust-group:last-child { margin-bottom: 0; }
         .trust-cat { font-size: 8px; font-weight: 400; letter-spacing: 0.2em; color: #b3aca2; text-align: center; margin: 0 0 16px; }
+        .trust-note { font-size: 11px; line-height: 1.8; font-style: italic; color: #999999; text-align: center; max-width: 520px; margin: 14px auto 0; padding: 0 24px; }
         .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 22px 34px; max-width: 920px; margin: 0 auto; padding: 0 24px; }
         .brand-chip { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
         .brand-logo { width: auto; object-fit: contain; opacity: 0.9; transition: opacity 0.2s; }
@@ -106,6 +107,7 @@ export default function TrustLogos({
               ),
             )}
           </div>
+          {CAT_NOTE[g.cat] && <p className="trust-note">{CAT_NOTE[g.cat]![lang]}</p>}
         </div>
       ))}
     </>

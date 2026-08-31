@@ -197,6 +197,11 @@ const content = {
   fr: {
     name: "SANDRINE CEUPPENS",
     role: "Photographe et vidéaste documentaire · Hôtels, tables et maisons · Bruxelles",
+    // Presentation ecrite a partir du texte Substack de Sandrine (31/08).
+    // La phrase de fin, "il y a deux ans je n'imaginais rien de tout ca", reste
+    // sur Substack : juste et touchante, mais sur une page qui vend une
+    // prestation elle dit qu'on debute.
+    bio: "Je photographie les villes à cinq heures du matin et les marchés avant la foule. C'est la même façon de regarder que j'emmène dans les maisons et les hôtels : la lumière du lieu, les gestes de ceux qui y travaillent, rien de posé. Un livre est en cours.",
     followersLabel: "ABONNÉS INSTAGRAM",
     skills: "COMPÉTENCES",
     projectsPdf: "Projets récents (PDF)",
@@ -207,6 +212,7 @@ const content = {
   en: {
     name: "SANDRINE CEUPPENS",
     role: "Documentary photographer and filmmaker · Hotels, tables and venues · Brussels",
+    bio: "I photograph cities at five in the morning and markets before the crowds. It is the same way of looking that I bring into houses and hotels: the light of the place, the gestures of the people who work there, nothing staged. A book is in progress.",
     followersLabel: "INSTAGRAM FOLLOWERS",
     skills: "SKILLS",
     projectsPdf: "Recent projects (PDF)",
@@ -311,6 +317,13 @@ export default async function AboutPage({ params }: Props) {
           letter-spacing: 0.18em;
           text-transform: uppercase;
           color: #999999;
+          margin: 0 0 20px;
+        }
+        .hero-bio {
+          font-size: 13px;
+          line-height: 1.9;
+          color: #555555;
+          max-width: 460px;
           margin: 0 0 32px;
         }
 
@@ -477,6 +490,7 @@ export default async function AboutPage({ params }: Props) {
           .hero-photo { width: 100%; max-width: 340px; margin: 0 auto; }
           .hero-name { font-size: 30px; text-align: center; }
           .hero-role { text-align: center; }
+          .hero-bio { text-align: center; margin-left: auto; margin-right: auto; }
         }
         @media (max-width: 767px) {
           .offers {
@@ -565,6 +579,7 @@ export default async function AboutPage({ params }: Props) {
         <div>
           <h1 className="hero-name">{t.name}</h1>
           <p className="hero-role">{t.role}</p>
+          <p className="hero-bio">{t.bio}</p>
         </div>
       </section>
 
