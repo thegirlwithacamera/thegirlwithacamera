@@ -11,8 +11,8 @@
 // donc devant, sous leur propre intertitre, et la page Creator n'affiche que
 // les marques.
 //
-// Intertitres en anglais dans les deux langues, comme la nav : ce sont des
-// enseignes de rubrique, pas des phrases.
+// Intertitres traduits, contrairement a la nav : la nav est faite d'enseignes,
+// ces intertitres sont du contenu et se lisent dans la langue de la page.
 export type BrandCat = "stays" | "travel" | "brand";
 export type Brand = { name: string; logo?: string; tall?: boolean; cat: BrandCat };
 
@@ -65,9 +65,9 @@ export const TRUST_LABEL: Record<"fr" | "en", string> = {
 
 // Intertitres des deux groupes.
 export const CAT_LABEL: Record<BrandCat, Record<"fr" | "en", string>> = {
-  stays: { fr: "STAYS & PLACES", en: "STAYS & PLACES" },
-  travel: { fr: "CITY & TRAVEL", en: "CITY & TRAVEL" },
-  brand: { fr: "BRANDS", en: "BRANDS" },
+  stays: { fr: "HÔTELS, MAISONS & TABLES", en: "STAYS & PLACES" },
+  travel: { fr: "VILLES & VOYAGE", en: "CITY & TRAVEL" },
+  brand: { fr: "MARQUES", en: "BRANDS" },
 };
 
 // Une ligne de contexte sous un groupe, quand les logos seuls disent moins que
