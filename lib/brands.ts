@@ -28,20 +28,23 @@ export const BRANDS: Brand[] = [
   // City & travel : ceux qui font venir les gens, transporteurs et offices de
   // tourisme. C'est l'autre moitie du marche hotelier, et pour une maison
   // c'est la preuve qu'une destination entiere a confie son image.
-  { name: "INTERRAIL", cat: "travel" },
-  { name: "EUROPEAN SLEEPER", cat: "travel" },
+  { name: "INTERRAIL", logo: "/images/brands/interrail.svg", cat: "travel" },
+  { name: "EUROPEAN SLEEPER", logo: "/images/brands/european-sleeper.png", cat: "travel" },
   // Logo en pastille, avec sa carte blanche et son ombre : il a besoin de la
   // hauteur des badges pour rester lisible entre deux wordmarks larges.
   { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "travel" },
-  { name: "VISIT GRAZ", cat: "travel" },
+  // Pastille ronde : meme traitement que Kärnten.
+  { name: "VISIT GRAZ", logo: "/images/brands/visit-graz.png", tall: true, cat: "travel" },
 
   // Brands. Sans logo, le nom s'affiche en toutes lettres : mieux vaut citer
   // le client que l'omettre en attendant son fichier.
   { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg", cat: "brand" },
   { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png", cat: "brand" },
   { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg", cat: "brand" },
-  { name: "GODOX", cat: "brand" },
-  { name: "TILTA", cat: "brand" },
+  { name: "GODOX", logo: "/images/brands/godox.png", cat: "brand" },
+  // Le SVG fourni etait en gris tres clair, pense pour un fond sombre :
+  // invisible sur blanc. Recolore en noir, aucune autre retouche.
+  { name: "TILTA", logo: "/images/brands/tilta.svg", cat: "brand" },
   { name: "EDIFIER", logo: "/images/brands/edifier.png", cat: "brand" },
   { name: "TELESIN", logo: "/images/brands/telesin.png", cat: "brand" },
   { name: "STUBBLE & CO", cat: "brand" },
