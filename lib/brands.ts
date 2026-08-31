@@ -10,33 +10,44 @@
 // concluait que le metier c'etait le test de materiel. Les adresses passent
 // donc devant, sous leur propre intertitre, et la page Creator n'affiche que
 // les marques.
-export type BrandCat = "hospitality" | "brand";
+//
+// Intertitres en anglais dans les deux langues, comme la nav : ce sont des
+// enseignes de rubrique, pas des phrases.
+export type BrandCat = "stays" | "travel" | "brand";
 export type Brand = { name: string; logo?: string; tall?: boolean; cat: BrandCat };
 
 export const BRANDS: Brand[] = [
-  // Maisons, tables et destinations.
-  { name: "MK HOTELS", logo: "/images/brands/mk-hotels.png", cat: "hospitality" },
-  { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "hospitality" },
+  // Stays & places. Kärnten y figure pour l'instant : c'est un office de
+  // tourisme, donc un "travel", mais un groupe d'un seul logo se lit comme une
+  // section vide. Des qu'un deuxieme partenaire destination arrive, on bascule
+  // les deux en cat "travel" et la section apparait toute seule.
+  { name: "MK HOTELS", logo: "/images/brands/mk-hotels.png", cat: "stays" },
+  { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays" },
+  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png", cat: "stays" },
+  { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png", cat: "stays" },
+  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays" },
+  { name: "CÉ-PAGES", logo: "/images/brands/ce-pages.png", cat: "stays" },
   // Logo en pastille, avec sa carte blanche et son ombre : il a besoin de la
   // hauteur des badges pour rester lisible entre deux wordmarks larges.
-  { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "hospitality" },
-  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png", cat: "hospitality" },
-  { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png", cat: "hospitality" },
-  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "hospitality" },
-  { name: "CÉ-PAGES", logo: "/images/brands/ce-pages.png", cat: "hospitality" },
+  { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "stays" },
 
-  // Marques.
+  // City & travel : vide pour l'instant, la categorie existe et attend
+  // ses deux premiers noms. Un groupe sans entree ne s'affiche pas.
+
+  // Brands. Sans logo, le nom s'affiche en toutes lettres : mieux vaut citer
+  // le client que l'omettre en attendant son fichier.
   { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg", cat: "brand" },
   { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png", cat: "brand" },
   { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg", cat: "brand" },
+  { name: "GODOX", cat: "brand" },
+  { name: "TILTA", cat: "brand" },
   { name: "EDIFIER", logo: "/images/brands/edifier.png", cat: "brand" },
   { name: "TELESIN", logo: "/images/brands/telesin.png", cat: "brand" },
-  { name: "L'ORÉAL", logo: "/images/brands/loreal.svg", cat: "brand" },
-  { name: "YES THEORY", logo: "/images/brands/yes-theory.png", tall: true, cat: "brand" },
+  { name: "STUBBLE & CO", cat: "brand" },
 ];
 
 // Ordre d'affichage : les adresses d'abord.
-export const BRAND_CATS: readonly BrandCat[] = ["hospitality", "brand"];
+export const BRAND_CATS: readonly BrandCat[] = ["stays", "travel", "brand"];
 
 export function brandsIn(cat: BrandCat): Brand[] {
   return BRANDS.filter((b) => b.cat === cat);
@@ -50,9 +61,7 @@ export const TRUST_LABEL: Record<"fr" | "en", string> = {
 
 // Intertitres des deux groupes.
 export const CAT_LABEL: Record<BrandCat, Record<"fr" | "en", string>> = {
-  hospitality: {
-    fr: "MAISONS, TABLES ET DESTINATIONS",
-    en: "HOTELS, TABLES AND DESTINATIONS",
-  },
-  brand: { fr: "MARQUES", en: "BRANDS" },
+  stays: { fr: "STAYS & PLACES", en: "STAYS & PLACES" },
+  travel: { fr: "CITY & TRAVEL", en: "CITY & TRAVEL" },
+  brand: { fr: "BRANDS", en: "BRANDS" },
 };

@@ -50,8 +50,10 @@ export default function TrustLogos({
         .brand-logo { width: auto; object-fit: contain; opacity: 0.9; transition: opacity 0.2s; }
         .brand-logo:hover { opacity: 1; }
 
-        .trust-group--hospitality .brand-logo { height: 48px; max-width: 200px; }
-        .trust-group--hospitality .brand-logo--tall { height: 64px; }
+        .trust-group--stays .brand-logo,
+        .trust-group--travel .brand-logo { height: 48px; max-width: 200px; }
+        .trust-group--stays .brand-logo--tall,
+        .trust-group--travel .brand-logo--tall { height: 64px; }
 
         /* Largeur bridee pour que les sept marques cassent en 4 puis 3 plutot
            qu'en 5 et un orphelin. */
@@ -77,8 +79,10 @@ export default function TrustLogos({
           .brands-strip::-webkit-scrollbar { display: none; }
           .brands-strip > * { flex: 0 0 auto; scroll-snap-align: center; }
           .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
-          .trust-group--hospitality .brand-logo { height: 38px; max-width: 150px; }
-          .trust-group--hospitality .brand-logo--tall { height: 50px; }
+          .trust-group--stays .brand-logo,
+          .trust-group--travel .brand-logo { height: 38px; max-width: 150px; }
+          .trust-group--stays .brand-logo--tall,
+          .trust-group--travel .brand-logo--tall { height: 50px; }
           .trust-group--brand .brand-logo { height: 24px; max-width: 120px; }
           .trust-group--brand .brand-logo--tall { height: 34px; }
         }
