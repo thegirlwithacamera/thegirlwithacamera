@@ -28,6 +28,12 @@ export type Brand = {
   // Ce que le lien montre vraiment, affiche en infobulle. "Le film" quand il
   // n'y a pas encore de photos, "les photos" quand c'est une page de cas.
   hrefLabel?: { fr: string; en: string };
+  // Collab actee mais pas encore tournee : le fichier est pret, le nom
+  // n'apparait pas. La bande dit "ils me font confiance" au passe ; afficher
+  // une maison avant d'y avoir mis les pieds, c'est signer a sa place, et si
+  // ca tombe a l'eau c'est une fausse reference sur un site commercial.
+  // Passer pending a false le jour du tournage, rien d'autre a faire.
+  pending?: boolean;
 };
 
 export const BRANDS: Brand[] = [
@@ -37,6 +43,13 @@ export const BRANDS: Brand[] = [
   { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Voir le film", en: "See the film" } },
   { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png", cat: "stays", href: "/photographer/hospitality/coloc-housing", hrefLabel: { fr: "Voir les photos et le film", en: "See the photographs and the film" } },
   { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Voir le film", en: "See the film" } },
+  // Etapes du voyage Interrail, actees mais pas encore tournees.
+  // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
+  { name: "HOTEL RATHAUS WIEN", logo: "/images/brands/hotel-rathaus-wien.svg", cat: "stays", pending: true },
+  { name: "ALTSTADT VIENNA", logo: "/images/brands/altstadt.png", cat: "stays", pending: true },
+  { name: "AT THE GOLDEN PEAR", logo: "/images/brands/golden-pear.png", tall: true, cat: "stays", pending: true },
+  { name: "PRAGUESTREAM", logo: "/images/brands/prague-stream.png", cat: "stays", pending: true },
+
   { name: "CÉ-PAGES", logo: "/images/brands/ce-pages.png", cat: "stays", href: "/photographer/restaurants/ce-pages", hrefLabel: { fr: "Voir les photos et le film", en: "See the photographs and the film" } },
 
   // City & travel : ceux qui font venir les gens, transporteurs et offices de
@@ -70,7 +83,7 @@ export const BRANDS: Brand[] = [
 export const BRAND_CATS: readonly BrandCat[] = ["stays", "travel", "brand"];
 
 export function brandsIn(cat: BrandCat): Brand[] {
-  return BRANDS.filter((b) => b.cat === cat);
+  return BRANDS.filter((b) => b.cat === cat && !b.pending);
 }
 
 // Label de la bande, bilingue (source unique).
