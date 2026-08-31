@@ -47,7 +47,9 @@ export const BRANDS: Brand[] = [
   { name: "TILTA", logo: "/images/brands/tilta.svg", cat: "brand" },
   { name: "EDIFIER", logo: "/images/brands/edifier.png", cat: "brand" },
   { name: "TELESIN", logo: "/images/brands/telesin.png", cat: "brand" },
-  { name: "STUBBLE & CO", cat: "brand" },
+  // Logo empile, pictogramme au dessus du nom : a la hauteur des wordmarks il
+  // devient illisible, il prend donc celle des badges.
+  { name: "STUBBLE & CO", logo: "/images/brands/stubble-and-co.png", tall: true, cat: "brand" },
 ];
 
 // Ordre d'affichage : les adresses d'abord.
