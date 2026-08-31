@@ -20,9 +20,15 @@ import { BRAND_CATS, CAT_LABEL, CAT_NOTE, TRUST_LABEL, brandsIn, type BrandCat }
 //    l'empilement est trop long.
 //
 // 4. Un logo qui mene au travail fait pour ce client devient un lien. Pas tous :
-//    seulement ceux dont le contenu est en ligne. Un logo cliquable qui ouvre
-//    une page vide coute plus cher que pas de lien. Au repos rien ne les
-//    distingue, pour ne degrader aucun client ; le survol revele.
+//    seulement ceux dont le contenu est en ligne, un logo cliquable qui ouvre
+//    une page vide coutant plus cher que pas de lien.
+//
+//    Premiere version : rien ne les distinguait au repos, pour ne degrader
+//    aucun client, le survol revelait. Resultat le 31/08 : "rien n'est
+//    cliquable". Cinq liens sur dix-huit logos, invisibles, personne ne tombe
+//    dessus par hasard. Une petite legende sous le logo dit maintenant ce
+//    qu'on y trouve, Photos, Film, Photos & film. Meme vocabulaire que les
+//    legendes de l'accueil et de la grille, avec la meme fleche.
 //
 // 3. Deux tailles de logo, pas une. Les marques ont des wordmarks larges qui
 //    remplissent toute leur hauteur ; les adresses ont des marques compactes,
@@ -52,14 +58,30 @@ export default function TrustLogos({
         .trust-group:last-child { margin-bottom: 0; }
         .trust-cat { font-size: 8px; font-weight: 400; letter-spacing: 0.2em; color: #b3aca2; text-align: center; margin: 0 0 16px; }
         .trust-note { font-size: 11px; line-height: 1.8; font-style: italic; color: #999999; text-align: center; max-width: 520px; margin: 14px auto 0; padding: 0 24px; }
-        .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 22px 34px; max-width: 920px; margin: 0 auto; padding: 0 24px; }
+        /* align-items: flex-start et une boite de hauteur fixe : les logos
+           restent alignes entre eux, les legendes pendent en dessous sans
+           decaler la rangee. */
+        .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 22px 34px; max-width: 920px; margin: 0 auto; padding: 0 24px; }
+        .brand-item { display: flex; flex-direction: column; align-items: center; gap: 9px; text-decoration: none; }
+        .brand-box { display: flex; align-items: center; justify-content: center; }
+        .brand-cap {
+          font-size: 9px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #b3aca2;
+          transition: color 0.2s;
+          white-space: nowrap;
+        }
+        .brand-cap::after { content: " →"; }
+        .brand-link:hover .brand-cap { color: #0a0a0a; }
         .brand-chip { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
-        .brand-logo { width: auto; object-fit: contain; opacity: 0.9; transition: opacity 0.2s; display: block; }
-        .brand-logo:hover { opacity: 1; }
-        .brand-link { display: block; transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        .brand-logo { width: auto; max-height: 100%; object-fit: contain; opacity: 0.9; transition: opacity 0.2s; display: block; }
+        .brand-link { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1); }
         .brand-link:hover { transform: translateY(-3px); }
         .brand-link:hover .brand-logo { opacity: 1; }
 
+        .trust-group--stays .brand-box,
+        .trust-group--travel .brand-box { height: 64px; }
         .trust-group--stays .brand-logo,
         .trust-group--travel .brand-logo { height: 48px; max-width: 200px; }
         .trust-group--stays .brand-logo--tall,
@@ -68,6 +90,7 @@ export default function TrustLogos({
         /* Largeur bridee pour que les sept marques cassent en 4 puis 3 plutot
            qu'en 5 et un orphelin. */
         .trust-group--brand .brands-strip { max-width: 720px; }
+        .trust-group--brand .brand-box { height: 44px; }
         .trust-group--brand .brand-logo { height: 30px; max-width: 150px; }
         .trust-group--brand .brand-logo--tall { height: 44px; }
 
@@ -89,12 +112,16 @@ export default function TrustLogos({
           .brands-strip::-webkit-scrollbar { display: none; }
           .brands-strip > * { flex: 0 0 auto; scroll-snap-align: center; }
           .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
+          .trust-group--stays .brand-box,
+          .trust-group--travel .brand-box { height: 50px; }
           .trust-group--stays .brand-logo,
           .trust-group--travel .brand-logo { height: 38px; max-width: 150px; }
           .trust-group--stays .brand-logo--tall,
           .trust-group--travel .brand-logo--tall { height: 50px; }
+          .trust-group--brand .brand-box { height: 34px; }
           .trust-group--brand .brand-logo { height: 24px; max-width: 120px; }
           .trust-group--brand .brand-logo--tall { height: 34px; }
+          .brand-cap { font-size: 8px; letter-spacing: 0.1em; }
         }
       `}</style>
       <p className="trust-label">{TRUST_LABEL[lang]}</p>
@@ -104,23 +131,26 @@ export default function TrustLogos({
           <div className="brands-strip">
             {g.brands.map((b) => {
               if (!b.logo) return <span key={b.name} className="brand-chip">{b.name}</span>;
-              const logo = (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={b.logo}
-                  alt={b.name}
-                  className={`brand-logo${b.tall ? " brand-logo--tall" : ""}`}
-                />
+              const box = (
+                <span className="brand-box">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={b.logo}
+                    alt={b.name}
+                    className={`brand-logo${b.tall ? " brand-logo--tall" : ""}`}
+                  />
+                </span>
               );
-              if (!b.href) return <span key={b.name}>{logo}</span>;
+              if (!b.href) return <span key={b.name} className="brand-item">{box}</span>;
               return (
                 <Link
                   key={b.name}
                   href={`/${lang}${b.href}`}
-                  className="brand-link"
+                  className="brand-item brand-link"
                   title={b.hrefLabel ? `${b.name} — ${b.hrefLabel[lang]}` : b.name}
                 >
-                  {logo}
+                  {box}
+                  {b.hrefLabel && <span className="brand-cap">{b.hrefLabel[lang]}</span>}
                 </Link>
               );
             })}

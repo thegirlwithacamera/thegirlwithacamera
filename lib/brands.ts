@@ -25,8 +25,8 @@ export type Brand = {
   tall?: boolean;
   cat: BrandCat;
   href?: string;
-  // Ce que le lien montre vraiment, affiche en infobulle. "Le film" quand il
-  // n'y a pas encore de photos, "les photos" quand c'est une page de cas.
+  // Ce qu'on trouve au bout du lien, affiche sous le logo. Deux mots maximum :
+  // c'est une legende, pas une phrase.
   hrefLabel?: { fr: string; en: string };
   // Collab actee mais pas encore tournee : le fichier est pret, le nom
   // n'apparait pas. La bande dit "ils me font confiance" au passe ; afficher
@@ -39,10 +39,10 @@ export type Brand = {
 export const BRANDS: Brand[] = [
   // Stays & places : les adresses ou l'on dort et ou l'on mange.
   { name: "MK HOTELS", logo: "/images/brands/mk-hotels.png", cat: "stays" },
-  { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Voir les photos", en: "See the photographs" } },
-  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Voir le film", en: "See the film" } },
-  { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png", cat: "stays", href: "/photographer/hospitality/coloc-housing", hrefLabel: { fr: "Voir les photos et le film", en: "See the photographs and the film" } },
-  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Voir le film", en: "See the film" } },
+  { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos", en: "Photographs" } },
+  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Film", en: "Film" } },
+  { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png", cat: "stays", href: "/photographer/hospitality/coloc-housing", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
+  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Film", en: "Film" } },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
   { name: "HOTEL RATHAUS WIEN", logo: "/images/brands/hotel-rathaus-wien.svg", cat: "stays", pending: true },
@@ -50,7 +50,7 @@ export const BRANDS: Brand[] = [
   { name: "AT THE GOLDEN PEAR", logo: "/images/brands/golden-pear.png", tall: true, cat: "stays", pending: true },
   { name: "PRAGUESTREAM", logo: "/images/brands/prague-stream.png", cat: "stays", pending: true },
 
-  { name: "CÉ-PAGES", logo: "/images/brands/ce-pages.png", cat: "stays", href: "/photographer/restaurants/ce-pages", hrefLabel: { fr: "Voir les photos et le film", en: "See the photographs and the film" } },
+  { name: "CÉ-PAGES", logo: "/images/brands/ce-pages.png", cat: "stays", href: "/photographer/restaurants/ce-pages", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
 
   // City & travel : ceux qui font venir les gens, transporteurs et offices de
   // tourisme. C'est l'autre moitie du marche hotelier, et pour une maison
