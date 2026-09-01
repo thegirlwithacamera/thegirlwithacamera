@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { resolveHomeCases, HOME_TILES } from "./photographer/constants";
+import { allCases, HOME_TILES } from "./photographer/constants";
+import { readCaseCover } from "@/lib/portfolio";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -23,28 +24,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // ─────────────────────────────────────────────────────────────
-// ACCUEIL — une tuile par maison (HOME_CASES), puis les portes de HOME_TILES
-// (Tout le portfolio, Film, Travaillons ensemble).
+// ACCUEIL — tous les projets, un par tuile, puis les deux portes.
 //
-// Changement du 01/09 : la grille disait les catégories, elle dit maintenant
-// les clients. « Hôtels & maisons » ne prouve rien, « Hotel Rathaus Wien,
-// Vienne » prouve qu'un hôtel viennois a travaillé avec elle.
+// Décision de Sandrine du 01/09 en fin de journée : l'accueil montre TOUT,
+// projet par projet. Avant, il montrait trois maisons choisies plus une
+// porte « Tout le portfolio » ; la page d'accueil EST le portfolio.
 //
-// Nombre de colonnes calculé sur le total des tuiles : 3 si c'est un multiple
-// de 3, 2 sinon. Aujourd'hui 3 maisons + 3 portes = 6, donc 3 colonnes et deux
-// rangées pleines. Quand une maison s'ajoute, la grille se réajuste seule au
-// lieu de laisser une rangée bancale.
+// L'ordre vient de constants.ts : maisons, tables, villes. Un cas ajouté
+// là-bas apparaît ici tout seul.
 //
-// Pas de lien répété sous la grille : la tuile Travaillons ensemble suffit.
-//
-// Tout se règle dans app/[lang]/photographer/constants.ts
+// Trois colonnes sur ordinateur, deux sur téléphone, quel que soit le
+// nombre de tuiles. L'ancien calcul passait à deux colonnes dès que le
+// total n'était plus un multiple de trois, ce qui devient absurde quand la
+// grille grandit.
 // ─────────────────────────────────────────────────────────────
 
 export default async function HomePage({ params }: Props) {
   const { lang } = await params;
-  const homeCases = resolveHomeCases();
-  const tileCount = homeCases.length + HOME_TILES.length;
-  const cols = tileCount % 3 === 0 ? 3 : 2;
+
+  // Un cas déclaré mais sans images ne s'affiche pas.
+  const homeCases = allCases().flatMap((c) => {
+    const cover = readCaseCover(c.cat.slug, c.item.slug);
+    return cover ? [{ ...c, cover }] : [];
+  });
 
   return (
     <>
@@ -52,6 +54,7 @@ export default async function HomePage({ params }: Props) {
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
         .cat-grid {
           display: grid;
+          grid-template-columns: repeat(3, 1fr);
           gap: 22px;
           max-width: 1100px;
           margin: 0 auto;
@@ -116,7 +119,7 @@ export default async function HomePage({ params }: Props) {
 
       <h1 className="sr-only">The Girl With A Camera — Sandrine Ceuppens, Photographer Portfolio</h1>
       <main style={{ paddingTop: "16px", background: "#ffffff" }}>
-        <div className="cat-grid" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+        <div className="cat-grid">
           {homeCases.map((c, i) => (
             <Link key={`${c.cat.slug}/${c.item.slug}`} href={`/${lang}${c.href}`} className="cat-tile">
               <span className="tile-thumb">

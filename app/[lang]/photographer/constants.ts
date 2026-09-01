@@ -137,19 +137,6 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     citySeries: true,
     cases: [
       {
-        slug: "tokyo",
-        label: { fr: "Tokyo", en: "Tokyo" },
-        place: { fr: "Japon", en: "Japan" },
-        intro: {
-          fr: "Tokyo à cinq heures du matin, puis la nuit. Deux villes qui ne se ressemblent pas.",
-          en: "Tokyo at five in the morning, then at night. Two cities that look nothing alike.",
-        },
-        films: [
-          { src: "/videos/creator/CINEMATIC/CITIES/City Diary Tokyo.mp4", label: { fr: "Le jour", en: "Daytime" } },
-          { src: "/videos/creator/CINEMATIC/CITIES/City Diary Tokyo Night.mp4", label: { fr: "La nuit", en: "By night" } },
-        ],
-      },
-      {
         // Première commande de la catégorie Voyage : un office du tourisme,
         // pas une série personnelle. Elle est en tête du bloc pour ça.
         slug: "villach",
@@ -164,6 +151,19 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           en: "Photographed over three days, August 2026, for Region Villach Tourismus.",
         },
         films: [{ src: "/videos/creator/CINEMATIC/CITIES/Villach.mp4" }],
+      },
+      {
+        slug: "tokyo",
+        label: { fr: "Tokyo", en: "Tokyo" },
+        place: { fr: "Japon", en: "Japan" },
+        intro: {
+          fr: "Tokyo à cinq heures du matin, puis la nuit. Deux villes qui ne se ressemblent pas.",
+          en: "Tokyo at five in the morning, then at night. Two cities that look nothing alike.",
+        },
+        films: [
+          { src: "/videos/creator/CINEMATIC/CITIES/City Diary Tokyo.mp4", label: { fr: "Le jour", en: "Daytime" } },
+          { src: "/videos/creator/CINEMATIC/CITIES/City Diary Tokyo Night.mp4", label: { fr: "La nuit", en: "By night" } },
+        ],
       },
       {
         slug: "kyoto",
@@ -267,50 +267,28 @@ export function findCaseByFilm(src: string) {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Les maisons montrées sur la page d'accueil.
+// Les projets montrés sur la page d'accueil.
 //
-// Changement du 01/09 : la grille d'accueil n'affiche plus les catégories
-// mais les clients, nommés. Une tuile « Hôtels & maisons » ne prouve rien,
-// une tuile « Hotel Rathaus Wien, Vienne » prouve qu'un hôtel viennois a
-// travaillé avec elle. C'est le media kit en un écran.
+// Décision de Sandrine du 01/09, en fin de journée : l'accueil montre
+// TOUS les projets, un par tuile. Plus de sélection, plus de tuile
+// « Tout le portfolio » : la page d'accueil EST le portfolio.
 //
-// L'ordre ci-dessous est l'ordre d'affichage, et il n'est pas chronologique :
-// les maisons d'abord, les tables ensuite. Un directeur d'hôtel qui arrive
-// doit voir des hôtels quoi qu'il fasse ensuite.
+// L'ordre vient de PHOTO_CATEGORIES : les maisons, puis les tables, puis
+// les villes. Un cas ajouté dans constants.ts apparaît donc tout seul en
+// page d'accueil, sans rien d'autre à toucher.
 //
-// Six maisons est la bonne taille (deux rangées de trois). En attendant les
-// sélections du voyage d'août et septembre, on en publie trois plutôt que de
-// compléter avec du faible : c'est la règle des cas, elle vaut pour la grille.
-// À ajouter dès que les images sont là : mk hotel Munich, Evas Lendflat Graz,
-// Altstadt Vienne, U Zlaté Hrušky Prague, Prague Stream.
-//
-// Urban Jungle Vienne est sorti le 01/09, la maison demandait trop de
-// contenu pour ce qu'elle offrait. Altstadt Vienna prend le créneau.
+// Un cas dont le dossier d'images est vide n'apparaît pas : c'est
+// app/[lang]/page.tsx qui vérifie, avec readCaseCover.
 // ─────────────────────────────────────────────────────────────
 
-export type HomeCase = { category: string; case: string };
-
-export const HOME_CASES: HomeCase[] = [
-  { category: "hospitality", case: "hotel-rathaus-wien" },
-  { category: "hospitality", case: "naturel-dorf-schonleitn" },
-  { category: "restaurants", case: "ce-pages" },
-];
-
-// Résout les cas d'accueil vers leur catégorie et leur couverture. Un cas
-// déclaré ici mais absent de PHOTO_CATEGORIES est ignoré silencieusement,
-// comme partout ailleurs : la déclaration dit l'intention, le reste décide
-// de la visibilité.
-export function resolveHomeCases() {
-  return HOME_CASES.flatMap((h) => {
-    const found = findCase(h.category, h.case);
-    if (!found) return [];
-    return [{
-      cat: found.cat,
-      item: found.item,
-      cover: `/images/portfolio/${found.cat.slug}/${found.item.slug}/1.jpg`,
-      href: `/photographer/${found.cat.slug}/${found.item.slug}`,
-    }];
-  });
+export function allCases() {
+  return PHOTO_CATEGORIES.flatMap((cat) =>
+    cat.cases.map((item) => ({
+      cat,
+      item,
+      href: `/photographer/${cat.slug}/${item.slug}`,
+    })),
+  );
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -330,16 +308,9 @@ export type HomeTile = {
 };
 
 export const HOME_TILES: HomeTile[] = [
-  {
-    // Porte ajoutée le 01/09, quand la grille est passée des catégories aux
-    // maisons : sans elle, le voyage et les catégories disparaissaient de la
-    // page d'accueil. La couverture est une image de Tokyo, donc la porte
-    // montre déjà ce qu'il y a derrière.
-    key: "portfolio",
-    href: "/photographer",
-    label: { fr: "Tout le portfolio", en: "All the work" },
-    cover: "/images/portfolio/travel/tokyo/1.jpg",
-  },
+  // La porte « Tout le portfolio » est retirée en fin de journée du 01/09 :
+  // l'accueil affiche maintenant tous les projets, elle pointait vers une
+  // page qui dit la même chose.
   {
     key: "film",
     href: "/filmmaker",
