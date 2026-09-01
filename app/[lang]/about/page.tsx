@@ -345,17 +345,22 @@ export default async function AboutPage({ params }: Props) {
         }
       `}</style>
 
-      {/* Les offres sont parties sur /services le 01/09. Elles y vivaient en
-          double, avec deux textes differents pour la meme prestation. Cette
-          page ne parle plus que de Sandrine ; la source des offres est
-          lib/offers.ts. */}
-      <p className="info-section-title about-first" id="travailler-avec-moi">{t.cta}</p>
-      <p className="offers-intro">{work.intro}</p>
-      <p style={{ textAlign: "center", margin: "0 0 8px" }}>
-        <Link href={`/${lang}/services`} className="offer-cta">
-          {lang === "fr" ? "Voir les formules" : "See the packages"}
-        </Link>
-      </p>
+      {/* La page ouvre sur le portrait depuis le 01/09. Elle s'ouvrait sur
+          les offres depuis le 27/08, quand elle les portait encore : un
+          client arrivait ici pour savoir ce qu'on vend. Les offres ont leur
+          page maintenant, et la tuile d'accueil qui mène ici porte la photo
+          de Sandrine. Tomber sur autre chose que ce visage serait une
+          fausse piste. */}
+      <section className="hero about-first">
+        <div className="hero-photo">
+          <Image src={HERO_PHOTO} alt="Sandrine Ceuppens" fill sizes="(max-width: 900px) 340px, 420px" priority quality={82} />
+        </div>
+        <div>
+          <h1 className="hero-name">{t.name}</h1>
+          <p className="hero-role">{t.role}</p>
+          <p className="hero-bio">{t.bio}</p>
+        </div>
+      </section>
 
       <hr className="info-hr" />
 
@@ -378,17 +383,17 @@ export default async function AboutPage({ params }: Props) {
 
       <hr className="info-hr" />
 
-      {/* Présentation, descendue en bas de page le 27/08. */}
-      <section className="hero">
-        <div className="hero-photo">
-          <Image src={HERO_PHOTO} alt="Sandrine Ceuppens" fill sizes="(max-width: 900px) 340px, 420px" priority quality={82} />
-        </div>
-        <div>
-          <h1 className="hero-name">{t.name}</h1>
-          <p className="hero-role">{t.role}</p>
-          <p className="hero-bio">{t.bio}</p>
-        </div>
-      </section>
+      {/* Le renvoi vers les offres ferme la page au lieu de l'ouvrir : on a
+          lu qui elle est, on peut aller voir ce qu'elle vend. Les offres
+          elles-mêmes vivent dans lib/offers.ts et sont rendues par
+          /services, plus ici. */}
+      <p className="info-section-title" id="travailler-avec-moi">{t.cta}</p>
+      <p className="offers-intro">{work.intro}</p>
+      <p style={{ textAlign: "center", margin: "0 0 8px" }}>
+        <Link href={`/${lang}/services`} className="offer-cta">
+          {lang === "fr" ? "Voir les formules" : "See the packages"}
+        </Link>
+      </p>
 
       <hr className="info-hr" />
 
