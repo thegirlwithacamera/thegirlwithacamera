@@ -41,7 +41,6 @@ export const BRANDS: Brand[] = [
   { name: "MK HOTELS", logo: "/images/brands/mk-hotels.png", cat: "stays" },
   { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos", en: "Photographs" } },
   { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Film", en: "Film" } },
-  { name: "COLOC HOUSING", logo: "/images/brands/coloc-housing.png", cat: "stays", href: "/photographer/hospitality/coloc-housing", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Film", en: "Film" } },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.

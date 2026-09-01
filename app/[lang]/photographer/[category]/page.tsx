@@ -55,7 +55,9 @@ export default async function PhotographerCategoryPage({ params }: Props) {
   // de 3, sinon 2, et une seule colonne quand il n'y a qu'un cas. Une grille
   // de 3 avec un seul client ressemble à une page vide.
   const cols = cases.length === 1 ? 1 : cases.length % 3 === 0 ? 3 : 2;
-  const backLabel = lang === "fr" ? "← Toutes les catégories" : "← All categories";
+  // Retour vers la page Photographe depuis le 01/09 : elle existe maintenant,
+  // et elle contient tous les cas. Avant, ce lien ramenait à l'accueil.
+  const backLabel = lang === "fr" ? "← Tout le portfolio" : "← All the work";
   const emptyNote = lang === "fr" ? "Sélection à venir." : "Selection coming soon.";
 
   return (
@@ -152,7 +154,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
       <main style={{ paddingTop: "16px", paddingBottom: "48px", background: "#ffffff" }}>
         <div className="cat-head">
           <div>
-            <Link href={`/${lang}`} className="cat-back">{backLabel}</Link>
+            <Link href={`/${lang}/photographer`} className="cat-back">{backLabel}</Link>
           </div>
           <h1>{cat.label[lang]}</h1>
           {cases.length === 0 && <p className="cat-note">{emptyNote}</p>}

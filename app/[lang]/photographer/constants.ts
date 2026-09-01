@@ -38,6 +38,13 @@ export type PhotoCase = {
   label: { fr: string; en: string };
   // Lieu affiché sous le titre du cas : ville et pays, ou rien.
   place?: { fr: string; en: string };
+  // Deux phrases sous le titre, au dessus des images. La première décrit ce
+  // que le lieu fait à l'image, la seconde porte la date. Jamais une critique
+  // d'hôtel, jamais un superlatif. Sert aussi d'alt à la première image : une
+  // page de douze photos sans un mot ne se positionne sur rien.
+  intro?: { fr: string; en: string };
+  // Mois et année du tournage, affichés à la suite de l'intro.
+  shotAt?: { fr: string; en: string };
   // Position CSS object-position pour le crop 4:5 de la vignette du cas.
   coverPosition?: string;
   // Films tournés sur place, affichés sous les photos, dans leur format natif.
@@ -52,6 +59,12 @@ export type PhotoCategory = {
   // Photo représentative montrée sur la tuile d'accueil.
   cover: string;
   coverPosition?: string;
+  // Travail personnel plutôt que commande. Sur la page Photographe, ces
+  // catégories vont dans un bloc séparé en bas : présentées dans la même
+  // grille que les maisons, elles laisseraient croire que Palerme était une
+  // commande. Elles restent en ligne parce qu'elles amènent du business,
+  // c'est le portfolio que regarde un office du tourisme.
+  personal?: boolean;
   cases: PhotoCase[];
 };
 
@@ -65,20 +78,34 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         slug: "naturel-dorf-schonleitn",
         label: { fr: "Naturel Dorf Schönleitn", en: "Naturel Dorf Schönleitn" },
         place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
+        intro: {
+          fr: "Un village de chalets en bois posé au dessus du lac de Faak, en Carinthie, où la lumière du matin arrive tard et reste basse.",
+          en: "A village of wooden chalets above Lake Faak, in Carinthia, where the morning light arrives late and stays low.",
+        },
+        shotAt: {
+          fr: "Photographié sur deux jours, en août 2026.",
+          en: "Photographed over two days, August 2026.",
+        },
       },
       {
         slug: "hotel-rathaus-wien",
         label: { fr: "Hotel Rathaus Wien", en: "Hotel Rathaus Wien" },
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
+        intro: {
+          fr: "Une maison viennoise à deux pas du Rathaus, une salle de bain vert profond, des fenêtres qui donnent directement sur la rue.",
+          en: "A Viennese house a few steps from the Rathaus, a deep green bathroom, windows opening straight onto the street.",
+        },
+        shotAt: {
+          fr: "Photographié début septembre 2026.",
+          en: "Photographed in early September 2026.",
+        },
       },
-      {
-        slug: "coloc-housing",
-        label: { fr: "Coloc Housing", en: "Coloc Housing" },
-        place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
-        // Un seul film, celui de la maison. Le second montrait la vie sur
-        // place et tirait la page vers le reportage.
-        films: [{ src: "/videos/creator/CINEMATIC/PLACES/Coloc Housing.mp4" }],
-      },
+      // Coloc Housing retiré le 01/09, décision de Sandrine. La collaboration
+      // s'est terminée sur un retrait de licence de sa part. Les images et le
+      // film restent sur le disque, rien n'est supprimé : c'est la publication
+      // qui s'arrête. Le film est masqué de la page Vidéaste via HIDDEN_FILMS
+      // dans app/[lang]/filmmaker/constants.ts, et le logo est sorti de
+      // lib/brands.ts.
     ],
   },
   {
@@ -99,6 +126,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     slug: "travel",
     label: { fr: "Voyage", en: "Travel" },
     cover: "/images/portfolio/travel/tokyo/1.jpg",
+    personal: true,
     cases: [
       {
         slug: "tokyo",
@@ -125,18 +153,24 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
       // Napoli, Venezia et Burano n'ont pas de film.
     ],
   },
-  {
-    slug: "portraits",
-    label: { fr: "Portraits", en: "Portraits" },
-    cover: "/images/portfolio/portraits/silke-hamers/1.jpg",
-    cases: [
-      { slug: "silke-hamers", label: { fr: "Silke Hamers", en: "Silke Hamers" } },
-      {
-        slug: "studio-nb",
-        label: { fr: "Studio, noir et blanc", en: "Studio, black & white" },
-      },
-    ],
-  },
+  // Portraits retiré le 01/09, décision de Sandrine : « on ne garde que ce qui
+  // amène du business ». Deux cas, aucun client hôtelier derrière, aucune
+  // requête de recherche qui mène ici. Les dossiers d'images restent en place,
+  // il suffit de remettre le bloc ci-dessous pour republier la catégorie :
+  //
+  // {
+  //   slug: "portraits",
+  //   label: { fr: "Portraits", en: "Portraits" },
+  //   cover: "/images/portfolio/portraits/silke-hamers/1.jpg",
+  //   cases: [
+  //     { slug: "silke-hamers", label: { fr: "Silke Hamers", en: "Silke Hamers" } },
+  //     { slug: "studio-nb", label: { fr: "Studio, noir et blanc", en: "Studio, black & white" } },
+  //   ],
+  // },
+  //
+  // Ce n'est pas le portrait qui sort du métier : les visages du personnel
+  // d'une maison restent dans le reportage de cette maison.
+  //
   // En attente : editorial, un seul cas de 3 images (bijoux).
 ];
 
@@ -151,6 +185,50 @@ export function findCase(categorySlug: string, caseSlug: string) {
   if (!cat) return undefined;
   const item = cat.cases.find((c) => c.slug === caseSlug);
   return item ? { cat, item } : undefined;
+}
+
+// ─────────────────────────────────────────────────────────────
+// Les maisons montrées sur la page d'accueil.
+//
+// Changement du 01/09 : la grille d'accueil n'affiche plus les catégories
+// mais les clients, nommés. Une tuile « Hôtels & maisons » ne prouve rien,
+// une tuile « Hotel Rathaus Wien, Vienne » prouve qu'un hôtel viennois a
+// travaillé avec elle. C'est le media kit en un écran.
+//
+// L'ordre ci-dessous est l'ordre d'affichage, et il n'est pas chronologique :
+// les maisons d'abord, les tables ensuite. Un directeur d'hôtel qui arrive
+// doit voir des hôtels quoi qu'il fasse ensuite.
+//
+// Six maisons est la bonne taille (deux rangées de trois). En attendant les
+// sélections du voyage d'août et septembre, on en publie trois plutôt que de
+// compléter avec du faible : c'est la règle des cas, elle vaut pour la grille.
+// À ajouter dès que les images sont là : mk hotel Munich, Evas Lendflat Graz,
+// Urban Jungle Vienne, U Zlaté Hrušky Prague, Prague Stream.
+// ─────────────────────────────────────────────────────────────
+
+export type HomeCase = { category: string; case: string };
+
+export const HOME_CASES: HomeCase[] = [
+  { category: "hospitality", case: "hotel-rathaus-wien" },
+  { category: "hospitality", case: "naturel-dorf-schonleitn" },
+  { category: "restaurants", case: "ce-pages" },
+];
+
+// Résout les cas d'accueil vers leur catégorie et leur couverture. Un cas
+// déclaré ici mais absent de PHOTO_CATEGORIES est ignoré silencieusement,
+// comme partout ailleurs : la déclaration dit l'intention, le reste décide
+// de la visibilité.
+export function resolveHomeCases() {
+  return HOME_CASES.flatMap((h) => {
+    const found = findCase(h.category, h.case);
+    if (!found) return [];
+    return [{
+      cat: found.cat,
+      item: found.item,
+      cover: `/images/portfolio/${found.cat.slug}/${found.item.slug}/1.jpg`,
+      href: `/photographer/${found.cat.slug}/${found.item.slug}`,
+    }];
+  });
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -171,6 +249,16 @@ export type HomeTile = {
 
 export const HOME_TILES: HomeTile[] = [
   {
+    // Porte ajoutée le 01/09, quand la grille est passée des catégories aux
+    // maisons : sans elle, le voyage et les catégories disparaissaient de la
+    // page d'accueil. La couverture est une image de Tokyo, donc la porte
+    // montre déjà ce qu'il y a derrière.
+    key: "portfolio",
+    href: "/photographer",
+    label: { fr: "Tout le portfolio", en: "All the work" },
+    cover: "/images/portfolio/travel/tokyo/1.jpg",
+  },
+  {
     key: "film",
     href: "/filmmaker",
     label: { fr: "Film", en: "Film" },
@@ -190,7 +278,11 @@ export const HOME_TILES: HomeTile[] = [
   },
   {
     key: "work",
-    href: "/about#travailler-avec-moi",
+    // Pointe vers /services depuis le 01/09. L'offre a quitté À propos pour
+    // avoir sa page : une ancre au milieu d'une page biographique n'est pas
+    // une page d'offre, et la page Vidéaste promettait « les formules » sans
+    // qu'aucune page de formules existe.
+    href: "/services",
     label: { fr: "Travaillons ensemble", en: "Work with me" },
     cover: "/images/about/hero.jpg",
   },

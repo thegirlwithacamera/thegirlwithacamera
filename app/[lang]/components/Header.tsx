@@ -17,32 +17,36 @@ export default function Header() {
 
   useEffect(() => { setMenuOpen(false); setMoreOpen(false); }, [pathname]);
 
-  // Ordre : Work (accueil) > Creator > About, puis un petit "+" qui regroupe
-  // les liens externes.
+  // Ordre : Photographer > Filmmaker > Creator > Services > Journal > About.
   //
-  // Vidéaste est sorti de la nav le 28/08 : la grille d'accueil porte une
-  // tuile Film, et une nav qui énumère trois métiers (Photographe, Vidéaste,
-  // Créatrice) vend un organigramme plutôt qu'une prestation. "Work" nomme le
-  // travail, la grille se charge de l'orienter.
+  // Décision de Sandrine du 01/09. Elle revient aux trois portes du Brand
+  // Core, plus l'offre et le journal. "Work" pointait vers l'accueil : une
+  // entrée de menu qui ramène à la page d'accueil n'est pas une page, et la
+  // grille d'accueil ne dit plus les catégories mais les maisons.
   //
-  // Les trois libellés sont en anglais dans les deux langues (28/08). Ce ne
-  // sont pas des phrases mais des enseignes : "Work" était déjà en anglais
-  // côté français, et une nav moitié anglaise moitié française se lisait
-  // comme un oubli. Le contenu des pages, lui, reste traduit.
-  const labels = { home: "Work", creator: "Creator", about: "About" };
-
+  // Journal remonte du menu "+" (il y était depuis le 27/08) : un lien replié
+  // n'est cliqué que par ceux qui le cherchaient déjà, et c'est le seul lien
+  // du site qui mène à un revenu récurrent.
+  //
+  // Services est nouveau : la page Filmmaker promettait "les formules" sans
+  // qu'aucune page de formules existe, et /about portait l'offre en plus du
+  // reste. À propos redevient une page sur Sandrine.
+  //
+  // Les libellés sont en anglais dans les deux langues (28/08). Ce ne sont pas
+  // des phrases mais des enseignes, et une nav moitié anglaise moitié
+  // française se lisait comme un oubli. Le contenu des pages reste traduit.
   const navLinks: NavLink[] = [
-    { href: `/${currentLang}`,           label: labels.home },
-    { href: `/${currentLang}/creator`,   label: labels.creator },
-    // À propos remplace Journal dans la nav principale le 27/08 : c'est la page
-    // qui porte les offres, donc le seul lien que doit trouver un client.
-    { href: `/${currentLang}/about`,     label: labels.about },
+    { href: `/${currentLang}/photographer`, label: "Photographer" },
+    { href: `/${currentLang}/filmmaker`,    label: "Filmmaker" },
+    { href: `/${currentLang}/creator`,      label: "Creator" },
+    { href: `/${currentLang}/services`,     label: "Services" },
+    { href: "https://thegirlwithacamera.substack.com/", label: "Journal", external: true },
+    { href: `/${currentLang}/about`,        label: "About" },
   ];
 
-  // Pages secondaires, rangees dans le "+".
+  // Pages secondaires, rangees dans le "+". Vide aujourd'hui : le "+" ne
+  // s'affiche que si cette liste contient quelque chose.
   const moreLinks: NavLink[] = [
-    // Journal replié ici le 27/08, il a laissé sa place à À propos.
-    { href: "https://thegirlwithacamera.substack.com/", label: "Journal", external: true },
     // Shop/Presets : page retiree du site (la boutique Gumroad reste en ligne).
     // Pour la remettre : decommente la ligne ci-dessous et passe
     // PRESETS_LIVE a true dans app/[lang]/presets/page.tsx.
@@ -142,7 +146,9 @@ export default function Header() {
             );
           })}
 
-          {/* "+" : pages secondaires en petit menu deroulant */}
+          {/* "+" : pages secondaires en petit menu deroulant. Masque quand la
+              liste est vide, sinon le bouton ouvre un cadre blanc vide. */}
+          {moreLinks.length > 0 && (
           <div style={{ position: "relative" }}>
             <button
               type="button"
@@ -197,6 +203,7 @@ export default function Header() {
               </div>
             )}
           </div>
+          )}
 
         </nav>
 

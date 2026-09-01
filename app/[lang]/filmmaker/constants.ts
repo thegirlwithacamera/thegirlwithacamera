@@ -18,3 +18,17 @@ export type DiaryCat = (typeof DIARY_CATS)[number];
 export const PUBLISHED_DIARY_CATS: readonly DiaryCat[] = ["places", "cities"];
 
 export type Diary = Record<DiaryCat, Clip[]>;
+
+// Films presents sur le disque mais retires du site. Comparaison sur le nom
+// de fichier, sans extension, insensible a la casse.
+//
+// Coloc Housing, retire le 01/09 avec le cas photo du meme nom : la
+// collaboration s'est terminee sur un retrait de licence de Sandrine. Le
+// fichier reste en place, rien n'est supprime, c'est la publication qui
+// s'arrete. Retirer la ligne republie le film.
+export const HIDDEN_FILMS: readonly string[] = ["coloc housing"];
+
+export function isHiddenFilm(file: string): boolean {
+  const base = file.replace(/\.[^.]+$/, "").trim().toLowerCase();
+  return HIDDEN_FILMS.includes(base);
+}

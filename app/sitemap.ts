@@ -1,12 +1,17 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
-import { getPublishedTrips } from "@/lib/diary";
 import { PHOTO_CATEGORIES, PHOTO_CATEGORY_SLUGS } from "@/app/[lang]/photographer/constants";
 import { countCasePhotos } from "@/lib/portfolio";
 
 // "/shop" retire tant que la boutique est hors ligne.
 const STATIC_PATHS = [
   "",
+  // Page d'index du portfolio, créée le 01/09. C'est elle qui vise
+  // "photographe hôtellerie Bruxelles".
+  "/photographer",
+  // Les pages de catégorie sortent de la navigation le 01/09 mais restent
+  // indexées : ce sont les seules qui peuvent se positionner sur une requête
+  // du type "photographe hôtel Vienne".
   ...PHOTO_CATEGORY_SLUGS.map((s) => `/photographer/${s}`),
   // Une URL par cas : un client, une destination, une série. C'est la page
   // qu'on colle dans un pitch, donc elle doit être indexée.
@@ -23,9 +28,12 @@ const STATIC_PATHS = [
   "/filmmaker",
   "/filmmaker/places",
   "/filmmaker/cities",
-  "/diary",
+  "/services",
   "/about",
 ];
+// "/diary" retiré le 01/09 : le Journal, c'est le Substack. La section Diary
+// du site faisait doublon et sa page Tokyo était en ligne avec ses blocs de
+// gabarit "[To replace]". Les URLs partent en redirection, voir middleware.ts.
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const langs: Array<"fr" | "en"> = ["fr", "en"];
@@ -46,20 +54,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  const diaryEntries: MetadataRoute.Sitemap = langs.flatMap((lang) =>
-    getPublishedTrips().map((trip) => ({
-      url: `${site.url}/${lang}/diary/${trip.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-      alternates: {
-        languages: {
-          fr: `${site.url}/fr/diary/${trip.slug}`,
-          en: `${site.url}/en/diary/${trip.slug}`,
-        },
-      },
-    })),
-  );
-
-  return [...staticEntries, ...diaryEntries];
+  return staticEntries;
 }

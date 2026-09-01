@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { PHOTO_CATEGORIES, HOME_TILES } from "./photographer/constants";
+import { resolveHomeCases, HOME_TILES } from "./photographer/constants";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -10,22 +10,30 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   return {
-    title: "Photographer",
+    // Le title valait "Photographer" tout court : c'est ce que voyaient
+    // l'onglet du navigateur et le résultat Google de la page d'accueil.
+    title: lang === "fr"
+      ? "The Girl With A Camera · Sandrine Ceuppens, photographe et vidéaste à Bruxelles"
+      : "The Girl With A Camera · Sandrine Ceuppens, photographer and filmmaker in Brussels",
     description: lang === "fr"
-      ? "Portfolio photographique de Sandrine Ceuppens. Hôtels et maisons, restaurants et bars, voyage, portraits. Bruxelles."
-      : "Photography portfolio by Sandrine Ceuppens. Hotels and venues, restaurants and bars, travel, portraits. Brussels-based photographer.",
+      ? "Photographe et vidéaste pour les hôtels, les maisons d'hôtes, les restaurants et les bars. Sandrine Ceuppens, basée à Bruxelles, en déplacement en Europe."
+      : "Photographer and filmmaker for hotels, guesthouses, restaurants and bars. Sandrine Ceuppens, based in Brussels, travelling across Europe.",
     alternates: { canonical: `/${lang}`, languages: { fr: "/fr", en: "/en" } },
   };
 }
 
 // ─────────────────────────────────────────────────────────────
-// ACCUEIL — une tuile par catégorie, puis les tuiles de HOME_TILES
-// (Film, Travaillons ensemble).
+// ACCUEIL — une tuile par maison (HOME_CASES), puis les portes de HOME_TILES
+// (Tout le portfolio, Film, Travaillons ensemble).
+//
+// Changement du 01/09 : la grille disait les catégories, elle dit maintenant
+// les clients. « Hôtels & maisons » ne prouve rien, « Hotel Rathaus Wien,
+// Vienne » prouve qu'un hôtel viennois a travaillé avec elle.
 //
 // Nombre de colonnes calculé sur le total des tuiles : 3 si c'est un multiple
-// de 3, 2 sinon. Aujourd'hui 4 catégories + 2 portes = 6, donc 3 colonnes et
-// deux rangées pleines. Le jour où une catégorie s'ajoute ou disparaît, la
-// grille se réajuste seule au lieu de laisser une rangée bancale.
+// de 3, 2 sinon. Aujourd'hui 3 maisons + 3 portes = 6, donc 3 colonnes et deux
+// rangées pleines. Quand une maison s'ajoute, la grille se réajuste seule au
+// lieu de laisser une rangée bancale.
 //
 // Pas de lien répété sous la grille : la tuile Travaillons ensemble suffit.
 //
@@ -34,7 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function HomePage({ params }: Props) {
   const { lang } = await params;
-  const tileCount = PHOTO_CATEGORIES.length + HOME_TILES.length;
+  const homeCases = resolveHomeCases();
+  const tileCount = homeCases.length + HOME_TILES.length;
   const cols = tileCount % 3 === 0 ? 3 : 2;
 
   return (
@@ -83,6 +92,18 @@ export default async function HomePage({ params }: Props) {
           transition: color 0.25s ease;
         }
         .cat-tile:hover .tile-cap { color: #0a0a0a; }
+        /* Nom du client en noir, ville et année en gris juste dessous :
+           la tuile dit qui, où et quand sans ouvrir la page. */
+        .tile-cap.is-case { color: #0a0a0a; }
+        .tile-place {
+          display: block;
+          margin-top: 3px;
+          font-size: 9px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #999;
+          text-align: center;
+        }
         .tile-cap.is-door { color: #0a0a0a; }
         .tile-cap.is-door::after { content: " →"; letter-spacing: 0; }
         .door-empty { position: absolute; inset: 0; background: #f4f1ec; }
@@ -96,21 +117,22 @@ export default async function HomePage({ params }: Props) {
       <h1 className="sr-only">The Girl With A Camera — Sandrine Ceuppens, Photographer Portfolio</h1>
       <main style={{ paddingTop: "16px", background: "#ffffff" }}>
         <div className="cat-grid" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
-          {PHOTO_CATEGORIES.map((cat, i) => (
-            <Link key={cat.slug} href={`/${lang}/photographer/${cat.slug}`} className="cat-tile">
+          {homeCases.map((c, i) => (
+            <Link key={`${c.cat.slug}/${c.item.slug}`} href={`/${lang}${c.href}`} className="cat-tile">
               <span className="tile-thumb">
                 <Image
-                  src={cat.cover}
-                  alt={`${cat.label.en} — photography by Sandrine Ceuppens`}
+                  src={c.cover}
+                  alt={c.item.intro ? c.item.intro.en : `${c.item.label.en} — ${c.cat.label.en} photographed by Sandrine Ceuppens`}
                   width={1066}
                   height={1600}
                   sizes="(max-width: 767px) 50vw, 380px"
                   priority={i < 2}
                   quality={78}
-                  style={cat.coverPosition ? { objectPosition: cat.coverPosition } : undefined}
+                  style={c.item.coverPosition ? { objectPosition: c.item.coverPosition } : undefined}
                 />
               </span>
-              <span className="tile-cap">{cat.label[lang]}</span>
+              <span className="tile-cap is-case">{c.item.label[lang]}</span>
+              {c.item.place && <span className="tile-place">{c.item.place[lang]}</span>}
             </Link>
           ))}
 
@@ -141,11 +163,11 @@ export default async function HomePage({ params }: Props) {
         "@context": "https://schema.org",
         "@type": "ImageGallery",
         name: "Portfolio by Sandrine Ceuppens",
-        description: "Photography portfolio organised by category: hotels and venues, restaurants and bars, travel, portraits",
-        associatedMedia: PHOTO_CATEGORIES.map((cat) => ({
+        description: "Hotels, guesthouses, restaurants and bars photographed by Sandrine Ceuppens across Europe",
+        associatedMedia: homeCases.map((c) => ({
           "@type": "ImageObject",
-          url: `https://thegirlwithacamera.com${cat.cover}`,
-          name: `${cat.label.en} photography`,
+          url: `https://thegirlwithacamera.com${c.cover}`,
+          name: `${c.item.label.en}${c.item.place ? `, ${c.item.place.en}` : ""}`,
           creator: { "@type": "Person", name: "Sandrine Ceuppens" }
         }))
       })}} />

@@ -1,0 +1,280 @@
+import Image from "next/image";
+import Link from "next/link";
+import type { Metadata } from "next";
+import { PHOTO_CATEGORIES } from "./constants";
+import { readCaseCover } from "@/lib/portfolio";
+
+interface Props {
+  params: Promise<{ lang: "fr" | "en" }>;
+}
+
+export function generateStaticParams() {
+  return (["fr", "en"] as const).map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title:
+      lang === "fr"
+        ? "Photographe hôtellerie et restauration à Bruxelles · The Girl With A Camera"
+        : "Hospitality and restaurant photographer in Brussels · The Girl With A Camera",
+    description:
+      lang === "fr"
+        ? "Sandrine Ceuppens photographie hôtels, maisons d'hôtes, restaurants et bars en Europe. Basée à Bruxelles, disponible en déplacement."
+        : "Sandrine Ceuppens photographs hotels, guesthouses, restaurants and bars across Europe. Based in Brussels, available for travel.",
+    alternates: {
+      canonical: `/${lang}/photographer`,
+      languages: { fr: "/fr/photographer", en: "/en/photographer" },
+    },
+  };
+}
+
+// ─────────────────────────────────────────────────────────────
+// Page Photographe : la grille de tous les cas, nommés.
+//
+// Créée le 01/09. /photographer renvoyait une 404 : il n'y avait que les
+// pages de catégorie, et la nav pointait vers l'accueil. Une entrée de menu
+// qui ramène à la page d'accueil n'est pas une page, et c'est celle-ci qui
+// peut se positionner sur « photographe hôtellerie Bruxelles ».
+//
+// Deux blocs, dans cet ordre :
+//   1. le travail de commande, maisons puis tables ;
+//   2. les séries personnelles, signalées comme telles.
+//
+// La distinction vient de `personal` dans constants.ts. Sans elle, un office
+// du tourisme et un hôtelier lisent Palerme comme une commande.
+//
+// Les pages de catégorie restent en ligne, hors de la navigation : ce sont
+// les seules qui peuvent se positionner sur « photographe hôtel Vienne ».
+// On y arrive par l'étiquette sous chaque tuile.
+// ─────────────────────────────────────────────────────────────
+
+type Row = {
+  key: string;
+  href: string;
+  cover: string;
+  title: string;
+  place?: string;
+  categoryLabel: string;
+  categoryHref: string;
+  altEn: string;
+  hasFilm: boolean;
+};
+
+function buildRows(lang: "fr" | "en", personal: boolean): Row[] {
+  return PHOTO_CATEGORIES.filter((cat) => Boolean(cat.personal) === personal).flatMap((cat) =>
+    cat.cases.flatMap((item) => {
+      const cover = readCaseCover(cat.slug, item.slug);
+      if (!cover) return [];
+      return [{
+        key: `${cat.slug}/${item.slug}`,
+        href: `/${lang}/photographer/${cat.slug}/${item.slug}`,
+        cover,
+        title: item.label[lang],
+        place: item.place?.[lang],
+        categoryLabel: cat.label[lang],
+        categoryHref: `/${lang}/photographer/${cat.slug}`,
+        altEn: item.intro
+          ? `${item.label.en}, ${item.intro.en}`
+          : `${item.label.en} — ${cat.label.en} photography by Sandrine Ceuppens`,
+        hasFilm: (item.films?.length ?? 0) > 0,
+      }];
+    }),
+  );
+}
+
+export default async function PhotographerPage({ params }: Props) {
+  const { lang } = await params;
+  const work = buildRows(lang, false);
+  const personal = buildRows(lang, true);
+
+  const intro =
+    lang === "fr"
+      ? "Je photographie des lieux qui reçoivent et les gens qui les font vivre. Maisons, tables, rues et voyages, en lumière naturelle, sans mise en scène ajoutée."
+      : "I photograph places that welcome people, and the people who keep them running. Houses, tables, streets and journeys, in natural light, with nothing staged on top.";
+  const personalHead = lang === "fr" ? "Séries personnelles" : "Personal series";
+  const ctaText = lang === "fr" ? "Un projet en tête ?" : "Have a project in mind?";
+  const ctaLink = lang === "fr" ? "Travaillons ensemble →" : "Work with me →";
+
+  const cols = (n: number) => (n === 1 ? 1 : n % 3 === 0 ? 3 : 2);
+
+  const grid = (rows: Row[]) => (
+    <div
+      className="case-grid"
+      style={{
+        gridTemplateColumns: `repeat(${cols(rows.length)}, 1fr)`,
+        maxWidth: cols(rows.length) === 1 ? "460px" : cols(rows.length) === 2 ? "900px" : undefined,
+      }}
+    >
+      {rows.map((r, i) => (
+        <div key={r.key} className="case-item">
+          <Link href={r.href} className="case-card">
+            <div className="case-thumb">
+              <Image
+                src={r.cover}
+                alt={r.altEn}
+                width={1066}
+                height={1600}
+                sizes="(max-width: 767px) 50vw, 420px"
+                priority={i < 3}
+                quality={78}
+              />
+              {r.hasFilm && (
+                <span className="case-film-flag" aria-hidden="true">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              )}
+            </div>
+            <div className="case-meta">
+              <p className="case-title">
+                {r.title}
+                {r.place && <span className="case-place">{r.place}</span>}
+              </p>
+            </div>
+          </Link>
+          <Link href={r.categoryHref} className="case-cat">{r.categoryLabel}</Link>
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <>
+      <style>{`
+        .cat-head { text-align: center; padding: 8px 20px 10px; }
+        .cat-head h1 {
+          font-family: var(--font-serif), Georgia, serif;
+          font-size: 26px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          margin: 0 0 6px;
+          font-weight: 400;
+        }
+        .page-intro {
+          max-width: 560px;
+          margin: 14px auto 34px;
+          padding: 0 20px;
+          font-size: 14px;
+          line-height: 1.65;
+          color: #525252;
+          text-align: center;
+        }
+        .case-grid {
+          display: grid;
+          gap: 22px;
+          max-width: 1260px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+        .case-item { display: block; }
+        .case-card { display: block; text-decoration: none; }
+        .case-thumb {
+          position: relative;
+          aspect-ratio: 4 / 5;
+          overflow: hidden;
+          background: #f2f2f2;
+        }
+        .case-thumb img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+        }
+        .case-card:hover .case-thumb img { transform: scale(1.05); }
+        .case-film-flag {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          background: rgba(10, 10, 10, 0.45);
+          backdrop-filter: blur(4px);
+          padding-left: 2px;
+        }
+        .case-meta { padding: 10px 2px 0; text-align: center; }
+        .case-title {
+          margin: 0;
+          font-size: 10px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          font-weight: 400;
+        }
+        .case-place { color: #b3aca2; margin-left: 6px; }
+        /* Étiquette de catégorie : le seul chemin qui reste vers les pages de
+           catégorie, sorties de la navigation mais gardées pour la recherche. */
+        .case-cat {
+          display: block;
+          margin-top: 4px;
+          text-align: center;
+          font-size: 9px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #c4bdb3;
+          text-decoration: none;
+        }
+        .case-cat:hover { color: #0a0a0a; }
+        .section-head {
+          text-align: center;
+          margin: 72px 0 26px;
+          font-size: 10px;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: #999;
+          font-weight: 400;
+        }
+        .page-cta { text-align: center; padding: 76px 20px 0; }
+        .page-cta p { margin: 0 0 10px; font-size: 13px; color: #525252; }
+        .page-cta a {
+          font-size: 10px;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          text-decoration: none;
+          border-bottom: 1px solid #0a0a0a;
+          padding-bottom: 2px;
+        }
+        @media (max-width: 767px) {
+          .case-grid { gap: 10px; padding: 0 12px; grid-template-columns: repeat(2, 1fr) !important; max-width: none !important; }
+          .cat-head h1 { font-size: 18px; }
+          .page-intro { font-size: 13px; margin-bottom: 26px; }
+          .case-title { font-size: 8px; letter-spacing: 0.12em; }
+          .case-place { margin-left: 4px; }
+          .case-meta { padding-top: 6px; }
+          .section-head { margin: 52px 0 20px; }
+        }
+      `}</style>
+
+      <main style={{ paddingTop: "16px", paddingBottom: "72px", background: "#ffffff" }}>
+        <div className="cat-head">
+          <h1>{lang === "fr" ? "Photographe" : "Photographer"}</h1>
+        </div>
+        <p className="page-intro">{intro}</p>
+
+        {work.length > 0 && grid(work)}
+
+        {personal.length > 0 && (
+          <>
+            <h2 className="section-head">{personalHead}</h2>
+            {grid(personal)}
+          </>
+        )}
+
+        <div className="page-cta">
+          <p>{ctaText}</p>
+          <Link href={`/${lang}/services`}>{ctaLink}</Link>
+        </div>
+      </main>
+    </>
+  );
+}

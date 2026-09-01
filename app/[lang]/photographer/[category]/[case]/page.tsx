@@ -30,8 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const place = item.place ? `, ${item.place[lang]}` : "";
   return {
     title: `${item.label[lang]} — ${cat.label[lang]}`,
-    description:
-      lang === "fr"
+    // La phrase du cas fait une meilleure description que le gabarit : elle
+    // décrit le lieu au lieu de répéter la catégorie.
+    description: item.intro
+      ? item.intro[lang]
+      : lang === "fr"
         ? `${item.label.fr}${place} — ${cat.label.fr.toLowerCase()} photographiés par Sandrine Ceuppens, The Girl With A Camera.`
         : `${item.label.en}${place} — ${cat.label.en.toLowerCase()} photographed by Sandrine Ceuppens, The Girl With A Camera.`,
     alternates: {
@@ -84,6 +87,18 @@ export default async function PhotographerCasePage({ params }: Props) {
           font-weight: 400;
         }
         .cat-head .case-place { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #999; }
+        /* Deux phrases sous le titre. Un hôtelier qui arrive ici doit lire ce
+           que le lieu fait à l'image avant de faire défiler, et une page de
+           douze photos sans un mot ne se positionne sur rien. */
+        .case-intro {
+          max-width: 560px;
+          margin: 18px auto 0;
+          font-size: 14px;
+          line-height: 1.65;
+          color: #525252;
+          text-align: center;
+        }
+        .case-intro .case-shot { display: block; margin-top: 6px; color: #999; font-size: 13px; }
         .cat-back {
           display: inline-block;
           margin: 0 auto 4px;
@@ -204,6 +219,12 @@ export default async function PhotographerCasePage({ params }: Props) {
           </div>
           <h1>{item.label[lang]}</h1>
           {item.place && <span className="case-place">{item.place[lang]}</span>}
+          {item.intro && (
+            <p className="case-intro">
+              {item.intro[lang]}
+              {item.shotAt && <span className="case-shot">{item.shotAt[lang]}</span>}
+            </p>
+          )}
         </div>
 
         {photos.length > 12 ? (
@@ -214,7 +235,12 @@ export default async function PhotographerCasePage({ params }: Props) {
               <div key={i} className="photo-cell">
                 <Image
                   src={p.src}
-                  alt={`${item.label.en} — ${cat.label.en} photograph ${i + 1} by Sandrine Ceuppens`}
+                  // La première image porte la phrase du cas, les suivantes le
+                  // gabarit. Douze alt identiques n'apportent rien ; une vraie
+                  // phrase sur l'image d'ouverture, si.
+                  alt={i === 0 && item.intro
+                    ? `${item.label.en}, ${item.intro.en}`
+                    : `${item.label.en} — ${cat.label.en} photograph ${i + 1} by Sandrine Ceuppens`}
                   width={1066}
                   height={1600}
                   sizes="(max-width: 767px) 33vw, 420px"

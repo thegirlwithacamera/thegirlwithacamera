@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import type { Clip } from "@/app/[lang]/creator/constants";
+import { isHiddenFilm } from "@/app/[lang]/filmmaker/constants";
 import type { Diary, DiaryCat } from "@/app/[lang]/filmmaker/constants";
 
 // Lecture des dossiers videos (au build, cote serveur uniquement).
@@ -127,14 +128,14 @@ export function readDiary(): Diary {
       const cat = matchCat(e.name);
       if (!cat) continue;
       const files = fs.readdirSync(path.join(root, e.name));
-      for (const f of files.filter((f) => VIDEO_RE.test(f)).sort()) {
+      for (const f of files.filter((f) => VIDEO_RE.test(f) && !isHiddenFilm(f)).sort()) {
         groups[cat].push({
           src: `/videos/creator/${rootName}/${e.name}/${f}`,
           label: diaryLabel(f),
           poster: posterFor(files, `${rootName}/${e.name}`, f),
         });
       }
-    } else if (VIDEO_RE.test(e.name)) {
+    } else if (VIDEO_RE.test(e.name) && !isHiddenFilm(e.name)) {
       // Fichier en vrac (ancienne convention) : categorie via le nom.
       const rootFiles = entries.map((x) => x.name);
       groups[matchCat(e.name) ?? "places"].push({
