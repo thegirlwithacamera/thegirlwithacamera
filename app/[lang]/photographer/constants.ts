@@ -59,12 +59,15 @@ export type PhotoCategory = {
   // Photo représentative montrée sur la tuile d'accueil.
   cover: string;
   coverPosition?: string;
-  // Travail personnel plutôt que commande. Sur la page Photographe, ces
-  // catégories vont dans un bloc séparé en bas : présentées dans la même
-  // grille que les maisons, elles laisseraient croire que Palerme était une
-  // commande. Elles restent en ligne parce qu'elles amènent du business,
-  // c'est le portfolio que regarde un office du tourisme.
-  personal?: boolean;
+  // Séries de ville. Sur la page Photographe, ces catégories vont dans leur
+  // propre bloc, sous leur propre titre, parce que ce n'est pas la même offre
+  // qu'un reportage de maison : on vend un regard sur une ville, pas la visite
+  // d'une adresse. Le bloc s'adresse aux offices du tourisme et aux compagnies
+  // de train.
+  //
+  // Renommé le 01/09 (c'était `personal`). Le mot disait travail personnel,
+  // donc loisir, alors que c'est une ligne commerciale à part entière.
+  citySeries?: boolean;
   cases: PhotoCase[];
 };
 
@@ -126,7 +129,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     slug: "travel",
     label: { fr: "Voyage", en: "Travel" },
     cover: "/images/portfolio/travel/tokyo/1.jpg",
-    personal: true,
+    citySeries: true,
     cases: [
       {
         slug: "tokyo",
@@ -277,13 +280,14 @@ export const HOME_TILES: HomeTile[] = [
     cover: "/images/tiles/film-schonleitn.jpg",
   },
   {
-    key: "work",
-    // Pointe vers /services depuis le 01/09. L'offre a quitté À propos pour
-    // avoir sa page : une ancre au milieu d'une page biographique n'est pas
-    // une page d'offre, et la page Vidéaste promettait « les formules » sans
-    // qu'aucune page de formules existe.
-    href: "/services",
-    label: { fr: "Travaillons ensemble", en: "Work with me" },
+    key: "about",
+    // Cette tuile porte le portrait de Sandrine, donc elle mène à sa page.
+    // Elle pointait vers l'offre, qui vit maintenant sur /services, présente
+    // dans le menu. À propos est passé dans le "+" le 01/09 : la tuile est
+    // son chemin visible, et une photo de quelqu'un qui mène à une grille de
+    // tarifs était de toute façon une fausse piste.
+    href: "/about",
+    label: { fr: "À propos", en: "About" },
     cover: "/images/about/hero.jpg",
   },
 ];

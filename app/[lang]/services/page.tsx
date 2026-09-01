@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { WORK } from "@/lib/offers";
 import ServicesForm from "./ServicesForm";
 
 interface Props {
@@ -42,48 +44,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // AUCUN DÉLAI DE LIVRAISON annoncé non plus : écrit sur une page publique il
 // devient un engagement. Il va dans le devis, au cas par cas.
 //
-// Le bloc droits reprend les décisions des 27 et 28 août : usage organique
-// sans limite de durée pour l'adresse photographiée, le payant chiffré à
-// part, licence non transférable, fichiers bruts jamais cédés. Ne jamais
-// écrire « illimité » sans « organique ».
+// Les trois cartes d'offre viennent de lib/offers.ts. Elles vivaient sur la
+// page À propos et se sont retrouvées en double ici le 01/09, avec deux
+// textes différents pour la même prestation. Celles d'À propos étaient les
+// bonnes : elles viennent de la grille hôtels, avec les livrables et les
+// droits formule par formule.
+//
+// C'est pour ça que le bloc « Les droits » générique a disparu : il disait
+// « usage organique sans limite de durée » pour tout, ce qui est vrai des
+// hôtels et faux du film de marque et du contenu récurrent, tous deux à
+// douze mois. Chaque carte porte ses propres droits.
 // ─────────────────────────────────────────────────────────────
-
-type Block = { title: string; body: string[] };
 
 const COPY = {
   fr: {
     h1: "Services",
-    lede: "Je photographie et je filme des lieux qui reçoivent. Hôtels, maisons, tables, bars. Lumière naturelle, et les gestes qui vont avec.",
-    blocks: [
-      {
-        title: "Photographe",
-        body: [
-          "Un reportage sur place, d'une demi-journée à deux jours selon la taille de la maison. Chambres, espaces communs, détails, extérieurs, et la table s'il y en a une.",
-          "Vous recevez une sélection retouchée, en horizontal et en vertical, prête pour votre site, la presse et les plateformes de réservation.",
-        ],
-      },
-      {
-        title: "Vidéaste",
-        body: [
-          "Un film court ou une série de verticaux, tournés pendant le reportage photo ou sur une production dédiée. Concept, tournage, montage, son.",
-          "Vous recevez le film en 16:9, les verticaux en 9:16, et les sous-titres.",
-        ],
-      },
-      {
-        title: "Créatrice",
-        body: [
-          "Du contenu pensé pour vos canaux, pour les miens, ou pour les deux. Vidéos produit, tutoriels, unboxing, formats parlés.",
-          "La publication sur mes canaux dépend de la formule, toujours avec la mention de partenariat.",
-        ],
-      },
-    ] as Block[],
-    rightsTitle: "Les droits",
-    rights: [
-      "Chaque formule inclut l'usage organique, sans limite de durée, pour l'adresse photographiée.",
-      "Ce qui est payant, publicité, boost, whitelisting, se chiffre à part selon le territoire, la durée et les médias.",
-      "La licence appartient à l'établissement photographié. Elle ne s'étend pas aux autres adresses du groupe et s'éteint en cas de changement d'enseigne ou de propriétaire.",
-      "Les fichiers bruts ne sont pas cédés.",
-    ],
     howTitle: "Comment ça se passe",
     how: [
       "Vous m'écrivez la ville, les dates et ce que vous voulez montrer.",
@@ -92,40 +67,10 @@ const COPY = {
       "Vous recevez la sélection.",
     ],
     formTitle: "Un projet en tête ?",
+    talk: "Parlons-en",
   },
   en: {
     h1: "Services",
-    lede: "I photograph and film places that welcome people. Hotels, houses, tables, bars. Natural light, and the gestures that come with it.",
-    blocks: [
-      {
-        title: "Photographer",
-        body: [
-          "A shoot on location, from half a day to two days depending on the size of the house. Rooms, common spaces, details, exteriors, and the table if there is one.",
-          "You receive an edited selection, horizontal and vertical, ready for your website, the press and booking platforms.",
-        ],
-      },
-      {
-        title: "Filmmaker",
-        body: [
-          "A short film or a set of verticals, shot alongside the photographs or as a dedicated production. Concept, filming, editing, sound.",
-          "You receive the film in 16:9, the verticals in 9:16, and the subtitles.",
-        ],
-      },
-      {
-        title: "Creator",
-        body: [
-          "Content made for your channels, for mine, or for both. Product videos, tutorials, unboxing, talking formats.",
-          "Posting on my own channels depends on the package, always with the partnership disclosure.",
-        ],
-      },
-    ] as Block[],
-    rightsTitle: "Rights",
-    rights: [
-      "Every package includes organic use, with no time limit, for the address photographed.",
-      "Anything paid, advertising, boosting, whitelisting, is scoped and quoted separately based on duration, territory and media.",
-      "The licence belongs to the establishment photographed. It does not extend to the other addresses of the group and it ends if the name or the ownership changes.",
-      "Raw files are not transferred.",
-    ],
     howTitle: "How it works",
     how: [
       "You tell me the city, the dates and what you want to show.",
@@ -134,12 +79,14 @@ const COPY = {
       "You receive the selection.",
     ],
     formTitle: "Have a project in mind?",
+    talk: "Let's talk",
   },
 } as const;
 
 export default async function ServicesPage({ params }: Props) {
   const { lang } = await params;
   const c = COPY[lang];
+  const work = WORK[lang];
 
   return (
     <>
@@ -163,24 +110,75 @@ export default async function ServicesPage({ params }: Props) {
           color: #525252;
           text-align: center;
         }
-        .svc-wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-        .svc-blocks {
+        .svc-wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        /* Trois cartes, meme gabarit, alignees en bas grace au flex :
+           sans ca, les CTA se retrouvent a trois hauteurs differentes. */
+        .svc-offers {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 40px;
+          gap: 22px;
           margin-top: 64px;
         }
-        .svc-block h2 {
+        .svc-offer {
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #ebebeb;
+          padding: 30px 26px;
+        }
+        .svc-offer .o-emoji { font-size: 22px; line-height: 1; margin-bottom: 14px; }
+        .svc-offer h2 {
           font-family: var(--font-serif), Georgia, serif;
-          font-size: 15px;
-          letter-spacing: 0.12em;
+          font-size: 16px;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
           color: #0a0a0a;
           font-weight: 400;
-          margin: 0 0 14px;
+          margin: 0 0 8px;
         }
-        .svc-block p { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #525252; }
-        .svc-block p:last-child { margin-bottom: 0; }
+        .svc-offer .o-sub { margin: 0 0 20px; font-size: 13px; line-height: 1.6; color: #525252; }
+        .svc-offer .o-pkg {
+          margin: 0 0 10px;
+          font-size: 10px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+        }
+        .svc-offer .o-pkg.is-addons { margin-top: 20px; color: #999; }
+        .svc-offer ul { list-style: none; padding: 0; margin: 0; }
+        .svc-offer li {
+          position: relative;
+          padding-left: 14px;
+          margin-bottom: 8px;
+          font-size: 12.5px;
+          line-height: 1.55;
+          color: #525252;
+        }
+        .svc-offer li::before { content: "·"; position: absolute; left: 2px; color: #b3aca2; }
+        .svc-offer .o-addons li { color: #777; font-size: 11.5px; }
+        .svc-offer .o-proof {
+          display: inline-block;
+          margin-top: 18px;
+          font-size: 10px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #999;
+          text-decoration: none;
+          border-bottom: 1px solid #e5e5e5;
+          padding-bottom: 2px;
+        }
+        .svc-offer .o-proof:hover { color: #0a0a0a; border-color: #0a0a0a; }
+        .svc-offer .o-cta-wrap { margin-top: auto; padding-top: 26px; }
+        .svc-offer .o-cta {
+          display: inline-block;
+          border: 1px solid #0a0a0a;
+          padding: 11px 22px;
+          font-size: 10px;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          text-decoration: none;
+        }
+        .svc-offer .o-cta:hover { background: #0a0a0a; color: #fff; }
         .svc-section { margin-top: 72px; }
         .svc-section h2 {
           font-size: 10px;
@@ -244,7 +242,8 @@ export default async function ServicesPage({ params }: Props) {
         @media (max-width: 767px) {
           .svc-head h1 { font-size: 18px; }
           .svc-lede { font-size: 14px; }
-          .svc-blocks { grid-template-columns: 1fr; gap: 34px; margin-top: 46px; }
+          .svc-offers { grid-template-columns: 1fr; gap: 14px; margin-top: 46px; }
+          .svc-offer { padding: 24px 20px; }
           .svc-section { margin-top: 52px; }
           .services-form { grid-template-columns: 1fr; }
         }
@@ -254,22 +253,40 @@ export default async function ServicesPage({ params }: Props) {
         <div className="svc-head">
           <h1>{c.h1}</h1>
         </div>
-        <p className="svc-lede">{c.lede}</p>
+        <p className="svc-lede">{work.intro}</p>
 
         <div className="svc-wrap">
-          <div className="svc-blocks">
-            {c.blocks.map((b) => (
-              <div key={b.title} className="svc-block">
-                <h2>{b.title}</h2>
-                {b.body.map((p) => <p key={p}>{p}</p>)}
+          <div className="svc-offers">
+            {work.offers.map((o) => (
+              <div key={o.title} className="svc-offer">
+                <div className="o-emoji">{o.emoji}</div>
+                <h2>{o.title}</h2>
+                <p className="o-sub">{o.subtitle}</p>
+                {o.packageName && <p className="o-pkg">{o.packageName}</p>}
+                <ul>
+                  {o.items.map((it) => <li key={it}>{it}</li>)}
+                </ul>
+                {o.addons && o.addons.length > 0 && (
+                  <>
+                    {o.addonsLabel && <p className="o-pkg is-addons">{o.addonsLabel}</p>}
+                    <ul className="o-addons">
+                      {o.addons.map((ad) => <li key={ad}>{ad}</li>)}
+                    </ul>
+                  </>
+                )}
+                {o.proof && (
+                  <Link href={`/${lang}${o.proof.href}`} className="o-proof">
+                    {o.proof.label} →
+                  </Link>
+                )}
+                <div className="o-cta-wrap">
+                  {/* Vers le formulaire de la meme page, pas un mailto : un
+                      lien mailto donne un mail vide, le formulaire un brief. */}
+                  <a className="o-cta" href="#contact">{c.talk}</a>
+                </div>
               </div>
             ))}
           </div>
-
-          <section className="svc-section">
-            <h2>{c.rightsTitle}</h2>
-            {c.rights.map((p) => <p key={p}>{p}</p>)}
-          </section>
 
           <section className="svc-section">
             <h2>{c.howTitle}</h2>

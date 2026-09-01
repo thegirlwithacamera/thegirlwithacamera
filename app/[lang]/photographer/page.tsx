@@ -39,11 +39,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // peut se positionner sur « photographe hôtellerie Bruxelles ».
 //
 // Deux blocs, dans cet ordre :
-//   1. le travail de commande, maisons puis tables ;
-//   2. les séries personnelles, signalées comme telles.
+//   1. les lieux, maisons puis tables ;
+//   2. les séries de ville, sous leur propre titre.
 //
-// La distinction vient de `personal` dans constants.ts. Sans elle, un office
-// du tourisme et un hôtelier lisent Palerme comme une commande.
+// La distinction vient de `citySeries` dans constants.ts. Le second bloc
+// s'appelait « Séries personnelles » : le mot disait loisir alors que c'est
+// une offre, celle qu'achètent les offices du tourisme et les compagnies de
+// train. Il se vend maintenant comme tel, avec sa propre phrase.
 //
 // Les pages de catégorie restent en ligne, hors de la navigation : ce sont
 // les seules qui peuvent se positionner sur « photographe hôtel Vienne ».
@@ -62,8 +64,8 @@ type Row = {
   hasFilm: boolean;
 };
 
-function buildRows(lang: "fr" | "en", personal: boolean): Row[] {
-  return PHOTO_CATEGORIES.filter((cat) => Boolean(cat.personal) === personal).flatMap((cat) =>
+function buildRows(lang: "fr" | "en", citySeries: boolean): Row[] {
+  return PHOTO_CATEGORIES.filter((cat) => Boolean(cat.citySeries) === citySeries).flatMap((cat) =>
     cat.cases.flatMap((item) => {
       const cover = readCaseCover(cat.slug, item.slug);
       if (!cover) return [];
@@ -86,14 +88,19 @@ function buildRows(lang: "fr" | "en", personal: boolean): Row[] {
 
 export default async function PhotographerPage({ params }: Props) {
   const { lang } = await params;
-  const work = buildRows(lang, false);
-  const personal = buildRows(lang, true);
+  const places = buildRows(lang, false);
+  const cities = buildRows(lang, true);
 
   const intro =
     lang === "fr"
       ? "Je photographie des lieux qui reçoivent et les gens qui les font vivre. Maisons, tables, rues et voyages, en lumière naturelle, sans mise en scène ajoutée."
       : "I photograph places that welcome people, and the people who keep them running. Houses, tables, streets and journeys, in natural light, with nothing staged on top.";
-  const personalHead = lang === "fr" ? "Séries personnelles" : "Personal series";
+  const citiesHead = lang === "fr" ? "Voyage" : "Travel";
+  const citiesSub = lang === "fr" ? "Mon œil sur la ville" : "The city, the way I see it";
+  const citiesLede =
+    lang === "fr"
+      ? "Une ville regardée à cinq heures du matin, les marchés avant la foule, les rues avant qu'elles se remplissent. Pour un office du tourisme, une compagnie de train, ou une maison qui veut montrer sa ville autant que ses murs."
+      : "A city at five in the morning, the markets before the crowd, the streets before they fill. For a tourism board, a rail company, or a house that wants to show its city as much as its walls.";
   const ctaText = lang === "fr" ? "Un projet en tête ?" : "Have a project in mind?";
   const ctaLink = lang === "fr" ? "Travaillons ensemble →" : "Work with me →";
 
@@ -224,14 +231,33 @@ export default async function PhotographerPage({ params }: Props) {
           text-decoration: none;
         }
         .case-cat:hover { color: #0a0a0a; }
+        /* Le bloc Voyage porte un vrai titre, pas une etiquette de section :
+           c'est une offre, elle a droit au meme traitement que le haut de
+           page. */
+        .section-block { text-align: center; margin: 88px 0 30px; }
         .section-head {
-          text-align: center;
-          margin: 72px 0 26px;
+          font-family: var(--font-serif), Georgia, serif;
+          font-size: 22px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          font-weight: 400;
+          margin: 0 0 6px;
+        }
+        .section-sub {
+          margin: 0;
           font-size: 10px;
-          letter-spacing: 0.22em;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: #999;
-          font-weight: 400;
+        }
+        .section-lede {
+          max-width: 560px;
+          margin: 16px auto 0;
+          padding: 0 20px;
+          font-size: 14px;
+          line-height: 1.65;
+          color: #525252;
         }
         .page-cta { text-align: center; padding: 76px 20px 0; }
         .page-cta p { margin: 0 0 10px; font-size: 13px; color: #525252; }
@@ -251,7 +277,9 @@ export default async function PhotographerPage({ params }: Props) {
           .case-title { font-size: 8px; letter-spacing: 0.12em; }
           .case-place { margin-left: 4px; }
           .case-meta { padding-top: 6px; }
-          .section-head { margin: 52px 0 20px; }
+          .section-block { margin: 62px 0 22px; }
+          .section-head { font-size: 17px; }
+          .section-lede { font-size: 13px; }
         }
       `}</style>
 
@@ -261,12 +289,16 @@ export default async function PhotographerPage({ params }: Props) {
         </div>
         <p className="page-intro">{intro}</p>
 
-        {work.length > 0 && grid(work)}
+        {places.length > 0 && grid(places)}
 
-        {personal.length > 0 && (
+        {cities.length > 0 && (
           <>
-            <h2 className="section-head">{personalHead}</h2>
-            {grid(personal)}
+            <div className="section-block">
+              <h2 className="section-head">{citiesHead}</h2>
+              <p className="section-sub">{citiesSub}</p>
+              <p className="section-lede">{citiesLede}</p>
+            </div>
+            {grid(cities)}
           </>
         )}
 

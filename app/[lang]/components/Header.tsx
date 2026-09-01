@@ -35,18 +35,22 @@ export default function Header() {
   // Les libellés sont en anglais dans les deux langues (28/08). Ce ne sont pas
   // des phrases mais des enseignes, et une nav moitié anglaise moitié
   // française se lisait comme un oubli. Le contenu des pages reste traduit.
+  // Quatre entrees au premier niveau, decision du 01/09 : ce sont les quatre
+  // choses qu'on achete. Journal et A propos passent dans le "+" : ils ne
+  // vendent rien, et A propos garde sa tuile en page d'accueil, celle qui
+  // porte la photo de Sandrine.
   const navLinks: NavLink[] = [
     { href: `/${currentLang}/photographer`, label: "Photographer" },
     { href: `/${currentLang}/filmmaker`,    label: "Filmmaker" },
     { href: `/${currentLang}/creator`,      label: "Creator" },
     { href: `/${currentLang}/services`,     label: "Services" },
-    { href: "https://thegirlwithacamera.substack.com/", label: "Journal", external: true },
-    { href: `/${currentLang}/about`,        label: "About" },
   ];
 
-  // Pages secondaires, rangees dans le "+". Vide aujourd'hui : le "+" ne
-  // s'affiche que si cette liste contient quelque chose.
+  // Pages secondaires, rangees dans le "+". Le "+" ne s'affiche que si cette
+  // liste contient quelque chose.
   const moreLinks: NavLink[] = [
+    { href: "https://thegirlwithacamera.substack.com/", label: "Journal", external: true },
+    { href: `/${currentLang}/about`, label: "About" },
     // Shop/Presets : page retiree du site (la boutique Gumroad reste en ligne).
     // Pour la remettre : decommente la ligne ci-dessous et passe
     // PRESETS_LIVE a true dans app/[lang]/presets/page.tsx.
@@ -186,6 +190,8 @@ export default function Header() {
                   <Link
                     key={l.href}
                     href={l.href}
+                    target={l.external ? "_blank" : undefined}
+                    rel={l.external ? "noopener noreferrer" : undefined}
                     style={{
                       display: "block",
                       fontSize: "11px",
