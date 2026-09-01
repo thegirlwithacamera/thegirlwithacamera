@@ -206,7 +206,7 @@ export default async function PhotographerCasePage({ params }: Props) {
           {item.place && <span className="case-place">{item.place[lang]}</span>}
         </div>
 
-        {photos.length > 9 ? (
+        {photos.length > 12 ? (
           <PhotoPager photos={photos} catLabel={`${item.label.en} — ${cat.label.en}`} />
         ) : (
           <div className="photo-grid">
