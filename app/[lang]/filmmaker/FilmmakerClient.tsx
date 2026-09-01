@@ -31,7 +31,16 @@ import {
 // Vocabulaire aligné sur la grille photo : un hôtelier retrouve les mêmes
 // mots d'une page à l'autre. La description dit la prestation, pas seulement
 // l'esthétique : le film fait partie des formules, il doit se commander.
-const content = {
+type Head = { title: string; sub?: string; lede?: string };
+type Content = {
+  title: string;
+  desc: string;
+  offer: string;
+  photos: string;
+  heads: Record<DiaryCat, Head>;
+};
+
+const content: Record<"fr" | "en", Content> = {
   fr: {
     title: "VIDÉASTE",
     desc: "Films de marque et verticales pour les maisons, les tables et les marques. Lumière naturelle, montage narratif, sound design.",
@@ -39,7 +48,11 @@ const content = {
     photos: "Voir les photos",
     heads: {
       places: { title: "Maisons & tables", sub: "" },
-      cities: { title: "Voyage", sub: "Mon œil sur la ville" },
+      cities: {
+        title: "Voyage",
+        sub: "Mon œil sur la ville",
+        lede: "Un film de ville pour un office du tourisme, une compagnie de train, une région ou une maison qui veut montrer où elle se trouve autant que ce qu'elle est.",
+      },
       lifestyle: { title: "Quotidien", sub: "" },
       fashion: { title: "Mode", sub: "" },
       bts: { title: "Coulisses", sub: "" },
@@ -52,7 +65,11 @@ const content = {
     photos: "See the photographs",
     heads: {
       places: { title: "Hotels & venues", sub: "" },
-      cities: { title: "Travel", sub: "The city, the way I see it" },
+      cities: {
+        title: "Travel",
+        sub: "The city, the way I see it",
+        lede: "A city film for a tourism board, a rail company, a region, or a house that wants to show where it stands as much as what it is.",
+      },
       lifestyle: { title: "Lifestyle", sub: "" },
       fashion: { title: "Fashion", sub: "" },
       bts: { title: "Behind the scenes", sub: "" },
@@ -179,6 +196,17 @@ export default function FilmmakerClient({
           text-transform: uppercase;
           color: #999;
         }
+        /* Le bloc Voyage dit a qui il s'adresse : sans ca, il se lit comme
+           un carnet de voyage et pas comme une prestation. */
+        .film-section .film-lede {
+          max-width: 560px;
+          margin: 16px auto 0;
+          font-size: 14px;
+          line-height: 1.65;
+          letter-spacing: 0;
+          text-transform: none;
+          color: #525252;
+        }
 
         /* La grille. 16:9 parce qu'un film n'est pas une photo de portfolio,
            et trois colonnes comme partout ailleurs sur le site. */
@@ -280,6 +308,7 @@ export default function FilmmakerClient({
             <div className="film-section">
               <h2>{t.heads[cat].title}</h2>
               {t.heads[cat].sub && <p>{t.heads[cat].sub}</p>}
+              {t.heads[cat].lede && <p className="film-lede">{t.heads[cat].lede}</p>}
             </div>
             <div className="film-grid">
               {diary[cat].map((clip, i) => tile(clip, `${cat}-${i}`))}

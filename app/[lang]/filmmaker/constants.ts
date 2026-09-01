@@ -26,7 +26,20 @@ export type Diary = Record<DiaryCat, Clip[]>;
 // collaboration s'est terminee sur un retrait de licence de Sandrine. Le
 // fichier reste en place, rien n'est supprime, c'est la publication qui
 // s'arrete. Retirer la ligne republie le film.
-export const HIDDEN_FILMS: readonly string[] = ["coloc housing"];
+export const HIDDEN_FILMS: readonly string[] = [
+  // Retire le 01/09 avec le cas photo du meme nom : la collaboration s'est
+  // terminee sur un retrait de licence de Sandrine.
+  "coloc housing",
+  // Films de ville sans page photo derriere, retires le 01/09. Un film qui
+  // ne mene nulle part est une impasse : la vignette n'a ni ville ni lien,
+  // et le visiteur qui accroche n'a rien a regarder ensuite. Ils reviennent
+  // le jour ou Nara et Osaka ont assez d'images pour ouvrir un cas.
+  //
+  // Dao Liege et Van der Valk Selys sont dans le meme etat mais restent en
+  // ligne : leurs photos existent et arrivent, decision de Sandrine.
+  "city diary nara",
+  "city diary osaka",
+];
 
 export function isHiddenFilm(file: string): boolean {
   const base = file.replace(/\.[^.]+$/, "").trim().toLowerCase();
