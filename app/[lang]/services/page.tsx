@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { WORK } from "@/lib/offers";
+import { site } from "@/lib/site";
 import ServicesForm from "./ServicesForm";
 
 interface Props {
@@ -70,6 +71,33 @@ const COPY = {
     ],
     formTitle: "Un projet en tête ?",
     talk: "Parlons-en",
+    faqTitle: "Les questions qu'on me pose",
+    faq: [
+      {
+        q: "Vous vous déplacez ?",
+        a: "Oui. Le transport est inclus dans un rayon de moins de deux heures de train depuis Bruxelles. Au delà, il se chiffre à part, et je regroupe volontiers plusieurs adresses sur un même déplacement.",
+      },
+      {
+        q: "Combien de temps sur place ?",
+        a: "D'une demi-journée à deux jours selon la taille de la maison, et une nuit sur place dans toutes les formules hôtel. C'est elle qui donne accès aux heures où le lieu est vide, entre six et neuf heures du matin.",
+      },
+      {
+        q: "Faut-il fermer, ou vider les chambres ?",
+        a: "Non. Je travaille pendant que la maison vit, en lumière naturelle. Une chambre libre le matin suffit, et le personnel peut rester dans le cadre, c'est souvent ce qui fait l'image.",
+      },
+      {
+        q: "À qui appartiennent les images ?",
+        a: "Je garde le droit d'auteur, vous recevez une licence. Elle couvre l'usage organique sans limite de durée pour l'adresse photographiée. Elle ne s'étend pas aux autres adresses du groupe et s'éteint en cas de changement d'enseigne ou de propriétaire.",
+      },
+      {
+        q: "Et si on veut faire de la publicité avec ?",
+        a: "C'est possible et ça se chiffre à part, selon le territoire, la durée et les médias. Même chose pour le print, les campagnes, l'exclusivité et le whitelisting. Les fichiers bruts, eux, ne se cèdent pas.",
+      },
+      {
+        q: "Vous publiez sur vos propres canaux ?",
+        a: "Cela dépend de la formule. Quand c'est prévu, la mention de partenariat est systématique.",
+      },
+    ],
   },
   en: {
     h1: "Services",
@@ -82,6 +110,33 @@ const COPY = {
     ],
     formTitle: "Have a project in mind?",
     talk: "Let's talk",
+    faqTitle: "Questions I get asked",
+    faq: [
+      {
+        q: "Do you travel?",
+        a: "Yes. Travel is included within two hours by train from Brussels. Beyond that it is quoted separately, and I am happy to group several addresses into one trip.",
+      },
+      {
+        q: "How long on location?",
+        a: "From half a day to two days depending on the size of the house, and a night on site in every hotel package. That night is what gives access to the hours when the place is empty, between six and nine in the morning.",
+      },
+      {
+        q: "Do we need to close, or empty the rooms?",
+        a: "No. I work while the house is alive, in natural light. One room free in the morning is enough, and your team can stay in the frame, that is often what makes the picture.",
+      },
+      {
+        q: "Who owns the images?",
+        a: "I keep the copyright, you receive a licence. It covers organic use with no time limit for the address photographed. It does not extend to the other addresses of the group and it ends if the name or the ownership changes.",
+      },
+      {
+        q: "What if we want to advertise with them?",
+        a: "That is possible and quoted separately, based on territory, duration and media. Same for print, campaigns, exclusivity and whitelisting. Raw files are not transferred.",
+      },
+      {
+        q: "Do you post on your own channels?",
+        a: "It depends on the package. When it is part of it, the partnership disclosure is always there.",
+      },
+    ],
   },
 } as const;
 
@@ -193,6 +248,17 @@ export default async function ServicesPage({ params }: Props) {
         .svc-section p, .svc-section li { font-size: 14px; line-height: 1.7; color: #525252; }
         .svc-section p { margin: 0 0 10px; }
         .svc-steps { margin: 0; padding-left: 20px; }
+        /* La FAQ est visible, et c'est le point : un balisage FAQ sans
+           contenu affiche est un motif de sanction chez Google. Elle repond
+           surtout aux questions qui bloquent une reservation. */
+        .svc-faq { margin: 0; display: grid; gap: 22px; }
+        .svc-faq dt {
+          font-size: 13px;
+          letter-spacing: 0.04em;
+          color: #0a0a0a;
+          margin-bottom: 6px;
+        }
+        .svc-faq dd { margin: 0; font-size: 14px; line-height: 1.7; color: #525252; }
         .svc-steps li { margin-bottom: 8px; }
         .services-form {
           display: grid;
@@ -297,6 +363,18 @@ export default async function ServicesPage({ params }: Props) {
             </ol>
           </section>
 
+          <section className="svc-section">
+            <h2>{c.faqTitle}</h2>
+            <dl className="svc-faq">
+              {c.faq.map((f) => (
+                <div key={f.q}>
+                  <dt>{f.q}</dt>
+                  <dd>{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
           <section className="svc-section" id="contact">
             <h2>{c.formTitle}</h2>
             <ServicesForm lang={lang} />
@@ -304,6 +382,20 @@ export default async function ServicesPage({ params }: Props) {
         </div>
       </main>
 
+      {/* Balisage FAQ. Il correspond mot pour mot aux questions affichées au
+          dessus : c'est la condition posée par Google, et c'est pour ça que
+          l'ancien FAQPage du layout, présent sur toutes les pages sans jamais
+          être affiché, a été retiré. */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": `${site.url}/${lang}/services#faq`,
+        mainEntity: c.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }) }} />
     </>
   );
 }

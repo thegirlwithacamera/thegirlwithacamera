@@ -15,7 +15,13 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
 
+// Un argument optionnel limite le traitement a un sous-dossier :
+//   node scripts/optimize-images.mjs portfolio
+// Sans argument, tout public/images est traite, y compris images/creator qui
+// pese 3,6 Go et n'est ni versionne ni deploye. Ajoute le 01/09.
+const SUBDIR = process.argv[2] ?? "";
 const ROOT = path.resolve(process.cwd(), "public", "images");
+const TARGET = SUBDIR ? path.join(ROOT, SUBDIR) : ROOT;
 const BACKUP = path.join(ROOT, "_originals");
 const MAX_LONG_EDGE = 1800;
 const QUALITY = 82;
@@ -63,9 +69,9 @@ async function processOne(absPath) {
 }
 
 async function main() {
-  console.log(`Optimizing JPGs under ${ROOT}…`);
+  console.log(`Optimizing JPGs under ${TARGET}…`);
   let count = 0;
-  for await (const f of walk(ROOT)) {
+  for await (const f of walk(TARGET)) {
     try {
       await processOne(f);
       count++;
