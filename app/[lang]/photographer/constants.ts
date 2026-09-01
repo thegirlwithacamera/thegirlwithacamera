@@ -150,6 +150,22 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         ],
       },
       {
+        // Première commande de la catégorie Voyage : un office du tourisme,
+        // pas une série personnelle. Elle est en tête du bloc pour ça.
+        slug: "villach",
+        label: { fr: "Region Villach", en: "Region Villach" },
+        place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
+        intro: {
+          fr: "Une ville de Carinthie sous ses parapluies suspendus, un lac turquoise à dix minutes, et la brume qui descend sur les montagnes au matin.",
+          en: "A Carinthian town under its hanging umbrellas, a turquoise lake ten minutes away, and the mist coming down on the mountains in the morning.",
+        },
+        shotAt: {
+          fr: "Photographié sur trois jours, en août 2026, pour Region Villach Tourismus.",
+          en: "Photographed over three days, August 2026, for Region Villach Tourismus.",
+        },
+        films: [{ src: "/videos/creator/CINEMATIC/CITIES/Villach.mp4" }],
+      },
+      {
         slug: "kyoto",
         label: { fr: "Kyoto", en: "Kyoto" },
         place: { fr: "Japon", en: "Japan" },
