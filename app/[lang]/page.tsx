@@ -8,6 +8,15 @@ interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
 }
 
+// Génération statique des deux langues au build. Indispensable depuis que
+// l'accueil lit public/images avec fs pour trouver les couvertures : sur
+// Vercel, next.config.ts exclut public/ des fonctions serveur, donc une page
+// rendue à la demande ne voit aucun fichier et la grille sort vide. C'est
+// exactement ce qui est arrivé au premier déploiement de cette version.
+export function generateStaticParams() {
+  return (["fr", "en"] as const).map((lang) => ({ lang }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   return {
