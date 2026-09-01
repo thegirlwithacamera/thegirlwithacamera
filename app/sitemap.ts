@@ -28,6 +28,10 @@ const STATIC_PATHS = [
   "/filmmaker/places",
   "/filmmaker/cities",
   "/services",
+  // La page produits n'est dans aucun menu mais reste indexee : "presets
+  // Ricoh GR" est une requete que des gens tapent, et onze epingles
+  // Pinterest attendaient une page de vente.
+  "/shop",
   "/about",
 ];
 // "/diary" retiré le 01/09 : le Journal, c'est le Substack. La section Diary
