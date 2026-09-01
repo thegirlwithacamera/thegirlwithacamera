@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { LIVE_PRODUCTS } from "@/lib/products";
+import { notFound } from "next/navigation";
+import { LIVE_PRODUCTS, SHOP_ENABLED } from "@/lib/products";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -11,6 +12,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
+  if (!SHOP_ENABLED) return { robots: { index: false, follow: false } };
   return {
     title: lang === "fr" ? "Presets et guides" : "Presets and guides",
     description:
@@ -58,6 +60,8 @@ const COPY = {
 
 export default async function ShopPage({ params }: Props) {
   const { lang } = await params;
+  // Page eteinte : 404 tant que SHOP_ENABLED est a false.
+  if (!SHOP_ENABLED) notFound();
   const c = COPY[lang];
 
   return (

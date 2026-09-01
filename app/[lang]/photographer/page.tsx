@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { PHOTO_CATEGORIES } from "./constants";
 import { readCaseCover } from "@/lib/portfolio";
+import { pageMeta } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -14,7 +15,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMeta({
+    lang,
+    path: "/photographer",
     // Pas de suffixe ici : le gabarit du layout l'ajoute.
     title:
       lang === "fr"
@@ -24,11 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       lang === "fr"
         ? "Sandrine Ceuppens photographie hôtels, maisons d'hôtes, restaurants et bars en Europe. Basée à Bruxelles, disponible en déplacement."
         : "Sandrine Ceuppens photographs hotels, guesthouses, restaurants and bars across Europe. Based in Brussels, available for travel.",
-    alternates: {
-      canonical: `/${lang}/photographer`,
-      languages: { fr: "/fr/photographer", en: "/en/photographer" },
-    },
-  };
+  });
 }
 
 // ─────────────────────────────────────────────────────────────

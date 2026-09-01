@@ -3,6 +3,7 @@ import Link from "next/link";
 import { WORK } from "@/lib/offers";
 import { site } from "@/lib/site";
 import ServicesForm from "./ServicesForm";
+import { pageMeta } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -14,7 +15,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMeta({
+    lang,
+    path: "/services",
     // Pas de suffixe ici : app/[lang]/layout.tsx applique le gabarit
     // "%s · The Girl With A Camera". L'ecrire deux fois le sortait deux fois.
     title:
@@ -25,11 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       lang === "fr"
         ? "Reportage photo et vidéo pour hôtels, maisons d'hôtes, restaurants et bars. Sandrine Ceuppens, basée à Bruxelles, disponible en déplacement en Europe."
         : "Photography and film for hotels, guesthouses, restaurants and bars. Sandrine Ceuppens, based in Brussels, available for travel across Europe.",
-    alternates: {
-      canonical: `/${lang}/services`,
-      languages: { fr: "/fr/services", en: "/en/services" },
-    },
-  };
+  });
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -182,7 +181,14 @@ export default async function ServicesPage({ params }: Props) {
           border: 1px solid #ebebeb;
           padding: 30px 26px;
         }
-        .svc-offer .o-emoji { font-size: 22px; line-height: 1; margin-bottom: 14px; }
+        .svc-offer .o-index {
+          font-family: var(--font-serif), Georgia, serif;
+          font-size: 15px;
+          letter-spacing: 0.12em;
+          color: #bdbdbd;
+          line-height: 1;
+          margin-bottom: 16px;
+        }
         .svc-offer h2 {
           font-family: var(--font-serif), Georgia, serif;
           font-size: 16px;
@@ -353,7 +359,7 @@ export default async function ServicesPage({ params }: Props) {
           <div className="svc-offers">
             {work.offers.map((o) => (
               <div key={o.title} className="svc-offer">
-                <div className="o-emoji">{o.emoji}</div>
+                <div className="o-index">{o.index}</div>
                 <h2>{o.title}</h2>
                 <p className="o-sub">{o.subtitle}</p>
                 {o.packageName && <p className="o-pkg">{o.packageName}</p>}

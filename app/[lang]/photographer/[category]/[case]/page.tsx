@@ -3,10 +3,11 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PHOTO_CATEGORIES, findCase } from "../../constants";
-import { readCasePhotos, countCasePhotos } from "@/lib/portfolio";
+import { readCasePhotos, countCasePhotos, readCaseCover } from "@/lib/portfolio";
 import { posterForPath } from "@/lib/creator-videos";
 import PhotoPager from "../PhotoPager";
 import CaseFilms from "./CaseFilms";
+import { pageMeta } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en"; category: string; case: string }>;
@@ -28,23 +29,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!found) return {};
   const { cat, item } = found;
   const place = item.place ? `, ${item.place[lang]}` : "";
-  return {
-    title: `${item.label[lang]} — ${cat.label[lang]}`,
+  return pageMeta({
+    lang,
+    path: `/photographer/${cat.slug}/${item.slug}`,
+    type: "article",
+    title: `${item.label[lang]} · ${cat.label[lang]}`,
     // La phrase du cas fait une meilleure description que le gabarit : elle
     // décrit le lieu au lieu de répéter la catégorie.
     description: item.intro
       ? item.intro[lang]
       : lang === "fr"
-        ? `${item.label.fr}${place} — ${cat.label.fr.toLowerCase()} photographiés par Sandrine Ceuppens, The Girl With A Camera.`
-        : `${item.label.en}${place} — ${cat.label.en.toLowerCase()} photographed by Sandrine Ceuppens, The Girl With A Camera.`,
-    alternates: {
-      canonical: `/${lang}/photographer/${cat.slug}/${item.slug}`,
-      languages: {
-        fr: `/fr/photographer/${cat.slug}/${item.slug}`,
-        en: `/en/photographer/${cat.slug}/${item.slug}`,
-      },
-    },
-  };
+        ? `${item.label.fr}${place}, ${cat.label.fr.toLowerCase()} photographiés par Sandrine Ceuppens, The Girl With A Camera.`
+        : `${item.label.en}${place}, ${cat.label.en.toLowerCase()} photographed by Sandrine Ceuppens, The Girl With A Camera.`,
+    // La carte de partage montre la maison, pas le logo du site : c'est ce
+    // lien qu'on envoie à l'hôtel.
+    image: readCaseCover(cat.slug, item.slug) ?? undefined,
+    imageAlt: `${item.label[lang]}${place}`,
+  });
 }
 
 // ─────────────────────────────────────────────────────────────

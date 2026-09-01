@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { allCases, HOME_TILES } from "./photographer/constants";
 import { readCaseCover } from "@/lib/portfolio";
+import { pageMeta } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -19,7 +20,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMeta({
+    lang,
+    path: "",
     // Le title valait "Photographer" tout court : c'est ce que voyaient
     // l'onglet du navigateur et le résultat Google de la page d'accueil.
     title: lang === "fr"
@@ -28,8 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: lang === "fr"
       ? "Photographe et vidéaste pour les hôtels, les maisons d'hôtes, les restaurants et les bars. Sandrine Ceuppens, basée à Bruxelles, en déplacement en Europe."
       : "Photographer and filmmaker for hotels, guesthouses, restaurants and bars. Sandrine Ceuppens, based in Brussels, travelling across Europe.",
-    alternates: { canonical: `/${lang}`, languages: { fr: "/fr", en: "/en" } },
-  };
+  });
 }
 
 // ─────────────────────────────────────────────────────────────

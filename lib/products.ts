@@ -1,3 +1,13 @@
+// Interrupteur de la page /shop.
+//
+// A false, /fr/shop et /en/shop repondent 404 et la page sort du sitemap.
+// Rien n'est supprime : le contenu, les liens Gumroad et la mise en page
+// attendent ici. Repasser a true, et remettre "/shop" dans app/sitemap.ts.
+//
+// Coupee le 01/09 a la demande de Sandrine : la serie de presets est refaite
+// de zero, la page vendait encore les quinze anciens.
+export const SHOP_ENABLED = false;
+
 // ─────────────────────────────────────────────────────────────
 // Les produits numériques.
 //

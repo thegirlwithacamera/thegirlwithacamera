@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PHOTO_CATEGORIES, findCategory } from "../constants";
 import { readCaseCover, countCasePhotos } from "@/lib/portfolio";
+import { pageMeta } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en"; category: string }>;
@@ -35,7 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, category } = await params;
   const cat = findCategory(category);
   if (!cat) return {};
-  return {
+  return pageMeta({
+    lang,
+    path: `/photographer/${cat.slug}`,
     // Le titre disait "Hôtels & maisons — Photographer" : moitié français
     // moitié anglais, un tiret en guise de ponctuation, et aucun mot que
     // quelqu'un taperait dans une recherche. Il nomme maintenant le métier
@@ -47,11 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       lang === "fr"
         ? `${cat.label.fr} photographiés par Sandrine Ceuppens, en lumière naturelle. Basée à Bruxelles, disponible en déplacement en Europe.`
         : `${cat.label.en} photographed by Sandrine Ceuppens in natural light. Based in Brussels, available for travel across Europe.`,
-    alternates: {
-      canonical: `/${lang}/photographer/${cat.slug}`,
-      languages: { fr: `/fr/photographer/${cat.slug}`, en: `/en/photographer/${cat.slug}` },
-    },
-  };
+  });
 }
 
 // ─────────────────────────────────────────────────────────────

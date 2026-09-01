@@ -4,6 +4,7 @@ import CreatorClient from "../CreatorClient";
 import { SECTIONS, type Section } from "../constants";
 import { DIARY_CATS } from "../../filmmaker/constants";
 import { readCreatorData } from "@/lib/creator-videos";
+import { pageMeta } from "@/lib/seo";
 
 // Sous-pages creator : /creator/gear, /creator/lifestyle, /creator/unboxing,
 // /creator/talk. Chaque section a sa propre URL, partageable directement.
@@ -41,17 +42,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const name = SECTION_TITLES[parsed];
   const slug = section.join("/");
 
-  return {
-    title: `Creator — ${name}`,
+  return pageMeta({
+    lang,
+    path: `/creator/${slug}`,
+    title: `Creator · ${name}`,
     description:
       lang === "fr"
-        ? `${name} — contenu video par Sandrine Ceuppens, The Girl With A Camera. Création de contenu pour les marques.`
-        : `${name} — video content by Sandrine Ceuppens, The Girl With A Camera. Content creation for brands.`,
-    alternates: {
-      canonical: `/${lang}/creator/${slug}`,
-      languages: { fr: `/fr/creator/${slug}`, en: `/en/creator/${slug}` },
-    },
-  };
+        ? `${name}, contenu vidéo par Sandrine Ceuppens, The Girl With A Camera. Création de contenu pour les marques.`
+        : `${name}, video content by Sandrine Ceuppens, The Girl With A Camera. Content creation for brands.`,
+  });
 }
 
 export default async function CreatorSectionPage({ params }: Props) {

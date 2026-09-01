@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import FilmmakerClient from "../FilmmakerClient";
 import { PUBLISHED_DIARY_CATS, type DiaryCat } from "../constants";
 import { readDiary } from "@/lib/creator-videos";
+import { pageMeta } from "@/lib/seo";
 
 // Une URL par categorie de video diary : /filmmaker/fashion, /lifestyle,
 // /places, /travel, /work — a partager directement avec les marques.
@@ -35,17 +36,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cat) return {};
 
   const name = CAT_TITLES[cat][lang];
-  return {
-    title: `${lang === "fr" ? "Vidéaste" : "Filmmaker"} — ${name}`,
+  return pageMeta({
+    lang,
+    path: `/filmmaker/${cat}`,
+    title: `${lang === "fr" ? "Vidéaste" : "Filmmaker"} · ${name}`,
     description:
       lang === "fr"
-        ? `${name} — films par Sandrine Ceuppens, The Girl With A Camera. Séquences contemplatives et cinématiques.`
-        : `${name} — films by Sandrine Ceuppens, The Girl With A Camera. Contemplative, cinematic sequences.`,
-    alternates: {
-      canonical: `/${lang}/filmmaker/${cat}`,
-      languages: { fr: `/fr/filmmaker/${cat}`, en: `/en/filmmaker/${cat}` },
-    },
-  };
+        ? `${name}, films par Sandrine Ceuppens, The Girl With A Camera. Séquences contemplatives et cinématiques.`
+        : `${name}, films by Sandrine Ceuppens, The Girl With A Camera. Contemplative, cinematic sequences.`,
+  });
 }
 
 export default async function FilmmakerCategoryPage({ params }: Props) {

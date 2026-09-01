@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { WORK } from "@/lib/offers";
 import TrustLogos from "../components/TrustLogos";
 import HashScroll from "../components/HashScroll";
+import { pageMeta } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -12,13 +13,17 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMeta({
+    lang,
+    path: "/about",
+    type: "profile",
     title: "About",
     description: lang === "fr"
       ? "À propos de Sandrine Ceuppens. Photographe documentaire et créatrice de contenu basée à Bruxelles. Collaborations avec Ricoh Europe, Pentax Europe et Insta360."
       : "About Sandrine Ceuppens. Documentary photographer and content creator based in Brussels. Collaborations with Ricoh Europe, Pentax Europe and Insta360.",
-    alternates: { canonical: `/${lang}/about`, languages: { fr: "/fr/about", en: "/en/about" } },
-  };
+    image: "/images/about/hero.jpg",
+    imageAlt: "Sandrine Ceuppens",
+  });
 }
 
 // Photo du hero (Mont Fuji, IMG_8304).

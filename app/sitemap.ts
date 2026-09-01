@@ -31,7 +31,10 @@ const STATIC_PATHS = [
   // La page produits n'est dans aucun menu mais reste indexee : "presets
   // Ricoh GR" est une requete que des gens tapent, et onze epingles
   // Pinterest attendaient une page de vente.
-  "/shop",
+  // "/shop" desactivee le 01/09 : la serie de presets est refaite de zero,
+  // la page annoncait encore les 15 presets de l'ancienne. Remettre cette
+  // ligne et repasser SHOP_ENABLED a true dans lib/products.ts pour la
+  // rallumer.
   "/about",
 ];
 // "/diary" retiré le 01/09 : le Journal, c'est le Substack. La section Diary

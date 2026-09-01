@@ -32,87 +32,21 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
 
   const title = `${site.tagline} · Photographe, vidéaste et créatrice de contenu, Bruxelles`;
   const titleEn = `${site.tagline} · Photographer, videographer and content creator, Brussels`;
+  // Description de repli du site. Chaque page ecrit la sienne : celle-ci ne
+  // sort que si une page oublie de le faire. Elle faisait 400 caracteres et
+  // enumerait vingt synonymes ; Google en coupe 155 et le reste servait de
+  // texte de partage sur toutes les pages.
   const description = isFr
-    ? "The Girl With A Camera - Sandrine Ceuppens. Photographe, vidéaste et créatrice de contenu indépendante à Bruxelles. Photographie de rue, documentaire, mode, vidéo. Création de contenu pour les marques. Collaborations Ricoh Europe, Pentax Europe, Insta360. Services: shooting photo, production vidéo, montage, direction créative, création de contenu pour Instagram, TikTok, réseaux sociaux."
-    : "The Girl With A Camera - Sandrine Ceuppens. Photographer, videographer and independent content creator in Brussels. Street photography, documentary, fashion, video production. Brand content creation. Collaborations with Ricoh Europe, Pentax Europe, Insta360. Services: photo shoots, video production, editing, creative direction, content creation for Instagram, TikTok, social media.";
+    ? "Sandrine Ceuppens photographie et filme les hôtels, les maisons d'hôtes, les restaurants et les bars. Basée à Bruxelles, en déplacement en Europe."
+    : "Sandrine Ceuppens photographs and films hotels, guesthouses, restaurants and bars. Based in Brussels, travelling across Europe.";
 
   return {
     metadataBase: new URL(site.url),
     title: { default: "The Girl With A Camera", template: `%s · The Girl With A Camera` },
     description,
-    keywords: [
-      "The Girl With A Camera",
-      "Sandrine Ceuppens",
-      "photographe",
-      "photographer",
-      "vidéaste",
-      "videographer",
-      "créatrice de contenu",
-      "content creator",
-      "créatrice indépendante",
-      "freelance photographer",
-      "vidéographe",
-      "productrice vidéo",
-      "video producer",
-      "Bruxelles",
-      "Brussels",
-      "Belgique",
-      "Belgium",
-      "photographe Bruxelles",
-      "vidéaste Bruxelles",
-      "vidéaste professionnel",
-      "professional videographer",
-      "photographe professionnel",
-      "professional photographer",
-      "création de contenu Bruxelles",
-      "content creator Brussels",
-      "créatrice de contenu indépendante",
-      "independent content creator",
-      "création de contenu pour marques",
-      "brand content creation",
-      "contenu de marque",
-      "street photography",
-      "photographie de rue",
-      "documentary photography",
-      "photographie documentaire",
-      "fashion photography",
-      "photographie de mode",
-      "editorial photography",
-      "photographie éditoriale",
-      "video production",
-      "production vidéo",
-      "video editing",
-      "montage vidéo",
-      "video creation",
-      "création vidéo",
-      "Instagram content creator",
-      "créatrice Instagram",
-      "TikTok creator",
-      "créatrice TikTok",
-      "social media creator",
-      "créatrice réseaux sociaux",
-      "contenu pour réseaux sociaux",
-      "social media content",
-      "girl with camera",
-      "fille avec caméra",
-      "creative direction",
-      "direction créative",
-      "photoshoot",
-      "séance photo",
-      "video shooting",
-      "tournage vidéo",
-      "Ricoh GR",
-      "Pentax",
-      "Insta360",
-      "creator economy",
-      "économie créative",
-      "freelance",
-      "indépendant",
-      "disponible pour projets",
-      "available for projects",
-      "collaboration",
-      "partenariat",
-    ],
+    // Le bloc keywords a saute le 01/09 : soixante-dix mots cles, ignores
+    // par Google depuis 2009, et le seul effet visible etait de faire croire
+    // que le site etait optimise.
     authors: [{ name: site.name, url: site.url }],
     creator: site.name,
     publisher: site.name,
@@ -122,9 +56,11 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
       canonical: `/${lang}`,
       languages: { fr: "/fr", en: "/en" },
     },
+    // Repli seulement. pageMeta (lib/seo.ts) redefinit ce bloc page par
+    // page : Next ne fusionne pas openGraph entre un layout et une page, donc
+    // une url ecrite ici serait celle de l'accueil sur tout le site.
     openGraph: {
       type: "website",
-      url: `${site.url}/${lang}`,
       siteName: "The Girl With A Camera",
       title: isFr ? title : titleEn,
       description,

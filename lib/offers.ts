@@ -15,7 +15,10 @@ import { site } from "@/lib/site";
 
 // ── Work with me : 3 offres, sans prix, CTA commun "Let's talk" ──
 export type Offer = {
-  emoji: string;
+  // Numero d'index, pas un pictogramme. Les trois cartes portaient un emoji
+  // systeme (fronton, pellicule, clap) : seule chose du site qui ne sortait
+  // pas de la meme typographie que le reste. Retire le 01/09.
+  index: string;
   title: string;
   subtitle: string;
   packageName?: string;
@@ -43,7 +46,7 @@ export const WORK: Record<"fr" | "en", Work> = {
     talkMail: TALK_MAIL,
     offers: [
       {
-        emoji: "🏛️",
+        index: "01",
         title: "Hotels & venues",
         subtitle: "The whole place, stills and film. Shot between six and nine, when the building is empty.",
         packageName: "Packages",
@@ -66,7 +69,7 @@ export const WORK: Record<"fr" | "en", Work> = {
         ],
       },
       {
-        emoji: "🎞️",
+        index: "02",
         title: "Brand film",
         subtitle: "Cinematic films for your campaigns.",
         packageName: "What's included",
@@ -84,7 +87,7 @@ export const WORK: Record<"fr" | "en", Work> = {
         ],
       },
       {
-        emoji: "🎬",
+        index: "03",
         title: "Ongoing content",
         subtitle: "Vertical video and edited stills for your channels. I create, you post.",
         packageName: "Ways to work",
@@ -114,7 +117,7 @@ export const WORK: Record<"fr" | "en", Work> = {
     talkMail: TALK_MAIL,
     offers: [
       {
-        emoji: "🏛️",
+        index: "01",
         title: "Hôtels & maisons",
         subtitle: "Le lieu entier, photo et film. Tourné entre six et neuf heures, quand le bâtiment est vide.",
         packageName: "Les formules",
@@ -137,7 +140,7 @@ export const WORK: Record<"fr" | "en", Work> = {
         ],
       },
       {
-        emoji: "🎞️",
+        index: "02",
         title: "Film de marque",
         subtitle: "Films cinématiques pour vos campagnes.",
         packageName: "Ce qui est inclus",
@@ -155,7 +158,7 @@ export const WORK: Record<"fr" | "en", Work> = {
         ],
       },
       {
-        emoji: "🎬",
+        index: "03",
         title: "Contenu récurrent",
         subtitle: "Vidéo verticale et photos éditées pour vos canaux. Je crée, vous publiez.",
         packageName: "Comment on travaille",
