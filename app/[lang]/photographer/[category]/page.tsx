@@ -9,6 +9,22 @@ interface Props {
   params: Promise<{ lang: "fr" | "en"; category: string }>;
 }
 
+// Titres de recherche, une entree par categorie. Ce ne sont pas les libelles
+// affiches : ici on ecrit ce que quelqu'un tape, pas ce qu'on met dans un
+// menu. Le gabarit du layout ajoute " · The Girl With A Camera".
+const SEO_TITLE: Record<"fr" | "en", Record<string, string>> = {
+  fr: {
+    hospitality: "Photographe d'hôtels et de maisons d'hôtes",
+    restaurants: "Photographe de restaurants et de bars",
+    travel: "Photographe de voyage et de ville",
+  },
+  en: {
+    hospitality: "Hotel and guesthouse photographer",
+    restaurants: "Restaurant and bar photographer",
+    travel: "Travel and city photographer",
+  },
+};
+
 export function generateStaticParams() {
   return (["fr", "en"] as const).flatMap((lang) =>
     PHOTO_CATEGORIES.map((c) => ({ lang, category: c.slug })),
@@ -20,11 +36,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cat = findCategory(category);
   if (!cat) return {};
   return {
-    title: `${cat.label[lang]} — Photographer`,
+    // Le titre disait "Hôtels & maisons — Photographer" : moitié français
+    // moitié anglais, un tiret en guise de ponctuation, et aucun mot que
+    // quelqu'un taperait dans une recherche. Il nomme maintenant le métier
+    // et la ville.
+    title: lang === "fr"
+      ? `${SEO_TITLE.fr[cat.slug] ?? cat.label.fr}`
+      : `${SEO_TITLE.en[cat.slug] ?? cat.label.en}`,
     description:
       lang === "fr"
-        ? `${cat.label.fr} — photographies par Sandrine Ceuppens, The Girl With A Camera. Bruxelles.`
-        : `${cat.label.en} — photography by Sandrine Ceuppens, The Girl With A Camera. Brussels-based.`,
+        ? `${cat.label.fr} photographiés par Sandrine Ceuppens, en lumière naturelle. Basée à Bruxelles, disponible en déplacement en Europe.`
+        : `${cat.label.en} photographed by Sandrine Ceuppens in natural light. Based in Brussels, available for travel across Europe.`,
     alternates: {
       canonical: `/${lang}/photographer/${cat.slug}`,
       languages: { fr: `/fr/photographer/${cat.slug}`, en: `/en/photographer/${cat.slug}` },

@@ -14,10 +14,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   return {
+    // Pas de suffixe ici : app/[lang]/layout.tsx applique le gabarit
+    // "%s · The Girl With A Camera". L'ecrire deux fois le sortait deux fois.
     title:
       lang === "fr"
-        ? "Prestations photo et vidéo pour hôtels et restaurants · The Girl With A Camera"
-        : "Photo and film services for hotels and restaurants · The Girl With A Camera",
+        ? "Prestations photo et vidéo pour hôtels et restaurants"
+        : "Photo and film services for hotels and restaurants",
     description:
       lang === "fr"
         ? "Reportage photo et vidéo pour hôtels, maisons d'hôtes, restaurants et bars. Sandrine Ceuppens, basée à Bruxelles, disponible en déplacement en Europe."
@@ -301,6 +303,7 @@ export default async function ServicesPage({ params }: Props) {
           </section>
         </div>
       </main>
+
     </>
   );
 }

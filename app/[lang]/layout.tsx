@@ -275,65 +275,17 @@ export default async function RootLayout({ children, params }: Props) {
     ]
   };
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: lang === "fr" ? "Qui est Sandrine Ceuppens?" : "Who is Sandrine Ceuppens?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: lang === "fr"
-            ? "Sandrine Ceuppens est une photographe, vidéaste et créatrice de contenu indépendante basée à Bruxelles. Elle crée du contenu de photographie de rue, documentaire, mode et vidéo pour les marques."
-            : "Sandrine Ceuppens is an independent photographer, videographer and content creator based in Brussels. She creates street, documentary, fashion photography and video content for brands."
-        }
-      },
-      {
-        "@type": "Question",
-        name: lang === "fr" ? "Quels services propose Sandrine?" : "What services does Sandrine offer?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: lang === "fr"
-            ? "Services: photographie (street, documentaire, mode), production vidéo, montage vidéo, création de contenu pour réseaux sociaux (Instagram, TikTok), direction créative, création de contenu pour marques."
-            : "Services: photography (street, documentary, fashion), video production, video editing, social media content creation (Instagram, TikTok), creative direction, brand content creation."
-        }
-      },
-      {
-        "@type": "Question",
-        name: lang === "fr" ? "Où est basée Sandrine?" : "Where is Sandrine based?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: lang === "fr"
-            ? "Sandrine est basée à Bruxelles, en Belgique, et travaille avec des clients dans l'Union Européenne."
-            : "Sandrine is based in Brussels, Belgium, and works with clients across the European Union."
-        }
-      },
-      {
-        "@type": "Question",
-        name: lang === "fr" ? "Comment contacter Sandrine?" : "How to contact Sandrine?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: lang === "fr"
-            ? "Vous pouvez contacter Sandrine par email à hello@thegirlwithacamera.com ou press@thegirlwithacamera.com, ou via Instagram @sandrinecppns."
-            : "You can contact Sandrine via email at hello@thegirlwithacamera.com or press@thegirlwithacamera.com, or on Instagram @sandrinecppns."
-        }
-      }
-    ]
-  };
-
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: site.tagline,
-        item: `${site.url}/${lang}`,
-      },
-    ],
-  };
+  // Retires le 01/09 :
+  //
+  // faqJsonLd : quatre questions balisees sur TOUTES les pages alors
+  // qu'aucune page ne les affiche. Google demande que le balisage FAQ
+  // corresponde a un contenu visible, sinon c'est un motif de sanction. Les
+  // reponses decrivaient en plus l'ancien positionnement, rue et mode, pas
+  // l'hotellerie. Une vraie FAQ visible sur /services serait le bon geste.
+  //
+  // breadcrumbJsonLd : un fil d'Ariane a une seule entree, le nom du site,
+  // sur chaque page. Il n'apprenait rien et entrait en conflit avec le vrai
+  // fil d'Ariane des pages de cas.
 
   return (
     <html lang={lang} className={`${garamond.variable} ${inter.variable}`}>
@@ -355,8 +307,6 @@ export default async function RootLayout({ children, params }: Props) {
         <Footer />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         <SpeedInsights />
         <Analytics />
       </body>

@@ -254,6 +254,18 @@ export default async function PhotographerCasePage({ params }: Props) {
 
         <CaseFilms films={films} lang={lang} />
       </main>
+
+      {/* Fil d'Ariane : Google affiche le chemin sous le resultat plutot que
+          l'URL brute, et comprend que la page appartient a une categorie. */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: lang === "fr" ? "Photographe" : "Photographer", item: `https://thegirlwithacamera.com/${lang}/photographer` },
+          { "@type": "ListItem", position: 2, name: cat.label[lang], item: `https://thegirlwithacamera.com/${lang}/photographer/${cat.slug}` },
+          { "@type": "ListItem", position: 3, name: item.label[lang] },
+        ],
+      }) }} />
     </>
   );
 }

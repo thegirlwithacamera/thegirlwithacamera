@@ -15,10 +15,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   return {
+    // Pas de suffixe ici : le gabarit du layout l'ajoute.
     title:
       lang === "fr"
-        ? "Photographe hôtellerie et restauration à Bruxelles · The Girl With A Camera"
-        : "Hospitality and restaurant photographer in Brussels · The Girl With A Camera",
+        ? "Photographe hôtellerie et restauration à Bruxelles"
+        : "Hospitality and restaurant photographer in Brussels",
     description:
       lang === "fr"
         ? "Sandrine Ceuppens photographie hôtels, maisons d'hôtes, restaurants et bars en Europe. Basée à Bruxelles, disponible en déplacement."
