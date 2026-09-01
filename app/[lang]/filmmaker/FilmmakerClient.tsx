@@ -130,7 +130,9 @@ export default function FilmmakerClient({
         <div className="tier-head">
           <h1 className="tier-title">{t.title}</h1>
           <p className="tier-desc">{t.desc}</p>
-          <Link href={`/${lang}/about#travailler-avec-moi`} className="film-offer">
+          {/* Pointait vers une ancre d'A propos qui ne porte plus les offres :
+              elles ont leur page depuis le 01/09. */}
+          <Link href={`/${lang}/services`} className="film-offer">
             {t.offer} →
           </Link>
         </div>

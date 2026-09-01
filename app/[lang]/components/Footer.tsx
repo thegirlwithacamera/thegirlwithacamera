@@ -36,7 +36,9 @@ export default function Footer() {
             {cta.eyebrow}
           </p>
           <Link
-            href={`/${currentLang}/about#travailler-avec-moi`}
+            /* L'ancre d'A propos ne porte plus les offres depuis le 01/09,
+               elles ont leur page. */
+            href={`/${currentLang}/services`}
             style={{
               fontFamily: "var(--font-serif), Georgia, serif",
               fontSize: "26px",
