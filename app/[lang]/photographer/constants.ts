@@ -67,6 +67,11 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
       },
       {
+        slug: "hotel-rathaus-wien",
+        label: { fr: "Hotel Rathaus Wien", en: "Hotel Rathaus Wien" },
+        place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
+      },
+      {
         slug: "coloc-housing",
         label: { fr: "Coloc Housing", en: "Coloc Housing" },
         place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
