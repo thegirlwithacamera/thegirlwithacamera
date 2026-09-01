@@ -190,6 +190,21 @@ export function findCase(categorySlug: string, caseSlug: string) {
   return item ? { cat, item } : undefined;
 }
 
+// Retrouve le cas auquel un film est rattaché, à partir du chemin du fichier.
+// Sert à la page Vidéaste : une vignette de film affiche la ville de son
+// adresse, et pointe vers ses photos, au lieu de n'être qu'un titre déduit
+// d'un nom de fichier. Un film sans cas (Dao Liège, Van der Valk Sélys)
+// renvoie undefined, la vignette se contente alors de son titre.
+export function findCaseByFilm(src: string) {
+  for (const cat of PHOTO_CATEGORIES) {
+    for (const item of cat.cases) {
+      const film = item.films?.find((f) => f.src === src);
+      if (film) return { cat, item, film };
+    }
+  }
+  return undefined;
+}
+
 // ─────────────────────────────────────────────────────────────
 // Les maisons montrées sur la page d'accueil.
 //

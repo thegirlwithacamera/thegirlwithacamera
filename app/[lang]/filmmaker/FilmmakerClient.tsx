@@ -2,12 +2,31 @@
 
 import Link from "next/link";
 import { PUBLISHED_DIARY_CATS, type Diary, type DiaryCat } from "./constants";
+import { findCaseByFilm } from "../photographer/constants";
+import type { Clip } from "../creator/constants";
 import {
-  Carousel,
   FocusOverlay,
   SHOWCASE_CSS,
   useVideoSound,
 } from "../components/VideoShowcase";
+
+// ─────────────────────────────────────────────────────────────
+// Page Vidéaste.
+//
+// Refaite le 01/09. C'était un carrousel avec des onglets : la seule page du
+// site à cacher son contenu. Il fallait faire défiler pour découvrir, donc un
+// hôtelier voyait un film et devinait les autres, et les vignettes n'avaient
+// pour titre qu'un nom de fichier.
+//
+// C'est maintenant la même grille que la page Photographe, deux blocs, les
+// maisons puis les villes, tout visible d'un coup. Une vignette porte le nom
+// du lieu et sa ville quand le film est rattaché à un cas, avec un lien vers
+// ses photos. Le clic ouvre le film en grand dans l'overlay, qui n'a pas
+// bougé.
+//
+// Les URLs /filmmaker/places et /filmmaker/cities restent valables : avec une
+// catégorie active, la page n'affiche que ce bloc.
+// ─────────────────────────────────────────────────────────────
 
 // Vocabulaire aligné sur la grille photo : un hôtelier retrouve les mêmes
 // mots d'une page à l'autre. La description dit la prestation, pas seulement
@@ -17,24 +36,28 @@ const content = {
     title: "VIDÉASTE",
     desc: "Films de marque et verticales pour les maisons, les tables et les marques. Lumière naturelle, montage narratif, sound design.",
     offer: "Voir les formules",
-    photos: "Les mêmes lieux en photo",
-    cat: { places: "MAISONS & TABLES", cities: "VOYAGE", lifestyle: "QUOTIDIEN", fashion: "MODE", bts: "COULISSES" },
+    photos: "Voir les photos",
+    heads: {
+      places: { title: "Maisons & tables", sub: "" },
+      cities: { title: "Voyage", sub: "Mon œil sur la ville" },
+      lifestyle: { title: "Quotidien", sub: "" },
+      fashion: { title: "Mode", sub: "" },
+      bts: { title: "Coulisses", sub: "" },
+    },
   },
   en: {
     title: "FILMMAKER",
     desc: "Brand films and verticals for hotels, tables and brands. Natural light, narrative editing, sound design.",
     offer: "See the packages",
-    photos: "The same places in photographs",
-    cat: { places: "HOTELS & VENUES", cities: "TRAVEL", lifestyle: "LIFESTYLE", fashion: "FASHION", bts: "BTS" },
+    photos: "See the photographs",
+    heads: {
+      places: { title: "Hotels & venues", sub: "" },
+      cities: { title: "Travel", sub: "The city, the way I see it" },
+      lifestyle: { title: "Lifestyle", sub: "" },
+      fashion: { title: "Fashion", sub: "" },
+      bts: { title: "Behind the scenes", sub: "" },
+    },
   },
-};
-
-// Retour vers la grille photo : une adresse filmée a presque toujours des
-// photos, et l'inverse est vrai aussi. Les deux pages se renvoient l'une à
-// l'autre plutôt que de vivre côte à côte sans se connaître.
-const CAT_TO_PHOTO: Partial<Record<DiaryCat, string>> = {
-  places: "hospitality",
-  cities: "travel",
 };
 
 export default function FilmmakerClient({
@@ -49,57 +72,77 @@ export default function FilmmakerClient({
   const t = content[lang];
   const { sound, focused, closeFocus } = useVideoSound();
 
-  // Une catégorie s'affiche à partir de 2 films. En dessous, l'onglet promet
-  // une série et ouvre sur une vidéo seule. Mode est dans ce cas aujourd'hui,
-  // avec un seul clip sans titre.
+  // Une catégorie s'affiche à partir de 2 films. En dessous, le bloc promet
+  // une série et ouvre sur une vidéo seule.
   const cats = PUBLISHED_DIARY_CATS.filter((c) => diary[c].length >= 2);
-  const current = activeCat && cats.includes(activeCat) ? activeCat : cats[0];
+  const shown = activeCat && cats.includes(activeCat) ? [activeCat] : cats;
+
+  const tile = (clip: Clip, key: string) => {
+    const found = findCaseByFilm(clip.src);
+    return (
+      <div key={key} className="film-item">
+        <button
+          type="button"
+          className="film-thumb"
+          onClick={() => sound.openFocus(clip, "tablet")}
+          aria-label={clip.label || "Film"}
+        >
+          {clip.poster ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={clip.poster} alt={clip.label || ""} loading="lazy" />
+          ) : (
+            <video src={clip.src} preload="metadata" muted playsInline />
+          )}
+          <span className="film-play" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        </button>
+        <p className="film-title">
+          {found ? found.item.label[lang] : clip.label}
+          {/* Le libellé du film passe avant la ville : deux films d'un même
+              cas (Tokyo le jour, Tokyo la nuit) affichaient sinon la même
+              vignette deux fois. */}
+          {found?.film.label ? (
+            <span className="film-place">{found.film.label[lang]}</span>
+          ) : found?.item.place ? (
+            <span className="film-place">{found.item.place[lang]}</span>
+          ) : null}
+        </p>
+        {found && (
+          <Link
+            href={`/${lang}/photographer/${found.cat.slug}/${found.item.slug}`}
+            className="film-link"
+          >
+            {t.photos} →
+          </Link>
+        )}
+      </div>
+    );
+  };
 
   return (
-    <main style={{ paddingTop: "20px", paddingBottom: "24px", background: "#ffffff" }}>
+    <main style={{ paddingTop: "20px", paddingBottom: "72px", background: "#ffffff" }}>
       <style>{`
-
-        /* Tiers */
         .tier { max-width: 1260px; margin: 0 auto; padding: 0 40px; }
-        .tier-head { text-align: center; margin-bottom: 24px; }
-        .tier-title { font-size: 13px; font-weight: 700; letter-spacing: 0.22em; color: #0a0a0a; margin: 0 0 12px; }
+        .tier-head { text-align: center; margin-bottom: 10px; }
+        .tier-title {
+          font-family: var(--font-serif), Georgia, serif;
+          font-size: 26px;
+          font-weight: 400;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          margin: 0 0 14px;
+        }
         .tier-desc {
-          font-size: 11px;
-          line-height: 1.9;
-          letter-spacing: 0.05em;
-          color: #999999;
+          font-size: 14px;
+          line-height: 1.65;
+          color: #525252;
           max-width: 560px;
           margin: 0 auto;
-          font-style: italic;
         }
-
-        /* Onglets categories (liens : chaque categorie a son URL) */
-        .diary-tabs {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          gap: 4px;
-          margin: 0 auto 24px;
-          border-bottom: 1px solid #ebebeb;
-          max-width: 560px;
-        }
-        .diary-tab {
-          display: inline-block;
-          background: none;
-          border: none;
-          border-bottom: 2px solid transparent;
-          padding: 8px 16px;
-          font-size: 10px;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: #999999;
-          text-decoration: none;
-          cursor: pointer;
-          transition: color 0.2s, border-color 0.2s;
-          margin-bottom: -1px;
-        }
-        .diary-tab:hover { color: #555; }
-        .diary-tab--active { color: #0a0a0a; border-bottom-color: #0a0a0a; }
 
         /* Lien vers les formules : le film est vendu dans les packs hôteliers,
            la page doit donc mener quelque part. */
@@ -118,11 +161,106 @@ export default function FilmmakerClient({
         }
         .film-offer:hover { border-color: #0a0a0a; }
 
+        /* En-tête de bloc, même traitement que la page Photographe. */
+        .film-section { text-align: center; margin: 76px 0 28px; }
+        .film-section h2 {
+          font-family: var(--font-serif), Georgia, serif;
+          font-size: 22px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          font-weight: 400;
+          margin: 0 0 6px;
+        }
+        .film-section p {
+          margin: 0;
+          font-size: 10px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #999;
+        }
+
+        /* La grille. 16:9 parce qu'un film n'est pas une photo de portfolio,
+           et trois colonnes comme partout ailleurs sur le site. */
+        .film-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 26px 22px;
+          max-width: 1260px;
+          margin: 0 auto;
+        }
+        .film-item { display: block; }
+        .film-thumb {
+          position: relative;
+          display: block;
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          overflow: hidden;
+          background: #0a0a0a;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+        }
+        .film-thumb img,
+        .film-thumb video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+        }
+        .film-thumb:hover img,
+        .film-thumb:hover video { transform: scale(1.04); }
+        .film-play {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          background: rgba(10, 10, 10, 0.4);
+          backdrop-filter: blur(4px);
+          padding-left: 2px;
+          transition: background 0.25s ease;
+        }
+        .film-thumb:hover .film-play { background: rgba(10, 10, 10, 0.65); }
+        .film-title {
+          margin: 10px 0 0;
+          text-align: center;
+          font-size: 10px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #0a0a0a;
+          font-weight: 400;
+        }
+        .film-place { color: #b3aca2; margin-left: 6px; }
+        .film-link {
+          display: block;
+          margin-top: 4px;
+          text-align: center;
+          font-size: 9px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #c4bdb3;
+          text-decoration: none;
+        }
+        .film-link:hover { color: #0a0a0a; }
+
         ${SHOWCASE_CSS}
 
         @media (max-width: 767px) {
           .tier { padding: 0 12px; }
-          .diary-tab { padding: 8px 11px; font-size: 9px; letter-spacing: 0.16em; }
+          .tier-title { font-size: 18px; }
+          .tier-desc { font-size: 13px; }
+          .film-grid { grid-template-columns: 1fr; gap: 20px; }
+          .film-section { margin: 54px 0 22px; }
+          .film-section h2 { font-size: 17px; }
+          .film-title { font-size: 9px; letter-spacing: 0.14em; }
         }
       `}</style>
 
@@ -130,35 +268,25 @@ export default function FilmmakerClient({
         <div className="tier-head">
           <h1 className="tier-title">{t.title}</h1>
           <p className="tier-desc">{t.desc}</p>
-          {/* Pointait vers une ancre d'A propos qui ne porte plus les offres :
+          {/* Pointait vers une ancre d'À propos qui ne porte plus les offres :
               elles ont leur page depuis le 01/09. */}
           <Link href={`/${lang}/services`} className="film-offer">
             {t.offer} →
           </Link>
         </div>
-        {cats.length > 1 && (
-          <div className="diary-tabs">
-            {cats.map((c) => (
-              <Link
-                key={c}
-                href={`/${lang}/filmmaker/${c}`}
-                className={`diary-tab${c === current ? " diary-tab--active" : ""}`}
-              >
-                {t.cat[c]}
-              </Link>
-            ))}
-          </div>
-        )}
-        {current && (
-          <Carousel clips={diary[current]} kind="tablet" prefix={`diary-${current}`} sound={sound} />
-        )}
-        {current && CAT_TO_PHOTO[current] && (
-          <Link href={`/${lang}/photographer/${CAT_TO_PHOTO[current]}`} className="film-offer">
-            {t.photos} →
-          </Link>
-        )}
-      </section>
 
+        {shown.map((cat) => (
+          <div key={cat}>
+            <div className="film-section">
+              <h2>{t.heads[cat].title}</h2>
+              {t.heads[cat].sub && <p>{t.heads[cat].sub}</p>}
+            </div>
+            <div className="film-grid">
+              {diary[cat].map((clip, i) => tile(clip, `${cat}-${i}`))}
+            </div>
+          </div>
+        ))}
+      </section>
 
       {/* Mise en avant au clic */}
       {focused && (
