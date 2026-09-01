@@ -45,7 +45,7 @@ export const BRANDS: Brand[] = [
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
   { name: "HOTEL RATHAUS WIEN", logo: "/images/brands/hotel-rathaus-wien.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos", en: "Photographs" } },
-  { name: "ALTSTADT VIENNA", logo: "/images/brands/altstadt.png", cat: "stays", pending: true },
+  { name: "ALTSTADT VIENNA", logo: "/images/brands/altstadt.png", cat: "stays" },
   { name: "AT THE GOLDEN PEAR", logo: "/images/brands/golden-pear.png", tall: true, cat: "stays", pending: true },
   { name: "PRAGUESTREAM", logo: "/images/brands/prague-stream.png", cat: "stays", pending: true },
 

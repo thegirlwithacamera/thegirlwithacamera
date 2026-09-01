@@ -251,14 +251,40 @@ export default async function ServicesPage({ params }: Props) {
         /* La FAQ est visible, et c'est le point : un balisage FAQ sans
            contenu affiche est un motif de sanction chez Google. Elle repond
            surtout aux questions qui bloquent une reservation. */
-        .svc-faq { margin: 0; display: grid; gap: 22px; }
-        .svc-faq dt {
-          font-size: 13px;
-          letter-spacing: 0.04em;
+        .svc-faq { margin: 0; }
+        .svc-faq details { border-bottom: 1px solid #ebebeb; }
+        .svc-faq details:first-child { border-top: 1px solid #ebebeb; }
+        .svc-faq summary {
+          list-style: none;
+          cursor: pointer;
+          padding: 16px 24px 16px 0;
+          position: relative;
+          font-size: 14px;
           color: #0a0a0a;
-          margin-bottom: 6px;
         }
-        .svc-faq dd { margin: 0; font-size: 14px; line-height: 1.7; color: #525252; }
+        .svc-faq summary::-webkit-details-marker { display: none; }
+        /* La fleche : un chevron en CSS, qui pivote a l'ouverture. */
+        .svc-faq summary::after {
+          content: "";
+          position: absolute;
+          right: 4px;
+          top: 21px;
+          width: 7px;
+          height: 7px;
+          border-right: 1px solid #999;
+          border-bottom: 1px solid #999;
+          transform: rotate(45deg);
+          transition: transform 0.25s ease;
+        }
+        .svc-faq details[open] summary::after { transform: rotate(-135deg); top: 24px; }
+        .svc-faq summary:hover { color: #0a0a0a; }
+        .svc-faq details p {
+          margin: 0;
+          padding: 0 24px 18px 0;
+          font-size: 14px;
+          line-height: 1.7;
+          color: #525252;
+        }
         .svc-steps li { margin-bottom: 8px; }
         .services-form {
           display: grid;
@@ -363,21 +389,26 @@ export default async function ServicesPage({ params }: Props) {
             </ol>
           </section>
 
-          <section className="svc-section">
-            <h2>{c.faqTitle}</h2>
-            <dl className="svc-faq">
-              {c.faq.map((f) => (
-                <div key={f.q}>
-                  <dt>{f.q}</dt>
-                  <dd>{f.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-
           <section className="svc-section" id="contact">
             <h2>{c.formTitle}</h2>
             <ServicesForm lang={lang} />
+          </section>
+
+          {/* La FAQ passe sous le formulaire le 01/09 : elle repond aux
+              objections de celui qui hesite encore, elle ne doit pas
+              s'interposer devant celui qui a deja decide d'ecrire.
+              Repliee par defaut, une question par ligne : six reponses
+              deroulees, c'est un mur de texte au bas d'une page d'offre. */}
+          <section className="svc-section" id="faq">
+            <h2>{c.faqTitle}</h2>
+            <div className="svc-faq">
+              {c.faq.map((f) => (
+                <details key={f.q}>
+                  <summary>{f.q}</summary>
+                  <p>{f.a}</p>
+                </details>
+              ))}
+            </div>
           </section>
         </div>
       </main>

@@ -221,7 +221,10 @@ export function findCaseByFilm(src: string) {
 // sélections du voyage d'août et septembre, on en publie trois plutôt que de
 // compléter avec du faible : c'est la règle des cas, elle vaut pour la grille.
 // À ajouter dès que les images sont là : mk hotel Munich, Evas Lendflat Graz,
-// Urban Jungle Vienne, U Zlaté Hrušky Prague, Prague Stream.
+// Altstadt Vienne, U Zlaté Hrušky Prague, Prague Stream.
+//
+// Urban Jungle Vienne est sorti le 01/09, la maison demandait trop de
+// contenu pour ce qu'elle offrait. Altstadt Vienna prend le créneau.
 // ─────────────────────────────────────────────────────────────
 
 export type HomeCase = { category: string; case: string };
