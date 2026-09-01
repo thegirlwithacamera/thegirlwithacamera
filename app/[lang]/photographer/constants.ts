@@ -120,6 +120,11 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         slug: "ce-pages",
         label: { fr: "Cé Pages", en: "Cé Pages" },
         place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
+        intro: {
+          fr: "Un bar à vin liégeois photographié pendant le service, en lumière existante, sans rien déplacer.",
+          en: "A Liège wine bar photographed during service, in the light that was there, with nothing moved.",
+        },
+        // Pas de shotAt : la date du tournage n'est pas retrouvée. À ajouter.
         films: [{ src: "/videos/creator/CINEMATIC/PLACES/Cé-Pages.mp4" }],
       },
       // En attente : selys-liege, 6 images sur un disque non disponible.
@@ -135,6 +140,10 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         slug: "tokyo",
         label: { fr: "Tokyo", en: "Tokyo" },
         place: { fr: "Japon", en: "Japan" },
+        intro: {
+          fr: "Tokyo à cinq heures du matin, puis la nuit. Deux villes qui ne se ressemblent pas.",
+          en: "Tokyo at five in the morning, then at night. Two cities that look nothing alike.",
+        },
         films: [
           { src: "/videos/creator/CINEMATIC/CITIES/City Diary Tokyo.mp4", label: { fr: "Le jour", en: "Daytime" } },
           { src: "/videos/creator/CINEMATIC/CITIES/City Diary Tokyo Night.mp4", label: { fr: "La nuit", en: "By night" } },
@@ -144,12 +153,48 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         slug: "kyoto",
         label: { fr: "Kyoto", en: "Kyoto" },
         place: { fr: "Japon", en: "Japan" },
+        intro: {
+          fr: "Kyoto sous la pluie et au crépuscule, les torii quand il n'y a plus personne devant.",
+          en: "Kyoto in the rain and at dusk, the torii when there is no longer anyone standing in front of them.",
+        },
         films: [{ src: "/videos/creator/CINEMATIC/CITIES/City Diary Kyoto.mp4" }],
       },
-      { slug: "napoli",  label: { fr: "Napoli",  en: "Napoli" },  place: { fr: "Italie", en: "Italy" } },
-      { slug: "venezia", label: { fr: "Venezia", en: "Venezia" }, place: { fr: "Italie", en: "Italy" } },
-      { slug: "burano",  label: { fr: "Burano",  en: "Burano" },  place: { fr: "Italie", en: "Italy" } },
-      { slug: "palermo", label: { fr: "Palermo", en: "Palermo" }, place: { fr: "Italie", en: "Italy" } },
+      {
+        slug: "napoli",
+        label: { fr: "Napoli", en: "Napoli" },
+        place: { fr: "Italie", en: "Italy" },
+        intro: {
+          fr: "Naples de bonne heure, quand les rues appartiennent encore à ceux qui y vivent.",
+          en: "Naples early on, while the streets still belong to the people who live in them.",
+        },
+      },
+      {
+        slug: "venezia",
+        label: { fr: "Venezia", en: "Venezia" },
+        place: { fr: "Italie", en: "Italy" },
+        intro: {
+          fr: "Venise en dehors des heures où on la photographie, tôt, avant que les ponts se remplissent.",
+          en: "Venice outside the hours when everyone photographs it, early, before the bridges fill.",
+        },
+      },
+      {
+        slug: "burano",
+        label: { fr: "Burano", en: "Burano" },
+        place: { fr: "Italie", en: "Italy" },
+        intro: {
+          fr: "Burano et ses façades, une île où la couleur est le sujet et où il faut arriver avant les bateaux.",
+          en: "Burano and its façades, an island where colour is the subject and where you have to arrive before the boats.",
+        },
+      },
+      {
+        slug: "palermo",
+        label: { fr: "Palermo", en: "Palermo" },
+        place: { fr: "Italie", en: "Italy" },
+        intro: {
+          fr: "Palerme au réveil, les marchés avant la foule et le rouge qui traverse le gris des rues.",
+          en: "Palermo waking up, the markets before the crowd, and the red that runs through the grey of the streets.",
+        },
+      },
       // En attente : koln, firenze, cefalu, faro, kawaguchiko, osaka, nara.
       // Osaka et Nara ont leur film dans CITIES mais pas encore assez de
       // photos : un cas s'ouvre sur des images, le film vient après.
