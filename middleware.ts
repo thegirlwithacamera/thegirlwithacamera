@@ -33,9 +33,12 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Tout sauf les routes techniques, le studio Sanity, les images generees
-  // et les fichiers statiques (tout ce qui contient un point).
+  // Tout sauf les routes techniques, les images generees et les fichiers
+  // statiques (tout ce qui contient un point).
+  //
+  // Le studio Sanity etait exclu ici ; la route a ete supprimee le 01/09, et
+  // l'exclusion faisait renvoyer une erreur 500 a /studio au lieu d'une 404.
   matcher: [
-    "/((?!api|_next|studio|opengraph-image|twitter-image|icon|favicon|.*\\..*).*)",
+    "/((?!api|_next|opengraph-image|twitter-image|icon|favicon|.*\\..*).*)",
   ],
 };
