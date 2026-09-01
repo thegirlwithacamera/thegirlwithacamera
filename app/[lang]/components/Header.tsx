@@ -46,22 +46,16 @@ export default function Header() {
     { href: `/${currentLang}/services`,     label: "Services" },
   ];
 
-  // Pages secondaires, rangees dans le "+". Le "+" ne s'affiche que si cette
-  // liste contient quelque chose.
+  // Pages secondaires, rangees dans le "+".
+  //
+  // Shop, Prints et Diary y ont dormi jusqu'au 01/09, en commentaire, avec
+  // la marche a suivre pour les rallumer. Les trois sont sorties du depot ce
+  // jour la : la boutique de tirages en entier, la page presets (la boutique
+  // Gumroad tourne toujours de son cote), et le Diary remplace par le
+  // Substack. Il ne reste que ce qui est vivant.
   const moreLinks: NavLink[] = [
     { href: "https://thegirlwithacamera.substack.com/", label: "Journal", external: true },
     { href: `/${currentLang}/about`, label: "About" },
-    // Shop/Presets : page retiree du site (la boutique Gumroad reste en ligne).
-    // Pour la remettre : decommente la ligne ci-dessous et passe
-    // PRESETS_LIVE a true dans app/[lang]/presets/page.tsx.
-    // { href: `/${currentLang}/presets`,  label: "Shop" },
-    // Prints : boutique hors ligne le temps de revoir la selection d'images.
-    // Pour la remettre, decommente la ligne ci-dessous et retire le
-    // notFound() dans app/[lang]/shop/page.tsx et shop/[productId]/page.tsx.
-    // { href: `/${currentLang}/shop`,     label: "Prints" },
-    // Diary : pret mais masque pour l'instant. Pour le remettre,
-    // decommente la ligne ci-dessous.
-    // { href: `/${currentLang}/diary`,    label: "Diary" },
   ];
 
   return (

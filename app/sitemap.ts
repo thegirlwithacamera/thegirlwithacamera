@@ -3,7 +3,6 @@ import { site } from "@/lib/site";
 import { PHOTO_CATEGORIES, PHOTO_CATEGORY_SLUGS } from "@/app/[lang]/photographer/constants";
 import { countCasePhotos } from "@/lib/portfolio";
 
-// "/shop" retire tant que la boutique est hors ligne.
 const STATIC_PATHS = [
   "",
   // Page d'index du portfolio, créée le 01/09. C'est elle qui vise
