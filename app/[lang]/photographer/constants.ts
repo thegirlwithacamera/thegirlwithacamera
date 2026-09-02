@@ -152,7 +152,24 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           fr: "Photographié en septembre 2026.",
           en: "Photographed in September 2026.",
         },
-        // chapters: { "01-nom-du-dossier": { fr: "Nom de la chambre", en: "Room name" } },
+        // Les noms de chambres sont ceux de la maison, pas ceux des dossiers
+        // de Sandrine : elle ecrit Joseph et Lilly, l'hotel ecrit Josef
+        // Hoffmann et Lilli Hollein. C'est leur nom, on garde le leur.
+        //
+        // 03 est laisse libre pour le Red Salon, que Sandrine n'avait pas fini
+        // le 02/09 : il se posera sans rien renumeroter.
+        chapters: {
+          "01-saris-home": { fr: "Sari's Home", en: "Sari's Home" },
+          "02-la-maison": { fr: "La maison", en: "The house" },
+          "03-red-salon": { fr: "Red Salon", en: "Red Salon" },
+          "04-felix-suite": { fr: "Felix Suite", en: "Felix Suite" },
+          "05-violet-suite": { fr: "Violet Suite", en: "Violet Suite" },
+          "06-freud-suite": { fr: "Freud Suite", en: "Freud Suite" },
+          "07-josef-hoffmann-suite": { fr: "Josef Hoffmann Suite", en: "Josef Hoffmann Suite" },
+          "08-camila-suite": { fr: "Camila Suite", en: "Camila Suite" },
+          "09-lilli-hollein-suite": { fr: "Lilli Hollein Suite", en: "Lilli Hollein Suite" },
+          "10-otto-suite": { fr: "Otto Suite", en: "Otto Suite" },
+        },
       },
       {
         // Une seule adresse, deux films. Dao n'est pas un restaurant voisin :
