@@ -42,3 +42,18 @@ export function readCaseCover(category: string, caseSlug: string): string | null
 export function countCasePhotos(category: string, caseSlug: string): number {
   return listImages(path.join(PORTFOLIO_DIR, category, caseSlug)).length;
 }
+
+// Cas dont le dossier d'images n'est pas vide, sous la forme
+// "categorie/cas". Sert a la page Videaste : une vignette de film ne propose
+// "Photos" que si la page du lieu existe reellement. Sans ce garde-fou, un
+// cas declare dans constants.ts avant l'arrivee des photos donnait un lien
+// vers une page en 404. C'est arrive avec Van der Valk Selys, declare le
+// 01/09 au soir avec ses deux films alors que les photos du restaurant
+// n'etaient pas encore montees.
+export function casesWithPhotos(
+  cases: { category: string; slug: string }[],
+): string[] {
+  return cases
+    .filter((c) => countCasePhotos(c.category, c.slug) > 0)
+    .map((c) => `${c.category}/${c.slug}`);
+}

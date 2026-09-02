@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import FilmmakerClient from "../FilmmakerClient";
+import { casesWithPhotos } from "@/lib/portfolio";
+import { allCases } from "../../photographer/constants";
 import { PUBLISHED_DIARY_CATS, type DiaryCat } from "../constants";
 import { readDiary } from "@/lib/creator-videos";
 import { pageMeta } from "@/lib/seo";
@@ -52,5 +54,8 @@ export default async function FilmmakerCategoryPage({ params }: Props) {
   const cat = parseCat(category);
   if (!cat) notFound();
 
-  return <FilmmakerClient lang={lang} diary={readDiary()} activeCat={cat} />;
+  const live = casesWithPhotos(
+    allCases().map((c) => ({ category: c.cat.slug, slug: c.item.slug })),
+  );
+  return <FilmmakerClient lang={lang} diary={readDiary()} activeCat={cat} live={live} />;
 }

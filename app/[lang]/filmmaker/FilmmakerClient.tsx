@@ -81,10 +81,14 @@ export default function FilmmakerClient({
   lang,
   diary,
   activeCat,
+  live = [],
 }: {
   lang: "fr" | "en";
   diary: Diary;
   activeCat?: DiaryCat; // categorie active sur /filmmaker/[categorie]
+  // Cas dont la page existe vraiment, sous la forme "categorie/cas".
+  // Fourni par la page serveur, qui seule peut lire les dossiers d'images.
+  live?: string[];
 }) {
   const t = content[lang];
   const { sound, focused, closeFocus } = useVideoSound();
@@ -96,6 +100,10 @@ export default function FilmmakerClient({
 
   const tile = (clip: Clip, key: string) => {
     const found = findCaseByFilm(clip.src);
+    // La page du lieu n'existe que si son dossier d'images n'est pas vide.
+    // Le nom et le libelle du film s'affichent quand meme : ils viennent de
+    // constants.ts et valent mieux qu'un titre deduit d'un nom de fichier.
+    const hasPage = !!found && live.includes(`${found.cat.slug}/${found.item.slug}`);
     return (
       <div key={key} className="film-item">
         <button
@@ -127,7 +135,7 @@ export default function FilmmakerClient({
             <span className="film-place">{found.item.place[lang]}</span>
           ) : null}
         </p>
-        {found && (
+        {hasPage && found && (
           <Link
             href={`/${lang}/photographer/${found.cat.slug}/${found.item.slug}`}
             className="film-link"

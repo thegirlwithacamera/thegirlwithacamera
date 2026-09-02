@@ -111,6 +111,38 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           en: "Photographed in early September 2026.",
         },
       },
+      {
+        // Une seule adresse, deux films. Dao n'est pas un restaurant voisin :
+        // c'est le spa du Sélys, au premier étage, et le fichier qui porte son
+        // nom montre le sauna, le mur de sel et le salon de repos. Le fichier
+        // "VanDerValk Sélys" montre la salle et le bar. Les noms de fichiers
+        // sont donc trompeurs, ce sont les libellés ci dessous qui font foi à
+        // l'écran ; on ne renomme rien sans le dire à Sandrine.
+        //
+        // Le cas est déclaré avant l'arrivée des photos du restaurant. Tant
+        // que le dossier public/images/portfolio/hospitality/van-der-valk-selys
+        // est vide, la page n'existe pas, le cas n'apparaît ni en accueil ni
+        // dans la catégorie, et la page Vidéaste affiche le nom sans proposer
+        // de lien. Le jour où les images arrivent, tout s'allume seul.
+        slug: "van-der-valk-selys",
+        label: { fr: "Van der Valk Sélys", en: "Van der Valk Sélys" },
+        short: { fr: "Sélys Liège", en: "Sélys Liège" },
+        place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
+        // À RELIRE PAR SANDRINE : écrit d'après les films, pas d'après le
+        // séjour. Deux phrases, le lieu et la date, jamais une critique.
+        intro: {
+          fr: "Un hôtel liégeois qui tient une table et un spa sous le même toit, du sauna au mur de sel jusqu'à la salle du soir.",
+          en: "A Liège hotel holding a table and a spa under one roof, from the sauna and the salt wall through to the evening dining room.",
+        },
+        shotAt: {
+          fr: "Photographié en juillet 2026.",
+          en: "Photographed in July 2026.",
+        },
+        films: [
+          { src: "/videos/creator/CINEMATIC/PLACES/VanDerValk Sélys.mp4", label: { fr: "Le restaurant", en: "The restaurant" } },
+          { src: "/videos/creator/CINEMATIC/PLACES/Dao Liège.mp4", label: { fr: "Le spa", en: "The spa" } },
+        ],
+      },
       // Coloc Housing retiré le 01/09, décision de Sandrine. La collaboration
       // s'est terminée sur un retrait de licence de sa part. Les images et le
       // film restent sur le disque, rien n'est supprimé : c'est la publication
