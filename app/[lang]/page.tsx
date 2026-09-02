@@ -91,40 +91,74 @@ export default async function HomePage({ params }: Props) {
         }
         .cat-tile:hover .tile-thumb img { transform: scale(1.05); }
 
-        /* Une seule légende pour tout le site : sous l'image, discrète,
-           elle ne recouvre jamais la photo. Les catégories sont en gris,
-           les deux portes en noir avec une flèche : même taille, signal
-           suffisant pour qu'on ne les confonde pas avec du travail. */
-        .tile-cap {
-          display: block;
-          margin-top: 10px;
+        /* ── La legende vit sur la photo ──────────────────────────────
+           Decision du 01/09 au soir. Douze tuiles portaient chacune deux
+           lignes sous l'image, nom et lieu : la grille contenait plus de
+           texte que de photos et l'oeil lisait au lieu de regarder.
+           Le nom passe sur l'image, court, discret au repos, net au
+           survol, et le lieu n'apparait qu'au survol. Le nom complet
+           reste sur la page du lieu, dans l'alt et dans le partage.
+
+           Le voile est indispensable : un nom blanc sur un ciel blanc de
+           Villach ne se lit pas. Il ne couvre que le bas de l'image et
+           s'assombrit legerement au survol.
+
+           Au repos le nom est deja lisible, pas seulement devine : sur
+           telephone il n'y a pas de survol, et c'est le seul etat que la
+           moitie des visiteurs verra. */
+        .tile-veil {
+          position: absolute;
+          inset: auto 0 0 0;
+          height: 46%;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0));
+          opacity: 0.78;
+          transition: opacity 0.35s ease;
+          pointer-events: none;
+        }
+        .cat-tile:hover .tile-veil { opacity: 1; }
+
+        .tile-name {
+          position: absolute;
+          left: 14px;
+          right: 14px;
+          bottom: 13px;
           font-size: 10px;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: #999;
-          text-align: center;
-          transition: color 0.25s ease;
+          color: #ffffff;
+          opacity: 0.82;
+          text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+          transition: opacity 0.35s ease;
+          pointer-events: none;
         }
-        .cat-tile:hover .tile-cap { color: #0a0a0a; }
-        /* Nom du client en noir, ville et année en gris juste dessous :
-           la tuile dit qui, où et quand sans ouvrir la page. */
-        .tile-cap.is-case { color: #0a0a0a; }
-        .tile-place {
+        .cat-tile:hover .tile-name { opacity: 1; }
+
+        /* Le lieu n'existe qu'au survol. Il reste dans le HTML, donc lu par
+           un lecteur d'ecran et par Google, simplement invisible au repos. */
+        .tile-loc {
           display: block;
-          margin-top: 3px;
+          margin-top: 4px;
           font-size: 9px;
           letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: #999;
-          text-align: center;
+          color: rgba(255, 255, 255, 0.88);
+          opacity: 0;
+          transform: translateY(4px);
+          transition: opacity 0.35s ease, transform 0.35s ease;
         }
-        .tile-cap.is-door { color: #0a0a0a; }
-        .tile-cap.is-door::after { content: " →"; letter-spacing: 0; }
+        .cat-tile:hover .tile-loc { opacity: 1; transform: none; }
+
+        .tile-name.is-door::after { content: " →"; letter-spacing: 0; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .tile-veil, .tile-name, .tile-loc, .tile-thumb img { transition: none; }
+        }
+
         .door-empty { position: absolute; inset: 0; background: #f4f1ec; }
 
         @media (max-width: 767px) {
           .cat-grid { gap: 10px; padding: 0 12px; grid-template-columns: repeat(2, 1fr) !important; }
-          .tile-cap { font-size: 9px; letter-spacing: 0.14em; margin-top: 7px; }
+          .tile-name { left: 10px; right: 10px; bottom: 10px; font-size: 9px; letter-spacing: 0.14em; }
+          .tile-loc { font-size: 8px; }
         }
       `}</style>
 
@@ -144,9 +178,12 @@ export default async function HomePage({ params }: Props) {
                   quality={78}
                   style={c.item.coverPosition ? { objectPosition: c.item.coverPosition } : undefined}
                 />
+                <span className="tile-veil" />
+                <span className="tile-name">
+                  {c.item.short?.[lang] ?? c.item.label[lang]}
+                  {c.item.place && <span className="tile-loc">{c.item.place[lang]}</span>}
+                </span>
               </span>
-              <span className="tile-cap is-case">{c.item.label[lang]}</span>
-              {c.item.place && <span className="tile-place">{c.item.place[lang]}</span>}
             </Link>
           ))}
 
@@ -166,8 +203,9 @@ export default async function HomePage({ params }: Props) {
                 ) : (
                   <span className="door-empty" />
                 )}
+                <span className="tile-veil" />
+                <span className="tile-name is-door">{tile.label[lang]}</span>
               </span>
-              <span className="tile-cap is-door">{tile.label[lang]}</span>
             </Link>
           ))}
 

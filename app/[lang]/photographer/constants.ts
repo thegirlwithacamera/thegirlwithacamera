@@ -36,6 +36,12 @@ export type CaseFilm = {
 export type PhotoCase = {
   slug: string;
   label: { fr: string; en: string };
+  // Nom court, uniquement pour la vignette de l'accueil, où il est posé sur
+  // la photo. "Naturel Dorf Schönleitn" en capitales espacées sur une tuile
+  // de 380 pixels prenait deux lignes et salissait la grille. Le nom complet
+  // reste partout ailleurs : titre de la page du lieu, alt, sitemap, partage.
+  // Absent, c'est label qui sert.
+  short?: { fr: string; en: string };
   // Lieu affiché sous le titre du cas : ville et pays, ou rien.
   place?: { fr: string; en: string };
   // Deux phrases sous le titre, au dessus des images. La première décrit ce
@@ -80,6 +86,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
       {
         slug: "naturel-dorf-schonleitn",
         label: { fr: "Naturel Dorf Schönleitn", en: "Naturel Dorf Schönleitn" },
+        short: { fr: "Dorf Schönleitn", en: "Dorf Schönleitn" },
         place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
         intro: {
           fr: "Un village de chalets en bois posé au dessus du lac de Faak, en Carinthie, où la lumière du matin arrive tard et reste basse.",
@@ -93,6 +100,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
       {
         slug: "hotel-rathaus-wien",
         label: { fr: "Hotel Rathaus Wien", en: "Hotel Rathaus Wien" },
+        short: { fr: "Rathaus Wien", en: "Rathaus Wien" },
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
         intro: {
           fr: "Une maison viennoise à deux pas du Rathaus, une salle de bain vert profond, des fenêtres qui donnent directement sur la rue.",
@@ -141,6 +149,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         // pas une série personnelle. Elle est en tête du bloc pour ça.
         slug: "villach",
         label: { fr: "Region Villach", en: "Region Villach" },
+        short: { fr: "Villach", en: "Villach" },
         place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
         intro: {
           fr: "Une ville de Carinthie sous ses parapluies suspendus, un lac turquoise à dix minutes, et la brume qui descend sur les montagnes au matin.",
