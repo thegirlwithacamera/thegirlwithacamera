@@ -53,6 +53,11 @@ export type PhotoCase = {
   shotAt?: { fr: string; en: string };
   // Position CSS object-position pour le crop 4:5 de la vignette du cas.
   coverPosition?: string;
+  // Nom affiché d'un chapitre, quand le nom déduit du dossier ne suffit pas.
+  // Clé = nom exact du sous-dossier. Sans entrée, le nom vient du dossier :
+  // "01-suite-du-toit" donne "Suite du toit". Sert à remettre les accents et
+  // les majuscules propres, que le nom de dossier ne porte pas.
+  chapters?: Record<string, { fr: string; en: string }>;
   // Films tournés sur place, affichés sous les photos, dans leur format natif.
   // Une adresse se visite en photo et en mouvement : les deux vivent sur la
   // même page. La page Vidéaste reste pour les lieux sans photos.
@@ -110,6 +115,44 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           fr: "Photographié début septembre 2026.",
           en: "Photographed in early September 2026.",
         },
+      },
+      {
+        // mk hotel Munich : un film, aucune photo. La maison n'a pas permis
+        // de photographier le lieu, dit par Sandrine le 01/09. Le cas est
+        // déclaré quand même, sans dossier d'images : il ne crée aucune page
+        // et n'apparaît pas en accueil, mais il donne son nom propre et sa
+        // ville à la vignette du film sur la page Vidéaste, au lieu du titre
+        // déduit du nom de fichier. Le garde-fou de la page Vidéaste fait le
+        // reste : pas de dossier d'images, donc pas de lien "Voir les photos".
+        slug: "mk-hotel-munich",
+        label: { fr: "mk hotel Munich", en: "mk hotel Munich" },
+        place: { fr: "Munich, Allemagne", en: "Munich, Germany" },
+        films: [
+          { src: "/videos/creator/CINEMATIC/PLACES/mk hotel Munich.mp4" },
+        ],
+      },
+      {
+        // Altstadt Vienna : six ou sept chambres visitées et photographiées,
+        // une seule page. Décision de Sandrine du 01/09 au soir. Un cas par
+        // chambre aurait mis sept tuiles Altstadt sur une grille qui en compte
+        // douze : un directeur d'hôtel y aurait lu qu'elle a beaucoup
+        // photographié un hôtel, pas qu'elle photographie des hôtels. Et ce
+        // qui vend à la maison suivante, c'est justement la maison entière.
+        //
+        // Les chambres sont des chapitres : un sous-dossier par chambre dans
+        // public/images/portfolio/hospitality/altstadt-vienna/, numéroté pour
+        // l'ordre. Voir lib/portfolio.ts. Les vrais noms de chambres se
+        // mettent dans chapters ci dessous quand Sandrine les donne, sinon le
+        // nom du dossier fait l'affaire.
+        slug: "altstadt-vienna",
+        label: { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
+        place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
+        // À ÉCRIRE PAR SANDRINE au retour : deux phrases, le lieu et la date.
+        shotAt: {
+          fr: "Photographié en septembre 2026.",
+          en: "Photographed in September 2026.",
+        },
+        // chapters: { "01-nom-du-dossier": { fr: "Nom de la chambre", en: "Room name" } },
       },
       {
         // Une seule adresse, deux films. Dao n'est pas un restaurant voisin :

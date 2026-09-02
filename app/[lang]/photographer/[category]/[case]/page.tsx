@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PHOTO_CATEGORIES, findCase } from "../../constants";
-import { readCasePhotos, countCasePhotos, readCaseCover } from "@/lib/portfolio";
+import { readCasePhotos, countCasePhotos, readCaseCover, readCaseChapters } from "@/lib/portfolio";
 import { posterForPath } from "@/lib/creator-videos";
 import PhotoPager from "../PhotoPager";
 import CaseFilms from "./CaseFilms";
@@ -48,6 +48,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
+// "01-suite-du-toit" donne "Suite du toit". Le numéro sert à l'ordre des
+// dossiers, il ne s'affiche pas. Une seule majuscule, en tête : ce sont des
+// noms de pièces en français, pas des titres à l'anglaise.
+function chapterTitle(slug: string): string {
+  const t = slug.replace(/^\d+[\s._-]*/, "").replace(/[-_]+/g, " ").trim();
+  return t ? t[0].toUpperCase() + t.slice(1) : slug;
+}
+
 // ─────────────────────────────────────────────────────────────
 // Page d'un cas : les images du dossier
 // public/images/portfolio/<catégorie>/<cas>/, dans l'ordre des numéros.
@@ -62,6 +70,13 @@ export default async function PhotographerCasePage({ params }: Props) {
 
   const photos = readCasePhotos(cat.slug, item.slug);
   if (photos.length === 0) notFound();
+
+  // Chapitres : un sous-dossier par chambre, par salle, par moment. Vide pour
+  // un cas classique, qui reste rendu exactement comme avant.
+  const chapters = readCaseChapters(cat.slug, item.slug).map((ch) => ({
+    ...ch,
+    title: item.chapters?.[ch.slug]?.[lang] ?? chapterTitle(ch.slug),
+  }));
 
   // Les films du lieu, sous les photos. Le label ne s'affiche que s'il y en a
   // plusieurs : avec un seul film, le titre de la page le nomme déjà.
@@ -141,6 +156,38 @@ export default async function PhotographerCasePage({ params }: Props) {
         }
         .pager-dot:hover { background: #999; }
         .pager-dot.is-active { background: #0a0a0a; transform: scale(1.4); }
+        /* Chapitres. Le titre est un intertitre discret, pas un second h1 :
+           la page reste celle de la maison, la chambre est une étape. */
+        .case-chapter { margin: 0 0 54px; }
+        /* La grille d'un chapitre est en flex, pas en grid : une chambre fait
+           rarement un multiple de trois photos, et une dernière rangée à une
+           seule image collée à gauche avec deux trous à droite se lit comme un
+           bug. En flex avec justify-content center, la rangée incomplète se
+           centre et la page reste tenue. */
+        .case-chapter .photo-grid {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .case-chapter .photo-grid .photo-cell {
+          flex: 0 0 calc((100% - 44px) / 3);
+        }
+        .case-chapter:last-of-type { margin-bottom: 0; }
+        .case-chapter-title {
+          font-family: var(--font-serif), Georgia, serif;
+          font-size: 13px;
+          font-weight: 400;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #999;
+          text-align: center;
+          margin: 0 0 20px;
+        }
+        @media (max-width: 767px) {
+          .case-chapter { margin-bottom: 34px; }
+          .case-chapter-title { font-size: 11px; letter-spacing: 0.16em; margin-bottom: 14px; }
+          .case-chapter .photo-grid .photo-cell { flex-basis: calc((100% - 16px) / 3); }
+        }
         .case-films { max-width: 1260px; margin: 0 auto; padding: 64px 20px 0; }
         .case-films-head {
           font-size: 10px;
@@ -228,7 +275,35 @@ export default async function PhotographerCasePage({ params }: Props) {
           )}
         </div>
 
-        {photos.length > 12 ? (
+        {chapters.length > 0 ? (
+          /* Cas à chapitres : chaque sous-dossier devient une section titrée.
+             Pas de pager ici, on fait défiler : le visiteur suit la visite
+             pièce par pièce, et un carrousel par chambre rendrait la page
+             illisible. Les images sont chargées paresseusement sauf les
+             premières, donc soixante photos ne coûtent rien à l'ouverture. */
+          chapters.map((ch, ci) => (
+            <section key={ch.slug} className="case-chapter">
+              <h2 className="case-chapter-title">{ch.title}</h2>
+              <div className="photo-grid">
+                {ch.photos.map((p, i) => (
+                  <div key={p.src} className="photo-cell">
+                    <Image
+                      src={p.src}
+                      alt={ci === 0 && i === 0 && item.intro
+                        ? `${item.label.en}, ${item.intro.en}`
+                        : `${item.label.en}, ${ch.title}, photograph ${i + 1} by Sandrine Ceuppens`}
+                      width={1066}
+                      height={1600}
+                      sizes="(max-width: 767px) 33vw, 420px"
+                      priority={ci === 0 && i < 3}
+                      quality={75}
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))
+        ) : photos.length > 12 ? (
           <PhotoPager photos={photos} catLabel={`${item.label.en} — ${cat.label.en}`} />
         ) : (
           <div className="photo-grid">

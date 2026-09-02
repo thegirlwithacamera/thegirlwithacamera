@@ -1,0 +1,13 @@
+Photos du restaurant du Van der Valk Sélys.
+
+Les déposer ici, nommées 1.jpg, 2.jpg, 3.jpg ... dans l'ordre d'affichage.
+1.jpg sert de couverture : c'est elle qui apparaît en page d'accueil et dans
+la carte de partage quand on envoie le lien à l'hôtel. Extensions acceptées :
+jpg, jpeg, png, webp, avif. Minuscules obligatoires pour l'extension, Vercel
+tourne sur Linux et .JPG ne serait pas trouvé.
+
+Rien d'autre à faire. La page, la tuile d'accueil, l'entrée de la catégorie
+Hôtels & maisons et les deux liens "Voir les photos" sous les films
+apparaissent tout seuls au déploiement suivant.
+
+Ensuite je passe les images à la moulinette de compression, comme les autres.

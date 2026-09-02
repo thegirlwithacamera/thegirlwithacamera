@@ -1,0 +1,21 @@
+OÙ DÉPOSER LES FILMS QUI ARRIVENT
+=================================
+
+Dossier : public/videos/creator/CINEMATIC/PLACES/
+
+Le nom du fichier est le titre affiché tant que le film n'est pas rattaché à
+un cas. Donc on nomme proprement du premier coup.
+
+  Naturel Dorf Schönleitn.mp4     -> se rattache au cas déjà en ligne
+  Hotel Rathaus Wien.mp4          -> se rattache au cas déjà en ligne
+  mk hotel Munich.mp4             -> pas encore de cas photo, il s'affichera
+                                     sous son nom de fichier
+
+Format : 1920 x 1080, H.264, CRF 21. Si tu exportes en 4K, dépose le master
+et je réencode, c'est ce qui a été fait pour Villach et les City Diary.
+
+Poster : facultatif. Un fichier .jpg au même nom à côté du .mp4 sert de
+vignette. Sans lui, le navigateur prend la première image du film.
+
+Ensuite je rattache chaque film à son cas dans constants.ts, une ligne, et la
+vignette affiche le nom de la maison plus un lien vers ses photos.

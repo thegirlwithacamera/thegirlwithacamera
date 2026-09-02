@@ -1,0 +1,20 @@
+Altstadt Vienna : une chambre par sous-dossier.
+
+  01-nom-de-la-chambre/1.jpg 2.jpg 3.jpg ...
+  02-autre-chambre/1.jpg ...
+  03-encore-une/1.jpg ...
+
+Le numéro donne l'ordre d'affichage, il ne s'affiche pas. Le reste du nom
+devient le titre du chapitre : "01-suite-du-toit" donne "Suite du toit".
+Nom de dossier en minuscules, sans accent, tirets à la place des espaces :
+c'est une adresse web, pas un titre. Les vrais noms avec accents et
+majuscules se mettent dans constants.ts, dis-les moi et je les pose.
+
+Dans chaque sous-dossier, les images se nomment 1.jpg, 2.jpg, 3.jpg dans
+l'ordre. Extension en minuscules.
+
+La première image du premier dossier sert de couverture : c'est elle qui
+apparaît en page d'accueil et dans la carte de partage envoyée à l'hôtel.
+Choisis-la en conséquence.
+
+Il manque encore les deux phrases d'intro de la maison.
