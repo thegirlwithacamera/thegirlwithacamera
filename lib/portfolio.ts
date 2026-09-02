@@ -26,7 +26,48 @@ const PORTFOLIO_DIR = path.join(process.cwd(), "public", "images", "portfolio");
 const IMG_RE = /\.(jpe?g|png|webp|avif)$/i;
 
 export type PortfolioPhoto = { src: string };
-export type PortfolioChapter = { slug: string; photos: PortfolioPhoto[] };
+export type PortfolioChapter = {
+  slug: string;
+  photos: PortfolioPhoto[];
+  // Rapport largeur sur hauteur de la premiere image du chapitre. La grille
+  // s'y accorde, ce qui evite de recadrer. Sans ca, les 266 photos d'Altstadt,
+  // toutes en 3:2 paysage, tombaient dans une cellule 1066x1600 portrait en
+  // object-fit cover : la moitie de la largeur partait au recadrage et la
+  // composition avec.
+  ratio: number;
+};
+
+// Dimensions d'un JPEG lues dans son entete, sans decoder l'image. Quelques
+// lignes valent mieux qu'une dependance ici : la fonction tourne au build,
+// une fois par chapitre.
+function jpegSize(file: string): { w: number; h: number } | null {
+  let fd: number;
+  try {
+    fd = fs.openSync(file, "r");
+  } catch {
+    return null;
+  }
+  try {
+    const buf = Buffer.alloc(131072);
+    const read = fs.readSync(fd, buf, 0, buf.length, 0);
+    if (read < 4 || buf[0] !== 0xff || buf[1] !== 0xd8) return null;
+    let i = 2;
+    while (i < read - 9) {
+      if (buf[i] !== 0xff) { i++; continue; }
+      const marker = buf[i + 1];
+      // SOF0 a SOF15, en sautant DHT (c4), DAC (cc) et RSTn (d0-d7).
+      if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xcc) {
+        return { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) };
+      }
+      i += 2 + buf.readUInt16BE(i + 2);
+    }
+    return null;
+  } catch {
+    return null;
+  } finally {
+    fs.closeSync(fd);
+  }
+}
 
 function listImages(dir: string): string[] {
   let files: string[];
@@ -57,12 +98,18 @@ function listChapterDirs(dir: string): string[] {
 export function readCaseChapters(category: string, caseSlug: string): PortfolioChapter[] {
   const base = path.join(PORTFOLIO_DIR, category, caseSlug);
   return listChapterDirs(base)
-    .map((name) => ({
-      slug: name,
-      photos: listImages(path.join(base, name)).map((f) => ({
-        src: `/images/portfolio/${category}/${caseSlug}/${name}/${f}`,
-      })),
-    }))
+    .map((name) => {
+      const files = listImages(path.join(base, name));
+      const first = files[0] ? jpegSize(path.join(base, name, files[0])) : null;
+      return {
+        slug: name,
+        photos: files.map((f) => ({
+          src: `/images/portfolio/${category}/${caseSlug}/${name}/${f}`,
+        })),
+        // 1066/1600, le portrait du reste du site, quand la lecture echoue.
+        ratio: first && first.h > 0 ? first.w / first.h : 1066 / 1600,
+      };
+    })
     .filter((c) => c.photos.length > 0);
 }
 

@@ -171,6 +171,7 @@ export default async function PhotographerCasePage({ params }: Props) {
         }
         .case-chapter .photo-grid .photo-cell {
           flex: 0 0 calc((100% - 44px) / 3);
+          aspect-ratio: var(--cell, 1066 / 1600);
         }
         .case-chapter:last-of-type { margin-bottom: 0; }
         .case-chapter-title {
@@ -282,7 +283,14 @@ export default async function PhotographerCasePage({ params }: Props) {
              illisible. Les images sont chargées paresseusement sauf les
              premières, donc soixante photos ne coûtent rien à l'ouverture. */
           chapters.map((ch, ci) => (
-            <section key={ch.slug} className="case-chapter">
+            <section
+              key={ch.slug}
+              className="case-chapter"
+              /* Le rapport vient des images du chapitre : une salle
+                 photographiee en paysage s'affiche en paysage, sans recadrage
+                 impose par le gabarit portrait du reste du site. */
+              style={{ "--cell": String(ch.ratio) } as React.CSSProperties}
+            >
               <h2 className="case-chapter-title">{ch.title}</h2>
               <div className="photo-grid">
                 {ch.photos.map((p, i) => (
@@ -292,9 +300,9 @@ export default async function PhotographerCasePage({ params }: Props) {
                       alt={ci === 0 && i === 0 && item.intro
                         ? `${item.label.en}, ${item.intro.en}`
                         : `${item.label.en}, ${ch.title}, photograph ${i + 1} by Sandrine Ceuppens`}
-                      width={1066}
+                      width={Math.round(1600 * ch.ratio)}
                       height={1600}
-                      sizes="(max-width: 767px) 33vw, 420px"
+                      sizes="(max-width: 767px) 33vw, 460px"
                       priority={ci === 0 && i < 3}
                       quality={75}
                     />
