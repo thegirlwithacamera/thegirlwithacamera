@@ -75,6 +75,12 @@ export default async function HomePage({ params }: Props) {
             ? `${c.item.label[lang]} · ${c.item.place[lang]}`
             : c.item.label[lang],
           href: `${c.href}#${ch.slug}`,
+          // Une tuile de chapitre porte le nom de la chambre : sans la ligne
+          // du dessous, neuf chambres d'un meme hotel se lisent comme neuf
+          // adresses. Elle reste donc visible au repos, alors qu'elle
+          // n'apparait au survol pour un cas ordinaire, ou elle ne dit que
+          // la ville.
+          alwaysSub: true,
         }));
       }
     }
@@ -87,6 +93,7 @@ export default async function HomePage({ params }: Props) {
           name: c.item.short?.[lang] ?? c.item.label[lang],
           sub: c.item.place ? c.item.place[lang] : undefined,
           href: c.href,
+          alwaysSub: false,
         }]
       : [];
   });
@@ -178,6 +185,12 @@ export default async function HomePage({ params }: Props) {
           transition: opacity 0.35s ease, transform 0.35s ease;
         }
         .cat-tile:hover .tile-loc { opacity: 1; transform: none; }
+        /* Lisible au repos, un peu en retrait, nette au survol. 0,82 et pas
+           moins : mesure faite sur la tuile la plus claire, Sari's Home, le
+           contraste tombait a 4,3 contre 1 a 0,72, sous le seuil de 4,5 pour
+           du petit texte. */
+        .tile-loc.is-shown { opacity: 0.82; transform: none; }
+        .cat-tile:hover .tile-loc.is-shown { opacity: 1; }
 
         .tile-name.is-door::after { content: " →"; letter-spacing: 0; }
 
@@ -213,7 +226,9 @@ export default async function HomePage({ params }: Props) {
                 <span className="tile-veil" />
                 <span className="tile-name">
                   {c.name}
-                  {c.sub && <span className="tile-loc">{c.sub}</span>}
+                  {c.sub && (
+                    <span className={`tile-loc${c.alwaysSub ? " is-shown" : ""}`}>{c.sub}</span>
+                  )}
                 </span>
               </span>
             </Link>

@@ -64,6 +64,11 @@ export type PhotoCase = {
   // qu'une. Les tuiles pointent vers l'ancre du chapitre dans la page du cas,
   // pas vers neuf pages séparées : une chambre ne fait pas une page.
   chapterTiles?: boolean;
+  // Image de partage du cas, quand la premiere image du premier chapitre ne
+  // convient pas. Depuis que La maison ouvre Altstadt, la couverture par
+  // defaut serait l'escalier ; Sandrine veut une chambre sur la carte qu'on
+  // envoie a l'hotel. Chemin absolu depuis la racine du site.
+  coverImage?: string;
   // Films tournés sur place, affichés sous les photos, dans leur format natif.
   // Une adresse se visite en photo et en mouvement : les deux vivent sur la
   // même page. La page Vidéaste reste pour les lieux sans photos.
@@ -95,20 +100,6 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     cover: "/images/portfolio/hospitality/naturel-dorf-schonleitn/1.jpg",
     cases: [
       {
-        slug: "naturel-dorf-schonleitn",
-        label: { fr: "Naturel Dorf Schönleitn", en: "Naturel Dorf Schönleitn" },
-        short: { fr: "Dorf Schönleitn", en: "Dorf Schönleitn" },
-        place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
-        intro: {
-          fr: "Un village de chalets en bois posé au dessus du lac de Faak, en Carinthie, où la lumière du matin arrive tard et reste basse.",
-          en: "A village of wooden chalets above Lake Faak, in Carinthia, where the morning light arrives late and stays low.",
-        },
-        shotAt: {
-          fr: "Photographié sur deux jours, en août 2026.",
-          en: "Photographed over two days, August 2026.",
-        },
-      },
-      {
         slug: "hotel-rathaus-wien",
         label: { fr: "Hotel Rathaus Wien", en: "Hotel Rathaus Wien" },
         short: { fr: "Rathaus Wien", en: "Rathaus Wien" },
@@ -138,6 +129,20 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         ],
       },
       {
+        slug: "naturel-dorf-schonleitn",
+        label: { fr: "Naturel Dorf Schönleitn", en: "Naturel Dorf Schönleitn" },
+        short: { fr: "Dorf Schönleitn", en: "Dorf Schönleitn" },
+        place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
+        intro: {
+          fr: "Un village de chalets en bois posé au dessus du lac de Faak, en Carinthie, où la lumière du matin arrive tard et reste basse.",
+          en: "A village of wooden chalets above Lake Faak, in Carinthia, where the morning light arrives late and stays low.",
+        },
+        shotAt: {
+          fr: "Photographié sur deux jours, en août 2026.",
+          en: "Photographed over two days, August 2026.",
+        },
+      },
+      {
         // Altstadt Vienna : six ou sept chambres visitées et photographiées,
         // une seule page. Décision de Sandrine du 01/09 au soir. Un cas par
         // chambre aurait mis sept tuiles Altstadt sur une grille qui en compte
@@ -153,8 +158,15 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         slug: "altstadt-vienna",
         label: { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
         chapterTiles: true,
+        coverImage: "/images/portfolio/hospitality/altstadt-vienna/02-saris-home/1.jpg",
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
-        // À ÉCRIRE PAR SANDRINE au retour : deux phrases, le lieu et la date.
+        // Soixante-deux chambres, chiffre donné par Sandrine le 02/09. C'est
+        // le fait qui porte la page : on ne photographie pas une maison
+        // pareille avec une chambre témoin, d'où les neuf chapitres.
+        intro: {
+          fr: "Soixante-deux chambres, et pas deux qui se ressemblent. J'en ai photographié neuf, avec l'escalier et les couloirs qui les relient.",
+          en: "Sixty-two rooms, and no two the same. I photographed nine of them, plus the staircase and the corridors that link them.",
+        },
         shotAt: {
           fr: "Photographié en septembre 2026.",
           en: "Photographed in September 2026.",
@@ -166,8 +178,8 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         // 03 est laisse libre pour le Red Salon, que Sandrine n'avait pas fini
         // le 02/09 : il se posera sans rien renumeroter.
         chapters: {
-          "01-saris-home": { fr: "Sari's Home", en: "Sari's Home" },
-          "02-la-maison": { fr: "La maison", en: "The house" },
+          "01-la-maison": { fr: "La maison", en: "The house" },
+          "02-saris-home": { fr: "Sari's Home", en: "Sari's Home" },
           "03-red-salon": { fr: "Red Salon", en: "Red Salon" },
           "04-felix-suite": { fr: "Felix Suite", en: "Felix Suite" },
           "05-violet-suite": { fr: "Violet Suite", en: "Violet Suite" },

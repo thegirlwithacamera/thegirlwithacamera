@@ -42,8 +42,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ? `${item.label.fr}${place}, ${cat.label.fr.toLowerCase()} photographiés par Sandrine Ceuppens, The Girl With A Camera.`
         : `${item.label.en}${place}, ${cat.label.en.toLowerCase()} photographed by Sandrine Ceuppens, The Girl With A Camera.`,
     // La carte de partage montre la maison, pas le logo du site : c'est ce
-    // lien qu'on envoie à l'hôtel.
-    image: readCaseCover(cat.slug, item.slug) ?? undefined,
+    // lien qu'on envoie à l'hôtel. coverImage l'emporte quand la première
+    // image du cas ne fait pas une bonne carte : Altstadt ouvre sur
+    // l'escalier, mais c'est une chambre qu'on veut sur le lien envoyé.
+    image: item.coverImage ?? readCaseCover(cat.slug, item.slug) ?? undefined,
     imageAlt: `${item.label[lang]}${place}`,
   });
 }
