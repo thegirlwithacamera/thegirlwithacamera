@@ -158,7 +158,7 @@ export default async function PhotographerCasePage({ params }: Props) {
         .pager-dot.is-active { background: #0a0a0a; transform: scale(1.4); }
         /* Chapitres. Le titre est un intertitre discret, pas un second h1 :
            la page reste celle de la maison, la chambre est une étape. */
-        .case-chapter { margin: 0 0 54px; }
+        .case-chapter { margin: 0 0 54px; scroll-margin-top: 24px; }
         /* La grille d'un chapitre est en flex, pas en grid : une chambre fait
            rarement un multiple de trois photos, et une dernière rangée à une
            seule image collée à gauche avec deux trous à droite se lit comme un
@@ -285,6 +285,10 @@ export default async function PhotographerCasePage({ params }: Props) {
           chapters.map((ch, ci) => (
             <section
               key={ch.slug}
+              /* Ancre : les tuiles d'accueil d'un cas a chapitres pointent
+                 ici, une par chambre. scroll-margin-top evite que le titre
+                 du chapitre arrive colle en haut de la fenetre. */
+              id={ch.slug}
               className="case-chapter"
               /* Le rapport vient des images du chapitre : une salle
                  photographiee en paysage s'affiche en paysage, sans recadrage

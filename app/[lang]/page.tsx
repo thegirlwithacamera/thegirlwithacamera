@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { allCases, HOME_TILES } from "./photographer/constants";
-import { readCaseCover } from "@/lib/portfolio";
+import { readCaseCover, readCaseChapters } from "@/lib/portfolio";
 import { pageMeta } from "@/lib/seo";
 
 interface Props {
@@ -54,9 +54,41 @@ export default async function HomePage({ params }: Props) {
   const { lang } = await params;
 
   // Un cas déclaré mais sans images ne s'affiche pas.
+  //
+  // Un cas à chapitres marqué chapterTiles sort une tuile par chapitre plutôt
+  // qu'une tuile pour lui. Décision de Sandrine du 02/09 : Altstadt, ce sont
+  // neuf chambres dessinées chacune par quelqu'un d'autre, et une vignette
+  // unique n'en montrait qu'une. La tuile porte le nom de la chambre, la
+  // ligne du dessous dit la maison et la ville, et le lien ouvre la page du
+  // lieu à l'ancre du chapitre. Une chambre ne fait pas une page : le cas
+  // reste un seul cas, une seule URL, un seul texte.
   const homeCases = allCases().flatMap((c) => {
+    if (c.item.chapterTiles) {
+      const chapters = readCaseChapters(c.cat.slug, c.item.slug);
+      if (chapters.length > 0) {
+        return chapters.map((ch) => ({
+          ...c,
+          key: `${c.cat.slug}/${c.item.slug}/${ch.slug}`,
+          cover: ch.photos[0].src,
+          name: c.item.chapters?.[ch.slug]?.[lang] ?? ch.slug,
+          sub: c.item.place
+            ? `${c.item.label[lang]} · ${c.item.place[lang]}`
+            : c.item.label[lang],
+          href: `${c.href}#${ch.slug}`,
+        }));
+      }
+    }
     const cover = readCaseCover(c.cat.slug, c.item.slug);
-    return cover ? [{ ...c, cover }] : [];
+    return cover
+      ? [{
+          ...c,
+          key: `${c.cat.slug}/${c.item.slug}`,
+          cover,
+          name: c.item.short?.[lang] ?? c.item.label[lang],
+          sub: c.item.place ? c.item.place[lang] : undefined,
+          href: c.href,
+        }]
+      : [];
   });
 
   return (
@@ -166,7 +198,7 @@ export default async function HomePage({ params }: Props) {
       <main style={{ paddingTop: "16px", background: "#ffffff" }}>
         <div className="cat-grid">
           {homeCases.map((c, i) => (
-            <Link key={`${c.cat.slug}/${c.item.slug}`} href={`/${lang}${c.href}`} className="cat-tile">
+            <Link key={c.key} href={`/${lang}${c.href}`} className="cat-tile">
               <span className="tile-thumb">
                 <Image
                   src={c.cover}
@@ -180,8 +212,8 @@ export default async function HomePage({ params }: Props) {
                 />
                 <span className="tile-veil" />
                 <span className="tile-name">
-                  {c.item.short?.[lang] ?? c.item.label[lang]}
-                  {c.item.place && <span className="tile-loc">{c.item.place[lang]}</span>}
+                  {c.name}
+                  {c.sub && <span className="tile-loc">{c.sub}</span>}
                 </span>
               </span>
             </Link>

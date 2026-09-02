@@ -58,6 +58,12 @@ export type PhotoCase = {
   // "01-suite-du-toit" donne "Suite du toit". Sert à remettre les accents et
   // les majuscules propres, que le nom de dossier ne porte pas.
   chapters?: Record<string, { fr: string; en: string }>;
+  // À true, l'accueil montre une tuile par chapitre au lieu d'une tuile pour
+  // le cas. Décision de Sandrine du 02/09 pour Altstadt : neuf chambres
+  // dessinées chacune par quelqu'un d'autre, une seule vignette n'en montrait
+  // qu'une. Les tuiles pointent vers l'ancre du chapitre dans la page du cas,
+  // pas vers neuf pages séparées : une chambre ne fait pas une page.
+  chapterTiles?: boolean;
   // Films tournés sur place, affichés sous les photos, dans leur format natif.
   // Une adresse se visite en photo et en mouvement : les deux vivent sur la
   // même page. La page Vidéaste reste pour les lieux sans photos.
@@ -146,6 +152,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         // nom du dossier fait l'affaire.
         slug: "altstadt-vienna",
         label: { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
+        chapterTiles: true,
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
         // À ÉCRIRE PAR SANDRINE au retour : deux phrases, le lieu et la date.
         shotAt: {
