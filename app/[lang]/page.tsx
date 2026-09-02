@@ -62,7 +62,7 @@ export default async function HomePage({ params }: Props) {
   // ligne du dessous dit la maison et la ville, et le lien ouvre la page du
   // lieu à l'ancre du chapitre. Une chambre ne fait pas une page : le cas
   // reste un seul cas, une seule URL, un seul texte.
-  const homeCases = allCases().flatMap((c) => {
+  const built = allCases().flatMap((c) => {
     if (c.item.chapterTiles) {
       const chapters = readCaseChapters(c.cat.slug, c.item.slug);
       if (chapters.length > 0) {
@@ -101,6 +101,30 @@ export default async function HomePage({ params }: Props) {
         }]
       : [];
   });
+
+  // Un cas a chapitres portant chaptersAfter ne garde que son premier
+  // chapitre a sa place : les autres se rangent apres la tuile du cas nomme.
+  // Sans ca, les dix tuiles d'Altstadt se suivaient et repoussaient Rathaus
+  // et Dorf hors de la premiere rangee, alors que la rangee d'ouverture doit
+  // montrer trois maisons differentes.
+  const homeCases = (() => {
+    const out = [...built];
+    for (const c of allCases()) {
+      const after = c.item.chaptersAfter;
+      if (!c.item.chapterTiles || !after) continue;
+      const isMine = (t: (typeof out)[number]) =>
+        t.key.startsWith(`${c.cat.slug}/${c.item.slug}/`);
+      const mine = out.filter(isMine);
+      if (mine.length < 2) continue;
+      const rest = mine.slice(1);
+      const kept = out.filter((t) => !rest.includes(t));
+      const at = kept.findIndex((t) => t.key.endsWith(`/${after}`));
+      if (at < 0) continue;
+      out.length = 0;
+      out.push(...kept.slice(0, at + 1), ...rest, ...kept.slice(at + 1));
+    }
+    return out;
+  })();
 
   return (
     <>

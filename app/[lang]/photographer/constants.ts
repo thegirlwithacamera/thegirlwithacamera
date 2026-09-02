@@ -64,6 +64,11 @@ export type PhotoCase = {
   // qu'une. Les tuiles pointent vers l'ancre du chapitre dans la page du cas,
   // pas vers neuf pages séparées : une chambre ne fait pas une page.
   chapterTiles?: boolean;
+  // Slug du cas apres lequel les chapitres suivants se rangent en page
+  // d'accueil. Sans lui, les dix tuiles d'un cas a chapitres se suivent et
+  // repoussent les autres maisons hors de la premiere rangee. Le premier
+  // chapitre garde la place du cas, le reste attend son tour.
+  chaptersAfter?: string;
   // Image de partage du cas, quand la premiere image du premier chapitre ne
   // convient pas. Depuis que La maison ouvre Altstadt, la couverture par
   // defaut serait l'escalier ; Sandrine veut une chambre sur la carte qu'on
@@ -99,6 +104,65 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     label: { fr: "Hôtels & maisons", en: "Hotels & venues" },
     cover: "/images/portfolio/hospitality/naturel-dorf-schonleitn/1.jpg",
     cases: [
+      {
+        // Altstadt Vienna : six ou sept chambres visitées et photographiées,
+        // une seule page. Décision de Sandrine du 01/09 au soir. Un cas par
+        // chambre aurait mis sept tuiles Altstadt sur une grille qui en compte
+        // douze : un directeur d'hôtel y aurait lu qu'elle a beaucoup
+        // photographié un hôtel, pas qu'elle photographie des hôtels. Et ce
+        // qui vend à la maison suivante, c'est justement la maison entière.
+        //
+        // Les chambres sont des chapitres : un sous-dossier par chambre dans
+        // public/images/portfolio/hospitality/altstadt-vienna/, numéroté pour
+        // l'ordre. Voir lib/portfolio.ts. Les vrais noms de chambres se
+        // mettent dans chapters ci dessous quand Sandrine les donne, sinon le
+        // nom du dossier fait l'affaire.
+        // Premiere tuile du site, demande de Sandrine du 02/09 : Altstadt,
+        // puis Rathaus, puis Dorf. Seul le premier chapitre d'Altstadt tient
+        // cette place, les neuf autres reprennent apres Dorf grace a
+        // chaptersAfter : la rangee d'ouverture montre trois maisons
+        // differentes, pas trois chambres de la meme.
+        slug: "altstadt-vienna",
+        label: { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
+        chapterTiles: true,
+        chaptersAfter: "naturel-dorf-schonleitn",
+        coverImage: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
+        place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
+        // Soixante-deux chambres, chiffre donné par Sandrine le 02/09. C'est
+        // le fait qui porte la page : on ne photographie pas une maison
+        // pareille avec une chambre témoin, d'où les neuf chapitres.
+        intro: {
+          fr: "Soixante-deux chambres, et pas deux qui se ressemblent. J'en ai photographié neuf, avec le salon, l'escalier et les couloirs qui les relient.",
+          en: "Sixty-two rooms, and no two the same. I photographed nine of them, along with the salon, the staircase and the corridors that link them.",
+        },
+        shotAt: {
+          fr: "Photographié en septembre 2026.",
+          en: "Photographed in September 2026.",
+        },
+        // Les noms de chambres sont ceux de la maison, pas ceux des dossiers
+        // de Sandrine : elle ecrit Joseph et Lilly, l'hotel ecrit Josef
+        // Hoffmann et Lilli Hollein. C'est leur nom, on garde le leur.
+        //
+        // 03 est laisse libre pour le Red Salon, que Sandrine n'avait pas fini
+        // le 02/09 : il se posera sans rien renumeroter.
+        chapters: {
+          // Le dossier garde son nom, c'est l'ancre de la tuile d'accueil.
+          // Seul le libelle change : Sandrine veut lire le nom de la maison,
+          // pas un intitule de rubrique.
+          "01-la-maison": { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
+          // Le salon est un espace commun : il se range juste apres la
+          // maison, avant les chambres. Sari's Home a donc glisse en 03.
+          "02-red-salon": { fr: "Red Salon", en: "Red Salon" },
+          "03-saris-home": { fr: "Sari's Home", en: "Sari's Home" },
+          "04-felix-suite": { fr: "Felix Suite", en: "Felix Suite" },
+          "05-violet-suite": { fr: "Violet Suite", en: "Violet Suite" },
+          "06-freud-suite": { fr: "Freud Suite", en: "Freud Suite" },
+          "07-josef-hoffmann-suite": { fr: "Josef Hoffmann Suite", en: "Josef Hoffmann Suite" },
+          "08-camila-suite": { fr: "Camila Suite", en: "Camila Suite" },
+          "09-lilli-hollein-suite": { fr: "Lilli Hollein Suite", en: "Lilli Hollein Suite" },
+          "10-otto-suite": { fr: "Otto Suite", en: "Otto Suite" },
+        },
+      },
       {
         slug: "hotel-rathaus-wien",
         label: { fr: "Hotel Rathaus Wien", en: "Hotel Rathaus Wien" },
@@ -143,59 +207,6 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         shotAt: {
           fr: "Photographié sur deux jours, en août 2026.",
           en: "Photographed over two days, August 2026.",
-        },
-      },
-      {
-        // Altstadt Vienna : six ou sept chambres visitées et photographiées,
-        // une seule page. Décision de Sandrine du 01/09 au soir. Un cas par
-        // chambre aurait mis sept tuiles Altstadt sur une grille qui en compte
-        // douze : un directeur d'hôtel y aurait lu qu'elle a beaucoup
-        // photographié un hôtel, pas qu'elle photographie des hôtels. Et ce
-        // qui vend à la maison suivante, c'est justement la maison entière.
-        //
-        // Les chambres sont des chapitres : un sous-dossier par chambre dans
-        // public/images/portfolio/hospitality/altstadt-vienna/, numéroté pour
-        // l'ordre. Voir lib/portfolio.ts. Les vrais noms de chambres se
-        // mettent dans chapters ci dessous quand Sandrine les donne, sinon le
-        // nom du dossier fait l'affaire.
-        slug: "altstadt-vienna",
-        label: { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
-        chapterTiles: true,
-        coverImage: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
-        place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
-        // Soixante-deux chambres, chiffre donné par Sandrine le 02/09. C'est
-        // le fait qui porte la page : on ne photographie pas une maison
-        // pareille avec une chambre témoin, d'où les neuf chapitres.
-        intro: {
-          fr: "Soixante-deux chambres, et pas deux qui se ressemblent. J'en ai photographié neuf, avec le salon, l'escalier et les couloirs qui les relient.",
-          en: "Sixty-two rooms, and no two the same. I photographed nine of them, along with the salon, the staircase and the corridors that link them.",
-        },
-        shotAt: {
-          fr: "Photographié en septembre 2026.",
-          en: "Photographed in September 2026.",
-        },
-        // Les noms de chambres sont ceux de la maison, pas ceux des dossiers
-        // de Sandrine : elle ecrit Joseph et Lilly, l'hotel ecrit Josef
-        // Hoffmann et Lilli Hollein. C'est leur nom, on garde le leur.
-        //
-        // 03 est laisse libre pour le Red Salon, que Sandrine n'avait pas fini
-        // le 02/09 : il se posera sans rien renumeroter.
-        chapters: {
-          // Le dossier garde son nom, c'est l'ancre de la tuile d'accueil.
-          // Seul le libelle change : Sandrine veut lire le nom de la maison,
-          // pas un intitule de rubrique.
-          "01-la-maison": { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
-          // Le salon est un espace commun : il se range juste apres la
-          // maison, avant les chambres. Sari's Home a donc glisse en 03.
-          "02-red-salon": { fr: "Red Salon", en: "Red Salon" },
-          "03-saris-home": { fr: "Sari's Home", en: "Sari's Home" },
-          "04-felix-suite": { fr: "Felix Suite", en: "Felix Suite" },
-          "05-violet-suite": { fr: "Violet Suite", en: "Violet Suite" },
-          "06-freud-suite": { fr: "Freud Suite", en: "Freud Suite" },
-          "07-josef-hoffmann-suite": { fr: "Josef Hoffmann Suite", en: "Josef Hoffmann Suite" },
-          "08-camila-suite": { fr: "Camila Suite", en: "Camila Suite" },
-          "09-lilli-hollein-suite": { fr: "Lilli Hollein Suite", en: "Lilli Hollein Suite" },
-          "10-otto-suite": { fr: "Otto Suite", en: "Otto Suite" },
         },
       },
       {
