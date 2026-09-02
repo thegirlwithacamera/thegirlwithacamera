@@ -130,7 +130,10 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "naturel-dorf-schonleitn",
-        label: { fr: "Naturel Dorf Schönleitn", en: "Naturel Dorf Schönleitn" },
+        // Nom exact de la maison, verifie sur naturelhotels.com le 02/09 :
+        // Naturel Hoteldorf Schoenleitn, du groupe Naturel Hotels & Resorts.
+        // Le nom court garde Dorf Schoenleitn pour la vignette.
+        label: { fr: "Naturel Hoteldorf Schönleitn", en: "Naturel Hoteldorf Schönleitn" },
         short: { fr: "Dorf Schönleitn", en: "Dorf Schönleitn" },
         place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
         intro: {
@@ -178,7 +181,10 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         // 03 est laisse libre pour le Red Salon, que Sandrine n'avait pas fini
         // le 02/09 : il se posera sans rien renumeroter.
         chapters: {
-          "01-la-maison": { fr: "La maison", en: "The house" },
+          // Le dossier garde son nom, c'est l'ancre de la tuile d'accueil.
+          // Seul le libelle change : Sandrine veut lire le nom de la maison,
+          // pas un intitule de rubrique.
+          "01-la-maison": { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
           "02-saris-home": { fr: "Sari's Home", en: "Sari's Home" },
           "03-red-salon": { fr: "Red Salon", en: "Red Salon" },
           "04-felix-suite": { fr: "Felix Suite", en: "Felix Suite" },

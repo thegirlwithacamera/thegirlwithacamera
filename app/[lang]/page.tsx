@@ -66,22 +66,26 @@ export default async function HomePage({ params }: Props) {
     if (c.item.chapterTiles) {
       const chapters = readCaseChapters(c.cat.slug, c.item.slug);
       if (chapters.length > 0) {
-        return chapters.map((ch) => ({
-          ...c,
-          key: `${c.cat.slug}/${c.item.slug}/${ch.slug}`,
-          cover: ch.photos[0].src,
-          name: c.item.chapters?.[ch.slug]?.[lang] ?? ch.slug,
-          sub: c.item.place
-            ? `${c.item.label[lang]} · ${c.item.place[lang]}`
-            : c.item.label[lang],
-          href: `${c.href}#${ch.slug}`,
-          // Une tuile de chapitre porte le nom de la chambre : sans la ligne
-          // du dessous, neuf chambres d'un meme hotel se lisent comme neuf
-          // adresses. Elle reste donc visible au repos, alors qu'elle
-          // n'apparait au survol pour un cas ordinaire, ou elle ne dit que
-          // la ville.
-          alwaysSub: true,
-        }));
+        return chapters.map((ch) => {
+          const name = c.item.chapters?.[ch.slug]?.[lang] ?? ch.slug;
+          // Le chapitre des communs porte le nom de la maison : la ligne du
+          // dessous ne le repete pas, elle ne dit que la ville.
+          const house = c.item.label[lang];
+          const place = c.item.place?.[lang];
+          const sub = name === house ? place : place ? `${house} · ${place}` : house;
+          return {
+            ...c,
+            key: `${c.cat.slug}/${c.item.slug}/${ch.slug}`,
+            cover: ch.photos[0].src,
+            name,
+            sub,
+            href: `${c.href}#${ch.slug}`,
+            // Sur une tuile de chapitre la ligne du dessous reste visible au
+            // repos : sans elle, neuf chambres d'un meme hotel se lisent
+            // comme neuf adresses, et sur telephone il n'y a pas de survol.
+            alwaysSub: true,
+          };
+        });
       }
     }
     const cover = readCaseCover(c.cat.slug, c.item.slug);
