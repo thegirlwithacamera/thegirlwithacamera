@@ -161,14 +161,14 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         slug: "altstadt-vienna",
         label: { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
         chapterTiles: true,
-        coverImage: "/images/portfolio/hospitality/altstadt-vienna/02-saris-home/1.jpg",
+        coverImage: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
         // Soixante-deux chambres, chiffre donné par Sandrine le 02/09. C'est
         // le fait qui porte la page : on ne photographie pas une maison
         // pareille avec une chambre témoin, d'où les neuf chapitres.
         intro: {
-          fr: "Soixante-deux chambres, et pas deux qui se ressemblent. J'en ai photographié neuf, avec l'escalier et les couloirs qui les relient.",
-          en: "Sixty-two rooms, and no two the same. I photographed nine of them, plus the staircase and the corridors that link them.",
+          fr: "Soixante-deux chambres, et pas deux qui se ressemblent. J'en ai photographié neuf, avec le salon, l'escalier et les couloirs qui les relient.",
+          en: "Sixty-two rooms, and no two the same. I photographed nine of them, along with the salon, the staircase and the corridors that link them.",
         },
         shotAt: {
           fr: "Photographié en septembre 2026.",
@@ -185,8 +185,10 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           // Seul le libelle change : Sandrine veut lire le nom de la maison,
           // pas un intitule de rubrique.
           "01-la-maison": { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
-          "02-saris-home": { fr: "Sari's Home", en: "Sari's Home" },
-          "03-red-salon": { fr: "Red Salon", en: "Red Salon" },
+          // Le salon est un espace commun : il se range juste apres la
+          // maison, avant les chambres. Sari's Home a donc glisse en 03.
+          "02-red-salon": { fr: "Red Salon", en: "Red Salon" },
+          "03-saris-home": { fr: "Sari's Home", en: "Sari's Home" },
           "04-felix-suite": { fr: "Felix Suite", en: "Felix Suite" },
           "05-violet-suite": { fr: "Violet Suite", en: "Violet Suite" },
           "06-freud-suite": { fr: "Freud Suite", en: "Freud Suite" },
