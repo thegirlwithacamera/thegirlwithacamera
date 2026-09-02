@@ -36,26 +36,38 @@ export type Brand = {
   pending?: boolean;
 };
 
+// Le vert du logo Rathaus Wien, #becaac, donnait 1,7 contre 1 sur blanc :
+// il se lisait comme une trace, pas comme un nom. Meme teinte, assombrie
+// jusqu'a 4,7 contre 1, dans hotel-rathaus-wien-dark.svg. L'original est
+// garde a cote.
+//
+// Quatre logos arrivaient en rectangle plein : Van der Valk sur vert fonce,
+// Ce Pages sur violet, European Sleeper sur prune, Altstadt sur blanc opaque. Dans une rangee de logos
+// detoures, un aplat de couleur se lit comme une vignette et casse la ligne.
+// Ils passent en version monochrome sombre sur fond transparent, suffixe
+// -mono, traitement courant pour un mur de clients. Les fichiers d'origine
+// restent dans public/images/brands : il suffit de retirer le suffixe pour
+// revenir en arriere.
 export const BRANDS: Brand[] = [
   // Stays & places : les adresses ou l'on dort et ou l'on mange.
   { name: "MK HOTELS", logo: "/images/brands/mk-hotels.png", cat: "stays" },
   { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos", en: "Photographs" } },
-  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Film", en: "Film" } },
+  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys-mono.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Film", en: "Film" } },
   { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Film", en: "Film" } },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
-  { name: "HOTEL RATHAUS WIEN", logo: "/images/brands/hotel-rathaus-wien.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos", en: "Photographs" } },
-  { name: "ALTSTADT VIENNA", logo: "/images/brands/altstadt.png", cat: "stays" },
+  { name: "HOTEL RATHAUS WIEN", logo: "/images/brands/hotel-rathaus-wien-dark.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos", en: "Photographs" } },
+  { name: "ALTSTADT VIENNA", logo: "/images/brands/altstadt-mono.png", cat: "stays" },
   { name: "AT THE GOLDEN PEAR", logo: "/images/brands/golden-pear.png", tall: true, cat: "stays", pending: true },
   { name: "PRAGUESTREAM", logo: "/images/brands/prague-stream.png", cat: "stays", pending: true },
 
-  { name: "CÉ-PAGES", logo: "/images/brands/ce-pages.png", cat: "stays", href: "/photographer/restaurants/ce-pages", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
+  { name: "CÉ-PAGES", logo: "/images/brands/ce-pages-mono.png", cat: "stays", href: "/photographer/restaurants/ce-pages", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
 
   // City & travel : ceux qui font venir les gens, transporteurs et offices de
   // tourisme. C'est l'autre moitie du marche hotelier, et pour une maison
   // c'est la preuve qu'une destination entiere a confie son image.
   { name: "INTERRAIL", logo: "/images/brands/interrail.svg", cat: "travel" },
-  { name: "EUROPEAN SLEEPER", logo: "/images/brands/european-sleeper.png", cat: "travel" },
+  { name: "EUROPEAN SLEEPER", logo: "/images/brands/european-sleeper-mono.png", cat: "travel" },
   // Logo en pastille, avec sa carte blanche et son ombre : il a besoin de la
   // hauteur des badges pour rester lisible entre deux wordmarks larges.
   { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "travel" },

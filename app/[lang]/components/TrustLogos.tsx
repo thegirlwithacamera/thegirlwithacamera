@@ -80,6 +80,9 @@ export default function TrustLogos({
         .brand-link:hover { transform: translateY(-3px); }
         .brand-link:hover .brand-logo { opacity: 1; }
 
+        /* Les adresses cassent en 4 puis 3 plutot qu'en 6 et un orphelin.
+           A pleine largeur, Ce Pages se retrouvait seul sur sa ligne. */
+        .trust-group--stays .brands-strip { max-width: 740px; }
         .trust-group--stays .brand-box,
         .trust-group--travel .brand-box { height: 64px; }
         .trust-group--stays .brand-logo,
