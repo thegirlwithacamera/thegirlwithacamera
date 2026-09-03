@@ -132,26 +132,32 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         label: { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
         chapterTiles: true,
         chaptersAfter: "naturel-dorf-schonleitn",
-        // Rangee 2  enfilade jaune, salle de bain sombre, lit clair
-        // Rangee 3  meuble noir, lit clair, fenetre sombre
-        // Rangee 4  enfilade claire, nature morte sombre, bois chaud
+        // Ordre pense pour les DEUX grilles : trois colonnes sur ordinateur,
+        // deux sur telephone. C'est le telephone qui compte le plus, le lien
+        // en bio y amene la majorite des visites, et un ordre regle sur des
+        // rangees de trois ne veut rien dire sur des rangees de deux.
         //
-        // Avant : Red Salon et Sari's Home etaient cote a cote alors que
-        // c'est deux fois la meme image, une porte blanche de face dans une
-        // piece coloree avec un fauteuil a gauche. Et les deux secretaires,
-        // le noir de Josef et le bois d'Otto, se retrouvaient l'un au dessus
-        // de l'autre dans la meme colonne.
+        // Regle appliquee : deux tuiles du meme genre de plan sont toujours
+        // separees d'au moins quatre places. En dessous, elles finissent
+        // cote a cote ou l'une sur l'autre dans l'une des deux grilles. Les
+        // trois paires concernees sont les deux enfilades, Sari's Home et
+        // Red Salon, les deux lits, Violet et Lilli, et les deux meubles, le
+        // secretaire noir de Josef et celui d'Otto.
+        //
+        // Les trois images sombres, Josef, Felix et Freud, tombent en 1, 5 et
+        // 9 du bloc : une diagonale sur ordinateur, une colonne aeree sur
+        // telephone. Aucune des deux ne fait de paquet sombre.
         chapterTileOrder: [
           "01-la-maison",
-          "03-saris-home",
-          "04-felix-suite",
-          "05-violet-suite",
           "07-josef-hoffmann-suite",
-          "09-lilli-hollein-suite",
           "08-camila-suite",
-          "02-red-salon",
-          "06-freud-suite",
+          "03-saris-home",
+          "05-violet-suite",
+          "04-felix-suite",
           "10-otto-suite",
+          "02-red-salon",
+          "09-lilli-hollein-suite",
+          "06-freud-suite",
         ],
         coverImage: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
