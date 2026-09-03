@@ -104,13 +104,20 @@ export default async function PhotographerPage({ params }: Props) {
   const ctaText = lang === "fr" ? "Un projet en tête ?" : "Have a project in mind?";
   const ctaLink = lang === "fr" ? "Travaillons ensemble →" : "Work with me →";
 
-  const cols = (n: number) => (n === 1 ? 1 : n % 3 === 0 ? 3 : 2);
+  // Trois colonnes des qu'il y a trois cas, quel que soit le total. L'ancien
+  // calcul passait a deux colonnes des que le nombre n'etait plus un multiple
+  // de trois : avec quatre maisons, la page affichait deux enormes vignettes
+  // par rangee. Le meme calcul avait ete retire de l'accueil le 01/09, il
+  // dormait encore ici.
+  const cols = (n: number) => (n <= 2 ? n : 3);
 
   const grid = (rows: Row[]) => (
     <div
       className="case-grid"
       style={{
-        gridTemplateColumns: `repeat(${cols(rows.length)}, 1fr)`,
+        // Largeur d'une vignette, en flex : la place restante moins les
+        // gouttieres, divisee par le nombre de colonnes.
+        ["--cols" as string]: String(cols(rows.length)),
         maxWidth: cols(rows.length) === 1 ? "460px" : cols(rows.length) === 2 ? "900px" : undefined,
       }}
     >
@@ -170,14 +177,23 @@ export default async function PhotographerPage({ params }: Props) {
           color: #525252;
           text-align: center;
         }
+        /* Flex et non grid : le nombre de cas n'est pas un multiple de
+           trois, et une derniere rangee a une seule vignette collee a gauche
+           avec deux trous a droite se lit comme un bug. Centree, elle se lit
+           comme une mise en page. Meme traitement que les chapitres d'un cas. */
         .case-grid {
-          display: grid;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
           gap: 22px;
           max-width: 1260px;
           margin: 0 auto;
           padding: 0 20px;
         }
-        .case-item { display: block; }
+        .case-item {
+          display: block;
+          flex: 0 0 calc((100% - (var(--cols, 3) - 1) * 22px) / var(--cols, 3));
+        }
         .case-card { display: block; text-decoration: none; }
         .case-thumb {
           position: relative;
@@ -271,7 +287,8 @@ export default async function PhotographerPage({ params }: Props) {
           padding-bottom: 2px;
         }
         @media (max-width: 767px) {
-          .case-grid { gap: 10px; padding: 0 12px; grid-template-columns: repeat(2, 1fr) !important; max-width: none !important; }
+          .case-grid { gap: 10px; padding: 0 12px; max-width: none !important; }
+          .case-item { flex-basis: calc((100% - 10px) / 2) !important; }
           .cat-head h1 { font-size: 18px; }
           .page-intro { font-size: 13px; margin-bottom: 26px; }
           .case-title { font-size: 8px; letter-spacing: 0.12em; }
