@@ -65,6 +65,15 @@ export default async function HomePage({ params }: Props) {
   const built = allCases().flatMap((c) => {
     if (c.item.chapterTiles) {
       const chapters = readCaseChapters(c.cat.slug, c.item.slug);
+      // L'ordre des tuiles peut differer de l'ordre des chapitres : la page
+      // raconte une visite, la grille cherche un rythme.
+      const want = c.item.chapterTileOrder;
+      if (want) {
+        chapters.sort((a, b) => {
+          const ia = want.indexOf(a.slug), ib = want.indexOf(b.slug);
+          return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+        });
+      }
       if (chapters.length > 0) {
         return chapters.map((ch) => {
           const name = c.item.chapters?.[ch.slug]?.[lang] ?? ch.slug;

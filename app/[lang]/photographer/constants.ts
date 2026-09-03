@@ -69,6 +69,12 @@ export type PhotoCase = {
   // repoussent les autres maisons hors de la premiere rangee. Le premier
   // chapitre garde la place du cas, le reste attend son tour.
   chaptersAfter?: string;
+  // Ordre des tuiles d'accueil, quand il doit differer de l'ordre de lecture
+  // de la page. La page suit une visite : le batiment, le salon, les chambres.
+  // La grille suit l'oeil : deux tuiles voisines, en ligne comme en colonne,
+  // ne doivent pas montrer le meme genre de plan ni la meme valeur. Les
+  // chapitres absents de la liste se rangent apres, dans l'ordre des dossiers.
+  chapterTileOrder?: string[];
   // Image de partage du cas, quand la premiere image du premier chapitre ne
   // convient pas. Depuis que La maison ouvre Altstadt, la couverture par
   // defaut serait l'escalier ; Sandrine veut une chambre sur la carte qu'on
@@ -126,6 +132,27 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         label: { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
         chapterTiles: true,
         chaptersAfter: "naturel-dorf-schonleitn",
+        // Rangee 2  enfilade jaune, salle de bain sombre, lit clair
+        // Rangee 3  meuble noir, lit clair, fenetre sombre
+        // Rangee 4  enfilade claire, nature morte sombre, bois chaud
+        //
+        // Avant : Red Salon et Sari's Home etaient cote a cote alors que
+        // c'est deux fois la meme image, une porte blanche de face dans une
+        // piece coloree avec un fauteuil a gauche. Et les deux secretaires,
+        // le noir de Josef et le bois d'Otto, se retrouvaient l'un au dessus
+        // de l'autre dans la meme colonne.
+        chapterTileOrder: [
+          "01-la-maison",
+          "03-saris-home",
+          "04-felix-suite",
+          "05-violet-suite",
+          "07-josef-hoffmann-suite",
+          "09-lilli-hollein-suite",
+          "08-camila-suite",
+          "02-red-salon",
+          "06-freud-suite",
+          "10-otto-suite",
+        ],
         coverImage: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
         // Soixante-deux chambres, chiffre donné par Sandrine le 02/09. C'est
@@ -324,21 +351,21 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         },
       },
       {
-        slug: "venezia",
-        label: { fr: "Venezia", en: "Venezia" },
-        place: { fr: "Italie", en: "Italy" },
-        intro: {
-          fr: "Venise en dehors des heures où on la photographie, tôt, avant que les ponts se remplissent.",
-          en: "Venice outside the hours when everyone photographs it, early, before the bridges fill.",
-        },
-      },
-      {
         slug: "burano",
         label: { fr: "Burano", en: "Burano" },
         place: { fr: "Italie", en: "Italy" },
         intro: {
           fr: "Burano et ses façades, une île où la couleur est le sujet et où il faut arriver avant les bateaux.",
           en: "Burano and its façades, an island where colour is the subject and where you have to arrive before the boats.",
+        },
+      },
+      {
+        slug: "venezia",
+        label: { fr: "Venezia", en: "Venezia" },
+        place: { fr: "Italie", en: "Italy" },
+        intro: {
+          fr: "Venise en dehors des heures où on la photographie, tôt, avant que les ponts se remplissent.",
+          en: "Venice outside the hours when everyone photographs it, early, before the bridges fill.",
         },
       },
       {
