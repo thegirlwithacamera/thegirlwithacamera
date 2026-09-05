@@ -50,14 +50,16 @@ export type Brand = {
 // revenir en arriere.
 export const BRANDS: Brand[] = [
   // Stays & places : les adresses ou l'on dort et ou l'on mange.
-  { name: "MK HOTELS", logo: "/images/brands/mk-hotels.png", cat: "stays" },
+  // MK HOTELS retire le 05/09, decision de Sandrine : le travail n'est pas au
+  // niveau du reste. Le cas et le film sont retires en meme temps. Le fichier
+  // mk-hotels.png reste dans public/images/brands, remettre la ligne suffit.
   { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos", en: "Photographs" } },
-  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys-mono.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Film", en: "Film" } },
-  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/filmmaker", hrefLabel: { fr: "Film", en: "Film" } },
+  { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys-mono.png", cat: "stays", href: "/filmmaker/places", hrefLabel: { fr: "Film", en: "Film" } },
+  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/filmmaker/places", hrefLabel: { fr: "Film", en: "Film" } },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
   { name: "HOTEL RATHAUS WIEN", logo: "/images/brands/hotel-rathaus-wien-dark.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos", en: "Photographs" } },
-  { name: "ALTSTADT VIENNA", logo: "/images/brands/altstadt-mono.png", cat: "stays" },
+  { name: "ALTSTADT VIENNA", logo: "/images/brands/altstadt-mono.png", cat: "stays", href: "/photographer/hospitality/altstadt-vienna", hrefLabel: { fr: "Photos", en: "Photographs" } },
   { name: "AT THE GOLDEN PEAR", logo: "/images/brands/golden-pear.png", tall: true, cat: "stays", pending: true },
   { name: "PRAGUESTREAM", logo: "/images/brands/prague-stream.png", cat: "stays", pending: true },
 
@@ -70,7 +72,7 @@ export const BRANDS: Brand[] = [
   { name: "EUROPEAN SLEEPER", logo: "/images/brands/european-sleeper-mono.png", cat: "travel" },
   // Logo en pastille, avec sa carte blanche et son ombre : il a besoin de la
   // hauteur des badges pour rester lisible entre deux wordmarks larges.
-  { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "travel" },
+  { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "travel", href: "/photographer/travel/villach", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   // Pastille ronde : meme traitement que Kärnten.
   { name: "VISIT GRAZ", logo: "/images/brands/visit-graz.png", tall: true, cat: "travel" },
 

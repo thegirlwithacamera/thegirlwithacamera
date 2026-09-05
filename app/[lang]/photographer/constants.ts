@@ -210,21 +210,12 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           en: "Photographed in early September 2026.",
         },
       },
-      {
-        // mk hotel Munich : un film, aucune photo. La maison n'a pas permis
-        // de photographier le lieu, dit par Sandrine le 01/09. Le cas est
-        // déclaré quand même, sans dossier d'images : il ne crée aucune page
-        // et n'apparaît pas en accueil, mais il donne son nom propre et sa
-        // ville à la vignette du film sur la page Vidéaste, au lieu du titre
-        // déduit du nom de fichier. Le garde-fou de la page Vidéaste fait le
-        // reste : pas de dossier d'images, donc pas de lien "Voir les photos".
-        slug: "mk-hotel-munich",
-        label: { fr: "mk hotel Munich", en: "mk hotel Munich" },
-        place: { fr: "Munich, Allemagne", en: "Munich, Germany" },
-        films: [
-          { src: "/videos/creator/CINEMATIC/PLACES/mk hotel Munich.mp4" },
-        ],
-      },
+      // mk hotel Munich retiré le 05/09, décision de Sandrine : le travail
+      // n'est pas au niveau du reste du portfolio. Le cas est supprimé d'ici,
+      // le film est masqué de la page Vidéaste via HIDDEN_FILMS dans
+      // app/[lang]/filmmaker/constants.ts, et le logo est sorti de
+      // lib/brands.ts. Le film et le logo restent sur le disque, rien n'est
+      // supprimé : c'est la publication qui s'arrête.
       {
         slug: "naturel-dorf-schonleitn",
         // Nom exact de la maison, verifie sur naturelhotels.com le 02/09 :

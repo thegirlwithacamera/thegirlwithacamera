@@ -39,6 +39,10 @@ export const HIDDEN_FILMS: readonly string[] = [
   // ligne : leurs photos existent et arrivent, decision de Sandrine.
   "city diary nara",
   "city diary osaka",
+  // Retire le 05/09, decision de Sandrine : le film n'est pas au niveau du
+  // reste. Le cas photo du meme nom est sorti de constants.ts et le logo de
+  // lib/brands.ts. Le fichier reste sur le disque.
+  "mk hotel munich",
 ];
 
 export function isHiddenFilm(file: string): boolean {
