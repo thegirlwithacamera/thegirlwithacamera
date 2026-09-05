@@ -89,10 +89,6 @@ export default async function HomePage({ params }: Props) {
             name,
             sub,
             href: `${c.href}#${ch.slug}`,
-            // Sur une tuile de chapitre la ligne du dessous reste visible au
-            // repos : sans elle, neuf chambres d'un meme hotel se lisent
-            // comme neuf adresses, et sur telephone il n'y a pas de survol.
-            alwaysSub: true,
           };
         });
       }
@@ -106,7 +102,6 @@ export default async function HomePage({ params }: Props) {
           name: c.item.short?.[lang] ?? c.item.label[lang],
           sub: c.item.place ? c.item.place[lang] : undefined,
           href: c.href,
-          alwaysSub: false,
         }]
       : [];
   });
@@ -209,25 +204,27 @@ export default async function HomePage({ params }: Props) {
         }
         .cat-tile:hover .tile-name { opacity: 1; }
 
-        /* Le lieu n'existe qu'au survol. Il reste dans le HTML, donc lu par
-           un lecteur d'ecran et par Google, simplement invisible au repos. */
+        /* Le lieu est visible sur toutes les tuiles, decision du 05/09.
+           Avant, il n'apparaissait au repos que sur les tuiles de chapitre :
+           la premiere rangee montrait la ville sous Altstadt Vienna et rien
+           sous Rathaus ni Dorf, la grille se lisait comme un bug. Entre tout
+           montrer et tout cacher, on montre : sur telephone il n'y a pas de
+           survol, et une ville cachee est une ville que la moitie des
+           visiteurs ne verra jamais.
+
+           0,82 au repos et pas moins : mesure faite sur la tuile la plus
+           claire, Sari's Home, le contraste tombait a 4,3 contre 1 a 0,72,
+           sous le seuil de 4,5 pour du petit texte. Net au survol. */
         .tile-loc {
           display: block;
           margin-top: 4px;
           font-size: 9px;
           letter-spacing: 0.16em;
           color: rgba(255, 255, 255, 0.88);
-          opacity: 0;
-          transform: translateY(4px);
-          transition: opacity 0.35s ease, transform 0.35s ease;
+          opacity: 0.82;
+          transition: opacity 0.35s ease;
         }
-        .cat-tile:hover .tile-loc { opacity: 1; transform: none; }
-        /* Lisible au repos, un peu en retrait, nette au survol. 0,82 et pas
-           moins : mesure faite sur la tuile la plus claire, Sari's Home, le
-           contraste tombait a 4,3 contre 1 a 0,72, sous le seuil de 4,5 pour
-           du petit texte. */
-        .tile-loc.is-shown { opacity: 0.82; transform: none; }
-        .cat-tile:hover .tile-loc.is-shown { opacity: 1; }
+        .cat-tile:hover .tile-loc { opacity: 1; }
 
         .tile-name.is-door::after { content: " →"; letter-spacing: 0; }
 
@@ -263,9 +260,7 @@ export default async function HomePage({ params }: Props) {
                 <span className="tile-veil" />
                 <span className="tile-name">
                   {c.name}
-                  {c.sub && (
-                    <span className={`tile-loc${c.alwaysSub ? " is-shown" : ""}`}>{c.sub}</span>
-                  )}
+                  {c.sub && <span className="tile-loc">{c.sub}</span>}
                 </span>
               </span>
             </Link>
