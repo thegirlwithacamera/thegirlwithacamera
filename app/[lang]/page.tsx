@@ -79,7 +79,10 @@ export default async function HomePage({ params }: Props) {
           const name = c.item.chapters?.[ch.slug]?.[lang] ?? ch.slug;
           // Le chapitre des communs porte le nom de la maison : la ligne du
           // dessous ne le repete pas, elle ne dit que la ville.
-          const house = c.item.label[lang];
+          // Nom court : le nom complet de credit, "Altstadt Vienna, an SLH
+          // Hotel", tient sur la page du cas mais deborde la sous-ligne d'une
+          // vignette. La maison garde son nom entier la ou on la presente.
+          const house = c.item.short?.[lang] ?? c.item.label[lang];
           const place = c.item.place?.[lang];
           const sub = name === house ? place : place ? `${house} · ${place}` : house;
           return {

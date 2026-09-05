@@ -129,7 +129,11 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         // chaptersAfter : la rangee d'ouverture montre trois maisons
         // differentes, pas trois chambres de la meme.
         slug: "altstadt-vienna",
-        label: { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
+        // Nom de credit donne par Sandrine le 05/09. Le site de la maison
+        // ecrit "Boutique Hotel Altstadt Vienna", SLH la liste en "Altstadt
+        // Vienna" : c'est la forme que la maison demande pour etre creditee.
+        label: { fr: "Altstadt Vienna, an SLH Hotel", en: "Altstadt Vienna, an SLH Hotel" },
+        short: { fr: "Altstadt Vienna", en: "Altstadt Vienna" },
         chapterTiles: true,
         chaptersAfter: "naturel-dorf-schonleitn",
         // Ordre pense pour les DEUX grilles : trois colonnes sur ordinateur,
@@ -198,8 +202,15 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "hotel-rathaus-wien",
-        label: { fr: "Hotel Rathaus Wien", en: "Hotel Rathaus Wien" },
-        short: { fr: "Rathaus Wien", en: "Rathaus Wien" },
+        // Nom exact verifie sur hotel-rathaus-wien.at le 05/09 : la maison
+        // s'appelle Hotel Rathaus Wein & Design, Lange Gasse 13, 1080 Wien.
+        // "Wein", le vin, pas "Wien", la ville : c'est un hotel de design
+        // dont chaque chambre est dediee a un vigneron autrichien. Le site
+        // ecrivait Hotel Rathaus Wien depuis le debut, corrige par Sandrine.
+        // Le slug reste hotel-rathaus-wien : l'URL est en ligne et dans les
+        // sitemaps, la changer casserait les liens deja partages.
+        label: { fr: "Hotel Rathaus Wein & Design", en: "Hotel Rathaus Wein & Design" },
+        short: { fr: "Rathaus Wein & Design", en: "Rathaus Wein & Design" },
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
         intro: {
           fr: "Une maison viennoise à deux pas du Rathaus, une salle de bain vert profond, des fenêtres qui donnent directement sur la rue.",

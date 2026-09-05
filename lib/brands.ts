@@ -36,7 +36,7 @@ export type Brand = {
   pending?: boolean;
 };
 
-// Le vert du logo Rathaus Wien, #becaac, donnait 1,7 contre 1 sur blanc :
+// Le vert du logo Rathaus Wein & Design, #becaac, donnait 1,7 contre 1 sur blanc :
 // il se lisait comme une trace, pas comme un nom. Meme teinte, assombrie
 // jusqu'a 4,7 contre 1, dans hotel-rathaus-wien-dark.svg. L'original est
 // garde a cote.
@@ -58,8 +58,8 @@ export const BRANDS: Brand[] = [
   { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/filmmaker/places", hrefLabel: { fr: "Film", en: "Film" } },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
-  { name: "HOTEL RATHAUS WIEN", logo: "/images/brands/hotel-rathaus-wien-dark.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos", en: "Photographs" } },
-  { name: "ALTSTADT VIENNA", logo: "/images/brands/altstadt-mono.png", cat: "stays", href: "/photographer/hospitality/altstadt-vienna", hrefLabel: { fr: "Photos", en: "Photographs" } },
+  { name: "HOTEL RATHAUS WEIN & DESIGN", logo: "/images/brands/hotel-rathaus-wien-dark.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos", en: "Photographs" } },
+  { name: "ALTSTADT VIENNA, AN SLH HOTEL", logo: "/images/brands/altstadt-mono.png", cat: "stays", href: "/photographer/hospitality/altstadt-vienna", hrefLabel: { fr: "Photos", en: "Photographs" } },
   { name: "AT THE GOLDEN PEAR", logo: "/images/brands/golden-pear.png", tall: true, cat: "stays", pending: true },
   { name: "PRAGUESTREAM", logo: "/images/brands/prague-stream.png", cat: "stays", pending: true },
 
