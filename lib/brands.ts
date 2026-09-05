@@ -78,15 +78,31 @@ export const BRANDS: Brand[] = [
 
   // Brands. Sans logo, le nom s'affiche en toutes lettres : mieux vaut citer
   // le client que l'omettre en attendant son fichier.
-  { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg", cat: "brand" },
-  { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png", cat: "brand" },
-  { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg", cat: "brand" },
+  //
+  // Liens vers Creator ouverts le 05/09, decision de Sandrine. Le 31/08 on
+  // avait laisse ces logos muets pour qu'un directeur d'hotel ne lise pas
+  // d'abord du test de materiel ; le regroupement par categorie fait deja ce
+  // travail, les adresses passent avant et il ne les voit qu'apres.
+  //
+  // Legende "Videos" et pas "Film" : sur ce site Film designe les diaries
+  // cinematiques de la page Videaste. Le contenu Creator est du format court
+  // de marque, ce n'est pas la meme promesse et un directeur d'hotel qui clique
+  // doit savoir lequel des deux il ouvre.
+  //
+  // Quatre marques restent muettes faute de destination reelle : Godox et
+  // Tilta n'ont aucun film en ligne, Stubble & Co non plus, et le film Edifier
+  // est un diary de categorie lifestyle, non publiee (PUBLISHED_DIARY_CATS
+  // dans app/[lang]/filmmaker/constants.ts). Le jour ou leur contenu sort, il
+  // suffit d'ajouter la ligne.
+  { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg", cat: "brand", href: "/creator/gear", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png", cat: "brand", href: "/creator/gear", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg", cat: "brand", href: "/creator/gear", hrefLabel: { fr: "Vidéos", en: "Videos" } },
   { name: "GODOX", logo: "/images/brands/godox.png", cat: "brand" },
   // Le SVG fourni etait en gris tres clair, pense pour un fond sombre :
   // invisible sur blanc. Recolore en noir, aucune autre retouche.
   { name: "TILTA", logo: "/images/brands/tilta.svg", cat: "brand" },
   { name: "EDIFIER", logo: "/images/brands/edifier.png", cat: "brand" },
-  { name: "TELESIN", logo: "/images/brands/telesin.png", cat: "brand" },
+  { name: "TELESIN", logo: "/images/brands/telesin.png", cat: "brand", href: "/creator/unboxing", hrefLabel: { fr: "Vidéos", en: "Videos" } },
   // Logo empile, pictogramme au dessus du nom : a la hauteur des wordmarks il
   // devient illisible, il prend donc celle des badges.
   { name: "STUBBLE & CO", logo: "/images/brands/stubble-and-co.png", tall: true, cat: "brand" },
