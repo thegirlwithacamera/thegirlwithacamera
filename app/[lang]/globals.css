@@ -27,7 +27,7 @@
   --border: var(--line);
 
   /* Échelle typographique. Jamais sous 11 px, quel que soit l'écran. */
-  --text-xl: clamp(2.375rem, 5.6vw, 5.25rem);   /* 38 à 84 px, grandes accroches */
+  --text-xl: clamp(2.25rem, 4.4vw, 4.25rem);    /* 36 à 68 px, grandes accroches */
   --text-l:  clamp(1.875rem, 3.6vw, 3.25rem);   /* 30 à 52 px, titres de page */
   --text-m:  clamp(1.5rem, 2.2vw, 1.875rem);    /* 24 à 30 px, titres de section */
   --text-body: 1.125rem;    /* 18 px, texte éditorial en serif */
