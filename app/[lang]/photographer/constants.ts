@@ -255,29 +255,6 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         // Film déposé le 08/09, réencodé en 1080p depuis le master 4K du bureau.
         films: [{ src: "/videos/creator/CINEMATIC/PLACES/Naturel Dorf Schönleitn.mp4" }],
       },
-      {
-        // Une seule adresse, deux films. Dao n'est pas un restaurant voisin :
-        // c'est le spa du Sélys, au premier étage, et le fichier qui porte son
-        // nom montre le sauna, le mur de sel et le salon de repos. Le fichier
-        // "VanDerValk Sélys" montre la salle et le bar. Les noms de fichiers
-        // sont donc trompeurs, ce sont les libellés ci dessous qui font foi à
-        // l'écran ; on ne renomme rien sans le dire à Sandrine.
-        //
-        // Le cas est déclaré avant l'arrivée des photos du restaurant. Tant
-        // que le dossier public/images/portfolio/hospitality/van-der-valk-selys
-        // est vide, la page n'existe pas, le cas n'apparaît ni en accueil ni
-        // dans la catégorie, et la page Vidéaste affiche le nom sans proposer
-        // de lien. Le jour où les images arrivent, tout s'allume seul.
-        slug: "van-der-valk-selys",
-        label: { fr: "Van der Valk Sélys", en: "Van der Valk Sélys" },
-        short: { fr: "Sélys Liège", en: "Sélys Liège" },
-        place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
-        // À RELIRE PAR SANDRINE : écrit d'après les films, pas d'après le
-        // séjour. Deux phrases, le lieu et la date, jamais une critique.
-        intro: {
-          fr: "Un hôtel liégeois qui tient une table et un spa sous le même toit, du sauna au mur de sel jusqu'à la salle du soir.",
-          en: "A Liège hotel holding a table and a spa under one roof, from the sauna and the salt wall through to the evening dining room.",
-        },
         shotAt: {
           fr: "Photographié en juillet 2026.",
           en: "Photographed in July 2026.",
@@ -311,6 +288,31 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         // Pas de shotAt : la date du tournage n'est pas retrouvée. À ajouter.
         films: [{ src: "/videos/creator/CINEMATIC/PLACES/Cé-Pages.mp4" }],
       },
+      {
+        // Rangé dans Restaurants & bars le 08/09 : seuls le restaurant et le
+        // spa ont été couverts, pas la partie hôtel.
+        // Une seule adresse, deux films. Dao n'est pas un restaurant voisin :
+        // c'est le spa du Sélys, au premier étage, et le fichier qui porte son
+        // nom montre le sauna, le mur de sel et le salon de repos. Le fichier
+        // "VanDerValk Sélys" montre la salle et le bar. Les noms de fichiers
+        // sont donc trompeurs, ce sont les libellés ci dessous qui font foi à
+        // l'écran ; on ne renomme rien sans le dire à Sandrine.
+        //
+        // Le cas est déclaré avant l'arrivée des photos du restaurant. Tant
+        // que le dossier public/images/portfolio/restaurants/van-der-valk-selys
+        // est vide, la page n'existe pas, le cas n'apparaît ni en accueil ni
+        // dans la catégorie, et la page Vidéaste affiche le nom sans proposer
+        // de lien. Le jour où les images arrivent, tout s'allume seul.
+        slug: "van-der-valk-selys",
+        label: { fr: "Van der Valk Sélys", en: "Van der Valk Sélys" },
+        short: { fr: "Sélys Liège", en: "Sélys Liège" },
+        place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
+        // À RELIRE PAR SANDRINE : écrit d'après les films, pas d'après le
+        // séjour. Deux phrases, le lieu et la date, jamais une critique.
+        intro: {
+          fr: "Un hôtel liégeois qui tient une table et un spa sous le même toit, du sauna au mur de sel jusqu'à la salle du soir.",
+          en: "A Liège hotel holding a table and a spa under one roof, from the sauna and the salt wall through to the evening dining room.",
+        },
       // En attente : selys-liege, 6 images sur un disque non disponible.
     ],
   },

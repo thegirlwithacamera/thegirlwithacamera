@@ -40,6 +40,10 @@ const nextConfig: NextConfig = {
       // la catégorie qui a absorbé leurs images. Ceux dont les images sont
       // sorties de la grille renvoient à l'accueil ou à Creator.
       // /photographer/travel est le seul ancien slug encore valide tel quel.
+      // Sélys : rangé dans Restaurants & bars le 08/09, seuls le restaurant
+      // et le spa ont été couverts.
+      { source: "/fr/photographer/hospitality/van-der-valk-selys", destination: "/fr/photographer/restaurants/van-der-valk-selys", permanent: true },
+      { source: "/en/photographer/hospitality/van-der-valk-selys", destination: "/en/photographer/restaurants/van-der-valk-selys", permanent: true },
       { source: "/fr/photographer/details", destination: "/fr/photographer/restaurants", permanent: true },
       { source: "/en/photographer/details", destination: "/en/photographer/restaurants", permanent: true },
       { source: "/fr/photographer/architecture", destination: "/fr/creator", permanent: true },
