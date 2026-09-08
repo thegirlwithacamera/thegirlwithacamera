@@ -2,3 +2,28 @@
 .section { padding-top: clamp(40px, 5vw, 72px); }
 .lede { max-width: var(--page-max); margin: -6px auto 24px; padding: 0 var(--pad); }
 .grid { margin-top: clamp(32px, 4vw, 48px); }
+
+/* Texte de fond de la page de catégorie : titre à gauche, texte à droite,
+   sous la grille. Il est là pour la recherche autant que pour le visiteur,
+   d'où sa place après les images. */
+.about {
+  max-width: var(--page-max);
+  margin: var(--section) auto 0;
+  padding: 0 var(--pad);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+  gap: 24px clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.about p {
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0 0 18px;
+}
+.about p:last-of-type { margin-bottom: 0; }
+.aboutCta { margin-top: 26px; }
+@media (max-width: 900px) {
+  .about { grid-template-columns: 1fr; }
+}

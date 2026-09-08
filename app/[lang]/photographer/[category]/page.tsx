@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { PHOTO_CATEGORIES, findCategory } from "../constants";
 import { readCaseCover, countCasePhotos } from "@/lib/portfolio";
 import { pageMeta } from "@/lib/seo";
-import { PageHead, ProjectCard, ProjectGrid, colsFor } from "../../components/editorial";
+import { Cta, Display, PageHead, ProjectCard, ProjectGrid, colsFor } from "../../components/editorial";
+import { CATEGORY_COPY } from "./copy";
 import s from "../page.module.css";
 
 interface Props {
@@ -46,10 +47,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: lang === "fr"
       ? `${SEO_TITLE.fr[cat.slug] ?? cat.label.fr}`
       : `${SEO_TITLE.en[cat.slug] ?? cat.label.en}`,
+    // La description dédiée de la catégorie quand elle existe : le gabarit
+    // générique se ressemblait d'une catégorie à l'autre, et deux pages qui
+    // se décrivent pareil se font concurrence dans les résultats.
     description:
-      lang === "fr"
+      CATEGORY_COPY[cat.slug]?.[lang]?.meta ??
+      (lang === "fr"
         ? `${cat.label.fr} photographiés par Sandrine Ceuppens, en lumière naturelle. Basée à Bruxelles, disponible partout dans le monde.`
-        : `${cat.label.en} photographed by Sandrine Ceuppens in natural light. Based in Brussels, available for travel worldwide.`,
+        : `${cat.label.en} photographed by Sandrine Ceuppens in natural light. Based in Brussels, available for travel worldwide.`),
   });
 }
 
@@ -72,6 +77,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
     }))
     .filter((c) => c.cover !== null);
 
+  const copy = CATEGORY_COPY[cat.slug]?.[lang];
   const backLabel = lang === "fr" ? "Tout le portfolio" : "All the work";
   const emptyNote = lang === "fr" ? "Sélection à venir." : "Selection coming soon.";
   const lede =
@@ -111,6 +117,20 @@ export default async function PhotographerCategoryPage({ params }: Props) {
           ))}
         </ProjectGrid>
       )}
+
+        {copy && (
+          <section className={s.about}>
+            <Display size="m" as="h2">{copy.title}</Display>
+            <div>
+              {copy.body.map((p) => <p key={p}>{p}</p>)}
+              <p className={s.aboutCta}>
+                <Cta href={`/${lang}/services`}>
+                  {lang === "fr" ? "Voir les formules" : "See the packages"} →
+                </Cta>
+              </p>
+            </div>
+          </section>
+        )}
       </main>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
