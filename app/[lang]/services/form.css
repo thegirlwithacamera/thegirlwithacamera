@@ -1,0 +1,56 @@
+/* Formulaire de contact de la page Services. Global parce que ServicesForm
+   utilise ces classes ; chargé par la page. */
+.services-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px var(--gutter);
+  margin-top: 8px;
+}
+.services-form .is-full { grid-column: 1 / -1; }
+.services-form label { display: block; }
+.services-form label > span {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 8px;
+}
+.services-form input,
+.services-form select,
+.services-form textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--dust);
+  background: transparent;
+  padding: 8px 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-ui);
+  color: var(--ink);
+  border-radius: 0;
+}
+.services-form textarea { resize: vertical; border: 1px solid var(--dust); padding: 12px; }
+.services-form input:focus,
+.services-form select:focus,
+.services-form textarea:focus { outline: none; border-color: var(--brick); }
+.form-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.services-form button {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 14px 30px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.services-form button:hover { background: var(--brick); border-color: var(--brick); }
+.services-form button:disabled { opacity: 0.5; cursor: default; }
+.form-note { font-family: var(--font-serif); font-size: var(--text-body); color: var(--stone); margin: 18px 0 0; }
+.form-note.is-error { color: var(--brick); margin: 0; }
+@media (max-width: 767px) {
+  .services-form { grid-template-columns: 1fr; }
+}

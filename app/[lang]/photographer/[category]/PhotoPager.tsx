@@ -3,16 +3,19 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import type { PortfolioPhoto } from "@/lib/portfolio";
+import s from "./PhotoPager.module.css";
 
 interface Props {
   photos: PortfolioPhoto[];
   catLabel: string;
   pageSize?: number;
+  // Numéro de la première photo, quand la page en a déjà montré une en ouverture.
+  startIndex?: number;
 }
 
 // Grille 3x3 paginée par blocs de `pageSize` photos, navigable au swipe,
 // aux flèches clavier, ou via les points sous la grille.
-export default function PhotoPager({ photos, catLabel, pageSize = 9 }: Props) {
+export default function PhotoPager({ photos, catLabel, pageSize = 9, startIndex = 0 }: Props) {
   const pages: PortfolioPhoto[][] = [];
   for (let i = 0; i < photos.length; i += pageSize) {
     pages.push(photos.slice(i, i + pageSize));
@@ -41,9 +44,9 @@ export default function PhotoPager({ photos, catLabel, pageSize = 9 }: Props) {
 
   return (
     <div>
-      <div className="pager-outer">
+      <div className={s.outer}>
         <div
-          className="pager-viewport"
+          className={s.viewport}
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
           onKeyDown={onKeyDown}
@@ -53,7 +56,7 @@ export default function PhotoPager({ photos, catLabel, pageSize = 9 }: Props) {
           aria-roledescription="carousel"
         >
           <div
-            className="pager-track"
+            className={s.track}
             style={{
               width: `${pages.length * 100}%`,
               transform: `translateX(-${page * (100 / pages.length)}%)`,
@@ -61,15 +64,15 @@ export default function PhotoPager({ photos, catLabel, pageSize = 9 }: Props) {
           >
             {pages.map((group, pi) => (
               <div
-                className="pager-page"
+                className={s.page}
                 key={pi}
                 style={{ flex: `0 0 ${100 / pages.length}%` }}
                 aria-hidden={pi !== page}
               >
                 {group.map((p, i) => {
-                  const idx = pi * pageSize + i;
+                  const idx = startIndex + pi * pageSize + i;
                   return (
-                    <div key={idx} className="photo-cell">
+                    <div key={idx} className={s.cell}>
                       <Image
                         src={p.src}
                         alt={`${catLabel} photograph ${idx + 1} by Sandrine Ceuppens`}
@@ -89,13 +92,13 @@ export default function PhotoPager({ photos, catLabel, pageSize = 9 }: Props) {
       </div>
 
       {pages.length > 1 && (
-        <div className="pager-dots" role="tablist" aria-label={catLabel}>
+        <div className={s.dots} role="tablist" aria-label={catLabel}>
           {pages.map((_, pi) => (
             <button
               key={pi}
               type="button"
               role="tab"
-              className={`pager-dot${pi === page ? " is-active" : ""}`}
+              className={`${s.dot}${pi === page ? ` ${s.active}` : ""}`}
               onClick={() => goTo(pi)}
               aria-label={`Page ${pi + 1} / ${pages.length}`}
               aria-selected={pi === page}

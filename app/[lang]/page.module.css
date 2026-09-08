@@ -1,0 +1,17 @@
+.main { padding-bottom: 8px; }
+.intro {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 88px) var(--pad) clamp(44px, 6vw, 80px);
+  text-align: center;
+}
+.intro .eyebrow { margin-bottom: 26px; }
+.intro .lede { margin-top: 30px; }
+.journal {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--section) var(--pad) 0;
+  text-align: center;
+}
+.journal .eyebrow { margin-bottom: 18px; }
+.journal .lede { margin: 18px auto 28px; }

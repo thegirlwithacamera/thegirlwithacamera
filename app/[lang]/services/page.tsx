@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { WORK } from "@/lib/offers";
 import { site } from "@/lib/site";
 import ServicesForm from "./ServicesForm";
 import { pageMeta } from "@/lib/seo";
+import { PHOTO_CATEGORIES } from "../photographer/constants";
+import { Caption, Cta, Display, Eyebrow, PageHead, Section } from "../components/editorial";
+import s from "./page.module.css";
+import "./form.css";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -61,6 +66,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const COPY = {
   fr: {
     h1: "Services",
+    title: "Photos et films pour *les lieux qui reçoivent*.",
+    detail: "Voir le détail",
+    examplesTitle: "Ce que ça donne",
+    examples: [
+      { href: "/photographer/hospitality", title: "Hôtels & maisons", sub: "Photo et film, le lieu entier" },
+      { href: "/filmmaker", title: "Film de marque", sub: "Un film court pour une campagne" },
+      { href: "/creator", title: "Contenu récurrent", sub: "Verticales pour vos canaux" },
+    ],
     howTitle: "Comment ça se passe",
     how: [
       "Vous m'écrivez la ville, les dates et ce que vous voulez montrer.",
@@ -100,6 +113,14 @@ const COPY = {
   },
   en: {
     h1: "Services",
+    title: "Photographs and films for *places that welcome*.",
+    detail: "See the details",
+    examplesTitle: "What it looks like",
+    examples: [
+      { href: "/photographer/hospitality", title: "Hotels & venues", sub: "Stills and film, the whole place" },
+      { href: "/filmmaker", title: "Brand film", sub: "A short film for a campaign" },
+      { href: "/creator", title: "Ongoing content", sub: "Verticals for your channels" },
+    ],
     howTitle: "How it works",
     how: [
       "You tell me the city, the dates and what you want to show.",
@@ -139,6 +160,15 @@ const COPY = {
   },
 } as const;
 
+// Images des trois exemples, une par offre. La première vient de la
+// catégorie Hôtels, la deuxième est la tuile Film de l'accueil, la troisième
+// le poster d'une vidéo Creator.
+const EXAMPLE_IMAGES = [
+  PHOTO_CATEGORIES.find((c) => c.slug === "hospitality")?.cover ?? "/images/tiles/film-schonleitn.jpg",
+  "/images/tiles/film-schonleitn.jpg",
+  "/videos/creator/GEAR/Ricoh GR III.jpg",
+];
+
 export default async function ServicesPage({ params }: Props) {
   const { lang } = await params;
   const c = COPY[lang];
@@ -146,268 +176,90 @@ export default async function ServicesPage({ params }: Props) {
 
   return (
     <>
-      <style>{`
-        .svc-head { text-align: center; padding: 8px 20px 0; }
-        .svc-head h1 {
-          font-family: var(--font-serif), Georgia, serif;
-          font-size: 26px;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          margin: 0;
-          font-weight: 400;
-        }
-        .svc-lede {
-          max-width: 560px;
-          margin: 18px auto 0;
-          padding: 0 20px;
-          font-size: 15px;
-          line-height: 1.7;
-          color: #525252;
-          text-align: center;
-        }
-        .svc-wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        /* Trois cartes, meme gabarit, alignees en bas grace au flex :
-           sans ca, les CTA se retrouvent a trois hauteurs differentes. */
-        .svc-offers {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 22px;
-          margin-top: 64px;
-        }
-        .svc-offer {
-          display: flex;
-          flex-direction: column;
-          border: 1px solid #ebebeb;
-          padding: 30px 26px;
-        }
-        .svc-offer .o-index {
-          font-family: var(--font-serif), Georgia, serif;
-          font-size: 15px;
-          letter-spacing: 0.12em;
-          color: #bdbdbd;
-          line-height: 1;
-          margin-bottom: 16px;
-        }
-        .svc-offer h2 {
-          font-family: var(--font-serif), Georgia, serif;
-          font-size: 16px;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          font-weight: 400;
-          margin: 0 0 8px;
-        }
-        .svc-offer .o-sub { margin: 0 0 20px; font-size: 13px; line-height: 1.6; color: #525252; }
-        .svc-offer .o-pkg {
-          margin: 0 0 10px;
-          font-size: 10px;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-        }
-        .svc-offer .o-pkg.is-addons { margin-top: 20px; color: #999; }
-        .svc-offer ul { list-style: none; padding: 0; margin: 0; }
-        .svc-offer li {
-          position: relative;
-          padding-left: 14px;
-          margin-bottom: 8px;
-          font-size: 12.5px;
-          line-height: 1.55;
-          color: #525252;
-        }
-        .svc-offer li::before { content: "·"; position: absolute; left: 2px; color: #b3aca2; }
-        .svc-offer .o-addons li { color: #777; font-size: 11.5px; }
-        .svc-offer .o-proof {
-          display: inline-block;
-          margin-top: 18px;
-          font-size: 10px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: #999;
-          text-decoration: none;
-          border-bottom: 1px solid #e5e5e5;
-          padding-bottom: 2px;
-        }
-        .svc-offer .o-proof:hover { color: #0a0a0a; border-color: #0a0a0a; }
-        .svc-offer .o-cta-wrap { margin-top: auto; padding-top: 26px; }
-        .svc-offer .o-cta {
-          display: inline-block;
-          border: 1px solid #0a0a0a;
-          padding: 11px 22px;
-          font-size: 10px;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          text-decoration: none;
-        }
-        .svc-offer .o-cta:hover { background: #0a0a0a; color: #fff; }
-        .svc-section { margin-top: 72px; }
-        .svc-section h2 {
-          font-size: 10px;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: #999;
-          font-weight: 400;
-          margin: 0 0 18px;
-        }
-        .svc-section p, .svc-section li { font-size: 14px; line-height: 1.7; color: #525252; }
-        .svc-section p { margin: 0 0 10px; }
-        .svc-steps { margin: 0; padding-left: 20px; }
-        /* La FAQ est visible, et c'est le point : un balisage FAQ sans
-           contenu affiche est un motif de sanction chez Google. Elle repond
-           surtout aux questions qui bloquent une reservation. */
-        .svc-faq { margin: 0; }
-        .svc-faq details { border-bottom: 1px solid #ebebeb; }
-        .svc-faq details:first-child { border-top: 1px solid #ebebeb; }
-        .svc-faq summary {
-          list-style: none;
-          cursor: pointer;
-          padding: 16px 24px 16px 0;
-          position: relative;
-          font-size: 14px;
-          color: #0a0a0a;
-        }
-        .svc-faq summary::-webkit-details-marker { display: none; }
-        /* La fleche : un chevron en CSS, qui pivote a l'ouverture. */
-        .svc-faq summary::after {
-          content: "";
-          position: absolute;
-          right: 4px;
-          top: 21px;
-          width: 7px;
-          height: 7px;
-          border-right: 1px solid #999;
-          border-bottom: 1px solid #999;
-          transform: rotate(45deg);
-          transition: transform 0.25s ease;
-        }
-        .svc-faq details[open] summary::after { transform: rotate(-135deg); top: 24px; }
-        .svc-faq summary:hover { color: #0a0a0a; }
-        .svc-faq details p {
-          margin: 0;
-          padding: 0 24px 18px 0;
-          font-size: 14px;
-          line-height: 1.7;
-          color: #525252;
-        }
-        .svc-steps li { margin-bottom: 8px; }
-        .services-form {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 18px 22px;
-          margin-top: 18px;
-        }
-        .services-form .is-full { grid-column: 1 / -1; }
-        .services-form label { display: block; }
-        .services-form label > span {
-          display: block;
-          font-size: 10px;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: #999;
-          margin-bottom: 6px;
-        }
-        .services-form input,
-        .services-form select,
-        .services-form textarea {
-          width: 100%;
-          border: none;
-          border-bottom: 1px solid #e5e5e5;
-          background: transparent;
-          padding: 6px 0;
-          font: inherit;
-          font-size: 14px;
-          color: #0a0a0a;
-          border-radius: 0;
-        }
-        .services-form textarea { resize: vertical; border: 1px solid #e5e5e5; padding: 10px; }
-        .services-form input:focus,
-        .services-form select:focus,
-        .services-form textarea:focus { outline: none; border-color: #0a0a0a; }
-        .form-actions { display: flex; align-items: center; gap: 16px; }
-        .services-form button {
-          border: 1px solid #0a0a0a;
-          background: #0a0a0a;
-          color: #fff;
-          font-size: 10px;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          padding: 12px 28px;
-          cursor: pointer;
-        }
-        .services-form button:disabled { opacity: 0.5; cursor: default; }
-        .form-note { font-size: 13px; color: #525252; margin: 18px 0 0; }
-        .form-note.is-error { color: #a33; margin: 0; }
-        @media (max-width: 767px) {
-          .svc-head h1 { font-size: 18px; }
-          .svc-lede { font-size: 14px; }
-          .svc-offers { grid-template-columns: 1fr; gap: 14px; margin-top: 46px; }
-          .svc-offer { padding: 24px 20px; }
-          .svc-section { margin-top: 52px; }
-          .services-form { grid-template-columns: 1fr; }
-        }
-      `}</style>
+      <main className={s.main}>
+        <PageHead eyebrow={c.h1} title={c.title} lede={work.intro} />
 
-      <main style={{ paddingTop: "16px", paddingBottom: "84px", background: "#ffffff" }}>
-        <div className="svc-head">
-          <h1>{c.h1}</h1>
-        </div>
-        <p className="svc-lede">{work.intro}</p>
-
-        <div className="svc-wrap">
-          <div className="svc-offers">
+        <div className={s.wrap}>
+          <div className={s.offers}>
             {work.offers.map((o) => (
-              <div key={o.title} className="svc-offer">
-                <div className="o-index">{o.index}</div>
-                <h2>{o.title}</h2>
-                <p className="o-sub">{o.subtitle}</p>
-                {o.packageName && <p className="o-pkg">{o.packageName}</p>}
-                <ul>
-                  {o.items.map((it) => <li key={it}>{it}</li>)}
-                </ul>
-                {o.addons && o.addons.length > 0 && (
-                  <>
-                    {o.addonsLabel && <p className="o-pkg is-addons">{o.addonsLabel}</p>}
-                    <ul className="o-addons">
-                      {o.addons.map((ad) => <li key={ad}>{ad}</li>)}
-                    </ul>
-                  </>
-                )}
-                {o.proof && (
-                  <Link href={`/${lang}${o.proof.href}`} className="o-proof">
-                    {o.proof.label} →
-                  </Link>
-                )}
-                <div className="o-cta-wrap">
-                  {/* Vers le formulaire de la meme page, pas un mailto : un
-                      lien mailto donne un mail vide, le formulaire un brief. */}
-                  <a className="o-cta" href="#contact">{c.talk}</a>
+              <div key={o.title} className={s.offer}>
+                <p className={s.index}>{o.index}</p>
+                <h2 className={s.offerTitle}>{o.title}</h2>
+                <p className={s.offerSub}>{o.subtitle}</p>
+                {/* Le détail est replié : on lit d'abord l'essentiel, on
+                    déplie si on veut. Rien n'est retiré, tout est là. */}
+                <details className={s.details}>
+                  <summary>{c.detail}</summary>
+                  {o.packageName && <p className={s.pkg}>{o.packageName}</p>}
+                  <ul className={s.list}>
+                    {o.items.map((it) => <li key={it}>{it}</li>)}
+                  </ul>
+                  {o.addons && o.addons.length > 0 && (
+                    <>
+                      {o.addonsLabel && <p className={`${s.pkg} ${s.pkgAddons}`}>{o.addonsLabel}</p>}
+                      <ul className={`${s.list} ${s.addons}`}>
+                        {o.addons.map((ad) => <li key={ad}>{ad}</li>)}
+                      </ul>
+                    </>
+                  )}
+                  {o.proof && (
+                    <Cta href={`/${lang}${o.proof.href}`} className={s.proof}>{o.proof.label} →</Cta>
+                  )}
+                </details>
+                <div className={s.offerCta}>
+                  <Cta href="#contact" variant="button">{c.talk}</Cta>
                 </div>
               </div>
             ))}
           </div>
 
-          <section className="svc-section">
-            <h2>{c.howTitle}</h2>
-            <ol className="svc-steps">
-              {c.how.map((s) => <li key={s}>{s}</li>)}
-            </ol>
-          </section>
+          <Section title={c.examplesTitle} className={s.examples}>
+            <div className={s.exGrid}>
+              {c.examples.map((ex, i) => (
+                <Link key={ex.href} href={`/${lang}${ex.href}`} className={s.ex}>
+                  <span className={s.exThumb}>
+                    <Image
+                      src={EXAMPLE_IMAGES[i]}
+                      alt={ex.title}
+                      width={1066}
+                      height={1600}
+                      sizes="(max-width: 767px) 50vw, 380px"
+                      quality={75}
+                    />
+                  </span>
+                  <Caption className={s.exCap} title={ex.title} sub={ex.sub} />
+                </Link>
+              ))}
+            </div>
+          </Section>
 
-          <section className="svc-section" id="contact">
-            <h2>{c.formTitle}</h2>
+          <Section title={c.howTitle} className={s.steps}>
+            <ol className={s.stepList}>
+              {c.how.map((step, i) => (
+                <li key={step} className={s.step}>
+                  <span className={s.stepNo}>{String(i + 1).padStart(2, "0")}</span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          </Section>
+
+          <section className={s.block} id="contact">
+            <div className={s.blockHead}>
+              <Eyebrow>{c.h1}</Eyebrow>
+              <Display size="m" as="h2">{c.formTitle}</Display>
+            </div>
             <ServicesForm lang={lang} />
           </section>
 
-          {/* La FAQ passe sous le formulaire le 01/09 : elle repond aux
-              objections de celui qui hesite encore, elle ne doit pas
-              s'interposer devant celui qui a deja decide d'ecrire.
-              Repliee par defaut, une question par ligne : six reponses
-              deroulees, c'est un mur de texte au bas d'une page d'offre. */}
-          <section className="svc-section" id="faq">
-            <h2>{c.faqTitle}</h2>
-            <div className="svc-faq">
+          {/* La FAQ reste sous le formulaire, repliée : elle répond à celui
+              qui hésite encore, elle ne s'interpose pas devant celui qui a
+              décidé d'écrire. */}
+          <section className={s.block} id="faq">
+            <div className={s.blockHead}>
+              <Display size="m" as="h2">{c.faqTitle}</Display>
+            </div>
+            <div className={s.faq}>
               {c.faq.map((f) => (
                 <details key={f.q}>
                   <summary>{f.q}</summary>
@@ -419,10 +271,6 @@ export default async function ServicesPage({ params }: Props) {
         </div>
       </main>
 
-      {/* Balisage FAQ. Il correspond mot pour mot aux questions affichées au
-          dessus : c'est la condition posée par Google, et c'est pour ça que
-          l'ancien FAQPage du layout, présent sur toutes les pages sans jamais
-          être affiché, a été retiré. */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "FAQPage",
