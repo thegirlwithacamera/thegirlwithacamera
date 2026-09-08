@@ -255,15 +255,6 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         // Film déposé le 08/09, réencodé en 1080p depuis le master 4K du bureau.
         films: [{ src: "/videos/creator/CINEMATIC/PLACES/Naturel Dorf Schönleitn.mp4" }],
       },
-        shotAt: {
-          fr: "Photographié en juillet 2026.",
-          en: "Photographed in July 2026.",
-        },
-        films: [
-          { src: "/videos/creator/CINEMATIC/PLACES/VanDerValk Sélys.mp4", label: { fr: "Le restaurant", en: "The restaurant" } },
-          { src: "/videos/creator/CINEMATIC/PLACES/Dao Liège.mp4", label: { fr: "Le spa", en: "The spa" } },
-        ],
-      },
       // Coloc Housing retiré le 01/09, décision de Sandrine. La collaboration
       // s'est terminée sur un retrait de licence de sa part. Les images et le
       // film restent sur le disque, rien n'est supprimé : c'est la publication
@@ -313,6 +304,15 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           fr: "Un hôtel liégeois qui tient une table et un spa sous le même toit, du sauna au mur de sel jusqu'à la salle du soir.",
           en: "A Liège hotel holding a table and a spa under one roof, from the sauna and the salt wall through to the evening dining room.",
         },
+        shotAt: {
+          fr: "Photographié en juillet 2026.",
+          en: "Photographed in July 2026.",
+        },
+        films: [
+          { src: "/videos/creator/CINEMATIC/PLACES/VanDerValk Sélys.mp4", label: { fr: "Le restaurant", en: "The restaurant" } },
+          { src: "/videos/creator/CINEMATIC/PLACES/Dao Liège.mp4", label: { fr: "Le spa", en: "The spa" } },
+        ],
+      },
       // En attente : selys-liege, 6 images sur un disque non disponible.
     ],
   },
