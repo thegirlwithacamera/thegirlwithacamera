@@ -45,5 +45,9 @@
 }
 @media (max-width: 767px) {
   .opening { padding: 24px 20px 0; }
+  /* Deux tuiles par catégorie sur téléphone : au delà, on fait défiler dix
+     images avant d'atteindre la catégorie suivante. Le reste est à un clic,
+     sur "Tout voir". */
+  .grid > *:nth-child(n + 3) { display: none; }
   .doors { grid-template-columns: 1fr; padding: 0 12px; gap: 12px; }
 }

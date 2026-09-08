@@ -84,7 +84,8 @@ export default async function PhotographerCategoryPage({ params }: Props) {
         : "Places photographed while they are alive, in natural light.";
 
   return (
-    <main className={s.main}>
+    <>
+      <main className={s.main}>
       <PageHead
         back={{ href: `/${lang}/photographer`, label: backLabel }}
         eyebrow={lang === "fr" ? "Photographe" : "Photographer"}
@@ -110,6 +111,16 @@ export default async function PhotographerCategoryPage({ params }: Props) {
           ))}
         </ProjectGrid>
       )}
-    </main>
+      </main>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: lang === "fr" ? "Photographe" : "Photographer", item: `https://thegirlwithacamera.com/${lang}/photographer` },
+          { "@type": "ListItem", position: 2, name: cat.label[lang] },
+        ],
+      }) }} />
+    </>
   );
 }

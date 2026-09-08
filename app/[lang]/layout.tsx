@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
     classification: "Photography & Content Creation",
     alternates: {
       canonical: `/${lang}`,
-      languages: { fr: "/fr", en: "/en" },
+      languages: { fr: "/fr", en: "/en", "x-default": "/en" },
     },
     // Repli seulement. pageMeta (lib/seo.ts) redefinit ce bloc page par
     // page : Next ne fusionne pas openGraph entre un layout et une page, donc

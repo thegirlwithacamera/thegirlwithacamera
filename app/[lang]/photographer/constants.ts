@@ -296,7 +296,6 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         // de lien. Le jour où les images arrivent, tout s'allume seul.
         slug: "van-der-valk-selys",
         label: { fr: "Van der Valk Sélys", en: "Van der Valk Sélys" },
-        short: { fr: "Sélys Liège", en: "Sélys Liège" },
         place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
         // À RELIRE PAR SANDRINE : écrit d'après les films, pas d'après le
         // séjour. Deux phrases, le lieu et la date, jamais une critique.
@@ -364,7 +363,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "napoli",
-        label: { fr: "Napoli", en: "Napoli" },
+        label: { fr: "Naples", en: "Naples" },
         place: { fr: "Italie", en: "Italy" },
         intro: {
           fr: "Naples de bonne heure, quand les rues appartiennent encore à ceux qui y vivent.",
@@ -382,7 +381,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "venezia",
-        label: { fr: "Venezia", en: "Venezia" },
+        label: { fr: "Venise", en: "Venice" },
         place: { fr: "Italie", en: "Italy" },
         intro: {
           fr: "Venise en dehors des heures où on la photographie, tôt, avant que les ponts se remplissent.",
@@ -391,7 +390,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "palermo",
-        label: { fr: "Palermo", en: "Palermo" },
+        label: { fr: "Palerme", en: "Palermo" },
         place: { fr: "Italie", en: "Italy" },
         intro: {
           fr: "Palerme au réveil, les marchés avant la foule et le rouge qui traverse le gris des rues.",

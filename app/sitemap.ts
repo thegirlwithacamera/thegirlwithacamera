@@ -1,64 +1,82 @@
 import type { MetadataRoute } from "next";
+import fs from "fs";
+import path from "path";
 import { site } from "@/lib/site";
 import { PHOTO_CATEGORIES, PHOTO_CATEGORY_SLUGS } from "@/app/[lang]/photographer/constants";
 import { countCasePhotos } from "@/lib/portfolio";
 
-const STATIC_PATHS = [
-  "",
-  // Page d'index du portfolio, créée le 01/09. C'est elle qui vise
-  // "photographe hôtellerie Bruxelles".
-  "/photographer",
-  // Les pages de catégorie sortent de la navigation le 01/09 mais restent
-  // indexées : ce sont les seules qui peuvent se positionner sur une requête
-  // du type "photographe hôtel Vienne".
-  ...PHOTO_CATEGORY_SLUGS.map((s) => `/photographer/${s}`),
-  // Une URL par cas : un client, une destination, une série. C'est la page
-  // qu'on colle dans un pitch, donc elle doit être indexée.
-  ...PHOTO_CATEGORIES.flatMap((cat) =>
-    cat.cases
-      .filter((c) => countCasePhotos(cat.slug, c.slug) > 0)
-      .map((c) => `/photographer/${cat.slug}/${c.slug}`),
-  ),
-  "/creator",
-  "/creator/gear",
-  "/creator/lifestyle",
-  "/creator/unboxing",
-  "/creator/talk",
-  "/filmmaker",
-  "/filmmaker/places",
-  "/filmmaker/cities",
-  "/services",
-  // La page produits n'est dans aucun menu mais reste indexee : "presets
-  // Ricoh GR" est une requete que des gens tapent, et onze epingles
-  // Pinterest attendaient une page de vente.
-  // "/shop" desactivee le 01/09 : la serie de presets est refaite de zero,
-  // la page annoncait encore les 15 presets de l'ancienne. Remettre cette
-  // ligne et repasser SHOP_ENABLED a true dans lib/products.ts pour la
-  // rallumer.
-  "/about",
-];
-// "/diary" retiré le 01/09 : le Journal, c'est le Substack. La section Diary
-// du site faisait doublon et sa page Tokyo était en ligne avec ses blocs de
-// gabarit "[To replace]". Les URLs partent en redirection, voir middleware.ts.
+// Date de dernière modification d'un cas : celle de son dossier d'images.
+// Une date honnête vaut mieux qu'un "aujourd'hui" sur toutes les pages, que
+// Google finit par ignorer.
+function caseModified(category: string, caseSlug: string): Date {
+  const dir = path.join(process.cwd(), "public", "images", "portfolio", category, caseSlug);
+  try {
+    return fs.statSync(dir).mtime;
+  } catch {
+    return new Date();
+  }
+}
+
+type Entry = { path: string; priority: number; changeFrequency: "weekly" | "monthly" | "yearly"; lastModified: Date };
+
+function buildPaths(): Entry[] {
+  const now = new Date();
+  const out: Entry[] = [
+    // L'accueil et les quatre pages qui vendent quelque chose passent avant
+    // le reste.
+    { path: "", priority: 1, changeFrequency: "weekly", lastModified: now },
+    { path: "/services", priority: 0.9, changeFrequency: "monthly", lastModified: now },
+    { path: "/photographer", priority: 0.9, changeFrequency: "weekly", lastModified: now },
+    { path: "/filmmaker", priority: 0.8, changeFrequency: "monthly", lastModified: now },
+    { path: "/creator", priority: 0.8, changeFrequency: "monthly", lastModified: now },
+    { path: "/about", priority: 0.6, changeFrequency: "yearly", lastModified: now },
+  ];
+
+  // Pages de catégorie : elles se positionnent sur "photographe d'hôtel",
+  // "photographe de restaurant", "photographe de voyage".
+  for (const slug of PHOTO_CATEGORY_SLUGS) {
+    out.push({ path: `/photographer/${slug}`, priority: 0.8, changeFrequency: "monthly", lastModified: now });
+  }
+
+  // Pages de cas : le fond du site, une par client ou par ville.
+  for (const cat of PHOTO_CATEGORIES) {
+    for (const c of cat.cases) {
+      if (countCasePhotos(cat.slug, c.slug) === 0) continue;
+      out.push({
+        path: `/photographer/${cat.slug}/${c.slug}`,
+        priority: 0.7,
+        changeFrequency: "yearly",
+        lastModified: caseModified(cat.slug, c.slug),
+      });
+    }
+  }
+
+  for (const s of ["gear", "lifestyle", "unboxing", "talk"]) {
+    out.push({ path: `/creator/${s}`, priority: 0.6, changeFrequency: "monthly", lastModified: now });
+  }
+  for (const s of ["places", "cities"]) {
+    out.push({ path: `/filmmaker/${s}`, priority: 0.6, changeFrequency: "monthly", lastModified: now });
+  }
+
+  return out;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const langs: Array<"fr" | "en"> = ["fr", "en"];
-  const now = new Date();
 
-  const staticEntries: MetadataRoute.Sitemap = langs.flatMap((lang) =>
-    STATIC_PATHS.map((path) => ({
-      url: `${site.url}/${lang}${path}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: path === "" ? 1 : 0.7,
+  return langs.flatMap((lang) =>
+    buildPaths().map((e) => ({
+      url: `${site.url}/${lang}${e.path}`,
+      lastModified: e.lastModified,
+      changeFrequency: e.changeFrequency,
+      priority: e.priority,
       alternates: {
         languages: {
-          fr: `${site.url}/fr${path}`,
-          en: `${site.url}/en${path}`,
+          fr: `${site.url}/fr${e.path}`,
+          en: `${site.url}/en${e.path}`,
+          "x-default": `${site.url}/en${e.path}`,
         },
       },
     })),
   );
-
-  return staticEntries;
 }

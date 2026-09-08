@@ -31,11 +31,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!found) return {};
   const { cat, item } = found;
   const place = item.place ? `, ${item.place[lang]}` : "";
+  // Le titre porte le métier et la ville : "Altstadt Vienna, an SLH Hotel ·
+  // Photographe d'hôtel à Vienne". Le nom du lieu seul ne se cherche pas,
+  // le métier plus la ville, si. La ville vient de `place`, avant la virgule.
+  const town = item.place?.[lang].split(",")[0].trim();
+  // Séries de ville : le nom du cas est déjà la ville, et `place` ne porte
+  // que le pays. Le titre dit alors "Venise, Italie · Photographe de voyage",
+  // pas "photographe de voyage à Italie".
+  const where = cat.citySeries
+    ? lang === "fr" ? "Photographe de voyage" : "Travel photographer"
+    : (() => {
+        const trade = cat.slug === "restaurants"
+          ? lang === "fr" ? "Photographe de restaurant" : "Restaurant photographer"
+          : lang === "fr" ? "Photographe d'hôtel" : "Hotel photographer";
+        return town ? (lang === "fr" ? `${trade} à ${town}` : `${trade} in ${town}`) : trade;
+      })();
+  const heading = cat.citySeries && item.place
+    ? `${item.label[lang]}, ${item.place[lang]}`
+    : item.label[lang];
   return pageMeta({
     lang,
     path: `/photographer/${cat.slug}/${item.slug}`,
     type: "article",
-    title: `${item.label[lang]} · ${cat.label[lang]}`,
+    title: `${heading} · ${where}`,
     // La phrase du cas fait une meilleure description que le gabarit : elle
     // décrit le lieu au lieu de répéter la catégorie.
     description: item.intro

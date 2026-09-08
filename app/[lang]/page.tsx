@@ -137,10 +137,15 @@ export default async function HomePage({ params }: Props) {
   // Une section par catégorie, dans l'ordre de constants.ts, avec la barre
   // "Tout voir" vers la page de catégorie. L'ordre des tuiles reste celui
   // de homeCases.
-  const sections = PHOTO_CATEGORIES.map((cat) => ({
-    cat,
-    tiles: homeCases.filter((c) => c.cat.slug === cat.slug),
-  })).filter((sec) => sec.tiles.length > 0);
+  // Six tuiles par catégorie au maximum, deux rangées pleines. Le reste se
+  // voit sur la page de la catégorie, d'où le lien "Tout voir". Sur téléphone
+  // la grille n'en garde que deux, en CSS : douze tuiles à faire défiler avant
+  // d'arriver à la deuxième catégorie, personne ne va au bout.
+  const PER_CATEGORY = 6;
+  const sections = PHOTO_CATEGORIES.map((cat) => {
+    const all = homeCases.filter((c) => c.cat.slug === cat.slug);
+    return { cat, tiles: all.slice(0, PER_CATEGORY), total: all.length };
+  }).filter((sec) => sec.tiles.length > 0);
 
   const filmTile = HOME_TILES.find((tile) => tile.key === "film");
   const aboutTile = HOME_TILES.find((tile) => tile.key === "about");
@@ -177,13 +182,13 @@ export default async function HomePage({ params }: Props) {
               href={`/${lang}/photographer/${sec.cat.slug}`}
               linkLabel={t.all}
             />
-            <ProjectGrid>
+            <ProjectGrid className={s.grid}>
               {sec.tiles.map((c, i) => (
                 <ProjectCard
                   key={c.key}
                   href={`/${lang}${c.href}`}
                   cover={c.cover}
-                  alt={c.item.intro ? c.item.intro.en : `${c.item.label.en} — ${c.cat.label.en} photographed by Sandrine Ceuppens`}
+                  alt={`${c.name}${c.sub ? `, ${c.sub}` : ""}, ${c.cat.label.en.toLowerCase()} photographed by Sandrine Ceuppens`}
                   title={c.name}
                   sub={c.sub}
                   priority={sec.cat.slug === sections[0].cat.slug && i < 3}
@@ -201,9 +206,30 @@ export default async function HomePage({ params }: Props) {
       </main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
         "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": `https://thegirlwithacamera.com/#business`,
+        name: "The Girl With A Camera",
+        alternateName: "Sandrine Ceuppens",
+        url: `https://thegirlwithacamera.com/${lang}`,
+        image: `https://thegirlwithacamera.com${FEATURE.cover}`,
+        email: "mailto:hello@thegirlwithacamera.com",
+        description: lang === "fr"
+          ? "Photographe et vidéaste pour les hôtels, les maisons d'hôtes, les restaurants et les bars. Basée à Bruxelles, en déplacement partout dans le monde."
+          : "Photographer and filmmaker for hotels, guesthouses, restaurants and bars. Based in Brussels, travelling worldwide.",
+        address: { "@type": "PostalAddress", addressLocality: "Brussels", addressCountry: "BE" },
+        areaServed: { "@type": "Place", name: "Worldwide" },
+        founder: { "@type": "Person", name: "Sandrine Ceuppens" },
+        knowsLanguage: ["fr", "en", "nl"],
+        serviceType: lang === "fr"
+          ? ["Photographie d'hôtel", "Photographie de restaurant", "Film de marque", "Photographie de voyage"]
+          : ["Hotel photography", "Restaurant photography", "Brand film", "Travel photography"],
+      })}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        "@context": "https://schema.org",
         "@type": "ImageGallery",
         name: "Portfolio by Sandrine Ceuppens",
         description: "Hotels, guesthouses, restaurants and bars photographed by Sandrine Ceuppens worldwide",
+        numberOfItems: homeCases.length,
         associatedMedia: homeCases.map((c) => ({
           "@type": "ImageObject",
           url: `https://thegirlwithacamera.com${c.cover}`,

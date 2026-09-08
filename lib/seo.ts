@@ -55,7 +55,11 @@ export function pageMeta({
     description,
     alternates: {
       canonical: `/${lang}${path}`,
-      languages: { fr: `/fr${path}`, en: `/en${path}` },
+      languages: {
+        fr: `/fr${path}`,
+        en: `/en${path}`,
+        "x-default": `/en${path}`,
+      },
     },
     openGraph: {
       type,
