@@ -88,8 +88,7 @@ export default async function PhotographerCasePage({ params }: Props) {
   }));
 
   // Image d'ouverture : la première du cas, ou du premier chapitre.
-  const opening = item.openingImage === false ? null : photos[0];
-  const openingRatio = opening ? readPhotoRatio(opening.src) : 1;
+  const opening = item.openingImage === true || (item.openingImage !== false && chapters.length > 0) ? photos[0] : null;
   const openingAlt = item.intro
     ? `${item.label.en}, ${item.intro.en}`
     : `${item.label.en} — ${cat.label.en} photographed by Sandrine Ceuppens`;
@@ -144,15 +143,18 @@ export default async function PhotographerCasePage({ params }: Props) {
 
         {opening && (
           <figure className={s.opening}>
-            <Image
-              src={opening.src}
-              alt={openingAlt}
-              width={Math.round(1600 * openingRatio)}
-              height={1600}
-              sizes="(max-width: 767px) 100vw, 1200px"
-              priority
-              quality={80}
-            />
+            <span className={s.openingFrame}>
+              <Image
+                src={opening.src}
+                alt={openingAlt}
+                width={1066}
+                height={1600}
+                sizes="(max-width: 767px) 100vw, 1200px"
+                priority
+                quality={80}
+                style={{ objectPosition: item.openingPosition ?? "50% 50%" }}
+              />
+            </span>
             <figcaption className={s.openingCap}>
               <b>01</b>{chapters.length > 0 ? chapters[0].title : item.label[lang]}
             </figcaption>

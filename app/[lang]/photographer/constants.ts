@@ -84,11 +84,14 @@ export type PhotoCase = {
   // Une adresse se visite en photo et en mouvement : les deux vivent sur la
   // même page. La page Vidéaste reste pour les lieux sans photos.
   films?: CaseFilm[];
-  // À false, la page du cas n'ouvre pas sur sa première photo en grand :
-  // la grille commence tout de suite. Par défaut, la première image du cas
-  // (ou du premier chapitre) s'affiche seule, dans son format, avant la
-  // grille. Redesign du 08/09.
+  // Image d'ouverture en paysage, au dessus des chapitres. Réservée aux cas à
+  // chapitres (Altstadt), décision du 08/09 : les autres cas ouvrent
+  // directement sur la grille 3x3. La première photo, verticale, est
+  // recadrée en 3:2 ; openingPosition règle le point de recadrage (CSS
+  // object-position, "50% 40%" par exemple). openingImage: true force
+  // l'ouverture sur un cas sans chapitres, false la retire.
   openingImage?: boolean;
+  openingPosition?: string;
 };
 
 export type PhotoCategory = {
@@ -169,6 +172,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           "06-freud-suite",
         ],
         coverImage: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
+        openingPosition: "50% 45%",
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
         // Soixante-deux chambres, chiffre donné par Sandrine le 02/09. C'est
         // le fait qui porte la page : on ne photographie pas une maison
