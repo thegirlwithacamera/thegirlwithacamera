@@ -87,11 +87,11 @@ const COPY = {
     faq: [
       {
         q: "Vous vous déplacez ?",
-        a: "Oui. Le transport est inclus dans un rayon de moins de deux heures de train depuis Bruxelles. Au delà, il se chiffre à part, et je regroupe volontiers plusieurs adresses sur un même déplacement.",
+        a: "Oui. Le transport est inclus dans un rayon de moins de deux heures de train depuis Bruxelles. Au-delà, il se chiffre à part, et je regroupe volontiers plusieurs adresses sur un même déplacement.",
       },
       {
         q: "Combien de temps sur place ?",
-        a: "D'une demi-journée à deux jours selon la taille de la maison, et une nuit sur place dans toutes les formules hôtel. C'est elle qui donne accès aux heures où le lieu est vide, entre six et neuf heures du matin.",
+        a: "D'une demi-journée à deux jours selon la taille de la maison, et une nuit sur place dans toutes les formules hôtel. C'est cette nuit qui donne accès aux heures où le lieu est vide, entre six et neuf heures du matin.",
       },
       {
         q: "Faut-il fermer, ou vider les chambres ?",

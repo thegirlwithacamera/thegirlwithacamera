@@ -36,9 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const COPY = {
   fr: {
-    eyebrow: "Sandrine Ceuppens · Bruxelles · en déplacement dans le monde entier",
+    eyebrow: "Sandrine Ceuppens · Bruxelles · en déplacement partout dans le monde",
     title: "Hôtels, tables et villes, photographiés *dans la lumière qui était là*.",
-    lede: "Des maisons, des tables et des rues, en lumière naturelle, sans mise en scène ajoutée.",
+    lede: "Des maisons, des tables et des rues, en lumière naturelle, sans rien mettre en scène.",
     all: "Tout voir",
     film: "Film",
     about: "À propos",
@@ -46,7 +46,7 @@ const COPY = {
   en: {
     eyebrow: "Sandrine Ceuppens · Brussels · travelling worldwide",
     title: "Hotels, tables and cities photographed *in the light that was there*.",
-    lede: "Houses, tables and streets, in natural light, with nothing staged on top.",
+    lede: "Houses, tables and streets, in natural light, with nothing staged.",
     all: "See all",
     film: "Film",
     about: "About",
@@ -204,26 +204,6 @@ export default async function HomePage({ params }: Props) {
           {aboutTile && <DoorTile href={`/${lang}${aboutTile.href}`} cover={aboutTile.cover} word={t.about} coverPosition={aboutTile.coverPosition ?? "50% 30%"} />}
         </div>
       </main>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "@id": `https://thegirlwithacamera.com/#business`,
-        name: "The Girl With A Camera",
-        alternateName: "Sandrine Ceuppens",
-        url: `https://thegirlwithacamera.com/${lang}`,
-        image: `https://thegirlwithacamera.com${FEATURE.cover}`,
-        email: "mailto:hello@thegirlwithacamera.com",
-        description: lang === "fr"
-          ? "Photographe et vidéaste pour les hôtels, les maisons d'hôtes, les restaurants et les bars. Basée à Bruxelles, en déplacement partout dans le monde."
-          : "Photographer and filmmaker for hotels, guesthouses, restaurants and bars. Based in Brussels, travelling worldwide.",
-        address: { "@type": "PostalAddress", addressLocality: "Brussels", addressCountry: "BE" },
-        areaServed: { "@type": "Place", name: "Worldwide" },
-        founder: { "@type": "Person", name: "Sandrine Ceuppens" },
-        knowsLanguage: ["fr", "en", "nl"],
-        serviceType: lang === "fr"
-          ? ["Photographie d'hôtel", "Photographie de restaurant", "Film de marque", "Photographie de voyage"]
-          : ["Hotel photography", "Restaurant photography", "Brand film", "Travel photography"],
-      })}} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "ImageGallery",

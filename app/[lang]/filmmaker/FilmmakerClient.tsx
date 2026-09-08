@@ -43,7 +43,7 @@ const content: Record<"fr" | "en", Content> = {
   fr: {
     title: "Des films qui montrent *où\u00a0l'on\u00a0est*, et comment on y vit.",
     eyebrow: "Vidéaste",
-    desc: "Films de marque et verticales pour les maisons, les tables et les marques. Lumière naturelle, montage narratif, sound design.",
+    desc: "Films et verticales pour les maisons, les tables et les marques. Lumière naturelle, montage narratif, sound design.",
     offer: "Voir les formules",
     photos: "Voir les photos",
     heads: {
@@ -61,11 +61,11 @@ const content: Record<"fr" | "en", Content> = {
   en: {
     title: "Films that show *where\u00a0you\u00a0are*, and how it feels to be there.",
     eyebrow: "Filmmaker",
-    desc: "Brand films and verticals for hotels, tables and brands. Natural light, narrative editing, sound design.",
+    desc: "Films and verticals for houses, tables and brands. Natural light, narrative editing, sound design.",
     offer: "See the packages",
     photos: "See the photographs",
     heads: {
-      places: { title: "Hotels & venues", sub: "" },
+      places: { title: "Houses & tables", sub: "" },
       cities: {
         title: "Travel",
         sub: "The city, the way I see it",

@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: lang === "fr" ? "Vidéaste" : "Filmmaker",
     description:
       lang === "fr"
-        ? "Films de marque et verticales par Sandrine Ceuppens : hôtels, restaurants, voyage, coulisses. Lumière naturelle, montage narratif, sound design. Bruxelles."
-        : "Brand films and verticals by Sandrine Ceuppens: hotels, restaurants, travel, behind the scenes. Natural light, narrative editing, sound design. Brussels-based.",
+        ? "Films de marque et verticales par Sandrine Ceuppens : hôtels, maisons d'hôtes, restaurants et villes. Lumière naturelle, montage narratif, sound design. Basée à Bruxelles."
+        : "Brand films and verticals by Sandrine Ceuppens: hotels, guesthouses, restaurants and cities. Natural light, narrative editing, sound design. Based in Brussels.",
   });
 }
 

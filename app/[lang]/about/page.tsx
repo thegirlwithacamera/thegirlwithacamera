@@ -35,12 +35,11 @@ const HERO_PHOTO = "/images/about/hero.jpg";
 
 const content = {
   fr: {
-    name: "Sandrine Ceuppens",
     role: "Sandrine Ceuppens, *photographe et vidéaste* à Bruxelles.",
     approachTitle: "La *façon de regarder*",
     approach: [
-      "Je photographie les villes à cinq heures du matin et les marchés avant la foule. C'est la même façon de regarder que j'emmène dans les maisons et les hôtels : la lumière du lieu, les gestes de ceux qui y travaillent, rien de posé.",
-      "Je travaille pendant que la maison vit, en lumière naturelle. Une chambre libre le matin suffit, et le personnel peut rester dans le cadre, c'est souvent ce qui fait l'image. Photo et film sur la même visite, pour que le lieu se lise en entier.",
+      "Je travaille en lumière naturelle, pendant que la maison vit. Rien n'est déplacé, rien n'est ajouté : une chambre libre le matin suffit, et le personnel peut rester dans le cadre, c'est souvent ce qui fait l'image.",
+      "Photo et film sur la même visite, pour que le lieu se lise en entier. Les murs disent une partie, les gestes disent le reste.",
     ],
     clients: "Ils m'ont fait confiance",
     contact: "Contact",
@@ -49,30 +48,21 @@ const content = {
     // sur Substack : juste et touchante, mais sur une page qui vend une
     // prestation elle dit qu'on debute.
     bio: "Je photographie les villes à cinq heures du matin et les marchés avant la foule. C'est la même façon de regarder que j'emmène dans les maisons et les hôtels : la lumière du lieu, les gestes de ceux qui y travaillent, rien de posé. Un livre est en cours.",
-    followersLabel: "ABONNÉS INSTAGRAM",
-    skills: "COMPÉTENCES",
-    projectsPdf: "Projets récents (PDF)",
-    based: "Bruxelles · disponible pour voyager",
+    based: "Bruxelles · disponible partout dans le monde",
     cta: "On travaille ensemble ?",
-    letsTalk: "Écrire un mail",
   },
   en: {
-    name: "Sandrine Ceuppens",
     role: "Sandrine Ceuppens, *photographer and filmmaker* in Brussels.",
     approachTitle: "A *way of looking*",
     approach: [
-      "I photograph cities at five in the morning and markets before the crowds. It is the same way of looking that I bring into houses and hotels: the light of the place, the gestures of the people who work there, nothing staged.",
-      "I work while the house is alive, in natural light. One room free in the morning is enough, and the team can stay in the frame, that is often what makes the picture. Stills and film on the same visit, so the place reads as a whole.",
+      "I work in natural light, while the house is alive. Nothing is moved, nothing is added: one room free in the morning is enough, and your team can stay in the frame, that is often what makes the picture.",
+      "Stills and film on the same visit, so the place reads as a whole. The walls say one part of it, the gestures say the rest.",
     ],
     clients: "They trusted me",
     contact: "Contact",
     bio: "I photograph cities at five in the morning and markets before the crowds. It is the same way of looking that I bring into houses and hotels: the light of the place, the gestures of the people who work there, nothing staged. A book is in progress.",
-    followersLabel: "INSTAGRAM FOLLOWERS",
-    skills: "SKILLS",
-    projectsPdf: "Recent projects (PDF)",
-    based: "Brussels · available to travel",
+    based: "Brussels · available worldwide",
     cta: "Want to work together?",
-    letsTalk: "Send an email",
   },
 };
 
@@ -172,7 +162,6 @@ export default async function AboutPage({ params }: Props) {
           : "Sandrine Ceuppens, documentary photographer and filmmaker based in Brussels.",
         mainEntity: {
           "@type": "Person",
-          name: "Sandrine Ceuppens",
           jobTitle: lang === "fr" ? "Photographe et vidéaste documentaire" : "Documentary photographer and filmmaker",
           url: "https://thegirlwithacamera.com",
           sameAs: SOCIALS.map((so) => so.href),

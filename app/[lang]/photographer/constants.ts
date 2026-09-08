@@ -245,7 +245,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         short: { fr: "Dorf Schönleitn", en: "Dorf Schönleitn" },
         place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
         intro: {
-          fr: "Un village de chalets en bois posé au dessus du lac de Faak, en Carinthie, où la lumière du matin arrive tard et reste basse.",
+          fr: "Un village de chalets en bois posé au-dessus du lac de Faak, en Carinthie, où la lumière du matin arrive tard et reste basse.",
           en: "A village of wooden chalets above Lake Faak, in Carinthia, where the morning light arrives late and stays low.",
         },
         shotAt: {
@@ -297,11 +297,11 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         slug: "van-der-valk-selys",
         label: { fr: "Van der Valk Sélys", en: "Van der Valk Sélys" },
         place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
-        // À RELIRE PAR SANDRINE : écrit d'après les films, pas d'après le
-        // séjour. Deux phrases, le lieu et la date, jamais une critique.
+        // Le texte ne parle que de la table et du spa : c'est ce qui a été
+        // couvert, la partie hôtel ne l'a pas été.
         intro: {
-          fr: "Un hôtel liégeois qui tient une table et un spa sous le même toit, du sauna au mur de sel jusqu'à la salle du soir.",
-          en: "A Liège hotel holding a table and a spa under one roof, from the sauna and the salt wall through to the evening dining room.",
+          fr: "La table et le spa d'un hôtel liégeois, du sauna au mur de sel jusqu'à la salle du soir.",
+          en: "The table and the spa of a Liège hotel, from the sauna and the salt wall through to the evening dining room.",
         },
         shotAt: {
           fr: "Photographié en juillet 2026.",

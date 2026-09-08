@@ -117,14 +117,14 @@ export function brandsIn(cat: BrandCat): Brand[] {
 
 // Label de la bande, bilingue (source unique).
 export const TRUST_LABEL: Record<"fr" | "en", string> = {
-  fr: "ILS ME FONT CONFIANCE",
-  en: "ALREADY WORKING WITH",
+  fr: "ILS M'ONT FAIT CONFIANCE",
+  en: "THEY TRUSTED ME",
 };
 
 // Intertitres des deux groupes.
 export const CAT_LABEL: Record<BrandCat, Record<"fr" | "en", string>> = {
-  stays: { fr: "HÔTELS, MAISONS & TABLES", en: "STAYS & PLACES" },
-  travel: { fr: "VILLES & VOYAGE", en: "CITY & TRAVEL" },
+  stays: { fr: "HÔTELS, MAISONS & TABLES", en: "HOTELS, HOUSES & TABLES" },
+  travel: { fr: "VILLES & VOYAGE", en: "CITIES & TRAVEL" },
   brand: { fr: "MARQUES", en: "BRANDS" },
 };
 

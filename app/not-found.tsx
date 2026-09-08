@@ -20,7 +20,7 @@ export default function NotFound() {
           alignItems: "center",
           justifyContent: "center",
           background: "#ffffff",
-          color: "#0a0a0a",
+          color: "var(--ink, #141414)",
           textAlign: "center",
           padding: "24px",
           fontFamily: "system-ui, -apple-system, sans-serif",
@@ -49,14 +49,14 @@ export default function NotFound() {
           >
             Off frame.
           </h1>
-          <p style={{ color: "#525252", fontSize: "14px", lineHeight: 1.6, margin: "0 0 28px" }}>
+          <p style={{ color: "var(--stone, #6b6560)", fontSize: "14px", lineHeight: 1.6, margin: "0 0 28px" }}>
             Cette page n&rsquo;existe pas, ou plus. / This page doesn&rsquo;t exist, or doesn&rsquo;t any more.
           </p>
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
             <a
               href="/fr"
               style={{
-                background: "#0a0a0a",
+                background: "var(--ink, #141414)",
                 color: "#fff",
                 padding: "12px 24px",
                 fontSize: "10px",
@@ -70,8 +70,8 @@ export default function NotFound() {
             <a
               href="/en"
               style={{
-                border: "1px solid #0a0a0a",
-                color: "#0a0a0a",
+                border: "1px solid var(--ink, #141414)",
+                color: "var(--ink, #141414)",
                 padding: "12px 24px",
                 fontSize: "10px",
                 letterSpacing: "0.2em",

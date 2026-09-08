@@ -97,8 +97,8 @@ export default async function PhotographerPage({ params }: Props) {
       : "Places that welcome, and *the people who keep them running*.";
   const intro =
     lang === "fr"
-      ? "Maisons, tables, rues et voyages, en lumière naturelle, sans mise en scène ajoutée."
-      : "Houses, tables, streets and journeys, in natural light, with nothing staged on top.";
+      ? "Maisons, tables, rues et voyages, en lumière naturelle, sans rien mettre en scène."
+      : "Houses, tables, streets and journeys, in natural light, with nothing staged.";
   const citiesHead = lang === "fr" ? "Voyage" : "Travel";
   const citiesSub = lang === "fr" ? "Mon œil sur la ville" : "The city, the way I see it";
   const citiesLede =

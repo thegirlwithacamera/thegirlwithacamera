@@ -44,7 +44,7 @@ const T = {
   en: {
     name: "Name",
     email: "Email",
-    company: "Establishment",
+    company: "Property or venue",
     type: "Type of place",
     city: "City and possible dates",
     budget: "Budget",

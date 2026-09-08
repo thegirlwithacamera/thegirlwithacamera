@@ -108,23 +108,18 @@ export default async function RootLayout({ children, params }: Props) {
     address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: site.country },
     image: `${site.url}/og-image.jpg`,
     sameAs: [site.social.instagram, site.social.threads, site.social.tiktok],
+    // Recentré le 08/09 : la liste disait encore rue, mode et séances photo.
     knowsAbout: [
-      "Content creation",
-      "Photography",
-      "Videography",
-      "Street photography",
+      "Hotel photography",
+      "Hospitality photography",
+      "Restaurant photography",
+      "Interior photography",
+      "Travel photography",
       "Documentary photography",
-      "Fashion photography",
-      "Editorial photography",
-      "Brand content creation",
-      "Video production",
+      "Brand film",
+      "Vertical video",
       "Video editing",
-      "Social media content",
-      "Creative direction",
-      "Photo shoots",
-      "Video shooting",
-      "Instagram content",
-      "TikTok content"
+      "Creative direction"
     ],
     workLocation: { "@type": "City", name: site.city },
     hasOccupation: [
@@ -144,72 +139,70 @@ export default async function RootLayout({ children, params }: Props) {
     ]
   };
 
+  // Fiche d'établissement, présente sur toutes les pages. Refaite le 08/09 :
+  // elle décrivait encore de la photo de rue et de mode, et limitait la zone
+  // desservie à l'Union européenne alors que le site dit "partout dans le
+  // monde". Le téléphone valait "+32", un indicatif sans numéro : Google
+  // rejette une fiche qui porte un numéro invalide, mieux vaut pas de numéro.
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "ProfessionalService",
+    "@id": `${site.url}/#business`,
     name: site.tagline,
     alternateName: site.name,
     image: `${site.url}/og-image.jpg`,
     description: lang === "fr"
-      ? "Photographe, vidéaste et créatrice de contenu indépendante basée à Bruxelles. Services: photographie de rue, documentaire, mode, vidéo, création de contenu pour les marques, production vidéo, montage, direction créative, contenu pour réseaux sociaux."
-      : "Independent photographer, videographer and content creator based in Brussels. Services: street photography, documentary, fashion, video, brand content creation, video production, editing, creative direction, social media content.",
+      ? "Photographe et vidéaste indépendante basée à Bruxelles. Hôtels, maisons d'hôtes, restaurants et bars, photographiés en lumière naturelle. Films de marque et vidéo verticale. En déplacement partout dans le monde."
+      : "Independent photographer and filmmaker based in Brussels. Hotels, guesthouses, restaurants and bars, photographed in natural light. Brand films and vertical video. Travelling worldwide.",
     url: site.url,
     email: `mailto:${site.email}`,
-    telephone: "+32",
     address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: site.country },
+    founder: { "@type": "Person", name: site.name },
     sameAs: [site.social.instagram, site.social.threads, site.social.tiktok],
-    serviceArea: { "@type": "Country", name: "European Union" },
+    areaServed: { "@type": "Place", name: "Worldwide" },
+    knowsLanguage: ["fr", "en", "nl"],
     knowsAbout: [
-      "Photography",
-      "Videography",
-      "Content Creation",
-      "Brand Content",
-      "Video Production",
-      "Street Photography",
-      "Documentary Photography",
-      "Fashion Photography",
-      "Editorial Photography",
-      "Social Media Content",
-      "Video Editing",
-      "Creative Direction"
+      "Hotel photography",
+      "Hospitality photography",
+      "Restaurant photography",
+      "Interior photography",
+      "Travel photography",
+      "Documentary photography",
+      "Brand film",
+      "Vertical video",
+      "Video editing",
+      "Creative direction",
     ],
     offers: [
       {
         "@type": "Service",
-        name: lang === "fr" ? "Photographie" : "Photography",
+        name: lang === "fr" ? "Photographie d'hôtel et de maison d'hôtes" : "Hotel and guesthouse photography",
         description: lang === "fr"
-          ? "Services de photographie: street, documentaire, mode, photographie éditoriale, séances photo"
-          : "Photography services: street, documentary, fashion, editorial, photo shoots"
+          ? "Reportage photo du lieu entier, chambres, espaces communs et équipe, en lumière naturelle."
+          : "Full coverage of the place, rooms, common spaces and team, in natural light.",
       },
       {
         "@type": "Service",
-        name: lang === "fr" ? "Production vidéo" : "Video production",
+        name: lang === "fr" ? "Photographie de restaurant et de bar" : "Restaurant and bar photography",
         description: lang === "fr"
-          ? "Production vidéo complète: tournage, montage, direction créative pour marques"
-          : "Complete video production: shooting, editing, creative direction for brands"
+          ? "La salle, la carte et le service photographiés pendant que la table vit."
+          : "The room, the menu and the service photographed while the table is alive.",
       },
       {
         "@type": "Service",
-        name: lang === "fr" ? "Création de contenu" : "Content creation",
+        name: lang === "fr" ? "Film de marque" : "Brand film",
         description: lang === "fr"
-          ? "Création de contenu pour réseaux sociaux: Instagram, TikTok, contenus de marque"
-          : "Content creation for social media: Instagram, TikTok, brand content"
+          ? "Film court pour une campagne, montage narratif et sound design, déclinaisons verticales."
+          : "Short film for a campaign, narrative editing and sound design, vertical cutdowns.",
       },
       {
         "@type": "Service",
-        name: lang === "fr" ? "Direction créative" : "Creative direction",
+        name: lang === "fr" ? "Photographie de voyage et de destination" : "Travel and destination photography",
         description: lang === "fr"
-          ? "Direction créative et stratégie visuelle pour projets de contenu"
-          : "Creative direction and visual strategy for content projects"
+          ? "Séries de ville pour les offices du tourisme, les régions et les compagnies de train."
+          : "City series for tourism boards, regions and rail companies.",
       },
-      {
-        "@type": "Service",
-        name: lang === "fr" ? "Montage vidéo" : "Video editing",
-        description: lang === "fr"
-          ? "Montage vidéo professionnel pour documentaires, publicités, réseaux sociaux"
-          : "Professional video editing for documentaries, advertisements, social media"
-      }
-    ]
+    ],
   };
 
   // Retires le 01/09 :
