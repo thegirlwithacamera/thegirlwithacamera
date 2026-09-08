@@ -53,9 +53,9 @@ export const BRANDS: Brand[] = [
   // MK HOTELS retire le 05/09, decision de Sandrine : le travail n'est pas au
   // niveau du reste. Le cas et le film sont retires en meme temps. Le fichier
   // mk-hotels.png reste dans public/images/brands, remettre la ligne suffit.
-  { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos", en: "Photographs" } },
+  { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys-mono.png", cat: "stays", href: "/photographer/restaurants/van-der-valk-selys", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
-  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/filmmaker/places", hrefLabel: { fr: "Film", en: "Film" } },
+  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/photographer/restaurants/van-der-valk-selys", hrefLabel: { fr: "Film", en: "Film" } },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
   { name: "HOTEL RATHAUS WEIN & DESIGN", logo: "/images/brands/hotel-rathaus-wien-dark.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos", en: "Photographs" } },
