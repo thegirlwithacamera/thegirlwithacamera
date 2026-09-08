@@ -1,7 +1,8 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PHOTO_CATEGORIES, findCase } from "../../constants";
+import Link from "next/link";
+import { PHOTO_CATEGORIES, allCases, findCase } from "../../constants";
 import { readCasePhotos, countCasePhotos, readCaseCover, readCaseChapters, readPhotoRatio } from "@/lib/portfolio";
 import { posterForPath } from "@/lib/creator-videos";
 import PhotoPager from "../PhotoPager";
@@ -96,6 +97,17 @@ export default async function PhotographerCasePage({ params }: Props) {
   const rest = opening ? photos.slice(1) : photos;
   const firstChapterRest = opening && chapters.length > 0 ? chapters[0].photos.slice(1) : null;
 
+  // Cas précédent et suivant, dans l'ordre de constants.ts, tous cas confondus.
+  const live = allCases().filter((c) => countCasePhotos(c.cat.slug, c.item.slug) > 0);
+  const at = live.findIndex((c) => c.cat.slug === cat.slug && c.item.slug === item.slug);
+  const prev = at > 0 ? live[at - 1] : null;
+  const next = at >= 0 && at < live.length - 1 ? live[at + 1] : null;
+  const talk = cat.citySeries
+    ? lang === "fr" ? "Votre ville, vue comme ça ? Parlons-en →" : "Your city, seen like this? Let's talk →"
+    : lang === "fr" ? "Même idée pour votre maison ? Parlons-en →" : "Same idea for your house? Let's talk →";
+
+  const no = (n: number) => String(n).padStart(2, "0");
+
   const cell = (src: string, alt: string, priority: boolean, width = 1066, height = 1600, sizes = "(max-width: 767px) 33vw, 400px") => (
     <div key={src} className={s.cell}>
       <Image src={src} alt={alt} width={width} height={height} sizes={sizes} priority={priority} quality={75} />
@@ -107,12 +119,23 @@ export default async function PhotographerCasePage({ params }: Props) {
       <main className={s.main}>
         <PageHead
           back={{ href: `/${lang}/photographer/${cat.slug}`, label: cat.label[lang] }}
-          eyebrow={cat.label[lang]}
+          eyebrow={[cat.label[lang], item.place?.[lang]].filter(Boolean).join(" · ")}
           title={item.label[lang]}
-          meta={[item.place?.[lang]]}
-          lede={item.intro?.[lang]}
+          lede={item.intro ? (
+            <>
+              {item.intro[lang]}
+              {item.shotAt && <span className={s.shot} style={{ display: "block" }}>{item.shotAt[lang]}</span>}
+            </>
+          ) : undefined}
+          split
         >
-          {item.shotAt && <p className={s.shot}>{item.shotAt[lang]}</p>}
+          {chapters.length > 1 && (
+            <nav className={s.chips} aria-label={lang === "fr" ? "Chapitres" : "Chapters"}>
+              {chapters.map((ch) => (
+                <a key={ch.slug} href={`#${ch.slug}`} className={s.chip}>{ch.title}</a>
+              ))}
+            </nav>
+          )}
         </PageHead>
 
         {opening && (
@@ -126,6 +149,9 @@ export default async function PhotographerCasePage({ params }: Props) {
               priority
               quality={80}
             />
+            <figcaption className={s.openingCap}>
+              <b>01</b>{chapters.length > 0 ? chapters[0].title : item.label[lang]}
+            </figcaption>
           </figure>
         )}
 
@@ -139,11 +165,10 @@ export default async function PhotographerCasePage({ params }: Props) {
                 className={`${s.chapter} ${ci === 0 ? s.first : ""}`}
                 style={{ "--cell": String(ch.ratio) } as React.CSSProperties}
               >
-                {/* Le premier chapitre porte le nom de la maison : son titre
-                    ferait doublon avec le h1 juste au dessus. */}
+                {/* Le premier chapitre est déjà nommé sous l'image d'ouverture. */}
                 {ci > 0 && (
                   <div className={s.chapterHead}>
-                    <h2 className={s.chapterTitle}>{ch.title}</h2>
+                    <h2 className={s.chapterTitle}><b>{no(ci + 1)}</b>{ch.title}</h2>
                   </div>
                 )}
                 {list.length > 0 && (
@@ -180,6 +205,12 @@ export default async function PhotographerCasePage({ params }: Props) {
         )}
 
         <CaseFilms films={films} lang={lang} />
+
+        <nav className={s.next} aria-label={lang === "fr" ? "Autres projets" : "Other projects"}>
+          <div>{prev && <Link href={`/${lang}${prev.href}`}>← {prev.item.short?.[lang] ?? prev.item.label[lang]}</Link>}</div>
+          <Link href={`/${lang}/services`} className={s.nextTalk}>{talk}</Link>
+          <div className={s.nextRight}>{next && <Link href={`/${lang}${next.href}`}>{next.item.short?.[lang] ?? next.item.label[lang]} →</Link>}</div>
+        </nav>
       </main>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

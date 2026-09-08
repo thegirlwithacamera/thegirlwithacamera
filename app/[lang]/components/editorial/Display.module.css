@@ -19,5 +19,5 @@
    un mot seul en fin de ligne casse la lecture. Sur mobile elle se coupe
    librement pour ne jamais déborder. */
 @media (min-width: 900px) {
-  .xl em { white-space: nowrap; }
+  .xl em, .l em { white-space: nowrap; }
 }

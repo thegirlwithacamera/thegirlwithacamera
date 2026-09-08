@@ -19,6 +19,7 @@ export default function ProjectCard({
   sizes = "(max-width: 767px) 50vw, 380px",
   quality = 78,
   door = false,
+  align = "left",
 }: {
   href: string;
   cover?: string | null;
@@ -33,6 +34,8 @@ export default function ProjectCard({
   sizes?: string;
   quality?: number;
   door?: boolean;
+  // Légende alignée à gauche, lieu sur la même ligne (défaut), ou centrée.
+  align?: "left" | "center";
 }) {
   return (
     <div>
@@ -59,10 +62,10 @@ export default function ProjectCard({
           )}
         </span>
         {(cover || sub) && (
-          <Caption className={s.cap} title={door ? `${title} →` : title} sub={sub} />
+          <Caption className={s.cap} title={door ? `${title} →` : title} sub={sub} align={align} inline={align === "left"} />
         )}
       </Link>
-      {note && <Caption title="" note={note} noteHref={noteHref} />}
+      {note && <Caption title="" note={note} noteHref={noteHref} align={align} inline={align === "left"} />}
     </div>
   );
 }

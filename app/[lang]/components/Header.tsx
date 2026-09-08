@@ -41,6 +41,8 @@ export default function Header() {
     rel: l.external ? "noopener noreferrer" : undefined,
   });
 
+  const work = currentLang === "fr" ? "Travaillons ensemble →" : "Work with me →";
+
   return (
     <header className={s.header}>
       <div className={s.inner}>
@@ -76,9 +78,12 @@ export default function Header() {
           )}
         </nav>
 
-        <Link href={`/${otherLang}${pathWithoutLang || ""}`} className={s.lang}>
-          {otherLang.toUpperCase()}
-        </Link>
+        <div className={s.right}>
+          <Link href={`/${otherLang}${pathWithoutLang || ""}`} className={s.lang}>
+            {otherLang.toUpperCase()}
+          </Link>
+          <Link href={`/${currentLang}/services`} className={s.work}>{work}</Link>
+        </div>
 
         <div className={`${s.burger} ${menuOpen ? s.open : ""}`}>
           <button type="button" onClick={() => setMenuOpen((v) => !v)} aria-label="Menu" aria-expanded={menuOpen} className={s.burgerBtn}>
@@ -96,6 +101,7 @@ export default function Header() {
           {[...navLinks, ...moreLinks].map((l) => (
             <Link key={l.href} {...linkProps(l)} className={s.link}>{l.label}</Link>
           ))}
+          <Link href={`/${currentLang}/services`} onClick={close} className={s.work}>{work}</Link>
           <Link href={`/${otherLang}${pathWithoutLang || ""}`} className={s.lang}>
             {otherLang.toUpperCase()}
           </Link>

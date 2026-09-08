@@ -1,2 +1,4 @@
 .main { padding-bottom: 8px; }
-.grid { margin-top: clamp(40px, 5vw, 64px); }
+.section { padding-top: clamp(40px, 5vw, 72px); }
+.lede { max-width: var(--page-max); margin: -6px auto 24px; padding: 0 var(--pad); }
+.grid { margin-top: clamp(32px, 4vw, 48px); }

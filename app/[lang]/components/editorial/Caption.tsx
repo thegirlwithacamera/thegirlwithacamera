@@ -9,6 +9,7 @@ export default function Caption({
   note,
   noteHref,
   align = "center",
+  inline = false,
   className,
 }: {
   title: string;
@@ -16,9 +17,11 @@ export default function Caption({
   note?: string;
   noteHref?: string;
   align?: "center" | "left";
+  // Lieu sur la même ligne que le nom, en petites capitales.
+  inline?: boolean;
   className?: string;
 }) {
-  const cls = [s.cap, align === "left" ? s.left : "", className ?? ""].join(" ").trim();
+  const cls = [s.cap, align === "left" ? s.left : "", inline ? s.inline : "", className ?? ""].join(" ").trim();
   return (
     <p className={cls}>
       {title && <span className={s.title}>{title}</span>}

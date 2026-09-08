@@ -1,0 +1,36 @@
+.bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: var(--page-max);
+  margin: 0 auto 22px;
+  padding: 0 var(--pad);
+}
+.label {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brick);
+  margin: 0;
+}
+.sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-caption);
+  color: var(--stone);
+  margin-left: 12px;
+}
+.link {
+  font-family: var(--font-serif);
+  font-size: var(--text-caption);
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.link:hover { color: var(--brick); }
+@media (max-width: 767px) {
+  .bar { padding: 0 12px; margin-bottom: 14px; }
+}

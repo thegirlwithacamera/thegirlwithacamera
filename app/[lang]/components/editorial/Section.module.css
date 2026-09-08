@@ -1,9 +1,9 @@
 .section { padding-top: var(--section); }
 .head {
-  max-width: 760px;
-  margin: 0 auto clamp(28px, 4vw, 44px);
+  max-width: var(--page-max);
+  margin: 0 auto clamp(24px, 3vw, 36px);
   padding: 0 var(--pad);
-  text-align: center;
+  text-align: left;
 }
 .eyebrow { margin-bottom: 14px; }
 .sub {
@@ -13,7 +13,7 @@
   font-size: var(--text-body);
   color: var(--stone);
 }
-.lede { margin-top: 20px; }
+.lede { margin: 16px 0 0; }
 .rule {
   border: none;
   height: 1px;

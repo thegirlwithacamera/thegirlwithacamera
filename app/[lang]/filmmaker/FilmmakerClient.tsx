@@ -117,7 +117,7 @@ export default function FilmmakerClient({
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
           </span>
         </button>
-        <Caption className={s.cap} title={title} sub={sub} />
+        <Caption className={s.cap} title={title} sub={sub} align="left" inline />
         {hasPage && found && (
           <Link href={`/${lang}/photographer/${found.cat.slug}/${found.item.slug}`} className={s.link}>
             {t.photos} →
@@ -129,7 +129,7 @@ export default function FilmmakerClient({
 
   return (
     <main className={s.main}>
-      <PageHead eyebrow={t.eyebrow} title={t.title} lede={t.desc}>
+      <PageHead eyebrow={t.eyebrow} title={t.title} lede={t.desc} split>
         <Cta href={`/${lang}/services`}>{t.offer} →</Cta>
       </PageHead>
 

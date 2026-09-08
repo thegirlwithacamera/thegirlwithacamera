@@ -1,8 +1,8 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 // Une seule phrase reprise des offres : la meme partout, jamais recopiee.
-import { WORK } from "@/lib/offers";
-import { Closing, Cta, Display, Eyebrow, Lede, Section, em } from "../components/editorial";
+import Link from "next/link";
+import { Display, Eyebrow, Lede, Section } from "../components/editorial";
 import s from "./page.module.css";
 import TrustLogos from "../components/TrustLogos";
 import HashScroll from "../components/HashScroll";
@@ -36,7 +36,7 @@ const HERO_PHOTO = "/images/about/hero.jpg";
 const content = {
   fr: {
     name: "Sandrine Ceuppens",
-    role: "*photographe et vidéaste* à Bruxelles",
+    role: "Sandrine Ceuppens, *photographe et vidéaste* à Bruxelles.",
     approachTitle: "La *façon de regarder*",
     approach: [
       "Je photographie les villes à cinq heures du matin et les marchés avant la foule. C'est la même façon de regarder que j'emmène dans les maisons et les hôtels : la lumière du lieu, les gestes de ceux qui y travaillent, rien de posé.",
@@ -58,7 +58,7 @@ const content = {
   },
   en: {
     name: "Sandrine Ceuppens",
-    role: "*photographer and filmmaker* in Brussels",
+    role: "Sandrine Ceuppens, *photographer and filmmaker* in Brussels.",
     approachTitle: "A *way of looking*",
     approach: [
       "I photograph cities at five in the morning and markets before the crowds. It is the same way of looking that I bring into houses and hotels: the light of the place, the gestures of the people who work there, nothing staged.",
@@ -115,59 +115,51 @@ const SOCIALS = [
 export default async function AboutPage({ params }: Props) {
   const { lang } = await params;
   const t = content[lang];
-  const work = WORK[lang];
 
   return (
     <main className={s.main}>
       <HashScroll />
 
-      {/* La page ouvre sur le portrait : la tuile d'accueil qui mène ici
-          porte la photo de Sandrine, tomber sur autre chose serait une
-          fausse piste. */}
       <section className={s.hero}>
         <div className={s.photo}>
-          <Image src={HERO_PHOTO} alt="Sandrine Ceuppens" fill sizes="(max-width: 900px) 380px, 460px" priority quality={82} />
+          <Image src={HERO_PHOTO} alt="Sandrine Ceuppens" fill sizes="(max-width: 900px) 420px, 560px" priority quality={82} />
         </div>
         <div>
-          <Display size="xl" as="h1">{t.name}</Display>
-          <p className={s.role}>{em(t.role)}</p>
+          <Eyebrow tone="brick" className={s.eyebrow}>{lang === "fr" ? "À propos" : "About"}</Eyebrow>
+          <Display size="l" as="h1">{t.role}</Display>
           <Lede className={s.bio} align="left">{t.bio}</Lede>
-          <Eyebrow className={s.based}>{t.based}</Eyebrow>
+          <ul className={s.links}>
+            <li><Link href={`/${lang}/services`} className={s.brick}>{lang === "fr" ? "Travaillons ensemble →" : "Work with me →"}</Link></li>
+            <li><a href="https://thegirlwithacamera.substack.com/" target="_blank" rel="noopener noreferrer" className={s.brick}>{lang === "fr" ? "Le journal →" : "The journal →"}</a></li>
+            {SOCIALS.map((so) => (
+              <li key={so.label}><a href={so.href} target="_blank" rel="noopener noreferrer">{so.label}</a></li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <Section title={t.approachTitle}>
+      <Section>
         <div className={s.approach}>
-          {t.approach.map((p) => <p key={p}>{p}</p>)}
+          <Display size="m" as="h2">{t.approachTitle}</Display>
+          <div>{t.approach.map((p) => <p key={p}>{p}</p>)}</div>
         </div>
       </Section>
 
-      <Section eyebrow={t.clients}>
-        <TrustLogos lang={lang} hideLabel />
+      <Section>
+        <div className={s.clients}>
+          <Eyebrow tone="brick" className={s.eyebrow}>{t.clients}</Eyebrow>
+          <TrustLogos lang={lang} hideLabel />
+        </div>
       </Section>
 
-      <Closing>
-        <Eyebrow id="travailler-avec-moi">{t.cta}</Eyebrow>
-        <Lede tone="stone">{work.intro}</Lede>
-        <p><Cta href={`/${lang}/services`} variant="serif">{lang === "fr" ? "Voir les formules" : "See the packages"} →</Cta></p>
-      </Closing>
-
-      <Section eyebrow={t.contact} className={s.contact}>
-        <div className={s.socials}>
-          {SOCIALS.map((so) => (
-            <a key={so.label} href={so.href} target="_blank" rel="noopener noreferrer" className={s.social}>
-              {so.icon}
-              <span className={s.handle}>{so.handle}</span>
-            </a>
-          ))}
-        </div>
-        <div className={s.mails}>
-          <a href="mailto:hello@thegirlwithacamera.com" className={s.mail}>
-            <span>{lang === "fr" ? "Projets" : "Projects"}</span> · hello@thegirlwithacamera.com
-          </a>
-          <a href="mailto:press@thegirlwithacamera.com" className={s.mail}>
-            <span>{lang === "fr" ? "Presse" : "Press"}</span> · press@thegirlwithacamera.com
-          </a>
+      <Section>
+        <div className={s.clients}>
+          <Eyebrow tone="brick" className={s.eyebrow}>{t.contact}</Eyebrow>
+          <Eyebrow>{t.based}</Eyebrow>
+          <ul className={s.mails}>
+            <li><a href="mailto:hello@thegirlwithacamera.com" className={s.mail}><span>{lang === "fr" ? "Projets" : "Projects"}</span>hello@thegirlwithacamera.com</a></li>
+            <li><a href="mailto:press@thegirlwithacamera.com" className={s.mail}><span>{lang === "fr" ? "Presse" : "Press"}</span>press@thegirlwithacamera.com</a></li>
+          </ul>
         </div>
       </Section>
 

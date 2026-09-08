@@ -1,12 +1,11 @@
-/* La grille 3 colonnes, planche-contact du site. En flex et non en grid :
-   quand le nombre de tuiles n'est pas un multiple de trois, la dernière
-   rangée se centre au lieu de laisser deux trous à droite. */
+/* La grille 3 colonnes, planche-contact du site. En flex : la dernière
+   rangée, même incomplète, reste alignée à gauche comme dans un magazine. */
 .grid {
   --cols: 3;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 44px var(--gutter);
+  justify-content: flex-start;
+  gap: 36px var(--gutter);
   max-width: var(--page-max);
   margin: 0 auto;
   padding: 0 var(--pad);

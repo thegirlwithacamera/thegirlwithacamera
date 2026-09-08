@@ -5,9 +5,9 @@
   border-bottom: 1px solid var(--line);
 }
 .cta .eyebrow { margin-bottom: 18px; }
-.news { padding: clamp(40px, 5vw, 56px) var(--pad); border-bottom: 1px solid var(--line); }
+.news { padding: clamp(36px, 5vw, 56px) var(--pad); border-bottom: 1px solid var(--line); }
 .bottom {
-  max-width: 1400px;
+  max-width: var(--page-max);
   margin: 0 auto;
   padding: 32px var(--pad) 40px;
   display: flex;

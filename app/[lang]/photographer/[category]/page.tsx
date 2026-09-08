@@ -90,6 +90,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
         eyebrow={lang === "fr" ? "Photographe" : "Photographer"}
         title={cat.label[lang]}
         lede={cases.length === 0 ? emptyNote : lede}
+        split
       />
       {cases.length > 0 && (
         <ProjectGrid cols={colsFor(cases.length)} className={s.grid}>

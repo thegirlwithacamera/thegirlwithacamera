@@ -4,7 +4,7 @@ import { useState } from "react";
 
 type Lang = "fr" | "en";
 type Status = "idle" | "loading" | "done" | "error";
-type Variant = "page" | "footer";
+type Variant = "page" | "footer" | "band";
 
 const copy = {
   fr: {
@@ -117,6 +117,22 @@ export default function NewsletterCta({
           margin: 0 0 12px;
         }
         .nl-compact .nl-sub { font-size: var(--text-caption); margin: 0 0 20px; }
+        /* Variante bande : titre et phrase à gauche, formulaire à droite. */
+        .nl-band {
+          max-width: var(--page-max);
+          text-align: left;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          gap: 8px 48px;
+          align-items: center;
+        }
+        .nl-band .nl-title { grid-column: 1; margin: 0; }
+        .nl-band .nl-sub { grid-column: 1; margin: 0; max-width: 460px; }
+        .nl-band .nl-form, .nl-band .nl-msg { grid-column: 2; grid-row: 1 / 3; justify-content: flex-end; margin: 0; }
+        @media (max-width: 767px) {
+          .nl-band { grid-template-columns: 1fr; }
+          .nl-band .nl-form, .nl-band .nl-msg { grid-column: 1; grid-row: auto; justify-content: flex-start; margin-top: 16px; }
+        }
         @media (max-width: 520px) {
           .nl-form { flex-direction: column; align-items: center; gap: 16px; }
           .nl-input { max-width: 100%; width: 100%; text-align: center; }

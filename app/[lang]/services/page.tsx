@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 import ServicesForm from "./ServicesForm";
 import { pageMeta } from "@/lib/seo";
 import { PHOTO_CATEGORIES } from "../photographer/constants";
-import { Caption, Cta, Display, Eyebrow, PageHead, Section } from "../components/editorial";
+import { Cta, Display, PageHead } from "../components/editorial";
 import s from "./page.module.css";
 import "./form.css";
 
@@ -174,87 +174,81 @@ export default async function ServicesPage({ params }: Props) {
   const c = COPY[lang];
   const work = WORK[lang];
 
+  // "Essential: 1 day..." se coupe en deux colonnes sur le premier deux
+  // points, quand il y en a un. Sinon la ligne reste entière.
+  const splitItem = (it: string): [string | null, string] => {
+    const m = it.match(/^([^:]{2,28}):\s+(.+)$/);
+    return m ? [m[1], m[2]] : [null, it];
+  };
+
   return (
     <>
       <main className={s.main}>
-        <PageHead eyebrow={c.h1} title={c.title} lede={work.intro} />
+        <PageHead eyebrow={c.h1} title={c.title} lede={work.intro} split />
 
         <div className={s.wrap}>
           <div className={s.offers}>
-            {work.offers.map((o) => (
-              <div key={o.title} className={s.offer}>
-                <p className={s.index}>{o.index}</p>
-                <h2 className={s.offerTitle}>{o.title}</h2>
-                <p className={s.offerSub}>{o.subtitle}</p>
-                {/* Le détail est replié : on lit d'abord l'essentiel, on
-                    déplie si on veut. Rien n'est retiré, tout est là. */}
-                <details className={s.details}>
-                  <summary>{c.detail}</summary>
+            {work.offers.map((o, i) => (
+              <article key={o.title} className={s.offer}>
+                <div>
+                  <p className={s.index}>{o.index}</p>
+                  <h2 className={s.offerTitle}>{o.title}</h2>
+                  <p className={s.offerSub}>{o.subtitle}</p>
+                  <Cta href="#contact">{c.talk} →</Cta>
+                </div>
+                <div>
                   {o.packageName && <p className={s.pkg}>{o.packageName}</p>}
                   <ul className={s.list}>
-                    {o.items.map((it) => <li key={it}>{it}</li>)}
+                    {o.items.map((it) => {
+                      const [k, v] = splitItem(it);
+                      return <li key={it}>{k ? <><b>{k}</b><span>{v}</span></> : <span style={{ gridColumn: "1 / -1" }}>{v}</span>}</li>;
+                    })}
                   </ul>
                   {o.addons && o.addons.length > 0 && (
-                    <>
-                      {o.addonsLabel && <p className={`${s.pkg} ${s.pkgAddons}`}>{o.addonsLabel}</p>}
-                      <ul className={`${s.list} ${s.addons}`}>
-                        {o.addons.map((ad) => <li key={ad}>{ad}</li>)}
+                    <details className={s.details}>
+                      <summary>{o.addonsLabel ?? c.detail}</summary>
+                      <ul className={s.list}>
+                        {o.addons.map((ad) => <li key={ad}><span style={{ gridColumn: "1 / -1" }}>{ad}</span></li>)}
                       </ul>
-                    </>
+                      {o.proof && (
+                        <p style={{ margin: "14px 0 0" }}><Cta href={`/${lang}${o.proof.href}`}>{o.proof.label} →</Cta></p>
+                      )}
+                    </details>
                   )}
-                  {o.proof && (
-                    <Cta href={`/${lang}${o.proof.href}`} className={s.proof}>{o.proof.label} →</Cta>
-                  )}
-                </details>
-                <div className={s.offerCta}>
-                  <Cta href="#contact" variant="button">{c.talk}</Cta>
                 </div>
-              </div>
+                <Link href={`/${lang}${c.examples[i].href}`} className={s.offerImg} aria-label={c.examples[i].title}>
+                  <Image
+                    src={EXAMPLE_IMAGES[i]}
+                    alt={c.examples[i].title}
+                    width={1066}
+                    height={1600}
+                    sizes="(max-width: 1023px) 360px, 320px"
+                    quality={75}
+                  />
+                </Link>
+              </article>
             ))}
           </div>
+        </div>
 
-          <Section title={c.examplesTitle} className={s.examples}>
-            <div className={s.exGrid}>
-              {c.examples.map((ex, i) => (
-                <Link key={ex.href} href={`/${lang}${ex.href}`} className={s.ex}>
-                  <span className={s.exThumb}>
-                    <Image
-                      src={EXAMPLE_IMAGES[i]}
-                      alt={ex.title}
-                      width={1066}
-                      height={1600}
-                      sizes="(max-width: 767px) 50vw, 380px"
-                      quality={75}
-                    />
-                  </span>
-                  <Caption className={s.exCap} title={ex.title} sub={ex.sub} />
-                </Link>
-              ))}
-            </div>
-          </Section>
-
-          <Section title={c.howTitle} className={s.steps}>
-            <ol className={s.stepList}>
-              {c.how.map((step, i) => (
-                <li key={step} className={s.step}>
-                  <span className={s.stepNo}>{String(i + 1).padStart(2, "0")}</span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </Section>
-
-          <section className={s.block} id="contact">
-            <div className={s.blockHead}>
-              <Eyebrow>{c.h1}</Eyebrow>
-              <Display size="m" as="h2">{c.formTitle}</Display>
+        <section className={s.dark} id="contact">
+          <div className={s.darkInner}>
+            <div>
+              <Display size="l" as="h2" className={s.darkTitle}>{c.formTitle}</Display>
+              <ol className={s.steps}>
+                {c.how.map((step, i) => (
+                  <li key={step} className={s.step}>
+                    <span className={s.stepNo}>{i + 1}.</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
             <ServicesForm lang={lang} />
-          </section>
+          </div>
+        </section>
 
-          {/* La FAQ reste sous le formulaire, repliée : elle répond à celui
-              qui hésite encore, elle ne s'interpose pas devant celui qui a
-              décidé d'écrire. */}
+        <div className={s.wrap}>
           <section className={s.block} id="faq">
             <div className={s.blockHead}>
               <Display size="m" as="h2">{c.faqTitle}</Display>

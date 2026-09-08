@@ -27,3 +27,18 @@
 }
 .noteLink { text-decoration: none; color: var(--stone); transition: color 0.2s ease; }
 .noteLink:hover { color: var(--brick); }
+/* Variante magazine : le lieu suit le nom sur la même ligne, en petites
+   capitales. Alignée à gauche sous la photo. */
+.inline { text-align: left; }
+.inline .title { display: inline; }
+.inline .sub {
+  display: inline;
+  margin-left: 10px;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+.inline .note { text-align: left; }

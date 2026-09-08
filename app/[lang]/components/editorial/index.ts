@@ -7,3 +7,5 @@ export { default as PageHead } from "./PageHead";
 export { default as ProjectGrid, colsFor } from "./ProjectGrid";
 export { default as ProjectCard } from "./ProjectCard";
 export { default as Section, Rule, Closing } from "./Section";
+export { default as SectionBar } from "./SectionBar";
+export { default as DoorTile } from "./DoorTile";

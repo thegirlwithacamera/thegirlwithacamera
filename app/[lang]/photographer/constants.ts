@@ -248,6 +248,8 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           fr: "Photographié sur deux jours, en août 2026.",
           en: "Photographed over two days, August 2026.",
         },
+        // Film déposé le 08/09, réencodé en 1080p depuis le master 4K du bureau.
+        films: [{ src: "/videos/creator/CINEMATIC/PLACES/Naturel Dorf Schönleitn.mp4" }],
       },
       {
         // Une seule adresse, deux films. Dao n'est pas un restaurant voisin :

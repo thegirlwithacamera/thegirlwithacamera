@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PHOTO_CATEGORIES } from "./constants";
 import { readCaseCover } from "@/lib/portfolio";
 import { pageMeta } from "@/lib/seo";
-import { Closing, Cta, Eyebrow, PageHead, ProjectCard, ProjectGrid, Section, colsFor } from "../components/editorial";
+import { Closing, Cta, Eyebrow, Lede, PageHead, ProjectCard, ProjectGrid, SectionBar, colsFor } from "../components/editorial";
 import s from "./page.module.css";
 
 interface Props {
@@ -99,7 +99,7 @@ export default async function PhotographerPage({ params }: Props) {
     lang === "fr"
       ? "Maisons, tables, rues et voyages, en lumière naturelle, sans mise en scène ajoutée."
       : "Houses, tables, streets and journeys, in natural light, with nothing staged on top.";
-  const citiesHead = lang === "fr" ? "*Voyage*" : "*Travel*";
+  const citiesHead = lang === "fr" ? "Voyage" : "Travel";
   const citiesSub = lang === "fr" ? "Mon œil sur la ville" : "The city, the way I see it";
   const citiesLede =
     lang === "fr"
@@ -109,7 +109,7 @@ export default async function PhotographerPage({ params }: Props) {
   const ctaLink = lang === "fr" ? "Travaillons ensemble →" : "Work with me →";
 
   const grid = (rows: Row[]) => (
-    <ProjectGrid cols={colsFor(rows.length)} className={s.grid}>
+    <ProjectGrid cols={colsFor(rows.length)}>
       {rows.map((r, i) => (
         <ProjectCard
           key={r.key}
@@ -134,14 +134,22 @@ export default async function PhotographerPage({ params }: Props) {
         eyebrow={lang === "fr" ? "Photographe" : "Photographer"}
         title={title}
         lede={intro}
+        split
       />
 
-      {places.length > 0 && grid(places)}
+      {places.length > 0 && (
+        <section className={s.section}>
+          <SectionBar label={lang === "fr" ? "Hôtels, maisons & tables" : "Hotels, houses & tables"} />
+          {grid(places)}
+        </section>
+      )}
 
       {cities.length > 0 && (
-        <Section title={citiesHead} sub={citiesSub} lede={citiesLede} size="l">
+        <section className={s.section}>
+          <SectionBar label={citiesHead} sub={citiesSub} />
+          <Lede className={s.lede} tone="stone" align="left">{citiesLede}</Lede>
           {grid(cities)}
-        </Section>
+        </section>
       )}
 
       <Closing>

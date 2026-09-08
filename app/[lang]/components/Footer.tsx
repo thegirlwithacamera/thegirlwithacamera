@@ -31,7 +31,7 @@ export default function Footer() {
         </div>
       )}
       <div className={s.news}>
-        <NewsletterCta lang={currentLang} variant="footer" />
+        <NewsletterCta lang={currentLang} variant="band" />
       </div>
       <div className={s.bottom}>
         <p className={s.copy}>© {new Date().getFullYear()} Sandrine Ceuppens · Bruxelles</p>

@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { SECTIONS, type Clip, type Section } from "./constants";
 import { withMeta } from "./meta";
-import TrustLogos from "../components/TrustLogos";
+import { brandsIn } from "@/lib/brands";
 import { Carousel, FocusOverlay, useVideoSound } from "../components/VideoShowcase";
-import { Display, Eyebrow, Lede, PageHead, Section as Block } from "../components/editorial";
+import { Eyebrow, Lede, PageHead } from "../components/editorial";
 import s from "./CreatorClient.module.css";
 
 export type { Clip, Section };
@@ -21,24 +21,24 @@ const content = {
   fr: {
     eyebrow: "Creator",
     title: "Du contenu pensé pour *le feed*, tourné comme une histoire.",
-    lede: "Des formats verticaux pour Instagram, TikTok et les Reels, produits pour des marques d'appareils, d'accessoires et de lieux. Tournés, montés et publiés, ou livrés pour vos propres canaux.",
+    lede: "Vidéo verticale pour les marques d'appareils, d'accessoires et de lieux, sur mes canaux ou sur les vôtres.",
     gear: "Gear",
     lifestyle: "Lifestyle",
     unboxing: "Unboxing",
     talk: "Talk",
-    selected: "Campagnes et collaborations",
+    selected: "Ils travaillent déjà avec moi",
     framing: "Ces formats se produisent aussi pour les marques, avec ou sans publication sur mes propres canaux.",
     deliverables: "Vidéo verticale · Photos éditées · Concept, tournage et montage · Droits d'usage chiffrés séparément",
   },
   en: {
     eyebrow: "Creator",
     title: "Content made for *the feed*, shot like a story.",
-    lede: "Vertical formats for Instagram, TikTok and Reels, produced for camera, accessory and hospitality brands. Shot, edited and posted, or delivered for your own channels.",
+    lede: "Vertical video for camera, accessory and hospitality brands, on my channels or yours.",
     gear: "Gear",
     lifestyle: "Lifestyle",
     unboxing: "Unboxing",
     talk: "Talk",
-    selected: "Campaigns and collaborations",
+    selected: "Already working with",
     framing: "These formats are also produced for brands, with or without posting on my own channels.",
     deliverables: "Vertical video · Edited stills · Concept, shooting and editing · Usage rights quoted separately",
   },
@@ -70,9 +70,11 @@ export default function CreatorClient({
   const { sound, focused, closeFocus } = useVideoSound();
   const clips = data[section].map((c) => withMeta(c, section, lang));
 
+  const brands = brandsIn("brand");
+
   return (
     <main className={s.main}>
-      <PageHead eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
+      <PageHead eyebrow={t.eyebrow} title={t.title} lede={t.lede} split />
 
       <CreatorNav
         lang={lang}
@@ -80,26 +82,27 @@ export default function CreatorClient({
         labels={{ gear: t.gear, lifestyle: t.lifestyle, unboxing: t.unboxing, talk: t.talk }}
       />
 
-      {/* La section active : les téléphones, en carrousel sur ordinateur et
-          en pile sur mobile. Les vidéos restent dans des téléphones. */}
-      <section className={s.tier}>
-        <div className={s.tierHead}>
-          <Display size="m" as="h2" italic>{t[section]}</Display>
-        </div>
+      {/* La section active : les téléphones, en rangée sur ordinateur et en
+          pile sur mobile. Les vidéos restent dans des téléphones. */}
+      <section className={s.tier} aria-label={t[section]}>
         <Carousel clips={clips} kind="phone" prefix={section} sound={sound} />
       </section>
 
       <div className={s.pitch}>
-        <Lede className={s.lede} tone="stone">{t.framing}</Lede>
+        <Lede className={s.lede} tone="stone" align="left">{t.framing}</Lede>
         <p className={s.deliverables}>{t.deliverables}</p>
       </div>
 
-      <Block className={s.brands}>
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <Eyebrow>{t.selected}</Eyebrow>
-        </div>
-        <TrustLogos lang={lang} cats={["brand"]} hideLabel />
-      </Block>
+      <section className={s.brands}>
+        <Eyebrow tone="brick" className={s.brandsLabel}>{t.selected}</Eyebrow>
+        <ul className={s.names}>
+          {brands.map((b) => (
+            <li key={b.name}>
+              {b.href ? <Link href={`/${lang}${b.href}`}>{b.name}</Link> : b.name}
+            </li>
+          ))}
+        </ul>
+      </section>
 
       {focused && (
         <FocusOverlay clip={focused.clip} kind={focused.kind} onClose={closeFocus} />
