@@ -21,7 +21,7 @@ export const CATEGORY_COPY: Record<string, Record<"fr" | "en", CategoryCopy>> = 
       title: "Photographe d'hôtel et de maison d'hôtes",
       meta: "Photographe d'hôtel et de maison d'hôtes. Chambres, espaces communs et équipe, en lumière naturelle, entre six et neuf heures du matin. Basée à Bruxelles, en déplacement partout dans le monde.",
       body: [
-        "Je photographie des maisons qui reçoivent : hôtels de ville, maisons d'hôtes, chalets. Le travail se fait entre six et neuf heures du matin, quand le bâtiment est vide et que la lumière entre encore de biais dans les chambres.",
+        "Je photographie des maisons qui reçoivent, en ville comme à la campagne : hôtels, maisons d'hôtes, chalets. Le travail se fait entre six et neuf heures du matin, quand le bâtiment est vide et que la lumière entre encore de biais dans les chambres.",
         "Chambres, salles de bain, espaces communs, petit déjeuner, et les gestes de ceux qui font tourner la maison. Rien n'est déplacé, rien n'est ajouté. Une chambre libre le matin suffit.",
       ],
     },
@@ -29,7 +29,7 @@ export const CATEGORY_COPY: Record<string, Record<"fr" | "en", CategoryCopy>> = 
       title: "Hotel and guesthouse photographer",
       meta: "Hotel and guesthouse photographer. Rooms, common spaces and team, in natural light, between six and nine in the morning. Based in Brussels, travelling worldwide.",
       body: [
-        "I photograph houses that welcome people: city hotels, guesthouses, chalets. The work happens between six and nine in the morning, when the building is empty and the light still comes into the rooms at an angle.",
+        "I photograph houses that welcome people, in cities and out in the country: hotels, guesthouses, chalets. The work happens between six and nine in the morning, when the building is empty and the light still comes into the rooms at an angle.",
         "Rooms, bathrooms, common spaces, breakfast, and the gestures of the people who keep the house running. Nothing is moved, nothing is added. One room free in the morning is enough.",
       ],
     },
