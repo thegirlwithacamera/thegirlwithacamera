@@ -84,6 +84,11 @@ export type PhotoCase = {
   // Une adresse se visite en photo et en mouvement : les deux vivent sur la
   // même page. La page Vidéaste reste pour les lieux sans photos.
   films?: CaseFilm[];
+  // À false, la page du cas n'ouvre pas sur sa première photo en grand :
+  // la grille commence tout de suite. Par défaut, la première image du cas
+  // (ou du premier chapitre) s'affiche seule, dans son format, avant la
+  // grille. Redesign du 08/09.
+  openingImage?: boolean;
 };
 
 export type PhotoCategory = {

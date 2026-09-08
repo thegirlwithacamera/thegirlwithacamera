@@ -1,0 +1,39 @@
+.main { padding-bottom: 8px; }
+.nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  margin: clamp(32px, 4vw, 52px) auto 0;
+  padding: 0 var(--pad);
+}
+.navLink {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.navLink:hover { color: var(--ink); }
+.navActive { color: var(--ink); border-bottom-color: var(--brick); }
+.tier { max-width: var(--page-max); margin: clamp(36px, 5vw, 60px) auto 0; padding: 0 var(--pad); }
+.tierHead { text-align: center; margin-bottom: 32px; }
+.pitch { max-width: 640px; margin: var(--section) auto 0; padding: 0 var(--pad); text-align: center; }
+.pitch .lede { margin-bottom: 18px; }
+.deliverables {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stone);
+  line-height: 2;
+  margin: 0;
+}
+.brands { padding-top: var(--section); }
+@media (max-width: 767px) {
+  .tier { padding: 0 12px; }
+}

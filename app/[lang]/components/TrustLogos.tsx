@@ -37,9 +37,12 @@ import { BRAND_CATS, CAT_LABEL, CAT_NOTE, TRUST_LABEL, brandsIn, type BrandCat }
 export default function TrustLogos({
   lang,
   cats = BRAND_CATS,
+  hideLabel = false,
 }: {
   lang: "fr" | "en";
   cats?: readonly BrandCat[];
+  // Quand la page pose déjà son propre titre au dessus de la bande.
+  hideLabel?: boolean;
 }) {
   const groups = cats
     .map((c) => ({ cat: c, brands: brandsIn(c) }))
@@ -53,11 +56,11 @@ export default function TrustLogos({
   return (
     <>
       <style>{`
-        .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; color: #999999; text-align: center; margin: 0 0 22px; }
-        .trust-group { margin: 0 auto 30px; }
+        .trust-label { font-family: var(--font-sans); font-size: var(--text-label); font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); text-align: center; margin: 0 0 28px; }
+        .trust-group { margin: 0 auto 40px; }
         .trust-group:last-child { margin-bottom: 0; }
-        .trust-cat { font-size: 8px; font-weight: 400; letter-spacing: 0.2em; color: #b3aca2; text-align: center; margin: 0 0 16px; }
-        .trust-note { font-size: 11px; line-height: 1.8; font-style: italic; color: #999999; text-align: center; max-width: 520px; margin: 14px auto 0; padding: 0 24px; }
+        .trust-cat { font-family: var(--font-serif); font-style: italic; font-size: var(--text-body); color: var(--stone); text-align: center; margin: 0 0 20px; }
+        .trust-note { font-family: var(--font-serif); font-size: var(--text-caption); line-height: 1.6; font-style: italic; color: var(--stone); text-align: center; max-width: 520px; margin: 18px auto 0; padding: 0 24px; }
         /* align-items: flex-start et une boite de hauteur fixe : les logos
            restent alignes entre eux, les legendes pendent en dessous sans
            decaler la rangee. */
@@ -65,17 +68,18 @@ export default function TrustLogos({
         .brand-item { display: flex; flex-direction: column; align-items: center; gap: 9px; text-decoration: none; }
         .brand-box { display: flex; align-items: center; justify-content: center; }
         .brand-cap {
-          font-size: 9px;
+          font-family: var(--font-sans);
+          font-size: 0.6875rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #b3aca2;
+          color: var(--stone);
           transition: color 0.2s;
           white-space: nowrap;
         }
         .brand-cap::after { content: " →"; }
-        .brand-link:hover .brand-cap { color: #0a0a0a; }
-        .brand-chip { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0a0a0a; }
-        .brand-logo { width: auto; max-height: 100%; object-fit: contain; opacity: 0.9; transition: opacity 0.2s; display: block; }
+        .brand-link:hover .brand-cap { color: var(--brick); }
+        .brand-chip { font-family: var(--font-serif); font-size: var(--text-body); letter-spacing: 0.02em; color: var(--ink); }
+        .brand-logo { width: auto; max-height: 100%; object-fit: contain; opacity: 0.85; transition: opacity 0.2s; display: block; mix-blend-mode: multiply; }
         .brand-link { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1); }
         .brand-link:hover { transform: translateY(-3px); }
         .brand-link:hover .brand-logo { opacity: 1; }
@@ -114,7 +118,7 @@ export default function TrustLogos({
           }
           .brands-strip::-webkit-scrollbar { display: none; }
           .brands-strip > * { flex: 0 0 auto; scroll-snap-align: center; }
-          .brand-chip { font-size: 11px; letter-spacing: 0.1em; }
+          .brand-chip { font-size: var(--text-caption); }
           .trust-group--stays .brand-box,
           .trust-group--travel .brand-box { height: 50px; }
           .trust-group--stays .brand-logo,
@@ -124,10 +128,10 @@ export default function TrustLogos({
           .trust-group--brand .brand-box { height: 34px; }
           .trust-group--brand .brand-logo { height: 24px; max-width: 120px; }
           .trust-group--brand .brand-logo--tall { height: 34px; }
-          .brand-cap { font-size: 8px; letter-spacing: 0.1em; }
+          .brand-cap { font-size: 0.6875rem; letter-spacing: 0.1em; }
         }
       `}</style>
-      <p className="trust-label">{TRUST_LABEL[lang]}</p>
+      {!hideLabel && <p className="trust-label">{TRUST_LABEL[lang]}</p>}
       {groups.map((g) => (
         <div className={`trust-group trust-group--${g.cat}`} key={g.cat}>
           {showCatLabels && <p className="trust-cat">{CAT_LABEL[g.cat][lang]}</p>}

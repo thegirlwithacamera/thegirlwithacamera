@@ -59,60 +59,64 @@ export default function NewsletterCta({
   return (
     <div className={compact ? "nl-cta nl-compact" : "nl-cta"}>
       <style>{`
-        .nl-cta { text-align: center; max-width: 460px; margin: 0 auto; }
+        .nl-cta { text-align: center; max-width: 520px; margin: 0 auto; }
         .nl-title {
-          font-family: var(--font-serif), Georgia, serif;
-          font-size: 26px;
-          color: #0a0a0a;
+          font-family: var(--font-serif);
+          font-size: var(--text-m);
+          font-weight: 400;
+          color: var(--ink);
           margin: 0 0 10px;
         }
+        .nl-title em { font-style: italic; color: var(--brick); }
         .nl-sub {
-          font-size: 12px;
-          letter-spacing: 0.04em;
-          color: #737373;
-          margin: 0 0 22px;
-          line-height: 1.8;
+          font-family: var(--font-serif);
+          font-size: var(--text-body);
+          line-height: 1.5;
+          color: var(--stone);
+          margin: 0 0 24px;
         }
-        .nl-form { display: flex; gap: 8px; justify-content: center; }
+        .nl-form { display: flex; gap: 12px; justify-content: center; align-items: flex-end; }
         .nl-input {
           flex: 1;
-          max-width: 280px;
+          max-width: 300px;
           border: none;
-          border-bottom: 1px solid #cccccc;
+          border-bottom: 1px solid var(--dust);
           background: transparent;
           padding: 8px 4px;
-          font-size: 12px;
-          letter-spacing: 0.04em;
-          color: #0a0a0a;
+          font-family: var(--font-sans);
+          font-size: var(--text-ui);
+          color: var(--ink);
           outline: none;
+          border-radius: 0;
         }
-        .nl-input:focus { border-bottom-color: #0a0a0a; }
+        .nl-input:focus { border-bottom-color: var(--brick); }
         .nl-btn {
           border: none;
           background: none;
-          font-size: 11px;
-          letter-spacing: 0.14em;
+          font-family: var(--font-sans);
+          font-size: var(--text-label);
+          letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: #0a0a0a;
+          color: var(--ink);
           cursor: pointer;
-          border-bottom: 1px solid #0a0a0a;
-          padding: 0 0 4px;
+          border-bottom: 1px solid var(--ink);
+          padding: 0 0 6px;
           white-space: nowrap;
+          transition: color 0.2s ease, border-color 0.2s ease;
         }
-        .nl-btn:disabled { color: #999; border-color: #999; cursor: default; }
-        .nl-msg { font-size: 11px; letter-spacing: 0.06em; color: #666666; margin: 16px 0 0; }
-
-        /* Variante footer : plus discrete, le titre passe en capitales fines. */
+        .nl-btn:hover { color: var(--brick); border-color: var(--brick); }
+        .nl-btn:disabled { color: var(--stone); border-color: var(--stone); cursor: default; }
+        .nl-msg { font-size: var(--text-ui); color: var(--stone); margin: 16px 0 0; }
+        /* Variante footer : le titre passe en petites capitales. */
         .nl-compact .nl-title {
-          font-family: inherit;
-          font-size: 11px;
-          letter-spacing: 0.2em;
+          font-family: var(--font-sans);
+          font-size: var(--text-label);
+          letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: #737373;
-          margin: 0 0 10px;
+          color: var(--stone);
+          margin: 0 0 12px;
         }
-        .nl-compact .nl-sub { font-size: 11px; margin: 0 0 18px; }
-
+        .nl-compact .nl-sub { font-size: var(--text-caption); margin: 0 0 20px; }
         @media (max-width: 520px) {
           .nl-form { flex-direction: column; align-items: center; gap: 16px; }
           .nl-input { max-width: 100%; width: 100%; text-align: center; }

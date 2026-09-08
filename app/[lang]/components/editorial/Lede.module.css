@@ -1,0 +1,11 @@
+.lede {
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 620px;
+  margin: 0 auto;
+}
+.stone { color: var(--stone); }
+.left { margin-left: 0; }
+.lede a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--brick); }

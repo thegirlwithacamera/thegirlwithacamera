@@ -1,9 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { PHOTO_CATEGORIES } from "./constants";
 import { readCaseCover } from "@/lib/portfolio";
 import { pageMeta } from "@/lib/seo";
+import { Closing, Cta, Eyebrow, PageHead, ProjectCard, ProjectGrid, Section, colsFor } from "../components/editorial";
+import s from "./page.module.css";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -91,11 +91,15 @@ export default async function PhotographerPage({ params }: Props) {
   const places = buildRows(lang, false);
   const cities = buildRows(lang, true);
 
+  const title =
+    lang === "fr"
+      ? "Des lieux qui reçoivent, et *les gens qui les font vivre*."
+      : "Places that welcome, and *the people who keep them running*.";
   const intro =
     lang === "fr"
-      ? "Je photographie des lieux qui reçoivent et les gens qui les font vivre. Maisons, tables, rues et voyages, en lumière naturelle, sans mise en scène ajoutée."
-      : "I photograph places that welcome people, and the people who keep them running. Houses, tables, streets and journeys, in natural light, with nothing staged on top.";
-  const citiesHead = lang === "fr" ? "Voyage" : "Travel";
+      ? "Maisons, tables, rues et voyages, en lumière naturelle, sans mise en scène ajoutée."
+      : "Houses, tables, streets and journeys, in natural light, with nothing staged on top.";
+  const citiesHead = lang === "fr" ? "*Voyage*" : "*Travel*";
   const citiesSub = lang === "fr" ? "Mon œil sur la ville" : "The city, the way I see it";
   const citiesLede =
     lang === "fr"
@@ -104,226 +108,46 @@ export default async function PhotographerPage({ params }: Props) {
   const ctaText = lang === "fr" ? "Un projet en tête ?" : "Have a project in mind?";
   const ctaLink = lang === "fr" ? "Travaillons ensemble →" : "Work with me →";
 
-  // Trois colonnes des qu'il y a trois cas, quel que soit le total. L'ancien
-  // calcul passait a deux colonnes des que le nombre n'etait plus un multiple
-  // de trois : avec quatre maisons, la page affichait deux enormes vignettes
-  // par rangee. Le meme calcul avait ete retire de l'accueil le 01/09, il
-  // dormait encore ici.
-  const cols = (n: number) => (n <= 2 ? n : 3);
-
   const grid = (rows: Row[]) => (
-    <div
-      className="case-grid"
-      style={{
-        // Largeur d'une vignette, en flex : la place restante moins les
-        // gouttieres, divisee par le nombre de colonnes.
-        ["--cols" as string]: String(cols(rows.length)),
-        maxWidth: cols(rows.length) === 1 ? "460px" : cols(rows.length) === 2 ? "900px" : undefined,
-      }}
-    >
+    <ProjectGrid cols={colsFor(rows.length)} className={s.grid}>
       {rows.map((r, i) => (
-        <div key={r.key} className="case-item">
-          <Link href={r.href} className="case-card">
-            <div className="case-thumb">
-              <Image
-                src={r.cover}
-                alt={r.altEn}
-                width={1066}
-                height={1600}
-                sizes="(max-width: 767px) 50vw, 420px"
-                priority={i < 3}
-                quality={78}
-              />
-              {r.hasFilm && (
-                <span className="case-film-flag" aria-hidden="true">
-                  <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
-              )}
-            </div>
-            <div className="case-meta">
-              <p className="case-title">
-                {r.title}
-                {r.place && <span className="case-place">{r.place}</span>}
-              </p>
-            </div>
-          </Link>
-          <Link href={r.categoryHref} className="case-cat">{r.categoryLabel}</Link>
-        </div>
+        <ProjectCard
+          key={r.key}
+          href={r.href}
+          cover={r.cover}
+          alt={r.altEn}
+          title={r.title}
+          sub={r.place}
+          note={r.categoryLabel}
+          noteHref={r.categoryHref}
+          hasFilm={r.hasFilm}
+          priority={i < 3}
+          sizes="(max-width: 767px) 50vw, 400px"
+        />
       ))}
-    </div>
+    </ProjectGrid>
   );
 
   return (
-    <>
-      <style>{`
-        .cat-head { text-align: center; padding: 8px 20px 10px; }
-        .cat-head h1 {
-          font-family: var(--font-serif), Georgia, serif;
-          font-size: 26px;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          margin: 0 0 6px;
-          font-weight: 400;
-        }
-        .page-intro {
-          max-width: 560px;
-          margin: 14px auto 34px;
-          padding: 0 20px;
-          font-size: 14px;
-          line-height: 1.65;
-          color: #525252;
-          text-align: center;
-        }
-        /* Flex et non grid : le nombre de cas n'est pas un multiple de
-           trois, et une derniere rangee a une seule vignette collee a gauche
-           avec deux trous a droite se lit comme un bug. Centree, elle se lit
-           comme une mise en page. Meme traitement que les chapitres d'un cas. */
-        .case-grid {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 22px;
-          max-width: 1260px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-        .case-item {
-          display: block;
-          flex: 0 0 calc((100% - (var(--cols, 3) - 1) * 22px) / var(--cols, 3));
-        }
-        .case-card { display: block; text-decoration: none; }
-        .case-thumb {
-          position: relative;
-          aspect-ratio: 4 / 5;
-          overflow: hidden;
-          background: #f2f2f2;
-        }
-        .case-thumb img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-        }
-        .case-card:hover .case-thumb img { transform: scale(1.05); }
-        .case-film-flag {
-          position: absolute;
-          top: 10px;
-          left: 10px;
-          width: 22px;
-          height: 22px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #fff;
-          background: rgba(10, 10, 10, 0.45);
-          backdrop-filter: blur(4px);
-          padding-left: 2px;
-        }
-        .case-meta { padding: 10px 2px 0; text-align: center; }
-        .case-title {
-          margin: 0;
-          font-size: 10px;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          font-weight: 400;
-        }
-        .case-place { color: #b3aca2; margin-left: 6px; }
-        /* Étiquette de catégorie : le seul chemin qui reste vers les pages de
-           catégorie, sorties de la navigation mais gardées pour la recherche. */
-        .case-cat {
-          display: block;
-          margin-top: 4px;
-          text-align: center;
-          font-size: 9px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: #c4bdb3;
-          text-decoration: none;
-        }
-        .case-cat:hover { color: #0a0a0a; }
-        /* Le bloc Voyage porte un vrai titre, pas une etiquette de section :
-           c'est une offre, elle a droit au meme traitement que le haut de
-           page. */
-        .section-block { text-align: center; margin: 88px 0 30px; }
-        .section-head {
-          font-family: var(--font-serif), Georgia, serif;
-          font-size: 22px;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          font-weight: 400;
-          margin: 0 0 6px;
-        }
-        .section-sub {
-          margin: 0;
-          font-size: 10px;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: #999;
-        }
-        .section-lede {
-          max-width: 560px;
-          margin: 16px auto 0;
-          padding: 0 20px;
-          font-size: 14px;
-          line-height: 1.65;
-          color: #525252;
-        }
-        .page-cta { text-align: center; padding: 76px 20px 0; }
-        .page-cta p { margin: 0 0 10px; font-size: 13px; color: #525252; }
-        .page-cta a {
-          font-size: 10px;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          text-decoration: none;
-          border-bottom: 1px solid #0a0a0a;
-          padding-bottom: 2px;
-        }
-        @media (max-width: 767px) {
-          .case-grid { gap: 10px; padding: 0 12px; max-width: none !important; }
-          .case-item { flex-basis: calc((100% - 10px) / 2) !important; }
-          .cat-head h1 { font-size: 18px; }
-          .page-intro { font-size: 13px; margin-bottom: 26px; }
-          .case-title { font-size: 8px; letter-spacing: 0.12em; }
-          .case-place { margin-left: 4px; }
-          .case-meta { padding-top: 6px; }
-          .section-block { margin: 62px 0 22px; }
-          .section-head { font-size: 17px; }
-          .section-lede { font-size: 13px; }
-        }
-      `}</style>
+    <main className={s.main}>
+      <PageHead
+        eyebrow={lang === "fr" ? "Photographe" : "Photographer"}
+        title={title}
+        lede={intro}
+      />
 
-      <main style={{ paddingTop: "16px", paddingBottom: "72px", background: "#ffffff" }}>
-        <div className="cat-head">
-          <h1>{lang === "fr" ? "Photographe" : "Photographer"}</h1>
-        </div>
-        <p className="page-intro">{intro}</p>
+      {places.length > 0 && grid(places)}
 
-        {places.length > 0 && grid(places)}
+      {cities.length > 0 && (
+        <Section title={citiesHead} sub={citiesSub} lede={citiesLede} size="l">
+          {grid(cities)}
+        </Section>
+      )}
 
-        {cities.length > 0 && (
-          <>
-            <div className="section-block">
-              <h2 className="section-head">{citiesHead}</h2>
-              <p className="section-sub">{citiesSub}</p>
-              <p className="section-lede">{citiesLede}</p>
-            </div>
-            {grid(cities)}
-          </>
-        )}
-
-        <div className="page-cta">
-          <p>{ctaText}</p>
-          <Link href={`/${lang}/services`}>{ctaLink}</Link>
-        </div>
-      </main>
-    </>
+      <Closing>
+        <Eyebrow>{ctaText}</Eyebrow>
+        <p><Cta href={`/${lang}/services`} variant="serif">{ctaLink}</Cta></p>
+      </Closing>
+    </main>
   );
 }

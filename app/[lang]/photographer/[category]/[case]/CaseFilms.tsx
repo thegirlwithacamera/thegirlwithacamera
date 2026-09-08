@@ -21,6 +21,7 @@
 // ─────────────────────────────────────────────────────────────
 
 import { useEffect, useRef, useState } from "react";
+import s from "./CaseFilms.module.css";
 
 export type CaseFilmItem = { src: string; poster?: string; label?: string };
 
@@ -73,8 +74,8 @@ function Film({ item, lang }: { item: CaseFilmItem; lang: "fr" | "en" }) {
   const playLabel = lang === "fr" ? "Lire le film" : "Play film";
 
   return (
-    <figure className={`case-film${vertical ? " is-vertical" : ""}`}>
-      <div className="case-film-frame" style={ratio ? { aspectRatio: String(ratio) } : undefined}>
+    <figure className={`${s.film}${vertical ? ` ${s.vertical}` : ""}`}>
+      <div className={s.frame} style={ratio ? { aspectRatio: String(ratio) } : undefined}>
         <video
           ref={ref}
           src={item.src}
@@ -95,7 +96,7 @@ function Film({ item, lang }: { item: CaseFilmItem; lang: "fr" | "en" }) {
         />
 
         {waiting && (
-          <button className="case-film-play" onClick={start} aria-label={playLabel}>
+          <button className={s.play} onClick={start} aria-label={playLabel}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M8 5v14l11-7z" />
             </svg>
@@ -104,7 +105,7 @@ function Film({ item, lang }: { item: CaseFilmItem; lang: "fr" | "en" }) {
 
         {!waiting && !started && (
           <button
-            className="case-film-sound"
+            className={s.sound}
             onClick={toggleSound}
             aria-label={muted ? "Unmute video" : "Mute video"}
           >
@@ -121,7 +122,7 @@ function Film({ item, lang }: { item: CaseFilmItem; lang: "fr" | "en" }) {
         )}
       </div>
 
-      {item.label && <figcaption className="case-film-cap">{item.label}</figcaption>}
+      {item.label && <figcaption className={s.cap}>{item.label}</figcaption>}
     </figure>
   );
 }
@@ -134,8 +135,8 @@ export default function CaseFilms({ films, lang }: { films: CaseFilmItem[]; lang
       : lang === "fr" ? "Le film" : "The film";
 
   return (
-    <section className="case-films">
-      <h2 className="case-films-head">{heading}</h2>
+    <section className={s.films}>
+      <h2 className={s.head}>{heading}</h2>
       {films.map((f) => (
         <Film key={f.src} item={f} lang={lang} />
       ))}

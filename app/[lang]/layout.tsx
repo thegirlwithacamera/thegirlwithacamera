@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { EB_Garamond, Inter } from "next/font/google";
 import "./globals.css";
+import "./components/showcase.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { site } from "@/lib/site";

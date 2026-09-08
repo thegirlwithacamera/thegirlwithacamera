@@ -1,28 +1,52 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────────────────────
+   Direction artistique éditoriale, septembre 2026.
+   Crème très léger, noir, brique avec parcimonie, EB Garamond.
+   Toutes les couleurs et tailles du site passent par ces variables :
+   aucune page ne code plus une couleur en dur.
+   ───────────────────────────────────────────────────────────── */
 :root {
   /* Palette */
-  --ink:        #0a0a0a;
-  --warm-white: #ffffff;
-  --cream:      #f0f0f0;
-  --stone:      #8c8880;
-  --dust:       #c4bfb7;
-  --gold:       #b8a98a;
+  --paper: #ffffff;   /* fond de tout le site, blanc pur (décision du 08/09) */
+  --ink:   #141414;   /* texte */
+  --brick: #8c3a2b;   /* accent, réservé aux italiques des titres, numéros, survols */
+  --stone: #6b6560;   /* texte secondaire, contraste correct sur crème */
+  --line:  #e6e2dc;   /* filets */
+  --well:  #f1eeea;   /* fond des images en chargement */
 
-  /* Aliases compatibles */
-  --background: #ffffff;
+  /* Alias historiques, gardés pour les composants qui les lisent encore */
+  --warm-white: var(--paper);
+  --cream: var(--line);
+  --dust: #c9c2b8;
+  --gold: var(--brick);
+  --background: var(--paper);
   --foreground: var(--ink);
   --muted: var(--stone);
   --muted-soft: var(--dust);
-  --border: var(--cream);
+  --border: var(--line);
 
-  /* Performance optimization */
+  /* Échelle typographique. Jamais sous 11 px, quel que soit l'écran. */
+  --text-xl: clamp(2.375rem, 5.6vw, 5.25rem);   /* 38 à 84 px, grandes accroches */
+  --text-l:  clamp(1.875rem, 3.6vw, 3.25rem);   /* 30 à 52 px, titres de page */
+  --text-m:  clamp(1.5rem, 2.2vw, 1.875rem);    /* 24 à 30 px, titres de section */
+  --text-body: 1.125rem;    /* 18 px, texte éditorial en serif */
+  --text-ui: 0.9375rem;     /* 15 px, texte pratique en sans */
+  --text-caption: 0.9375rem;/* 15 px, légendes en serif */
+  --text-label: 0.75rem;    /* 12 px, eyebrows, menus, méta */
+
+  /* Rythme */
+  --gutter: 28px;
+  --page-max: 1200px;
+  --pad: clamp(20px, 4vw, 48px);
+  --section: clamp(64px, 9vw, 120px);
+
   color-scheme: light;
 }
 
 @theme inline {
-  --font-serif: "EB Garamond", serif;
-  --font-sans: "Inter", sans-serif;
+  --font-serif: "EB Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
@@ -38,47 +62,43 @@ html {
 }
 
 body {
-  background: #ffffff;
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
+  font-size: var(--text-ui);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
 }
 
-/* Editorial typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 400;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
-/* Scrollbar discret */
+::selection { background: var(--brick); color: var(--paper); }
+
 ::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: var(--warm-white); }
+::-webkit-scrollbar-track { background: var(--paper); }
 ::-webkit-scrollbar-thumb { background: var(--dust); border-radius: 0; }
 ::-webkit-scrollbar-thumb:hover { background: var(--stone); }
 
-/* Focus ring */
 :focus-visible {
-  outline: 1px solid var(--stone);
-  outline-offset: 2px;
+  outline: 1px solid var(--brick);
+  outline-offset: 3px;
 }
 
-/* Image hover */
-.image-overlay { position: relative; overflow: hidden; }
-.image-overlay img { transition: transform 0.5s ease; will-change: transform; }
-.image-overlay:hover img { transform: scale(1.05); }
-
-/* Fade in */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
 }
-.fade-in { animation: fadeIn 0.6s ease-out forwards; will-change: opacity; }
 
-/* Reduced motion */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.fade-in { animation: fadeIn 0.6s ease-out forwards; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -88,16 +108,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Print: photographer's portfolios are sometimes printed for review */
 @media print {
   header, footer, button { display: none !important; }
   body { color: #000; background: #fff; }
-}
-
-/* Header responsive */
-.header-nav { display: flex; }
-.header-burger { display: none; }
-@media (max-width: 767px) {
-  .header-nav { display: none; }
-  .header-burger { display: flex; }
 }

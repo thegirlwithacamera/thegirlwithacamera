@@ -19,7 +19,7 @@ Site web editorial style magazine de mode avec :
 - **Framework**: Next.js 16.2.3 (App Router)
 - **Language**: TypeScript 5
 - **Styling**: Tailwind CSS 4
-- **Fonts**: Playfair Display (serif), Inter (sans-serif)
+- **Fonts**: EB Garamond (serif), Inter (sans-serif), via next/font
 - **Deployment**: Vercel
 
 ## Commands
@@ -55,9 +55,11 @@ app/
 
 ## Design System
 
-- **Couleurs** : Fond blanc (#FFFFFF), Texte noir (#000000), Muted (#737373), Border (#e5e5e5)
-- **Typography** : Playfair Display (titres), Inter (corps)
-- **Style** : Éditorial, minimaliste, magazine de mode
+Direction éditoriale depuis le 08/09/2026 (magazine, photobook, sobre, fond blanc) :
+- **Couleurs** : variables dans `app/[lang]/globals.css`. `--paper` #FFFFFF (fond blanc), `--ink` #141414 (texte), `--brick` #8C3A2B (accent, italiques des titres uniquement), `--stone` #6B6560 (texte secondaire), `--line` #E3DDD3 (filets). Aucune couleur en dur dans les pages.
+- **Typographie** : EB Garamond (titres, textes éditoriaux, légendes), Inter (menus, eyebrows, formulaire). Échelle `--text-xl` à `--text-label`. Jamais sous 11 px.
+- **Composants** : `app/[lang]/components/editorial/` (Eyebrow, Display avec `*italique brique*`, Lede, Caption, Cta, PageHead, ProjectGrid, ProjectCard, Section). Styles en CSS Modules, un par composant ou par page. Pas de bloc `<style>` dans les pages.
+- **Identité conservée** : grille 3 colonnes (2 sur mobile), mockups téléphone sur Creator (`components/showcase.css`).
 
 ## Images
 

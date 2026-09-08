@@ -149,3 +149,12 @@ export function casesWithPhotos(
     .filter((c) => countCasePhotos(c.category, c.slug) > 0)
     .map((c) => `${c.category}/${c.slug}`);
 }
+
+// Rapport largeur sur hauteur d'une image du portfolio, d'après son chemin
+// public. Sert à l'image d'ouverture d'un cas, affichée dans son format
+// natif. 1066/1600 si la lecture échoue.
+export function readPhotoRatio(src: string): number {
+  const file = path.join(process.cwd(), "public", src);
+  const size = jpegSize(file);
+  return size && size.h > 0 ? size.w / size.h : 1066 / 1600;
+}

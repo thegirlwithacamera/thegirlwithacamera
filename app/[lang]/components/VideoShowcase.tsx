@@ -8,6 +8,7 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import type { Clip } from "../creator/constants";
+import Caption from "./editorial/Caption";
 
 export type Sound = {
   unmutedKey: string | null;
@@ -21,7 +22,16 @@ export type Focused = { clip: Clip; kind: "phone" | "tablet" };
 // Le titre sous chaque clip. La durée y a été affichée le 28/08 puis retirée
 // le jour même : un chiffre collé sous une image salit la légende. La
 // longueur des films se dit dans les formules, pas sur les vignettes.
-function ClipMeta({ label }: { label?: string }) {
+function ClipMeta({ label, clip }: { label?: string; clip?: Clip }) {
+  if (clip && (clip.brand || clip.project || clip.kind)) {
+    return (
+      <Caption
+        title={clip.brand ?? label ?? ""}
+        sub={clip.project}
+        note={clip.kind}
+      />
+    );
+  }
   if (!label) return null;
   return <span className="vid-label">{label}</span>;
 }
@@ -77,6 +87,10 @@ export function SoundBtn({ on, onClick }: { on: boolean; onClick: () => void }) 
   );
 }
 
+export function PhoneMockup(props: { clip: Clip; cardKey: string; sound: Sound; badge?: string }) {
+  return <Mock {...props} kind="phone" />;
+}
+
 function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: string; kind: "phone" | "tablet"; sound: Sound; badge?: string }) {
   const video = (
     <video
@@ -113,7 +127,7 @@ function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: stri
           {badgeEl}
         </div>
       )}
-      <ClipMeta label={clip.label} />
+      <ClipMeta label={clip.label} clip={clip} />
     </div>
   );
 }
@@ -184,7 +198,7 @@ function MobileStack({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kin
             ) : (
               <div className="phone focusable" onClick={() => sound.openFocus(clip, kind)}>{video}{btn}{badgeEl}</div>
             )}
-            {i === active && <ClipMeta label={clip.label} />}
+            {i === active && <ClipMeta label={clip.label} clip={clip} />}
           </div>
         );
       })}
@@ -306,223 +320,6 @@ export function FocusOverlay({ clip, kind, onClose }: { clip: Clip; kind: "phone
   );
 }
 
-// Styles des composants ci-dessus. A interpoler dans le <style> de chaque
-// page qui les utilise.
-export const SHOWCASE_CSS = `
-  /* Carrousel commun */
-  .carousel { position: relative; max-width: 1100px; margin: 0 auto; padding: 0 8px; }
-  .carousel-track {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 4px 4px 8px;
-  }
-  .carousel-track::-webkit-scrollbar { display: none; }
-  .carousel-track--center { justify-content: center; }
-  .slide {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  .carousel--phone .slide { width: 160px; }
-  .carousel--tablet .slide { width: 380px; }
-
-  .carousel-arrow {
-    position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
-    z-index: 5;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: 1px solid #e5e5e5;
-    background: #ffffff;
-    color: #0a0a0a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
-    transition: background 0.2s, border-color 0.2s;
-  }
-  .carousel-arrow:hover { background: #0a0a0a; color: #ffffff; border-color: #0a0a0a; }
-  .carousel-arrow--prev { left: -6px; }
-  .carousel-arrow--next { right: -6px; }
-
-  /* Pile 3D (mobile, tactile) */
-  .stack {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-    perspective: 1100px;
-    overflow: hidden;
-    touch-action: pan-y;
-  }
-  .stack--phone { height: 420px; }
-  .stack--tablet { height: 270px; }
-  .stack-card {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    transform-origin: center center;
-    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.45s;
-  }
-  .stack--phone .stack-card { width: 210px; margin-left: -105px; }
-  .stack--tablet .stack-card { width: 380px; margin-left: -190px; }
-  .stack-card.pos-active { transform: translateX(0) scale(1) rotateY(0deg); opacity: 1; z-index: 20; }
-  .stack-card.pos-next { transform: translateX(118px) scale(0.84) rotateY(-12deg); opacity: 0.45; z-index: 9; }
-  .stack-card.pos-prev { transform: translateX(-118px) scale(0.84) rotateY(12deg); opacity: 0.45; z-index: 9; }
-  .stack-card.pos-hidden { transform: scale(0.7); opacity: 0; z-index: 0; pointer-events: none; }
-  .stack--tablet .stack-card.pos-next { transform: translateX(180px) scale(0.82) rotateY(-12deg); }
-  .stack--tablet .stack-card.pos-prev { transform: translateX(-180px) scale(0.82) rotateY(12deg); }
-
-  /* Telephone 9:16 */
-  .phone {
-    width: 100%;
-    aspect-ratio: 9 / 16;
-    border: 2px solid #0a0a0a;
-    border-radius: 24px;
-    overflow: hidden;
-    position: relative;
-    background: #1a1a1a;
-  }
-  .phone::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36px;
-    height: 4px;
-    background: #333;
-    border-radius: 2px;
-    z-index: 2;
-  }
-  .phone video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  /* Tablette 16:9 */
-  .tablet {
-    width: 100%;
-    border: 2px solid #0a0a0a;
-    border-radius: 16px;
-    padding: 8px 12px;
-    background: #1a1a1a;
-    position: relative;
-  }
-  .tablet::before {
-    content: '';
-    position: absolute;
-    left: 4px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: #333;
-    z-index: 2;
-  }
-  .tablet-screen { aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; background: #000; position: relative; }
-  .tablet-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  .vid-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #666666; text-align: center; }
-
-  /* Bouton son */
-  .vid-sound {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    z-index: 3;
-    background: rgba(0,0,0,0.45);
-    border: none;
-    border-radius: 50%;
-    width: 26px;
-    height: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #fff;
-    backdrop-filter: blur(4px);
-    transition: background 0.2s;
-  }
-  .vid-sound:hover { background: rgba(0,0,0,0.7); }
-
-  /* Petit badge de stat, coin oppose au bouton son */
-  .vid-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 3;
-    background: rgba(0,0,0,0.45);
-    backdrop-filter: blur(4px);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    padding: 3px 8px;
-    border-radius: 20px;
-  }
-
-  /* Clic pour agrandir : device cliquable + overlay de mise en avant */
-  .focusable { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; }
-  .focusable:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,0.18); }
-  .focus-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    background: rgba(0,0,0,0.72);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 28px;
-    animation: focusFade 0.2s ease;
-  }
-  @keyframes focusFade { from { opacity: 0; } to { opacity: 1; } }
-  .focus-inner {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    animation: focusPop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  @keyframes focusPop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  .focus-phone { width: min(72vw, 300px); box-shadow: 0 24px 70px rgba(0,0,0,0.55); }
-  .focus-tablet { width: min(94vw, 900px); box-shadow: 0 24px 70px rgba(0,0,0,0.55); }
-  .focus-label { color: rgba(255,255,255,0.85); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
-  .focus-close {
-    position: absolute;
-    top: -38px;
-    right: 0;
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 30px;
-    line-height: 1;
-    cursor: pointer;
-    opacity: 0.85;
-  }
-  .focus-close:hover { opacity: 1; }
-
-  @media (max-width: 767px) {
-    .carousel { padding: 0; }
-    /* Mobile : slider tactile, un item centre a la fois, swipe au doigt */
-    .carousel--phone .slide { width: 62vw; max-width: 240px; }
-    .carousel--tablet .slide { width: 92vw; max-width: 400px; }
-    .carousel-track { gap: 12px; }
-    .carousel-arrow { display: none; }
-    .phone { border-width: 1.5px; }
-    .phone::before { width: 26px; height: 3px; }
-  }
-`;
+// Les styles vivent dans components/showcase.css, chargé par le layout.
+// Export conservé vide pour les pages qui l'interpolaient encore.
+export const SHOWCASE_CSS = "";

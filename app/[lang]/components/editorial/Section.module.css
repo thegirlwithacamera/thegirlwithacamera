@@ -1,0 +1,25 @@
+.section { padding-top: var(--section); }
+.head {
+  max-width: 760px;
+  margin: 0 auto clamp(28px, 4vw, 44px);
+  padding: 0 var(--pad);
+  text-align: center;
+}
+.eyebrow { margin-bottom: 14px; }
+.sub {
+  margin: 8px 0 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-body);
+  color: var(--stone);
+}
+.lede { margin-top: 20px; }
+.rule {
+  border: none;
+  height: 1px;
+  background: var(--line);
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+.center { text-align: center; padding: var(--section) var(--pad) 0; }
+.center > * + * { margin-top: 20px; }
