@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         : "Hospitality and restaurant photographer in Brussels",
     description:
       lang === "fr"
-        ? "Sandrine Ceuppens photographie hôtels, maisons d'hôtes, restaurants et bars en Europe. Basée à Bruxelles, disponible en déplacement."
-        : "Sandrine Ceuppens photographs hotels, guesthouses, restaurants and bars across Europe. Based in Brussels, available for travel.",
+        ? "Sandrine Ceuppens photographie hôtels, maisons d'hôtes, restaurants et bars partout dans le monde. Basée à Bruxelles."
+        : "Sandrine Ceuppens photographs hotels, guesthouses, restaurants and bars worldwide. Based in Brussels.",
   });
 }
 

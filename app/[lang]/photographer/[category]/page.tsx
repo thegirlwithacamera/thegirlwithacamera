@@ -48,8 +48,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : `${SEO_TITLE.en[cat.slug] ?? cat.label.en}`,
     description:
       lang === "fr"
-        ? `${cat.label.fr} photographiés par Sandrine Ceuppens, en lumière naturelle. Basée à Bruxelles, disponible en déplacement en Europe.`
-        : `${cat.label.en} photographed by Sandrine Ceuppens in natural light. Based in Brussels, available for travel across Europe.`,
+        ? `${cat.label.fr} photographiés par Sandrine Ceuppens, en lumière naturelle. Basée à Bruxelles, disponible partout dans le monde.`
+        : `${cat.label.en} photographed by Sandrine Ceuppens in natural light. Based in Brussels, available for travel worldwide.`,
   });
 }
 

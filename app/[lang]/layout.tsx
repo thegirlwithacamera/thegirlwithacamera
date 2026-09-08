@@ -38,8 +38,8 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   // enumerait vingt synonymes ; Google en coupe 155 et le reste servait de
   // texte de partage sur toutes les pages.
   const description = isFr
-    ? "Sandrine Ceuppens photographie et filme les hôtels, les maisons d'hôtes, les restaurants et les bars. Basée à Bruxelles, en déplacement en Europe."
-    : "Sandrine Ceuppens photographs and films hotels, guesthouses, restaurants and bars. Based in Brussels, travelling across Europe.";
+    ? "Sandrine Ceuppens photographie et filme les hôtels, les maisons d'hôtes, les restaurants et les bars. Basée à Bruxelles, en déplacement partout dans le monde."
+    : "Sandrine Ceuppens photographs and films hotels, guesthouses, restaurants and bars. Based in Brussels, travelling worldwide.";
 
   return {
     metadataBase: new URL(site.url),

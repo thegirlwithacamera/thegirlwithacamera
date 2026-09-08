@@ -29,14 +29,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? "The Girl With A Camera · Sandrine Ceuppens, photographe et vidéaste à Bruxelles"
       : "The Girl With A Camera · Sandrine Ceuppens, photographer and filmmaker in Brussels",
     description: lang === "fr"
-      ? "Photographe et vidéaste pour les hôtels, les maisons d'hôtes, les restaurants et les bars. Sandrine Ceuppens, basée à Bruxelles, en déplacement en Europe."
-      : "Photographer and filmmaker for hotels, guesthouses, restaurants and bars. Sandrine Ceuppens, based in Brussels, travelling across Europe.",
+      ? "Photographe et vidéaste pour les hôtels, les maisons d'hôtes, les restaurants et les bars. Sandrine Ceuppens, basée à Bruxelles, en déplacement partout dans le monde."
+      : "Photographer and filmmaker for hotels, guesthouses, restaurants and bars. Sandrine Ceuppens, based in Brussels, travelling worldwide.",
   });
 }
 
 const COPY = {
   fr: {
-    eyebrow: "Sandrine Ceuppens · Bruxelles · en déplacement en Europe",
+    eyebrow: "Sandrine Ceuppens · Bruxelles · en déplacement dans le monde entier",
     title: "Hôtels, tables et villes, photographiés *dans la lumière qui était là*.",
     lede: "Des maisons, des tables et des rues, en lumière naturelle, sans mise en scène ajoutée.",
     all: "Tout voir",
@@ -44,7 +44,7 @@ const COPY = {
     about: "À propos",
   },
   en: {
-    eyebrow: "Sandrine Ceuppens · Brussels · travelling across Europe",
+    eyebrow: "Sandrine Ceuppens · Brussels · travelling worldwide",
     title: "Hotels, tables and cities photographed *in the light that was there*.",
     lede: "Houses, tables and streets, in natural light, with nothing staged on top.",
     all: "See all",
@@ -203,7 +203,7 @@ export default async function HomePage({ params }: Props) {
         "@context": "https://schema.org",
         "@type": "ImageGallery",
         name: "Portfolio by Sandrine Ceuppens",
-        description: "Hotels, guesthouses, restaurants and bars photographed by Sandrine Ceuppens across Europe",
+        description: "Hotels, guesthouses, restaurants and bars photographed by Sandrine Ceuppens worldwide",
         associatedMedia: homeCases.map((c) => ({
           "@type": "ImageObject",
           url: `https://thegirlwithacamera.com${c.cover}`,
