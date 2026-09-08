@@ -16,7 +16,10 @@ export default function Footer() {
   // à la page en cours) et sur l'accueil, où la grille porte déjà la porte.
   const onAbout = pathname.startsWith(`/${currentLang}/about`);
   const onHome = pathname === `/${currentLang}` || pathname === `/${currentLang}/`;
-  const hideCta = onAbout || onHome;
+  // Les pages de cas portent déjà leur appel entre précédent et suivant :
+  // deux "Travaillons ensemble" à dix centimètres d'écart, ça fait deux.
+  const onCase = /^\/(fr|en)\/photographer\/[^/]+\/[^/]+/.test(pathname);
+  const hideCta = onAbout || onHome || onCase;
   const cta =
     currentLang === "fr"
       ? { eyebrow: "Un projet en tête ?", label: "Travaillons ensemble" }

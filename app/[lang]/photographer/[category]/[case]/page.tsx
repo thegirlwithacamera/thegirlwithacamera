@@ -107,7 +107,9 @@ export default async function PhotographerCasePage({ params }: Props) {
   const next = at >= 0 && at < live.length - 1 ? live[at + 1] : null;
   const talk = cat.citySeries
     ? lang === "fr" ? "Votre ville, vue comme ça ? Parlons-en →" : "Your city, seen like this? Let's talk →"
-    : lang === "fr" ? "Même idée pour votre maison ? Parlons-en →" : "Same idea for your house? Let's talk →";
+    : cat.slug === "restaurants"
+      ? lang === "fr" ? "Même idée pour votre table ? Parlons-en →" : "Same idea for your table? Let's talk →"
+      : lang === "fr" ? "Même idée pour votre maison ? Parlons-en →" : "Same idea for your house? Let's talk →";
 
   const no = (n: number) => String(n).padStart(2, "0");
 
