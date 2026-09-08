@@ -94,15 +94,15 @@ export const BRANDS: Brand[] = [
   // est un diary de categorie lifestyle, non publiee (PUBLISHED_DIARY_CATS
   // dans app/[lang]/filmmaker/constants.ts). Le jour ou leur contenu sort, il
   // suffit d'ajouter la ligne.
-  { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg", cat: "brand", href: "/creator/gear", hrefLabel: { fr: "Vidéos", en: "Videos" } },
-  { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png", cat: "brand", href: "/creator/gear", hrefLabel: { fr: "Vidéos", en: "Videos" } },
-  { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg", cat: "brand", href: "/creator/gear", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg", cat: "brand", href: "/creator/gear#ricoh", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png", cat: "brand", href: "/creator/gear#pentax", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg", cat: "brand", href: "/creator/gear#insta360", hrefLabel: { fr: "Vidéos", en: "Videos" } },
   { name: "GODOX", logo: "/images/brands/godox.png", cat: "brand" },
   // Le SVG fourni etait en gris tres clair, pense pour un fond sombre :
   // invisible sur blanc. Recolore en noir, aucune autre retouche.
   { name: "TILTA", logo: "/images/brands/tilta.svg", cat: "brand" },
   { name: "EDIFIER", logo: "/images/brands/edifier.png", cat: "brand" },
-  { name: "TELESIN", logo: "/images/brands/telesin.png", cat: "brand", href: "/creator/unboxing", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "TELESIN", logo: "/images/brands/telesin.png", cat: "brand", href: "/creator/unboxing#telesin", hrefLabel: { fr: "Vidéos", en: "Videos" } },
   // Logo empile, pictogramme au dessus du nom : a la hauteur des wordmarks il
   // devient illisible, il prend donc celle des badges.
   { name: "STUBBLE & CO", logo: "/images/brands/stubble-and-co.png", tall: true, cat: "brand" },

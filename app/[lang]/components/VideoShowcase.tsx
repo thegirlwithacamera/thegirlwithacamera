@@ -111,7 +111,7 @@ function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: stri
   const badgeEl = badge && <span className="vid-badge">{badge}</span>;
 
   return (
-    <div className="slide">
+    <div className="slide" data-clip={cardKey}>
       {kind === "tablet" ? (
         <div className="tablet focusable" onClick={() => sound.openFocus(clip, kind)}>
           <div className="tablet-screen">
@@ -192,7 +192,7 @@ function MobileStack({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kin
         const btn = <SoundBtn on={sound.unmutedKey === key} onClick={() => sound.toggleSound(key)} />;
         const badgeEl = badge && <span className="vid-badge">{badge}</span>;
         return (
-          <div key={key} className={`stack-card ${posClass(i)}`}>
+          <div key={key} className={`stack-card ${posClass(i)}`} data-clip={key}>
             {kind === "tablet" ? (
               <div className="tablet focusable" onClick={() => sound.openFocus(clip, kind)}><div className="tablet-screen">{video}{btn}{badgeEl}</div></div>
             ) : (

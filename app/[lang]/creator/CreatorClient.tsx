@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { SECTIONS, type Clip, type Section } from "./constants";
 import { withMeta } from "./meta";
-import { brandsIn } from "@/lib/brands";
+import { useEffect } from "react";
+import TrustLogos from "../components/TrustLogos";
 import { Carousel, FocusOverlay, useVideoSound } from "../components/VideoShowcase";
 import { Eyebrow, Lede, PageHead } from "../components/editorial";
 import s from "./CreatorClient.module.css";
@@ -68,9 +69,28 @@ export default function CreatorClient({
 }) {
   const t = content[lang];
   const { sound, focused, closeFocus } = useVideoSound();
-  const clips = data[section].map((c) => withMeta(c, section, lang));
+  // Le type de contenu n'est pas répété sous chaque téléphone : la catégorie
+  // active le dit déjà (décision du 08/09).
+  const clips = data[section].map((c) => ({ ...withMeta(c, section, lang), kind: undefined }));
 
-  const brands = brandsIn("brand");
+  // Un logo de marque mène ici avec une ancre, #ricoh par exemple : on ouvre
+  // directement la première vidéo de cette marque dans la section.
+  useEffect(() => {
+    let timer = 0;
+    const openFromHash = () => {
+      const hash = decodeURIComponent(window.location.hash.replace(/^#/, "")).toLowerCase().replace(/\s+/g, "");
+      if (!hash) return;
+      const idx = clips.findIndex((c) => (c.brand ?? "").toLowerCase().replace(/\s+/g, "") === hash);
+      if (idx < 0) return;
+      const el = document.querySelector<HTMLElement>(`[data-clip="${section}-${idx}"]`);
+      el?.scrollIntoView({ block: "center", inline: "center", behavior: "smooth" });
+      timer = window.setTimeout(() => sound.openFocus(clips[idx], "phone"), 350);
+    };
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => { window.clearTimeout(timer); window.removeEventListener("hashchange", openFromHash); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [section]);
 
   return (
     <main className={s.main}>
@@ -95,13 +115,7 @@ export default function CreatorClient({
 
       <section className={s.brands}>
         <Eyebrow tone="brick" className={s.brandsLabel}>{t.selected}</Eyebrow>
-        <ul className={s.names}>
-          {brands.map((b) => (
-            <li key={b.name}>
-              {b.href ? <Link href={`/${lang}${b.href}`}>{b.name}</Link> : b.name}
-            </li>
-          ))}
-        </ul>
+        <TrustLogos lang={lang} cats={["brand"]} hideLabel align="left" />
       </section>
 
       {focused && (

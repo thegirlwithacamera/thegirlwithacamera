@@ -38,11 +38,13 @@ export default function TrustLogos({
   lang,
   cats = BRAND_CATS,
   hideLabel = false,
+  align = "center",
 }: {
   lang: "fr" | "en";
   cats?: readonly BrandCat[];
   // Quand la page pose déjà son propre titre au dessus de la bande.
   hideLabel?: boolean;
+  align?: "center" | "left";
 }) {
   const groups = cats
     .map((c) => ({ cat: c, brands: brandsIn(c) }))
@@ -130,10 +132,12 @@ export default function TrustLogos({
           .trust-group--brand .brand-logo--tall { height: 34px; }
           .brand-cap { font-size: 0.6875rem; letter-spacing: 0.1em; }
         }
+        .trust-left .brands-strip { justify-content: flex-start; padding: 0; margin: 0; max-width: none; }
+        .trust-left .trust-note { text-align: left; padding: 0; margin-left: 0; }
       `}</style>
       {!hideLabel && <p className="trust-label">{TRUST_LABEL[lang]}</p>}
       {groups.map((g) => (
-        <div className={`trust-group trust-group--${g.cat}`} key={g.cat}>
+        <div className={`trust-group trust-group--${g.cat}${align === "left" ? " trust-left" : ""}`} key={g.cat}>
           {showCatLabels && <p className="trust-cat">{CAT_LABEL[g.cat][lang]}</p>}
           <div className="brands-strip">
             {g.brands.map((b) => {

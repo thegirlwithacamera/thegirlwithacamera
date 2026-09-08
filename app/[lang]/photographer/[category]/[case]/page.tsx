@@ -95,6 +95,10 @@ export default async function PhotographerCasePage({ params }: Props) {
     : `${item.label.en} — ${cat.label.en} photographed by Sandrine Ceuppens`;
 
   const rest = opening ? photos.slice(1) : photos;
+  // Cas sans chapitres : les cellules prennent le format de la première
+  // image de la grille. Le portrait 4:5 reste la règle, mais un cas livré en
+  // paysage (Sélys, 3:2) s'affiche en paysage, sans recadrage imposé.
+  const flatRatio = chapters.length === 0 && rest[0] ? readPhotoRatio(rest[0].src) : 1066 / 1600;
   const firstChapterRest = opening && chapters.length > 0 ? chapters[0].photos.slice(1) : null;
 
   // Cas précédent et suivant, dans l'ordre de constants.ts, tous cas confondus.
@@ -193,12 +197,14 @@ export default async function PhotographerCasePage({ params }: Props) {
             <PhotoPager photos={rest} catLabel={`${item.label.en} — ${cat.label.en}`} startIndex={opening ? 1 : 0} />
           </div>
         ) : (
-          <ProjectGrid tight keep3 className={s.grid}>
+          <ProjectGrid tight keep3 className={s.grid} style={{ "--cell": String(flatRatio) } as React.CSSProperties}>
             {rest.map((p, i) =>
               cell(
                 p.src,
                 `${item.label.en} — ${cat.label.en} photograph ${i + (opening ? 2 : 1)} by Sandrine Ceuppens`,
                 i < 6,
+                Math.round(1600 * flatRatio),
+                1600,
               ),
             )}
           </ProjectGrid>
