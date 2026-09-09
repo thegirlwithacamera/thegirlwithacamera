@@ -229,6 +229,8 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           fr: "Photographié début septembre 2026.",
           en: "Photographed in early September 2026.",
         },
+        // Film déposé le 09/09, réencodé en 1080p depuis le master 4K du bureau.
+        films: [{ src: "/videos/creator/CINEMATIC/PLACES/Hotel Rathaus.mp4" }],
       },
       // mk hotel Munich retiré le 05/09, décision de Sandrine : le travail
       // n'est pas au niveau du reste du portfolio. Le cas est supprimé d'ici,
