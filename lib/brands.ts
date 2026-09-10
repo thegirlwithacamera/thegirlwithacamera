@@ -140,3 +140,27 @@ export const CAT_NOTE: Partial<Record<BrandCat, Record<"fr" | "en", string>>> = 
     en: "Ricoh France and Pentax Europe exhibited my work at Les Rencontres d'Arles.",
   },
 };
+
+// Logos du ou des clients d'un cas, pour la page du cas elle meme.
+// Pose le 10/09 : jusque la, la preuve qu'un cas etait une commande vivait
+// uniquement sur About, alors que la plupart des visiteurs arrivent
+// directement sur une page de cas depuis une recherche ou un lien partage.
+//
+// Pas la bande complete, un seul logo, celui du client de ce cas. Une rangee
+// de quinze marques sur une page qui ne montre que des photos vole
+// l'attention, et c'est deja ce qui avait fait reordonner la bande le 31/08.
+//
+// Rien de nouveau a maintenir : chaque logo porte deja le chemin de son cas
+// dans href, on relit ce champ a l'envers. Un cas sans client, une serie de
+// ville personnelle par exemple, ne renvoie rien et n'affiche donc rien :
+// l'absence est plus juste qu'un logo emprunte.
+export function brandsForCase(category: string, caseSlug: string): Brand[] {
+  const path = `/photographer/${category}/${caseSlug}`;
+  return BRANDS.filter((b) => !b.pending && b.logo && b.href === path);
+}
+
+// "Une commande de" : la ligne qui introduit le ou les logos sur un cas.
+export const COMMISSION_LABEL: Record<"fr" | "en", string> = {
+  fr: "UNE COMMANDE DE",
+  en: "COMMISSIONED BY",
+};

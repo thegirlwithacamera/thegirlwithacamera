@@ -7,6 +7,7 @@ import { readCasePhotos, countCasePhotos, readCaseCover, readCaseChapters, readP
 import { posterForPath } from "@/lib/creator-videos";
 import PhotoPager from "../PhotoPager";
 import CaseFilms from "./CaseFilms";
+import CaseClient from "../../../components/CaseClient";
 import { pageMeta } from "@/lib/seo";
 import { PageHead, ProjectGrid } from "../../../components/editorial";
 import s from "./page.module.css";
@@ -233,6 +234,8 @@ export default async function PhotographerCasePage({ params }: Props) {
         )}
 
         <CaseFilms films={films} lang={lang} />
+
+        <CaseClient lang={lang} category={cat.slug} caseSlug={item.slug} />
 
         <nav className={s.next} aria-label={lang === "fr" ? "Autres projets" : "Other projects"}>
           <div>{prev && <Link href={`/${lang}${prev.href}`}>← {prev.item.short?.[lang] ?? prev.item.label[lang]}</Link>}</div>
