@@ -341,19 +341,16 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         films: [{ src: "/videos/creator/CINEMATIC/CITIES/Villach.mp4" }],
       },
       {
-        // Deuxieme commande d'office du tourisme, apres Villach : le cas est
-        // declare avant l'arrivee des photos. Tant que le dossier
-        // public/images/portfolio/travel/graz est vide, la page n'existe pas,
-        // le cas n'apparait ni en accueil ni dans la categorie, et le film
-        // reste visible sur la page Videaste sans lien. Le jour ou les images
-        // arrivent, tout s'allume seul. Penser alors a ajouter le href
-        // /photographer/travel/graz sur VISIT GRAZ dans lib/brands.ts.
+        // Deuxieme commande d'office du tourisme, apres Villach. Six images
+        // choisies le 10/09 dans les sept fournies : la septieme, deux
+        // personnes sur un banc derriere une haie, faisait doublon avec la
+        // vue a travers les branches et la haie mangeait le cadre.
         slug: "graz",
         label: { fr: "Graz", en: "Graz" },
         place: { fr: "Styrie, Autriche", en: "Styria, Austria" },
         intro: {
-          fr: "Une ville de toits rouges serrés sous sa colline, une rivière qui la coupe en deux, et la vieille ville avant que les terrasses se remplissent.",
-          en: "A town of tight red roofs under its hill, a river cutting it in two, and the old town before the terraces fill.",
+          fr: "Une ville de toits rouges serrés sous sa colline, la tour de l'horloge au-dessus des escaliers, et les rues du bas au petit matin.",
+          en: "A town of tight red roofs under its hill, the clock tower above the stairs, and the streets below early in the morning.",
         },
         shotAt: {
           fr: "Photographié en vingt-quatre heures, pour Graz Tourismus.",

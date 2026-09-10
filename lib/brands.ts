@@ -74,7 +74,7 @@ export const BRANDS: Brand[] = [
   // hauteur des badges pour rester lisible entre deux wordmarks larges.
   { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "travel", href: "/photographer/travel/villach", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   // Pastille ronde : meme traitement que Kärnten.
-  { name: "VISIT GRAZ", logo: "/images/brands/visit-graz.png", tall: true, cat: "travel" },
+  { name: "VISIT GRAZ", logo: "/images/brands/visit-graz.png", tall: true, cat: "travel", href: "/photographer/travel/graz", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
 
   // Brands. Sans logo, le nom s'affiche en toutes lettres : mieux vaut citer
   // le client que l'omettre en attendant son fichier.
