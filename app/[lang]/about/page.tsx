@@ -68,6 +68,22 @@ const content = {
 
 const SOCIALS = [
   {
+    // Le journal etait un lien en toutes lettres a cote de "Travaillons
+    // ensemble". Deux liens en capitales espacees se disputaient le meme
+    // poids alors qu'un seul est une porte commerciale ; le journal rejoint
+    // donc la rangee de logos, en tete parce que c'est sa propre publication.
+    label: "Substack",
+    handle: "The Girl With A Camera",
+    href: "https://thegirlwithacamera.substack.com/",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <rect x="2.5" y="3" width="19" height="2.6" />
+        <rect x="2.5" y="8.2" width="19" height="2.6" />
+        <path d="M2.5 13.4h19V22l-9.5-5.1L2.5 22z" />
+      </svg>
+    ),
+  },
+  {
     label: "Instagram",
     handle: "@sandrinecppns",
     href: "https://www.instagram.com/sandrinecppns/",
@@ -100,6 +116,16 @@ const SOCIALS = [
     ),
   },
   {
+    label: "Pinterest",
+    handle: "sandrineceuppens",
+    href: "https://www.pinterest.com/sandrineceuppens/",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.08 2.44 7.58 5.94 9.13-.08-.78-.16-1.97.03-2.82.18-.77 1.15-4.87 1.15-4.87s-.29-.59-.29-1.46c0-1.37.79-2.39 1.78-2.39.84 0 1.25.63 1.25 1.39 0 .85-.54 2.11-.82 3.28-.23.98.49 1.78 1.46 1.78 1.75 0 3.1-1.85 3.1-4.52 0-2.36-1.7-4.02-4.13-4.02-2.81 0-4.46 2.11-4.46 4.29 0 .85.33 1.76.74 2.25.08.1.09.19.07.29-.08.32-.25 1-.28 1.14-.05.19-.15.23-.35.14-1.28-.6-2.08-2.47-2.08-3.97 0-3.23 2.35-6.2 6.77-6.2 3.55 0 6.32 2.53 6.32 5.92 0 3.53-2.23 6.38-5.32 6.38-1.04 0-2.01-.54-2.35-1.18l-.64 2.44c-.23.89-.85 2.01-1.27 2.69.96.3 1.97.46 3.03.46 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+      </svg>
+    ),
+  },
+  {
     label: "Threads",
     handle: "@sandrinecppns",
     href: "https://www.threads.net/@sandrinecppns",
@@ -128,14 +154,13 @@ export default async function AboutPage({ params }: Props) {
           <Eyebrow tone="brick" className={s.eyebrow}>{lang === "fr" ? "À propos" : "About"}</Eyebrow>
           <Display size="l" as="h1">{t.role}</Display>
           <Lede className={s.bio} align="left">{t.bio}</Lede>
-          {/* Deux rangees. En haut les deux portes, en mots. En dessous les
-              reseaux, en logos : cinq noms ecrits en capitales espacees
-              pesaient autant que les deux liens qui comptent et les noyaient.
-              Le nom reste dans aria-label et title pour la lecture d'ecran
-              et le survol. */}
+          {/* Deux rangees. En haut la seule porte commerciale, en mots. En
+              dessous le journal et les reseaux, en logos : des noms ecrits en
+              capitales espacees pesaient autant que le lien qui compte et le
+              noyaient. Le nom reste dans aria-label et title pour la lecture
+              d'ecran et le survol. */}
           <ul className={s.links}>
             <li><Link href={`/${lang}/services`} className={s.brick}>{lang === "fr" ? "Travaillons ensemble →" : "Work with me →"}</Link></li>
-            <li><a href="https://thegirlwithacamera.substack.com/" target="_blank" rel="noopener noreferrer" className={s.brick}>{lang === "fr" ? "Le journal →" : "The journal →"}</a></li>
           </ul>
           <ul className={s.socials}>
             {SOCIALS.map((so) => (
