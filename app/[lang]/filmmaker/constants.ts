@@ -58,8 +58,12 @@ export const HIDDEN_FILMS: readonly string[] = [
 // Un film absent de cette liste passe en dernier : mieux vaut le voir en bas
 // et s'en apercevoir que le voir en haut par accident.
 export const FILM_DATES: Record<string, string> = {
-  graz: "2026-09",
+  // Vienne est le tournage le plus recent, Graz juste avant. Les deux sont
+  // en septembre 2026 et vivent dans deux categories differentes, donc a
+  // l'ecran ils ne se croisent pas ; l'ordre ci dessous dit quand meme la
+  // verite, au cas ou une page les montrerait ensemble un jour.
   "hotel rathaus": "2026-09",
+  graz: "2026-09",
   "naturel dorf schonleitn": "2026-08",
   villach: "2026-08",
   "vandervalk selys": "2026-07",
