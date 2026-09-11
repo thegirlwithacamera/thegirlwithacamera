@@ -23,6 +23,22 @@
   transition: color 0.2s ease;
 }
 .links a:hover, .links .brick { color: var(--brick); }
+/* Rangee de logos sous les deux liens. Cible de 40px de haut au doigt,
+   meme si le dessin n'en fait que 18. */
+.socials { display: flex; flex-wrap: wrap; gap: 4px 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+.socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: -10px;
+  color: var(--stone);
+  transition: color 0.2s ease;
+}
+.socials li:first-child a { margin-left: -10px; }
+.socials a:hover { color: var(--brick); }
+.socials svg { width: 18px; height: 18px; display: block; }
 .approach { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--pad); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 24px clamp(32px, 6vw, 96px); }
 .approach p {
   font-family: var(--font-serif);

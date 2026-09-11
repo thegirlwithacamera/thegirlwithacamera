@@ -24,7 +24,12 @@ export const site = {
     instagram: "https://www.instagram.com/sandrinecppns/",
     threads: "https://www.threads.net/@sandrinecppns",
     tiktok: "https://www.tiktok.com/@sandrinecppns",
+    youtube: "https://www.youtube.com/@sandrineceuppens",
+    // Pinterest : compte actif mais l'adresse n'est pas encore dans le site.
+    // Mettre l'URL ici et le lien apparait tout seul en bas de page.
+    pinterest: "",
     instagramHandle: "@sandrinecppns",
+    substack: "https://thegirlwithacamera.substack.com",
   },
   partners: [
     { name: "Ricoh Europe", url: "https://www.ricoh-imaging.eu/" },

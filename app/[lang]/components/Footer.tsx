@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import NewsletterCta from "./NewsletterCta";
 import Cta from "./editorial/Cta";
 import Eyebrow from "./editorial/Eyebrow";
 import s from "./Footer.module.css";
@@ -33,9 +32,6 @@ export default function Footer() {
           <Cta href={`/${currentLang}/services`} variant="serif">{cta.label} →</Cta>
         </div>
       )}
-      <div className={s.news}>
-        <NewsletterCta lang={currentLang} variant="band" />
-      </div>
       <div className={s.bottom}>
         <p className={s.copy}>© {new Date().getFullYear()} Sandrine Ceuppens · Bruxelles</p>
         <a href="mailto:hello@thegirlwithacamera.com" className={s.mail}>hello@thegirlwithacamera.com</a>

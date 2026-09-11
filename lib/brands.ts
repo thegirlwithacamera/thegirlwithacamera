@@ -34,6 +34,11 @@ export type Brand = {
   // ca tombe a l'eau c'est une fausse reference sur un site commercial.
   // Passer pending a false le jour du tournage, rien d'autre a faire.
   pending?: boolean;
+  // Sorti de la bande "Ils m'ont fait confiance", garde sur la page du cas.
+  // Dao est le spa du Selys, pas une autre adresse : dans la bande il se
+  // lisait comme un client de plus, alors qu'en bas de la page Selys il dit
+  // quelque chose de vrai, deux espaces couverts chez le meme client.
+  bandHidden?: boolean;
 };
 
 // Le vert du logo Rathaus Wein & Design, #becaac, donnait 1,7 contre 1 sur blanc :
@@ -55,10 +60,10 @@ export const BRANDS: Brand[] = [
   // mk-hotels.png reste dans public/images/brands, remettre la ligne suffit.
   { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "VAN DER VALK SELYS", logo: "/images/brands/van-der-valk-selys-mono.png", cat: "stays", href: "/photographer/restaurants/van-der-valk-selys", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
-  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/photographer/restaurants/van-der-valk-selys", hrefLabel: { fr: "Film", en: "Film" } },
+  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", href: "/photographer/restaurants/van-der-valk-selys", hrefLabel: { fr: "Film", en: "Film" }, bandHidden: true },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
-  { name: "HOTEL RATHAUS WEIN & DESIGN", logo: "/images/brands/hotel-rathaus-wien-dark.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos", en: "Photographs" } },
+  { name: "HOTEL RATHAUS WEIN & DESIGN", logo: "/images/brands/hotel-rathaus-wien-dark.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "ALTSTADT VIENNA, AN SLH HOTEL", logo: "/images/brands/altstadt-mono.png", cat: "stays", href: "/photographer/hospitality/altstadt-vienna", hrefLabel: { fr: "Photos", en: "Photographs" } },
   { name: "AT THE GOLDEN PEAR", logo: "/images/brands/golden-pear.png", tall: true, cat: "stays", pending: true },
   { name: "PRAGUESTREAM", logo: "/images/brands/prague-stream.png", cat: "stays", pending: true },
@@ -112,7 +117,7 @@ export const BRANDS: Brand[] = [
 export const BRAND_CATS: readonly BrandCat[] = ["stays", "travel", "brand"];
 
 export function brandsIn(cat: BrandCat): Brand[] {
-  return BRANDS.filter((b) => b.cat === cat && !b.pending);
+  return BRANDS.filter((b) => b.cat === cat && !b.pending && !b.bandHidden);
 }
 
 // Label de la bande, bilingue (source unique).
