@@ -45,6 +45,71 @@ export const HIDDEN_FILMS: readonly string[] = [
   "mk hotel munich",
 ];
 
+// Date de chaque film, pour ranger la page du plus recent au plus ancien.
+// Comparaison sur le nom de fichier sans extension, insensible a la casse,
+// comme HIDDEN_FILMS.
+//
+// Pourquoi une liste et pas la date du fichier : la date de modification ne
+// veut plus rien dire. Les fichiers ont ete reencodes en bloc le 09/09, et
+// de toute facon git ne conserve pas les dates, tous les fichiers arrivent
+// sur le serveur avec la date du deploiement. La seule date fiable est
+// celle qu'on ecrit.
+//
+// Un film absent de cette liste passe en dernier : mieux vaut le voir en bas
+// et s'en apercevoir que le voir en haut par accident.
+export const FILM_DATES: Record<string, string> = {
+  graz: "2026-09",
+  "hotel rathaus": "2026-09",
+  "naturel dorf schonleitn": "2026-08",
+  villach: "2026-08",
+  "vandervalk selys": "2026-07",
+  "dao liege": "2026-07",
+  "city diary tokyo": "2026-03",
+  "city diary tokyo night": "2026-03",
+  "city diary kyoto": "2026-03",
+  "city diary nara": "2026-03",
+  "city diary osaka": "2026-03",
+  // Ce Pages : la date du tournage n'est pas retrouvee, comme dans le cas
+  // photo du meme nom. Le film passe donc en fin de liste.
+};
+
+// Cle de recherche d'un fichier : sans extension, sans accent, minuscules.
+// Sans le retrait des accents, "Naturel Dorf Schonleitn" et "Cé-Pages" ne
+// retrouveraient jamais leur ligne.
+function filmKey(file: string): string {
+  return file
+    .replace(/\.[^.]+$/, "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[-_]+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+export function filmDate(file: string): string {
+  return FILM_DATES[filmKey(file)] ?? "";
+}
+
+// Du plus recent au plus ancien, les films sans date a la fin. A date egale,
+// l'ordre de la liste ci dessus fait foi : deux films du meme mois se rangent
+// comme ils sont ecrits, ce qui laisse le choix a la main sans inventer des
+// jours de tournage qu'on ne connait pas.
+const FILM_ORDER = Object.keys(FILM_DATES);
+
+export function byNewest(a: string, b: string): number {
+  const da = filmDate(a);
+  const db = filmDate(b);
+  if (da !== db) {
+    if (!da) return 1;
+    if (!db) return -1;
+    return db.localeCompare(da);
+  }
+  const ia = FILM_ORDER.indexOf(filmKey(a));
+  const ib = FILM_ORDER.indexOf(filmKey(b));
+  if (ia !== ib && ia >= 0 && ib >= 0) return ia - ib;
+  return a.localeCompare(b);
+}
+
 export function isHiddenFilm(file: string): boolean {
   const base = file.replace(/\.[^.]+$/, "").trim().toLowerCase();
   return HIDDEN_FILMS.includes(base);

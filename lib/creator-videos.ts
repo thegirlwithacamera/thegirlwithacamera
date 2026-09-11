@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import type { Clip } from "@/app/[lang]/creator/constants";
-import { isHiddenFilm } from "@/app/[lang]/filmmaker/constants";
+import { isHiddenFilm, byNewest } from "@/app/[lang]/filmmaker/constants";
 import type { Diary, DiaryCat } from "@/app/[lang]/filmmaker/constants";
 
 // Lecture des dossiers videos (au build, cote serveur uniquement).
@@ -128,7 +128,9 @@ export function readDiary(): Diary {
       const cat = matchCat(e.name);
       if (!cat) continue;
       const files = fs.readdirSync(path.join(root, e.name));
-      for (const f of files.filter((f) => VIDEO_RE.test(f) && !isHiddenFilm(f)).sort()) {
+      // Du plus recent au plus ancien, pas par ordre alphabetique : la page
+      // doit ouvrir sur le dernier travail.
+      for (const f of files.filter((f) => VIDEO_RE.test(f) && !isHiddenFilm(f)).sort(byNewest)) {
         groups[cat].push({
           src: `/videos/creator/${rootName}/${e.name}/${f}`,
           label: diaryLabel(f),

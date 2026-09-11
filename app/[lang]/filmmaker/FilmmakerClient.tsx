@@ -98,7 +98,12 @@ export default function FilmmakerClient({
     const found = findCaseByFilm(clip.src);
     const hasPage = !!found && live.includes(`${found.cat.slug}/${found.item.slug}`);
     const title = found ? found.item.label[lang] : clip.label;
-    const sub = found?.film.label ? found.film.label[lang] : found?.item.place ? found.item.place[lang] : undefined;
+    // Le libelle du film ET le lieu. Avant, un film libelle ("Le restaurant",
+    // "La nuit") remplacait le lieu : la vignette Van der Valk Selys disait
+    // "Le restaurant" sans jamais dire Liege, et Tokyo ne disait pas le Japon.
+    const filmLabel = found?.film.label?.[lang];
+    const place = found?.item.place?.[lang];
+    const sub = [filmLabel, place].filter(Boolean).join(" · ") || undefined;
     return (
       <div key={key} className={s.item}>
         <button
