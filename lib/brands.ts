@@ -68,7 +68,7 @@ export const BRANDS: Brand[] = [
   { name: "AT THE GOLDEN PEAR", logo: "/images/brands/golden-pear.png", tall: true, cat: "stays", pending: true },
   { name: "PRAGUESTREAM", logo: "/images/brands/prague-stream.png", cat: "stays", pending: true },
 
-  { name: "CÉ-PAGES", logo: "/images/brands/ce-pages-mono.png", cat: "stays", href: "/photographer/restaurants/ce-pages", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
+  { name: "CÉ·PAGES", logo: "/images/brands/ce-pages-mono.png", cat: "stays", href: "/photographer/restaurants/ce-pages", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
 
   // City & travel : ceux qui font venir les gens, transporteurs et offices de
   // tourisme. C'est l'autre moitie du marche hotelier, et pour une maison

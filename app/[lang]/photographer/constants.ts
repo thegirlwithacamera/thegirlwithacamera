@@ -275,7 +275,13 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     cases: [
       {
         slug: "ce-pages",
-        label: { fr: "Cé Pages", en: "Cé Pages" },
+        // Cé·pages, point median et p minuscule, verifie le 11/09 : c'est un
+        // jeu de mots sur les cepages. Le site l'ecrivait de trois facons,
+        // Ce Pages, CE-PAGES et Ce-Pages, et aucune n'etait la bonne. Le nom
+        // du fichier video garde le tiret : il n'est vu par personne, la
+        // vignette affiche le libelle du cas, et un point median dans une URL
+        // se transforme en %C2%B7.
+        label: { fr: "Cé·pages", en: "Cé·pages" },
         place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
         intro: {
           fr: "Un bar à vin liégeois photographié pendant le service, en lumière existante, sans rien déplacer.",
