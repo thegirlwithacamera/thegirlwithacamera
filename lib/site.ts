@@ -24,7 +24,7 @@ export const site = {
     instagram: "https://www.instagram.com/sandrinecppns/",
     threads: "https://www.threads.net/@sandrinecppns",
     tiktok: "https://www.tiktok.com/@sandrinecppns",
-    youtube: "https://www.youtube.com/@sandrineceuppens",
+    youtube: "https://www.youtube.com/@sandrinecppns",
     pinterest: "https://www.pinterest.com/sandrineceuppens/",
     instagramHandle: "@sandrinecppns",
     substack: "https://thegirlwithacamera.substack.com",
