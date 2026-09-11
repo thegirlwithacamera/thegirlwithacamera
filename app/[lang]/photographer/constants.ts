@@ -204,7 +204,10 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           "05-violet-suite": { fr: "Violet Suite", en: "Violet Suite" },
           "06-freud-suite": { fr: "Freud Suite", en: "Freud Suite" },
           "07-josef-hoffmann-suite": { fr: "Josef Hoffmann Suite", en: "Josef Hoffmann Suite" },
-          "08-camila-suite": { fr: "Camila Suite", en: "Camila Suite" },
+          // Camilla, deux L. Le slug garde une seule L : c'est le nom du
+          // dossier sur le disque et l'ancre #08-camila-suite est deja en
+          // ligne. C'est le libelle qui s'affiche, pas le slug.
+          "08-camila-suite": { fr: "Camilla Suite", en: "Camilla Suite" },
           "09-lilli-hollein-suite": { fr: "Lilli Hollein Suite", en: "Lilli Hollein Suite" },
           "10-otto-suite": { fr: "Otto Suite", en: "Otto Suite" },
         },
