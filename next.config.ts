@@ -29,6 +29,12 @@ const nextConfig: NextConfig = {
       { source: "/en/diary", destination: "https://thegirlwithacamera.substack.com/", permanent: true },
       { source: "/fr/diary/:slug", destination: "https://thegirlwithacamera.substack.com/", permanent: true },
       { source: "/en/diary/:slug", destination: "https://thegirlwithacamera.substack.com/", permanent: true },
+      // Videaste decoupe en cinq rubriques le 12/09 : "Maisons & tables" se
+      // separe en Hotels, Tables et Spa, et les trains sortent de Voyage.
+      // L'ancienne URL /filmmaker/places etait en ligne et dans les
+      // sitemaps, elle mene a la rubrique qui a repris ses films.
+      { source: "/fr/filmmaker/places", destination: "/fr/filmmaker/hotels", permanent: true },
+      { source: "/en/filmmaker/places", destination: "/en/filmmaker/hotels", permanent: true },
       // Portraits retire du site le 01/09. Les trois URLs restaient
       // indexees, elles renvoient vers la page Photographe.
       { source: "/fr/photographer/portraits", destination: "/fr/photographer", permanent: true },

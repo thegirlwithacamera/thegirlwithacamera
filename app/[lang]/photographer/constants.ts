@@ -222,7 +222,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           "10-otto-suite": { fr: "Otto Suite", en: "Otto Suite" },
         },
         // Film depose le 12/09, reencode en 1080p depuis le master 4K.
-        films: [{ src: "/videos/creator/CINEMATIC/PLACES/Altstadt Vienna.mp4" }],
+        films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Altstadt Vienna.mp4" }],
       },
       {
         slug: "hotel-rathaus-wien",
@@ -245,7 +245,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           en: "Photographed in early September 2026.",
         },
         // Film déposé le 09/09, réencodé en 1080p depuis le master 4K du bureau.
-        films: [{ src: "/videos/creator/CINEMATIC/PLACES/Hotel Rathaus.mp4" }],
+        films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Hotel Rathaus.mp4" }],
       },
       // mk hotel Munich retiré le 05/09, décision de Sandrine : le travail
       // n'est pas au niveau du reste du portfolio. Le cas est supprimé d'ici,
@@ -270,7 +270,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           en: "Photographed over two days, August 2026.",
         },
         // Film déposé le 08/09, réencodé en 1080p depuis le master 4K du bureau.
-        films: [{ src: "/videos/creator/CINEMATIC/PLACES/Naturel Dorf Schönleitn.mp4" }],
+        films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Naturel Dorf Schönleitn.mp4" }],
       },
       // Coloc Housing retiré le 01/09, décision de Sandrine. La collaboration
       // s'est terminée sur un retrait de licence de sa part. Les images et le
@@ -300,7 +300,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           en: "A Liège wine bar photographed during service, in the light that was there, with nothing moved.",
         },
         // Pas de shotAt : la date du tournage n'est pas retrouvée. À ajouter.
-        films: [{ src: "/videos/creator/CINEMATIC/PLACES/Cé-Pages.mp4" }],
+        films: [{ src: "/videos/creator/CINEMATIC/TABLES/Cé-Pages.mp4" }],
       },
       {
         // Rangé dans Restaurants & bars le 08/09 : seuls le restaurant et le
@@ -331,8 +331,8 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           en: "Photographed in July 2026.",
         },
         films: [
-          { src: "/videos/creator/CINEMATIC/PLACES/VanDerValk Sélys.mp4", label: { fr: "Le restaurant", en: "The restaurant" } },
-          { src: "/videos/creator/CINEMATIC/PLACES/Dao Liège.mp4", label: { fr: "Le spa", en: "The spa" } },
+          { src: "/videos/creator/CINEMATIC/TABLES/VanDerValk Sélys.mp4", label: { fr: "Le restaurant", en: "The restaurant" } },
+          { src: "/videos/creator/CINEMATIC/SPA/Dao Liège.mp4", label: { fr: "Le spa", en: "The spa" } },
         ],
       },
       // En attente : selys-liege, 6 images sur un disque non disponible.

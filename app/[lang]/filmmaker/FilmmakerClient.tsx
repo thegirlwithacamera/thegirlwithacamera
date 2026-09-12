@@ -47,12 +47,32 @@ const content: Record<"fr" | "en", Content> = {
     offer: "Voir les formules",
     photos: "Voir les photos",
     heads: {
-      places: { title: "Maisons & tables", sub: "" },
-      cities: {
-        title: "Voyage",
-        sub: "Mon œil sur la ville",
-        lede: "Un film de ville pour un office du tourisme, une compagnie de train, une région ou une maison qui veut montrer où elle se trouve autant que ce qu'elle est.",
+      hotels: {
+        title: "Hôtels & maisons",
+        sub: "",
+        lede: "Un film de maison, tourné pendant qu'elle vit : les chambres, les couloirs, les gestes du personnel.",
       },
+      tables: {
+        title: "Restaurants & bars",
+        sub: "",
+        lede: "Un film de table, pendant le service et en lumière existante : la salle, le bar, les mains qui travaillent.",
+      },
+      spa: {
+        title: "Spa & bien-être",
+        sub: "",
+        lede: "Un film de spa, là où l'on ne photographie pas les gens : la vapeur, l'eau, le silence.",
+      },
+      cities: {
+        title: "Villes",
+        sub: "Mon œil sur la ville",
+        lede: "Un film de ville pour un office du tourisme, une région ou une maison qui veut montrer où elle se trouve autant que ce qu'elle est.",
+      },
+      trains: {
+        title: "Trains",
+        sub: "Ce qui se passe entre deux villes",
+        lede: "Un film de trajet pour une compagnie ferroviaire ou un opérateur de voyage : le quai, la fenêtre, les heures qui passent, et la ville qui arrive.",
+      },
+      places: { title: "Maisons & tables", sub: "" },
       lifestyle: { title: "Quotidien", sub: "" },
       fashion: { title: "Mode", sub: "" },
       bts: { title: "Coulisses", sub: "" },
@@ -65,12 +85,32 @@ const content: Record<"fr" | "en", Content> = {
     offer: "See the packages",
     photos: "See the photographs",
     heads: {
-      places: { title: "Houses & tables", sub: "" },
-      cities: {
-        title: "Travel",
-        sub: "The city, the way I see it",
-        lede: "A city film for a tourism board, a rail company, a region, or a house that wants to show where it stands as much as what it is.",
+      hotels: {
+        title: "Hotels & houses",
+        sub: "",
+        lede: "A film of a house while it is alive: the rooms, the corridors, the gestures of the people who work there.",
       },
+      tables: {
+        title: "Restaurants & bars",
+        sub: "",
+        lede: "A film of a table during service, in the light that is there: the room, the bar, the hands at work.",
+      },
+      spa: {
+        title: "Spa & wellness",
+        sub: "",
+        lede: "A film of a spa, where people are not photographed: the steam, the water, the quiet.",
+      },
+      cities: {
+        title: "Cities",
+        sub: "The city, the way I see it",
+        lede: "A city film for a tourism board, a region, or a house that wants to show where it stands as much as what it is.",
+      },
+      trains: {
+        title: "Trains",
+        sub: "What happens between two cities",
+        lede: "A journey film for a rail company or a travel operator: the platform, the window, the hours going by, and the city arriving.",
+      },
+      places: { title: "Houses & tables", sub: "" },
       lifestyle: { title: "Lifestyle", sub: "" },
       fashion: { title: "Fashion", sub: "" },
       bts: { title: "Behind the scenes", sub: "" },
@@ -91,8 +131,11 @@ export default function FilmmakerClient({
 }) {
   const t = content[lang];
   const { sound, focused, closeFocus } = useVideoSound();
-  const cats = PUBLISHED_DIARY_CATS.filter((c) => diary[c].length >= 2);
+  // Une categorie publiee s'affiche des son premier film. Le seuil etait a
+  // deux : il cachait Trains, ouvert avec le seul film Interrail.
+  const cats = PUBLISHED_DIARY_CATS.filter((c) => diary[c].length >= 1);
   const shown = activeCat && cats.includes(activeCat) ? [activeCat] : cats;
+  const isAll = !activeCat || !cats.includes(activeCat);
 
   const tile = (clip: Clip, key: string) => {
     const found = findCaseByFilm(clip.src);
@@ -136,23 +179,56 @@ export default function FilmmakerClient({
     <main className={s.main}>
       <PageHead eyebrow={t.eyebrow} title={t.title} lede={t.desc} split>
         <Cta href={`/${lang}/services`}>{t.offer} →</Cta>
+        {/* Cinq rubriques empilees, dont trois d'un ou deux films, donnaient
+            cinq rangees trouees. La page d'ensemble montre donc tous les
+            films dans une grille pleine, et les pastilles menent a la
+            rubrique. Meme dispositif que les pieces d'un cas photo. */}
+        <nav className={s.chips} aria-label={lang === "fr" ? "Rubriques" : "Sections"}>
+          <Link
+            href={`/${lang}/filmmaker`}
+            className={`${s.chip}${isAll ? ` ${s.chipOn}` : ""}`}
+            aria-current={isAll ? "page" : undefined}
+          >
+            {lang === "fr" ? "Tout" : "All"}
+          </Link>
+          {cats.map((c) => (
+            <Link
+              key={c}
+              href={`/${lang}/filmmaker/${c}`}
+              className={`${s.chip}${activeCat === c ? ` ${s.chipOn}` : ""}`}
+              aria-current={activeCat === c ? "page" : undefined}
+            >
+              {t.heads[c].title}
+            </Link>
+          ))}
+        </nav>
       </PageHead>
 
-      {shown.map((cat, i) => (
-        <Section
-          key={cat}
-          title={t.heads[cat].title}
-          sub={t.heads[cat].sub || undefined}
-          lede={t.heads[cat].lede}
-          className={i === 0 ? s.first : undefined}
-        >
+      {isAll ? (
+        <Section className={s.first}>
           <div className={s.tier}>
             <div className={s.grid}>
-              {diary[cat].map((clip, j) => tile(clip, `${cat}-${j}`))}
+              {cats.flatMap((cat) => diary[cat].map((clip, j) => tile(clip, `${cat}-${j}`)))}
             </div>
           </div>
         </Section>
-      ))}
+      ) : (
+        shown.map((cat) => (
+          <Section
+            key={cat}
+            title={t.heads[cat].title}
+            sub={t.heads[cat].sub || undefined}
+            lede={t.heads[cat].lede}
+            className={s.first}
+          >
+            <div className={s.tier}>
+              <div className={s.grid}>
+                {diary[cat].map((clip, j) => tile(clip, `${cat}-${j}`))}
+              </div>
+            </div>
+          </Section>
+        ))
+      )}
 
       {focused && (
         <FocusOverlay clip={focused.clip} kind={focused.kind} onClose={closeFocus} />

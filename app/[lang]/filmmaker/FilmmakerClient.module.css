@@ -61,3 +61,20 @@
   .tier { padding: 0 12px; }
   .grid { grid-template-columns: 1fr; gap: 28px; }
 }
+
+/* Pastilles de rubrique, memes regles que celles d'un cas photo. */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.chip {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.chip:hover { border-color: var(--brick); color: var(--brick); }
+.chipOn { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.chipOn:hover { background: var(--brick); border-color: var(--brick); color: var(--paper); }
