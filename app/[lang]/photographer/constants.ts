@@ -322,9 +322,14 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
         // Le texte ne parle que de la table et du spa : c'est ce qui a été
         // couvert, la partie hôtel ne l'a pas été.
+        // Texte corrige le 12/09. Il annoncait "du sauna au mur de sel jusqu'a
+        // la salle du soir" alors que les six photos montrent la terrasse au
+        // dejeuner, et rien d'autre : pas de spa, pas de salle du soir. Le
+        // spa existe, mais en film seulement. La phrase dit maintenant ce que
+        // les images montrent et renvoie le spa au film, la ou il est.
         intro: {
-          fr: "La table et le spa d'un hôtel liégeois, du sauna au mur de sel jusqu'à la salle du soir.",
-          en: "The table and the spa of a Liège hotel, from the sauna and the salt wall through to the evening dining room.",
+          fr: "La table d'un hôtel liégeois, en terrasse et en pleine lumière. Le spa, au premier étage, est dans le film.",
+          en: "The table of a Liège hotel, on the terrace in full daylight. The spa, one floor up, is in the film.",
         },
         shotAt: {
           fr: "Photographié en juillet 2026.",
