@@ -177,10 +177,6 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           "02-red-salon",
           "09-lilli-hollein-suite",
           "06-freud-suite",
-          // Ajoutee le 12/09, en fin d'ordre : l'accueil ne montre que les
-          // six premieres tuiles, celle ci ne change donc rien a la grille
-          // dont l'ordre a ete pense plan par plan.
-          "11-matteo-thun",
         ],
         coverImage: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
         // Pas d'image d'ouverture, decision du 12/09 : l'Altstadt etait le
@@ -193,12 +189,14 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
         // pareille avec une chambre témoin, d'où les neuf chambres.
         //
         // 12/09 : le texte annonçait neuf chambres et la page n'en montrait
-        // que huit. La neuvième, Matteo Thun, n'avait jamais été publiée.
-        // Elle est ajoutée en 11 plutôt que renumérotée au milieu : les
-        // adresses des autres pièces sont déjà en ligne.
+        // que huit. La neuvième, Matteo Thun, a bien été photographiée mais
+        // Sandrine ne veut pas la publier, les images ne lui plaisent pas.
+        // C'est donc le texte qui descend à huit : une page ne doit pas
+        // annoncer plus que ce qu'elle montre. Le dossier reste sur le
+        // disque, renommé _matteo-thun, donc ignoré à la lecture.
         intro: {
-          fr: "Soixante-deux chambres, et pas deux qui se ressemblent. J'en ai photographié neuf, avec le salon, l'escalier et les couloirs qui les relient.",
-          en: "Sixty-two rooms, and no two the same. I photographed nine of them, along with the salon, the staircase and the corridors that link them.",
+          fr: "Soixante-deux chambres, et pas deux qui se ressemblent. J'en ai photographié huit, avec le salon, l'escalier et les couloirs qui les relient.",
+          en: "Sixty-two rooms, and no two the same. I photographed eight of them, along with the salon, the staircase and the corridors that link them.",
         },
         shotAt: {
           fr: "Photographié en septembre 2026.",
@@ -229,10 +227,6 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           "08-camila-suite": { fr: "Camilla Suite", en: "Camilla Suite" },
           "09-lilli-hollein-suite": { fr: "Lilli Hollein Suite", en: "Lilli Hollein Suite" },
           "10-otto-suite": { fr: "Otto Suite", en: "Otto Suite" },
-          // Les chambres Matteo Thun sont les doubles de la maison, dessinees
-          // par lui. Trois images publiees sur les cinq du dossier, les deux
-          // autres etaient deux cadrages de la meme salle de bain.
-          "11-matteo-thun": { fr: "Matteo Thun", en: "Matteo Thun" },
         },
         // Film depose le 12/09, reencode en 1080p depuis le master 4K.
         films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Altstadt Vienna.mp4" }],
