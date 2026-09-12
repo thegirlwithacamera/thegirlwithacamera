@@ -92,6 +92,13 @@ export type PhotoCase = {
   // l'ouverture sur un cas sans chapitres, false la retire.
   openingImage?: boolean;
   openingPosition?: string;
+  // Image d'ouverture dediee, hors grille, dans public/images/openings.
+  // Posee le 12/09 : recadrer une verticale forte en 3:2 la mutile, et
+  // l'image d'ouverture est la premiere chose que voit un directeur
+  // d'hotel. Quand ce champ est rempli, la photo n'est pas prise dans la
+  // grille et aucune image n'est retiree des chapitres ; openingPosition
+  // devient inutile puisque rien n'est recadre.
+  openingSrc?: string;
 };
 
 export type PhotoCategory = {
@@ -172,7 +179,10 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           "06-freud-suite",
         ],
         coverImage: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
-        openingPosition: "50% 45%",
+        // Le mur raye et sa grande toile, photographie en paysage. Remplace
+        // le 12/09 le recadrage 3:2 de la cage d'escalier, qui coupait une
+        // verticale forte pour rien.
+        openingSrc: "/images/openings/altstadt-vienna.jpg",
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
         // Soixante-deux chambres, chiffre donné par Sandrine le 02/09. C'est
         // le fait qui porte la page : on ne photographie pas une maison

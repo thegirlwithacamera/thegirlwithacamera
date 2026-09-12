@@ -106,18 +106,23 @@ export default async function PhotographerCasePage({ params }: Props) {
     label: item.films!.length > 1 ? f.label?.[lang] : undefined,
   }));
 
-  // Image d'ouverture : la première du cas, ou du premier chapitre.
-  const opening = item.openingImage === true || (item.openingImage !== false && chapters.length > 0) ? photos[0] : null;
+  // Image d'ouverture : une photo dédiée si le cas en déclare une, sinon la
+  // première du cas ou du premier chapitre. Une image dédiée ne consomme
+  // aucune photo de la grille, donc rien ne disparaît des chapitres.
+  const openingOwn = item.openingSrc ? { src: item.openingSrc } : null;
+  const opening = openingOwn
+    ?? (item.openingImage === true || (item.openingImage !== false && chapters.length > 0) ? photos[0] : null);
+  const openingTakesFirst = !openingOwn && !!opening;
   const openingAlt = item.intro
     ? `${item.label.en}, ${item.intro.en}`
     : `${item.label.en} — ${cat.label.en} photographed by Sandrine Ceuppens`;
 
-  const rest = opening ? photos.slice(1) : photos;
+  const rest = openingTakesFirst ? photos.slice(1) : photos;
   // Cas sans chapitres : les cellules prennent le format de la première
   // image de la grille. Le portrait 4:5 reste la règle, mais un cas livré en
   // paysage (Sélys, 3:2) s'affiche en paysage, sans recadrage imposé.
   const flatRatio = chapters.length === 0 && rest[0] ? readPhotoRatio(rest[0].src) : 1066 / 1600;
-  const firstChapterRest = opening && chapters.length > 0 ? chapters[0].photos.slice(1) : null;
+  const firstChapterRest = openingTakesFirst && chapters.length > 0 ? chapters[0].photos.slice(1) : null;
 
   // Cas précédent et suivant, dans l'ordre de constants.ts, tous cas confondus.
   const live = allCases().filter((c) => countCasePhotos(c.cat.slug, c.item.slug) > 0);
@@ -168,8 +173,8 @@ export default async function PhotographerCasePage({ params }: Props) {
               <Image
                 src={opening.src}
                 alt={openingAlt}
-                width={1066}
-                height={1600}
+                width={openingOwn ? 1800 : 1066}
+                height={openingOwn ? 1200 : 1600}
                 sizes="(max-width: 767px) 100vw, 1200px"
                 priority
                 quality={80}
