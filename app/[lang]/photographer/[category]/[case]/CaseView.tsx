@@ -149,9 +149,13 @@ export default function CaseView({
             className={`${s.chapter} ${s.first}`}
             style={{ "--cell": String(shown.ratio) } as React.CSSProperties}
           >
-            <div className={s.chapterHead}>
-              <h2 className={s.chapterTitle}><b>{no(activeIndex + 1)}</b>{shown.title}</h2>
-            </div>
+            {/* Sur la page d'entree, le titre du cas nomme deja la piece juste
+                au dessus : le repeter ferait deux fois le meme nom. */}
+            {!isRoot && (
+              <div className={s.chapterHead}>
+                <h2 className={s.chapterTitle}><b>{no(activeIndex + 1)}</b>{shown.title}</h2>
+              </div>
+            )}
             <ProjectGrid tight keep3>
               {shown.photos.map((p, i) =>
                 cell(
