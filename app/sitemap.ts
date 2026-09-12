@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { site } from "@/lib/site";
 import { PHOTO_CATEGORIES, PHOTO_CATEGORY_SLUGS } from "@/app/[lang]/photographer/constants";
-import { countCasePhotos } from "@/lib/portfolio";
+import { countCasePhotos, readCaseChapters } from "@/lib/portfolio";
 
 // Date de dernière modification d'un cas : celle de son dossier d'images.
 // Une date honnête vaut mieux qu'un "aujourd'hui" sur toutes les pages, que
@@ -48,6 +48,16 @@ function buildPaths(): Entry[] {
         changeFrequency: "yearly",
         lastModified: caseModified(cat.slug, c.slug),
       });
+      // Pieces d'un cas a chapitres : depuis le 12/09 chacune a sa page.
+      // La premiere est la page du cas elle meme, deja poussee ci dessus.
+      for (const ch of readCaseChapters(cat.slug, c.slug).slice(1)) {
+        out.push({
+          path: `/photographer/${cat.slug}/${c.slug}/${ch.slug}`,
+          priority: 0.6,
+          changeFrequency: "yearly",
+          lastModified: caseModified(cat.slug, c.slug),
+        });
+      }
     }
   }
 

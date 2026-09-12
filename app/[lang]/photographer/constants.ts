@@ -179,10 +179,10 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           "06-freud-suite",
         ],
         coverImage: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
-        // Le mur raye et sa grande toile, photographie en paysage. Remplace
-        // le 12/09 le recadrage 3:2 de la cage d'escalier, qui coupait une
-        // verticale forte pour rien.
-        openingSrc: "/images/openings/altstadt-vienna.jpg",
+        // Pas d'image d'ouverture, decision du 12/09 : l'Altstadt etait le
+        // seul cas a en avoir une, et depuis que chaque piece a sa page elle
+        // ne servait plus a rien. La page entre directement sur La maison.
+        openingImage: false,
         place: { fr: "Vienne, Autriche", en: "Vienna, Austria" },
         // Soixante-deux chambres, chiffre donné par Sandrine le 02/09. C'est
         // le fait qui porte la page : on ne photographie pas une maison

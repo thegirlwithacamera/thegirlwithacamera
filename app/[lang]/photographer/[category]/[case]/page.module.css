@@ -24,6 +24,9 @@
    se distingue par la brique, comme les autres appels du site. */
 .chipFilm { color: var(--brick); border-color: color-mix(in srgb, var(--brick) 35%, var(--line)); }
 .chipFilm::after { content: " →"; }
+/* La piece affichee : pleine, pour qu'on sache ou l'on est dans la maison. */
+.chipOn { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.chipOn:hover { background: var(--brick); border-color: var(--brick); color: var(--paper); }
 
 /* Image d'ouverture : la première photo du cas, recadrée en paysage 3:2 sur
    toute la largeur. Seuls les cas à chapitres l'ont. */
