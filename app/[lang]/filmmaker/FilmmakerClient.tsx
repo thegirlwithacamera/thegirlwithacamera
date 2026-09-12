@@ -67,8 +67,8 @@ const content: Record<"fr" | "en", Content> = {
         sub: "Mon œil sur la ville",
         lede: "Un film de ville pour un office du tourisme, une région ou une maison qui veut montrer où elle se trouve autant que ce qu'elle est.",
       },
-      trains: {
-        title: "Trains",
+      journeys: {
+        title: "Trajets",
         sub: "Ce qui se passe entre deux villes",
         lede: "Un film de trajet pour une compagnie ferroviaire ou un opérateur de voyage : le quai, la fenêtre, les heures qui passent, et la ville qui arrive.",
       },
@@ -105,8 +105,8 @@ const content: Record<"fr" | "en", Content> = {
         sub: "The city, the way I see it",
         lede: "A city film for a tourism board, a region, or a house that wants to show where it stands as much as what it is.",
       },
-      trains: {
-        title: "Trains",
+      journeys: {
+        title: "Journeys",
         sub: "What happens between two cities",
         lede: "A journey film for a rail company or a travel operator: the platform, the window, the hours going by, and the city arriving.",
       },

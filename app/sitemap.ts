@@ -64,7 +64,7 @@ function buildPaths(): Entry[] {
   for (const s of ["gear", "lifestyle", "unboxing", "talk"]) {
     out.push({ path: `/creator/${s}`, priority: 0.6, changeFrequency: "monthly", lastModified: now });
   }
-  for (const s of ["hotels", "tables", "spa", "cities", "trains"]) {
+  for (const s of ["hotels", "tables", "spa", "cities", "journeys"]) {
     out.push({ path: `/filmmaker/${s}`, priority: 0.6, changeFrequency: "monthly", lastModified: now });
   }
 

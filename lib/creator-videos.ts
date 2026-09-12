@@ -55,7 +55,9 @@ function matchCat(name: string): DiaryCat | null {
   if (n.includes("fashion")) return "fashion";
   if (n.includes("life")) return "lifestyle"; // couvre "lifestyle" aussi
   // Avant les villes : un dossier TRAINS ne doit pas tomber dans "cities".
-  if (n.includes("train") || n.includes("rail")) return "trains";
+  // Trajets. Le dossier s'appelle JOURNEYS ; train et rail restent reconnus
+  // pour qu'un ancien dossier ne se perde pas.
+  if (n.includes("journey") || n.includes("trajet") || n.includes("train") || n.includes("rail")) return "journeys";
   if (n.includes("spa") || n.includes("wellness")) return "spa";
   if (n.includes("hotel") || n.includes("maison") || n.includes("house")) return "hotels";
   if (n.includes("table") || n.includes("restaurant") || n.includes("bar")) return "tables";
@@ -117,7 +119,7 @@ export function readCreatorData() {
 // Compatibilite : des videos posees en vrac a la racine sont classees
 // d'apres le mot-cle dans leur nom de fichier.
 export function readDiary(): Diary {
-  const groups: Diary = { hotels: [], tables: [], spa: [], cities: [], trains: [], places: [], lifestyle: [], fashion: [], bts: [] };
+  const groups: Diary = { hotels: [], tables: [], spa: [], cities: [], journeys: [], places: [], lifestyle: [], fashion: [], bts: [] };
 
   const root = ["FILMMAKER", "CINEMATIC"]
     .map((d) => path.join(CREATOR_DIR, d))

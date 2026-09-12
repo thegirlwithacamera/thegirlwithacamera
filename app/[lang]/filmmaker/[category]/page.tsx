@@ -19,7 +19,7 @@ const CAT_TITLES: Record<DiaryCat, { fr: string; en: string }> = {
   tables: { fr: "Restaurants & bars", en: "Restaurants & bars" },
   spa: { fr: "Spa & bien-être", en: "Spa & wellness" },
   cities: { fr: "Villes", en: "Cities" },
-  trains: { fr: "Trains", en: "Trains" },
+  journeys: { fr: "Trajets", en: "Journeys" },
   places: { fr: "Maisons & tables", en: "Hotels & venues" },
   lifestyle: { fr: "Quotidien", en: "Lifestyle" },
   fashion: { fr: "Mode", en: "Fashion" },

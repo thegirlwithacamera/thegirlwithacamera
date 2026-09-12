@@ -6,7 +6,7 @@ import type { Clip } from "../creator/constants";
 // Vocabulaire de lecture des dossiers : toutes les catégories que le lecteur
 // sait reconnaître. Ne pas y toucher sans adapter matchCat dans
 // lib/creator-videos.ts.
-export const DIARY_CATS = ["hotels", "tables", "spa", "cities", "trains", "places", "lifestyle", "fashion", "bts"] as const;
+export const DIARY_CATS = ["hotels", "tables", "spa", "cities", "journeys", "places", "lifestyle", "fashion", "bts"] as const;
 export type DiaryCat = (typeof DIARY_CATS)[number];
 
 // Ce qui est réellement publié, et l'ordre des onglets. Chacune a son URL
@@ -18,12 +18,14 @@ export type DiaryCat = (typeof DIARY_CATS)[number];
 // Decoupage du 12/09. La page tenait sur deux rubriques, "Maisons & tables"
 // et "Voyage", qui melangeaient des metiers differents : un hotel, une table
 // et un spa ne se commandent pas au meme interlocuteur, et un trajet en
-// train n'est pas un film de ville. L'ordre suit celui des categories photo,
+// train n'est pas un film de ville. La rubrique s'appelle Trajets, pas
+// Trains : elle oppose le trajet a la destination et ne se limite pas au
+// rail. L'ordre suit celui des categories photo,
 // pour qu'on retrouve les memes mots d'une page a l'autre.
 //
 // "places" reste dans le vocabulaire de lecture pour les anciens dossiers,
 // mais n'est plus publie.
-export const PUBLISHED_DIARY_CATS: readonly DiaryCat[] = ["hotels", "tables", "spa", "cities", "trains"];
+export const PUBLISHED_DIARY_CATS: readonly DiaryCat[] = ["hotels", "tables", "spa", "cities", "journeys"];
 
 export type Diary = Record<DiaryCat, Clip[]>;
 
