@@ -20,6 +20,10 @@
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 .chip:hover { border-color: var(--brick); color: var(--brick); }
+/* La pastille du film ne mene pas a un chapitre mais au bas de page : elle
+   se distingue par la brique, comme les autres appels du site. */
+.chipFilm { color: var(--brick); border-color: color-mix(in srgb, var(--brick) 35%, var(--line)); }
+.chipFilm::after { content: " →"; }
 
 /* Image d'ouverture : la première photo du cas, recadrée en paysage 3:2 sur
    toute la largeur. Seuls les cas à chapitres l'ont. */

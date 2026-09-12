@@ -158,11 +158,19 @@ export default async function PhotographerCasePage({ params }: Props) {
           ) : undefined}
           split
         >
-          {chapters.length > 1 && (
+          {(chapters.length > 1 || films.length > 0) && (
             <nav className={s.chips} aria-label={lang === "fr" ? "Chapitres" : "Chapters"}>
-              {chapters.map((ch) => (
+              {chapters.length > 1 && chapters.map((ch) => (
                 <a key={ch.slug} href={`#${ch.slug}`} className={s.chip}>{ch.title}</a>
               ))}
+              {/* Le film vit tout en bas, apres toutes les photos. Sans cette
+                  pastille, un visiteur venu pour lui doit traverser quatre
+                  vingts images pour le trouver. */}
+              {films.length > 0 && (
+                <a href="#film" className={`${s.chip} ${s.chipFilm}`}>
+                  {lang === "fr" ? (films.length > 1 ? "Les films" : "Le film") : films.length > 1 ? "The films" : "The film"}
+                </a>
+              )}
             </nav>
           )}
         </PageHead>
@@ -238,7 +246,9 @@ export default async function PhotographerCasePage({ params }: Props) {
           </ProjectGrid>
         )}
 
-        <CaseFilms films={films} lang={lang} />
+        <div id="film" style={{ scrollMarginTop: "24px" }}>
+          <CaseFilms films={films} lang={lang} />
+        </div>
 
         <CaseClient lang={lang} category={cat.slug} caseSlug={item.slug} />
 
