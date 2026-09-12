@@ -62,6 +62,8 @@ export const FILM_DATES: Record<string, string> = {
   // en septembre 2026 et vivent dans deux categories differentes, donc a
   // l'ecran ils ne se croisent pas ; l'ordre ci dessous dit quand meme la
   // verite, au cas ou une page les montrerait ensemble un jour.
+  interrail: "2026-09",
+  "altstadt vienna": "2026-09",
   "hotel rathaus": "2026-09",
   graz: "2026-09",
   "naturel dorf schonleitn": "2026-08",

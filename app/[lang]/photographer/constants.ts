@@ -211,6 +211,8 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           "09-lilli-hollein-suite": { fr: "Lilli Hollein Suite", en: "Lilli Hollein Suite" },
           "10-otto-suite": { fr: "Otto Suite", en: "Otto Suite" },
         },
+        // Film depose le 12/09, reencode en 1080p depuis le master 4K.
+        films: [{ src: "/videos/creator/CINEMATIC/PLACES/Altstadt Vienna.mp4" }],
       },
       {
         slug: "hotel-rathaus-wien",
