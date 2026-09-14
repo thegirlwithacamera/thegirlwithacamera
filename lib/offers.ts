@@ -19,6 +19,12 @@
 // Delai de livraison ecrit le 14/09 : deux semaines, chiffre donne par
 // Sandrine. La livraison express reste en option, c'est la que se vend la
 // vitesse. Un delai publie est une promesse, celui ci est le sien.
+//
+// Retours et formats ecrits le 14/09. Un seul tour de retours : deux tours
+// annonces, un client en prend trois. La phrase sur la nouvelle selection
+// compte autant que le reste, c'est elle qui evite de faire retoucher des
+// images qui n'etaient pas dans la selection. Les formats repondent a la
+// question qu'un hotelier pose toujours, est ce que je pourrai l'imprimer.
 // ───────────────────────────────────────────────────────────
 
 import { site } from "@/lib/site";
@@ -68,9 +74,12 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Two visits a year, one per season, to cover twelve months of publishing",
           "Aerial views by drone, as an option, where the site and flight clearance allow it",
           "Delivered within two weeks, rush delivery as an option",
+          "One round of feedback included; a new selection of stills is new work",
         ],
         addonsLabel: "What you get on the images",
         addons: [
+          "Stills as full-resolution JPEG, plus a resized version ready to publish",
+          "Verticals at 1080x1920, film in 4K and 1080p",
           "Organic use with no time limit, for the address photographed",
           "Website and booking pages, social, newsletter, OTA listings",
           "Credited press distribution, editorial use",
@@ -91,7 +100,8 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Long-form film from 60s to 3min, and short cutdowns for Reels and Stories",
           "Aerial views by drone where the site and flight clearance allow it",
           "Narrative editing, grading, sound design",
-          "Delivered within two weeks",
+          "Delivered within two weeks, in 4K and 1080p",
+          "One round of feedback included on the edit",
           "Worldwide usage rights on your organic channels, 12 months",
         ],
         addonsLabel: "Options",
@@ -143,9 +153,12 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Deux passages par an, un par saison, pour couvrir douze mois de publication",
           "Vues aériennes par drone, en option, quand le lieu et l'autorisation de vol le permettent",
           "Livraison sous deux semaines, livraison express en option",
+          "Un tour de retours inclus ; une nouvelle sélection de photos est un nouveau travail",
         ],
         addonsLabel: "Ce que vous obtenez sur les images",
         addons: [
+          "Photos en JPEG pleine définition, plus une version redimensionnée prête à publier",
+          "Verticaux en 1080x1920, film en 4K et en 1080p",
           "Usage organique sans limite de durée, pour l'adresse photographiée",
           "Site et pages de réservation, réseaux, newsletter, fiches OTA",
           "Distribution presse créditée, à usage éditorial",
@@ -166,7 +179,8 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Film long format de 60 s à 3 min, et déclinaisons courtes pour Reels et Stories",
           "Vues aériennes par drone quand le lieu et l'autorisation de vol le permettent",
           "Montage narratif, étalonnage, sound design",
-          "Livraison sous deux semaines",
+          "Livraison sous deux semaines, en 4K et en 1080p",
+          "Un tour de retours inclus sur le montage",
           "Droits d'usage monde sur vos canaux organiques, 12 mois",
         ],
         addonsLabel: "Options",
