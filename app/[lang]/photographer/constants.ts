@@ -551,6 +551,14 @@ export function findCaseByFilm(src: string) {
 // app/[lang]/page.tsx qui vérifie, avec readCaseCover.
 // ─────────────────────────────────────────────────────────────
 
+// Les mots de clients publies, avec le chemin du travail dont ils parlent.
+// Source unique : le temoignage vit dans le cas, la page About le reprend.
+export function allTestimonials() {
+  return allCases()
+    .filter((c) => c.item.testimonial)
+    .map((c) => ({ t: c.item.testimonial!, href: c.href, label: c.item.label }));
+}
+
 export function allCases() {
   return PHOTO_CATEGORIES.flatMap((cat) =>
     cat.cases.map((item) => ({

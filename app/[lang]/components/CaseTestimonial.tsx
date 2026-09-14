@@ -10,9 +10,18 @@ import type { Testimonial } from "../photographer/constants";
 export default function CaseTestimonial({
   lang,
   t,
+  work,
+  flush,
 }: {
   lang: "fr" | "en";
   t: Testimonial;
+  // Lien vers le travail dont parle le client. Inutile sur la page du cas,
+  // ou l'on vient de le voir ; indispensable sur About, ou le mot arrive
+  // sans les images.
+  work?: { href: string; label: string };
+  // Pose dans un bloc qui porte deja la largeur et les marges laterales
+  // (la bande clients d'About) : le cadre ne doit pas etre applique deux fois.
+  flush?: boolean;
 }) {
   return (
     <>
@@ -22,6 +31,7 @@ export default function CaseTestimonial({
           margin: clamp(56px, 7vw, 88px) auto 0;
           padding: 0 var(--pad);
         }
+        .case-quote--flush { max-width: none; padding: 0; margin: clamp(32px, 4vw, 48px) 0 0; }
         .case-quote-inner {
           max-width: 46em;
           border-top: 1px solid var(--line);
@@ -52,14 +62,18 @@ export default function CaseTestimonial({
         .case-quote figcaption a + a { margin-left: 18px; }
         @media (max-width: 767px) {
           .case-quote { padding: 0 12px; }
+          .case-quote--flush { padding: 0; }
         }
       `}</style>
-      <figure className="case-quote">
+      <figure className={`case-quote${flush ? " case-quote--flush" : ""}`}>
         <div className="case-quote-inner">
           <blockquote>{`“${t.quote[lang]}”`}</blockquote>
           <figcaption>
             <span>{t.author}, {t.role[lang]}</span>
             <span>{t.company}</span>
+            {work && (
+              <span><a href={work.href}>{work.label}</a></span>
+            )}
             {t.links && t.links.length > 0 && (
               <span>
                 {t.links.map((l) => (

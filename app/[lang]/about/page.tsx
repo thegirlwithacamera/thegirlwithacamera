@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Display, Eyebrow, Lede, Section } from "../components/editorial";
 import s from "./page.module.css";
 import TrustLogos from "../components/TrustLogos";
+import CaseTestimonial from "../components/CaseTestimonial";
+import { allTestimonials } from "../photographer/constants";
 import HashScroll from "../components/HashScroll";
 import { pageMeta } from "@/lib/seo";
 
@@ -185,6 +187,17 @@ export default async function AboutPage({ params }: Props) {
         <div className={s.clients}>
           <Eyebrow tone="brick" className={s.eyebrow}>{t.clients}</Eyebrow>
           <TrustLogos lang={lang} hideLabel />
+          {/* Le mot des clients, sous leurs logos. Un logo dit qu'on a
+              travaille ensemble, la phrase dit comment ca s'est passe. */}
+          {allTestimonials().map((x) => (
+            <CaseTestimonial
+              key={x.href}
+              lang={lang}
+              t={x.t}
+              work={{ href: `/${lang}${x.href}`, label: x.label[lang] }}
+              flush
+            />
+          ))}
         </div>
       </Section>
 
