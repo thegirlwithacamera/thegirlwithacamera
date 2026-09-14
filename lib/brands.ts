@@ -64,16 +64,22 @@ export const BRANDS: Brand[] = [
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
   { name: "HOTEL RATHAUS WEIN & DESIGN", logo: "/images/brands/hotel-rathaus-wien-dark.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
-  { name: "ALTSTADT VIENNA, AN SLH HOTEL", logo: "/images/brands/altstadt-mono.png", cat: "stays", href: "/photographer/hospitality/altstadt-vienna", hrefLabel: { fr: "Photos", en: "Photographs" } },
+  { name: "ALTSTADT VIENNA, AN SLH HOTEL", logo: "/images/brands/altstadt-mono.png", cat: "stays", href: "/photographer/hospitality/altstadt-vienna", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "AT THE GOLDEN PEAR", logo: "/images/brands/golden-pear.png", tall: true, cat: "stays", pending: true },
-  { name: "PRAGUESTREAM", logo: "/images/brands/prague-stream.png", cat: "stays", pending: true },
+  // PRAGUESTREAM retire le 14/09 : la nuit sur le houseboat des 6 et 7
+  // septembre a ete annulee, aucun livrable n'a ete tourne. La ligne
+  // attendait un contenu qui ne viendra pas. Le fichier prague-stream.png
+  // reste dans public/images/brands, remettre la ligne suffit.
 
   { name: "CÉ·PAGES", logo: "/images/brands/ce-pages-mono.png", cat: "stays", href: "/photographer/restaurants/ce-pages", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
 
   // City & travel : ceux qui font venir les gens, transporteurs et offices de
   // tourisme. C'est l'autre moitie du marche hotelier, et pour une maison
   // c'est la preuve qu'une destination entiere a confie son image.
-  { name: "INTERRAIL", logo: "/images/brands/interrail.svg", cat: "travel" },
+  // Le film Interrail est en ligne depuis le 12/09. Il n'a pas de cas photo
+  // derriere, le logo mene donc a la rubrique Trajets de la page Videaste,
+  // ou il est seul pour l'instant.
+  { name: "INTERRAIL", logo: "/images/brands/interrail.svg", cat: "travel", href: "/filmmaker/journeys", hrefLabel: { fr: "Film", en: "Film" } },
   { name: "EUROPEAN SLEEPER", logo: "/images/brands/european-sleeper-mono.png", cat: "travel" },
   // Logo en pastille, avec sa carte blanche et son ombre : il a besoin de la
   // hauteur des badges pour rester lisible entre deux wordmarks larges.
@@ -99,19 +105,26 @@ export const BRANDS: Brand[] = [
   // est un diary de categorie lifestyle, non publiee (PUBLISHED_DIARY_CATS
   // dans app/[lang]/filmmaker/constants.ts). Le jour ou leur contenu sort, il
   // suffit d'ajouter la ligne.
-  { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg", cat: "brand", href: "/creator/gear#ricoh", hrefLabel: { fr: "Vidéos", en: "Videos" } },
-  { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png", cat: "brand", href: "/creator/gear#pentax", hrefLabel: { fr: "Vidéos", en: "Videos" } },
-  { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg", cat: "brand", href: "/creator/gear#insta360", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg", cat: "brand", href: "/creator/gear", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png", cat: "brand", href: "/creator/gear", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg", cat: "brand", href: "/creator/gear", hrefLabel: { fr: "Vidéos", en: "Videos" } },
   { name: "GODOX", logo: "/images/brands/godox.png", cat: "brand" },
   // Le SVG fourni etait en gris tres clair, pense pour un fond sombre :
   // invisible sur blanc. Recolore en noir, aucune autre retouche.
   { name: "TILTA", logo: "/images/brands/tilta.svg", cat: "brand" },
   { name: "EDIFIER", logo: "/images/brands/edifier.png", cat: "brand" },
-  { name: "TELESIN", logo: "/images/brands/telesin.png", cat: "brand", href: "/creator/unboxing#telesin", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "TELESIN", logo: "/images/brands/telesin.png", cat: "brand", href: "/creator/unboxing", hrefLabel: { fr: "Vidéos", en: "Videos" } },
   // Logo empile, pictogramme au dessus du nom : a la hauteur des wordmarks il
   // devient illisible, il prend donc celle des badges.
   { name: "STUBBLE & CO", logo: "/images/brands/stubble-and-co.png", tall: true, cat: "brand" },
 ];
+
+// Les liens des marques menaient a une ancre, #ricoh, #pentax, #insta360,
+// #telesin. Ces ancres n'ont jamais existe : les videos vivent dans un
+// carrousel, qui defile horizontalement sur ordinateur et devient une pile
+// tactile sur telephone. Une ancre dans un carrousel ne tient pas. Les
+// fragments sont retires le 14/09, le logo mene a la page de la rubrique,
+// ou les videos de la marque se trouvent.
 
 // Ordre d'affichage : les adresses d'abord.
 export const BRAND_CATS: readonly BrandCat[] = ["stays", "travel", "brand"];
