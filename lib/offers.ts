@@ -15,6 +15,10 @@
 // 14/09, il etait absent des trois cartes alors qu'il est tourne sur place.
 // La mention reste conditionnelle, une autorisation de vol ne se promet pas
 // avant d'avoir vu le lieu.
+//
+// Delai de livraison ecrit le 14/09 : deux semaines, chiffre donne par
+// Sandrine. La livraison express reste en option, c'est la que se vend la
+// vitesse. Un delai publie est une promesse, celui ci est le sien.
 // ───────────────────────────────────────────────────────────
 
 import { site } from "@/lib/site";
@@ -63,6 +67,7 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Series of 3 addresses, treated as one body of work, with a connecting film",
           "Two visits a year, one per season, to cover twelve months of publishing",
           "Aerial views by drone, as an option, where the site and flight clearance allow it",
+          "Delivered within two weeks, rush delivery as an option",
         ],
         addonsLabel: "What you get on the images",
         addons: [
@@ -86,6 +91,7 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Long-form film from 60s to 3min, and short cutdowns for Reels and Stories",
           "Aerial views by drone where the site and flight clearance allow it",
           "Narrative editing, grading, sound design",
+          "Delivered within two weeks",
           "Worldwide usage rights on your organic channels, 12 months",
         ],
         addonsLabel: "Options",
@@ -136,6 +142,7 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Série de 3 adresses, traitées comme un seul ensemble, avec un film de liaison",
           "Deux passages par an, un par saison, pour couvrir douze mois de publication",
           "Vues aériennes par drone, en option, quand le lieu et l'autorisation de vol le permettent",
+          "Livraison sous deux semaines, livraison express en option",
         ],
         addonsLabel: "Ce que vous obtenez sur les images",
         addons: [
@@ -159,6 +166,7 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Film long format de 60 s à 3 min, et déclinaisons courtes pour Reels et Stories",
           "Vues aériennes par drone quand le lieu et l'autorisation de vol le permettent",
           "Montage narratif, étalonnage, sound design",
+          "Livraison sous deux semaines",
           "Droits d'usage monde sur vos canaux organiques, 12 mois",
         ],
         addonsLabel: "Options",
