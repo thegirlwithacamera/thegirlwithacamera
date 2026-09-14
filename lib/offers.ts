@@ -16,6 +16,11 @@
 // La mention reste conditionnelle, une autorisation de vol ne se promet pas
 // avant d'avoir vu le lieu.
 //
+// Le drone est une OPTION PAYANTE, jamais inclus. Il figurait d'abord dans
+// "ce qui est inclus" du Film de marque : corrige le 14/09, il est passe en
+// option sur les deux cartes, avec la mention sur devis comme le reste de ce
+// qui se chiffre a part.
+//
 // Delai de livraison ecrit le 14/09 : deux semaines, chiffre donne par
 // Sandrine. La livraison express reste en option, c'est la que se vend la
 // vitesse. Un delai publie est une promesse, celui ci est le sien.
@@ -72,7 +77,7 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Complete: 2 days and 2 nights, 50 edited stills, 6 verticals, a 2 to 3min film",
           "Series of 3 addresses, treated as one body of work, with a connecting film",
           "Two visits a year, one per season, to cover twelve months of publishing",
-          "Aerial views by drone, as an option, where the site and flight clearance allow it",
+          "Aerial views by drone: paid option, quoted separately, where the site and flight clearance allow it",
           "Delivered within two weeks, rush delivery as an option",
           "One round of feedback included; a new selection of stills is new work",
         ],
@@ -98,7 +103,6 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Concept and creative direction",
           "Cinematic editorial look, in natural light",
           "Long-form film from 60s to 3min, and short cutdowns for Reels and Stories",
-          "Aerial views by drone where the site and flight clearance allow it",
           "Narrative editing, grading, sound design",
           "Delivered within two weeks, in 4K and 1080p",
           "One round of feedback included on the edit",
@@ -106,6 +110,7 @@ export const WORK: Record<"fr" | "en", Work> = {
         ],
         addonsLabel: "Options",
         addons: [
+          "Aerial views by drone, quoted separately, where the site and flight clearance allow it",
           "Rush delivery",
           "Yearly package, several films across the year",
         ],
@@ -151,7 +156,7 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Complet : 2 journées et 2 nuits, 50 photos éditées, 6 verticaux, un film de 2 à 3 min",
           "Série de 3 adresses, traitées comme un seul ensemble, avec un film de liaison",
           "Deux passages par an, un par saison, pour couvrir douze mois de publication",
-          "Vues aériennes par drone, en option, quand le lieu et l'autorisation de vol le permettent",
+          "Vues aériennes par drone : option payante, sur devis, quand le lieu et l'autorisation de vol le permettent",
           "Livraison sous deux semaines, livraison express en option",
           "Un tour de retours inclus ; une nouvelle sélection de photos est un nouveau travail",
         ],
@@ -177,7 +182,6 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Concept et direction créative",
           "Rendu cinématique et éditorial, en lumière naturelle",
           "Film long format de 60 s à 3 min, et déclinaisons courtes pour Reels et Stories",
-          "Vues aériennes par drone quand le lieu et l'autorisation de vol le permettent",
           "Montage narratif, étalonnage, sound design",
           "Livraison sous deux semaines, en 4K et en 1080p",
           "Un tour de retours inclus sur le montage",
@@ -185,6 +189,7 @@ export const WORK: Record<"fr" | "en", Work> = {
         ],
         addonsLabel: "Options",
         addons: [
+          "Vues aériennes par drone, sur devis, quand le lieu et l'autorisation de vol le permettent",
           "Livraison express",
           "Forfait annuel, plusieurs films dans l'année",
         ],
