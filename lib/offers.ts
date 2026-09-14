@@ -9,6 +9,12 @@
 //
 // Aucun prix, jamais. La grille tarifaire est prete mais ne se donne pas au
 // premier contact, et un tarif publie devient le plafond des suivants.
+//
+// Pas de prix ne veut pas dire pas de detail : sans chiffre, c'est la liste
+// des livrables qui fait comprendre ce qu'on achete. Le drone y est entre le
+// 14/09, il etait absent des trois cartes alors qu'il est tourne sur place.
+// La mention reste conditionnelle, une autorisation de vol ne se promet pas
+// avant d'avoir vu le lieu.
 // ───────────────────────────────────────────────────────────
 
 import { site } from "@/lib/site";
@@ -56,6 +62,7 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Complete: 2 days and 2 nights, 50 edited stills, 6 verticals, a 2 to 3min film",
           "Series of 3 addresses, treated as one body of work, with a connecting film",
           "Two visits a year, one per season, to cover twelve months of publishing",
+          "Aerial views by drone, as an option, where the site and flight clearance allow it",
         ],
         addonsLabel: "What you get on the images",
         addons: [
@@ -75,9 +82,10 @@ export const WORK: Record<"fr" | "en", Work> = {
         packageName: "What's included",
         items: [
           "Concept and creative direction",
-          "Cinematic editorial look",
-          "Long-form film and short cutdowns, Reels and Stories",
-          "Narrative editing, sound design",
+          "Cinematic editorial look, in natural light",
+          "Long-form film from 60s to 3min, and short cutdowns for Reels and Stories",
+          "Aerial views by drone where the site and flight clearance allow it",
+          "Narrative editing, grading, sound design",
           "Worldwide usage rights on your organic channels, 12 months",
         ],
         addonsLabel: "Options",
@@ -127,6 +135,7 @@ export const WORK: Record<"fr" | "en", Work> = {
           "Complet : 2 journées et 2 nuits, 50 photos éditées, 6 verticaux, un film de 2 à 3 min",
           "Série de 3 adresses, traitées comme un seul ensemble, avec un film de liaison",
           "Deux passages par an, un par saison, pour couvrir douze mois de publication",
+          "Vues aériennes par drone, en option, quand le lieu et l'autorisation de vol le permettent",
         ],
         addonsLabel: "Ce que vous obtenez sur les images",
         addons: [
@@ -146,9 +155,10 @@ export const WORK: Record<"fr" | "en", Work> = {
         packageName: "Ce qui est inclus",
         items: [
           "Concept et direction créative",
-          "Rendu cinématique et éditorial",
-          "Film long format et déclinaisons courtes, Reels et Stories",
-          "Montage narratif, sound design",
+          "Rendu cinématique et éditorial, en lumière naturelle",
+          "Film long format de 60 s à 3 min, et déclinaisons courtes pour Reels et Stories",
+          "Vues aériennes par drone quand le lieu et l'autorisation de vol le permettent",
+          "Montage narratif, étalonnage, sound design",
           "Droits d'usage monde sur vos canaux organiques, 12 mois",
         ],
         addonsLabel: "Options",
