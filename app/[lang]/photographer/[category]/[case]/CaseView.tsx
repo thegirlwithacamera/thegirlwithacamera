@@ -7,6 +7,7 @@ import { posterForPath } from "@/lib/creator-videos";
 import PhotoPager from "../PhotoPager";
 import CaseFilms from "./CaseFilms";
 import CaseClient from "../../../components/CaseClient";
+import CaseTestimonial from "../../../components/CaseTestimonial";
 import { PageHead, ProjectGrid } from "../../../components/editorial";
 import s from "./page.module.css";
 
@@ -192,6 +193,8 @@ export default function CaseView({
             <CaseFilms films={films} lang={lang} />
           </div>
         )}
+
+        {isRoot && item.testimonial && <CaseTestimonial lang={lang} t={item.testimonial} />}
 
         {isRoot && <CaseClient lang={lang} category={cat.slug} caseSlug={item.slug} />}
 

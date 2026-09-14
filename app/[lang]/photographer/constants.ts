@@ -99,6 +99,20 @@ export type PhotoCase = {
   // grille et aucune image n'est retiree des chapitres ; openingPosition
   // devient inutile puisque rien n'est recadre.
   openingSrc?: string;
+  // Mot du client, publie avec son accord ecrit. Un avis ne vit pas sur une
+  // page d'avis ou personne ne va : il vit sur la page du travail dont il
+  // parle, juste avant le logo du client. Les liens vers le client sont une
+  // condition de la citation, pas une decoration : Graz Tourismus a demande
+  // que son Instagram et son site soient lies partout ou il est nomme.
+  testimonial?: Testimonial;
+};
+
+export type Testimonial = {
+  quote: { fr: string; en: string };
+  author: string;
+  role: { fr: string; en: string };
+  company: string;
+  links?: { label: string; href: string }[];
 };
 
 export type PhotoCategory = {
@@ -390,6 +404,23 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
           en: "Photographed in twenty-four hours, for Graz Tourismus.",
         },
         films: [{ src: "/videos/creator/CINEMATIC/CITIES/Graz.mp4" }],
+        // Recu le 14/09 de Teresa Rheinwald, avec l'accord d'utiliser son nom,
+        // sa fonction et celui de Graz Tourismus, et la demande de lier le
+        // compte Instagram et le site. Original en anglais, traduit pour la
+        // version francaise.
+        testimonial: {
+          quote: {
+            fr: "Travailler avec Sandrine a été très simple et très agréable. Nous avons apprécié qu'elle propose plusieurs formules de collaboration et qu'elle soit souple pour trouver celle qui nous convenait. Le contenu était de grande qualité, et nous avons particulièrement aimé qu'elle tente quelque chose d'un peu différent, un Reel que nous décririons comme une carte postale. La communication a été excellente du début à la fin, tout s'est passé comme convenu, et nous retravaillerions avec elle avec plaisir.",
+            en: "Working with Sandrine was very easy and pleasant. We really appreciated that she offered different collaboration options and was flexible in finding a setup that worked for us. The content was high quality and we especially liked that she tried something a bit different with what we would describe as a postcard-style Reel. Communication was great throughout, everything worked as agreed and we would be happy to work with her again.",
+          },
+          author: "Teresa Rheinwald",
+          role: { fr: "Social Media Marketing", en: "Social Media Marketing" },
+          company: "Graz Tourismus und Stadtmarketing GmbH",
+          links: [
+            { label: "@visitgraz", href: "https://www.instagram.com/visitgraz/" },
+            { label: "graztourismus.at", href: "https://www.graztourismus.at/en" },
+          ],
+        },
       },
       {
         slug: "tokyo",
