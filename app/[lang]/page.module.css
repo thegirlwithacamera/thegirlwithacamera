@@ -6,7 +6,6 @@
 .hero {
   position: relative;
   min-height: clamp(560px, 88vh, 920px);
-  overflow: hidden;
   background: var(--ink);
 }
 .heroBg { object-fit: cover; object-position: 50% 45%; }
@@ -41,10 +40,14 @@
   z-index: 2;
 }
 .heroTitle em { font-style: italic; }
+/* Le portrait déborde sous l'ouverture, sur le blanc (16/09, comme chez
+   Adriana) : l'ouverture n'est plus rognée, le portrait passe devant. */
 .heroPortrait {
   align-self: end;
+  position: relative;
+  z-index: 3;
   margin-top: clamp(96px, 16vh, 180px);
-  margin-bottom: calc(-1 * clamp(40px, 8vh, 120px));
+  margin-bottom: calc(-1 * clamp(90px, 16vh, 200px));
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
 }
 .heroPortrait img { width: 100%; height: auto; display: block; }
@@ -52,7 +55,7 @@
 .intro {
   max-width: 820px;
   margin: 0 auto;
-  padding: var(--section) var(--pad);
+  padding: calc(var(--section) + clamp(90px, 16vh, 200px)) var(--pad) var(--section);
   text-align: center;
 }
 .introText {
@@ -103,7 +106,8 @@
   /* Téléphone et tablette : la photo de Tokyo s'affiche entière en haut,
      dans son format, au lieu d'être recadrée derrière toute l'ouverture.
      Le portrait la chevauche, le titre se pose dessous sur le noir. */
-  .hero { min-height: 0; }
+  .hero { min-height: 0; overflow: hidden; }
+  .intro { padding-top: var(--section); }
   .heroBg { height: 66.67vw !important; bottom: auto !important; }
   .heroVeil { height: 66.67vw; bottom: auto; background: linear-gradient(to top, rgba(10, 10, 10, 0.6) 0%, rgba(10, 10, 10, 0) 45%); }
   .heroInner { grid-template-columns: 1fr; min-height: 0; }
