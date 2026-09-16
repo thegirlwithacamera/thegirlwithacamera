@@ -115,7 +115,7 @@ export default function CreatorClient({
 
       <section className={s.brands}>
         <Eyebrow tone="brick" className={s.brandsLabel}>{t.selected}</Eyebrow>
-        <TrustLogos lang={lang} cats={["brand"]} hideLabel />
+        <TrustLogos lang={lang} cats={["brand"]} hideLabel noLinks />
       </section>
 
       {focused && (

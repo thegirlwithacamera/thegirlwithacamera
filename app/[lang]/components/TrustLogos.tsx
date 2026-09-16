@@ -39,12 +39,15 @@ export default function TrustLogos({
   cats = BRAND_CATS,
   hideLabel = false,
   align = "center",
+  noLinks = false,
 }: {
   lang: "fr" | "en";
   cats?: readonly BrandCat[];
   // Quand la page pose déjà son propre titre au dessus de la bande.
   hideLabel?: boolean;
   align?: "center" | "left";
+  // Logos sans lien (page Content creator, où les vidéos sont juste au dessus).
+  noLinks?: boolean;
 }) {
   const groups = cats
     .map((c) => ({ cat: c, brands: brandsIn(c) }))
@@ -152,7 +155,7 @@ export default function TrustLogos({
                   />
                 </span>
               );
-              if (!b.href) return <span key={b.name} className="brand-item">{box}</span>;
+              if (!b.href || noLinks) return <span key={b.name} className="brand-item">{box}</span>;
               return (
                 <Link
                   key={b.name}

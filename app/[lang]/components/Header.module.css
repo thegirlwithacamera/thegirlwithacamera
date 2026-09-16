@@ -87,19 +87,67 @@
 }
 .work:hover { text-decoration: underline; text-underline-offset: 4px; }
 .burger { display: none; }
+/* Menu mobile plein écran (16/09) : le portrait noir et blanc de la page
+   About en fond, les liens en grand par dessus, les réseaux en bas. */
 .mobileMenu {
-  background: var(--paper);
-  border-top: 1px solid var(--line);
-  padding: 8px var(--pad) 20px;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 72px 24px 40px;
+  background: var(--ink);
 }
-.mobileMenu .link {
-  display: block;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-  font-size: 0.8125rem;
+.mobileBg { object-fit: cover; object-position: 50% 30%; }
+.mobileVeil { position: absolute; inset: 0; background: rgba(12, 12, 12, 0.55); }
+.mobileClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
 }
-.mobileMenu .work { display: block; padding: 14px 0; }
-.mobileMenu .lang { display: block; padding: 14px 0 0; }
+.mobileClose span {
+  position: absolute;
+  left: 11px;
+  top: 21px;
+  width: 22px;
+  height: 1.5px;
+  background: #fff;
+}
+.mobileClose span:first-child { transform: rotate(45deg); }
+.mobileClose span:last-child { transform: rotate(-45deg); }
+.mobileClose:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.mobileNav { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.mobileLink {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2rem, 9vw, 2.75rem);
+  line-height: 1.25;
+  color: #fff;
+  text-decoration: none;
+}
+.mobileLink:hover, .mobileLink:focus-visible { color: #e9c7bd; outline: none; }
+.mobileSocials {
+  position: absolute;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.mobileSocials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: #fff; }
+.mobileSocials a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 @media (max-width: 900px) {
   .nav, .right { display: none; }
