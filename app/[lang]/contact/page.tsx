@@ -37,10 +37,11 @@ export async function generateMetadata(): Promise<Metadata> {
 // droits vivent dans la grille et les devis, pas ici.
 // ─────────────────────────────────────────────────────────────
 
-// Photos de la page. La bande est l'affiche du film de Graz, la verticale
-// une image du Hotel Rathaus. Changer les chemins suffit.
-const BAND = "/videos/creator/CINEMATIC/CITIES/Graz.jpg";
-const TALL = "/images/portfolio/hospitality/hotel-rathaus-wien/12.jpg";
+// Photos de la page, choisies par Sandrine le 16/09 : la mer en bande, et
+// l'enfilade du salon rouge d'Altstadt Vienna par dessus. Changer les chemins
+// suffit.
+const BAND = "/images/about/path/2024-sea.jpg";
+const TALL = "/images/portfolio/hospitality/altstadt-vienna/02-red-salon/1.jpg";
 
 const FAQ = [
   {
@@ -73,7 +74,7 @@ export default async function ContactPage({ params }: Props) {
         </div>
         <div className={s.stageInner}>
           <div className={s.tall}>
-            <Image src={TALL} alt="Breakfast by the window at Hotel Rathaus, Vienna" width={1200} height={1800} sizes="(max-width: 900px) 0px, 560px" quality={78} />
+            <Image src={TALL} alt="A doorway into the red salon at Altstadt Vienna" width={1200} height={1800} sizes="(max-width: 900px) 0px, 560px" quality={78} />
           </div>
           <div className={s.side}>
             <h1 className={s.title}>Get in touch</h1>
