@@ -94,7 +94,7 @@ export default function CreatorClient({
 
   return (
     <main className={s.main}>
-      <PageHead eyebrow={t.eyebrow} title={t.title} lede={t.lede} split />
+      <PageHead title={t.title} lede={t.lede} split />
 
       <CreatorNav
         lang={lang}
