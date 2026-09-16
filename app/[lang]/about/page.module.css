@@ -73,3 +73,7 @@
 .pathWhen { font-family: var(--font-serif); font-style: italic; font-size: var(--text-body); color: var(--brick); }
 .pathWhat { font-family: var(--font-serif); font-size: var(--text-body); line-height: 1.55; color: var(--ink); }
 @media (max-width: 767px) { .path li { grid-template-columns: 1fr; gap: 4px; } }
+
+/* Le titre en italique est long depuis le 16/09 : Display empêche les
+   passages en italique de se couper, ici il doit pouvoir passer à la ligne. */
+.hero h1 em { white-space: normal; }

@@ -24,13 +24,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: lang === "fr"
       ? "À propos de Sandrine Ceuppens. Photographe documentaire et créatrice de contenu basée à Bruxelles. Collaborations avec Ricoh Europe, Pentax Europe et Insta360."
       : "About Sandrine Ceuppens, travel photographer and content creator based in Brussels. Collaborations with Ricoh Europe, Pentax Europe and Insta360.",
-    image: "/images/about/hero.jpg",
+    image: HERO_PHOTO,
     imageAlt: "Sandrine Ceuppens",
   });
 }
 
-// Photo du hero (Mont Fuji, IMG_8304).
-const HERO_PHOTO = "/images/about/hero.jpg";
+// Photo du hero. Jusqu'au 16/09 c'était le Fuji (IMG_8304), passé en
+// ouverture de l'accueil : la même image deux fois se remarque. Ici, le
+// portrait noir et blanc sur la plage, visage flou : l'accueil montre qui
+// elle est, About montre sa façon de voir. Pas d'original, c'est une capture
+// en 1144 x 1502, juste suffisante pour cet emplacement.
+const HERO_PHOTO = "/images/about/portrait-beach.jpg";
 
 // Clients (bande "Ils me font confiance") : donnees dans lib/brands.ts,
 // rendu via le composant partage TrustLogos (reutilise aussi sur /creator).
@@ -143,7 +147,7 @@ export default async function AboutPage({ params }: Props) {
 
       <section className={s.hero}>
         <div className={s.photo}>
-          <Image src={HERO_PHOTO} alt="Sandrine Ceuppens" fill sizes="(max-width: 900px) 420px, 560px" priority quality={82} />
+          <Image src={HERO_PHOTO} alt="Sandrine Ceuppens on a beach, in black and white" fill sizes="(max-width: 900px) 420px, 560px" priority quality={82} />
         </div>
         <div>
           <Eyebrow tone="brick" className={s.eyebrow}>{lang === "fr" ? "À propos" : "About"}</Eyebrow>
