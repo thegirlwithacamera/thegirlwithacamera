@@ -95,3 +95,15 @@
 }
 .stepWhen { margin: 0; font-family: var(--font-serif); font-style: italic; font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.1; }
 .stepWhat { margin: 16px 0 0; max-width: 720px; font-family: var(--font-serif); font-size: clamp(1.125rem, 1.8vw, 1.5rem); line-height: 1.5; }
+
+/* Téléphone : chaque photo du parcours garde son format horizontal, le
+   texte passe dessous sur fond sombre au lieu d'être posé sur une bande
+   haute qui rognait l'image (16/09). */
+@media (max-width: 767px) {
+  .step { display: block; min-height: 0; }
+  .stepImg { position: relative !important; width: 100% !important; height: auto !important; aspect-ratio: 3 / 2; inset: auto !important; }
+  .stepVeil { display: none; }
+  .stepText { padding: 20px 20px 36px; }
+  .stepWhen { font-size: 1.5rem; }
+  .stepWhat { margin-top: 8px; font-size: 1.0625rem; }
+}

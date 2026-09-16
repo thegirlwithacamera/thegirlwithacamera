@@ -33,4 +33,11 @@
 }
 .button:hover { background: #fff; color: var(--ink); }
 .button:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+/* Sur téléphone, la photo horizontale garde ses proportions au lieu d'être
+   recadrée en bande haute (16/09, retour de Sandrine). */
+@media (max-width: 767px) {
+  .band { min-height: 0; aspect-ratio: 3 / 2; }
+  .word { font-size: clamp(2rem, 10vw, 2.75rem); }
+  .button { margin-top: 14px; padding: 10px 20px; font-size: 0.6875rem; }
+}
 @media (prefers-reduced-motion: reduce) { .button { transition: none; } }

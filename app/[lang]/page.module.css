@@ -99,9 +99,15 @@
 .latest { padding-top: var(--section); }
 
 @media (max-width: 900px) {
-  .heroInner { grid-template-columns: 1fr; }
-  .heroTitle { grid-row: 2; margin-top: 28px; }
-  .heroPortrait { grid-row: 1; width: min(70vw, 360px); justify-self: end; margin: clamp(48px, 10vh, 96px) 0 0; }
+  /* Téléphone et tablette : la photo de Tokyo s'affiche entière en haut,
+     dans son format, au lieu d'être recadrée derrière toute l'ouverture.
+     Le portrait la chevauche, le titre se pose dessous sur le noir. */
+  .hero { min-height: 0; }
+  .heroBg { height: 66.67vw !important; bottom: auto !important; }
+  .heroVeil { height: 66.67vw; bottom: auto; background: linear-gradient(to top, rgba(10, 10, 10, 0.6) 0%, rgba(10, 10, 10, 0) 45%); }
+  .heroInner { grid-template-columns: 1fr; min-height: 0; }
+  .heroPortrait { grid-row: 1; width: min(62vw, 340px); justify-self: end; margin: 38vw 0 0; }
+  .heroTitle { grid-row: 2; margin: 28px 0 40px; font-size: clamp(2.5rem, 11vw, 4rem); }
 }
 @media (max-width: 767px) {
   .intro { padding-left: 20px; padding-right: 20px; }
