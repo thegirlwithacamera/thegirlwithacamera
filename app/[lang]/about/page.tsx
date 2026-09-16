@@ -70,11 +70,11 @@ const content = {
     // s'affiche sur fond sombre en attendant sa photo : ajouter image: "..."
     // (horizontale, 2000 px de large au moins) suffit.
     path: [
-      { when: "August 2024", what: "I picked up a camera again, after years away from photography." },
-      { when: "June 2026", what: "Tokyo, from zone to zone, with four photo series shot on the Ricoh GR III.", image: "/videos/creator/CINEMATIC/CITIES/City Diary Tokyo.jpg" },
-      { when: "July 2026", what: "Ricoh France and Pentax Europe show my work at the Rencontres d'Arles." },
+      { when: "August 2024", what: "I picked up a camera again, after years away from photography.", image: "/images/about/path/2024-sea.jpg" },
+      { when: "June 2026", what: "Tokyo, from zone to zone, with four photo series shot on the Ricoh GR III.", image: "/images/about/path/2026-tokyo.jpg" },
+      { when: "July 2026", what: "Ricoh France and Pentax Europe show my work at the Rencontres d'Arles.", image: "/images/about/path/2026-street.jpg" },
       { when: "Summer 2026", what: "Films and photographs for hotels and tourism boards in Vienna, Graz and Carinthia.", image: "/videos/creator/CINEMATIC/CITIES/Graz.jpg" },
-      { when: "Now", what: "A book in progress, and more places to photograph the way they feel." },
+      { when: "Now", what: "A book in progress, and more places to photograph the way they feel.", image: "/images/about/path/now-market.jpg" },
     ],
     clients: "They trusted me",
     contact: "Contact",

@@ -53,7 +53,7 @@ const HERO = {
 const BANDS = [
   { href: "/en/destinations", word: "Destinations", button: "Discover the work", image: "/videos/creator/CINEMATIC/CITIES/Villach.jpg", position: "50% 40%" },
   { href: "/en/creator", word: "Content creator", button: "See the videos", image: "/videos/creator/CINEMATIC/HOTELS/Hotel Rathaus.jpg", position: "50% 50%" },
-  { href: "/en/journal", word: "Journal", button: "Read the stories", image: "/videos/creator/CINEMATIC/HOTELS/Naturel Dorf Schönleitn.jpg", position: "50% 60%" },
+  { href: "/en/journal", word: "Journal", button: "Read the stories", image: "/images/home/journal-fuji-train.jpg", position: "50% 50%" },
 ];
 
 // Bande Instagram en bas de page : des images du site, liées au compte.
