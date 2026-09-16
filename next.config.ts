@@ -23,6 +23,17 @@ const nextConfig: NextConfig = {
       { source: "/en/photographer", destination: "/en/destinations", permanent: true },
       { source: "/en/diary", destination: "/en/journal", permanent: true },
       { source: "/en/diary/:slug", destination: "/en/journal", permanent: true },
+      // 16/09, suite : plus aucune page hors menu. Vidéaste et les pages de
+      // catégorie photo renvoient vers Destinations, où vivent les projets et
+      // leurs films. Les projets retirés (Italie, Japon, Belgique, voir
+      // HIDDEN_CASES) aussi. Les pages de projet autrichiennes restent.
+      { source: "/en/filmmaker", destination: "/en/destinations", permanent: false },
+      { source: "/en/filmmaker/:path*", destination: "/en/destinations", permanent: false },
+      { source: "/en/photographer/:category(hospitality|restaurants|travel)", destination: "/en/destinations", permanent: false },
+      { source: "/en/photographer/restaurants/:path*", destination: "/en/destinations", permanent: false },
+      { source: "/en/photographer/travel/:case(tokyo|kyoto|napoli|burano|venezia|palermo)", destination: "/en/destinations", permanent: false },
+      { source: "/en/photographer/travel/:case(tokyo|kyoto|napoli|burano|venezia|palermo)/:path*", destination: "/en/destinations", permanent: false },
+      { source: "/en/shop", destination: "/en", permanent: false },
       // /da was a half-built page with missing assets, keep the URL valuable
       { source: "/da", destination: "/en/contact", permanent: true },
       { source: "/fr/da", destination: "/fr/services", permanent: true },

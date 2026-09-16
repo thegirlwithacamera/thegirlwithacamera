@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
 import { site } from "@/lib/site";
-import { PHOTO_CATEGORIES, PHOTO_CATEGORY_SLUGS } from "@/app/[lang]/photographer/constants";
+import { PHOTO_CATEGORIES } from "@/app/[lang]/photographer/constants";
 import { countCasePhotos, readCaseChapters } from "@/lib/portfolio";
 
 // Date de dernière modification d'un cas : celle de son dossier d'images.
@@ -28,16 +28,9 @@ function buildPaths(): Entry[] {
     { path: "/destinations", priority: 0.9, changeFrequency: "weekly", lastModified: now },
     { path: "/contact", priority: 0.9, changeFrequency: "monthly", lastModified: now },
     { path: "/journal", priority: 0.7, changeFrequency: "weekly", lastModified: now },
-    { path: "/filmmaker", priority: 0.8, changeFrequency: "monthly", lastModified: now },
     { path: "/creator", priority: 0.8, changeFrequency: "monthly", lastModified: now },
     { path: "/about", priority: 0.6, changeFrequency: "yearly", lastModified: now },
   ];
-
-  // Pages de catégorie : elles se positionnent sur "photographe d'hôtel",
-  // "photographe de restaurant", "photographe de voyage".
-  for (const slug of PHOTO_CATEGORY_SLUGS) {
-    out.push({ path: `/photographer/${slug}`, priority: 0.8, changeFrequency: "monthly", lastModified: now });
-  }
 
   // Pages de cas : le fond du site, une par client ou par ville.
   for (const cat of PHOTO_CATEGORIES) {
@@ -64,9 +57,6 @@ function buildPaths(): Entry[] {
 
   for (const s of ["gear", "lifestyle", "unboxing", "talk"]) {
     out.push({ path: `/creator/${s}`, priority: 0.6, changeFrequency: "monthly", lastModified: now });
-  }
-  for (const s of ["hotels", "tables", "spa", "cities", "journeys"]) {
-    out.push({ path: `/filmmaker/${s}`, priority: 0.6, changeFrequency: "monthly", lastModified: now });
   }
 
   return out;

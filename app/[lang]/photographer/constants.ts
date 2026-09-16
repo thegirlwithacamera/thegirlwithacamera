@@ -133,7 +133,7 @@ export type PhotoCategory = {
   cases: PhotoCase[];
 };
 
-export const PHOTO_CATEGORIES: PhotoCategory[] = [
+const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
   {
     slug: "hospitality",
     label: { fr: "Hôtels & maisons", en: "Hotels & venues" },
@@ -507,6 +507,32 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
   //
   // En attente : editorial, un seul cas de 3 images (bijoux).
 ];
+
+// ─────────────────────────────────────────────────────────────
+// Projets retirés du site le 16/09, décision de Sandrine : sur Destinations
+// on ne garde que l'Autriche, ce qui a été commandé. Italie, Japon et
+// Belgique sortent (rien de contractuel pour l'Italie et le Japon). Le lac de
+// Côme arrive la semaine suivante, puis le vrai Japon.
+//
+// Rien n'est supprimé : les dossiers d'images et les blocs ci-dessus restent
+// en place. Retirer un slug de cette liste republie le projet, avec sa page.
+// Une catégorie qui n'a plus aucun projet disparaît d'elle-même.
+// Les anciennes adresses renvoient vers /en/destinations (next.config.ts).
+// ─────────────────────────────────────────────────────────────
+export const HIDDEN_CASES: readonly string[] = [
+  "ce-pages",
+  "van-der-valk-selys",
+  "tokyo",
+  "kyoto",
+  "napoli",
+  "burano",
+  "venezia",
+  "palermo",
+];
+
+export const PHOTO_CATEGORIES: PhotoCategory[] = ALL_PHOTO_CATEGORIES
+  .map((cat) => ({ ...cat, cases: cat.cases.filter((c) => !HIDDEN_CASES.includes(c.slug)) }))
+  .filter((cat) => cat.cases.length > 0);
 
 export const PHOTO_CATEGORY_SLUGS = PHOTO_CATEGORIES.map((c) => c.slug);
 

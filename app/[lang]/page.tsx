@@ -50,7 +50,7 @@ const HERO = {
 const DOORS = [
   { href: "/en/destinations", word: "Destinations", cover: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg", position: "50% 55%" },
   { href: "/en/creator", word: "Content creator", cover: "/videos/creator/CINEMATIC/HOTELS/Hotel Rathaus.jpg", position: "50% 50%" },
-  { href: "/en/journal", word: "Journal", cover: "/images/portfolio/travel/kyoto/1.jpg", position: "50% 50%" },
+  { href: "/en/journal", word: "Journal", cover: "/images/portfolio/travel/villach/4.jpg", position: "50% 60%" },
 ];
 
 export default async function HomePage({ params }: Props) {
@@ -90,7 +90,7 @@ export default async function HomePage({ params }: Props) {
         <Eyebrow tone="brick">Sandrine Ceuppens · Brussels · travelling worldwide</Eyebrow>
         <Display size="m" as="h2" className={s.introTitle}>Travel photographer &amp; content creator.</Display>
         <Lede className={s.introLede} align="left" tone="stone">
-          I photograph and film hotels and destinations, and the streets in between. Natural light, real moments, often at five in the morning, before the city wakes up.
+          I work in natural light, with nothing staged. I arrive before everyone else, often at five in the morning, to catch the moment a room or a street feels like itself. Sometimes I step into the frame, to tell the stay from the inside.
         </Lede>
         <p className={s.introLink}><Link href="/en/about">Read my story →</Link></p>
       </section>

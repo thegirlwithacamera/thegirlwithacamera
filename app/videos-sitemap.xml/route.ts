@@ -38,9 +38,14 @@ export async function GET() {
     for (const cat of PUBLISHED_DIARY_CATS) {
       for (const clip of diary[cat]) {
         const found = findCaseByFilm(clip.src);
+        // Depuis le 16/09, un film n'est servi que s'il a un projet sur
+        // Destinations, ou s'il est le film Interrail, montré sur Destinations
+        // même. Les autres ne sont plus visibles nulle part.
+        const isInterrail = /interrail/i.test(clip.src);
+        if (!found && !isInterrail) continue;
         const page = found
           ? `${base}/${lang}/photographer/${found.cat.slug}/${found.item.slug}`
-          : `${base}/${lang}/filmmaker`;
+          : `${base}/${lang}/destinations#interrail`;
 
         const title = found ? found.item.label[lang] : clip.label;
         const place = found?.item.place ? `, ${found.item.place[lang]}` : "";

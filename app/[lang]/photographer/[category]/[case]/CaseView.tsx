@@ -113,7 +113,7 @@ export default function CaseView({
     <>
       <main className={s.main}>
         <PageHead
-          back={{ href: `/${lang}/photographer/${cat.slug}`, label: cat.label[lang] }}
+          back={{ href: `/${lang}/destinations`, label: "Destinations" }}
           eyebrow={[cat.label[lang], item.place?.[lang]].filter(Boolean).join(" · ")}
           title={item.label[lang]}
           lede={item.intro ? (
@@ -210,12 +210,11 @@ export default function CaseView({
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Destinations", item: `https://thegirlwithacamera.com/${lang}/destinations` },
-          { "@type": "ListItem", position: 2, name: cat.label[lang], item: `https://thegirlwithacamera.com/${lang}/photographer/${cat.slug}` },
           ...(isRoot
-            ? [{ "@type": "ListItem", position: 3, name: item.label[lang] }]
+            ? [{ "@type": "ListItem", position: 2, name: item.label[lang] }]
             : [
-                { "@type": "ListItem", position: 3, name: item.label[lang], item: `https://thegirlwithacamera.com${base}` },
-                { "@type": "ListItem", position: 4, name: shown?.title ?? "" },
+                { "@type": "ListItem", position: 2, name: item.label[lang], item: `https://thegirlwithacamera.com${base}` },
+                { "@type": "ListItem", position: 3, name: shown?.title ?? "" },
               ]),
         ],
       }) }} />

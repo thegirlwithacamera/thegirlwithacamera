@@ -59,7 +59,7 @@ export default async function CreatorSectionPage({ params }: Props) {
   // Anciennes URLs /creator/diary[...] : les diaries ont demenage sur /filmmaker.
   if (section[0] === "diary") {
     const cat = (DIARY_CATS as readonly string[]).includes(section[1]) ? `/${section[1]}` : "";
-    permanentRedirect(`/${lang}/filmmaker${cat}`);
+    permanentRedirect(`/${lang}/destinations`);
   }
   // Ancienne URL /creator/experiences : la section s'appelle Lifestyle.
   if (section.length === 1 && section[0] === "experiences") {
