@@ -59,8 +59,6 @@ export const BRANDS: Brand[] = [
   // niveau du reste. Le cas et le film sont retires en meme temps. Le fichier
   // mk-hotels.png reste dans public/images/brands, remettre la ligne suffit.
   { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
-  { name: "VAN DER VALK SÉLYS", logo: "/images/brands/van-der-valk-selys-mono.png", cat: "stays" },
-  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", bandHidden: true },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
   { name: "HOTEL RATHAUS WEIN & DESIGN", logo: "/images/brands/hotel-rathaus-wien-dark.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
@@ -71,17 +69,17 @@ export const BRANDS: Brand[] = [
   // attendait un contenu qui ne viendra pas. Le fichier prague-stream.png
   // reste dans public/images/brands, remettre la ligne suffit.
 
-  { name: "CÉ·PAGES", logo: "/images/brands/ce-pages-mono.png", cat: "stays" },
 
   // City & travel : ceux qui font venir les gens, transporteurs et offices de
   // tourisme. C'est l'autre moitie du marche hotelier, et pour une maison
   // c'est la preuve qu'une destination entiere a confie son image.
   // Le film Interrail est en ligne depuis le 12/09. Il n'a pas de cas photo
   // derriere ; depuis le 16/09 il vit sur Destinations, le logo y mene.
-  // Van der Valk Selys, Dao et Ce Pages restent des clients, mais leurs
-  // projets sont sortis du site le 16/09 : logos sans lien.
+  // Van der Valk Selys, Dao, Ce Pages et European Sleeper retires le 16/09,
+  // decision de Sandrine : leurs projets ne sont plus montres sur le site, un
+  // logo sans travail derriere n'a plus de raison d'etre. Les fichiers restent
+  // dans public/images/brands.
   { name: "INTERRAIL", logo: "/images/brands/interrail.svg", cat: "travel", href: "/destinations#interrail", hrefLabel: { fr: "Film", en: "Film" } },
-  { name: "EUROPEAN SLEEPER", logo: "/images/brands/european-sleeper-mono.png", cat: "travel" },
   // Logo en pastille, avec sa carte blanche et son ombre : il a besoin de la
   // hauteur des badges pour rester lisible entre deux wordmarks larges.
   { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "travel", href: "/photographer/travel/villach", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
