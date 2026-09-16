@@ -1,8 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Cta from "./editorial/Cta";
-import Eyebrow from "./editorial/Eyebrow";
+import Link from "next/link";
 import s from "./Footer.module.css";
 
 type Lang = "fr" | "en";
@@ -29,8 +28,9 @@ export default function Footer() {
     <footer className={s.footer}>
       {!hideCta && (
         <div className={s.cta}>
-          <Eyebrow className={s.eyebrow}>{cta.eyebrow}</Eyebrow>
-          <Cta href={`/${currentLang}/contact`} variant="serif">{cta.label} →</Cta>
+          {/* Lien discret façon page About (16/09, choix de Sandrine) : la
+              grande bande « Have a project in mind? » pesait trop partout. */}
+          <Link href={`/${currentLang}/contact`} className={s.work}>{cta.label} →</Link>
         </div>
       )}
       <div className={s.bottom}>
