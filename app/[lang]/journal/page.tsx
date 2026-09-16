@@ -38,9 +38,10 @@ export default async function JournalPage({ params }: Props) {
           poster="/videos/banners/journal-drone.jpg"
           label="Aerial view of a castle above a lake"
         />
+        <span className={s.bannerVeil} aria-hidden="true" />
+        <p className={s.bannerWord}>Travel Journal</p>
       </section>
       <PageHead
-        eyebrow="Journal"
         title="Notes from *the road*."
         lede="Stories and guides from the places I photograph: where to stay, where to walk, and what a city looks like before it wakes up."
         split
