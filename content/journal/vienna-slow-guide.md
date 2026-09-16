@@ -14,8 +14,6 @@ Vienna was one of the last stops of my Interrail journey this summer, twelve sto
 
 What stays with me is the scale of it: the architecture is immense. I spent most of my time walking through the city, looking for the light.
 
-![A fiaker in front of St. Stephen's Cathedral](/images/journal/interrail/vienna-stephansdom.jpg)
-
 ## Where I stayed
 
 I stayed in two hotels in Vienna, Altstadt Vienna and Hotel Rathaus Wein & Design. Each one gets its own story in the journal.

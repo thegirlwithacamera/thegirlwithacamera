@@ -16,8 +16,6 @@ Five cameras, each with its own job. Here is what each one is, and why it is in 
 
 **What it is:** a pocket compact built around a large 24.2MP APS-C sensor, with a fixed 18.3mm f/2.8 lens, the equivalent of a 28mm. It has 3-axis shake reduction, which helps with slower shutter speeds handheld, a macro mode for close details, and crop modes to 35mm and 50mm if you need them.
 
-![Tokyo at night, shot on the Ricoh GR III](/images/about/path/2026-tokyo.jpg)
-
 ## Pentax 17: my main film camera
 
 **What I use it for:** when I shoot film, this is the one.

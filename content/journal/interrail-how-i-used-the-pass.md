@@ -9,8 +9,6 @@ excerpt: The Global Pass, first class, and why I kept the pass days for the long
 draft: false
 ---
 
-![On the train](/images/journal/interrail/train-window.jpg)
-
 [See the full route](/en/journal/interrail-twelve-stops)
 
 ## The pass
@@ -24,6 +22,5 @@ Seven days sounds short for two weeks, but it is more than enough if you use the
 - Save your pass days for the long journeys, and take regional trains for the short ones.
 - Leave room in the plan. My best days were the ones I extended, in Villach and Faaker See.
 - Do one thing well each day. A city, a walk, a shoot. Not three.
-
 
 *This journey was made in partnership with Interrail, who offered the passes. Some of the places mentioned were collaborations: Graz Tourismus, Region Villach, Naturel Hoteldorf Schönleitn, Altstadt Vienna and Hotel Rathaus. The route, the opinions and the photographs are my own.*

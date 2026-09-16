@@ -28,8 +28,6 @@ Rules depend on the country, the drone and where you fly, so check the official 
 
 Two weeks later I was on my Interrail journey, and the drone came with me. I brought back a sunset over the city, red rooftops, and the castle of Lake Bled above the water.
 
-![Lake Bled from the air](/videos/banners/journal-drone.jpg)
-
 You can see those shots moving at the top of my [Destinations](/en/destinations) and Journal pages.
 
 ## What I'd tell another beginner
