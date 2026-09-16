@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
-import { Display, PageHead } from "../components/editorial";
+import Image from "next/image";
+import { Display } from "../components/editorial";
 import ContactForm from "./ContactForm";
 import s from "./page.module.css";
 import "./form.css";
@@ -36,6 +37,11 @@ export async function generateMetadata(): Promise<Metadata> {
 // droits vivent dans la grille et les devis, pas ici.
 // ─────────────────────────────────────────────────────────────
 
+// Photos de la page. La bande est l'affiche du film de Graz, la verticale
+// une image du Hotel Rathaus. Changer les chemins suffit.
+const BAND = "/videos/creator/CINEMATIC/CITIES/Graz.jpg";
+const TALL = "/images/portfolio/hospitality/hotel-rathaus-wien/12.jpg";
+
 const FAQ = [
   {
     q: "What do you do?",
@@ -56,25 +62,32 @@ export default async function ContactPage({ params }: Props) {
 
   return (
     <main className={s.main}>
-      <PageHead
-        eyebrow="Contact"
-        title="Let's make something *together*."
-        lede="Hotels, tourism boards and brands: write me a few lines about the place, the dates and what you want people to feel."
-        split
-      />
-
-      <section className={s.dark} id="form">
-        <div className={s.darkInner}>
-          <div>
-            <Display size="m" as="h2" className={s.darkTitle}>Have a project in mind?</Display>
-            <p className={s.note}>I answer within a few days.</p>
-            <p className={s.note} lang="fr">Je parle aussi français.</p>
-            <ul className={s.mails}>
-              <li><span>Projects</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
-              <li><span>Press</span><a href={`mailto:${site.pressEmail}`}>{site.pressEmail}</a></li>
-            </ul>
+      {/* Mise en page reprise de la page Contact d'adriana-maria.com (16/09) :
+          une bande photo horizontale en haut, une grande photo verticale à
+          gauche qui la chevauche, le titre posé sur la bande à droite, puis
+          le texte et le formulaire sur une colonne. */}
+      <section className={s.stage} id="form">
+        <div className={s.band}>
+          <Image src={BAND} alt="" fill priority sizes="100vw" quality={75} />
+          <span className={s.bandVeil} aria-hidden="true" />
+        </div>
+        <div className={s.stageInner}>
+          <div className={s.tall}>
+            <Image src={TALL} alt="Breakfast by the window at Hotel Rathaus, Vienna" width={1200} height={1800} sizes="(max-width: 900px) 0px, 560px" quality={78} />
           </div>
-          <ContactForm />
+          <div className={s.side}>
+            <h1 className={s.title}>Get in touch</h1>
+            <div className={s.words}>
+              <p>Hotels, tourism boards and brands: write me a few lines about the place, the dates and what you want people to feel. I answer within a few days.</p>
+              <p lang="fr" className={s.fr}>Je parle aussi français.</p>
+              <p className={s.mails}>
+                <a href={`mailto:${site.email}`}>{site.email}</a>
+                <br />
+                Brussels, travelling worldwide
+              </p>
+            </div>
+            <ContactForm />
+          </div>
         </div>
       </section>
 
