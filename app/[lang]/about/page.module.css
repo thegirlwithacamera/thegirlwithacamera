@@ -73,9 +73,12 @@
    se posent sur la photo ; sans photo, la bande reste sombre. */
 .pathSection { margin-top: var(--section); }
 .pathTitle { max-width: var(--page-max); margin: 0 auto 32px; padding: 0 var(--pad); }
+/* Les étapes s'empilent (16/09) : chacune reste collée en haut pendant que
+   la suivante glisse par dessus, comme sur adriana-maria.com. */
 .step {
-  position: relative;
-  min-height: clamp(360px, 70vh, 720px);
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
   display: flex;
   align-items: flex-start;
   overflow: hidden;

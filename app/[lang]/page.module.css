@@ -79,6 +79,7 @@
 .introButton:hover { background: var(--ink); color: var(--paper); }
 .introButton:focus-visible { outline: 2px solid var(--brick); outline-offset: 4px; }
 
+.bands { position: relative; }
 .insta { padding-top: var(--section); }
 .instaHead {
   display: block;

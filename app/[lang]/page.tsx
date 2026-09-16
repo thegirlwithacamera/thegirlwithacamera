@@ -107,9 +107,11 @@ export default async function HomePage({ params }: Props) {
         <Link href="/en/about" className={s.introButton}>Read my story</Link>
       </section>
 
-      {BANDS.map((b) => (
-        <Band key={b.href} {...b} />
-      ))}
+      <div className={s.bands}>
+        {BANDS.map((b) => (
+          <Band key={b.href} {...b} />
+        ))}
+      </div>
 
       {posts.length > 0 && (
         <section className={s.latest}>

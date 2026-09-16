@@ -1,6 +1,11 @@
+/* Bandes empilées (16/09) : chaque bande reste collée en haut de l'écran
+   pendant que la suivante vient se poser dessus, comme sur
+   adriana-maria.com. Le parent (.bands sur l'accueil) borne l'effet : la
+   dernière bande repart normalement avec la page. */
 .band {
-  position: relative;
-  min-height: clamp(420px, 80vh, 820px);
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
   display: grid;
   place-items: center;
   overflow: hidden;
