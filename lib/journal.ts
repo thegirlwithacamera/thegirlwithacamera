@@ -14,8 +14,23 @@ import path from "path";
 
 const DIR = path.join(process.cwd(), "content", "journal");
 
+export type JournalSection = "travel" | "creator" | "photographer";
+export const JOURNAL_SECTIONS: { key: JournalSection; label: string }[] = [
+  { key: "travel", label: "Travel" },
+  { key: "creator", label: "Creator" },
+  { key: "photographer", label: "Photographer" },
+];
+// Séries à l'intérieur d'une section (16/09) : Interrail est une catégorie de
+// Travel. Ajouter une série = une ligne ici, puis `series: <clé>` dans les
+// articles.
+export const JOURNAL_SERIES: Record<string, string> = {
+  interrail: "Interrail",
+};
+
 export type JournalPost = {
   slug: string;
+  section: JournalSection;
+  series?: string;
   title: string;
   date: string; // AAAA-MM-JJ
   place?: string;
@@ -37,6 +52,8 @@ function parse(file: string): JournalPost | null {
   if (!meta.title || !meta.date || meta.draft === "true") return null;
   return {
     slug: file.replace(/\.md$/, ""),
+    section: (["travel", "creator", "photographer"].includes(meta.section) ? meta.section : "travel") as JournalSection,
+    series: meta.series || undefined,
     title: meta.title,
     date: meta.date,
     place: meta.place || undefined,
