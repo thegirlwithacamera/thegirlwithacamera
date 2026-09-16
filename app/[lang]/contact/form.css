@@ -1,5 +1,5 @@
-/* Formulaire de contact de la page Services, posé sur le bloc sombre.
-   Global parce que ServicesForm utilise ces classes ; chargé par la page. */
+/* Formulaire de la page Contact, posé sur le bloc sombre.
+   Global parce que ContactForm utilise ces classes ; chargé par la page. */
 .services-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

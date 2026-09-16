@@ -1,0 +1,49 @@
+.main { padding-bottom: 8px; }
+.list { padding-top: clamp(40px, 5vw, 72px); }
+.empty,
+.back {
+  max-width: var(--page-max);
+  margin: clamp(40px, 5vw, 72px) auto 0;
+  padding: 0 var(--pad);
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--stone);
+}
+.empty a, .back a { color: var(--ink); text-underline-offset: 3px; }
+.back a { text-decoration: none; font-family: var(--font-sans); font-size: var(--text-label); letter-spacing: 0.12em; text-transform: uppercase; }
+.back a:hover, .empty a:hover { color: var(--brick); }
+
+.cover {
+  max-width: 900px;
+  margin: clamp(32px, 4vw, 56px) auto 0;
+  padding: 0 var(--pad);
+}
+.cover img { width: 100%; height: auto; display: block; }
+
+/* Corps d'article : une colonne serif étroite, photos plus larges que le
+   texte, comme un carnet imprimé. */
+.body {
+  max-width: 680px;
+  margin: clamp(32px, 4vw, 56px) auto 0;
+  padding: 0 var(--pad);
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.body p { margin: 0 0 1.2em; }
+.body h2 { font-family: var(--font-serif); font-weight: 400; font-size: var(--text-m); line-height: 1.2; margin: 1.8em 0 0.6em; }
+.body h3 { font-family: var(--font-serif); font-weight: 400; font-style: italic; font-size: 1.375rem; margin: 1.6em 0 0.5em; }
+.body a { color: var(--brick); text-underline-offset: 3px; }
+.body blockquote { margin: 1.6em 0; padding-left: 20px; border-left: 1px solid var(--brick); color: var(--stone); font-style: italic; }
+.body blockquote p { margin: 0; }
+.body ul { padding-left: 1.1em; margin: 0 0 1.2em; }
+.body li { margin-bottom: 0.3em; }
+.body figure { margin: 2em calc(-1 * clamp(0px, 8vw, 110px)); }
+.body figure img { width: 100%; height: auto; display: block; }
+.body figcaption { font-family: var(--font-sans); font-size: 0.8125rem; color: var(--stone); margin-top: 10px; padding: 0 var(--pad); }
+@media (max-width: 767px) {
+  .body figure { margin: 1.6em 0; }
+  .body figcaption { padding: 0; }
+}

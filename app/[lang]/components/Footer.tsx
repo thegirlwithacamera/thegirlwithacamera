@@ -14,11 +14,12 @@ export default function Footer() {
   // Bande "Travaillons ensemble" partout sauf sur About (elle y ramènerait
   // à la page en cours) et sur l'accueil, où la grille porte déjà la porte.
   const onAbout = pathname.startsWith(`/${currentLang}/about`);
+  const onContact = pathname.startsWith(`/${currentLang}/contact`);
   const onHome = pathname === `/${currentLang}` || pathname === `/${currentLang}/`;
   // Les pages de cas portent déjà leur appel entre précédent et suivant :
   // deux "Travaillons ensemble" à dix centimètres d'écart, ça fait deux.
   const onCase = /^\/(fr|en)\/photographer\/[^/]+\/[^/]+/.test(pathname);
-  const hideCta = onAbout || onHome || onCase;
+  const hideCta = onAbout || onHome || onCase || onContact;
   const cta =
     currentLang === "fr"
       ? { eyebrow: "Un projet en tête ?", label: "Travaillons ensemble" }
@@ -29,11 +30,11 @@ export default function Footer() {
       {!hideCta && (
         <div className={s.cta}>
           <Eyebrow className={s.eyebrow}>{cta.eyebrow}</Eyebrow>
-          <Cta href={`/${currentLang}/services`} variant="serif">{cta.label} →</Cta>
+          <Cta href={`/${currentLang}/contact`} variant="serif">{cta.label} →</Cta>
         </div>
       )}
       <div className={s.bottom}>
-        <p className={s.copy}>© {new Date().getFullYear()} Sandrine Ceuppens · Bruxelles</p>
+        <p className={s.copy}>© {new Date().getFullYear()} Sandrine Ceuppens · Brussels</p>
         <a href="mailto:hello@thegirlwithacamera.com" className={s.mail}>hello@thegirlwithacamera.com</a>
       </div>
     </footer>

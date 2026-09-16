@@ -59,3 +59,17 @@
   .photo { max-width: 420px; }
   .approach { grid-template-columns: 1fr; }
 }
+
+/* Parcours par étapes, ajouté le 16/09 sur le modèle d'adriana-maria.com.
+   Une date en italique brique, une phrase en face. */
+.path { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+.path li {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.35fr) 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.pathWhen { font-family: var(--font-serif); font-style: italic; font-size: var(--text-body); color: var(--brick); }
+.pathWhat { font-family: var(--font-serif); font-size: var(--text-body); line-height: 1.55; color: var(--ink); }
+@media (max-width: 767px) { .path li { grid-template-columns: 1fr; gap: 4px; } }

@@ -1,53 +1,92 @@
 .main { padding-bottom: 8px; }
 
-/* Ouverture : accroche à gauche, une photo verticale à droite. */
-.opening {
+/* Ouverture : photo horizontale en fond, portrait vertical posé à droite,
+   titre en bas à gauche. Le voile ne fonce que le bas gauche, là où se pose
+   le titre : le reste de la photo garde ses néons. */
+.hero {
+  position: relative;
+  min-height: clamp(560px, 88vh, 920px);
+  overflow: hidden;
+  background: var(--ink);
+}
+.heroBg { object-fit: cover; object-position: 50% 45%; }
+.heroVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.25) 45%, rgba(10, 10, 10, 0) 70%),
+    linear-gradient(to right, rgba(10, 10, 10, 0.35) 0%, rgba(10, 10, 10, 0) 55%);
+}
+.heroInner {
+  position: relative;
+  max-width: var(--page-max);
+  min-height: inherit;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr);
+  gap: clamp(24px, 4vw, 64px);
+}
+.heroTitle {
+  align-self: end;
+  margin: 0 0 clamp(40px, 7vw, 96px);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(3rem, 7.2vw, 6.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-wrap: balance;
+  position: relative;
+  z-index: 2;
+}
+.heroTitle em { font-style: italic; }
+.heroPortrait {
+  align-self: end;
+  margin-top: clamp(96px, 16vh, 180px);
+  margin-bottom: calc(-1 * clamp(40px, 8vh, 120px));
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+}
+.heroPortrait img { width: 100%; height: auto; display: block; }
+
+.intro {
   max-width: var(--page-max);
   margin: 0 auto;
-  padding: clamp(28px, 4vw, 56px) var(--pad) 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: clamp(28px, 5vw, 80px);
-  align-items: center;
+  padding: var(--section) var(--pad) 0;
 }
-.openingText .eyebrow { margin-top: 22px; }
-.openingText .lede { margin-top: 24px; max-width: 520px; }
-.feature { display: block; text-decoration: none; color: var(--ink); }
-.featureThumb {
-  position: relative;
-  display: block;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--well);
+.introTitle { margin-top: 16px; }
+.introLede { margin-top: 20px; max-width: 620px; }
+.introLink { margin: 24px 0 0; }
+.introLink a {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--brick);
+  padding-bottom: 3px;
 }
-.featureThumb img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.feature:hover .featureThumb img { transform: scale(1.03); }
-.featureCap { padding-top: 12px; }
+.introLink a:hover { color: var(--brick); }
 
-.section { padding-top: var(--section); }
 .doors {
   max-width: var(--page-max);
   margin: var(--section) auto 0;
   padding: 0 var(--pad);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--gutter);
 }
+.doors > a span:last-child { font-size: clamp(1.5rem, 2.6vw, 2.25rem); text-align: center; padding: 0 12px; }
+.latest { padding-top: var(--section); }
 
 @media (max-width: 900px) {
-  .opening { grid-template-columns: 1fr; gap: 32px; }
-  .featureThumb { max-width: 420px; }
+  .heroInner { grid-template-columns: 1fr; }
+  .heroTitle { grid-row: 2; margin-top: 28px; }
+  .heroPortrait { grid-row: 1; width: min(70vw, 360px); justify-self: end; margin: clamp(48px, 10vh, 96px) 0 0; }
+  .doors { grid-template-columns: 1fr; }
 }
 @media (max-width: 767px) {
-  .opening { padding: 24px 20px 0; }
-  /* Deux tuiles par catégorie sur téléphone : au delà, on fait défiler dix
-     images avant d'atteindre la catégorie suivante. Le reste est à un clic,
-     sur "Tout voir". */
-  .grid > *:nth-child(n + 3) { display: none; }
-  .doors { grid-template-columns: 1fr; padding: 0 12px; gap: 12px; }
+  .intro { padding-left: 20px; padding-right: 20px; }
+  .doors { padding: 0 12px; gap: 12px; }
 }

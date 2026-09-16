@@ -32,14 +32,14 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   const isFr = lang === "fr";
 
   const title = `${site.tagline} · Photographe, vidéaste et créatrice de contenu, Bruxelles`;
-  const titleEn = `${site.tagline} · Photographer, videographer and content creator, Brussels`;
+  const titleEn = `${site.tagline} · Travel photographer & content creator, Brussels`;
   // Description de repli du site. Chaque page ecrit la sienne : celle-ci ne
   // sort que si une page oublie de le faire. Elle faisait 400 caracteres et
   // enumerait vingt synonymes ; Google en coupe 155 et le reste servait de
   // texte de partage sur toutes les pages.
   const description = isFr
     ? "Sandrine Ceuppens photographie et filme les hôtels, les maisons d'hôtes, les restaurants et les bars. Basée à Bruxelles, en déplacement partout dans le monde."
-    : "Sandrine Ceuppens photographs and films hotels, guesthouses, restaurants and bars. Based in Brussels, travelling worldwide.";
+    : "Sandrine Ceuppens, travel photographer and content creator. Hotels and destinations, photographed and filmed. Based in Brussels, travelling worldwide.";
 
   return {
     metadataBase: new URL(site.url),
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
     classification: "Photography & Content Creation",
     alternates: {
       canonical: `/${lang}`,
-      languages: { fr: "/fr", en: "/en", "x-default": "/en" },
+      languages: { en: "/en", "x-default": "/en" },
     },
     // Repli seulement. pageMeta (lib/seo.ts) redefinit ce bloc page par
     // page : Next ne fusionne pas openGraph entre un layout et une page, donc
@@ -66,7 +66,6 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
       title: isFr ? title : titleEn,
       description,
       locale: isFr ? "fr_BE" : "en_GB",
-      alternateLocale: isFr ? ["en_GB"] : ["fr_BE"],
       images: [
         {
           url: `${site.url}/og-image.jpg`,
@@ -104,7 +103,7 @@ export default async function RootLayout({ children, params }: Props) {
     alternateName: site.name,
     url: site.url,
     email: `mailto:${site.email}`,
-    jobTitle: lang === "fr" ? "Photographe, vidéaste et créatrice de contenu" : "Photographer, videographer and content creator",
+    jobTitle: lang === "fr" ? "Photographe, vidéaste et créatrice de contenu" : "Travel photographer & content creator",
     address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: site.country },
     image: `${site.url}/og-image.jpg`,
     sameAs: [site.social.instagram, site.social.threads, site.social.tiktok],
@@ -153,7 +152,7 @@ export default async function RootLayout({ children, params }: Props) {
     image: `${site.url}/og-image.jpg`,
     description: lang === "fr"
       ? "Photographe et vidéaste indépendante basée à Bruxelles. Hôtels, maisons d'hôtes, restaurants et bars, photographiés en lumière naturelle. Films de marque et vidéo verticale. En déplacement partout dans le monde."
-      : "Independent photographer and filmmaker based in Brussels. Hotels, guesthouses, restaurants and bars, photographed in natural light. Brand films and vertical video. Travelling worldwide.",
+      : "Independent travel photographer and content creator based in Brussels. Hotels and destinations, photographed and filmed in natural light. Travelling worldwide.",
     url: site.url,
     email: `mailto:${site.email}`,
     address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: site.country },

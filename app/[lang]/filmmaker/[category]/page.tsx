@@ -31,7 +31,7 @@ function parseCat(category: string): DiaryCat | null {
 }
 
 export function generateStaticParams() {
-  return (["fr", "en"] as const).flatMap((lang) =>
+  return (["en"] as const).flatMap((lang) =>
     PUBLISHED_DIARY_CATS.map((category) => ({ lang, category })),
   );
 }

@@ -1,0 +1,70 @@
+.main { padding-bottom: 8px; }
+
+/* Bloc sombre : quelques mots et les adresses à gauche, formulaire à droite. */
+.dark { background: var(--ink); color: var(--paper); margin-top: clamp(40px, 5vw, 72px); }
+.darkInner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 88px) var(--pad);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 6vw, 96px);
+}
+.darkTitle { color: var(--paper); }
+.note {
+  margin: 18px 0 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+}
+.note + .note { margin-top: 6px; font-style: italic; }
+.mails { list-style: none; padding: 0; margin: 32px 0 0; }
+.mails li { padding: 10px 0; border-top: 1px solid rgba(255, 255, 255, 0.18); display: flex; gap: 16px; flex-wrap: wrap; align-items: baseline; }
+.mails span {
+  min-width: 80px;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+.mails a { font-family: var(--font-sans); font-size: var(--text-ui); color: var(--paper); text-underline-offset: 3px; }
+.mails a:hover { color: #c9705d; }
+
+.block { padding: var(--section) var(--pad) 0; max-width: var(--page-max); margin: 0 auto; }
+.blockHead { margin-bottom: 24px; }
+.faq { margin: 0; max-width: 760px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-child { border-top: 1px solid var(--line); }
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 28px 18px 0;
+  position: relative;
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  color: var(--ink);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "";
+  position: absolute;
+  right: 4px; top: 26px;
+  width: 7px; height: 7px;
+  border-right: 1px solid var(--stone);
+  border-bottom: 1px solid var(--stone);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+.faq details[open] summary::after { transform: rotate(-135deg); top: 30px; }
+.faq details p {
+  margin: 0;
+  padding: 0 28px 20px 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-ui);
+  line-height: 1.65;
+  color: var(--stone);
+}
+@media (max-width: 1023px) { .darkInner { grid-template-columns: 1fr; } }
+@media (max-width: 767px) { .block { padding-left: 20px; padding-right: 20px; } }

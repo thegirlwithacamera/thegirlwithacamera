@@ -56,7 +56,6 @@ export function pageMeta({
     alternates: {
       canonical: `/${lang}${path}`,
       languages: {
-        fr: `/fr${path}`,
         en: `/en${path}`,
         "x-default": `/en${path}`,
       },
@@ -68,7 +67,6 @@ export function pageMeta({
       title: shareTitle,
       description,
       locale: lang === "fr" ? "fr_BE" : "en_GB",
-      alternateLocale: lang === "fr" ? ["en_GB"] : ["fr_BE"],
       images: [
         isDefault
           ? { url: imageUrl, width: 1200, height: 630, alt: imageAlt ?? site.tagline, type: "image/jpeg" }

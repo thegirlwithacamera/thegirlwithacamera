@@ -178,7 +178,7 @@ export default function FilmmakerClient({
   return (
     <main className={s.main}>
       <PageHead eyebrow={t.eyebrow} title={t.title} lede={t.desc} split>
-        <Cta href={`/${lang}/services`}>{t.offer} →</Cta>
+        <Cta href={`/${lang}/contact`}>{t.offer} →</Cta>
         {/* Cinq rubriques empilees, dont trois d'un ou deux films, donnaient
             cinq rangees trouees. La page d'ensemble montre donc tous les
             films dans une grille pleine, et les pastilles menent a la

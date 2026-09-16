@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function generateStaticParams() {
-  return (["fr", "en"] as const).flatMap((lang) =>
+  return (["en"] as const).flatMap((lang) =>
     PHOTO_CATEGORIES.flatMap((cat) =>
       cat.cases
         .filter((c) => countCasePhotos(cat.slug, c.slug) > 0)

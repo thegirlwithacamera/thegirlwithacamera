@@ -29,7 +29,7 @@ function parseSection(section: string[]): Section | null {
 }
 
 export function generateStaticParams() {
-  return (["fr", "en"] as const).flatMap((lang) =>
+  return (["en"] as const).flatMap((lang) =>
     SECTIONS.map((s) => ({ lang, section: [s] })),
   );
 }

@@ -200,7 +200,7 @@ export default function CaseView({
 
         <nav className={s.next} aria-label={lang === "fr" ? "Suite" : "More"}>
           <div>{prevHref && <Link href={prevHref}>← {prevLabel}</Link>}</div>
-          <Link href={`/${lang}/services`} className={s.nextTalk}>{talk}</Link>
+          <Link href={`/${lang}/contact`} className={s.nextTalk}>{talk}</Link>
           <div className={s.nextRight}>{nextHref && <Link href={nextHref}>{nextLabel} →</Link>}</div>
         </nav>
       </main>
@@ -209,7 +209,7 @@ export default function CaseView({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: lang === "fr" ? "Photographe" : "Photographer", item: `https://thegirlwithacamera.com/${lang}/photographer` },
+          { "@type": "ListItem", position: 1, name: "Destinations", item: `https://thegirlwithacamera.com/${lang}/destinations` },
           { "@type": "ListItem", position: 2, name: cat.label[lang], item: `https://thegirlwithacamera.com/${lang}/photographer/${cat.slug}` },
           ...(isRoot
             ? [{ "@type": "ListItem", position: 3, name: item.label[lang] }]

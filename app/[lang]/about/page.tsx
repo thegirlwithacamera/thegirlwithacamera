@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: "About",
     description: lang === "fr"
       ? "À propos de Sandrine Ceuppens. Photographe documentaire et créatrice de contenu basée à Bruxelles. Collaborations avec Ricoh Europe, Pentax Europe et Insta360."
-      : "About Sandrine Ceuppens. Documentary photographer and content creator based in Brussels. Collaborations with Ricoh Europe, Pentax Europe and Insta360.",
+      : "About Sandrine Ceuppens, travel photographer and content creator based in Brussels. Collaborations with Ricoh Europe, Pentax Europe and Insta360.",
     image: "/images/about/hero.jpg",
     imageAlt: "Sandrine Ceuppens",
   });
@@ -54,11 +54,20 @@ const content = {
     cta: "On travaille ensemble ?",
   },
   en: {
-    role: "Sandrine Ceuppens, *photographer and filmmaker* in Brussels.",
+    role: "Sandrine Ceuppens, *travel photographer & content creator.*",
     approachTitle: "A *way of looking*",
     approach: [
       "I work in natural light, while the house is alive. Nothing is moved, nothing is added: one room free in the morning is enough, and your team can stay in the frame, that is often what makes the picture.",
       "Stills and film on the same visit, so the place reads as a whole. The walls say one part of it, the gestures say the rest.",
+      "Often I step into the frame myself, to tell the stay from the inside: arriving, opening the curtains, walking the streets at dawn. And when a place needs to speak on its own, I stay behind the camera.",
+    ],
+    pathTitle: "Along *the way*",
+    path: [
+      { when: "August 2024", what: "I picked up a camera again, after years away from photography." },
+      { when: "June 2026", what: "Tokyo, from zone to zone, with four photo series shot on the Ricoh GR III." },
+      { when: "July 2026", what: "Ricoh France and Pentax Europe show my work at the Rencontres d'Arles." },
+      { when: "Summer 2026", what: "Films and photographs for hotels and tourism boards in Vienna, Graz and Carinthia." },
+      { when: "Now", what: "A book in progress, and more places to photograph the way they feel." },
     ],
     clients: "They trusted me",
     contact: "Contact",
@@ -69,22 +78,6 @@ const content = {
 };
 
 const SOCIALS = [
-  {
-    // Le journal etait un lien en toutes lettres a cote de "Travaillons
-    // ensemble". Deux liens en capitales espacees se disputaient le meme
-    // poids alors qu'un seul est une porte commerciale ; le journal rejoint
-    // donc la rangee de logos, en tete parce que c'est sa propre publication.
-    label: "Substack",
-    handle: "The Girl With A Camera",
-    href: "https://thegirlwithacamera.substack.com/",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <rect x="2.5" y="3" width="19" height="2.6" />
-        <rect x="2.5" y="8.2" width="19" height="2.6" />
-        <path d="M2.5 13.4h19V22l-9.5-5.1L2.5 22z" />
-      </svg>
-    ),
-  },
   {
     label: "Instagram",
     handle: "@sandrinecppns",
@@ -162,7 +155,7 @@ export default async function AboutPage({ params }: Props) {
               noyaient. Le nom reste dans aria-label et title pour la lecture
               d'ecran et le survol. */}
           <ul className={s.links}>
-            <li><Link href={`/${lang}/services`} className={s.brick}>{lang === "fr" ? "Travaillons ensemble →" : "Work with me →"}</Link></li>
+            <li><Link href="/en/contact" className={s.brick}>Work with me →</Link></li>
           </ul>
           <ul className={s.socials}>
             {SOCIALS.map((so) => (
@@ -182,6 +175,22 @@ export default async function AboutPage({ params }: Props) {
           <div>{t.approach.map((p) => <p key={p}>{p}</p>)}</div>
         </div>
       </Section>
+
+      {"path" in t && (
+        <Section>
+          <div className={s.approach}>
+            <Display size="m" as="h2">{t.pathTitle}</Display>
+            <ol className={s.path}>
+              {t.path.map((step) => (
+                <li key={step.when}>
+                  <span className={s.pathWhen}>{step.when}</span>
+                  <span className={s.pathWhat}>{step.what}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Section>
+      )}
 
       <Section>
         <div className={s.clients}>
@@ -218,10 +227,10 @@ export default async function AboutPage({ params }: Props) {
         name: lang === "fr" ? "À propos" : "About",
         description: lang === "fr"
           ? "Sandrine Ceuppens, photographe et vidéaste documentaire basée à Bruxelles."
-          : "Sandrine Ceuppens, documentary photographer and filmmaker based in Brussels.",
+          : "Sandrine Ceuppens, travel photographer and content creator based in Brussels.",
         mainEntity: {
           "@type": "Person",
-          jobTitle: lang === "fr" ? "Photographe et vidéaste documentaire" : "Documentary photographer and filmmaker",
+          jobTitle: lang === "fr" ? "Photographe et vidéaste documentaire" : "Travel photographer & content creator",
           url: "https://thegirlwithacamera.com",
           sameAs: SOCIALS.map((so) => so.href),
         },

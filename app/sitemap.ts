@@ -25,8 +25,9 @@ function buildPaths(): Entry[] {
     // L'accueil et les quatre pages qui vendent quelque chose passent avant
     // le reste.
     { path: "", priority: 1, changeFrequency: "weekly", lastModified: now },
-    { path: "/services", priority: 0.9, changeFrequency: "monthly", lastModified: now },
-    { path: "/photographer", priority: 0.9, changeFrequency: "weekly", lastModified: now },
+    { path: "/destinations", priority: 0.9, changeFrequency: "weekly", lastModified: now },
+    { path: "/contact", priority: 0.9, changeFrequency: "monthly", lastModified: now },
+    { path: "/journal", priority: 0.7, changeFrequency: "weekly", lastModified: now },
     { path: "/filmmaker", priority: 0.8, changeFrequency: "monthly", lastModified: now },
     { path: "/creator", priority: 0.8, changeFrequency: "monthly", lastModified: now },
     { path: "/about", priority: 0.6, changeFrequency: "yearly", lastModified: now },
@@ -72,7 +73,7 @@ function buildPaths(): Entry[] {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const langs: Array<"fr" | "en"> = ["fr", "en"];
+  const langs: Array<"fr" | "en"> = ["en"];
 
   return langs.flatMap((lang) =>
     buildPaths().map((e) => ({
@@ -82,7 +83,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: e.priority,
       alternates: {
         languages: {
-          fr: `${site.url}/fr${e.path}`,
           en: `${site.url}/en${e.path}`,
           "x-default": `${site.url}/en${e.path}`,
         },

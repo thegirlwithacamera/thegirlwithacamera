@@ -22,6 +22,7 @@ const TYPE_LABELS: Record<string, string> = {
   // Les deux premiers ajoutés le 01/09 avec la page Services : ce sont les
   // demandes qu'on cherche, elles doivent être lisibles dans l'objet du mail.
   hospitality: "Hotel / guesthouse",
+  destination: "Tourism board / destination",
   restaurant: "Restaurant / bar",
   brand: "Brand content",
   editorial: "Editorial / documentary",

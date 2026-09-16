@@ -7,7 +7,7 @@ interface Props {
 }
 
 export function generateStaticParams() {
-  return (["fr", "en"] as const).map((lang) => ({ lang }));
+  return (["en"] as const).map((lang) => ({ lang }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

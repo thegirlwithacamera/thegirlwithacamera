@@ -31,7 +31,7 @@ function esc(s: string): string {
 
 export async function GET() {
   const base = site.url;
-  const langs: Array<"fr" | "en"> = ["fr", "en"];
+  const langs: Array<"fr" | "en"> = ["en"];
 
   const urls: string[] = [];
 

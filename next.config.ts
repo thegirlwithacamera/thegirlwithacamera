@@ -15,8 +15,16 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Refonte du 16/09 : site en anglais, menu Destinations, Content
+      // creator, Journal, About, Contact. La page Services laisse la place à
+      // Contact (plus de liste d'offres), Photographer à Destinations, et le
+      // journal revient sur le site au lieu de Substack.
+      { source: "/en/services", destination: "/en/contact", permanent: true },
+      { source: "/en/photographer", destination: "/en/destinations", permanent: true },
+      { source: "/en/diary", destination: "/en/journal", permanent: true },
+      { source: "/en/diary/:slug", destination: "/en/journal", permanent: true },
       // /da was a half-built page with missing assets, keep the URL valuable
-      { source: "/da", destination: "/fr/services", permanent: true },
+      { source: "/da", destination: "/en/contact", permanent: true },
       { source: "/fr/da", destination: "/fr/services", permanent: true },
       { source: "/en/da", destination: "/en/services", permanent: true },
       // Pointait vers /film, une route qui n'existe pas : la page s'appelle
@@ -25,10 +33,6 @@ const nextConfig: NextConfig = {
       { source: "/en/video", destination: "/en/filmmaker", permanent: true },
       // Journal : le Diary du site fait doublon avec le Substack, décision du
       // 01/09. Les pages restent dans le dépôt, elles ne sont plus servies.
-      { source: "/fr/diary", destination: "https://thegirlwithacamera.substack.com/", permanent: true },
-      { source: "/en/diary", destination: "https://thegirlwithacamera.substack.com/", permanent: true },
-      { source: "/fr/diary/:slug", destination: "https://thegirlwithacamera.substack.com/", permanent: true },
-      { source: "/en/diary/:slug", destination: "https://thegirlwithacamera.substack.com/", permanent: true },
       // Videaste decoupe en cinq rubriques le 12/09 : "Maisons & tables" se
       // separe en Hotels, Tables et Spa, et les trains sortent de Voyage.
       // L'ancienne URL /filmmaker/places etait en ligne et dans les

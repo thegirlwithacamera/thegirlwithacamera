@@ -28,7 +28,7 @@ const SEO_TITLE: Record<"fr" | "en", Record<string, string>> = {
 };
 
 export function generateStaticParams() {
-  return (["fr", "en"] as const).flatMap((lang) =>
+  return (["en"] as const).flatMap((lang) =>
     PHOTO_CATEGORIES.map((c) => ({ lang, category: c.slug })),
   );
 }
@@ -78,7 +78,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
     .filter((c) => c.cover !== null);
 
   const copy = CATEGORY_COPY[cat.slug]?.[lang];
-  const backLabel = lang === "fr" ? "Tout le portfolio" : "All the work";
+  const backLabel = lang === "fr" ? "Tout le portfolio" : "All destinations";
   const emptyNote = lang === "fr" ? "Sélection à venir." : "Selection coming soon.";
   const lede =
     cat.citySeries
@@ -93,7 +93,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
     <>
       <main className={s.main}>
       <PageHead
-        back={{ href: `/${lang}/photographer`, label: backLabel }}
+        back={{ href: `/${lang}/destinations`, label: backLabel }}
         eyebrow={lang === "fr" ? "Photographe" : "Photographer"}
         title={cat.label[lang]}
         lede={cases.length === 0 ? emptyNote : lede}
@@ -124,7 +124,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
             <div>
               {copy.body.map((p) => <p key={p}>{p}</p>)}
               <p className={s.aboutCta}>
-                <Cta href={`/${lang}/services`}>
+                <Cta href={`/${lang}/contact`}>
                   {lang === "fr" ? "Voir les formules" : "See the packages"} →
                 </Cta>
               </p>
@@ -137,7 +137,7 @@ export default async function PhotographerCategoryPage({ params }: Props) {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: lang === "fr" ? "Photographe" : "Photographer", item: `https://thegirlwithacamera.com/${lang}/photographer` },
+          { "@type": "ListItem", position: 1, name: "Destinations", item: `https://thegirlwithacamera.com/${lang}/destinations` },
           { "@type": "ListItem", position: 2, name: cat.label[lang] },
         ],
       }) }} />

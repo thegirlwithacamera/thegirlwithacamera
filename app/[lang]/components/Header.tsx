@@ -5,84 +5,45 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import s from "./Header.module.css";
 
-type Lang = "fr" | "en";
-type NavLink = { href: string; label: string; external?: boolean };
+type NavLink = { href: string; label: string };
 
-// Navigation : quatre entrées au premier niveau, ce sont les quatre choses
-// qu'on achète (décision du 01/09). Journal et About dans le "+". Les
-// libellés restent en anglais dans les deux langues : ce sont des enseignes.
+// Navigation refaite le 16/09, sur le modèle d'adriana-maria.com : cinq
+// entrées, chacune un type de page, plus de sélecteur de langue (site en
+// anglais seulement) et plus de menu « + ». « Destinations » remplace
+// Photographer/Filmmaker : à côté de « Content creator », « Portfolio » aurait
+// laissé croire que le contenu créatrice n'était pas du travail.
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
-  const currentLang = (pathname.split("/")[1] || "fr") as Lang;
-  const otherLang: Lang = currentLang === "fr" ? "en" : "fr";
-  const pathWithoutLang = pathname.replace(/^\/(fr|en)/, "");
-
-  // Les menus se referment au clic sur un lien, pas dans un effet.
-  const close = () => { setMenuOpen(false); setMoreOpen(false); };
+  const close = () => setMenuOpen(false);
 
   const navLinks: NavLink[] = [
-    { href: `/${currentLang}/photographer`, label: "Photographer" },
-    { href: `/${currentLang}/filmmaker`,    label: "Filmmaker" },
-    { href: `/${currentLang}/creator`,      label: "Creator" },
-    { href: `/${currentLang}/services`,     label: "Services" },
+    { href: "/en/destinations", label: "Destinations" },
+    { href: "/en/creator", label: "Content creator" },
+    { href: "/en/journal", label: "Journal" },
+    { href: "/en/about", label: "About" },
   ];
-  const moreLinks: NavLink[] = [
-    { href: "https://thegirlwithacamera.substack.com/", label: "Journal", external: true },
-    { href: `/${currentLang}/about`, label: "About" },
-  ];
+  const contact: NavLink = { href: "/en/contact", label: "Contact" };
 
-  const isActive = (l: NavLink) => !l.external && pathname.startsWith(l.href);
-  const linkProps = (l: NavLink) => ({
-    href: l.href,
-    onClick: close,
-    target: l.external ? "_blank" : undefined,
-    rel: l.external ? "noopener noreferrer" : undefined,
-  });
-
-  const work = currentLang === "fr" ? "Travaillons ensemble →" : "Work with me →";
+  const isActive = (l: NavLink) =>
+    pathname.startsWith(l.href) ||
+    (l.href === "/en/destinations" && pathname.startsWith("/en/photographer"));
 
   return (
     <header className={s.header}>
       <div className={s.inner}>
-        <Link href={`/${currentLang}`} className={s.title}>The Girl With A Camera</Link>
+        <Link href="/en" className={s.title}>The Girl With A Camera</Link>
 
         <nav className={s.nav} aria-label="Main">
           {navLinks.map((l) => (
-            <Link key={l.href} {...linkProps(l)} className={`${s.link} ${isActive(l) ? s.active : ""}`}>
+            <Link key={l.href} href={l.href} onClick={close} className={`${s.link} ${isActive(l) ? s.active : ""}`}>
               {l.label}
             </Link>
           ))}
-          {moreLinks.length > 0 && (
-            <div className={s.more}>
-              <button
-                type="button"
-                onClick={() => setMoreOpen((v) => !v)}
-                aria-label={currentLang === "fr" ? "Plus de pages" : "More pages"}
-                aria-expanded={moreOpen}
-                className={`${s.moreBtn} ${moreOpen ? s.moreOpen : ""}`}
-              >
-                +
-              </button>
-              {moreOpen && (
-                <div className={s.menu}>
-                  {moreLinks.map((l) => (
-                    <Link key={l.href} {...linkProps(l)} className={`${s.link} ${isActive(l) ? s.active : ""}`}>
-                      {l.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
         </nav>
 
         <div className={s.right}>
-          <Link href={`/${otherLang}${pathWithoutLang || ""}`} className={s.lang}>
-            {otherLang.toUpperCase()}
-          </Link>
-          <Link href={`/${currentLang}/services`} className={s.work}>{work}</Link>
+          <Link href={contact.href} className={s.work}>{contact.label}</Link>
         </div>
 
         <div className={`${s.burger} ${menuOpen ? s.open : ""}`}>
@@ -98,13 +59,10 @@ export default function Header() {
 
       {menuOpen && (
         <div className={s.mobileMenu}>
-          {[...navLinks, ...moreLinks].map((l) => (
-            <Link key={l.href} {...linkProps(l)} className={s.link}>{l.label}</Link>
+          {navLinks.map((l) => (
+            <Link key={l.href} href={l.href} onClick={close} className={s.link}>{l.label}</Link>
           ))}
-          <Link href={`/${currentLang}/services`} onClick={close} className={s.work}>{work}</Link>
-          <Link href={`/${otherLang}${pathWithoutLang || ""}`} className={s.lang}>
-            {otherLang.toUpperCase()}
-          </Link>
+          <Link href={contact.href} onClick={close} className={s.work}>{contact.label}</Link>
         </div>
       )}
     </header>

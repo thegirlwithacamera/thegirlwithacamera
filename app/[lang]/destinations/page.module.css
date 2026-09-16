@@ -1,0 +1,2 @@
+.main { padding-bottom: 8px; }
+.section { padding-top: clamp(48px, 7vw, 96px); }
