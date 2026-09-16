@@ -1,11 +1,9 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-// Substack est la vraie liste : c'est la qu'on ecrit le journal.
-// Resend reste en second, comme copie de securite, pour qu'aucune adresse
-// ne soit perdue si Substack refuse l'appel.
-const SUBSTACK_URL =
-  process.env.SUBSTACK_URL ?? "https://thegirlwithacamera.substack.com";
+// Liste d'inscrits : Resend seulement depuis le 16/09. Substack est
+// abandonné (le journal s'écrit sur le site), plus aucun appel ne part vers
+// lui. Si aucune audience Resend n'existe, l'inscription arrive par mail.
 
 // Simple in-memory rate limit (one process, low traffic OK).
 const RATE: Map<string, { count: number; resetAt: number }> = new Map();
@@ -43,44 +41,6 @@ async function resolveAudienceId(resend: Resend): Promise<string | null> {
     // ignore, fallback to email notification
   }
   return null;
-}
-
-/**
- * Inscrit l'adresse en abonne GRATUIT sur Substack.
- *
- * C'est l'endpoint qu'utilise le formulaire officiel de Substack. Il n'est pas
- * documente publiquement : si Substack le change un jour, cette fonction
- * renvoie false, la copie Resend prend le relais et rien n'est perdu.
- */
-async function subscribeToSubstack(email: string, pageUrl: string): Promise<boolean> {
-  try {
-    const res = await fetch(`${SUBSTACK_URL}/api/v1/free`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        first_url: pageUrl,
-        first_referrer: "",
-        current_url: pageUrl,
-        current_referrer: "",
-        referral_code: "",
-        source: "embed",
-        referring_pub_id: "",
-        additional_referring_pub_id: "",
-      }),
-    });
-    if (!res.ok) {
-      console.error("Substack subscribe failed:", res.status, await res.text().catch(() => ""));
-      return false;
-    }
-    return true;
-  } catch (err) {
-    console.error("Substack subscribe error:", err);
-    return false;
-  }
 }
 
 async function copyToResend(email: string, lang: string): Promise<boolean> {
@@ -129,18 +89,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
 
-    const pageUrl = request.headers.get("referer") ?? "https://www.thegirlwithacamera.com/";
-
-    const [substackOk, resendOk] = await Promise.all([
-      subscribeToSubstack(email, pageUrl),
-      copyToResend(email, lang),
-    ]);
-
-    if (!substackOk && !resendOk) {
+    const ok = await copyToResend(email, lang);
+    if (!ok) {
       return NextResponse.json({ error: "Failed to subscribe" }, { status: 500 });
     }
 
-    return NextResponse.json({ success: true, substack: substackOk });
+    return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Newsletter API error:", err);
     return NextResponse.json({ error: "Failed to subscribe" }, { status: 500 });

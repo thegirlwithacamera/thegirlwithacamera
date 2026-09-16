@@ -49,9 +49,9 @@ const content = {
     ],
     clients: "Ils m'ont fait confiance",
     contact: "Contact",
-    // Presentation ecrite a partir du texte Substack de Sandrine (31/08).
+    // Presentation ecrite a partir d'un texte de Sandrine (31/08).
     // La phrase de fin, "il y a deux ans je n'imaginais rien de tout ca", reste
-    // sur Substack : juste et touchante, mais sur une page qui vend une
+    // hors du site : juste et touchante, mais sur une page qui vend une
     // prestation elle dit qu'on debute.
     bio: "Je photographie les villes à cinq heures du matin et les marchés avant la foule. C'est la même façon de regarder que j'emmène dans les maisons et les hôtels : la lumière du lieu, les gestes de ceux qui y travaillent, rien de posé. Un livre est en cours.",
     based: "Bruxelles · disponible partout dans le monde",

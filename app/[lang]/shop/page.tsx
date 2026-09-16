@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // Elle n'est dans aucun menu, décision du 01/09 : un hôtelier qui regarde le
 // portfolio ne doit pas croiser un bouton d'achat. Elle reste indexable et
 // dans le sitemap, parce que « presets Ricoh GR » est une requête que des
-// gens tapent. C'est le lien à mettre en bio, dans le Substack et sur
+// gens tapent. C'est le lien à mettre en bio, dans le journal et sur
 // Pinterest, où onze épingles de presets attendaient une page de vente.
 //
 // Rien ne se paie ici : Gumroad porte la vente, la livraison et la TVA. Le

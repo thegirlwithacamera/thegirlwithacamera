@@ -27,7 +27,6 @@ export const site = {
     youtube: "https://www.youtube.com/@sandrinecppns",
     pinterest: "https://www.pinterest.com/sandrineceuppens/",
     instagramHandle: "@sandrinecppns",
-    substack: "https://thegirlwithacamera.substack.com",
   },
   partners: [
     { name: "Ricoh Europe", url: "https://www.ricoh-imaging.eu/" },

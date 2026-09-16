@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
       // Refonte du 16/09 : site en anglais, menu Destinations, Content
       // creator, Journal, About, Contact. La page Services laisse la place à
       // Contact (plus de liste d'offres), Photographer à Destinations, et le
-      // journal revient sur le site au lieu de Substack.
+      // journal revient sur le site. Substack est abandonné.
       { source: "/en/services", destination: "/en/contact", permanent: true },
       { source: "/en/photographer", destination: "/en/destinations", permanent: true },
       { source: "/en/diary", destination: "/en/journal", permanent: true },
@@ -31,8 +31,6 @@ const nextConfig: NextConfig = {
       // /filmmaker. Corrigé le 01/09.
       { source: "/fr/video", destination: "/fr/filmmaker", permanent: true },
       { source: "/en/video", destination: "/en/filmmaker", permanent: true },
-      // Journal : le Diary du site fait doublon avec le Substack, décision du
-      // 01/09. Les pages restent dans le dépôt, elles ne sont plus servies.
       // Videaste decoupe en cinq rubriques le 12/09 : "Maisons & tables" se
       // separe en Hotels, Tables et Spa, et les trains sortent de Voyage.
       // L'ancienne URL /filmmaker/places etait en ligne et dans les

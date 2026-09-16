@@ -20,7 +20,7 @@ export const SHOP_ENABLED = false;
 // La page /shop n'est pas dans la navigation, décision du 01/09 : un hôtelier
 // qui regarde le portfolio ne doit pas croiser un bouton d'achat. Elle reste
 // indexable, parce que « presets Ricoh GR » est une requête que des gens
-// tapent vraiment. C'est un lien à mettre en bio, dans le Substack et sur
+// tapent vraiment. C'est un lien à mettre en bio, dans le journal et sur
 // Pinterest.
 //
 // AJOUTER UN PRODUIT : une entrée ici, rien d'autre. `live: false` le prépare

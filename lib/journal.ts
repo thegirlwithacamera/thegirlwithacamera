@@ -2,8 +2,8 @@ import fs from "fs";
 import path from "path";
 
 // ─────────────────────────────────────────────────────────────
-// Journal, écrit directement sur le site depuis le 16/09 (Substack ne
-// prenait pas). Un article = un fichier .md dans content/journal, voir le
+// Journal, écrit directement sur le site depuis le 16/09 (Substack est
+// abandonné). Un article = un fichier .md dans content/journal, voir le
 // README du dossier. Pas de CMS ni de dépendance : les pages sont générées au
 // build, comme le reste du site.
 //
