@@ -182,8 +182,11 @@ export default async function AboutPage({ params }: Props) {
       <HashScroll />
 
       <header className={s.top}>
-        <Eyebrow tone="brick" className={s.eyebrow}>About</Eyebrow>
-        <Display size="xl" as="h1">{t.role}</Display>
+        <Display size="xl" as="h1">
+          Sandrine Ceuppens
+          <br />
+          <em>travel photographer &amp; content creator</em>
+        </Display>
       </header>
 
       <section className={s.hero}>
