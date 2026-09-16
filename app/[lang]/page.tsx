@@ -3,7 +3,8 @@ import { allPosts, formatDate } from "@/lib/journal";
 import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
-import { Display, DoorTile, Eyebrow, Lede, ProjectCard, ProjectGrid, SectionBar } from "./components/editorial";
+import { ProjectCard, ProjectGrid, SectionBar } from "./components/editorial";
+import Band from "./components/Band";
 import s from "./page.module.css";
 
 interface Props {
@@ -47,10 +48,23 @@ const HERO = {
   portrait: "/images/about/hero.jpg",
 };
 
-const DOORS = [
-  { href: "/en/destinations", word: "Destinations", cover: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg", position: "50% 55%" },
-  { href: "/en/creator", word: "Content creator", cover: "/videos/creator/CINEMATIC/HOTELS/Hotel Rathaus.jpg", position: "50% 50%" },
-  { href: "/en/journal", word: "Journal", cover: "/images/portfolio/travel/villach/4.jpg", position: "50% 60%" },
+// Trois grandes bandes pleine largeur, comme chez Adriana. Les images sont
+// des affiches de films (1920 px), les seules horizontales assez grandes.
+const BANDS = [
+  { href: "/en/destinations", word: "Destinations", button: "Discover the work", image: "/videos/creator/CINEMATIC/CITIES/Villach.jpg", position: "50% 40%" },
+  { href: "/en/creator", word: "Content creator", button: "See the videos", image: "/videos/creator/CINEMATIC/HOTELS/Hotel Rathaus.jpg", position: "50% 50%" },
+  { href: "/en/journal", word: "Journal", button: "Read the stories", image: "/videos/creator/CINEMATIC/HOTELS/Naturel Dorf Schönleitn.jpg", position: "50% 60%" },
+];
+
+// Bande Instagram en bas de page : des images du site, liées au compte.
+// Pas de flux automatique (il faudrait un jeton Meta qui expire) : on
+// change les chemins ici quand on veut.
+const INSTAGRAM = [
+  "/images/portfolio/hospitality/hotel-rathaus-wien/1.jpg",
+  "/images/portfolio/travel/villach/5.jpg",
+  "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
+  "/images/portfolio/hospitality/naturel-dorf-schonleitn/7.jpg",
+  "/images/portfolio/travel/graz/1.jpg",
 ];
 
 export default async function HomePage({ params }: Props) {
@@ -87,19 +101,15 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section className={s.intro}>
-        <Eyebrow tone="brick">Sandrine Ceuppens · Brussels · travelling worldwide</Eyebrow>
-        <Display size="m" as="h2" className={s.introTitle}>Travel photographer &amp; content creator.</Display>
-        <Lede className={s.introLede} align="left" tone="stone">
-          I work in natural light, with nothing staged. I arrive before everyone else, often at five in the morning, to catch the moment a room or a street feels like itself. Sometimes I step into the frame, to tell the stay from the inside.
-        </Lede>
-        <p className={s.introLink}><Link href="/en/about">Read my story →</Link></p>
+        <p className={s.introText}>
+          Travel photographer &amp; content creator. I work in natural light, with nothing staged. I arrive before everyone else, often at five in the morning, to catch the moment a room or a street feels like itself. Sometimes I step into the frame, to tell the stay from the inside.
+        </p>
+        <Link href="/en/about" className={s.introButton}>Read my story</Link>
       </section>
 
-      <div className={s.doors}>
-        {DOORS.map((d) => (
-          <DoorTile key={d.href} href={d.href} cover={d.cover} word={d.word} coverPosition={d.position} />
-        ))}
-      </div>
+      {BANDS.map((b) => (
+        <Band key={b.href} {...b} />
+      ))}
 
       {posts.length > 0 && (
         <section className={s.latest}>
@@ -119,6 +129,20 @@ export default async function HomePage({ params }: Props) {
           </ProjectGrid>
         </section>
       )}
+
+      <section className={s.insta}>
+        <a href="https://www.instagram.com/sandrinecppns/" target="_blank" rel="noopener noreferrer" className={s.instaHead}>
+          Follow on Instagram
+          <span>@sandrinecppns</span>
+        </a>
+        <div className={s.instaRow}>
+          {INSTAGRAM.map((src) => (
+            <a key={src} href="https://www.instagram.com/sandrinecppns/" target="_blank" rel="noopener noreferrer" className={s.instaTile} aria-label="Instagram @sandrinecppns">
+              <Image src={src} alt="" fill sizes="(max-width: 767px) 50vw, 20vw" quality={70} />
+            </a>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

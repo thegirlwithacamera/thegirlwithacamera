@@ -60,20 +60,38 @@
   .approach { grid-template-columns: 1fr; }
 }
 
-/* Parcours par étapes, ajouté le 16/09 sur le modèle d'adriana-maria.com.
-   Une date en italique brique, une phrase en face. */
-.path { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
-.path li {
-  display: grid;
-  grid-template-columns: minmax(110px, 0.35fr) 1fr;
-  gap: 24px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--line);
+/* Titre centré en haut, sur le modèle d'adriana-maria.com (16/09). */
+.top {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(48px, 7vw, 104px) var(--pad) clamp(40px, 5vw, 72px);
+  text-align: center;
 }
-.pathWhen { font-family: var(--font-serif); font-style: italic; font-size: var(--text-body); color: var(--brick); }
-.pathWhat { font-family: var(--font-serif); font-size: var(--text-body); line-height: 1.55; color: var(--ink); }
-@media (max-width: 767px) { .path li { grid-template-columns: 1fr; gap: 4px; } }
+.top h1 em { white-space: normal; }
 
-/* Le titre en italique est long depuis le 16/09 : Display empêche les
-   passages en italique de se couper, ici il doit pouvoir passer à la ligne. */
-.hero h1 em { white-space: normal; }
+/* Parcours en grandes bandes, une par étape (16/09). La date et la phrase
+   se posent sur la photo ; sans photo, la bande reste sombre. */
+.pathSection { margin-top: var(--section); }
+.pathTitle { max-width: var(--page-max); margin: 0 auto 32px; padding: 0 var(--pad); }
+.step {
+  position: relative;
+  min-height: clamp(360px, 70vh, 720px);
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+  background: var(--ink);
+}
+.stepPlain { min-height: clamp(240px, 36vh, 360px); }
+.stepImg { object-fit: cover; }
+.stepVeil { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(12, 12, 12, 0.55) 0%, rgba(12, 12, 12, 0.1) 60%); }
+.stepPlain .stepVeil { display: none; }
+.stepText {
+  position: relative;
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 88px) var(--pad);
+  color: #fff;
+}
+.stepWhen { margin: 0; font-family: var(--font-serif); font-style: italic; font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.1; }
+.stepWhat { margin: 16px 0 0; max-width: 720px; font-family: var(--font-serif); font-size: clamp(1.125rem, 1.8vw, 1.5rem); line-height: 1.5; }

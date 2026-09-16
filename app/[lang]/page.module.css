@@ -50,43 +50,61 @@
 .heroPortrait img { width: 100%; height: auto; display: block; }
 
 .intro {
-  max-width: var(--page-max);
+  max-width: 820px;
   margin: 0 auto;
-  padding: var(--section) var(--pad) 0;
+  padding: var(--section) var(--pad);
+  text-align: center;
 }
-.introTitle { margin-top: 16px; }
-.introLede { margin-top: 20px; max-width: 620px; }
-.introLink { margin: 24px 0 0; }
-.introLink a {
+.introText {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  line-height: 1.6;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.introButton {
+  display: inline-block;
+  margin-top: 36px;
+  padding: 14px 34px;
+  border: 1px solid var(--ink);
   font-family: var(--font-sans);
   font-size: var(--text-label);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid var(--brick);
-  padding-bottom: 3px;
+  transition: background 0.25s ease, color 0.25s ease;
 }
-.introLink a:hover { color: var(--brick); }
+.introButton:hover { background: var(--ink); color: var(--paper); }
+.introButton:focus-visible { outline: 2px solid var(--brick); outline-offset: 4px; }
 
-.doors {
-  max-width: var(--page-max);
-  margin: var(--section) auto 0;
-  padding: 0 var(--pad);
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--gutter);
+.insta { padding-top: var(--section); }
+.instaHead {
+  display: block;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  margin-bottom: 28px;
 }
-.doors > a span:last-child { font-size: clamp(1.5rem, 2.6vw, 2.25rem); text-align: center; padding: 0 12px; }
+.instaHead span { display: block; margin-top: 8px; font-family: var(--font-serif); font-style: italic; font-size: var(--text-body); letter-spacing: 0; text-transform: none; color: var(--brick); }
+.instaRow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.instaTile { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--well); display: block; }
+.instaTile img { object-fit: cover; transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.instaTile:hover img { transform: scale(1.03); }
 .latest { padding-top: var(--section); }
 
 @media (max-width: 900px) {
   .heroInner { grid-template-columns: 1fr; }
   .heroTitle { grid-row: 2; margin-top: 28px; }
   .heroPortrait { grid-row: 1; width: min(70vw, 360px); justify-self: end; margin: clamp(48px, 10vh, 96px) 0 0; }
-  .doors { grid-template-columns: 1fr; }
 }
 @media (max-width: 767px) {
   .intro { padding-left: 20px; padding-right: 20px; }
-  .doors { padding: 0 12px; gap: 12px; }
+  .instaRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .instaRow > a:nth-child(5) { display: none; }
 }

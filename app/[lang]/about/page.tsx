@@ -66,11 +66,14 @@ const content = {
       "Often I step into the frame myself, to tell the stay from the inside: arriving, opening the curtains, walking the streets at dawn. And when a place needs to speak on its own, I stay behind the camera.",
     ],
     pathTitle: "Along *the way*",
+    // Une bande photo par étape, comme chez Adriana. Une étape sans image
+    // s'affiche sur fond sombre en attendant sa photo : ajouter image: "..."
+    // (horizontale, 2000 px de large au moins) suffit.
     path: [
       { when: "August 2024", what: "I picked up a camera again, after years away from photography." },
-      { when: "June 2026", what: "Tokyo, from zone to zone, with four photo series shot on the Ricoh GR III." },
+      { when: "June 2026", what: "Tokyo, from zone to zone, with four photo series shot on the Ricoh GR III.", image: "/videos/creator/CINEMATIC/CITIES/City Diary Tokyo.jpg" },
       { when: "July 2026", what: "Ricoh France and Pentax Europe show my work at the Rencontres d'Arles." },
-      { when: "Summer 2026", what: "Films and photographs for hotels and tourism boards in Vienna, Graz and Carinthia." },
+      { when: "Summer 2026", what: "Films and photographs for hotels and tourism boards in Vienna, Graz and Carinthia.", image: "/videos/creator/CINEMATIC/CITIES/Graz.jpg" },
       { when: "Now", what: "A book in progress, and more places to photograph the way they feel." },
     ],
     clients: "They trusted me",
@@ -145,13 +148,16 @@ export default async function AboutPage({ params }: Props) {
     <main className={s.main}>
       <HashScroll />
 
+      <header className={s.top}>
+        <Eyebrow tone="brick" className={s.eyebrow}>About</Eyebrow>
+        <Display size="xl" as="h1">{t.role}</Display>
+      </header>
+
       <section className={s.hero}>
         <div className={s.photo}>
           <Image src={HERO_PHOTO} alt="Sandrine Ceuppens on a beach, in black and white" fill sizes="(max-width: 900px) 420px, 560px" priority quality={82} />
         </div>
         <div>
-          <Eyebrow tone="brick" className={s.eyebrow}>{lang === "fr" ? "À propos" : "About"}</Eyebrow>
-          <Display size="l" as="h1">{t.role}</Display>
           <Lede className={s.bio} align="left">{t.bio}</Lede>
           {/* Deux rangees. En haut la seule porte commerciale, en mots. En
               dessous le journal et les reseaux, en logos : des noms ecrits en
@@ -181,19 +187,21 @@ export default async function AboutPage({ params }: Props) {
       </Section>
 
       {"path" in t && (
-        <Section>
-          <div className={s.approach}>
-            <Display size="m" as="h2">{t.pathTitle}</Display>
-            <ol className={s.path}>
-              {t.path.map((step) => (
-                <li key={step.when}>
-                  <span className={s.pathWhen}>{step.when}</span>
-                  <span className={s.pathWhat}>{step.what}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </Section>
+        <section className={s.pathSection} aria-labelledby="path-title">
+          <Display size="m" as="h2" id="path-title" className={s.pathTitle}>{t.pathTitle}</Display>
+          {t.path.map((step) => (
+            <div key={step.when} className={`${s.step} ${"image" in step && step.image ? "" : s.stepPlain}`}>
+              {"image" in step && step.image && (
+                <Image src={step.image} alt="" fill sizes="100vw" quality={76} className={s.stepImg} />
+              )}
+              <span className={s.stepVeil} aria-hidden="true" />
+              <div className={s.stepText}>
+                <p className={s.stepWhen}>{step.when}</p>
+                <p className={s.stepWhat}>{step.what}</p>
+              </div>
+            </div>
+          ))}
+        </section>
       )}
 
       <Section>
