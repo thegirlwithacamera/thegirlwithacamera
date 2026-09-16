@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 // Une seule phrase reprise des offres : la meme partout, jamais recopiee.
 import Link from "next/link";
-import { Display, Eyebrow, Lede, Section } from "../components/editorial";
+import { Display, Eyebrow, Lede, Section, em } from "../components/editorial";
 import s from "./page.module.css";
 import TrustLogos from "../components/TrustLogos";
 import CaseTestimonial from "../components/CaseTestimonial";
@@ -69,12 +69,45 @@ const content = {
     // Une bande photo par étape, comme chez Adriana. Une étape sans image
     // s'affiche sur fond sombre en attendant sa photo : ajouter image: "..."
     // (horizontale, 2000 px de large au moins) suffit.
+    // Texte écrit par Sandrine le 16/09. Seule retouche : les tirets longs
+    // sont devenus des virgules ou deux points, sa règle d'écriture.
     path: [
-      { when: "August 2024", what: "I picked up a camera again, after years away from photography.", image: "/images/about/path/2024-sea.jpg" },
-      { when: "June 2026", what: "Tokyo, from zone to zone, with four photo series shot on the Ricoh GR III.", image: "/images/about/path/2026-tokyo.jpg" },
-      { when: "July 2026", what: "Ricoh France and Pentax Europe show my work at the Rencontres d'Arles.", image: "/images/about/path/2026-street.jpg" },
-      { when: "Summer 2026", what: "Films and photographs for hotels and tourism boards in Vienna, Graz and Carinthia.", image: "/videos/creator/CINEMATIC/CITIES/Graz.jpg" },
-      { when: "Now", what: "A book in progress, and more places to photograph the way they feel.", image: "/images/about/path/now-market.jpg" },
+      {
+        when: "August 2024",
+        title: "The first step back",
+        what: ["I picked up a camera again. With a full-time job taking most of my time, photography was still something I did on the side, but the desire to create had returned."],
+        image: "/images/about/path/2024-sea.jpg",
+      },
+      {
+        when: "October and November 2025",
+        title: "Rediscovery",
+        what: ["A trip to Japan changed something. I photographed constantly and rediscovered not only photography, but my own way of seeing the world."],
+        image: "/images/about/path/2025-osaka.jpg",
+      },
+      {
+        when: "Winter 2025/2026",
+        title: "The lifeline",
+        what: ["Burnout forced everything else to stop. Photography became the one thing I kept coming back to: a reason to go outside, observe, create and slowly find myself again."],
+        image: "/images/about/path/2026-street.jpg",
+      },
+      {
+        when: "June 2026",
+        title: "Tokyo, alone",
+        what: ["I returned to Tokyo on my own with one intention: shoot. I walked, observed and photographed every day, without overthinking where any of it would lead."],
+        image: "/images/about/path/2026-tokyo.jpg",
+      },
+      {
+        when: "Summer 2026",
+        title: "Finding my path",
+        what: ["Street, fashion, travel, film and video started to come together. I stopped trying to decide what kind of photographer I was and started building a practice that could hold all of it."],
+        image: "/images/about/path/now-market.jpg",
+      },
+      {
+        when: "Today",
+        title: "The Girl With A Camera",
+        what: ["What began as a return to photography became the way I work, travel and experience the world.", "*I photograph the way it feels.*"],
+        image: "/images/about/path/today-garden.jpg",
+      },
     ],
     clients: "They trusted me",
     contact: "Contact",
@@ -190,14 +223,15 @@ export default async function AboutPage({ params }: Props) {
         <section className={s.pathSection} aria-labelledby="path-title">
           <Display size="m" as="h2" id="path-title" className={s.pathTitle}>{t.pathTitle}</Display>
           {t.path.map((step) => (
-            <div key={step.when} className={`${s.step} ${"image" in step && step.image ? "" : s.stepPlain}`}>
-              {"image" in step && step.image && (
-                <Image src={step.image} alt="" fill sizes="100vw" quality={76} className={s.stepImg} />
-              )}
+            <div key={step.title} className={s.step}>
+              <Image src={step.image} alt="" fill sizes="100vw" quality={75} className={s.stepImg} />
               <span className={s.stepVeil} aria-hidden="true" />
               <div className={s.stepText}>
                 <p className={s.stepWhen}>{step.when}</p>
-                <p className={s.stepWhat}>{step.what}</p>
+                <h3 className={s.stepTitle}>{step.title}</h3>
+                {step.what.map((line) => (
+                  <p key={line} className={s.stepWhat}>{em(line)}</p>
+                ))}
               </div>
             </div>
           ))}
