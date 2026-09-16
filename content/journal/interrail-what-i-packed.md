@@ -1,5 +1,6 @@
 ---
 title: What I packed for two weeks of Interrail
+tile: What I packed
 date: 2026-09-16
 section: travel
 series: interrail

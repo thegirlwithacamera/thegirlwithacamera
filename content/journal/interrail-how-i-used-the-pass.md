@@ -1,5 +1,6 @@
 ---
 title: How I used seven Interrail days for two weeks of travel
+tile: The pass
 date: 2026-09-16
 section: travel
 series: interrail

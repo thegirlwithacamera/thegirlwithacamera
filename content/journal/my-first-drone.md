@@ -1,5 +1,6 @@
 ---
 title: My first drone as a complete beginner
+tile: First drone
 date: 2026-09-16
 section: photographer
 cover: /videos/banners/journal-drone.jpg

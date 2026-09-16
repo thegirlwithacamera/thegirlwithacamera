@@ -1,5 +1,6 @@
 ---
 title: What's in my camera bag
+tile: Camera bag
 date: 2026-09-16
 section: photographer
 cover: /images/about/path/2026-tokyo.jpg

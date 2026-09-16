@@ -1,5 +1,6 @@
 ---
 title: Vienna, slowly: where I ate and where I went looking for light
+tile: Vienna
 date: 2026-09-16
 section: travel
 place: Vienna, Austria

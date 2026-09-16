@@ -23,14 +23,27 @@ export const JOURNAL_SECTIONS: { key: JournalSection; label: string }[] = [
 // Séries à l'intérieur d'une section (16/09) : Interrail est une catégorie de
 // Travel. Ajouter une série = une ligne ici, puis `series: <clé>` dans les
 // articles.
-export const JOURNAL_SERIES: Record<string, string> = {
-  interrail: "Interrail",
+export const JOURNAL_SERIES: Record<string, { label: string; cover: string; order?: string[] }> = {
+  interrail: {
+    label: "Interrail",
+    cover: "/images/journal/interrail/bled-boats.jpg",
+    order: ["interrail-twelve-stops", "interrail-how-i-used-the-pass", "interrail-what-i-packed"],
+  },
 };
+
+export function postsInSeries(key: string): JournalPost[] {
+  const order = JOURNAL_SERIES[key]?.order ?? [];
+  return allPosts()
+    .filter((p) => p.series === key)
+    .sort((a, b) => (order.indexOf(a.slug) + 1 || 99) - (order.indexOf(b.slug) + 1 || 99));
+}
 
 export type JournalPost = {
   slug: string;
   section: JournalSection;
   series?: string;
+  // Mot court écrit sur la tuile carrée (16/09) : "Vienna", "Camera bag".
+  tile: string;
   title: string;
   date: string; // AAAA-MM-JJ
   place?: string;
@@ -54,6 +67,7 @@ function parse(file: string): JournalPost | null {
     slug: file.replace(/\.md$/, ""),
     section: (["travel", "creator", "photographer"].includes(meta.section) ? meta.section : "travel") as JournalSection,
     series: meta.series || undefined,
+    tile: meta.tile || meta.title,
     title: meta.title,
     date: meta.date,
     place: meta.place || undefined,
