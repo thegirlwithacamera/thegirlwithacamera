@@ -3,6 +3,7 @@ title: Vienna, slowly: where I ate and where I went looking for light
 tile: Vienna
 date: 2026-09-16
 section: travel
+series: austria
 place: Vienna, Austria
 cover: /images/journal/interrail/vienna-stephansdom.jpg
 excerpt: Four days in Vienna at the end of a train journey across Europe. Three places to eat, and a city that is best walked.

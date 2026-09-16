@@ -25,14 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!conf) return {};
   return pageMeta({
     lang: "en",
-    path: `/journal/series/${series}`,
+    path: `/journal/destination/${series}`,
     title: `${conf.label} · Journal`,
     description: `Every ${conf.label} story from the journal of Sandrine Ceuppens.`,
     image: conf.cover,
   });
 }
 
-// Page d'une série du journal (16/09) : les articles de la série en tuiles
+// Page d'une destination du journal (16/09) : ses articles en tuiles
 // carrées, dans l'ordre fixé dans lib/journal.ts.
 export default async function SeriesPage({ params }: Props) {
   const { series } = await params;

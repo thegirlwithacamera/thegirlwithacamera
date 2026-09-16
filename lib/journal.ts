@@ -20,14 +20,20 @@ export const JOURNAL_SECTIONS: { key: JournalSection; label: string }[] = [
   { key: "creator", label: "Creator" },
   { key: "photographer", label: "Photographer" },
 ];
-// Séries à l'intérieur d'une section (16/09) : Interrail est une catégorie de
-// Travel. Ajouter une série = une ligne ici, puis `series: <clé>` dans les
-// articles.
+// Destinations du journal (16/09), dans la section Travel : Interrail est une
+// destination au sens large, l'Autriche en est une autre (Vienne, Villach,
+// Graz...). Chaque destination a sa tuile et sa page. Ajouter une destination
+// = un bloc ici, puis `series: <clé>` dans les articles.
 export const JOURNAL_SERIES: Record<string, { label: string; cover: string; order?: string[] }> = {
   interrail: {
     label: "Interrail",
     cover: "/images/journal/interrail/bled-boats.jpg",
     order: ["interrail-twelve-stops", "interrail-how-i-used-the-pass", "interrail-what-i-packed"],
+  },
+  austria: {
+    label: "Austria",
+    cover: "/images/journal/interrail/semmering.jpg",
+    order: ["vienna-slow-guide"],
   },
 };
 

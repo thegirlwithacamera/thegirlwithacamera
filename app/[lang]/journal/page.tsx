@@ -31,14 +31,14 @@ export default async function JournalPage({ params }: Props) {
   await params;
   const posts = allPosts();
 
-  // Une tuile par série (Interrail) et une par article seul (Vienna...).
+  // Une tuile par destination (Interrail, Austria) et une par article seul.
   const sections = JOURNAL_SECTIONS.map((sec) => {
     const inSection = posts.filter((p) => p.section === sec.key);
     const seriesKeys = [...new Set(inSection.map((p) => p.series).filter((k): k is string => !!k))];
     const tiles = [
       ...seriesKeys.map((k) => ({
         key: `series-${k}`,
-        href: `/en/journal/series/${k}`,
+        href: `/en/journal/destination/${k}`,
         label: JOURNAL_SERIES[k]?.label ?? k,
         cover: JOURNAL_SERIES[k]?.cover ?? inSection.find((p) => p.series === k)?.cover,
       })),
