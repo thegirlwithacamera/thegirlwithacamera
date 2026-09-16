@@ -49,3 +49,10 @@
 @media (max-width: 767px) {
   .tier { padding: 0 12px; }
 }
+
+/* Centré depuis le 16/09, décision de Sandrine. */
+.pitch { text-align: center; }
+.pitch .lede { margin-left: auto; margin-right: auto; }
+.brands { text-align: center; }
+
+.nav { justify-content: center; }

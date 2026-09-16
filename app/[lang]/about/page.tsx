@@ -158,7 +158,7 @@ export default async function AboutPage({ params }: Props) {
           <Image src={HERO_PHOTO} alt="Sandrine Ceuppens on a beach, in black and white" fill sizes="(max-width: 900px) 420px, 560px" priority quality={82} />
         </div>
         <div>
-          <Lede className={s.bio} align="left">{t.bio}</Lede>
+          <Lede className={s.bio} align="center">{t.bio}</Lede>
           {/* Deux rangees. En haut la seule porte commerciale, en mots. En
               dessous le journal et les reseaux, en logos : des noms ecrits en
               capitales espacees pesaient autant que le lien qui compte et le

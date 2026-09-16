@@ -9,6 +9,7 @@
   font-size: var(--text-body);
   line-height: 1.6;
   color: var(--stone);
+  text-align: center;
 }
 .empty a, .back a { color: var(--ink); text-underline-offset: 3px; }
 .back a { text-decoration: none; font-family: var(--font-sans); font-size: var(--text-label); letter-spacing: 0.12em; text-transform: uppercase; }

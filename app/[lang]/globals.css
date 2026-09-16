@@ -112,3 +112,10 @@ h1, h2, h3, h4, h5, h6 {
   header, footer, button { display: none !important; }
   body { color: #000; background: #fff; }
 }
+
+/* ────────────────────────────────────────────────────────────
+   Centrage général, 16/09, décision de Sandrine : les blocs qui restaient
+   alignés à gauche (témoignages, client d'un projet) passent au centre.
+   Ces composants posent leurs styles en ligne ; on les reprend ici. */
+html .case-quote-inner { margin-left: auto; margin-right: auto; text-align: center; }
+html .case-client { justify-content: center; }

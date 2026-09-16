@@ -107,3 +107,15 @@
   .stepWhen { font-size: 1.5rem; }
   .stepWhat { margin-top: 8px; font-size: 1.0625rem; }
 }
+
+/* Tout centré depuis le 16/09, décision de Sandrine. */
+.approach { grid-template-columns: 1fr; max-width: 760px; text-align: center; justify-items: center; }
+.clients { text-align: center; }
+.clients .mails { justify-content: center; }
+.pathTitle { text-align: center; }
+.stepText { text-align: center; }
+.stepWhat { margin-left: auto; margin-right: auto; }
+.hero > div:last-child { text-align: center; }
+.hero .bio { margin-left: auto; margin-right: auto; }
+.hero .links, .hero .socials { justify-content: center; }
+.hero .socials li:first-child a, .hero .socials a { margin-left: 0; }

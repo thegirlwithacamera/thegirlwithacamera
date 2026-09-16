@@ -170,7 +170,7 @@ export default async function DestinationsPage({ params }: Props) {
       })}
 
       <section className={s.logos}>
-        <TrustLogos lang="en" hideLabel />
+        <TrustLogos lang="en" cats={["stays", "travel"]} hideLabel />
       </section>
     </main>
   );

@@ -109,13 +109,13 @@ export default function CreatorClient({
       </section>
 
       <div className={s.pitch}>
-        <Lede className={s.lede} tone="stone" align="left">{t.framing}</Lede>
+        <Lede className={s.lede} tone="stone" align="center">{t.framing}</Lede>
         <p className={s.deliverables}>{t.deliverables}</p>
       </div>
 
       <section className={s.brands}>
         <Eyebrow tone="brick" className={s.brandsLabel}>{t.selected}</Eyebrow>
-        <TrustLogos lang={lang} cats={["brand"]} hideLabel align="left" />
+        <TrustLogos lang={lang} cats={["brand"]} hideLabel />
       </section>
 
       {focused && (

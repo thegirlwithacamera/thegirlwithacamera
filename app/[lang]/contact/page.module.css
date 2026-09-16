@@ -68,3 +68,7 @@
 }
 @media (max-width: 1023px) { .darkInner { grid-template-columns: 1fr; } }
 @media (max-width: 767px) { .block { padding-left: 20px; padding-right: 20px; } }
+
+/* Centré depuis le 16/09 : le titre des questions et la liste au milieu. */
+.block { text-align: center; }
+.faq { margin: 0 auto; text-align: left; }

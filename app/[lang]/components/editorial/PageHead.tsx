@@ -5,9 +5,10 @@ import Eyebrow from "./Eyebrow";
 import Lede from "./Lede";
 import s from "./PageHead.module.css";
 
-// Ouverture d'une page, alignée à gauche : lien retour, eyebrow brique,
-// titre, ligne de méta, introduction. `split` pose l'introduction dans une
-// colonne de droite, face au titre.
+// Ouverture d'une page : lien retour, eyebrow brique, titre, ligne de méta,
+// introduction. Centrée par défaut depuis le 16/09, décision de Sandrine :
+// toutes les pages s'ouvrent au centre. `split` (introduction en colonne de
+// droite) n'est plus appliqué, la prop reste acceptée pour ne rien casser.
 export default function PageHead({
   title,
   size = "l",
@@ -15,8 +16,7 @@ export default function PageHead({
   meta,
   lede,
   back,
-  align = "left",
-  split = false,
+  align = "center",
   children,
 }: {
   title: ReactNode;
@@ -43,17 +43,6 @@ export default function PageHead({
       )}
     </>
   );
-  if (split) {
-    return (
-      <header className={cls}>
-        <div className={s.split}>
-          <div>{head}</div>
-          {lede && <Lede className={s.lede} align="left" tone="stone">{lede}</Lede>}
-          {children && <div className={`${s.after} ${s.splitFull}`}>{children}</div>}
-        </div>
-      </header>
-    );
-  }
   return (
     <header className={cls}>
       {head}
