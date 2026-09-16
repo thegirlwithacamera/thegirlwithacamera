@@ -121,13 +121,13 @@ export default async function DestinationsPage({ params }: Props) {
   return (
     <main className={s.main}>
       <section className={s.banner}>
-        <Image
-          src={`${F}/HOTELS/Naturel Dorf Schönleitn.jpg`}
-          alt="Naturel Hoteldorf Schönleitn and the Carinthian mountains, seen from above"
-          fill
-          priority
-          sizes="100vw"
-          quality={78}
+        {/* Plan drone en boucle, muet (16/09, choix de Sandrine). Même lecteur
+            que les films : il ne joue qu'à l'écran, et reste sur l'affiche si
+            le visiteur a demandé moins d'animations. */}
+        <LazyFilm
+          src="/videos/banners/destinations-drone.mp4"
+          poster="/videos/banners/destinations-drone.jpg"
+          label="Aerial view of a city at sunset"
         />
       </section>
 

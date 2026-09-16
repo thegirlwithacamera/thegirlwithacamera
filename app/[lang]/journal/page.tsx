@@ -3,6 +3,7 @@ import Link from "next/link";
 import { allPosts, formatDate } from "@/lib/journal";
 import { pageMeta } from "@/lib/seo";
 import { PageHead, ProjectCard, ProjectGrid } from "../components/editorial";
+import LazyFilm from "../destinations/LazyFilm";
 import s from "./journal.module.css";
 
 interface Props {
@@ -31,6 +32,13 @@ export default async function JournalPage({ params }: Props) {
 
   return (
     <main className={s.main}>
+      <section className={s.banner}>
+        <LazyFilm
+          src="/videos/banners/journal-drone.mp4"
+          poster="/videos/banners/journal-drone.jpg"
+          label="Aerial view of a castle above a lake"
+        />
+      </section>
       <PageHead
         eyebrow="Journal"
         title="Notes from *the road*."

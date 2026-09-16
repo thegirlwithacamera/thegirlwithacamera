@@ -56,6 +56,9 @@ public/videos/*
 # Includes the per-category subfolders: GEAR, EXPERIENCES, UNBOXING, TALK, CINEMATIC
 !public/videos/creator
 !public/videos/creator/**
+# Plans drone des bandeaux Destinations et Journal (16/09), compressés en 1080p.
+!public/videos/banners
+!public/videos/banners/**
 public/videos/creator/**/.DS_Store
 
 # typescript
