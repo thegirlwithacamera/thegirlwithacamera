@@ -74,7 +74,9 @@ I also went to a flea market in Ljubljana, on a Sunday morning by the river. It 
 
 ### Second hand shopping
 
-Ljubljana is also a good city for second hand finds. I bought my The North Face jacket there, in a thrift shop, for €50.
+Ljubljana is also a good city for second hand finds. I bought my The North Face jacket at Relay of Youth Vintage, for €50.
+
+**Relay of Youth Vintage:** Trubarjeva cesta 16, in the centre. Vintage and second hand clothing, open every day. The name is a nod to the Relay of Youth, the youth celebration of former Yugoslavia.
 
 ### Walk along the river
 
