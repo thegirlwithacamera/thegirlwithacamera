@@ -10,6 +10,8 @@ excerpt: Markets, bridges, spritz and a capsule hotel: the city that surprised m
 draft: false
 ---
 
+*This article contains affiliate links: if you book through them, I earn a small commission at no extra cost to you.*
+
 I had no particular expectations for Slovenia. Vienna and Prague are world famous, Ljubljana was just a stop on the way. It ended up being the surprise of the whole Interrail trip.
 
 What struck me first is how walkable the city is. Ljubljana feels designed for people before cars. I felt good there, and I felt safe. We ate well, we drank well, and it is a beautiful city that stays simple and affordable.
@@ -24,7 +26,7 @@ What struck me first is how walkable the city is. Ljubljana feels designed for p
 
 ## Where to stay in Ljubljana
 
-### Dragon Dream capsule hotel
+### Dragons Dream Hostel, a capsule hotel
 
 It was funny to find a Japanese concept in the middle of Slovenia.
 
@@ -33,6 +35,8 @@ It was funny to find a Japanese concept in the middle of Slovenia.
 **Location:** a little outside the centre, but with a bus stop right in front. The historic centre is 8 minutes away.
 
 **What could be better:** the air conditioning did not work well, and the bathrooms were only cleaned quickly in the morning.
+
+[Check prices and availability at Dragons Dream Hostel](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fsi%2Fdragons-dream-hostel.html)
 
 ## Things to know before you go
 
