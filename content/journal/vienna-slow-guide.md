@@ -7,7 +7,7 @@ series: austria
 place: Vienna, Austria
 cover: /images/journal/interrail/vienna-stephansdom.jpg
 excerpt: Four nights in Vienna on foot: where to stay, where to eat schnitzel, a Viennese coffee at Café Mozart, and why you need at least a week.
-draft: true
+draft: false
 ---
 
 *This article contains affiliate links: if you book through them, I earn a small commission at no extra cost to you. I worked with Altstadt Vienna and Hotel Rathaus Wein & Design during this trip. The opinions and the photographs are my own.*
@@ -36,6 +36,8 @@ Kirchengasse 41, in Spittelberg. A boutique hotel in a historic building, a five
 
 ![The red salon at Altstadt Vienna](/images/portfolio/hospitality/altstadt-vienna/02-red-salon/1.jpg)
 
+![Breakfast at Altstadt Vienna](/images/journal/vienna/altstadt-breakfast.jpg)
+
 [Check prices and availability at Altstadt Vienna](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fat%2Faltstadt-vienna.html)
 
 ### Hotel Rathaus Wein & Design, 8th district
@@ -43,6 +45,10 @@ Kirchengasse 41, in Spittelberg. A boutique hotel in a historic building, a five
 Lange Gasse 13, in Josefstadt. A hotel dedicated to Austrian wine, with a list of more than 450 wines. Each room is dedicated to an Austrian winemaker, with their wines in the minibar.
 
 ![A morning at Hotel Rathaus Wein & Design](/images/portfolio/hospitality/hotel-rathaus-wien/1.jpg)
+
+![Cheese at the breakfast buffet, Hotel Rathaus Wein & Design](/images/journal/vienna/rathaus-breakfast-cheese.jpg)
+
+![Croissants for breakfast in Vienna](/images/journal/vienna/rathaus-breakfast-croissants.jpg)
 
 [Check prices and availability at Hotel Rathaus Wein & Design](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fat%2Frathaus-wein.html)
 
@@ -62,9 +68,27 @@ This is what we did the most: walk through the city and take photos.
 
 ![The Upper Belvedere and its gardens](/images/journal/covers/austria-belvedere.jpg)
 
+![A tram street in Vienna](/images/journal/vienna/street-tram.jpg)
+
+![Crossing the street in Vienna](/images/journal/vienna/street-crossing.jpg)
+
+![A shop window in Vienna](/images/journal/vienna/shop-window.jpg)
+
+![A flower shop in Vienna](/images/journal/vienna/flower-shop.jpg)
+
+![An ornate doorway in Vienna](/images/journal/vienna/ornate-door.jpg)
+
+![A conversation in a doorway](/images/journal/vienna/doorway-conversation.jpg)
+
+![The Hochstrahlbrunnen fountain](/images/journal/vienna/hochstrahlbrunnen.jpg)
+
+![Evening under the arches](/images/journal/vienna/arches-evening.jpg)
+
 ### My photo spots: the hot dog kiosks
 
 My favourite spots for street photography were near the Würstelstände, the hot dog kiosks you find in the streets of Vienna.
+
+![A Würstelstand, a hot dog kiosk, in Vienna](/images/journal/vienna/wurstelstand.jpg)
 
 ### A Viennese coffee at Café Mozart
 
