@@ -3,7 +3,7 @@ title: What's in my camera bag
 tile: Camera bag
 date: 2026-09-16
 section: photographer
-cover: /images/about/path/2026-tokyo.jpg
+cover: /images/journal/covers/camera-bag-flatlay.jpg
 excerpt: The five cameras I travel with, what each one can do, and the job it does for me.
 draft: false
 ---
@@ -51,5 +51,9 @@ Five cameras, each with its own job. Here is what each one is, and why it is in 
 **Good to know:** the optional Plus battery gives longer flights but takes the drone over 250 grams, which can change the rules that apply to you. Check the regulations where you fly.
 
 [Read about starting with the Lito 1 as a beginner](/en/journal/my-first-drone)
+
+## The fun extras
+
+Besides these five, I also bring a few gadget cameras just for fun: a Canon film compact, a NiceFlex toy camera and two tiny Kodak keychain cameras, plus a few rolls of Kodak film.
 
 *I work with Ricoh, Pentax and Insta360. What I carry, and why, is my own choice.*

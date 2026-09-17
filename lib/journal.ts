@@ -32,7 +32,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   },
   austria: {
     label: "Austria",
-    cover: "/images/journal/interrail/semmering.jpg",
+    cover: "/images/journal/covers/austria-belvedere.jpg",
     order: ["vienna-slow-guide"],
   },
 };

@@ -4,7 +4,7 @@ tile: What I packed
 date: 2026-09-16
 section: travel
 series: interrail
-cover: /images/portfolio/travel/villach/1.jpg
+cover: /images/journal/covers/packed-backpack.jpg
 excerpt: My capsule wardrobe for a train journey across Central Europe.
 draft: false
 ---

@@ -4,7 +4,7 @@ tile: The route
 date: 2026-09-16
 section: travel
 series: interrail
-cover: /videos/banners/destinations-drone.jpg
+cover: /images/journal/covers/train-reading.jpg
 excerpt: Two weeks by train from Brussels to Prague and back, stop by stop.
 draft: false
 ---
