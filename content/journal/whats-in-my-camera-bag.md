@@ -2,7 +2,7 @@
 title: What's in my camera bag
 tile: Camera bag
 date: 2026-09-16
-section: photographer
+section: creator
 series: my-cameras
 cover: /images/journal/covers/camera-bag-flatlay.jpg
 excerpt: The five cameras I travel with, what each one can do, and the job it does for me.

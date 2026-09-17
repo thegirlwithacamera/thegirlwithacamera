@@ -2,7 +2,7 @@
 title: Insta360 Ace Pro 2 review: the waterproof action camera I shoot like a compact camera
 tile: Ace Pro 2
 date: 2026-09-17
-section: photographer
+section: creator
 series: my-cameras
 cover: /images/journal/gear/ace-pro-2-cover.jpg
 excerpt: My honest review of the Insta360 Ace Pro 2 Arctic White Limited Edition, used since June 2026 with the Xplorer grip.

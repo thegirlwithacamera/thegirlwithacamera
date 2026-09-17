@@ -15,10 +15,12 @@ import path from "path";
 const DIR = path.join(process.cwd(), "content", "journal");
 
 export type JournalSection = "travel" | "creator" | "photographer";
+// Deux dimensions depuis le 17/09 (choix de Sandrine) : le voyage (Travel) et
+// le travail (Creator : matériel, montage, workflow). Les articles marqués
+// "photographer" passent automatiquement dans Creator.
 export const JOURNAL_SECTIONS: { key: JournalSection; label: string }[] = [
   { key: "travel", label: "Travel" },
   { key: "creator", label: "Creator" },
-  { key: "photographer", label: "Photographer" },
 ];
 // Catégories du journal : destinations dans Travel (16/09), thèmes dans
 // Photographer (17/09). Dans Travel, Interrail est une
@@ -31,12 +33,16 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
     cover: "/images/journal/interrail/bled-boats.jpg",
     order: ["interrail-twelve-stops", "interrail-how-i-used-the-pass", "interrail-what-i-packed"],
   },
-  // Catégories de la section Photographer (17/09). "Edits" et les suivantes
+  // Catégories de la section Creator (17/09). "Edits" et les suivantes
   // apparaîtront d'elles-mêmes dès qu'un article portera leur clé.
   "my-cameras": {
     label: "My cameras",
     cover: "/images/journal/covers/camera-bag-flatlay.jpg",
     order: ["insta360-luna-ultra-review", "insta360-ace-pro-2-review", "whats-in-my-camera-bag", "my-first-drone"],
+  },
+  workflow: {
+    label: "Workflow",
+    cover: "/images/journal/gear/luna-ultra-cover.jpg",
   },
   edits: {
     label: "Edits",
@@ -88,7 +94,7 @@ function parse(file: string): JournalPost | null {
   if (!meta.title || !meta.date || meta.draft === "true") return null;
   return {
     slug: file.replace(/\.md$/, ""),
-    section: (["travel", "creator", "photographer"].includes(meta.section) ? meta.section : "travel") as JournalSection,
+    section: (meta.section === "creator" || meta.section === "photographer" ? "creator" : "travel") as JournalSection,
     series: meta.series || undefined,
     tile: meta.tile || meta.title,
     title: meta.title,
