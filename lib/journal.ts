@@ -46,7 +46,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   },
   edits: {
     label: "Edits",
-    cover: "/images/journal/edits/premiere-pro-cover.jpg",
+    cover: "/images/about/portrait-beach.jpg",
     order: ["premiere-pro-workflow"],
   },
   slovenia: {
