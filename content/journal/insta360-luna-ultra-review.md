@@ -44,6 +44,10 @@ My favourite feature. The 2-inch OLED touchscreen comes off the camera and becom
 
 Five focal lengths, up to 12x zoom. Reviewers agree that quality stays nearly lossless up to 6x, thanks to the telephoto lens, and that beyond that the camera crops into the sensor.
 
+Here is how I use the zoom:
+
+https://www.instagram.com/reel/DblYrv0MJeV/
+
 ### 3. The Leica filters
 
 The Leica colour profiles give a cinematic look straight out of the camera.

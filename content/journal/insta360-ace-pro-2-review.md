@@ -45,6 +45,12 @@ One small camera for a lot of different situations.
 
 It is a great camera to shoot still frames, not only video.
 
+Two reels where I use the Ace Pro 2 as a photo camera:
+
+https://www.instagram.com/reel/DZ_-1YASMFB/
+
+https://www.instagram.com/reel/DaAhL6EyWXL/
+
 ### 4. The grip turns it into a compact camera
 
 With the Xplorer grip, the Ace Pro 2 gets the shape of a real camera.
