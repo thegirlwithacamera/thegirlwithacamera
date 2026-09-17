@@ -43,7 +43,7 @@ One small camera for a lot of different situations.
 
 ### 3. It is perfect for still frames
 
-It is a great camera to shoot still frames: images pulled straight from the video.
+It is a great camera to shoot still frames: fixed shots where the camera does not move, and life moves inside the frame.
 
 ### 4. The grip turns it into a compact camera
 
