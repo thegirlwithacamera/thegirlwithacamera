@@ -137,10 +137,9 @@ function inline(s: string): string {
   return out;
 }
 
-// Rendu en deux colonnes (17/09, demande de Sandrine) : chaque partie
-// (titre ## ou ###) garde son texte à gauche et ses photos à droite, pour
-// éviter les longues lignes en pleine largeur. Sans photo, le texte reste
-// dans la même colonne, pour un alignement régulier.
+// Rendu par parties (17/09, sur le modèle d'adriana-maria.com) : chaque partie
+// (titre ## ou ###) montre son texte, puis ses photos en rangée juste en
+// dessous (trois par ligne, deux si elles sont deux), sans grands blancs.
 export function renderMarkdown(md: string): string {
   const blocks = md.replace(/\r\n/g, "\n").split(/\n{2,}/);
   type Part = { html: string; kind: "img" | "h2" | "h3" | "text" };
@@ -176,8 +175,8 @@ export function renderMarkdown(md: string): string {
     .map((sec) => {
       const text = sec.filter((x) => x.kind !== "img").map((x) => x.html).join("\n");
       const media = sec.filter((x) => x.kind === "img").map((x) => x.html).join("\n");
-      const cls = media ? "section split" : "section";
-      return `<section class="${cls}"><div class="text">${text}</div>${media ? `<div class="media">${media}</div>` : ""}</section>`;
+      const count = sec.filter((x) => x.kind === "img").length;
+      return `<section class="section"><div class="text">${text}</div>${media ? `<div class="media n${Math.min(count, 6)}">${media}</div>` : ""}</section>`;
     })
     .join("\n");
 }

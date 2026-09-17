@@ -138,19 +138,25 @@
 @media (max-width: 767px) { .tiles { padding: 0 12px; gap: 12px; } .tile { width: calc((100% - 12px) / 2); } .tileLabel { font-size: 1.375rem; } }
 @media (prefers-reduced-motion: reduce) { .tileImg, .tileVeil { transition: none; } }
 
-/* Deux colonnes : texte à gauche, photos de la partie à droite (17/09). */
-.body :global(.section) { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); column-gap: clamp(32px, 5vw, 80px); }
-.body :global(.section .text) { grid-column: 1; }
-.body :global(.section .media) { grid-column: 2; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 16px; align-items: start; padding-top: 0.4em; }
+/* Mise en page façon adriana-maria.com (17/09) : une colonne compacte, le
+   texte de chaque partie puis ses photos en rangée, serrées. */
+.body { max-width: 1080px; font-size: 1.0625rem; line-height: 1.65; }
+.body h2 { margin: 1.6em 0 0.5em; }
+.body h3 { margin: 1.3em 0 0.4em; font-size: 1.25rem; }
+.body p { margin: 0 0 0.8em; }
+.body :global(.section .media) { display: grid; gap: 6px; margin: 0.9em 0 0.4em; }
 .body :global(.section .media figure) { margin: 0; }
-.body :global(.section .media figure img) { width: 100%; max-height: 80vh; object-fit: cover; }
-.body :global(.section .media figcaption) { padding: 0; }
-@media (max-width: 900px) {
-  .body :global(.section) { display: block; }
-  .body :global(.section .media) { margin: 1.2em 0 1.6em; }
+.body :global(.section .media figcaption) { display: none; }
+.body :global(.section .media figure img) { width: 100%; height: auto; max-height: none; display: block; object-fit: cover; }
+.body :global(.section .media.n1) { grid-template-columns: minmax(0, 1fr); }
+.body :global(.section .media.n1 figure) { max-width: 560px; }
+.body :global(.section .media.n2) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.body :global(.section .media.n3), .body :global(.section .media.n5), .body :global(.section .media.n6) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.body :global(.section .media.n4) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.body :global(.section .media:not(.n1) figure img) { aspect-ratio: 3 / 4; }
+.body :global(.section .media.n2 figure img), .body :global(.section .media.n4 figure img) { aspect-ratio: 4 / 5; }
+.cover img { max-height: 75vh; }
+@media (max-width: 767px) {
+  .body :global(.section .media.n3), .body :global(.section .media.n5), .body :global(.section .media.n6) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .body :global(.section .media.n1 figure) { max-width: none; }
 }
-
-/* Trois photos ou plus dans une partie : grille de deux par ligne. */
-.body :global(.section .media:has(figure:nth-child(3))) { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-/* Plusieurs photos : même format pour toutes, recadrées en 4:5, pour une grille régulière. */
-.body :global(.section .media:has(figure:nth-child(2)) figure img) { aspect-ratio: 4 / 5; height: auto; object-fit: cover; }
