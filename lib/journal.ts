@@ -20,7 +20,8 @@ export const JOURNAL_SECTIONS: { key: JournalSection; label: string }[] = [
   { key: "creator", label: "Creator" },
   { key: "photographer", label: "Photographer" },
 ];
-// Destinations du journal (16/09), dans la section Travel : Interrail est une
+// Catégories du journal : destinations dans Travel (16/09), thèmes dans
+// Photographer (17/09). Dans Travel, Interrail est une
 // destination au sens large, l'Autriche en est une autre (Vienne, Villach,
 // Graz...). Chaque destination a sa tuile et sa page. Ajouter une destination
 // = un bloc ici, puis `series: <clé>` dans les articles.
@@ -29,6 +30,17 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
     label: "Interrail",
     cover: "/images/journal/interrail/bled-boats.jpg",
     order: ["interrail-twelve-stops", "interrail-how-i-used-the-pass", "interrail-what-i-packed"],
+  },
+  // Catégories de la section Photographer (17/09). "Edits" et les suivantes
+  // apparaîtront d'elles-mêmes dès qu'un article portera leur clé.
+  "my-cameras": {
+    label: "My cameras",
+    cover: "/images/journal/covers/camera-bag-flatlay.jpg",
+    order: ["whats-in-my-camera-bag", "my-first-drone"],
+  },
+  edits: {
+    label: "Edits",
+    cover: "/images/journal/interrail/train-window.jpg",
   },
   austria: {
     label: "Austria",

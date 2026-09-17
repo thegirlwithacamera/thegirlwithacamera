@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!conf) return {};
   return pageMeta({
     lang: "en",
-    path: `/journal/destination/${series}`,
+    path: `/journal/category/${series}`,
     title: `${conf.label} · Journal`,
     description: `Every ${conf.label} story from the journal of Sandrine Ceuppens.`,
     image: conf.cover,

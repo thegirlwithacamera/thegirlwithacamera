@@ -22,7 +22,8 @@ const nextConfig: NextConfig = {
       { source: "/en/services", destination: "/en/contact", permanent: true },
       { source: "/en/photographer", destination: "/en/destinations", permanent: true },
       { source: "/en/diary", destination: "/en/journal", permanent: true },
-      { source: "/en/journal/series/:key", destination: "/en/journal/destination/:key", permanent: true },
+      { source: "/en/journal/series/:key", destination: "/en/journal/category/:key", permanent: true },
+      { source: "/en/journal/destination/:key", destination: "/en/journal/category/:key", permanent: true },
       { source: "/en/diary/:slug", destination: "/en/journal", permanent: true },
       // 16/09, suite : plus aucune page hors menu. Vidéaste et les pages de
       // catégorie photo renvoient vers Destinations, où vivent les projets et

@@ -38,7 +38,7 @@ export default async function JournalPage({ params }: Props) {
     const tiles = [
       ...seriesKeys.map((k) => ({
         key: `series-${k}`,
-        href: `/en/journal/destination/${k}`,
+        href: `/en/journal/category/${k}`,
         label: JOURNAL_SERIES[k]?.label ?? k,
         cover: JOURNAL_SERIES[k]?.cover ?? inSection.find((p) => p.series === k)?.cover,
       })),

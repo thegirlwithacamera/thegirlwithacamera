@@ -3,6 +3,7 @@ title: My first drone as a complete beginner
 tile: First drone
 date: 2026-09-16
 section: photographer
+series: my-cameras
 cover: /videos/banners/journal-drone.jpg
 excerpt: I had never flown a drone. This summer I bought one, registered as an operator in Belgium, and brought back aerial shots from Villach and Lake Bled.
 draft: false
