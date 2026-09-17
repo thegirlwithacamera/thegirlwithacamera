@@ -54,6 +54,8 @@ There were a lot of people because the weather was beautiful, but only at the st
 
 The famous view over the lake and its little island church. I will be honest: I thought I was going to die on the way up, the climb is intense. And we did it with our backpacks.
 
+![Bled Island and the castle from the Mala Osojnica viewpoint](/images/journal/slovenia/bled-mala-osojnica-view.jpg)
+
 **Good to know:** the trail starts on the western shore, near Camping Bled and Velika Zaka bay. The climb to Mala Osojnica takes about 30 to 40 minutes, with steep steps and a metal staircase that feels like a ladder. From there you can continue to Ojstrica, a lower viewpoint, in another 15 to 20 minutes. Wear real shoes, the path gets slippery after rain.
 
 ### Swim in the lake for free

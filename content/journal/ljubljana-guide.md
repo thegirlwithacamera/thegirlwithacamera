@@ -54,17 +54,31 @@ The market is organised by category: food in the centre, flowers in a small alle
 
 **Good to know:** the market was designed by the architect Jože Plečnik, and runs from Monday to Saturday, from 7am to 3pm. Mornings are the busiest, and the best time for photos.
 
+![Vegetable stalls at the Central Market in Ljubljana](/images/journal/slovenia/ljubljana-market-vegetables.jpg)
+
+![The flower alley at the Central Market](/images/journal/slovenia/ljubljana-market-flowers.jpg)
+
+![A hat stall at the market](/images/journal/slovenia/ljubljana-market-hats.jpg)
+
+![A honey and liqueur stall under Plečnik's arcades](/images/journal/slovenia/ljubljana-plecnik-arcades.jpg)
+
 ### The flea market
 
 I also went to a flea market in Ljubljana, on a Sunday morning by the river. It is very much about antiques: tableware, jewellery, old objects.
 
 **Good to know:** the Sunday Flea Market takes place every Sunday from 8am to 3pm, on Breg street along the Ljubljanica. Exhibitors may leave early if it rains. During the festive season it moves to Congress Square.
 
+![A Sunday morning in the old town, near the flea market](/images/journal/slovenia/ljubljana-sunday-square.jpg)
+
 ![A stall at the Sunday flea market in Ljubljana](/images/journal/slovenia/ljubljana-antiques-market.jpg)
 
 ### Walk along the river
 
 We walked along the quays of the Ljubljanica.
+
+![A brass band in traditional costume by the river](/images/journal/slovenia/ljubljana-brass-band.jpg)
+
+![Musicians in Slovenian traditional costume waiting to play](/images/journal/slovenia/ljubljana-folk-costumes.jpg)
 
 ### Ljubljana Castle
 
@@ -77,6 +91,8 @@ We took the funicular up to the castle, and walked back down through the woods.
 This is where I filmed the most: the small streets of the historic centre, and the bridges.
 
 **Bridges to look for:** the Triple Bridge, next to Prešeren Square, the Dragon Bridge with its four dragons, and the Butchers' Bridge.
+
+![A flower seller on the Triple Bridge](/images/journal/slovenia/ljubljana-triple-bridge.jpg)
 
 ## Where to eat and drink in Ljubljana
 
@@ -93,6 +109,10 @@ Dunajska cesta 123, next to our capsule hotel. Pizza and pasta. There was a one 
 ### Spritz everywhere
 
 Hugo, Aperol, and the rest. We had spritzes a bit everywhere.
+
+![An unexpected guest on a café terrace in Ljubljana](/images/journal/slovenia/ljubljana-terrace-emu.jpg)
+
+![The emu, up close](/images/journal/slovenia/ljubljana-emu-portrait.jpg)
 
 ## If you have more time
 

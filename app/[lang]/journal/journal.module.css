@@ -149,3 +149,6 @@
   .body :global(.section) { display: block; }
   .body :global(.section .media) { margin: 1.2em 0 1.6em; }
 }
+
+/* Trois photos ou plus dans une partie : grille de deux par ligne. */
+.body :global(.section .media:has(figure:nth-child(3))) { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
