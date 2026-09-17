@@ -59,12 +59,17 @@ const BANDS = [
 // Bande Instagram en bas de page : des images du site, liées au compte.
 // Pas de flux automatique (il faudrait un jeton Meta qui expire) : on
 // change les chemins ici quand on veut.
-const INSTAGRAM = [
-  "/images/portfolio/hospitality/hotel-rathaus-wien/1.jpg",
-  "/images/portfolio/travel/villach/5.jpg",
-  "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg",
-  "/images/portfolio/hospitality/naturel-dorf-schonleitn/7.jpg",
-  "/images/portfolio/travel/graz/1.jpg",
+// Bande "Follow on Instagram" (17/09) : chaque vignette mène à un vrai
+// contenu. Pour en changer : le lien du post ou du reel (href), la miniature
+// dans /public (src), une description courte (alt) et reel: true pour afficher
+// le petit pictogramme vidéo. Sans href, la vignette mène au profil.
+type InstaTile = { src: string; href?: string; alt: string; reel?: boolean };
+const INSTAGRAM: InstaTile[] = [
+  { src: "/images/portfolio/hospitality/hotel-rathaus-wien/1.jpg", alt: "Hotel Rathaus Wein & Design, Vienna" },
+  { src: "/images/portfolio/travel/villach/5.jpg", alt: "Villach, Carinthia" },
+  { src: "/images/portfolio/hospitality/altstadt-vienna/03-saris-home/1.jpg", alt: "Altstadt Vienna" },
+  { src: "/images/portfolio/hospitality/naturel-dorf-schonleitn/7.jpg", alt: "Naturel Hoteldorf Schönleitn" },
+  { src: "/images/portfolio/travel/graz/1.jpg", alt: "Graz" },
 ];
 
 export default async function HomePage({ params }: Props) {
@@ -138,9 +143,12 @@ export default async function HomePage({ params }: Props) {
           <span>@sandrinecppns</span>
         </a>
         <div className={s.instaRow}>
-          {INSTAGRAM.map((src) => (
-            <a key={src} href="https://www.instagram.com/sandrinecppns/" target="_blank" rel="noopener noreferrer" className={s.instaTile} aria-label="Instagram @sandrinecppns">
-              <Image src={src} alt="" fill sizes="(max-width: 767px) 50vw, 20vw" quality={70} />
+          {INSTAGRAM.map((t) => (
+            <a key={t.src} href={t.href ?? "https://www.instagram.com/sandrinecppns/"} target="_blank" rel="noopener noreferrer" className={s.instaTile} aria-label={`${t.alt} on Instagram`}>
+              <Image src={t.src} alt={t.alt} fill sizes="(max-width: 767px) 50vw, 20vw" quality={70} />
+              {t.reel && (
+                <svg className={s.instaReel} viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" /></svg>
+              )}
             </a>
           ))}
         </div>

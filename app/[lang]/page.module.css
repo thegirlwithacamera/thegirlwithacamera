@@ -100,6 +100,7 @@
 .instaTile { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--well); display: block; }
 .instaTile img { object-fit: cover; transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .instaTile:hover img { transform: scale(1.03); }
+.instaReel { position: absolute; top: 10px; right: 10px; width: 22px; height: 22px; color: #fff; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.45)); }
 .latest { padding-top: var(--section); }
 
 @media (max-width: 900px) {
