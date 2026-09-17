@@ -125,7 +125,9 @@ export function findPost(slug: string): JournalPost | undefined {
 
 export function formatDate(date: string): string {
   const d = new Date(`${date}T12:00:00Z`);
-  return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+  // Mois et année seulement (17/09, demande de Sandrine) : plusieurs articles
+  // sortent le même jour, la date exacte faisait bizarre.
+  return d.toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
 }
 
 const esc = (s: string) =>
