@@ -4,7 +4,7 @@ tile: Premiere Pro
 date: 2026-09-17
 section: creator
 series: edits
-cover: /images/journal/edits/premiere-pro-cover.jpg
+cover: /images/journal/edits/premiere-pro-logo.jpg
 excerpt: My Premiere Pro workflow, from backing up my cards to colour grading by hand, and why I choose the music last.
 draft: false
 ---
@@ -42,6 +42,8 @@ Then I colour grade, by hand.
 ### 6. Add a voiceover and subtitles if needed
 
 Finally, if the video needs it, I add a voiceover, subtitles, and the rest.
+
+![My Premiere Pro timeline, with Lumetri Color open](/images/journal/edits/premiere-pro-cover.jpg)
 
 ## What I love about Premiere Pro
 
