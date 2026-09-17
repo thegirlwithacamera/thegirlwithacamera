@@ -15,6 +15,12 @@ On 6 August 2024, for my birthday, my boyfriend gave me his Ricoh GR III. I had 
 
 Mine is the Diary Edition, and it lives up to its name: it is my own way of journaling.
 
+## Good to know: the GR III is no longer produced
+
+Ricoh ended production of the GR III in 2025, because of difficulties sourcing parts, and replaced it with the GR IV. You can still find the GR III second hand, but if you want a new camera today, [the Ricoh GR IV](https://www.amazon.com.be/dp/B0G881XZDK?tag=sandrinecppns-21) is its successor. On Amazon Belgium, it is sold in the GR IV HDF version, with a built-in diffusion filter.
+
+Be careful with batteries: the GR IV does not use the same one. It takes [the Ricoh DB-120 battery](https://www.amazon.com.be/dp/B0FNS3TRRC?tag=sandrinecppns-21), not the DB-110 of the GR III.
+
 ## What I used before
 
 Nothing. I had not had a camera for years.
@@ -88,8 +94,10 @@ A few of my photographs taken with it, in Tokyo, Paris and Prague.
 - **[The Ricoh GW-4 wide conversion lens](https://amzn.to/4Afl1Ms),** which takes the lens to a 21mm equivalent.
 - **[The Ricoh tele conversion lens](https://amzn.to/4gYXW9f),** with [its Ricoh adapter](https://amzn.to/4h6aoTu).
 - **The Ricoh GF-2 flash.**
-- **Five [Ricoh DB-110 batteries](https://amzn.to/4cSCJvb),** with [a JJC charger](https://amzn.to/4yH6QOA).
+- **Five Ricoh DB-110 batteries,** the battery of the GR III, with a JJC charger. If you buy the GR IV, you need [the DB-120 battery](https://www.amazon.com.be/dp/B0FNS3TRRC?tag=sandrinecppns-21) instead.
 
 ## Final thoughts
 
 Small, fast, and with its recipes, the GR III Diary Edition lives up to its name: it is my diary.
+
+[Shop the Ricoh GR IV, the successor of the GR III](https://www.amazon.com.be/dp/B0G881XZDK?tag=sandrinecppns-21)
