@@ -141,7 +141,7 @@
 /* Deux colonnes : texte à gauche, photos de la partie à droite (17/09). */
 .body :global(.section) { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); column-gap: clamp(32px, 5vw, 80px); }
 .body :global(.section .text) { grid-column: 1; }
-.body :global(.section .media) { grid-column: 2; display: flex; flex-direction: column; gap: 16px; padding-top: 0.4em; }
+.body :global(.section .media) { grid-column: 2; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 16px; align-items: start; padding-top: 0.4em; }
 .body :global(.section .media figure) { margin: 0; }
 .body :global(.section .media figure img) { width: 100%; max-height: 80vh; object-fit: cover; }
 .body :global(.section .media figcaption) { padding: 0; }
