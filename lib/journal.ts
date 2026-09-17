@@ -36,7 +36,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   "my-cameras": {
     label: "My cameras",
     cover: "/images/journal/covers/camera-bag-flatlay.jpg",
-    order: ["whats-in-my-camera-bag", "my-first-drone"],
+    order: ["insta360-luna-ultra-review", "insta360-ace-pro-2-review", "whats-in-my-camera-bag", "my-first-drone"],
   },
   edits: {
     label: "Edits",

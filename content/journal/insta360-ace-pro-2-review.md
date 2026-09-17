@@ -6,7 +6,7 @@ section: photographer
 series: my-cameras
 cover: /images/journal/gear/ace-pro-2-cover.jpg
 excerpt: My honest review of the Insta360 Ace Pro 2 Arctic White Limited Edition, used since June 2026 with the Xplorer grip.
-draft: true
+draft: false
 ---
 
 *Insta360 gifted me the Ace Pro 2 in June 2026. This article contains affiliate links: if you buy through them, I earn a small commission at no extra cost to you. The opinions are my own.*
