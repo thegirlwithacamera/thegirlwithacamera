@@ -72,6 +72,10 @@ I also went to a flea market in Ljubljana, on a Sunday morning by the river. It 
 
 ![A stall at the Sunday flea market in Ljubljana](/images/journal/slovenia/ljubljana-antiques-market.jpg)
 
+### Second hand shopping
+
+Ljubljana is also a good city for second hand finds. I bought my The North Face jacket there, in a thrift shop, for €50.
+
 ### Walk along the river
 
 We walked along the quays of the Ljubljanica.
