@@ -137,28 +137,47 @@ function inline(s: string): string {
   return out;
 }
 
+// Rendu en deux colonnes (17/09, demande de Sandrine) : chaque partie
+// (titre ## ou ###) garde son texte à gauche et ses photos à droite, pour
+// éviter les longues lignes en pleine largeur. Sans photo, le texte reste
+// dans la même colonne, pour un alignement régulier.
 export function renderMarkdown(md: string): string {
   const blocks = md.replace(/\r\n/g, "\n").split(/\n{2,}/);
-  return blocks
-    .map((b) => {
+  type Part = { html: string; kind: "img" | "h2" | "h3" | "text" };
+  const parts: Part[] = blocks
+    .map((b): Part | null => {
       const block = b.trim();
-      if (!block) return "";
+      if (!block) return null;
       const img = block.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/);
       if (img) {
         const src = /^(https?:\/\/|\/)/.test(img[2]) ? img[2] : "";
-        if (!src) return "";
+        if (!src) return null;
         const cap = img[1] ? `<figcaption>${esc(img[1])}</figcaption>` : "";
-        return `<figure><img src="${esc(src)}" alt="${esc(img[1])}" loading="lazy" />${cap}</figure>`;
+        return { kind: "img", html: `<figure><img src="${esc(src)}" alt="${esc(img[1])}" loading="lazy" />${cap}</figure>` };
       }
-      if (block.startsWith("### ")) return `<h3>${inline(block.slice(4))}</h3>`;
-      if (block.startsWith("## ")) return `<h2>${inline(block.slice(3))}</h2>`;
+      if (block.startsWith("### ")) return { kind: "h3", html: `<h3>${inline(block.slice(4))}</h3>` };
+      if (block.startsWith("## ")) return { kind: "h2", html: `<h2>${inline(block.slice(3))}</h2>` };
       if (block.split("\n").every((l) => l.startsWith(">"))) {
-        return `<blockquote><p>${inline(block.split("\n").map((l) => l.replace(/^>\s?/, "")).join(" "))}</p></blockquote>`;
+        return { kind: "text", html: `<blockquote><p>${inline(block.split("\n").map((l) => l.replace(/^>\s?/, "")).join(" "))}</p></blockquote>` };
       }
       if (block.split("\n").every((l) => /^[-*]\s+/.test(l))) {
-        return `<ul>${block.split("\n").map((l) => `<li>${inline(l.replace(/^[-*]\s+/, ""))}</li>`).join("")}</ul>`;
+        return { kind: "text", html: `<ul>${block.split("\n").map((l) => `<li>${inline(l.replace(/^[-*]\s+/, ""))}</li>`).join("")}</ul>` };
       }
-      return `<p>${inline(block).replace(/\n/g, "<br />")}</p>`;
+      return { kind: "text", html: `<p>${inline(block).replace(/\n/g, "<br />")}</p>` };
+    })
+    .filter((x): x is Part => x !== null);
+
+  const sections: Part[][] = [];
+  for (const part of parts) {
+    if (part.kind === "h2" || part.kind === "h3" || sections.length === 0) sections.push([part]);
+    else sections[sections.length - 1].push(part);
+  }
+  return sections
+    .map((sec) => {
+      const text = sec.filter((x) => x.kind !== "img").map((x) => x.html).join("\n");
+      const media = sec.filter((x) => x.kind === "img").map((x) => x.html).join("\n");
+      const cls = media ? "section split" : "section";
+      return `<section class="${cls}"><div class="text">${text}</div>${media ? `<div class="media">${media}</div>` : ""}</section>`;
     })
     .join("\n");
 }
