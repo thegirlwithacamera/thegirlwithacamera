@@ -5,7 +5,7 @@ date: 2026-09-16
 section: travel
 series: austria
 place: Vienna, Austria
-cover: /images/journal/vienna/hochstrahlbrunnen.jpg
+cover: /images/journal/covers/austria-belvedere.jpg
 excerpt: Four nights in Vienna on foot: where to stay, where to eat schnitzel, a Viennese coffee at Café Mozart, and why you need at least a week.
 draft: false
 ---
@@ -66,7 +66,7 @@ If your legs need a break, Vienna has underground, trams and buses. A single tic
 
 This is what we did the most: walk through the city and take photos.
 
-![The Upper Belvedere and its gardens](/images/journal/covers/austria-belvedere.jpg)
+![The Hochstrahlbrunnen fountain](/images/journal/vienna/hochstrahlbrunnen.jpg)
 
 ![A tram street in Vienna](/images/journal/vienna/street-tram.jpg)
 
