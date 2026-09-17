@@ -38,7 +38,7 @@
   margin: clamp(32px, 4vw, 56px) auto 0;
   padding: 0 var(--pad);
 }
-.cover img { width: 100%; height: auto; display: block; }
+.cover img { width: auto; max-width: 100%; max-height: 85vh; height: auto; display: block; margin: 0 auto; }
 
 /* Corps d'article : une colonne serif étroite, photos plus larges que le
    texte, comme un carnet imprimé. */
