@@ -23,7 +23,7 @@ export const site = {
   social: {
     instagram: "https://www.instagram.com/sandrinecppns/",
     threads: "https://www.threads.net/@sandrinecppns",
-    tiktok: "https://www.tiktok.com/@sandrinecppns",
+    tiktok: "https://www.tiktok.com/@sandrineceuppens",
     youtube: "https://www.youtube.com/@sandrinecppns",
     pinterest: "https://www.pinterest.com/sandrineceuppens/",
     instagramHandle: "@sandrinecppns",
