@@ -137,7 +137,7 @@ function inline(s: string): string {
     const safe = /^(https?:\/\/|\/|mailto:)/.test(href) ? href : "#";
     // Liens affiliés (Insta360, CJ, Booking, Amazon...) : rel="sponsored",
     // comme Google le demande pour les liens rémunérés.
-    const affiliate = /utm_source=AffiliateCenter|anrdoezrs|jdoqocy|tkqlhce|dpbolvw|kqzyfj|awin1|[?&]aid=|[?&]tag=/.test(safe);
+    const affiliate = /amzn\.to\/|utm_source=AffiliateCenter|anrdoezrs|jdoqocy|tkqlhce|dpbolvw|kqzyfj|awin1|[?&]aid=|[?&]tag=/.test(safe);
     const ext = safe.startsWith("http")
       ? ` target="_blank" rel="${affiliate ? "sponsored nofollow " : ""}noopener noreferrer"`
       : "";

@@ -9,7 +9,7 @@ excerpt: My honest review of the Ricoh GR III Diary Edition, the pocket camera I
 draft: false
 ---
 
-*I work with Ricoh. This camera was not a gift from the brand: it was a birthday present. The opinions are my own.*
+*I work with Ricoh. This camera was not a gift from the brand: it was a birthday present. This article contains affiliate links: if you buy through them, I earn a small commission at no extra cost to you. The opinions are my own.*
 
 On 6 August 2024, for my birthday, my boyfriend gave me his Ricoh GR III. I had not owned a camera for years. It is the camera that brought me back to photography.
 
@@ -85,10 +85,10 @@ A few of my photographs taken with it, in Tokyo, Paris and Prague.
 ## Accessories I use
 
 - **A neck strap.**
-- **The GW-4 wide conversion lens,** which takes the lens to a 21mm equivalent. It needs the GA-1 adapter.
-- **The Ricoh tele conversion lens.**
+- **[The Ricoh GW-4 wide conversion lens](https://amzn.to/4Afl1Ms),** which takes the lens to a 21mm equivalent.
+- **[The Ricoh tele conversion lens](https://amzn.to/4gYXW9f),** with [its Ricoh adapter](https://amzn.to/4h6aoTu).
 - **The Ricoh GF-2 flash.**
-- **Five DB-110 batteries.**
+- **Five [Ricoh DB-110 batteries](https://amzn.to/4cSCJvb),** with [a JJC charger](https://amzn.to/4yH6QOA).
 
 ## Final thoughts
 
