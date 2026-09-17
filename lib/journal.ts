@@ -129,7 +129,12 @@ function inline(s: string): string {
   let out = esc(s);
   out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_m, text, href) => {
     const safe = /^(https?:\/\/|\/|mailto:)/.test(href) ? href : "#";
-    const ext = safe.startsWith("http") ? ' target="_blank" rel="noopener noreferrer"' : "";
+    // Liens affiliés (Insta360, CJ, Booking, Amazon...) : rel="sponsored",
+    // comme Google le demande pour les liens rémunérés.
+    const affiliate = /utm_source=AffiliateCenter|anrdoezrs|jdoqocy|tkqlhce|dpbolvw|kqzyfj|awin1|[?&]aid=|[?&]tag=/.test(safe);
+    const ext = safe.startsWith("http")
+      ? ` target="_blank" rel="${affiliate ? "sponsored nofollow " : ""}noopener noreferrer"`
+      : "";
     return `<a href="${safe}"${ext}>${text}</a>`;
   });
   out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
