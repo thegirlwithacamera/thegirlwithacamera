@@ -37,7 +37,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   // apparaîtront d'elles-mêmes dès qu'un article portera leur clé.
   "my-cameras": {
     label: "My cameras",
-    cover: "/images/journal/covers/camera-bag-flatlay.jpg",
+    cover: "/images/journal/covers/my-cameras-cliffs.jpg",
     order: ["insta360-luna-ultra-review", "insta360-ace-pro-2-review", "whats-in-my-camera-bag", "my-first-drone"],
   },
   workflow: {
