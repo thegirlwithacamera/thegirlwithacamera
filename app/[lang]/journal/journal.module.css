@@ -139,22 +139,18 @@
 @media (prefers-reduced-motion: reduce) { .tileImg, .tileVeil { transition: none; } }
 
 /* Mise en page façon adriana-maria.com (17/09) : une colonne compacte, le
-   texte de chaque partie puis ses photos en rangée, serrées. */
+   texte de chaque partie puis ses photos en rangées serrées, à la même
+   hauteur et jamais recadrées. */
 .body { max-width: 1080px; font-size: 1.0625rem; line-height: 1.65; }
 .body h2 { margin: 1.6em 0 0.5em; }
 .body h3 { margin: 1.3em 0 0.4em; font-size: 1.25rem; }
 .body p { margin: 0 0 0.8em; }
-.body :global(.section .media) { display: grid; gap: 6px; margin: 0.9em 0 0.4em; }
-.body :global(.section .media figure) { margin: 0; }
+.body :global(.section .media) { display: flex; flex-direction: column; gap: 6px; margin: 0.9em 0 0.4em; }
+.body :global(.section .media .row) { display: flex; gap: 6px; align-items: flex-start; }
+.body :global(.section .media .row.single) { max-width: 560px; }
+.body :global(.section .media figure) { margin: 0; min-width: 0; }
 .body :global(.section .media figcaption) { display: none; }
-.body :global(.section .media figure img) { width: 100%; height: auto; max-height: none; display: block; object-fit: cover; }
-.body :global(.section .media.n1) { grid-template-columns: minmax(0, 1fr); }
-.body :global(.section .media.n1 figure) { max-width: 560px; }
-.body :global(.section .media.n2) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.body :global(.section .media.n3), .body :global(.section .media.n5), .body :global(.section .media.n6) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.body :global(.section .media.n4) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.body :global(.section .media:not(.n1) figure img) { aspect-ratio: 3 / 4; }
-.body :global(.section .media.n2 figure img), .body :global(.section .media.n4 figure img) { aspect-ratio: 4 / 5; }
+.body :global(.section .media figure img) { width: 100%; height: auto; max-height: none; aspect-ratio: auto; object-fit: initial; display: block; }
 .cover img { max-height: 75vh; }
 @media (max-width: 767px) {
   .body :global(.section .media.n3), .body :global(.section .media.n5), .body :global(.section .media.n6) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -164,4 +160,4 @@
 /* Reels Instagram intégrés (17/09). */
 .body :global(figure.reel) { margin: 0; }
 .body :global(figure.reel iframe) { width: 100%; max-width: 400px; aspect-ratio: 9 / 16.5; border: 0; display: block; background: var(--well); }
-.body :global(.section .media figure.reel iframe) { max-width: none; }
+.body :global(.section .media figure.reel iframe) { max-width: none; height: auto; }

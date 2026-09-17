@@ -130,6 +130,31 @@ export function formatDate(date: string): string {
   return d.toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
 }
 
+// Proportions réelles d'une photo de /public (17/09) : sert à aligner les
+// photos d'une rangée à la même hauteur sans jamais les recadrer.
+function imageRatio(src: string): number {
+  try {
+    if (!src.startsWith("/")) return 1;
+    const buf = fs.readFileSync(path.join(process.cwd(), "public", src));
+    if (buf[0] === 0xff && buf[1] === 0xd8) {
+      let i = 2;
+      while (i < buf.length) {
+        if (buf[i] !== 0xff) { i++; continue; }
+        const marker = buf[i + 1];
+        const len = buf.readUInt16BE(i + 2);
+        if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+          const h = buf.readUInt16BE(i + 5);
+          const w = buf.readUInt16BE(i + 7);
+          return w && h ? w / h : 1;
+        }
+        i += 2 + len;
+      }
+    }
+    if (buf.toString("ascii", 1, 4) === "PNG") return buf.readUInt32BE(16) / buf.readUInt32BE(20);
+  } catch {}
+  return 1;
+}
+
 const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -155,7 +180,7 @@ function inline(s: string): string {
 // dessous (trois par ligne, deux si elles sont deux), sans grands blancs.
 export function renderMarkdown(md: string): string {
   const blocks = md.replace(/\r\n/g, "\n").split(/\n{2,}/);
-  type Part = { html: string; kind: "img" | "h2" | "h3" | "text" };
+  type Part = { html: string; kind: "img" | "h2" | "h3" | "text"; ratio?: number };
   const parts: Part[] = blocks
     .map((b): Part | null => {
       const block = b.trim();
@@ -165,13 +190,13 @@ export function renderMarkdown(md: string): string {
         const src = /^(https?:\/\/|\/)/.test(img[2]) ? img[2] : "";
         if (!src) return null;
         const cap = img[1] ? `<figcaption>${esc(img[1])}</figcaption>` : "";
-        return { kind: "img", html: `<figure><img src="${esc(src)}" alt="${esc(img[1])}" loading="lazy" />${cap}</figure>` };
+        return { kind: "img", ratio: imageRatio(src), html: `<figure><img src="${esc(src)}" alt="${esc(img[1])}" loading="lazy" />${cap}</figure>` };
       }
       // Reel Instagram intégré (17/09) : une ligne seule contenant le lien
       // du reel ou du post, par exemple https://www.instagram.com/reel/XXXX/
       const ig = block.match(/^https:\/\/www\.instagram\.com\/(reel|p)\/([A-Za-z0-9_-]+)\/?$/);
       if (ig) {
-        return { kind: "img", html: `<figure class="reel"><iframe src="https://www.instagram.com/${ig[1]}/${ig[2]}/embed" loading="lazy" title="Instagram ${ig[1]}" allowtransparency="true" scrolling="no"></iframe></figure>` };
+        return { kind: "img", ratio: 9 / 16.5, html: `<figure class="reel"><iframe src="https://www.instagram.com/${ig[1]}/${ig[2]}/embed" loading="lazy" title="Instagram ${ig[1]}" allowtransparency="true" scrolling="no"></iframe></figure>` };
       }
       if (block.startsWith("### ")) return { kind: "h3", html: `<h3>${inline(block.slice(4))}</h3>` };
       if (block.startsWith("## ")) return { kind: "h2", html: `<h2>${inline(block.slice(3))}</h2>` };
@@ -193,9 +218,22 @@ export function renderMarkdown(md: string): string {
   return sections
     .map((sec) => {
       const text = sec.filter((x) => x.kind !== "img").map((x) => x.html).join("\n");
-      const media = sec.filter((x) => x.kind === "img").map((x) => x.html).join("\n");
-      const count = sec.filter((x) => x.kind === "img").length;
-      return `<section class="section"><div class="text">${text}</div>${media ? `<div class="media n${Math.min(count, 6)}">${media}</div>` : ""}</section>`;
+      const imgs = sec.filter((x) => x.kind === "img");
+      // Rangées de trois (deux par deux s'il y en a deux ou quatre). Chaque
+      // photo prend une largeur proportionnelle à son format : même hauteur,
+      // photo entière, aucun recadrage.
+      const per = imgs.length === 2 || imgs.length === 4 ? 2 : 3;
+      const rows: Part[][] = [];
+      for (let i = 0; i < imgs.length; i += per) rows.push(imgs.slice(i, i + per));
+      const media = rows
+        .map((row) => {
+          const single = row.length === 1;
+          return `<div class="row${single ? " single" : ""}">${row
+            .map((f) => f.html.replace("<figure", `<figure style="flex:${(f.ratio ?? 1).toFixed(4)} 1 0"`))
+            .join("")}</div>`;
+        })
+        .join("");
+      return `<section class="section"><div class="text">${text}</div>${imgs.length ? `<div class="media">${media}</div>` : ""}</section>`;
     })
     .join("\n");
 }
