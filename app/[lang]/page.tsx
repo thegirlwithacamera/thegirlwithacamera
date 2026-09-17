@@ -69,7 +69,7 @@ const INSTAGRAM: InstaTile[] = [
   { src: "/images/portfolio/hospitality/hotel-rathaus-wien/1.jpg", href: "https://www.instagram.com/p/DdO1LtrMUgC/", alt: "A morning at Hotel Rathaus Wein & Design, Vienna" },
   { src: "/images/journal/interrail/train-window.jpg", href: "https://www.instagram.com/p/DdTY_Rzscp-/", alt: "On the train across Europe" },
   { src: "/images/portfolio/travel/villach/5.jpg", href: "https://www.instagram.com/p/Dc0Au8aIaXM/", alt: "Villach, Carinthia" },
-  { src: "/images/portfolio/travel/graz/1.jpg", alt: "Graz" },
+  { src: "/images/home/instagram/vending-machine-story.jpg", href: "https://www.instagram.com/p/DRaAAitjNuO/", alt: "A Vending Machine Story, by The Girl With A Camera" },
 ];
 
 export default async function HomePage({ params }: Props) {
