@@ -92,7 +92,8 @@ A few of my photographs taken with it, in Tokyo, Paris and Prague.
 
 - **A neck strap.**
 - **[The Ricoh GW-4 wide conversion lens](https://amzn.to/4Afl1Ms),** which takes the lens to a 21mm equivalent.
-- **[The Ricoh tele conversion lens](https://amzn.to/4gYXW9f),** with [its Ricoh adapter](https://amzn.to/4h6aoTu).
+- **[The Ricoh tele conversion lens](https://amzn.to/4gYXW9f).**
+- **[The Ricoh adapter ring](https://amzn.to/4h6aoTu),** which I mainly use to put an ND filter on the camera.
 - **The Ricoh GF-2 flash.**
 - **Five Ricoh DB-110 batteries,** the battery of the GR III, with a JJC charger. If you buy the GR IV, you need [the DB-120 battery](https://www.amazon.com.be/dp/B0FNS3TRRC?tag=sandrinecppns-21) instead.
 
