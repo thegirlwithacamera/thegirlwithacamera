@@ -56,7 +56,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   austria: {
     label: "Austria",
     cover: "/images/portfolio/travel/graz/1.jpg",
-    order: ["vienna-slow-guide"],
+    order: ["vienna-slow-guide", "graz-guide"],
   },
 };
 
