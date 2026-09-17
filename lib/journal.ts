@@ -159,6 +159,12 @@ export function renderMarkdown(md: string): string {
         const cap = img[1] ? `<figcaption>${esc(img[1])}</figcaption>` : "";
         return { kind: "img", html: `<figure><img src="${esc(src)}" alt="${esc(img[1])}" loading="lazy" />${cap}</figure>` };
       }
+      // Reel Instagram intégré (17/09) : une ligne seule contenant le lien
+      // du reel ou du post, par exemple https://www.instagram.com/reel/XXXX/
+      const ig = block.match(/^https:\/\/www\.instagram\.com\/(reel|p)\/([A-Za-z0-9_-]+)\/?$/);
+      if (ig) {
+        return { kind: "img", html: `<figure class="reel"><iframe src="https://www.instagram.com/${ig[1]}/${ig[2]}/embed" loading="lazy" title="Instagram ${ig[1]}" allowtransparency="true" scrolling="no"></iframe></figure>` };
+      }
       if (block.startsWith("### ")) return { kind: "h3", html: `<h3>${inline(block.slice(4))}</h3>` };
       if (block.startsWith("## ")) return { kind: "h2", html: `<h2>${inline(block.slice(3))}</h2>` };
       if (block.split("\n").every((l) => l.startsWith(">"))) {
