@@ -34,7 +34,7 @@
 .back a:hover, .empty a:hover { color: var(--brick); }
 
 .cover {
-  max-width: 900px;
+  max-width: var(--page-max);
   margin: clamp(32px, 4vw, 56px) auto 0;
   padding: 0 var(--pad);
 }
@@ -42,8 +42,9 @@
 
 /* Corps d'article : une colonne serif étroite, photos plus larges que le
    texte, comme un carnet imprimé. */
+/* Article en pleine largeur de page (17/09, demande de Sandrine). */
 .body {
-  max-width: 680px;
+  max-width: var(--page-max);
   margin: clamp(32px, 4vw, 56px) auto 0;
   padding: 0 var(--pad);
   font-family: var(--font-serif);
@@ -59,7 +60,7 @@
 .body blockquote p { margin: 0; }
 .body ul { padding-left: 1.1em; margin: 0 0 1.2em; }
 .body li { margin-bottom: 0.3em; }
-.body figure { margin: 2em calc(-1 * clamp(0px, 8vw, 110px)); }
+.body figure { margin: 2em 0; }
 .body figure img { width: 100%; height: auto; display: block; }
 .body figcaption { font-family: var(--font-sans); font-size: 0.8125rem; color: var(--stone); margin-top: 10px; padding: 0 var(--pad); }
 @media (max-width: 767px) {
