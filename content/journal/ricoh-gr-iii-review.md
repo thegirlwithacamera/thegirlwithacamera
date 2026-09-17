@@ -95,7 +95,7 @@ A few of my photographs taken with it, in Tokyo, Paris and Prague.
 - **[The Ricoh tele conversion lens](https://amzn.to/4gYXW9f).**
 - **[The Ricoh adapter ring](https://amzn.to/4h6aoTu),** which I mainly use to put an ND filter on the camera.
 - **The Ricoh GF-2 flash.**
-- **Five Ricoh DB-110 batteries,** the battery of the GR III, with a JJC charger. If you buy the GR IV, you need [the DB-120 battery](https://www.amazon.com.be/dp/B0FNS3TRRC?tag=sandrinecppns-21) instead.
+- **Five [Ricoh DB-110 batteries](https://amzn.to/4cSCJvb),** the battery of the GR III, with [a JJC charger](https://amzn.to/4yH6QOA). Useful if you buy a GR III second hand. If you buy the GR IV, you need [the DB-120 battery](https://www.amazon.com.be/dp/B0FNS3TRRC?tag=sandrinecppns-21) instead.
 
 ## Final thoughts
 
