@@ -38,7 +38,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   "my-cameras": {
     label: "My cameras",
     cover: "/images/journal/covers/my-cameras-cliffs.jpg",
-    order: ["insta360-luna-ultra-review", "insta360-ace-pro-2-review", "whats-in-my-camera-bag", "my-first-drone"],
+    order: ["ricoh-gr-iii-review", "insta360-luna-ultra-review", "insta360-ace-pro-2-review", "whats-in-my-camera-bag", "my-first-drone"],
   },
   workflow: {
     label: "Workflow",
