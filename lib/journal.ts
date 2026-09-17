@@ -42,6 +42,11 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
     label: "Edits",
     cover: "/images/journal/interrail/train-window.jpg",
   },
+  slovenia: {
+    label: "Slovenia",
+    cover: "/images/journal/slovenia/bled-heart-lock.jpg",
+    order: ["ljubljana-guide", "lake-bled-guide"],
+  },
   austria: {
     label: "Austria",
     cover: "/images/journal/covers/austria-belvedere.jpg",
