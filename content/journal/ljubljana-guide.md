@@ -80,11 +80,11 @@ Ljubljana is also a good city for second hand finds. I bought my The North Face 
 
 ### Walk along the river
 
-We walked along the quays of the Ljubljanica.
+We walked along the quays of the Ljubljanica. We were there during the Ljubljana Festival, with musicians in traditional costume playing by the river.
 
-![A brass band in traditional costume by the river](/images/journal/slovenia/ljubljana-brass-band.jpg)
+![A brass band in traditional costume during the Ljubljana Festival](/images/journal/slovenia/ljubljana-brass-band.jpg)
 
-![Musicians in Slovenian traditional costume waiting to play](/images/journal/slovenia/ljubljana-folk-costumes.jpg)
+![Musicians in Slovenian traditional costume, Ljubljana Festival](/images/journal/slovenia/ljubljana-folk-costumes.jpg)
 
 ### Ljubljana Castle
 
@@ -106,6 +106,12 @@ This is where I filmed the most: the small streets of the historic centre, and t
 
 Right by the Central Market, under Plečnik's arcades. We had čevapčiči, the small grilled sausages served in bread.
 
+And the surprise of the day: an emu walking between the tables on the terrace.
+
+![An emu on the terrace of Kodila Bistro Market](/images/journal/slovenia/ljubljana-terrace-emu.jpg)
+
+![The emu, up close](/images/journal/slovenia/ljubljana-emu-portrait.jpg)
+
 ### REX Tiskarna
 
 Dunajska cesta 123, next to our capsule hotel. Pizza and pasta. There was a one plus one free offer on pizzas, and I had truffle pasta and a burratina.
@@ -115,10 +121,6 @@ Dunajska cesta 123, next to our capsule hotel. Pizza and pasta. There was a one 
 ### Spritz everywhere
 
 Hugo, Aperol, and the rest. We had spritzes a bit everywhere.
-
-![An unexpected guest on a café terrace in Ljubljana](/images/journal/slovenia/ljubljana-terrace-emu.jpg)
-
-![The emu, up close](/images/journal/slovenia/ljubljana-emu-portrait.jpg)
 
 ## If you have more time
 
