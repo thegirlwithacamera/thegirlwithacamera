@@ -152,3 +152,5 @@
 
 /* Trois photos ou plus dans une partie : grille de deux par ligne. */
 .body :global(.section .media:has(figure:nth-child(3))) { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Plusieurs photos : même format pour toutes, recadrées en 4:5, pour une grille régulière. */
+.body :global(.section .media:has(figure:nth-child(2)) figure img) { aspect-ratio: 4 / 5; height: auto; object-fit: cover; }
