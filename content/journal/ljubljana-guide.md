@@ -40,6 +40,10 @@ It was funny to find a Japanese concept in the middle of Slovenia.
 - **Stay outside the centre and take the bus.** It is much cheaper, and the connection is quick.
 - **Cards are accepted almost everywhere,** except at the market. Bring some cash for it.
 
+### Getting around by bus
+
+A single bus ride costs €1.50 and covers up to 90 minutes, even if you change buses. The easiest option is the Urbana card: it costs €2, you top it up, and one card can pay for several people. You can also tap a Visa or Mastercard on the bus, but then transfers within 90 minutes are not free. Buy the Urbana card at a Tourist Information Centre and keep the receipt: you can return it at the end of your stay and get your €2 back.
+
 ## Best things to do in Ljubljana
 
 ### The Central Market
@@ -48,9 +52,13 @@ My favourite playground for street photography.
 
 The market is organised by category: food in the centre, flowers in a small alley, and clothes on the side.
 
+**Good to know:** the market was designed by the architect Jože Plečnik, and runs from Monday to Saturday, from 7am to 3pm. Mornings are the busiest, and the best time for photos.
+
 ### The flea market
 
 I also went to a flea market in Ljubljana, on a Sunday morning by the river. It is very much about antiques: tableware, jewellery, old objects.
+
+**Good to know:** the Sunday Flea Market takes place every Sunday from 8am to 3pm, on Breg street along the Ljubljanica. Exhibitors may leave early if it rains. During the festive season it moves to Congress Square.
 
 ![A stall at the Sunday flea market in Ljubljana](/images/journal/slovenia/ljubljana-antiques-market.jpg)
 
@@ -62,9 +70,13 @@ We walked along the quays of the Ljubljanica.
 
 We took the funicular up to the castle, and walked back down through the woods.
 
+**Good to know:** the funicular leaves from Krek Square (Krekov trg), next to the Puppet Theatre, and the ride takes about a minute. The castle grounds are free to walk around. You only pay for the funicular, the viewing tower and the exhibitions. You can also pay the funicular with the Urbana card.
+
 ### The old town and the bridges
 
 This is where I filmed the most: the small streets of the historic centre, and the bridges.
+
+**Bridges to look for:** the Triple Bridge, next to Prešeren Square, the Dragon Bridge with its four dragons, and the Butchers' Bridge.
 
 ## Where to eat and drink in Ljubljana
 
@@ -82,6 +94,14 @@ Dunajska cesta 123, next to our capsule hotel. Pizza and pasta. There was a one 
 
 Hugo, Aperol, and the rest. We had spritzes a bit everywhere.
 
+## If you have more time
+
+Ideas for next time, that I have not done yet:
+
+- **Metelkova,** the alternative art quarter covered in street art.
+- **Tivoli Park,** the big green park at the edge of the centre.
+- **Lake Bled,** one hour away. [Read my Lake Bled guide](/en/journal/lake-bled-guide).
+
 ## Ljubljana FAQ
 
 **Is Ljubljana worth visiting?**
@@ -94,6 +114,12 @@ Two full days.
 It felt affordable to me, especially if you stay outside the centre.
 
 **Do I need cash in Ljubljana?**
-Mostly for the market. Cards work almost everywhere else.
+Mostly for the market. Cards work almost everywhere else, even on the bus.
+
+**How much is the bus in Ljubljana?**
+€1.50 for a ride of up to 90 minutes. With the Urbana card, changes are included.
+
+**When is the flea market in Ljubljana?**
+Every Sunday, from 8am to 3pm, along the river.
 
 [Continue to my Lake Bled guide](/en/journal/lake-bled-guide)
