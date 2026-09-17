@@ -5,7 +5,7 @@ date: 2026-09-16
 section: travel
 series: austria
 place: Vienna, Austria
-cover: /images/journal/interrail/vienna-stephansdom.jpg
+cover: /images/journal/vienna/hochstrahlbrunnen.jpg
 excerpt: Four nights in Vienna on foot: where to stay, where to eat schnitzel, a Viennese coffee at Café Mozart, and why you need at least a week.
 draft: false
 ---
@@ -80,7 +80,7 @@ This is what we did the most: walk through the city and take photos.
 
 ![A conversation in a doorway](/images/journal/vienna/doorway-conversation.jpg)
 
-![The Hochstrahlbrunnen fountain](/images/journal/vienna/hochstrahlbrunnen.jpg)
+![A fiaker in front of St. Stephen's Cathedral](/images/journal/interrail/vienna-stephansdom.jpg)
 
 ![Evening under the arches](/images/journal/vienna/arches-evening.jpg)
 
