@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
       { source: "/en/photographer", destination: "/en/destinations", permanent: true },
       { source: "/en/diary", destination: "/en/journal", permanent: true },
       { source: "/en/journal/series/:key", destination: "/en/journal/category/:key", permanent: true },
+      // 17/09 : les six premiers articles sont repassés en brouillon, décision
+      // de Sandrine, pour les refaire en vrais guides. Leurs adresses renvoient
+      // vers le journal en attendant (redirection temporaire).
+      { source: "/en/journal/:slug(vienna-slow-guide|interrail-twelve-stops|interrail-how-i-used-the-pass|interrail-what-i-packed|whats-in-my-camera-bag|my-first-drone)", destination: "/en/journal", permanent: false },
+      { source: "/en/journal/category/:key", destination: "/en/journal", permanent: false },
       { source: "/en/journal/destination/:key", destination: "/en/journal/category/:key", permanent: true },
       { source: "/en/diary/:slug", destination: "/en/journal", permanent: true },
       // 16/09, suite : plus aucune page hors menu. Vidéaste et les pages de

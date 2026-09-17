@@ -6,7 +6,7 @@ section: photographer
 series: my-cameras
 cover: /videos/banners/journal-drone.jpg
 excerpt: I had never flown a drone. This summer I bought one, registered as an operator in Belgium, and brought back aerial shots from Villach and Lake Bled.
-draft: false
+draft: true
 ---
 
 Until this summer, I had never flown a drone. I wanted aerial shots for my travel films, with as few permit constraints as possible.

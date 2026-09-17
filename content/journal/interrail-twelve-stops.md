@@ -6,7 +6,7 @@ section: travel
 series: interrail
 cover: /images/journal/covers/train-reading.jpg
 excerpt: Two weeks by train from Brussels to Prague and back, stop by stop.
-draft: false
+draft: true
 ---
 
 

@@ -6,7 +6,7 @@ section: travel
 series: interrail
 cover: /images/journal/interrail/train-window.jpg
 excerpt: The Global Pass, first class, and why I kept the pass days for the long journeys.
-draft: false
+draft: true
 ---
 
 [See the full route](/en/journal/interrail-twelve-stops)

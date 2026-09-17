@@ -6,7 +6,7 @@ section: travel
 series: interrail
 cover: /images/journal/covers/packed-backpack.jpg
 excerpt: My capsule wardrobe for a train journey across Central Europe.
-draft: false
+draft: true
 ---
 
 Two weeks, twelve stops, one bag.

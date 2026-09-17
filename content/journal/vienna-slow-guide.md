@@ -7,7 +7,7 @@ series: austria
 place: Vienna, Austria
 cover: /images/journal/interrail/vienna-stephansdom.jpg
 excerpt: Four days in Vienna at the end of a train journey across Europe. Three places to eat, and a city that is best walked.
-draft: false
+draft: true
 ---
 
 Vienna was one of the last stops of my Interrail journey this summer, twelve stops across Europe that ended in Prague. I arrived by train from Graz, over the Semmering, and stayed four nights.

@@ -6,7 +6,7 @@ section: photographer
 series: my-cameras
 cover: /images/journal/covers/camera-bag-flatlay.jpg
 excerpt: The five cameras I travel with, what each one can do, and the job it does for me.
-draft: false
+draft: true
 ---
 
 Five cameras, each with its own job. Here is what each one is, and why it is in my bag.
