@@ -50,9 +50,11 @@ The island of coloured houses, out in the lagoon. It is the other place I photog
 
 ## Where to eat and drink in Venice
 
-### A seafood restaurant on a small square
+### Ristoteca Oniga
 
-In Venice we ate in a seafood restaurant on a small square, an award-winning place. It was very good.
+On Campo San Barnaba, in Dorsoduro, across the Grand Canal from Saint Mark's. A seafood place on a small square, and one of the best meals of our trip.
+
+**Good to know:** the sign calls it a ristoteca, an osteria and an enoteca all at once. The menu is Venetian and changes with the season, the tables spill out onto the campo, and the dining room is small, so book. Dorsoduro in general is where you find the good tables, away from the tourist route.
 
 ### A spritz on Burano
 
