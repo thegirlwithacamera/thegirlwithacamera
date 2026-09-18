@@ -32,6 +32,8 @@ We stayed at the Expo Hotel Barcelona, for its rooftop pool.
 
 ![On the hotel rooftop](/images/journal/barcelona/hotel-terrace.jpg)
 
+![In the rooftop pool](/images/journal/barcelona/pool-legs.jpg)
+
 ## Best things to do in Barcelona
 
 ### The Sagrada Família
@@ -48,9 +50,13 @@ Magnificent.
 
 ![In Park Güell](/images/journal/barcelona/park-guell.jpg)
 
+![The mosaic ceiling in Park Güell](/images/journal/barcelona/park-guell-ceiling.jpg)
+
 ### The Gothic Quarter, the beach and La Boqueria
 
 ![A street of palm trees in Barcelona](/images/journal/barcelona/palm-street.jpg)
+
+![Casa Batlló](/images/journal/barcelona/casa-batllo.jpg)
 
 ### Montjuïc
 
@@ -74,6 +80,10 @@ We went out to the Mirador d'Horta, in the Collserola Natural Park, for the swin
 
 Tapas, tapas, tapas. One of the two places I would go back to.
 
+![Croquettes and patatas bravas at Cervecería Catalana](/images/journal/barcelona/tapas-croquettes.jpg)
+
+![A table of tapas](/images/journal/barcelona/tapas-table.jpg)
+
 ### Bar del Pi
 
 The other one. Their speciality is the bomba, the Barcelona potato bomb, and it is excellent.
@@ -82,9 +92,15 @@ The other one. Their speciality is the bomba, the Barcelona potato bomb, and it 
 
 Very nice too, with its inner courtyard.
 
+![Inside Gats Barcelona](/images/journal/barcelona/gats-interior.jpg)
+
 ### L'Atelier de Blai
 
 Carrer de Blai 38, in Poble Sec, to try pinchos.
+
+![A plate of pinchos](/images/journal/barcelona/pinchos-plate.jpg)
+
+![A pincho with jamón](/images/journal/barcelona/pincho-jamon.jpg)
 
 **Good to know:** Carrer de Blai is the pedestrian pinchos street of Barcelona, at the foot of Montjuïc. The idea is to keep moving: two or three pinchos in one bar, then on to the next.
 
