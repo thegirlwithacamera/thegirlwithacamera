@@ -142,7 +142,17 @@ export function allPosts(): JournalPost[] {
   return files
     .map(parse)
     .filter((p): p is JournalPost => p !== null)
-    .sort((a, b) => b.date.localeCompare(a.date));
+    // À date égale (plusieurs articles publiés le même mois), le plus récemment
+    // écrit passe devant (18/09), sinon l'accueil restait figé.
+    .sort((a, b) => b.date.localeCompare(a.date) || mtime(b.slug) - mtime(a.slug));
+}
+
+function mtime(slug: string): number {
+  try {
+    return fs.statSync(path.join(DIR, `${slug}.md`)).mtimeMs;
+  } catch {
+    return 0;
+  }
 }
 
 export function findPost(slug: string): JournalPost | undefined {
