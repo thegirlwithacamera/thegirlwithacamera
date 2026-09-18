@@ -1,5 +1,5 @@
 ---
-title: Faro travel guide: a chill base in the Algarve
+title: Faro travel guide: a calm base in the Algarve
 tile: Faro
 date: 2026-09-16
 section: travel
@@ -10,7 +10,7 @@ excerpt: Three days in Faro in February: the old town, the beach, the Ria Formos
 draft: false
 ---
 
-We went to Faro for Valentine's Day 2025, for three days and two nights. It is very chill, and a real change of scenery.
+We went to Faro for Valentine's Day 2025, for three days and two nights. It is very calm, and a real change of scenery.
 
 ## Faro overview
 
@@ -118,7 +118,7 @@ Four to five days, with day trips.
 ## Faro FAQ
 
 **Is Faro worth visiting?**
-Yes. It is very chill, and a real change of scenery.
+Yes. It is very calm, and a real change of scenery.
 
 **How many days in Faro?**
 Four to five days, using Faro as a base.
