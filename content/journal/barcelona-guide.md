@@ -26,11 +26,15 @@ I loved it. There are so many different neighbourhoods, and so many varied thing
 
 ## Where to stay in Barcelona
 
-We stayed at the Expo Hotel Barcelona, with its rooftop pool.
+We stayed at the Expo Hotel Barcelona.
 
-![The rooftop pool of the Expo Hotel Barcelona](/images/journal/barcelona/hotel-pool.jpg)
+## A rooftop with a pool and a view
 
-![On the hotel rooftop](/images/journal/barcelona/hotel-terrace.jpg)
+For the view, we went up to the rooftop of a Sercotel hotel, with its pool and the Sagrada Família in front of us.
+
+![The rooftop pool](/images/journal/barcelona/hotel-pool.jpg)
+
+![On the rooftop](/images/journal/barcelona/hotel-terrace.jpg)
 
 ## Best things to do in Barcelona
 
@@ -54,7 +58,7 @@ One of my two favourite spots for photography.
 
 ### The Mirador d'Horta and its swing
 
-We went out to the Mirador d'Horta, for the swing hanging from a tree that looks out over the city. It is my other favourite photo spot.
+We went out to the Mirador d'Horta, in the Collserola Natural Park, for the swing hanging from a tree that looks out over the city. It is my other favourite photo spot.
 
 ![The swing at the Mirador d'Horta](/images/journal/barcelona/horta-swing.jpg)
 
@@ -72,7 +76,7 @@ Tapas, tapas, tapas. One of the two places I would go back to.
 
 ### Bar del Pi
 
-The other one. They have a house speciality, and I tried it.
+The other one. Their speciality is the bomba, the Barcelona potato bomb, and it is excellent.
 
 ### Gats Barcelona
 
