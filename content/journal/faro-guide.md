@@ -86,8 +86,6 @@ The lagoon and its islands, between the city and the sea. It is a natural park, 
 
 ![The salt marshes of the Ria Formosa](/images/journal/faro/ria-salt-marsh.jpg)
 
-![A walk in the Ria Formosa](/images/journal/faro/ria-walk.jpg)
-
 ![Boats in the marina of Faro](/images/journal/faro/marina-boats.jpg)
 
 ### The red cliffs of Praia da Falésia
