@@ -64,7 +64,13 @@ Something fried at a market stall at noon, a pizza in the evening.
 
 ![A cutlet with potatoes](/images/journal/palermo/cutlet-lunch.jpg)
 
-![Ham and rocket](/images/journal/palermo/ham-rocket.jpg)
+### Nni Franco U Vastiddaru, for a sandwich
+
+Via Vittorio Emanuele 102, by the fountain. A Palermo street food institution, with tables outside. I had ham, cheese and salad on bread.
+
+![Ham, cheese and salad on bread](/images/journal/palermo/ham-rocket.jpg)
+
+**Good to know:** open from 9am to 11pm or later. It is table service, with a small cover charge per person, and the place is busy, so the wait can be long when it fills up.
 
 ### Timilia, for pizza
 
