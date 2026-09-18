@@ -5,7 +5,7 @@ date: 2026-09-16
 section: travel
 series: portugal
 place: Faro, Portugal
-cover: /images/journal/faro/ria-formosa-boardwalk.jpg
+cover: /images/journal/faro/falesia-cliffs.jpg
 excerpt: Three days in Faro in February: the old town, the beach, the Ria Formosa, and why you should sleep in Faro and travel out from there.
 draft: false
 ---
@@ -61,8 +61,6 @@ The lagoon and its islands, between the city and the sea. It is a natural park, 
 ### The red cliffs of Praia da Falésia
 
 The cliffs in the town next door, near Albufeira, with their red and ochre walls dropping into the sand.
-
-![The red cliffs of Praia da Falésia](/images/journal/faro/falesia-cliffs.jpg)
 
 ![On the red cliffs of the Algarve](/images/journal/covers/my-cameras-cliffs.jpg)
 
