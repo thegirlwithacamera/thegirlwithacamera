@@ -62,10 +62,6 @@ Something fried at a market stall at noon, a pizza in the evening.
 
 **Good to know:** Palermo is a street food city. The classics are panelle (chickpea fritters), arancine (the rice balls, feminine here, unlike in Catania), sfincione (the local spongy pizza) and, for the brave, pane con la milza, the spleen sandwich.
 
-![A plate of pasta](/images/journal/palermo/pasta-lunch.jpg)
-
-![A cutlet with potatoes](/images/journal/palermo/cutlet-lunch.jpg)
-
 ### Nni Franco U Vastiddaru, for a sandwich
 
 Via Vittorio Emanuele 102, by the fountain. A Palermo street food institution, with tables outside. I had ham, cheese and salad on bread.
