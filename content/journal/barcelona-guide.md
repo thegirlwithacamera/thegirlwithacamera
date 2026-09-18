@@ -24,6 +24,14 @@ I loved it. There are so many different neighbourhoods, and so many varied thing
 
 **How long I would stay:** one week.
 
+## Getting around Barcelona
+
+We walked most of the time, and used a ride app for the trips further out, like the Mirador d'Horta.
+
+**Good to know:** for the metro, the tram and the city buses, the T-casual is the ticket most visitors want: 10 journeys for €12.55, and you can share it, one validation per person. A single ticket costs €2.65, so it pays for itself quickly. The airport metro stations are not included: the airport ticket is €5.70. If you plan to use transport a lot over a few days, compare with the Hola Barcelona Travel Card, from €18.70, which includes the airport.
+
+**One warning:** Barcelona is very safe for violent crime, but it has some of the best pickpockets in the world. La Rambla, the metro and the square in front of the Sagrada Família are their favourite places. Bag across the chest, zips closed, nothing in a back pocket, and no phone left on the café table.
+
 ## Where to stay in Barcelona
 
 We stayed at the Expo Hotel Barcelona, for its rooftop pool.
@@ -39,6 +47,10 @@ We stayed at the Expo Hotel Barcelona, for its rooftop pool.
 ### The Sagrada Família
 
 The best view we found was from the rooftop terrace of the Sercotel Rosellón, with the basilica right in front of us.
+
+**The story:** the first stone was laid in 1882, to a neo-Gothic design by Francisco de Paula del Villar. Gaudí took over in 1883, at 31, and redrew the whole thing around his vision of nature turned into stone. He worked on it until his death in 1926, hit by a tram, and is buried in the crypt. The basilica is an expiatory temple, funded only by donations and tickets, which is one reason it took so long.
+
+**Where it stands now:** in February 2026 the last piece of the central Tower of Jesus Christ was lifted into place. At 172.5 metres, the Sagrada Família became the tallest church in the world, and all 18 towers are structurally complete for the first time. The tower was blessed on 10 June 2026, exactly one hundred years after Gaudí's death. Some finishing work, like the Glory Façade, is still to come.
 
 **Good to know:** you have to book a time slot online before you go up. Do it in advance, the slots go quickly.
 
@@ -71,11 +83,19 @@ Magnificent.
 
 **Getting there:** metro line 3 to Lesseps or Vallcarca, then a steep walk uphill, or bus 24, 92 or 116 to the entrance. Wear real shoes, it climbs. The park is a short hop north of the Sagrada Família, so you can do both in one morning.
 
-### The Gothic Quarter, the beach and La Boqueria
+### The Gothic Quarter, El Born and the beach
+
+The Gothic Quarter is the medieval heart of the city, a maze of narrow streets between the cathedral and the Ramblas. Just next to it, El Born is quieter, with its artisan shops and its tapas bars. And at the end of the streets, the beach of Barceloneta.
+
+**My advice:** go beyond these two. Gràcia, further up, feels like a village, with pedestrian squares and cafés where you hear almost no English. It is the Barcelona I would go back for.
+
+### La Boqueria
 
 At La Boqueria, the big market off the Ramblas, I had a cone of jamón and cheese.
 
-**Good to know:** La Boqueria is on the Ramblas, and it is closed on Sundays. The stalls at the entrance are the most touristy and the most expensive: walk to the back for the ones where locals actually shop.
+**Good to know:** La Boqueria is on the Ramblas, and it is closed on Sundays. There has been a market on this spot since the Middle Ages, and the iron hall dates from the 19th century. The stalls at the entrance are the most touristy and the most expensive: walk to the back for the ones where locals actually shop, and go in the morning, when the market is really working.
+
+**And while you are on the Ramblas:** do not eat there. The street is famous by name only, and the terraces are tourist traps. Walk one street away, in either direction, and everything gets better and cheaper.
 
 ![A cone of jamón and cheese from La Boqueria](/images/journal/barcelona/pincho-jamon.jpg)
 
@@ -83,11 +103,17 @@ At La Boqueria, the big market off the Ramblas, I had a cone of jamón and chees
 
 ![Casa Batlló](/images/journal/barcelona/casa-batllo.jpg)
 
+**Good to know:** Casa Batlló is on Passeig de Gràcia, in the Eixample, the grid neighbourhood of the wide avenues. You can admire the facade from the street for free, with its bone-shaped balconies and its roof like a dragon's back. To go inside, book online.
+
 ### Montjuïc
 
 One of my two favourite spots for photography.
 
-**Good to know:** Montjuïc is the hill above the port. You can walk up, take the funicular from Paral·lel metro station, or ride the cable car up to the castle. Late afternoon is the best light, and the view covers the whole city and the sea.
+**Good to know:** Montjuïc is the hill above the port. You can walk up, take the funicular from Paral·lel metro station, which is included in your normal transport ticket, or ride the cable car up to the castle, which is not.
+
+**What is up there:** the castle and its views, the Joan Miró Foundation, the MNAC and its Catalan art, the Olympic ring from 1992, the gardens, and at the bottom the Magic Fountain of Montjuïc, in front of the MNAC.
+
+**My advice:** late afternoon, for the light on the city and the sea, and to end the day on the hill.
 
 ### The Mirador d'Horta and its swing
 
@@ -139,6 +165,12 @@ The first time I came to Barcelona, I did not see anything. I went round in circ
 
 When I came back, I pushed the discovery much further, and that changed everything.
 
+**Three things I would tell a first timer:**
+
+- **Book the big sights weeks ahead.** The Sagrada Família, Park Güell and Casa Batlló have capped capacity and sell out, especially since the centenary year.
+- **Eat on Spanish time.** Lunch around 2pm, dinner from 9pm. At 6:30pm you will only find the places that live off tourists.
+- **Pick one neighbourhood per day** and walk it properly, instead of crossing the city to tick off monuments.
+
 ![In Barcelona](/images/journal/barcelona/hotel-terrace.jpg)
 
 ## How many days in Barcelona?
@@ -167,3 +199,12 @@ Cervecería Catalana in the Eixample, Bar del Pi in the Gothic Quarter, Gats in 
 
 **Do you need to book for Park Güell and the Sagrada Família?**
 Yes, both need a ticket with a time slot, booked online in advance.
+
+**What is the best way to get around Barcelona?**
+On foot in the centre, and a T-casual ticket for the metro, tram and buses.
+
+**When is the best time to visit Barcelona?**
+We went in September, which is warm without the peak of summer.
+
+**Is Barcelona safe?**
+Yes for violent crime, but it is one of the world's capitals of pickpocketing. Watch your bag on La Rambla, in the metro and around the Sagrada Família.
