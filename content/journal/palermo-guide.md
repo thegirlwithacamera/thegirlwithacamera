@@ -60,9 +60,15 @@ Granita with a brioche in the morning, something fried at a market stall at noon
 
 ![Ham and rocket](/images/journal/palermo/ham-rocket.jpg)
 
-![Pizza in the evening](/images/journal/palermo/pizza-evening.jpg)
+### Timilia, for pizza
 
-![Lunch on the last day](/images/journal/palermo/pizza-lunch.jpg)
+Via Maqueda 221, right on the main pedestrian street. Surprisingly delicious for such a touristy street.
+
+![Pizza at Timilia](/images/journal/palermo/pizza-evening.jpg)
+
+![Another pizza at Timilia](/images/journal/palermo/pizza-lunch.jpg)
+
+**Good to know:** they are open all day, from 11:30am to midnight, later at the weekend, and they do a gluten-free pizza that people come back for. There is a table service charge, so do not be surprised by the bill.
 
 ## Where to drink: dal Barone
 
