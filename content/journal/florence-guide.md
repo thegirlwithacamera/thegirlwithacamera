@@ -1,7 +1,7 @@
 ---
 title: Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping
 tile: Florence
-date: 2026-09-16
+date: 2026-09-08
 section: travel
 series: italy
 place: Florence, Italy

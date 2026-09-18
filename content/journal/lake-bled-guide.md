@@ -1,7 +1,7 @@
 ---
 title: Lake Bled travel guide: walk the loop, swim for free, climb Mala Osojnica
 tile: Lake Bled
-date: 2026-09-17
+date: 2026-09-04
 section: travel
 series: slovenia
 place: Bled, Slovenia

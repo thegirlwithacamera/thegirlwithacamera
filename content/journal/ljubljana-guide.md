@@ -1,7 +1,7 @@
 ---
 title: Ljubljana travel guide: a walkable capital built for people
 tile: Ljubljana
-date: 2026-09-17
+date: 2026-09-04
 section: travel
 series: slovenia
 place: Ljubljana, Slovenia

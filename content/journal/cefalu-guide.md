@@ -1,7 +1,7 @@
 ---
 title: Cefalù travel guide: a day trip from Palermo
 tile: Cefalù
-date: 2026-09-16
+date: 2026-09-14
 section: travel
 series: italy
 place: Cefalù, Italy

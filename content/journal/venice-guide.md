@@ -1,7 +1,7 @@
 ---
 title: Venice travel guide: get up early, before the city fills up
 tile: Venice
-date: 2026-09-16
+date: 2026-09-11
 section: travel
 series: italy
 place: Venice, Italy

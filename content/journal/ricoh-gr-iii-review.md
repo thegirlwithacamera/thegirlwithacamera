@@ -1,7 +1,7 @@
 ---
 title: Ricoh GR III Diary Edition review: the camera I use as my photo diary
 tile: Ricoh GR III
-date: 2026-09-17
+date: 2026-09-06
 section: creator
 series: my-cameras
 cover: /images/journal/gear/ricoh-gr-iii-cover.jpg

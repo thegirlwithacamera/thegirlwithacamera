@@ -1,7 +1,7 @@
 ---
 title: Kawaguchiko travel guide
 tile: Kawaguchiko
-date: 2026-09-16
+date: 2026-09-09
 section: travel
 series: japan
 place: Kawaguchiko, Japan

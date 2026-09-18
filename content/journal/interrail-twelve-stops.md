@@ -1,7 +1,7 @@
 ---
 title: One pass, twelve stops: my Interrail route across Central Europe
 tile: The route
-date: 2026-09-16
+date: 2026-09-02
 section: travel
 series: interrail
 cover: /images/journal/covers/train-reading.jpg

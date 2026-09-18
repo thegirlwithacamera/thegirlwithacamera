@@ -1,7 +1,7 @@
 ---
 title: Insta360 Ace Pro 2 review: the waterproof action camera I shoot like a compact camera
 tile: Ace Pro 2
-date: 2026-09-17
+date: 2026-09-05
 section: creator
 series: my-cameras
 cover: /images/journal/gear/ace-pro-2-cover.jpg

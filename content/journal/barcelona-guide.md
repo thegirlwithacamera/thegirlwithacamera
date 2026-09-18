@@ -1,7 +1,7 @@
 ---
 title: Barcelona travel guide: get off the beaten path, the second time is better
 tile: Barcelona
-date: 2026-09-16
+date: 2026-09-10
 section: travel
 series: spain
 place: Barcelona, Spain

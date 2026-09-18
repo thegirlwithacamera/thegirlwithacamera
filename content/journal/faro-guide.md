@@ -1,7 +1,7 @@
 ---
 title: Faro travel guide: a calm base in the Algarve
 tile: Faro
-date: 2026-09-16
+date: 2026-09-07
 section: travel
 series: portugal
 place: Faro, Portugal

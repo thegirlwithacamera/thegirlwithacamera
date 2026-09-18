@@ -1,7 +1,7 @@
 ---
 title: Vienna travel guide: a city of grandeur, best seen on foot
 tile: Vienna
-date: 2026-09-16
+date: 2026-09-02
 section: travel
 series: austria
 place: Vienna, Austria

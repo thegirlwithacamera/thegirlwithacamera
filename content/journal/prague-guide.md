@@ -1,7 +1,7 @@
 ---
 title: Prague travel guide: the castle district at dawn, two good addresses and the traps to avoid
 tile: Prague
-date: 2026-09-16
+date: 2026-09-10
 section: travel
 series: czech-republic
 place: Prague, Czech Republic

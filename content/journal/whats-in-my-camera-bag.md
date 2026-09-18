@@ -1,7 +1,7 @@
 ---
 title: What's in my camera bag
 tile: Camera bag
-date: 2026-09-16
+date: 2026-09-01
 section: creator
 series: my-cameras
 cover: /images/journal/covers/camera-bag-flatlay.jpg

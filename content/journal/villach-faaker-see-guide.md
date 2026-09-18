@@ -1,7 +1,7 @@
 ---
 title: Villach and Lake Faak travel guide: a charming town and a turquoise lake to disconnect
 tile: Villach & Lake Faak
-date: 2026-09-16
+date: 2026-09-12
 section: travel
 series: austria
 place: Villach, Austria

@@ -1,7 +1,7 @@
 ---
 title: Palermo travel guide: markets, street food and a wine bar worth the trip
 tile: Palermo
-date: 2026-09-16
+date: 2026-09-14
 section: travel
 series: italy
 place: Palermo, Italy

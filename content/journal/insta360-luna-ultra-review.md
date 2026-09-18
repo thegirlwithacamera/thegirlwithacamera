@@ -1,7 +1,7 @@
 ---
 title: Insta360 Luna Ultra review: the vlogging camera I use for cinematic travel and hotel videos
 tile: Luna Ultra
-date: 2026-09-17
+date: 2026-09-05
 section: creator
 series: my-cameras
 cover: /images/journal/gear/luna-ultra-cover.jpg

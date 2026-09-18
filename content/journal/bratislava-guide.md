@@ -1,7 +1,7 @@
 ---
 title: Bratislava in four hours between two trains
 tile: Bratislava
-date: 2026-09-16
+date: 2026-09-15
 section: travel
 series: slovakia
 place: Bratislava, Slovakia

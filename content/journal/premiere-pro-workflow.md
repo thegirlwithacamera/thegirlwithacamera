@@ -1,7 +1,7 @@
 ---
 title: How I edit my travel and hotel videos in Premiere Pro
 tile: Premiere Pro
-date: 2026-09-17
+date: 2026-09-07
 section: creator
 series: edits
 cover: /images/journal/edits/premiere-pro-logo.jpg

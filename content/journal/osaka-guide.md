@@ -1,7 +1,7 @@
 ---
 title: Osaka travel guide
 tile: Osaka
-date: 2026-09-16
+date: 2026-09-11
 section: travel
 series: japan
 place: Osaka, Japan

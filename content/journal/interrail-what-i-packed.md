@@ -1,7 +1,7 @@
 ---
 title: What I packed for two weeks of Interrail
 tile: What I packed
-date: 2026-09-16
+date: 2026-09-01
 section: travel
 series: interrail
 cover: /images/journal/covers/packed-backpack.jpg

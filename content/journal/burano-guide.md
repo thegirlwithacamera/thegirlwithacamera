@@ -1,7 +1,7 @@
 ---
 title: Burano travel guide: coloured houses, lace and a spritz
 tile: Burano
-date: 2026-09-16
+date: 2026-09-13
 section: travel
 series: italy
 place: Burano, Italy

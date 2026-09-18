@@ -1,7 +1,7 @@
 ---
 title: Naples travel guide: dirty, intimidating, and very good for street photography
 tile: Naples
-date: 2026-09-16
+date: 2026-09-08
 section: travel
 series: italy
 place: Naples, Italy

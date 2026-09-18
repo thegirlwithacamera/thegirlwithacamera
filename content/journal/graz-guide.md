@@ -1,7 +1,7 @@
 ---
 title: Graz travel guide: a peaceful city, red rooftops and the Schlossberg
 tile: Graz
-date: 2026-09-16
+date: 2026-09-06
 section: travel
 series: austria
 place: Graz, Austria

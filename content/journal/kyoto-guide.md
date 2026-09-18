@@ -1,7 +1,7 @@
 ---
 title: Kyoto travel guide
 tile: Kyoto
-date: 2026-09-16
+date: 2026-09-09
 section: travel
 series: japan
 place: Kyoto, Japan
