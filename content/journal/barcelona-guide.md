@@ -26,23 +26,21 @@ I loved it. There are so many different neighbourhoods, and so many varied thing
 
 ## Where to stay in Barcelona
 
-We stayed at the Expo Hotel Barcelona.
+We stayed at the Expo Hotel Barcelona, for its rooftop pool.
 
-## A rooftop with a pool and a view
+![The rooftop pool of the Expo Hotel](/images/journal/barcelona/hotel-pool.jpg)
 
-For the view, we went up to the rooftop of the Sercotel Rosellón, with its pool and the Sagrada Família right in front of us.
-
-**Good to know:** you have to book a time slot online before you go up. Do it in advance, the slots go quickly.
-
-![The rooftop pool](/images/journal/barcelona/hotel-pool.jpg)
-
-![On the rooftop](/images/journal/barcelona/hotel-terrace.jpg)
+![On the hotel rooftop](/images/journal/barcelona/hotel-terrace.jpg)
 
 ## Best things to do in Barcelona
 
 ### The Sagrada Família
 
-![The Sagrada Família seen from a rooftop](/images/journal/barcelona/sagrada-familia.jpg)
+The best view we found was from the rooftop terrace of the Sercotel Rosellón, with the basilica right in front of us.
+
+**Good to know:** you have to book a time slot online before you go up. Do it in advance, the slots go quickly.
+
+![The Sagrada Família seen from the Sercotel Rosellón rooftop](/images/journal/barcelona/sagrada-familia.jpg)
 
 ### Park Güell
 
