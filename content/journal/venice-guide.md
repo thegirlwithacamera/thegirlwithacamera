@@ -48,9 +48,11 @@ The island of coloured houses, out in the lagoon, is the other place I photograp
 
 ### Ristoteca Oniga
 
-On Campo San Barnaba, in Dorsoduro, across the Grand Canal from Saint Mark's. A seafood place on a small square, and one of the best meals of our trip.
+Dorsoduro 2852, on Campo San Barnaba, next to the Ca' Rezzonico waterbus stop. A seafood place on a small square, and one of the best meals of our trip.
 
-**Good to know:** the sign calls it a ristoteca, an osteria and an enoteca all at once. The menu is Venetian and changes with the season, the tables spill out onto the campo, and the dining room is small, so book. Dorsoduro in general is where you find the good tables, away from the tourist route.
+**Good to know:** the kitchen is Venetian and regional, built around organic produce and small local producers, with a lot of Slow Food certified ingredients and fish from the market every morning. Their signature dish is the Bucintoro, named after the doges' state barge: clams, mussels, prawns, calamari, queen scallops and the catch of the day, with spaghetti and toasted bread. They are open every day from noon to 11pm, and you book by phone. The dining room is small, so call ahead.
+
+Dorsoduro in general is where you find the good tables, away from the tourist route.
 
 ## Things to know before you go
 
