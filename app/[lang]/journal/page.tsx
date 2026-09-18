@@ -41,6 +41,7 @@ export default async function JournalPage({ params }: Props) {
         href: `/en/journal/category/${k}`,
         label: JOURNAL_SERIES[k]?.label ?? k,
         cover: JOURNAL_SERIES[k]?.cover ?? inSection.find((p) => p.series === k)?.cover,
+        caption: undefined as string | undefined,
       })),
       ...inSection.filter((p) => !p.series).map((p) => ({ key: p.slug, href: `/en/journal/${p.slug}`, label: p.tile, cover: p.cover, caption: tileCaption(p) })),
     ];
