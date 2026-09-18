@@ -88,9 +88,13 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
 
 export function postsInSeries(key: string): JournalPost[] {
   const order = JOURNAL_SERIES[key]?.order ?? [];
-  return allPosts()
-    .filter((p) => p.series === key)
-    .sort((a, b) => (order.indexOf(a.slug) + 1 || 99) - (order.indexOf(b.slug) + 1 || 99));
+  const posts = allPosts().filter((p) => p.series === key);
+  // Les guides de ville se rangent de A à Z (18/09) ; ailleurs on garde
+  // l'ordre fixé dans JOURNAL_SERIES.
+  if (posts.every((p) => p.section === "travel")) {
+    return posts.sort((a, b) => a.tile.localeCompare(b.tile));
+  }
+  return posts.sort((a, b) => (order.indexOf(a.slug) + 1 || 99) - (order.indexOf(b.slug) + 1 || 99));
 }
 
 export type JournalPost = {
