@@ -50,11 +50,26 @@ For the basilica itself, book your ticket online too, with a time slot. Queues a
 
 Magnificent.
 
-**Good to know:** the Monumental Zone of Park Güell, the part with the mosaics and the terrace, is paid and needs a ticket with a time slot, booked online. The rest of the park is free. Go early: the slots in the middle of the day sell out first, and the light is better.
-
 ![In Park Güell](/images/journal/barcelona/park-guell.jpg)
 
 ![The mosaic ceiling in Park Güell](/images/journal/barcelona/park-guell-ceiling.jpg)
+
+**The story:** the park was never meant to be a park. Between 1900 and 1914, the businessman Eusebi Güell asked Gaudí to lay out a residential estate of about sixty plots on a bare hill, modelled on the English garden suburbs, which is why the English word "Park" is in the name. Almost nobody bought a plot, only a couple of houses were ever built, and the project failed. The city turned it into a public park, and it is now a UNESCO World Heritage Site.
+
+**What to look for:**
+
+- **The Dragon Staircase,** with El Drac, the mosaic salamander on the second landing, above the Catalan coat of arms.
+- **The Hypostyle Room,** often called the Hall of a Hundred Columns although there are 86. It was meant to be the market of the estate. Look up: the ceiling is covered with trencadís, the broken tile mosaic, with four rosettes.
+- **Nature Square,** the big terrace above the Hypostyle Room, planned as a Greek theatre, with the view over the city.
+- **The serpentine bench,** about 110 metres of curving trencadís around the terrace. It was Gaudí's idea, but it was designed by Josep Maria Jujol.
+- **The Laundry Room Portico,** a leaning colonnade shaped like a wave, named after the washerwoman carved into one of its columns.
+- **The gatehouses,** the two fairy tale pavilions at the main entrance on Carrer d'Olot. One of them holds an exhibition about the park, included with the ticket.
+
+**Good to know:** only the Monumental Zone, the part with all of this, is paid, and it needs a ticket with a 30-minute time slot booked online. The rest of the park, the woodland paths and the viewpoints, is free. Entry is capped per hour and the slots sell out, especially in summer.
+
+**My advice:** take the very first slot of the morning. The light on the trencadís is softer, and you are there before the tour groups. Count one hour to one hour and a half for the Monumental Zone.
+
+**Getting there:** metro line 3 to Lesseps or Vallcarca, then a steep walk uphill, or bus 24, 92 or 116 to the entrance. Wear real shoes, it climbs. The park is a short hop north of the Sagrada Família, so you can do both in one morning.
 
 ### The Gothic Quarter, the beach and La Boqueria
 
