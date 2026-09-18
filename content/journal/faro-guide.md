@@ -50,10 +50,6 @@ The Cidade Velha, the walled old town, is small and easy to walk: you enter thro
 
 ![A yellow alley in the old town](/images/journal/faro/yellow-alley.jpg)
 
-![A figure at the end of an alley](/images/journal/faro/alley-figure.jpg)
-
-![A church tower in Faro](/images/journal/faro/church-tower.jpg)
-
 ![Laundry on a balcony in Faro](/images/journal/faro/laundry-balcony.jpg)
 
 ![A pink facade in Faro](/images/journal/faro/pink-facade.jpg)
@@ -85,8 +81,6 @@ The lagoon and its islands, between the city and the sea. It is a natural park, 
 ![The wooden boardwalk across the Ria Formosa](/images/journal/faro/ria-formosa-boardwalk.jpg)
 
 ![The salt marshes of the Ria Formosa](/images/journal/faro/ria-salt-marsh.jpg)
-
-![Boats in the marina of Faro](/images/journal/faro/marina-boats.jpg)
 
 ### The red cliffs of Praia da Falésia
 
