@@ -26,6 +26,8 @@ We stayed at **Alto House Faro**, on Rua de Berlim, a renovated guest house abou
 
 For Valentine's Day, the hotel had prepared the room for us: red roses, a bottle of Portuguese sparkling wine, two glasses, a box of chocolates and a bowl of strawberries.
 
+![What Alto House had prepared in the room for Valentine's Day](/images/journal/faro/alto-house-valentines.jpg)
+
 [Check prices and availability at Alto House Faro](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fpt%2Falto-house-faro.html)
 
 **My tip:** sleep in Faro itself. It is much cheaper, and you can do day trips to the neighbouring villages from there.
