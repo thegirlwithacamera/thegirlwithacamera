@@ -82,11 +82,11 @@ Tapas, tapas, tapas. One of the two places I would go back to.
 
 ![Croquettes and patatas bravas at Cervecería Catalana](/images/journal/barcelona/tapas-croquettes.jpg)
 
-![A table of tapas](/images/journal/barcelona/tapas-table.jpg)
-
 ### Bar del Pi
 
 The other one. Their speciality is the bomba, the Barcelona potato bomb, and it is excellent.
+
+![A table of tapas at Bar del Pi](/images/journal/barcelona/tapas-table.jpg)
 
 ### Gats Barcelona
 
