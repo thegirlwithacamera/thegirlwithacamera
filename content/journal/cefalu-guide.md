@@ -34,9 +34,15 @@ The Norman cathedral dominates the square, with its two towers and its golden mo
 
 The rock above the town. Count 30 to 45 minutes of climbing for the view over the roofs and the sea. It is a paid site, and it closes in the late afternoon.
 
-### Eat, slowly
+### Breakfast at Cathedral Coffee
 
-![Coffee and a pistachio pastry](/images/journal/cefalu/coffee-pistachio.jpg)
+Piazza del Duomo 2, with the tables right in front of the cathedral. We had breakfast there: coffee and a pistachio croissant, with the two Norman towers in front of us.
+
+![Coffee and a pistachio croissant in front of the cathedral](/images/journal/cefalu/coffee-pistachio.jpg)
+
+**Good to know:** open from 7am to 11pm, closed on Mondays. You are paying partly for the view on the square, and the service can be slow when it fills up.
+
+### And then eat, slowly
 
 ![Pasta alla Norma](/images/journal/cefalu/pasta-norma.jpg)
 
