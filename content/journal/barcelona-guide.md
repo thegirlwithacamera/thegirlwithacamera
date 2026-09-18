@@ -82,8 +82,6 @@ We went out to the Mirador d'Horta, in the Collserola Natural Park, for the swin
 
 ![The swing at the Mirador d'Horta](/images/journal/barcelona/horta-swing.jpg)
 
-![Barcelona from the swing](/images/journal/barcelona/horta-swing-view.jpg)
-
 **Good to know:** the Mirador d'Horta is on the road from Horta to Cerdanyola, on the southern side of the Collserola hills. It opened in 1995, and looks down on the Velòdrom and the districts of Horta and Montbau, with the sea in the distance. Take metro line 3 to Valldaura, then walk about twenty minutes. Because of the crowds, the swing is not always there: sometimes only the rope is left. Sunset is the best time.
 
 **Fun fact:** from the Mirador d'Horta and the hill with the swing, you can see Mount Tibidabo. Yes, the one from Joey's Europe story in Friends.
