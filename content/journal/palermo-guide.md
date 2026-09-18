@@ -28,6 +28,8 @@ Palermo reminded me of Naples. I liked it a lot, especially the markets.
 
 We stayed at Calamarina Centro, in the historic centre, a few minutes from Via Maqueda and the Quattro Canti.
 
+[Check prices and availability at Calamarina Centro](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fit%2Fcalamarina-centro.html)
+
 ![A morning view from the flat](/images/journal/palermo/balcony-morning.jpg)
 
 ## Best things to do in Palermo
@@ -113,3 +115,5 @@ Five days with a day trip, or better, ten days for the whole island by car.
 
 **Where to drink wine in Palermo?**
 Dal Barone, in the Kalsa, for natural Sicilian wine and a board of cheese and cured meats.
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)
