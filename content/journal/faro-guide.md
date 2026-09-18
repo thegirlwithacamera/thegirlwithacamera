@@ -44,8 +44,6 @@ The Cidade Velha, the walled old town, is small and easy to walk: you enter thro
 
 ![A square in Faro](/images/journal/faro/square-ping-pong.jpg)
 
-![A street in Faro](/images/journal/faro/faro-street.jpg)
-
 ![Orange trees against a white wall in Faro](/images/journal/faro/orange-trees-wall.jpg)
 
 ![Laundry on a balcony in Faro](/images/journal/faro/laundry-balcony.jpg)
