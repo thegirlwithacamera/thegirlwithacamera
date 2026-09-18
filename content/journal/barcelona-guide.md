@@ -54,6 +54,10 @@ Magnificent.
 
 ### The Gothic Quarter, the beach and La Boqueria
 
+At La Boqueria, the big market off the Ramblas, I had a cone of jamón and cheese.
+
+![A cone of jamón and cheese from La Boqueria](/images/journal/barcelona/pincho-jamon.jpg)
+
 ![A street of palm trees in Barcelona](/images/journal/barcelona/palm-street.jpg)
 
 ![Casa Batlló](/images/journal/barcelona/casa-batllo.jpg)
@@ -99,8 +103,6 @@ Very nice too, with its inner courtyard.
 Carrer de Blai 38, in Poble Sec, to try pinchos.
 
 ![A plate of pinchos](/images/journal/barcelona/pinchos-plate.jpg)
-
-![A pincho with jamón](/images/journal/barcelona/pincho-jamon.jpg)
 
 **Good to know:** Carrer de Blai is the pedestrian pinchos street of Barcelona, at the foot of Montjuïc. The idea is to keep moving: two or three pinchos in one bar, then on to the next.
 
