@@ -72,6 +72,10 @@ Dorsoduro 2852, on Campo San Barnaba, next to the Ca' Rezzonico waterbus stop. A
 
 **Good to know:** the kitchen is Venetian and regional, built around organic produce and small local producers, with a lot of Slow Food certified ingredients and fish from the market every morning. Their signature dish is the Bucintoro, named after the doges' state barge: clams, mussels, prawns, calamari, queen scallops and the catch of the day, with spaghetti and toasted bread. They are open every day from noon to 11pm, and you book by phone. The dining room is small, so call ahead.
 
+I had lobster pasta there.
+
+![Our table at Ristoteca Oniga](/images/journal/venice/oniga.jpg)
+
 Dorsoduro in general is where you find the good tables, away from the tourist route.
 
 ## Things to know before you go
