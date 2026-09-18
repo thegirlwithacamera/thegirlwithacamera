@@ -49,6 +49,11 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
     cover: "/images/about/portrait-beach.jpg",
     order: ["premiere-pro-workflow"],
   },
+  portugal: {
+    label: "Portugal",
+    cover: "/images/journal/faro/beach-dunes.jpg",
+    order: ["faro-guide"],
+  },
   slovenia: {
     label: "Slovenia",
     cover: "/images/journal/slovenia/bled-heart-lock.jpg",
@@ -57,7 +62,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   austria: {
     label: "Austria",
     cover: "/images/portfolio/travel/graz/1.jpg",
-    order: ["vienna-slow-guide", "graz-guide"],
+    order: ["vienna-slow-guide", "graz-guide", "villach-faaker-see-guide"],
   },
 };
 
