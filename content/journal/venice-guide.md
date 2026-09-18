@@ -1,12 +1,12 @@
 ---
-title: Venice travel guide: get up early, and go to Burano
+title: Venice travel guide: get up early, before the city fills up
 tile: Venice
 date: 2026-09-16
 section: travel
 series: italy
 place: Venice, Italy
-cover: /images/journal/venice/pink-wall.jpg
-excerpt: Two days in Venice and Burano in October: the alleys before the crowds, a spritz on the colourful island, and where we stayed.
+cover: /images/journal/venice/green-curtain.jpg
+excerpt: Two days in Venice in October: the alleys before the crowds, a seafood table in Dorsoduro, and a day out to Burano.
 draft: true
 ---
 
@@ -40,13 +40,9 @@ The alleys are my photo spot in Venice, and the whole point is to be out before 
 
 ![In a Venice alley](/images/journal/venice/green-curtain.jpg)
 
-### Burano
+### A day trip to Burano
 
-The island of coloured houses, out in the lagoon. It is the other place I photographed the most, and where we had our spritz.
-
-![A pink wall in Burano](/images/journal/venice/pink-wall.jpg)
-
-**Good to know:** Burano is reached by vaporetto line 12 from Fondamente Nove, on the north side of Venice, about 40 to 45 minutes, with a stop at Murano on the way. A single ticket is €9.50 and lasts 75 minutes, so for an island day the 24-hour pass at €25 pays for itself: the round trip alone is four boardings.
+The island of coloured houses, out in the lagoon, is the other place I photographed the most. It has its own guide here: [Burano travel guide](/en/journal/burano-guide).
 
 ## Where to eat and drink in Venice
 
@@ -55,12 +51,6 @@ The island of coloured houses, out in the lagoon. It is the other place I photog
 On Campo San Barnaba, in Dorsoduro, across the Grand Canal from Saint Mark's. A seafood place on a small square, and one of the best meals of our trip.
 
 **Good to know:** the sign calls it a ristoteca, an osteria and an enoteca all at once. The menu is Venetian and changes with the season, the tables spill out onto the campo, and the dining room is small, so book. Dorsoduro in general is where you find the good tables, away from the tourist route.
-
-### A spritz on Burano
-
-The best moment of the day on the island.
-
-![A spritz in Burano](/images/journal/venice/spritz.jpg)
 
 ## Things to know before you go
 
@@ -76,9 +66,6 @@ Three to four days, with one of them for the islands.
 
 **How many days in Venice?**
 Three to four days, including a day for Burano and Murano.
-
-**How do you get to Burano?**
-Vaporetto line 12 from Fondamente Nove, about 40 to 45 minutes, with Murano on the way.
 
 **How much is the vaporetto in Venice?**
 €9.50 for a single ticket valid 75 minutes, €25 for 24 hours. For an island day, take the pass.
