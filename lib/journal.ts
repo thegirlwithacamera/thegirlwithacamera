@@ -54,6 +54,11 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
     cover: "/images/journal/prague/castle-guard.jpg",
     order: ["prague-guide"],
   },
+  spain: {
+    label: "Spain",
+    cover: "/images/journal/barcelona/park-guell.jpg",
+    order: ["barcelona-guide"],
+  },
   portugal: {
     label: "Portugal",
     cover: "/images/journal/faro/beach-dunes.jpg",

@@ -1,46 +1,112 @@
 ---
-title: Barcelona travel guide
+title: Barcelona travel guide: get off the beaten path, the second time is better
 tile: Barcelona
 date: 2026-09-16
 section: travel
 series: spain
 place: Barcelona, Spain
-excerpt: To complete
-draft: true
+cover: /images/journal/barcelona/horta-swing.jpg
+excerpt: A week in Barcelona for my second visit: the swing at Mirador d'Horta, Montjuïc, pinchos on Carrer de Blai, and why the city only opened up once I stopped circling the main sights.
+draft: false
 ---
 
-> À COMPLÉTER : quand tu y es allée, combien de temps, avec qui, et ta première impression en une ou deux phrases.
+I went to Barcelona for the second time in September 2023, with my boyfriend, for his birthday. We stayed six to seven days.
+
+I loved it. There are so many different neighbourhoods, and so many varied things to see, that it does you good.
 
 ## Barcelona overview
 
-**When:** > À COMPLÉTER
+**When:** September 2023, for the second time.
 
-**How we got there:** > À COMPLÉTER
+**How long we stayed:** six to seven days.
 
-**How long we stayed:** > À COMPLÉTER
+**How we got around:** mostly on foot, and a ride app for the trips further out.
 
-**How long I would stay:** > À COMPLÉTER
+**How long I would stay:** one week.
 
 ## Where to stay in Barcelona
 
-> À COMPLÉTER : ton logement, ce que tu as aimé, le défaut.
+We stayed at the Expo Hotel Barcelona, with its rooftop pool.
+
+![The rooftop pool of the Expo Hotel Barcelona](/images/journal/barcelona/hotel-pool.jpg)
+
+![On the hotel rooftop](/images/journal/barcelona/hotel-terrace.jpg)
 
 ## Best things to do in Barcelona
 
-> À COMPLÉTER : ce que tu as fait, tes spots photo, le meilleur moment de la journée.
+### The Sagrada Família
 
-## Where to eat in Barcelona
+![The Sagrada Família seen from a rooftop](/images/journal/barcelona/sagrada-familia.jpg)
 
-> À COMPLÉTER : tes adresses et ce que tu as mangé.
+### Park Güell
 
-## Things to know before you go
+Magnificent.
 
-> À COMPLÉTER : un conseil pratique, une chose que tu ferais autrement.
+![In Park Güell](/images/journal/barcelona/park-guell.jpg)
+
+### The Gothic Quarter, the beach and La Boqueria
+
+![A street of palm trees in Barcelona](/images/journal/barcelona/palm-street.jpg)
+
+### Montjuïc
+
+One of my two favourite spots for photography.
+
+### The Mirador d'Horta and its swing
+
+We went out to the Mirador d'Horta, for the swing hanging from a tree that looks out over the city. It is my other favourite photo spot.
+
+![The swing at the Mirador d'Horta](/images/journal/barcelona/horta-swing.jpg)
+
+![Barcelona from the swing](/images/journal/barcelona/horta-swing-view.jpg)
+
+**Good to know:** the Mirador d'Horta is on the road from Horta to Cerdanyola, on the southern side of the Collserola hills. It opened in 1995, and looks down on the Velòdrom and the districts of Horta and Montbau, with the sea in the distance. Take metro line 3 to Valldaura, then walk about twenty minutes. Because of the crowds, the swing is not always there: sometimes only the rope is left. Sunset is the best time.
+
+**Fun fact:** from the Mirador d'Horta and the hill with the swing, you can see Mount Tibidabo. Yes, the one from Joey's Europe story in Friends.
+
+## Where to eat and drink in Barcelona
+
+### Cervecería Catalana
+
+Tapas, tapas, tapas. One of the two places I would go back to.
+
+### Bar del Pi
+
+The other one. They have a house speciality, and I tried it.
+
+### Gats Barcelona
+
+Very nice too, with its inner courtyard.
+
+### L'Atelier de Blai
+
+Carrer de Blai 38, in Poble Sec, to try pinchos.
+
+**Good to know:** Carrer de Blai is the pedestrian pinchos street of Barcelona, at the foot of Montjuïc. The idea is to keep moving: two or three pinchos in one bar, then on to the next.
+
+## My tip: get off the beaten path
+
+The first time I came to Barcelona, I did not see anything. I went round in circles around the main attractions, and I found the city quite ordinary.
+
+When I came back, I pushed the discovery much further, and that changed everything.
 
 ## How many days in Barcelona?
 
-> À COMPLÉTER
+One week.
 
 ## Barcelona FAQ
 
-> À COMPLÉTER une fois le texte fini.
+**Is Barcelona worth visiting?**
+Yes, if you go beyond the main sights. There are so many different neighbourhoods and so many varied things to see.
+
+**How many days in Barcelona?**
+One week.
+
+**What is the best viewpoint in Barcelona?**
+For photography, Montjuïc and the Mirador d'Horta, with its swing over the city.
+
+**Where to eat pinchos in Barcelona?**
+On Carrer de Blai, in Poble Sec. I went to L'Atelier de Blai.
+
+**How do you get around Barcelona?**
+Mostly on foot, and a ride app for the trips further out.
