@@ -46,8 +46,6 @@ The next morning we got up early, took a taxi up to the heights of the city, and
 
 **Good to know:** the heights are the Vomero hill. You do not need a taxi: three funiculars go up from the city centre, and they are included in the normal transport ticket, around €1.50 to €1.80 for 90 minutes. At the top, Castel Sant'Elmo has the best view over Naples, the bay and Vesuvius, for about €5, and the Certosa di San Martino sits right next to it.
 
-![A cloister in Naples](/images/journal/naples/cloister.jpg)
-
 ![Walking through the cloister](/images/journal/naples/cloister-portrait.jpg)
 
 ## Walking down through the alleys
@@ -58,17 +56,19 @@ This is where Naples becomes something else. The alleys are still full of worksh
 
 ![A yellow car in the street](/images/journal/naples/yellow-car.jpg)
 
+![A narrow street in Naples](/images/journal/naples/narrow-street.jpg)
+
 **Good to know:** the spine of the old town is Spaccanapoli, the straight street that cuts the historic centre in two. Walk it first thing in the morning, before the scooters take over.
 
 ![An archway into a courtyard](/images/journal/naples/archway.jpg)
 
-![Palms on a square](/images/journal/naples/palms-square.jpg)
+![Green shutters in Naples](/images/journal/naples/green-shutters.jpg)
 
 Just off Spaccanapoli, Via San Gregorio Armeno is the street of the nativity figure workshops, open all year. The alleys around it are full of small trades: baskets, ceramics, food stalls.
 
 ![A basket and vegetable shop](/images/journal/naples/basket-shop.jpg)
 
-![A yellow facade](/images/journal/naples/yellow-facade.jpg)
+![Baskets hanging in the street](/images/journal/naples/basket-shop-2.jpg)
 
 ## Getting to Florence
 
