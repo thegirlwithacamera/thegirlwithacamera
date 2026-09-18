@@ -35,6 +35,8 @@ export default async function JournalPage({ params }: Props) {
   const sections = JOURNAL_SECTIONS.map((sec) => {
     const inSection = posts.filter((p) => p.section === sec.key);
     const seriesKeys = [...new Set(inSection.map((p) => p.series).filter((k): k is string => !!k))];
+    // Destinations et catégories par ordre alphabétique (18/09).
+    seriesKeys.sort((a, b) => (JOURNAL_SERIES[a]?.label ?? a).localeCompare(JOURNAL_SERIES[b]?.label ?? b));
     const tiles = [
       ...seriesKeys.map((k) => ({
         key: `series-${k}`,
