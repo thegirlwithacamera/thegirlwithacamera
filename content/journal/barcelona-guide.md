@@ -30,7 +30,9 @@ We stayed at the Expo Hotel Barcelona.
 
 ## A rooftop with a pool and a view
 
-For the view, we went up to the rooftop of a Sercotel hotel, with its pool and the Sagrada Família in front of us.
+For the view, we went up to the rooftop of the Sercotel Rosellón, with its pool and the Sagrada Família right in front of us.
+
+**Good to know:** you have to book a time slot online before you go up. Do it in advance, the slots go quickly.
 
 ![The rooftop pool](/images/journal/barcelona/hotel-pool.jpg)
 
