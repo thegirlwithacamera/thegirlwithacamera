@@ -42,6 +42,14 @@ The Cidade Velha, the walled old town, is small and easy to walk: you enter thro
 
 ![A street in Faro](/images/journal/faro/faro-street.jpg)
 
+### The Capela dos Ossos, the chapel of bones
+
+Behind the Igreja do Carmo, a tiny chapel lined with bones and skulls.
+
+![Skulls and bones in the Capela dos Ossos in Faro](/images/journal/faro/capela-dos-ossos.jpg)
+
+**Good to know:** the chapel was finished in 1816, when the cemeteries of Faro were full. It holds the remains of Carmelite monks, and 1,245 skulls, arranged in geometric patterns on the walls and the vault. It is small, about 24 square metres, and you enter through the church. Above the door, an inscription says, in Portuguese, "Stop here and consider, that you will reach this state too."
+
 ### The beach
 
 Praia de Faro, the long sandy beach on the barrier island in front of the city.
