@@ -62,6 +62,8 @@ The cliffs in the town next door, near Albufeira, with their red and ochre walls
 
 ![On the red cliffs of the Algarve](/images/journal/covers/my-cameras-cliffs.jpg)
 
+![Looking at the sea from the top of the cliffs](/images/journal/faro/beach-view-cactus.jpg)
+
 ## Where to eat in Faro
 
 ### Restaurante Chefe Branco
