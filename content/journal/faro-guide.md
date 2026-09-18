@@ -48,8 +48,6 @@ The Cidade Velha, the walled old town, is small and easy to walk: you enter thro
 
 ![Orange trees against a white wall in Faro](/images/journal/faro/orange-trees-wall.jpg)
 
-![A yellow alley in the old town](/images/journal/faro/yellow-alley.jpg)
-
 ![Laundry on a balcony in Faro](/images/journal/faro/laundry-balcony.jpg)
 
 ![A pink facade in Faro](/images/journal/faro/pink-facade.jpg)
@@ -88,6 +86,12 @@ The cliffs in the town next door, near Albufeira, with their red and ochre walls
 
 ![On the red cliffs of the Algarve](/images/journal/covers/my-cameras-cliffs.jpg)
 
+![A beach hut below the cliffs of Falésia](/images/journal/faro/falesia-hut.jpg)
+
+![The beach and the hut seen from above](/images/journal/faro/falesia-beach-hut.jpg)
+
+![The path along the cliffs](/images/journal/faro/falesia-path.jpg)
+
 ![Looking at the sea from the top of the cliffs](/images/journal/faro/beach-view-cactus.jpg)
 
 ## Where to eat in Faro
@@ -103,8 +107,6 @@ Rua de Loulé 9, near the marina. We went back the next day, because it was that
 Praça Dom Afonso III 17. We had a cocktail on the rooftop terrace of Vila Adentro, in the Cidade Velha, right next to the church and a few steps from Largo da Sé, the cathedral square lined with orange trees.
 
 ![Sunset over the water in Faro](/images/journal/faro/sunset-water.jpg)
-
-![Pink light on the roofs of Faro](/images/journal/faro/pink-roofs.jpg)
 
 ## Things to know before you go
 
