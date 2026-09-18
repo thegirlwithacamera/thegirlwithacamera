@@ -5,9 +5,9 @@ date: 2026-09-16
 section: travel
 series: italy
 place: Venice, Italy
-cover: /images/journal/venice/green-curtain.jpg
+cover: /images/journal/venice/grand-canal.jpg
 excerpt: Two days in Venice in October: the alleys before the crowds, a seafood table in Dorsoduro, and a day out to Burano.
-draft: true
+draft: false
 ---
 
 Venice was the last stop of our Italy trip in October 2024, after Naples and Florence. We were there on 11 and 12 October.
@@ -40,9 +40,29 @@ The alleys are my photo spot in Venice, and the whole point is to be out before 
 
 ![In a Venice alley](/images/journal/venice/green-curtain.jpg)
 
+![A lamppost on the lagoon at breakfast time](/images/journal/venice/lamppost-lagoon.jpg)
+
+![A facade in the morning](/images/journal/venice/gazzettino.jpg)
+
+![An orange house in Venice](/images/journal/venice/orange-house.jpg)
+
+![A cat in a window](/images/journal/venice/cat-window.jpg)
+
+![Rooftops of Venice](/images/journal/venice/rooftops.jpg)
+
 ### A day trip to Burano
 
 The island of coloured houses, out in the lagoon, is the other place I photographed the most. It has its own guide here: [Burano travel guide](/en/journal/burano-guide).
+
+![Boats along a canal](/images/journal/venice/canal-lamp.jpg)
+
+![A gondolier resting](/images/journal/venice/gondolier-resting.jpg)
+
+![A gondola on a canal](/images/journal/venice/gondola.jpg)
+
+![Sunset over the lagoon](/images/journal/venice/sunset-lagoon.jpg)
+
+![Silhouettes at sunset](/images/journal/venice/sunset-silhouettes.jpg)
 
 ## Where to eat and drink in Venice
 

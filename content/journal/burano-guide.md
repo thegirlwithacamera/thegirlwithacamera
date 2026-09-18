@@ -7,7 +7,7 @@ series: italy
 place: Burano, Italy
 cover: /images/journal/burano/pink-wall.jpg
 excerpt: A day on Burano from Venice: how to get there, what to photograph, and where the colours come from.
-draft: true
+draft: false
 ---
 
 Burano is the island of coloured houses, out in the Venetian lagoon. We went for the day from Venice, in October 2024, and it is one of the two places I photographed the most on this trip.
@@ -25,6 +25,22 @@ Vaporetto line 12 from Fondamente Nove, on the north side of Venice, about 40 to
 That is the whole point, and it is why I came. Every house is painted a different colour.
 
 ![A pink wall in Burano](/images/journal/burano/pink-wall.jpg)
+
+![A row of coloured houses](/images/journal/burano/colour-row.jpg)
+
+![A red curtain in a doorway](/images/journal/burano/red-curtain.jpg)
+
+![Laundry on a yellow house](/images/journal/burano/laundry-yellow.jpg)
+
+![A green door](/images/journal/burano/green-door.jpg)
+
+![A blue window](/images/journal/burano/blue-window.jpg)
+
+![Coloured houses along the canal](/images/journal/burano/canal-houses.jpg)
+
+![Laundry in front of a pink house](/images/journal/burano/pink-laundry.jpg)
+
+![Blue and orange facades](/images/journal/burano/blue-orange.jpg)
 
 **Where the colours come from:** the island is a fishing island, and the story goes that the houses were painted in bright colours so the fishermen could recognise their own home coming back through the fog of the lagoon. Today you cannot repaint a house in any colour you like: you ask the commune, which tells you which colours are allowed for that house.
 
