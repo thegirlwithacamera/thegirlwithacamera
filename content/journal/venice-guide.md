@@ -76,8 +76,6 @@ I had lobster pasta there.
 
 ![Lobster pasta at Ristoteca Oniga](/images/journal/venice/oniga-lobster.jpg)
 
-![Our table at Ristoteca Oniga](/images/journal/venice/oniga.jpg)
-
 Dorsoduro in general is where you find the good tables, away from the tourist route.
 
 ## Things to know before you go
