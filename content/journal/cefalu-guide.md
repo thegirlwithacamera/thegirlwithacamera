@@ -6,7 +6,7 @@ section: travel
 series: italy
 place: Cefalù, Italy
 cover: /images/journal/cefalu/coffee-pistachio.jpg
-excerpt: A day in Cefalù by train from Palermo: prettier, cleaner, more touristy, and still worth the ride.
+excerpt: A day in Cefalù by train from Palermo: breakfast in front of the cathedral, pasta a taianu, and a town that is prettier and far more polished than Palermo.
 draft: false
 ---
 
@@ -42,11 +42,15 @@ Piazza del Duomo 2, with the tables right in front of the cathedral. We had brea
 
 **Good to know:** open from 7am to 11pm, closed on Mondays. You are paying partly for the view on the square, and the service can be slow when it fills up.
 
-### And then eat, slowly
+### Lunch at Taverna Tinchité
 
-![Pasta alla Norma](/images/journal/cefalu/pasta-norma.jpg)
+Via XXV Novembre 37, in the old town. This is where we had the pasta a taianu, the dish of Cefalù.
 
-![Pasta alla Norma, from above](/images/journal/cefalu/pasta-norma-2.jpg)
+![Pasta a taianu at Taverna Tinchité](/images/journal/cefalu/pasta-norma.jpg)
+
+![Pasta a taianu, from above](/images/journal/cefalu/pasta-norma-2.jpg)
+
+**Good to know:** the taianu is a Cefalù speciality, baked pasta with meat, aubergine and cheese, named after the pot it is cooked in. The taverna is open every day from noon to 10:30pm, it is busy, and there is often a queue for a table.
 
 ## Is Cefalù worth it?
 
