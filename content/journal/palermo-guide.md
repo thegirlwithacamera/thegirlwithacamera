@@ -66,8 +66,6 @@ The old town is layered: baroque facades, peeling palaces, laundry, and light co
 
 ![A lit street at night](/images/journal/palermo/lit-street.jpg)
 
-![Inside a bar](/images/journal/palermo/bar-interior.jpg)
-
 ![A man walking in Palermo](/images/journal/palermo/man-walking.jpg)
 
 ### Breakfast at Ideal Caffè Stagnitta
@@ -93,6 +91,14 @@ Via Vittorio Emanuele 102, by the fountain. A Palermo street food institution, w
 ![Ham, cheese and salad on bread](/images/journal/palermo/ham-rocket.jpg)
 
 **Good to know:** open from 9am to 11pm or later. It is table service, with a small cover charge per person, and the place is busy, so the wait can be long when it fills up.
+
+### Le Granite di Nonna Angelina, for a gelato spritz
+
+Via Vittorio Emanuele 393. A tiny granita bar where we had a gelato spritz. Good, and cheap.
+
+![Inside Le Granite di Nonna Angelina](/images/journal/palermo/bar-interior.jpg)
+
+**Good to know:** open from 9am to 7pm. It is a family place with almost no English spoken, so a few words of Italian go a long way. Granitas, gelato and fresh orange juice, at prices that have nothing to do with the terraces on the main squares.
 
 ### Timilia, for pizza
 
