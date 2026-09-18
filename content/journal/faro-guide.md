@@ -44,11 +44,29 @@ The Cidade Velha, the walled old town, is small and easy to walk: you enter thro
 
 ![A street in Faro](/images/journal/faro/faro-street.jpg)
 
+![Orange trees against a white wall in Faro](/images/journal/faro/orange-trees-wall.jpg)
+
+![A yellow alley in the old town](/images/journal/faro/yellow-alley.jpg)
+
+![A figure at the end of an alley](/images/journal/faro/alley-figure.jpg)
+
+![A church tower in Faro](/images/journal/faro/church-tower.jpg)
+
+![Under the orange trees in Faro](/images/journal/faro/portrait-orange-tree.jpg)
+
+![Laundry on a balcony in Faro](/images/journal/faro/laundry-balcony.jpg)
+
+![A pink facade in Faro](/images/journal/faro/pink-facade.jpg)
+
+![A yellow awning in Faro](/images/journal/faro/yellow-awning.jpg)
+
 ### The Capela dos Ossos, the chapel of bones
 
 Behind the Igreja do Carmo, a tiny chapel lined with bones and skulls.
 
 ![Skulls and bones in the Capela dos Ossos in Faro](/images/journal/faro/capela-dos-ossos.jpg)
+
+![Inside the Igreja do Carmo](/images/journal/faro/carmo-church-interior.jpg)
 
 **Good to know:** the chapel was finished in 1816, when the cemeteries of Faro were full. It holds the remains of Carmelite monks, and 1,245 skulls, arranged in geometric patterns on the walls and the vault. It is small, about 24 square metres, and you enter through the church. Above the door, an inscription says, in Portuguese, "Stop here and consider, that you will reach this state too."
 
@@ -65,6 +83,12 @@ Praia de Faro, the long sandy beach on the barrier island in front of the city.
 The lagoon and its islands, between the city and the sea. It is a natural park, with birds, salt pans and boats out to the islands.
 
 ![The wooden boardwalk across the Ria Formosa](/images/journal/faro/ria-formosa-boardwalk.jpg)
+
+![The salt marshes of the Ria Formosa](/images/journal/faro/ria-salt-marsh.jpg)
+
+![Walking in the Ria Formosa](/images/journal/faro/ria-walk.jpg)
+
+![Boats in the marina of Faro](/images/journal/faro/marina-boats.jpg)
 
 ### The red cliffs of Praia da Falésia
 
@@ -86,16 +110,16 @@ Rua de Loulé 9, near the marina. We went back the next day, because it was that
 
 Praça Dom Afonso III 17. We had a cocktail on the rooftop terrace of Vila Adentro, in the Cidade Velha, right next to the church and a few steps from Largo da Sé, the cathedral square lined with orange trees.
 
+![Yellow chairs on the rooftop terrace](/images/journal/faro/rooftop-chairs.jpg)
+
+![Sunset over the water in Faro](/images/journal/faro/sunset-water.jpg)
+
+![Pink light on the roofs of Faro](/images/journal/faro/pink-roofs.jpg)
+
 ## Things to know before you go
 
 - **Sleep in Faro, not in the resort towns.** It is much cheaper.
 - **Plan day trips** to the neighbouring villages, and keep Faro as your base.
-
-![Laundry on a balcony in Faro](/images/journal/faro/laundry-balcony.jpg)
-
-![A pink facade in Faro](/images/journal/faro/pink-facade.jpg)
-
-![A yellow awning in Faro](/images/journal/faro/yellow-awning.jpg)
 
 ## How many days in Faro?
 
