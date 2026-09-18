@@ -115,6 +115,8 @@ One of my two favourite spots for photography.
 
 **My advice:** late afternoon, for the light on the city and the sea, and to end the day on the hill.
 
+![Montjuïc in black and white](/images/journal/barcelona/montjuic-bw.jpg)
+
 ### The Mirador d'Horta and its swing
 
 We went out to the Mirador d'Horta, in the Collserola Natural Park, for the swing hanging from a tree that looks out over the city. It is my other favourite photo spot.
