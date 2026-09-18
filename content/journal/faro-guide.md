@@ -28,6 +28,8 @@ For Valentine's Day, the hotel had prepared the room for us: red roses, a bottle
 
 ![What Alto House had prepared in the room for Valentine's Day](/images/journal/faro/alto-house-valentines.jpg)
 
+![The rooftop terrace of Alto House](/images/journal/faro/rooftop-chairs.jpg)
+
 [Check prices and availability at Alto House Faro](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fpt%2Falto-house-faro.html)
 
 **My tip:** sleep in Faro itself. It is much cheaper, and you can do day trips to the neighbouring villages from there.
@@ -109,8 +111,6 @@ Rua de Loulé 9, near the marina. We went back the next day, because it was that
 ### Vila Adentro, for a cocktail on the roof
 
 Praça Dom Afonso III 17. We had a cocktail on the rooftop terrace of Vila Adentro, in the Cidade Velha, right next to the church and a few steps from Largo da Sé, the cathedral square lined with orange trees.
-
-![Yellow chairs on the rooftop terrace](/images/journal/faro/rooftop-chairs.jpg)
 
 ![Sunset over the water in Faro](/images/journal/faro/sunset-water.jpg)
 
