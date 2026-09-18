@@ -247,9 +247,18 @@ export function renderMarkdown(md: string): string {
       // Rangées de trois (deux par deux s'il y en a deux ou quatre). Chaque
       // photo prend une largeur proportionnelle à son format : même hauteur,
       // photo entière, aucun recadrage.
-      const per = imgs.length === 2 || imgs.length === 4 ? 2 : 3;
+      // Découpage en rangées de 3, sauf 2 et 4 qui vont deux par deux. Jamais
+      // une photo seule en fin de bloc (18/09) : 7 donne 3+2+2, 10 donne 3+3+2+2.
       const rows: Part[][] = [];
-      for (let i = 0; i < imgs.length; i += per) rows.push(imgs.slice(i, i + per));
+      let rest = imgs.slice();
+      if (rest.length === 2 || rest.length === 4) {
+        while (rest.length) rows.push(rest.splice(0, 2));
+      } else {
+        while (rest.length) {
+          const take = rest.length % 3 === 1 && rest.length > 3 ? 2 : Math.min(3, rest.length);
+          rows.push(rest.splice(0, take));
+        }
+      }
       const media = rows
         .map((row) => {
           const single = row.length === 1;
