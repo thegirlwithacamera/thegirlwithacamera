@@ -217,6 +217,10 @@ export function renderMarkdown(md: string): string {
       if (block.split("\n").every((l) => /^[-*]\s+/.test(l))) {
         return { kind: "text", html: `<ul>${block.split("\n").map((l) => `<li>${inline(l.replace(/^[-*]\s+/, ""))}</li>`).join("")}</ul>` };
       }
+      // Mention d'affiliation (18/09) : en bas de l'article, en petit et discret.
+      if (block.startsWith("Affiliate disclosure:")) {
+        return { kind: "text", html: `<p class="fine">${inline(block)}</p>` };
+      }
       return { kind: "text", html: `<p>${inline(block).replace(/\n/g, "<br />")}</p>` };
     })
     .filter((x): x is Part => x !== null);

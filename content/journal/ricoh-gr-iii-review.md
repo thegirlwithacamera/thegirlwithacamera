@@ -9,7 +9,7 @@ excerpt: My honest review of the Ricoh GR III Diary Edition, the pocket camera I
 draft: false
 ---
 
-*I work with Ricoh. This camera was not a gift from the brand: it was a birthday present. This article contains affiliate links: if you buy through them, I earn a small commission at no extra cost to you. The opinions are my own.*
+*I work with Ricoh. This camera was not a gift from the brand: it was a birthday present. The opinions are my own.*
 
 On 6 August 2024, for my birthday, my boyfriend gave me his Ricoh GR III. I had not owned a camera for years. It is the camera that brought me back to photography.
 
@@ -103,3 +103,5 @@ A few of my photographs taken with it, in Tokyo, Paris and Prague.
 Small, fast, and with its recipes, the GR III Diary Edition lives up to its name: it is my diary.
 
 [Shop the Ricoh GR IV, the successor of the GR III](https://www.amazon.com.be/dp/B0G881XZDK?tag=sandrinecppns-21)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

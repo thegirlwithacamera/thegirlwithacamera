@@ -9,7 +9,7 @@ excerpt: My honest review of the Insta360 Luna Ultra after using it since July 2
 draft: false
 ---
 
-*Insta360 gifted me the Luna Ultra in July 2026. This article contains affiliate links: if you buy through them, I earn a small commission at no extra cost to you. The opinions are my own.*
+*Insta360 gifted me the Luna Ultra in July 2026. The opinions are my own.*
 
 I have been filming with the Insta360 Luna Ultra since July 2026. It is now the camera I reach for when I vlog my travels in a cinematic way, and when I film hotels.
 
@@ -83,3 +83,5 @@ It is for people who have a budget for a vlogging camera. It is not cheap, but i
 After the DJI Osmo Pocket 3, the Luna Ultra is now my vlogging camera. The detachable screen, the 12x zoom and the Leica filters make it the camera I use for my cinematic travel vlogs and my hotel films.
 
 [Shop the Insta360 Luna Ultra](https://www.insta360.com/sal/luna-series?utm_source=AffiliateCenter&utm_medium=copylink&utm_term=sandrinecppns)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

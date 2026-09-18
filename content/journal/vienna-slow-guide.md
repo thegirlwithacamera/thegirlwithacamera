@@ -160,3 +160,5 @@ I had mine at Café Mozart, opposite the State Opera.
 
 **Where to eat schnitzel in Vienna?**
 Beisl in der Sigmundsgasse, Amerlingbeisl and Zu den 3 Hacken.
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

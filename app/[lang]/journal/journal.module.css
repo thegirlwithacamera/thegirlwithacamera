@@ -161,3 +161,7 @@
 .body :global(figure.reel) { margin: 0; }
 .body :global(figure.reel iframe) { width: 100%; max-width: 400px; aspect-ratio: 9 / 16.5; border: 0; display: block; background: var(--well); }
 .body :global(.section .media figure.reel iframe) { max-width: none; height: auto; }
+
+/* Mention d'affiliation en bas d'article (18/09). */
+.body :global(p.fine) { margin-top: 2em; font-size: 0.8125rem; line-height: 1.5; color: var(--stone); }
+.body :global(p.fine a) { color: inherit; }

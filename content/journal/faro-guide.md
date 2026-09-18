@@ -10,8 +10,6 @@ excerpt: Three days in Faro in February: the old town, the beach, the Ria Formos
 draft: false
 ---
 
-*This article contains affiliate links: if you book through them, I earn a small commission at no extra cost to you.*
-
 We went to Faro for Valentine's Day 2025, for three days and two nights. It is very chill, and a real change of scenery.
 
 ## Faro overview
@@ -104,3 +102,5 @@ We stayed at Alto House Faro, fifteen minutes on foot from the old town.
 
 **Is Faro a good base for the Algarve?**
 Yes. Sleeping in Faro is much cheaper than in the resort towns, and day trips are easy.
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

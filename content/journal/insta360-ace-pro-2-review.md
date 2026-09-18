@@ -9,7 +9,7 @@ excerpt: My honest review of the Insta360 Ace Pro 2 Arctic White Limited Edition
 draft: false
 ---
 
-*Insta360 gifted me the Ace Pro 2 in June 2026. This article contains affiliate links: if you buy through them, I earn a small commission at no extra cost to you. The opinions are my own.*
+*Insta360 gifted me the Ace Pro 2 in June 2026. The opinions are my own.*
 
 I have been using the Insta360 Ace Pro 2 since June 2026. Mine is the Arctic White Limited Edition, and it is the camera I take for the all-terrain side of my shoots.
 
@@ -84,3 +84,5 @@ Waterproof, versatile, great for still frames, and with the grip, a camera that 
 [Shop the Insta360 Ace Pro 2](https://www.insta360.com/sal/ace-pro-2?utm_source=AffiliateCenter&utm_medium=copylink&utm_term=sandrinecppns)
 
 [Shop the Ace Pro 2 Xplorer bundles](https://www.insta360.com/sal/ace-pro-2-xplorer-series?utm_source=AffiliateCenter&utm_medium=copylink&utm_term=sandrinecppns)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

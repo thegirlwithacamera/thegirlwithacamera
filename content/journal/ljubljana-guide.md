@@ -10,8 +10,6 @@ excerpt: Markets, bridges, spritz and a capsule hotel: the city that surprised m
 draft: false
 ---
 
-*This article contains affiliate links: if you book through them, I earn a small commission at no extra cost to you.*
-
 I had no particular expectations for Slovenia. Vienna and Prague are world famous, Ljubljana was just a stop on the way. It ended up being the surprise of the whole Interrail trip.
 
 What struck me first is how walkable the city is. Ljubljana feels designed for people before cars. I felt good there, and I felt safe. We ate well, we drank well, and it is a beautiful city that stays simple and affordable.
@@ -155,3 +153,5 @@ Mostly for the market. Cards work almost everywhere else, even on the bus.
 Every Sunday, from 8am to 3pm, along the river.
 
 [Continue to my Lake Bled guide](/en/journal/lake-bled-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)
