@@ -5,7 +5,7 @@ date: 2026-09-16
 section: travel
 series: italy
 place: Cefalù, Italy
-cover: /images/journal/cefalu/coffee-pistachio.jpg
+cover: /images/journal/cefalu/beach-old-town.jpg
 excerpt: A day in Cefalù by train from Palermo: breakfast in front of the cathedral, pasta a taianu, and a town that is prettier and far more polished than Palermo.
 draft: false
 ---
@@ -26,9 +26,25 @@ By train, from Palermo Centrale. Regional trains take about 45 minutes to an hou
 
 The old town is small, wedged between the beach and the rock. You can walk all of it in an afternoon, and that is the point.
 
+![The beach and the old town](/images/journal/cefalu/beach-old-town.jpg)
+
+![An alley in Cefalù](/images/journal/cefalu/alley.jpg)
+
+![A square in the old town](/images/journal/cefalu/square.jpg)
+
+![A red Fiat in the street](/images/journal/cefalu/red-fiat.jpg)
+
+![An arch opening onto the sea](/images/journal/cefalu/arch-sea.jpg)
+
+![Steps down to the water](/images/journal/cefalu/stairs-sea.jpg)
+
+![The rocks and the sea](/images/journal/cefalu/rocks-sea.jpg)
+
 ### The cathedral
 
 The Norman cathedral dominates the square, with its two towers and its golden mosaics inside. It is part of the Arab-Norman Palermo UNESCO listing.
+
+![The Norman cathedral of Cefalù](/images/journal/cefalu/cathedral.jpg)
 
 ### La Rocca
 

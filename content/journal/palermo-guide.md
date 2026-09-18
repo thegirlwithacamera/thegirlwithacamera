@@ -38,6 +38,12 @@ We stayed at Calamarina Centro, in the historic centre, a few minutes from Via M
 
 This is what I liked most in Palermo, and the **Mercato del Capo** is the one to go to.
 
+![A market stall](/images/journal/palermo/market-stall.jpg)
+
+![A fish stall](/images/journal/palermo/fish-stall.jpg)
+
+![A three-wheeler in the market street](/images/journal/palermo/market-van.jpg)
+
 **Good to know:** the Capo runs along Via Porta Carini, in the Capo quarter, and works every morning, best before noon. Palermo's other historic markets are Ballarò, the biggest and the most working-class, and the Vucciria, quiet by day and a drinking spot at night.
 
 ### Walking and looking up
@@ -45,6 +51,24 @@ This is what I liked most in Palermo, and the **Mercato del Capo** is the one to
 The old town is layered: baroque facades, peeling palaces, laundry, and light coming down into the alleys.
 
 ![Looking up in the old town](/images/journal/palermo/looking-up.jpg)
+
+![An alley in Palermo](/images/journal/palermo/alley-heart.jpg)
+
+![Facades in the old town](/images/journal/palermo/facades.jpg)
+
+![A pink palazzo](/images/journal/palermo/pink-palazzo.jpg)
+
+![An orange tree in a courtyard](/images/journal/palermo/orange-tree.jpg)
+
+![A doorway detail](/images/journal/palermo/door-detail.jpg)
+
+![A green shopfront](/images/journal/palermo/green-shop.jpg)
+
+![A lit street at night](/images/journal/palermo/lit-street.jpg)
+
+![Inside a bar](/images/journal/palermo/bar-interior.jpg)
+
+![A man walking in Palermo](/images/journal/palermo/man-walking.jpg)
 
 ### Breakfast at Ideal Caffè Stagnitta
 
