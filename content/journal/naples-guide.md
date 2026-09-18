@@ -66,8 +66,6 @@ This is where Naples becomes something else. The alleys are still full of worksh
 
 Just off Spaccanapoli, Via San Gregorio Armeno is the street of the nativity figure workshops, open all year. The alleys around it are full of small trades: baskets, ceramics, food stalls.
 
-![A basket and vegetable shop](/images/journal/naples/basket-shop.jpg)
-
 ![Baskets hanging in the street](/images/journal/naples/basket-shop-2.jpg)
 
 ## Getting to Florence
