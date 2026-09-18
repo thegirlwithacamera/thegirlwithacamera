@@ -28,6 +28,8 @@ I loved it. There are so many different neighbourhoods, and so many varied thing
 
 We stayed at the Expo Hotel Barcelona, for its rooftop pool.
 
+**Good to know:** the Expo Hotel is next to Sants station, the main train station of Barcelona, which makes it easy if you arrive by train or by airport bus. The rooftop pool is open in summer.
+
 ![The rooftop pool of the Expo Hotel](/images/journal/barcelona/hotel-pool.jpg)
 
 ![On the hotel rooftop](/images/journal/barcelona/hotel-terrace.jpg)
@@ -42,11 +44,15 @@ The best view we found was from the rooftop terrace of the Sercotel Rosellón, w
 
 **Good to know:** you have to book a time slot online before you go up. Do it in advance, the slots go quickly.
 
+For the basilica itself, book your ticket online too, with a time slot. Queues at the door are long, and tickets often sell out days ahead in summer.
+
 ![The Sagrada Família seen from the Sercotel Rosellón rooftop](/images/journal/barcelona/sagrada-familia.jpg)
 
 ### Park Güell
 
 Magnificent.
+
+**Good to know:** the Monumental Zone of Park Güell, the part with the mosaics and the terrace, is paid and needs a ticket with a time slot, booked online. The rest of the park is free. Go early: the slots in the middle of the day sell out first, and the light is better.
 
 ![In Park Güell](/images/journal/barcelona/park-guell.jpg)
 
@@ -55,6 +61,8 @@ Magnificent.
 ### The Gothic Quarter, the beach and La Boqueria
 
 At La Boqueria, the big market off the Ramblas, I had a cone of jamón and cheese.
+
+**Good to know:** La Boqueria is on the Ramblas, and it is closed on Sundays. The stalls at the entrance are the most touristy and the most expensive: walk to the back for the ones where locals actually shop.
 
 ![A cone of jamón and cheese from La Boqueria](/images/journal/barcelona/pincho-jamon.jpg)
 
@@ -65,6 +73,8 @@ At La Boqueria, the big market off the Ramblas, I had a cone of jamón and chees
 ### Montjuïc
 
 One of my two favourite spots for photography.
+
+**Good to know:** Montjuïc is the hill above the port. You can walk up, take the funicular from Paral·lel metro station, or ride the cable car up to the castle. Late afternoon is the best light, and the view covers the whole city and the sea.
 
 ### The Mirador d'Horta and its swing
 
@@ -82,25 +92,31 @@ We went out to the Mirador d'Horta, in the Collserola Natural Park, for the swin
 
 ### Cervecería Catalana
 
-Tapas, tapas, tapas. One of the two places I would go back to.
+Carrer de Mallorca 236, in the Eixample, on the corner of Rambla de Catalunya. Tapas, tapas, tapas. One of the two places I would go back to.
+
+**Good to know:** they take no reservations, so you queue. Service runs all day, from the morning until about 1:30am, which makes it a good plan for a late dinner. Go around 3pm for lunch, or before 7pm for dinner, to avoid the worst of the queue, and look at the bar seats: they free up faster than the tables. Their montaditos, the small open sandwiches, are what they are known for.
 
 ![Croquettes and patatas bravas at Cervecería Catalana](/images/journal/barcelona/tapas-croquettes.jpg)
 
 ### Bar del Pi
 
-The other one. Their speciality is the bomba, the Barcelona potato bomb, and it is excellent.
+Plaça de Sant Josep Oriol, in the Gothic Quarter. The other one. Their speciality is the bomba, the Barcelona potato bomb, and it is excellent.
+
+**Good to know:** the terrace sits on the square beside the basilica of Santa Maria del Pi, one of the nicest squares of the old town, with an artists' market on some weekends. It is an old Catalan institution, and the service is friendly rather than fast.
 
 ![A table of tapas at Bar del Pi](/images/journal/barcelona/tapas-table.jpg)
 
 ### Gats Barcelona
 
-Very nice too, with its inner courtyard.
+Carrer d'en Xuclà 7, in the old town, a few steps from the Ramblas. Very nice too, with its inner courtyard.
+
+**Good to know:** classic tapas, patatas bravas, croquettes, prawns, with a cocktail list. Book if you want a table in the courtyard.
 
 ![Inside Gats Barcelona](/images/journal/barcelona/gats-interior.jpg)
 
 ### L'Atelier de Blai
 
-Carrer de Blai 38, in Poble Sec, to try pinchos.
+Carrer de Blai 38, in Poble Sec, to try pinchos. Between forty and fifty different pinchos every day, made in house, from the traditional Basque ones to stranger combinations.
 
 ![A plate of pinchos](/images/journal/barcelona/pinchos-plate.jpg)
 
@@ -132,3 +148,9 @@ On Carrer de Blai, in Poble Sec. I went to L'Atelier de Blai.
 
 **How do you get around Barcelona?**
 Mostly on foot, and a ride app for the trips further out.
+
+**Where to eat tapas in Barcelona?**
+Cervecería Catalana in the Eixample, Bar del Pi in the Gothic Quarter, Gats in the old town, and the pinchos bars of Carrer de Blai in Poble Sec.
+
+**Do you need to book for Park Güell and the Sagrada Família?**
+Yes, both need a ticket with a time slot, booked online in advance.
