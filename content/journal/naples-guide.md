@@ -58,21 +58,15 @@ This is where Naples becomes something else. The alleys are still full of worksh
 
 ![A yellow car in the street](/images/journal/naples/yellow-car.jpg)
 
-![A narrow street in Naples](/images/journal/naples/narrow-street.jpg)
-
 **Good to know:** the spine of the old town is Spaccanapoli, the straight street that cuts the historic centre in two. Walk it first thing in the morning, before the scooters take over.
 
 ![An archway into a courtyard](/images/journal/naples/archway.jpg)
 
 ![Palms on a square](/images/journal/naples/palms-square.jpg)
 
-![Green shutters in Naples](/images/journal/naples/green-shutters.jpg)
-
 Just off Spaccanapoli, Via San Gregorio Armeno is the street of the nativity figure workshops, open all year. The alleys around it are full of small trades: baskets, ceramics, food stalls.
 
 ![A basket and vegetable shop](/images/journal/naples/basket-shop.jpg)
-
-![Baskets hanging in the street](/images/journal/naples/basket-shop-2.jpg)
 
 ![A yellow facade](/images/journal/naples/yellow-facade.jpg)
 
