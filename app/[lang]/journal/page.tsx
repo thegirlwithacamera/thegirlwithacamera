@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { allPosts, JOURNAL_SECTIONS, JOURNAL_SERIES } from "@/lib/journal";
+import { allPosts, JOURNAL_SECTIONS, JOURNAL_SERIES, tileCaption } from "@/lib/journal";
 import { pageMeta } from "@/lib/seo";
 import { PageHead } from "../components/editorial";
 import Tile from "./Tile";
@@ -42,7 +42,7 @@ export default async function JournalPage({ params }: Props) {
         label: JOURNAL_SERIES[k]?.label ?? k,
         cover: JOURNAL_SERIES[k]?.cover ?? inSection.find((p) => p.series === k)?.cover,
       })),
-      ...inSection.filter((p) => !p.series).map((p) => ({ key: p.slug, href: `/en/journal/${p.slug}`, label: p.tile, cover: p.cover })),
+      ...inSection.filter((p) => !p.series).map((p) => ({ key: p.slug, href: `/en/journal/${p.slug}`, label: p.tile, cover: p.cover, caption: tileCaption(p) })),
     ];
     return { ...sec, tiles };
   }).filter((sec) => sec.tiles.length > 0);
@@ -83,7 +83,7 @@ export default async function JournalPage({ params }: Props) {
               <h2 className={s.sectionTitle}>{sec.label}</h2>
               <div className={s.tiles}>
                 {sec.tiles.map((t) => (
-                  <Tile key={t.key} href={t.href} cover={t.cover} label={t.label} />
+                  <Tile key={t.key} href={t.href} cover={t.cover} label={t.label} caption={t.caption} />
                 ))}
               </div>
             </section>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { JOURNAL_SERIES, postsInSeries } from "@/lib/journal";
+import { JOURNAL_SERIES, postsInSeries, tileCaption } from "@/lib/journal";
 import { pageMeta } from "@/lib/seo";
 import { PageHead } from "../../../components/editorial";
 import Tile from "../../Tile";
@@ -45,7 +45,7 @@ export default async function SeriesPage({ params }: Props) {
       <PageHead back={{ href: "/en/journal", label: "Journal" }} title={conf.label} />
       <div className={s.tiles}>
         {posts.map((p) => (
-          <Tile key={p.slug} href={`/en/journal/${p.slug}`} cover={p.cover} label={p.tile} />
+          <Tile key={p.slug} href={`/en/journal/${p.slug}`} cover={p.cover} label={p.tile} caption={tileCaption(p)} />
         ))}
       </div>
       <p className={s.back}><Link href="/en/journal">← All stories</Link></p>

@@ -165,3 +165,7 @@
 /* Mention d'affiliation en bas d'article (18/09). */
 .body :global(p.fine) { margin-top: 2em; font-size: 0.8125rem; line-height: 1.5; color: var(--stone); }
 .body :global(p.fine a) { color: inherit; }
+
+/* Légende sous la tuile (18/09) : "City guide, Vienna". */
+.tileWrap { display: flex; flex-direction: column; gap: 8px; }
+.tileCaption { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone); }

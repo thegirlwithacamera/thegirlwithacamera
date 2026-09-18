@@ -155,6 +155,14 @@ function mtime(slug: string): number {
   }
 }
 
+// Ce qu'on trouve derrière une tuile (18/09) : guide de ville, test, montage.
+export function tileCaption(post: JournalPost): string {
+  if (post.section === "travel") return post.place ? `City guide, ${post.place.split(",")[0]}` : "Travel guide";
+  if (post.series === "my-cameras") return "Camera review";
+  if (post.series === "edits") return "Editing";
+  return "Story";
+}
+
 export function findPost(slug: string): JournalPost | undefined {
   return allPosts().find((p) => p.slug === slug);
 }
