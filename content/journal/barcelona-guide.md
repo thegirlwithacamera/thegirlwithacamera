@@ -32,8 +32,6 @@ We stayed at the Expo Hotel Barcelona, for its rooftop pool.
 
 ![The rooftop pool of the Expo Hotel](/images/journal/barcelona/hotel-pool.jpg)
 
-![On the hotel rooftop](/images/journal/barcelona/hotel-terrace.jpg)
-
 ![In the rooftop pool](/images/journal/barcelona/pool-legs.jpg)
 
 ## Best things to do in Barcelona
@@ -125,6 +123,8 @@ Carrer de Blai 38, in Poble Sec, to try pinchos. Between forty and fifty differe
 The first time I came to Barcelona, I did not see anything. I went round in circles around the main attractions, and I found the city quite ordinary.
 
 When I came back, I pushed the discovery much further, and that changed everything.
+
+![In Barcelona](/images/journal/barcelona/hotel-terrace.jpg)
 
 ## How many days in Barcelona?
 
