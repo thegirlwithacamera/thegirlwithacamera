@@ -28,6 +28,8 @@ I loved it. There are so many different neighbourhoods, and so many varied thing
 
 We stayed at the Expo Hotel Barcelona, for its rooftop pool.
 
+![The rooftop pool of the Expo Hotel](/images/journal/barcelona/hotel-pool.jpg)
+
 ![On the hotel rooftop](/images/journal/barcelona/hotel-terrace.jpg)
 
 ![In the rooftop pool](/images/journal/barcelona/pool-legs.jpg)
