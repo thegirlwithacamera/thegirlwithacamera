@@ -44,13 +44,19 @@ The old town is layered: baroque facades, peeling palaces, laundry, and light co
 
 ![Looking up in the old town](/images/journal/palermo/looking-up.jpg)
 
-### Eating your way through the day
+### Breakfast at Ideal Caffè Stagnitta
 
-Granita with a brioche in the morning, something fried at a market stall at noon, a pizza in the evening.
+Discesa dei Giudici 42, just off Via Vittorio Emanuele. A coffee roaster since 1922, where we had breakfast: brioche and pistachio coffee.
 
-![Granita and brioche for breakfast](/images/journal/palermo/granita-brioche.jpg)
+![Brioche and pistachio coffee at Ideal Caffè Stagnitta](/images/journal/palermo/granita-brioche.jpg)
 
 ![Breakfast, with the camera on the table](/images/journal/palermo/breakfast-camera.jpg)
+
+**Good to know:** they roast their own beans, and the espresso is one of the best in the city. Open 7am to 7pm, closed on Sundays.
+
+### Eating your way through the rest of the day
+
+Something fried at a market stall at noon, a pizza in the evening.
 
 **Good to know:** Palermo is a street food city. The classics are panelle (chickpea fritters), arancine (the rice balls, feminine here, unlike in Catania), sfincione (the local spongy pizza) and, for the brave, pane con la milza, the spleen sandwich.
 
