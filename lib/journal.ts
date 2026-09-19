@@ -56,7 +56,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   },
   italy: {
     label: "Italy",
-    cover: "/images/journal/burano/pink-laundry.jpg",
+    cover: "/images/journal/burano/pink-house-laundry.jpg",
     order: ["naples-guide", "florence-guide", "venice-guide", "burano-guide", "palermo-guide", "cefalu-guide"],
   },
   slovakia: {
