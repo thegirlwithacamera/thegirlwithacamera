@@ -1,46 +1,69 @@
 ---
-title: Kawaguchiko travel guide
+title: Kawaguchiko travel guide: up at 4:30am to see Mount Fuji
 tile: Kawaguchiko
-date: 2026-09-09
+date: 2026-09-19
 section: travel
 series: japan
 place: Kawaguchiko, Japan
-excerpt: To complete
+excerpt: One night at Lake Kawaguchi from Tokyo: how we chose the date on a visibility forecast, the race to the lake at sunrise, and what to pack.
 draft: true
 ---
 
-> À COMPLÉTER : quand tu y es allée, combien de temps, avec qui, et ta première impression en une ou deux phrases.
+We were in Tokyo from 27 October to 1 November 2025, and we double booked a night at Lake Kawaguchi, on 28 to 29 October, to be sure we would see Mount Fuji.
+
+## How we picked the day
+
+We used a Mount Fuji visibility site, and booked the night that looked best.
+
+**Good to know:** Fuji hides behind clouds most of the time, and it is most often visible from November to February, in the very early morning. There are live cameras and visibility forecasts online for the Kawaguchiko side. Booking two nights on different dates, and cancelling one, is the trick if your dates are flexible.
 
 ## Kawaguchiko overview
 
-**When:** > À COMPLÉTER
+**When:** the night of 28 to 29 October 2025.
 
-**How we got there:** > À COMPLÉTER
+**How we got there:** by bus from Tokyo, the evening before.
 
-**How long we stayed:** > À COMPLÉTER
+**Where we slept:** Hostel Labeek.
 
-**How long I would stay:** > À COMPLÉTER
+**How long I would stay:** you can easily spend a week, to go round all the lakes. But it depends entirely on whether Fuji is out.
 
-## Where to stay in Kawaguchiko
+**Good to know:** from Tokyo, the highway bus leaves from Shinjuku and takes about two hours to Kawaguchiko station. By train it is Shinjuku to Otsuki on the JR Chuo line, then the Fujikyu line to Kawaguchiko, around two hours as well.
 
-> À COMPLÉTER : ton logement, ce que tu as aimé, le défaut.
+## Sunrise at the lake
 
-## Best things to do in Kawaguchiko
+Up at 4:30am. At 5am we found the shared bikes, and managed to unlock them. Then a race against the clock to reach the lake before the sun, with its shadow already drawing itself on the mountain.
 
-> À COMPLÉTER : ce que tu as fait, tes spots photo, le meilleur moment de la journée.
+**Good to know:** the shared bikes are the fastest way to the lake at that hour, when nothing else runs. Register on the app the night before, because unlocking them at 5am in the cold is not the moment to discover how it works.
 
-## Where to eat in Kawaguchiko
+## The rest of the day
 
-> À COMPLÉTER : tes adresses et ce que tu as mangé.
+We walked all the way around the lake, and then we simply got lost in the small streets of Kawaguchiko.
 
-## Things to know before you go
+## Where we ate
 
-> À COMPLÉTER : un conseil pratique, une chose que tu ferais autrement.
+A very good ramen, and mine had gold leaf in it. A big wooden place along a road, if you ever manage to find it.
 
-## How many days in Kawaguchiko?
+## What to pack
 
-> À COMPLÉTER
+Gloves and warm clothes. At 5am by the lake in late October, it is cold.
+
+## How long do you need in Kawaguchiko?
+
+One night is enough for the sunrise. A week if you want to go round all five lakes, and if Fuji cooperates.
 
 ## Kawaguchiko FAQ
 
-> À COMPLÉTER une fois le texte fini.
+**How do you get to Kawaguchiko from Tokyo?**
+By highway bus from Shinjuku, about two hours, or by train via Otsuki.
+
+**When can you see Mount Fuji?**
+Most often in the very early morning, and more reliably from November to February. Check a visibility forecast before you book.
+
+**What time should you get up for sunrise at Lake Kawaguchi?**
+We got up at 4:30am in late October, and we only just made it to the lake in time.
+
+**How do you get around Kawaguchiko?**
+By shared bike. Register on the app before you need it.
+
+**What should you pack for Kawaguchiko?**
+Gloves and warm clothes, even in October.
