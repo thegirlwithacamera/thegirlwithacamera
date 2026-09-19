@@ -13,8 +13,6 @@ draft: false
 
 I have been shooting with the Pentax 17 since February 2026, when Pentax gave me one.
 
-![My Pentax 17 on a café table](/images/journal/gear/pentax/camera.jpg)
-
 ## What I used before
 
 A small Canon. I had shot one roll with it, and that was the whole of my film experience.
