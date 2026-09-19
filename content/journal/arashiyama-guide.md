@@ -5,8 +5,9 @@ date: 2026-09-19
 section: travel
 series: japan
 place: Arashiyama, Japan
+cover: /images/journal/arashiyama/bamboo-up.jpg
 excerpt: A morning in Arashiyama from Kyoto: the bamboo grove before the crowds, the monkeys of Iwatayama, and the stairs that got me.
-draft: true
+draft: false
 ---
 
 We went to Arashiyama on the morning of 4 November 2025, from Kyoto.
@@ -31,6 +32,12 @@ We did everything except the little train.
 
 We got up very early, for sunrise, to avoid the crowds. That is the whole point of Arashiyama.
 
+![Looking up in the bamboo grove](/images/journal/arashiyama/bamboo-up.jpg)
+
+![A detail in the streets of Arashiyama](/images/journal/arashiyama/street-detail.jpg)
+
+![Workers in the street](/images/journal/arashiyama/workers-street.jpg)
+
 **Good to know:** the grove is free, open day and night, and there is no ticket. Before 8am the path is quiet, and you can actually hear the bamboo. By 10am it is packed and photographing it becomes difficult.
 
 ### The monkey park
@@ -39,9 +46,19 @@ We got up very early, for sunrise, to avoid the crowds. That is the whole point 
 
 **My advice:** do not be scared of the monkeys, they are really chill.
 
+![A macaque at the monkey park](/images/journal/arashiyama/monkey.jpg)
+
+![Kyoto seen from the top of the monkey park](/images/journal/arashiyama/kyoto-from-above.jpg)
+
+![A figure at the viewpoint](/images/journal/arashiyama/viewpoint-figure.jpg)
+
 ### The temples and the bridge
 
 Tenryu-ji and its garden, and the Togetsukyo bridge over the river.
+
+![A boat on the river](/images/journal/arashiyama/boat-river.jpg)
+
+![Autumn colours along the river](/images/journal/arashiyama/river-autumn.jpg)
 
 **Good to know:** Tenryu-ji opens at 8:30am, 500 yen for the garden, 300 more for the buildings. The bridge is free.
 
