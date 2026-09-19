@@ -150,12 +150,27 @@ export default async function DestinationsPage({ params }: Props) {
           </div>
         );
 
+        // Deux films du même projet : côte à côte mais décalés en hauteur,
+        // avec le titre calé dans le vide sous le premier (19/09).
+        if (p.film2) {
+          return (
+            <section key={p.id} id={p.id} className={`${s.project} ${s.duo}`}>
+              <div className={s.filmA}>
+                <LazyFilm src={p.film.src} poster={p.film.poster} label={`${p.name} film`} />
+              </div>
+              <div className={s.filmB}>
+                <LazyFilm src={p.film2.src} poster={p.film2.poster} label={`${p.name} second film`} />
+              </div>
+              {label}
+            </section>
+          );
+        }
+
         if (p.photos.length === 0) {
           return (
             <section key={p.id} id={p.id} className={`${s.project} ${s.solo}`}>
-              <div className={p.film2 ? s.twoFilms : s.soloFilm}>
+              <div className={s.soloFilm}>
                 <LazyFilm src={p.film.src} poster={p.film.poster} label={`${p.name} film`} />
-                {p.film2 && <LazyFilm src={p.film2.src} poster={p.film2.poster} label={`${p.name} second film`} />}
               </div>
               {label}
             </section>
