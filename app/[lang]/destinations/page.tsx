@@ -78,6 +78,13 @@ const PROJECTS: Project[] = [
     photos: [],
   },
   {
+    id: "interrail-summer",
+    name: "Interrail, the summer film",
+    place: "One pass, twelve stops, one summer",
+    film: { src: `${F}/JOURNEYS/Interrail 2.mp4`, poster: `${F}/JOURNEYS/Interrail 2.jpg` },
+    photos: [],
+  },
+  {
     id: "naturel-dorf-schonleitn",
     name: "Naturel Hoteldorf Schönleitn",
     place: "Carinthia, Austria",
