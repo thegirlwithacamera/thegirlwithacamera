@@ -5,8 +5,9 @@ date: 2026-09-19
 section: travel
 series: japan
 place: Nara, Japan
+cover: /images/journal/nara/deer-crossing.jpg
 excerpt: One day in Nara from Osaka: the deer that walk everywhere, the old town, the temples, and the cracker rule nobody tells you.
-draft: true
+draft: false
 ---
 
 We went to Nara for the day on 8 November 2025, from Osaka.
@@ -29,6 +30,22 @@ What is funny is seeing the deer walk absolutely anywhere, in the middle of the 
 
 I loved photographing the deer, even if it was sometimes complicated with the crackers.
 
+![A deer in front of a sign](/images/journal/nara/deer-sign.jpg)
+
+![Deer in the street](/images/journal/nara/deer-street.jpg)
+
+![A deer under a parasol](/images/journal/nara/deer-parasol.jpg)
+
+![A deer portrait](/images/journal/nara/deer-portrait.jpg)
+
+![A deer resting under a tree](/images/journal/nara/deer-resting.jpg)
+
+![A deer beside the vending machines](/images/journal/nara/deer-vending.jpg)
+
+![A deer on a path](/images/journal/nara/deer-path.jpg)
+
+![Deer on the temple steps](/images/journal/nara/deer-stairs.jpg)
+
 **Good to know:** there are around 1,200 wild deer in Nara Park, protected as a national treasure. The only food you may give them is shika senbei, the rice bran crackers sold by licensed vendors for 200 yen a bundle. Many deer bow to ask for one, and bow back if you bow first. The park itself is free.
 
 **My advice:** do not show the whole pack of crackers, or you will have a riot. Buy one bundle when you are ready to feed them, keep it out of sight until then, and show your open hands when you are done. Deer also eat paper and plastic, so keep maps, tickets and bags zipped.
@@ -37,11 +54,21 @@ I loved photographing the deer, even if it was sometimes complicated with the cr
 
 Todai-ji and its Great Buddha, and the shrines around the park.
 
+![A pavilion in Nara](/images/journal/nara/pavilion.jpg)
+
+![Sake barrels at a shrine](/images/journal/nara/sake-barrels.jpg)
+
+![Two men at the temple](/images/journal/nara/two-men-temple.jpg)
+
 **Good to know:** the Great Buddha Hall costs 800 yen and opens at 7:30am from April to October, 8am from November to March. The Nandaimon gate and the outer grounds are free, as are the outer grounds of Kasuga Taisha and the Kofuku-ji pagoda area. Come at opening time: after 9am, the school groups arrive.
 
 ### The old town
 
 Naramachi, the old merchant district, with its wooden houses, just south of the park.
+
+![A street in Nara](/images/journal/nara/town-street.jpg)
+
+![A rickshaw passing a torii](/images/journal/nara/rickshaw-torii.jpg)
 
 ## Where to eat in Nara
 
