@@ -4,7 +4,7 @@ tile: Pentax 17
 date: 2026-09-18
 section: creator
 series: my-cameras
-cover: /images/journal/gear/pentax/diptych-1.jpg
+cover: /images/journal/gear/pentax/camera.jpg
 excerpt: My review of the Pentax 17, the half-frame film camera Pentax gave me in February 2026, and the way it changed how I shoot film.
 draft: false
 ---
@@ -12,6 +12,8 @@ draft: false
 *Pentax gave me this camera. The opinions and the photographs are my own.*
 
 I have been shooting with the Pentax 17 since February 2026, when Pentax gave me one.
+
+![My Pentax 17 on a café table](/images/journal/gear/pentax/camera.jpg)
 
 ## What I used before
 
@@ -28,6 +30,8 @@ For travel, and in a more contemplative way.
 **The lens.** A fixed 25mm f/3.5, the same field of view as a 35mm on a full-frame camera, with zone focusing over six zones, from 25cm to infinity.
 
 **The rest.** Manual film advance and rewind, a built-in flash, exposure compensation, shutter speeds from 4s to 1/350s, and one CR2 battery that lasts about ten rolls.
+
+![A diptych shot on the Pentax 17](/images/journal/gear/pentax/diptych-1.jpg)
 
 ## What I love about the Pentax 17
 
