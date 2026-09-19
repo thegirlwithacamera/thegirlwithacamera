@@ -32,9 +32,13 @@ We used a Mount Fuji visibility site, and booked the night that looked best.
 
 ## Sunrise at the lake
 
-Up at 4:30am. At 5am we found the shared bikes, and managed to unlock them. Then a race against the clock to reach the lake before the sun, with its shadow already drawing itself on the mountain.
+Up at 4:30am. At 5am we found the shared bikes, and managed to unlock them.
+
+![Riding to the lake in the dark](/images/journal/kawaguchiko/bike-night.jpg) Then a race against the clock to reach the lake before the sun, with its shadow already drawing itself on the mountain.
 
 ![Mount Fuji in the morning](/images/journal/kawaguchiko/fuji-morning.jpg)
+
+![In front of Mount Fuji at sunrise](/images/journal/kawaguchiko/fuji-portrait.jpg)
 
 ![The bikes by the lake](/images/journal/kawaguchiko/bikes-lake.jpg)
 
@@ -62,11 +66,15 @@ We walked all the way around the lake, and then we simply got lost in the small 
 
 A big wooden place along a road, in Shimoyoshida, Fujiyoshida, one station down the line from Kawaguchiko. We had a very good udon there, and mine had gold leaf on it.
 
+![Udon with gold leaf at 51udon](/images/journal/kawaguchiko/udon-gold.jpg)
+
 **Good to know:** 51udon serves handmade udon in the Yoshida style, the thick chewy noodles of this region. The wagyu tempura udon with its gold fleck is the one people come for, and there are vegetarian bowls too. It is open for lunch only, from 11am to 2pm, and closed on Saturdays and Sundays. There is a car park next door.
 
 ## What to pack
 
 Gloves and warm clothes. At 5am by the lake in late October, it is cold.
+
+![Gloves and a konbini sandwich in the bike basket](/images/journal/kawaguchiko/bike-basket.jpg)
 
 ## How long do you need in Kawaguchiko?
 
