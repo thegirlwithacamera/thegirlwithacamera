@@ -56,7 +56,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   },
   italy: {
     label: "Italy",
-    cover: "/images/journal/naples/narrow-street.jpg",
+    cover: "/images/journal/burano/colour-row.jpg",
     order: ["naples-guide", "florence-guide", "venice-guide", "burano-guide", "palermo-guide", "cefalu-guide"],
   },
   slovakia: {
@@ -66,7 +66,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   },
   spain: {
     label: "Spain",
-    cover: "/images/journal/barcelona/park-guell-ceiling.jpg",
+    cover: "/images/journal/barcelona/casa-batllo.jpg",
     order: ["barcelona-guide"],
   },
   japan: {
@@ -76,7 +76,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   },
   portugal: {
     label: "Portugal",
-    cover: "/images/journal/faro/beach-dunes.jpg",
+    cover: "/images/journal/faro/capela-dos-ossos.jpg",
     order: ["faro-guide"],
   },
   slovenia: {
