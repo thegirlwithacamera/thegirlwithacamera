@@ -5,7 +5,7 @@ date: 2026-09-19
 section: travel
 series: japan
 place: Arashiyama, Japan
-cover: /images/journal/arashiyama/bamboo-up.jpg
+cover: /images/journal/arashiyama/bamboo-empty.jpg
 excerpt: A morning in Arashiyama from Kyoto: the bamboo grove before the crowds, the monkeys of Iwatayama, and the stairs that got me.
 draft: false
 ---
@@ -31,6 +31,8 @@ We did everything except the little train.
 ### The bamboo grove, before sunrise
 
 We got up very early, for sunrise, to avoid the crowds. That is the whole point of Arashiyama.
+
+![The empty bamboo path at sunrise](/images/journal/arashiyama/bamboo-empty.jpg)
 
 ![Looking up in the bamboo grove](/images/journal/arashiyama/bamboo-up.jpg)
 
