@@ -6,7 +6,7 @@ section: travel
 series: japan
 place: Kawaguchiko, Japan
 cover: /images/journal/kawaguchiko/fuji-morning.jpg
-excerpt: One night at Lake Kawaguchi from Tokyo: how we chose the date on a visibility forecast, the race to the lake at sunrise, and what to pack.
+excerpt: One night at Lake Kawaguchi from Tokyo: how we chose the date on a visibility forecast, the race to the lake at sunrise, udon with gold leaf, and what to pack.
 draft: false
 ---
 
@@ -58,9 +58,11 @@ We walked all the way around the lake, and then we simply got lost in the small 
 
 ![The lake in the evening](/images/journal/kawaguchiko/fuji-lake-evening.jpg)
 
-## Where we ate
+## Where we ate: 51udon
 
-A very good ramen, and mine had gold leaf in it. A big wooden place along a road, if you ever manage to find it.
+A big wooden place along a road, in Shimoyoshida, Fujiyoshida, one station down the line from Kawaguchiko. Not ramen, as I first remembered it: udon. Mine had gold leaf on it.
+
+**Good to know:** 51udon serves handmade udon in the Yoshida style, the thick chewy noodles of this region. The wagyu tempura udon with its gold fleck is the one people come for, and there are vegetarian bowls too. It is open for lunch only, from 11am to 2pm, and closed on Saturdays and Sundays. There is a car park next door.
 
 ## What to pack
 
