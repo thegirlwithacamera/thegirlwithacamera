@@ -55,7 +55,10 @@ Ilford Ilfocolor Vivid 400.
 
 ## Where I get my film developed
 
-Mori Film Lab, in Forest, Brussels, and Lab O River.
+Two labs in Brussels:
+
+- **Laboriver,** Rue Van Artevelde 45, in the city centre. Open every day, including Sunday afternoons, with an express service that gets your scans back within 24 hours.
+- **Mori Film Lab,** in Forest, a lab and second-hand camera shop run by two friends, who also teach film photography workshops.
 
 ## Who is the Pentax 17 for?
 
