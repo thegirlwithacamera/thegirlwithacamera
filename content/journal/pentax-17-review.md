@@ -92,6 +92,12 @@ A few frames from Tokyo, in June 2026.
 
 **Beginners in film.** It is very intuitive: you do not have to understand everything to get good pictures out of it.
 
+## Where to buy the Pentax 17
+
+[The Pentax 17 on Amazon](https://amzn.to/3ViWF4n)
+
 ## Final thoughts
 
 Two pictures at a time, seventy-two per roll, and a camera that makes you slow down.
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)
