@@ -97,7 +97,9 @@ export function postsInSeries(key: string): JournalPost[] {
   // Les guides de ville se rangent de A à Z (18/09) ; ailleurs on garde
   // l'ordre fixé dans JOURNAL_SERIES.
   if (posts.every((p) => p.section === "travel")) {
-    return posts.sort((a, b) => a.tile.localeCompare(b.tile));
+    return posts.sort(
+      (a, b) => (a.kind === "stay" ? 1 : 0) - (b.kind === "stay" ? 1 : 0) || a.tile.localeCompare(b.tile),
+    );
   }
   return posts.sort((a, b) => (order.indexOf(a.slug) + 1 || 99) - (order.indexOf(b.slug) + 1 || 99));
 }
@@ -108,6 +110,9 @@ export type JournalPost = {
   series?: string;
   // Mot court écrit sur la tuile carrée (16/09) : "Vienna", "Camera bag".
   tile: string;
+  // "stay" pour les articles d'hôtel (19/09), qui vivent dans la catégorie du
+  // pays, à côté des guides de ville.
+  kind?: "stay";
   title: string;
   date: string; // AAAA-MM-JJ
   place?: string;
@@ -132,6 +137,7 @@ function parse(file: string): JournalPost | null {
     section: (meta.section === "creator" || meta.section === "photographer" ? "creator" : "travel") as JournalSection,
     series: meta.series || undefined,
     tile: meta.tile || meta.title,
+    kind: meta.kind === "stay" ? ("stay" as const) : undefined,
     title: meta.title,
     date: meta.date,
     place: meta.place || undefined,
@@ -166,6 +172,7 @@ function mtime(slug: string): number {
 
 // Ce qu'on trouve derrière une tuile (18/09) : guide de ville, test, montage.
 export function tileCaption(post: JournalPost): string {
+  if (post.kind === "stay") return post.place ? `Where to stay, ${post.place.split(",")[0]}` : "Where to stay";
   if (post.section === "travel") return post.place ? `City guide, ${post.place.split(",")[0]}` : "Travel guide";
   if (post.series === "my-cameras") return "Camera review";
   if (post.series === "edits") return "Editing";
