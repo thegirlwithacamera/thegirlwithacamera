@@ -4,9 +4,9 @@ tile: Pentax 17
 date: 2026-09-18
 section: creator
 series: my-cameras
-cover:
+cover: /images/journal/gear/pentax/diptych-1.jpg
 excerpt: My review of the Pentax 17, the half-frame film camera Pentax gave me in February 2026, and the way it changed how I shoot film.
-draft: true
+draft: false
 ---
 
 *Pentax gave me this camera. The opinions and the photographs are my own.*
@@ -35,6 +35,10 @@ For travel, and in a more contemplative way.
 
 The two half frames sit side by side on the roll, so two pictures taken one after the other end up in the same 35mm frame. That is the whole charm of the camera for me: shooting in pairs and seeing what the two images say together.
 
+![A diptych shot on the Pentax 17](/images/journal/gear/pentax/diptych-2.jpg)
+
+![Another diptych](/images/journal/gear/pentax/diptych-3.jpg)
+
 ### What it saves you
 
 Seventy-two pictures from one roll means half the film and half the developing, and film is expensive. With the Pentax 17, a roll lasts a whole trip.
@@ -59,6 +63,26 @@ Two labs in Brussels:
 
 - **Laboriver,** Rue Van Artevelde 45, in the city centre. Open every day, including Sunday afternoons, with an express service that gets your scans back within 24 hours.
 - **Mori Film Lab,** in Forest, a lab and second-hand camera shop run by two friends, who also teach film photography workshops.
+
+## Shot on the Pentax 17
+
+A few frames from Tokyo, in June 2026.
+
+![Tokyo from a footbridge](/images/journal/gear/pentax/tokyo-crossing.jpg)
+
+![A vending truck in the street](/images/journal/gear/pentax/vending-truck.jpg)
+
+![Signs in an alley](/images/journal/gear/pentax/signs-alley.jpg)
+
+![A yellow restaurant front](/images/journal/gear/pentax/yellow-restaurant.jpg)
+
+![Wires and signs](/images/journal/gear/pentax/wires-signs.jpg)
+
+![A pink shutter](/images/journal/gear/pentax/pink-shutter.jpg)
+
+![A red path between houses](/images/journal/gear/pentax/red-path.jpg)
+
+![Vending machines](/images/journal/gear/pentax/vending-machines.jpg)
 
 ## Who is the Pentax 17 for?
 
