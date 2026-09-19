@@ -15,7 +15,7 @@ import type { Clip, Section } from "./constants";
 type Lang = "fr" | "en";
 type Meta = { brand?: string; project?: { fr: string; en: string } | string; kind?: { fr: string; en: string } };
 
-const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Tokyo", "Antidote"];
+const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Godox", "Tokyo", "Antidote"];
 
 const KIND: Record<Section, { fr: string; en: string }> = {
   gear: { fr: "Test matériel", en: "Gear review" },
