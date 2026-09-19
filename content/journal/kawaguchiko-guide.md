@@ -16,7 +16,19 @@ We were in Tokyo from 27 October to 1 November 2025, and we double booked a nigh
 
 We used a Mount Fuji visibility site, and booked the night that looked best.
 
-**Good to know:** Fuji hides behind clouds most of the time, and it is most often visible from November to February, in the very early morning. There are live cameras and visibility forecasts online for the Kawaguchiko side. Booking two nights on different dates, and cancelling one, is the trick if your dates are flexible.
+**The sites I would use:** [isfujivisible.com](https://isfujivisible.com/) gives a visibility score with separate morning and afternoon forecasts for the Kawaguchiko side and the Hakone side, ten days ahead. [Fujigoko.TV](https://www.fujigoko.tv/) has the live cameras around the five lakes, and the Yamanashi prefecture runs its own Fujisan Watcher cameras. Check more than one: clouds can hide the mountain from one side while the other stays clear.
+
+**Booking two nights on different dates, and cancelling one,** is the trick if your dates are flexible. That is what we did.
+
+## When is Mount Fuji actually visible?
+
+Rarely, is the honest answer. The mountain is clear only a fraction of the year, and the pattern is strongly seasonal.
+
+- **November to February are the best months.** Cold dry air from Siberia clears the sky, and the peak is capped with snow. In official observations at 8am from Fuji City in 2025, the mountain was fully visible on 79 percent of days in February, and around 61 percent in December, January and November.
+- **June to August are the worst.** The rainy season and the summer humidity can hide it for weeks. June scored 7 percent of fully visible days in the same observations.
+- **Early morning is best, whatever the season.** The air is coldest and clearest at dawn, and clouds build around the summit as the day warms up. If you can only be there once, be there at sunrise.
+
+We went at the end of October, which is the start of the good season. It worked.
 
 ## Kawaguchiko overview
 
@@ -24,7 +36,9 @@ We used a Mount Fuji visibility site, and booked the night that looked best.
 
 **How we got there:** by bus from Tokyo, the evening before.
 
-**Where we slept:** Hostel Labeek.
+**Where we slept:** Hostel Labeek, about fifteen minutes on foot from Lake Kawaguchi.
+
+[Check prices and availability at Hostel Labeek](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Fhostel-labeek.html)
 
 **How long I would stay:** you can easily spend a week, to go round all the lakes. But it depends entirely on whether Fuji is out.
 
@@ -96,3 +110,5 @@ By shared bike. Register on the app before you need it.
 
 **What should you pack for Kawaguchiko?**
 Gloves and warm clothes, even in October.
+
+Affiliate disclosure: some links in this article are affiliate links. If you book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)
