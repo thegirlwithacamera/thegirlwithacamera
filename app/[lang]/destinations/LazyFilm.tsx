@@ -1,17 +1,23 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import s from "./page.module.css";
 
-// Film muet en boucle, qui ne se charge et ne joue que lorsqu'il est à
-// l'écran (16/09, page Destinations). Les fichiers pèsent de 10 à 25 Mo :
-// les lancer tous au chargement ferait ramer la page et fondre un forfait
-// mobile. Hors écran, le film se met en pause.
+// Film en boucle, qui ne se charge et ne joue que lorsqu'il est à l'écran
+// (16/09, page Destinations). Les fichiers pèsent de 8 à 25 Mo : les lancer
+// tous au chargement ferait ramer la page et fondre un forfait mobile. Hors
+// écran, le film se met en pause.
+//
+// Le son démarre coupé, parce qu'un navigateur refuse de lancer une vidéo
+// sonore tout seul, mais le visiteur peut l'allumer (19/09) : un bouton en
+// coin, discret, qui garde le choix pour ce film-là.
 //
 // Si le visiteur a demandé moins d'animations, ou s'il est en économie de
 // données, rien ne démarre seul : il reste l'affiche, et un clic lance le
 // film avec ses contrôles.
 export default function LazyFilm({ src, poster, label }: { src: string; poster: string; label: string }) {
   const ref = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     const video = ref.current;
@@ -32,6 +38,9 @@ export default function LazyFilm({ src, poster, label }: { src: string; poster: 
           video.play().catch(manual);
         } else {
           video.pause();
+          // Un film qui sort de l'écran ne continue pas à parler dans le vide.
+          video.muted = true;
+          setMuted(true);
         }
       },
       { threshold: 0.35 },
@@ -40,16 +49,26 @@ export default function LazyFilm({ src, poster, label }: { src: string; poster: 
     return () => io.disconnect();
   }, []);
 
+  const toggle = () => {
+    const video = ref.current;
+    if (!video) return;
+    const next = !video.muted;
+    video.muted = next;
+    setMuted(next);
+    if (!next) video.play().catch(() => {});
+  };
+
   return (
-    <video
-      ref={ref}
-      src={src}
-      poster={poster}
-      muted
-      loop
-      playsInline
-      preload="none"
-      aria-label={label}
-    />
+    <div className={s.filmWrap}>
+      <video ref={ref} src={src} poster={poster} muted loop playsInline preload="none" aria-label={label} />
+      <button
+        type="button"
+        onClick={toggle}
+        className={s.sound}
+        aria-label={muted ? `Turn the sound on for ${label}` : `Turn the sound off for ${label}`}
+      >
+        {muted ? "Sound on" : "Sound off"}
+      </button>
+    </div>
   );
 }
