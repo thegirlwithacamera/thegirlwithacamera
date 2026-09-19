@@ -113,3 +113,7 @@
   .a .label, .b .label { grid-column: 1 / 7; grid-row: 4; text-align: left; }
   .solo .soloFilm, .solo .label { grid-column: 1 / 7; }
 }
+
+/* Deux films du même projet côte à côte (19/09), une colonne sur téléphone. */
+.twoFilms { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: min(1100px, 92vw); margin: 0 auto; }
+@media (max-width: 767px) { .twoFilms { grid-template-columns: 1fr; gap: 12px; width: 100%; } }

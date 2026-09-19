@@ -47,6 +47,8 @@ type Project = {
   note?: string;
   href?: string;
   film: { src: string; poster: string };
+  // Deuxième film du même projet (19/09) : affiché à côté du premier.
+  film2?: { src: string; poster: string };
   photos: string[];
 };
 
@@ -73,15 +75,9 @@ const PROJECTS: Project[] = [
   {
     id: "interrail",
     name: "Interrail",
-    place: "Twelve stops across Europe, by train",
-    film: { src: `${F}/JOURNEYS/Interrail.mp4`, poster: `${F}/JOURNEYS/Interrail.jpg` },
-    photos: [],
-  },
-  {
-    id: "interrail-summer",
-    name: "Interrail, the summer film",
     place: "One pass, twelve stops, one summer",
-    film: { src: `${F}/JOURNEYS/Interrail 2.mp4`, poster: `${F}/JOURNEYS/Interrail 2.jpg` },
+    film: { src: `${F}/JOURNEYS/Interrail.mp4`, poster: `${F}/JOURNEYS/Interrail.jpg` },
+    film2: { src: `${F}/JOURNEYS/Interrail 2.mp4`, poster: `${F}/JOURNEYS/Interrail 2.jpg` },
     photos: [],
   },
   {
@@ -157,8 +153,9 @@ export default async function DestinationsPage({ params }: Props) {
         if (p.photos.length === 0) {
           return (
             <section key={p.id} id={p.id} className={`${s.project} ${s.solo}`}>
-              <div className={s.soloFilm}>
+              <div className={p.film2 ? s.twoFilms : s.soloFilm}>
                 <LazyFilm src={p.film.src} poster={p.film.poster} label={`${p.name} film`} />
+                {p.film2 && <LazyFilm src={p.film2.src} poster={p.film2.poster} label={`${p.name} second film`} />}
               </div>
               {label}
             </section>
