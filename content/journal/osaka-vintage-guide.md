@@ -7,7 +7,7 @@ series: japan
 place: Osaka, Japan
 cover: /images/journal/osaka-vintage/colour-row.jpg
 excerpt: The crossing where every second shop sells second hand designer bags, a Louis Vuitton Memphis for 220 euros, and the tax free rule that changes in November 2026.
-draft: true
+draft: false
 ---
 
 If you love vintage, save your budget for Osaka. This is the article I promised in the [Osaka travel guide](/en/journal/osaka-guide).
