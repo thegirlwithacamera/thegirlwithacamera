@@ -57,6 +57,7 @@ export default async function JournalPage({ params }: Props) {
           src="/videos/banners/journal-drone.mp4"
           poster="/videos/banners/journal-drone.jpg"
           label="Aerial view of a castle above a lake"
+          sound={false}
         />
         <span className={s.bannerVeil} aria-hidden="true" />
         <p className={s.bannerWord}>Travel Journal</p>

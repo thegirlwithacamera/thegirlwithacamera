@@ -8,14 +8,28 @@ import s from "./page.module.css";
 // tous au chargement ferait ramer la page et fondre un forfait mobile. Hors
 // écran, le film se met en pause.
 //
-// Le son démarre coupé, parce qu'un navigateur refuse de lancer une vidéo
-// sonore tout seul, mais le visiteur peut l'allumer (19/09) : un bouton en
-// coin, discret, qui garde le choix pour ce film-là.
+// sound={false} pour les bandeaux d'accueil : ils sont muets, décoratifs, et
+// n'ont pas de bouton (20/09). Le <video> y reste nu, sans conteneur, pour ne
+// pas casser leur mise en page en plein écran.
+//
+// Ailleurs, le son démarre coupé, parce qu'un navigateur refuse de lancer une
+// vidéo sonore tout seul, et un petit haut-parleur en coin permet de
+// l'allumer.
 //
 // Si le visiteur a demandé moins d'animations, ou s'il est en économie de
 // données, rien ne démarre seul : il reste l'affiche, et un clic lance le
 // film avec ses contrôles.
-export default function LazyFilm({ src, poster, label }: { src: string; poster: string; label: string }) {
+export default function LazyFilm({
+  src,
+  poster,
+  label,
+  sound = true,
+}: {
+  src: string;
+  poster: string;
+  label: string;
+  sound?: boolean;
+}) {
   const ref = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
 
@@ -49,6 +63,10 @@ export default function LazyFilm({ src, poster, label }: { src: string; poster: 
     return () => io.disconnect();
   }, []);
 
+  const film = <video ref={ref} src={src} poster={poster} muted loop playsInline preload="none" aria-label={label} />;
+
+  if (!sound) return film;
+
   const toggle = () => {
     const video = ref.current;
     if (!video) return;
@@ -60,14 +78,17 @@ export default function LazyFilm({ src, poster, label }: { src: string; poster: 
 
   return (
     <div className={s.filmWrap}>
-      <video ref={ref} src={src} poster={poster} muted loop playsInline preload="none" aria-label={label} />
+      {film}
       <button
         type="button"
         onClick={toggle}
         className={s.sound}
         aria-label={muted ? `Turn the sound on for ${label}` : `Turn the sound off for ${label}`}
       >
-        {muted ? "Sound on" : "Sound off"}
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4z" />
+          {muted ? <path d="M16.5 9.5l4 5m0-5l-4 5" /> : <path d="M15.8 9.2a4 4 0 0 1 0 5.6M18.4 7a7 7 0 0 1 0 10" />}
+        </svg>
       </button>
     </div>
   );

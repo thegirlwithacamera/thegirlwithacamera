@@ -131,6 +131,7 @@ export default async function DestinationsPage({ params }: Props) {
           src="/videos/banners/destinations-drone.mp4"
           poster="/videos/banners/destinations-drone.jpg"
           label="Aerial view of a city at sunset"
+          sound={false}
         />
         <span className={s.bannerVeil} aria-hidden="true" />
         <h1 className={s.bannerWord}>Destinations</h1>
