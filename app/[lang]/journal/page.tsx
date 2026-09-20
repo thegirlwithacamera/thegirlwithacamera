@@ -64,7 +64,7 @@ export default async function JournalPage({ params }: Props) {
       </section>
       <PageHead
         title="Travel, cameras and workflow. *How I started a new life at 30*."
-        lede="Travel guides from the places I photograph, and honest notes on the cameras and edits I use every day."
+        lede="When everything else stopped, a camera is what helped me find myself again. Today it is how I work and travel. Here you will find guides from the places I photograph, where I stayed and where I ate, and honest notes on the cameras, the edits and the workflow I use every day."
         split
       />
       {posts.length === 0 ? (
