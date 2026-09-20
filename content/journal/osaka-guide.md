@@ -76,7 +76,11 @@ Osaka has a lot of vintage shops, and it is the reason I am writing a separate g
 
 I am a Pokémon fan, so this was not optional. I did not do the café, but I came out with plush toys.
 
-![The plush keyrings I came home with](/images/journal/osaka/pokemon-plush.jpg)
+![The plush keyrings I came home with from Osaka](/images/journal/osaka/plush-trio.jpg)
+
+![A Pikachu keyring](/images/journal/osaka/plush-pikachu.jpg)
+
+![More Pikachu keyrings](/images/journal/osaka/plush-family.jpg)
 
 ![Inside the Pokémon Center](/images/journal/osaka/pokemon-centre.jpg)
 
