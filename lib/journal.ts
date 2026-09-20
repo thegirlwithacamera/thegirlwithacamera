@@ -171,13 +171,9 @@ function mtime(slug: string): number {
 }
 
 // Ce qu'on trouve derrière une tuile (18/09) : guide de ville, test, montage.
+// 20/09 (Sandrine) : sous la tuile, le vrai titre de l'article.
 export function tileCaption(post: JournalPost): string {
-  if (post.kind === "stay") return post.place ? `Where to stay, ${post.place.split(",")[0]}` : "Where to stay";
-  if (post.slug === "osaka-vintage-guide") return "Vintage shopping, Osaka";
-  if (post.section === "travel") return post.place ? `City guide, ${post.place.split(",")[0]}` : "Travel guide";
-  if (post.series === "my-cameras") return "Camera review";
-  if (post.series === "edits") return "Editing";
-  return "Story";
+  return post.title;
 }
 
 export function findPost(slug: string): JournalPost | undefined {
