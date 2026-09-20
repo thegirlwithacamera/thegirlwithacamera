@@ -20,6 +20,8 @@ Kyoto took my heart.
 
 ![Walking in the street](/images/journal/kyoto/street-walk.jpg)
 
+![Coffee in the morning](/images/journal/kyoto/coffee.jpg)
+
 ## Kyoto overview
 
 **When:** 1 to 6 November 2025.
@@ -101,6 +103,8 @@ I went, of course. I came out with the geisha Pikachu.
 
 ![The geisha Pikachu keyrings from Kyoto](/images/journal/kyoto/pikachu-geisha.jpg)
 
+![A Pikachu in the store](/images/journal/kyoto/pikachu-figure.jpg)
+
 **Good to know:** Pokémon Center Kyoto is in the Takashimaya T8 building, near Kawaramachi station. It is smaller than the Osaka stores, but it carries Kyoto exclusives, with designs that borrow from local motifs, yukata patterns and woodblock prints. Those are the ones to buy here, because you will not find them anywhere else.
 
 ### Arashiyama
@@ -119,9 +123,15 @@ The Golden Pavilion. And I would have seen far more without the dentist.
 
 **Good to know:** it was the Fujinomori sento, an eighty year old bathhouse, and it kept everything: the curved karahafu roof, the majolica tiles on the walls, the high ceiling. Open from 11:30am to 9pm, closed on Thursdays, with breakfast on Saturdays and Sundays from 7am.
 
+![Inside Sarasa Nishijin, the old bathhouse](/images/journal/kyoto/sarasa-inside.jpg)
+
 ### BASE358, for dinner
 
 631-3 Mototakedachō, in Nakagyo Ward, in the basement of a building on Shijo Karasuma, four minutes from Shijo station. A counter where the chef cooks in front of you, with unlimited wine. A very good evening.
+
+![At the counter of BASE358](/images/journal/kyoto/base358-bar.jpg)
+
+![A bowl at BASE358](/images/journal/kyoto/base358-bowl.jpg)
 
 **Good to know:** it is an izakaya that mixes Japanese and western plates, sashimi next to pasta, open from 11:30am to 3pm and from 5pm to midnight, closed on Sundays. The menu is handwritten in Japanese only, so bring a translation app or point at what the neighbours are having.
 
@@ -129,7 +139,11 @@ The Golden Pavilion. And I would have seen far more without the dentist.
 
 82-1 Murasakino Minamifunaokachō, in Kita Ward, five minutes from Sarasa Nishijin.
 
+![The sign of Funaoka Onsen](/images/journal/kyoto/funaoka-sign.jpg)
+
 **Good to know:** this is one of the rare public baths in Japan that lets you in with tattoos, which is why people travel across the city for it. It is a 1923 bathhouse with carved wood panels, several baths, an outdoor one, a sauna and a cold bath, for the price of a normal sento. Open from 3pm to 11:30pm, from 8am on Sundays, closed on Tuesdays.
+
+![Fried chicken for lunch](/images/journal/kyoto/lunch-fried.jpg)
 
 ## Things to know before you go
 
