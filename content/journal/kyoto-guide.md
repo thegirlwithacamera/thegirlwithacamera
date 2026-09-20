@@ -5,6 +5,7 @@ date: 2026-09-20
 section: travel
 series: japan
 place: Kyoto, Japan
+cover: /images/journal/kyoto/pagoda-sunset.jpg
 excerpt: Four days in Kyoto in November: the empty torii at sunrise, Ninenzaka before the crowds, a café inside an old bathhouse, a tattoo friendly onsen, and a counter with unlimited wine.
 draft: true
 ---
@@ -12,6 +13,12 @@ draft: true
 We arrived in Kyoto on the evening of 1 November 2025 and left at midday on the 6th, with a morning in Arashiyama on the 4th.
 
 Kyoto took my heart.
+
+![A wooden door in Kyoto](/images/journal/kyoto/wooden-door.jpg)
+
+![A shopfront in the morning](/images/journal/kyoto/shopfront.jpg)
+
+![Walking in the street](/images/journal/kyoto/street-walk.jpg)
 
 ## Kyoto overview
 
@@ -39,11 +46,19 @@ The owner is lovely, and he runs several apartments in the same building, each l
 
 The thousands of vermilion torii climbing the hill. At sunrise, it was empty.
 
+![The torii path at Fushimi Inari](/images/journal/kyoto/torii-path.jpg)
+
 **Good to know:** Fushimi Inari is free and open 24 hours a day, which is exactly why you should be there at first light. The full loop to the top of Mount Inari takes two to three hours. Most people turn back at the Yotsutsuji viewpoint, about 45 minutes up, and that is where the crowd stops too.
 
 ### Kiyomizu-dera and Ninenzaka
 
 The temple on its wooden stage, and the stepped streets below it. Ninenzaka was empty too, at that hour.
+
+![The pagoda at sunset](/images/journal/kyoto/pagoda-sunset.jpg)
+
+![The pagoda at night](/images/journal/kyoto/pagoda-night.jpg)
+
+![Two parasols in the street](/images/journal/kyoto/parasols.jpg)
 
 **Good to know:** Kiyomizu-dera opens at 6am, earlier than almost everything else in Kyoto, for 500 yen. Ninenzaka and Sannenzaka are public streets, free at any time. Between 10am and 5pm they are packed, and photographing them properly becomes impossible.
 
@@ -51,7 +66,29 @@ The temple on its wooden stage, and the stepped streets below it. Ninenzaka was 
 
 The old geisha district, with its wooden machiya and its lanterns at night.
 
+![Lanterns in Gion](/images/journal/kyoto/gion-lanterns.jpg)
+
 **Good to know:** the private alleys of Gion are closed to photography, with fines posted at the entrances. Photograph the main streets, and leave the residents alone.
+
+### Just walking
+
+The rest of my Kyoto was the streets: the temples between two neighbourhoods, the wooden houses, the autumn lanes.
+
+![A zen garden](/images/journal/kyoto/zen-garden.jpg)
+
+![A house under a blue sky](/images/journal/kyoto/blue-sky-house.jpg)
+
+![A kei truck in the street](/images/journal/kyoto/kei-truck.jpg)
+
+![A path to a temple](/images/journal/kyoto/temple-path.jpg)
+
+![A wooden corridor](/images/journal/kyoto/corridor.jpg)
+
+![A red shopfront](/images/journal/kyoto/red-shop.jpg)
+
+![An autumn lane](/images/journal/kyoto/autumn-lane.jpg)
+
+![An old facade in Kyoto](/images/journal/kyoto/old-facade.jpg)
 
 ### Arashiyama
 
