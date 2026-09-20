@@ -63,7 +63,7 @@ export default async function JournalPage({ params }: Props) {
         <p className={s.bannerWord}>The Journal</p>
       </section>
       <PageHead
-        title="Travel, and *the camera in my hand*."
+        title="Travel, cameras and workflow *after a burnout*."
         lede="Travel guides from the places I photograph, and honest notes on the cameras and edits I use every day."
         split
       />
