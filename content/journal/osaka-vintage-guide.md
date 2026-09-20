@@ -5,6 +5,7 @@ date: 2026-09-20
 section: travel
 series: japan
 place: Osaka, Japan
+cover: /images/journal/osaka-vintage/colour-row.jpg
 excerpt: The crossing where every second shop sells second hand designer bags, what I paid, and the one rule that changes in November 2026.
 draft: true
 ---
@@ -17,9 +18,13 @@ Japan has the best second hand luxury in the world, for three reasons: people he
 
 ## The crossing
 
-Around the crossing of Shinsaibashi-suji and Nagahori-dori, and in the streets of Higashi-Shinsaibashi just east of it, almost every other shopfront is second hand luxury. I did all of them.
+Around the crossing of Shinsaibashi-suji and Nagahori-dori, and in the streets of Higashi-Shinsaibashi just east of it, almost every other shopfront sells second hand luxury. There are dozens of them, within a few hundred metres. I did all of them, in one afternoon.
 
-> À COMPLÉTER : tu confirmes que c'est bien ce croisement là ? Sinon envoie-moi le lien Maps.
+![A wall of second hand bags](/images/journal/osaka-vintage/colour-row.jpg)
+
+![Inside one of the shops](/images/journal/osaka-vintage/shop-inside.jpg)
+
+![A shop window](/images/journal/osaka-vintage/window.jpg)
 
 ## The shops
 
@@ -31,9 +36,9 @@ Where I cracked. I came out with a Louis Vuitton Memphis in Epi leather.
 
 > À COMPLÉTER : le prix que tu as payé, si tu veux le dire. C'est l'information que tout le monde cherche.
 
-### The others I went to
+### The other addresses on the crossing
 
-> À COMPLÉTER : coche celles où tu es vraiment allée, je ne mets que celles-là.
+There are far more than these, but these are the ones worth naming.
 
 - **OKURA Shinsaibashi**, Shinsaibashi-suji 1-5-30, in THE ATRiUM. Hermès and gold, open 11am to 9pm.
 - **ALLU Shinsaibashi**, Shinsaibashi-suji 2-1-19. The big polished one, full runs of Hermès colours, 11am to 9pm.
@@ -42,11 +47,30 @@ Where I cracked. I came out with a Louis Vuitton Memphis in Epi leather.
 - **LUCA Vintage**, Souemonchō 5-31. Cheaper, more Coach and Dior, 1pm to 10pm.
 - **Kindal Amerikamura**, Nishishinsaibashi 2-18-7. Four floors, clothes as well as bags, 11am to 8pm.
 
-## How to read a price tag
+## What things actually cost
 
-Most of my photos show the tags, because that is what you want to see before you fly.
+Two tags I photographed, so you know what to expect:
 
-> À COMPLÉTER : deux ou trois exemples de prix que tu as vus, avec le modèle. Je peux aussi les lire sur tes photos si tu veux.
+- **Louis Vuitton Alma in yellow Epi,** graded AB: ¥54,000 before tax, ¥59,400 with it. About €330.
+- **Louis Vuitton Speedy in red Epi,** graded Used B: ¥63,636 before tax, ¥70,000 with it. About €390.
+
+![A Louis Vuitton Alma in Epi leather, with its price tag](/images/journal/osaka-vintage/lv-alma-tag.jpg)
+
+![A Louis Vuitton Speedy in red Epi](/images/journal/osaka-vintage/lv-speedy-tag.jpg)
+
+![A Chanel flap bag](/images/journal/osaka-vintage/chanel.jpg)
+
+![Monogram bags on a shelf](/images/journal/osaka-vintage/monogram-row.jpg)
+
+![A Fendi bag](/images/journal/osaka-vintage/fendi.jpg)
+
+![A shelf of Chanel](/images/journal/osaka-vintage/chanel-shelf.jpg)
+
+![Watches in a case](/images/journal/osaka-vintage/watches.jpg)
+
+![A green bag](/images/journal/osaka-vintage/green-bag.jpg)
+
+![Bags lined up](/images/journal/osaka-vintage/shelf-bags.jpg)
 
 **The grading:** Japanese resellers use letters. S is unused, A is excellent, B shows light wear, C is visibly worn. The letter matters more than the photos, and it is why the same bag can be half the price two doors down.
 
