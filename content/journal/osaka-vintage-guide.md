@@ -6,7 +6,7 @@ section: travel
 series: japan
 place: Osaka, Japan
 cover: /images/journal/osaka-vintage/colour-row.jpg
-excerpt: The crossing where every second shop sells second hand designer bags, what I paid, and the one rule that changes in November 2026.
+excerpt: The crossing where every second shop sells second hand designer bags, a Louis Vuitton Memphis for 220 euros, and the tax free rule that changes in November 2026.
 draft: true
 ---
 
@@ -30,13 +30,11 @@ And I saw models and colours I had never seen before, which says something: I kn
 
 ## The shops
 
-### Urban Jungle
+### Brand Jungle, where I cracked
 
-Where I cracked. I came out with a Louis Vuitton Memphis in Epi leather.
+Shinsaibashi-suji 1-2-2, open every day from 11am to 8pm.
 
-> À COMPLÉTER : le lien Maps de la boutique. Je trouve un "Brand Jungle Vintage Shop" à Shinsaibashi-suji 1-2-2, mais pas d'Urban Jungle, et je ne veux pas envoyer les gens au mauvais endroit.
-
-> À COMPLÉTER : le prix que tu as payé, si tu veux le dire. C'est l'information que tout le monde cherche.
+I came out with a Louis Vuitton Memphis in Epi leather, for **220 euros**. In Europe, the same bag in the same condition goes for two to three times that, when you find it at all.
 
 ### The other addresses on the crossing
 
@@ -86,7 +84,7 @@ From 1 November 2026, the instant exemption ends: you pay the full price includi
 
 ## What I would tell you
 
-- **Do Osaka before Tokyo.** Same brands, lower prices.
+- **Do Osaka before Tokyo.** Same brands, lower prices. My Memphis cost 220 euros.
 - **Go in with a model in mind**, and compare across three shops before buying. They are five minutes apart.
 - **Check the letter grade,** and ask to see the corners and the strap, which is where these bags age.
 - **Look for the pieces you cannot find at home.** Colours and models that never reached Europe, or that left it decades ago, are the real reason to buy here rather than online.
@@ -94,7 +92,7 @@ From 1 November 2026, the instant exemption ends: you pay the full price includi
 ## Osaka vintage FAQ
 
 **Is second hand luxury cheaper in Osaka than in Tokyo?**
-Yes, for the same bag and the same grade.
+Yes, for the same bag and the same grade. I paid 220 euros for a Louis Vuitton Memphis in Epi leather.
 
 **What does the letter on the tag mean?**
 It is the condition grade, from S for unused down to C for visibly worn.
