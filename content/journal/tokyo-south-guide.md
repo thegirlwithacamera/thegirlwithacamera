@@ -10,7 +10,7 @@ excerpt: The south of Tokyo in June 2026: the Tsukiji market, lunch in Shinbashi
 draft: false
 ---
 
-The south was a few days of my twelve days alone in Tokyo. Each morning I picked a direction, took the metro out there, and walked.
+The south was a few days of my [twelve days alone in Tokyo](/en/journal/tokyo-exploration-guide). Each morning I picked a direction, took the metro out there, and walked.
 
 **Where I walked:** Tsukiji in Chuo; Shinbashi, Shiba, Daimon and Hamamatsucho in Minato; a big loop through Shinagawa, from Oi to Osaki, Gotanda and Musashi-Koyama; Nakameguro in Meguro; Daikanyama and Ebisu.
 

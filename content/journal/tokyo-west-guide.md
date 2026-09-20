@@ -10,7 +10,7 @@ excerpt: The west of Tokyo in June 2026: Omotesando at 7am, film shopping in Shi
 draft: false
 ---
 
-The west was several days of my twelve days alone in Tokyo. Each morning I picked a direction, took the metro out there, and walked.
+The west was several days of my [twelve days alone in Tokyo](/en/journal/tokyo-exploration-guide). Each morning I picked a direction, took the metro out there, and walked.
 
 **Where I walked:** Omotesando, Harajuku and the Meiji Jingu forest; Shibuya; Gaiemmae; Shinjuku and Kabukicho; Yotsuya; Shimokitazawa; Koenji and Nakano.
 

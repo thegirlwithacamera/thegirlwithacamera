@@ -10,7 +10,7 @@ excerpt: The center of Tokyo in June 2026: film cameras in Akihabara, the booksh
 draft: false
 ---
 
-The center was several days of my twelve days alone in Tokyo. Each morning I picked a direction, took the metro out there, and walked.
+The center was several days of my [twelve days alone in Tokyo](/en/journal/tokyo-exploration-guide). Each morning I picked a direction, took the metro out there, and walked.
 
 **Where I walked:** Akihabara and Kanda; Jimbocho and Ochanomizu; Tokyo Station, Yaesu and Nihonbashi; Otemachi and Marunouchi; Kagurazaka.
 

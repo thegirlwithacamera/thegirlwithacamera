@@ -10,7 +10,7 @@ excerpt: The east of Tokyo, where I stayed in June 2026: dawn walks in Minowa an
 draft: false
 ---
 
-The east was my base during my twelve days alone in Tokyo. I stayed near Minowa station, so this is where every day began and ended.
+The east was my base during my [twelve days alone in Tokyo](/en/journal/tokyo-exploration-guide). I stayed near Minowa station, so this is where every day began and ended.
 
 I chose it because I wanted to be in the real life of Tokyo, not in a hotel district. And for me, it is the best place to stay.
 

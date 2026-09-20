@@ -10,7 +10,7 @@ excerpt: The north of Tokyo in June 2026: a morning from Ikebukuro to Otsuka and
 draft: false
 ---
 
-The north was two mornings of my twelve days alone in Tokyo. Each morning I picked a direction, took the metro out there, and walked.
+The north was two mornings of my [twelve days alone in Tokyo](/en/journal/tokyo-exploration-guide). Each morning I picked a direction, took the metro out there, and walked.
 
 **Where I walked:** Ikebukuro in Toshima; Otsuka and Minami-Otsuka; Sugamo; Oji and Asukayama in Kita.
 
