@@ -5,7 +5,7 @@ date: 2026-09-20
 section: travel
 series: japan
 place: Kyoto, Japan
-excerpt: Four days in Kyoto in November: the empty torii at sunrise, Ninenzaka before the crowds, a café inside an old bathhouse, and a tattoo friendly onsen.
+excerpt: Four days in Kyoto in November: the empty torii at sunrise, Ninenzaka before the crowds, a café inside an old bathhouse, a tattoo friendly onsen, and a counter with unlimited wine.
 draft: true
 ---
 
@@ -69,11 +69,11 @@ The Golden Pavilion. And I would have seen far more without the dentist.
 
 **Good to know:** it was the Fujinomori sento, an eighty year old bathhouse, and it kept everything: the curved karahafu roof, the majolica tiles on the walls, the high ceiling. Open from 11:30am to 9pm, closed on Thursdays, with breakfast on Saturdays and Sundays from 7am.
 
-### 358 Zacoya, for dinner
+### BASE358, for dinner
 
-A counter where the chef cooks in front of you, with unlimited wine. A very good evening.
+631-3 Mototakedachō, in Nakagyo Ward, in the basement of a building on Shijo Karasuma, four minutes from Shijo station. A counter where the chef cooks in front of you, with unlimited wine. A very good evening.
 
-> À COMPLÉTER : envoie-moi le lien Google Maps, il y a plusieurs Zakoya à Kyoto et je ne veux pas donner la mauvaise adresse.
+**Good to know:** it is an izakaya that mixes Japanese and western plates, sashimi next to pasta, open from 11:30am to 3pm and from 5pm to midnight, closed on Sundays. The menu is handwritten in Japanese only, so bring a translation app or point at what the neighbours are having.
 
 ## Funaoka Onsen, and it is tattoo friendly
 
