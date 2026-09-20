@@ -45,7 +45,7 @@ Four of his apartments, if you want to book one:
 - [Take it easy 204, the one we had](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Ffree-bike-and-free-portable-wifi-204-take-it-easy.html)
 - [Take it easy 304](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Ffree-bike-and-free-wifi-304-take-it-easy.html)
 - [Take it easy 301](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Ffree-bike-free-portable-wifi-301-take-it-easy.html)
-- [Another one of his flats](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Ffree-bike-amp-free-portable-wifi-he.html)
+- [Take it easy 203](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Ffree-bike-amp-free-portable-wifi-he.html)
 
 ## Best things to do in Kyoto
 
