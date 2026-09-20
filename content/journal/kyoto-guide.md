@@ -55,6 +55,8 @@ The thousands of vermilion torii climbing the hill. At sunrise, it was empty.
 
 ![The torii path at Fushimi Inari](/images/journal/kyoto/torii-path.jpg)
 
+**The man who climbs it ten times a day:** on the way up, we met a 72 year old man. Every day he climbs the whole trail ten times, to stay in shape. He passed everyone with a big smile, music playing from the little radio in his backpack, and the whole climb felt alive because of him. We tried to keep up, and somehow we did. At the top he shook our hands and wished us the best. A small, beautiful moment I will not forget.
+
 **Good to know:** Fushimi Inari is free and open 24 hours a day, which is exactly why you should be there at first light. The full loop to the top of Mount Inari takes two to three hours. Most people turn back at the Yotsutsuji viewpoint, about 45 minutes up, and that is where the crowd stops too.
 
 ### Kiyomizu-dera and Ninenzaka
