@@ -1,0 +1,74 @@
+# Renouvellement du jeton Instagram de la bande de l'accueil.
+#
+# Le jeton longue durée de l'API Instagram dure 60 jours. Chaque
+# renouvellement repart sur 60 jours, donc en passant une fois par semaine il
+# ne peut jamais expirer, même pendant un long voyage.
+#
+# Source unique du jeton : la variable d'environnement INSTAGRAM_TOKEN du
+# projet sur Vercel. Ce job la lit, demande un nouveau jeton à Meta, réécrit
+# la variable, puis relance un déploiement pour que le site prenne la
+# nouvelle valeur.
+#
+# Secrets à créer dans GitHub (Settings > Secrets and variables > Actions) :
+#   VERCEL_TOKEN        jeton d'API Vercel (vercel.com/account/tokens)
+#   VERCEL_PROJECT_ID   identifiant du projet (Vercel > projet > Settings)
+#   VERCEL_TEAM_ID      seulement si le projet est dans une équipe
+#   VERCEL_DEPLOY_HOOK  URL de deploy hook (Vercel > Settings > Git)
+
+name: Renouveler le jeton Instagram
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Renouveler et réécrire le jeton
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          set -euo pipefail
+          TEAM=""
+          if [ -n "${TEAM_ID:-}" ]; then TEAM="&teamId=$TEAM_ID"; fi
+
+          echo "Lecture de la variable sur Vercel"
+          ENVS=$(curl -sS -H "Authorization: Bearer $VERCEL_TOKEN" \
+            "https://api.vercel.com/v10/projects/$PROJECT_ID/env?decrypt=true$TEAM")
+
+          ENV_ID=$(echo "$ENVS" | jq -r '[.envs[] | select(.key=="INSTAGRAM_TOKEN")][0].id // empty')
+          OLD=$(echo "$ENVS" | jq -r '[.envs[] | select(.key=="INSTAGRAM_TOKEN")][0].value // empty')
+          if [ -z "$ENV_ID" ] || [ -z "$OLD" ]; then
+            echo "INSTAGRAM_TOKEN introuvable sur le projet Vercel." >&2
+            exit 1
+          fi
+
+          echo "Demande d'un nouveau jeton à Meta"
+          RES=$(curl -sS -G "https://graph.instagram.com/refresh_access_token" \
+            --data-urlencode "grant_type=ig_refresh_token" \
+            --data-urlencode "access_token=$OLD")
+          NEW=$(echo "$RES" | jq -r '.access_token // empty')
+          DAYS=$(echo "$RES" | jq -r '(.expires_in // 0) / 86400 | floor')
+          if [ -z "$NEW" ]; then
+            echo "Meta a refusé le renouvellement :" >&2
+            echo "$RES" | jq -r '.error.message // .' >&2
+            echo "Il faut regénérer un jeton à la main dans l'app Meta, puis le remettre dans Vercel." >&2
+            exit 1
+          fi
+          echo "Nouveau jeton valable $DAYS jours"
+
+          echo "Écriture sur Vercel"
+          curl -sS -X PATCH \
+            -H "Authorization: Bearer $VERCEL_TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://api.vercel.com/v9/projects/$PROJECT_ID/env/$ENV_ID${TEAM_ID:+?teamId=$TEAM_ID}" \
+            -d "$(jq -nc --arg v "$NEW" '{value:$v}')" > /dev/null
+
+          echo "Relance du déploiement"
+          curl -sS -X POST "$DEPLOY_HOOK" > /dev/null
+          echo "Terminé."

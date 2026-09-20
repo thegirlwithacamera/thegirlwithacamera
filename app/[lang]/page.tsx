@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProjectCard, ProjectGrid, SectionBar } from "./components/editorial";
 import Band from "./components/Band";
+import InstagramRow from "./components/InstagramRow";
+import { INSTAGRAM_FALLBACK } from "@/lib/instagram";
 import s from "./page.module.css";
 
 interface Props {
@@ -56,21 +58,9 @@ const BANDS = [
   { href: "/en/journal", word: "Journal", button: "Read the stories", image: "/images/home/journal-fuji-train.jpg", position: "50% 50%" },
 ];
 
-// Bande Instagram en bas de page : des images du site, liées au compte.
-// Pas de flux automatique (il faudrait un jeton Meta qui expire) : on
-// change les chemins ici quand on veut.
-// Bande "Follow on Instagram" (17/09) : chaque vignette mène à un vrai
-// contenu. Pour en changer : le lien du post ou du reel (href), la miniature
-// dans /public (src), une description courte (alt) et reel: true pour afficher
-// le petit pictogramme vidéo. Sans href, la vignette mène au profil.
-type InstaTile = { src: string; href?: string; alt: string; reel?: boolean };
-const INSTAGRAM: InstaTile[] = [
-  { src: "/images/portfolio/hospitality/naturel-dorf-schonleitn/7.jpg", href: "https://www.instagram.com/p/DdDv9EIsJqX/", alt: "The pool at Naturel Hoteldorf Schönleitn" },
-  { src: "/images/portfolio/hospitality/hotel-rathaus-wien/1.jpg", href: "https://www.instagram.com/p/DdO1LtrMUgC/", alt: "A morning at Hotel Rathaus Wein & Design, Vienna" },
-  { src: "/images/journal/interrail/train-window.jpg", href: "https://www.instagram.com/p/DdTY_Rzscp-/", alt: "On the train across Europe" },
-  { src: "/images/portfolio/travel/villach/5.jpg", href: "https://www.instagram.com/p/Dc0Au8aIaXM/", alt: "Villach, Carinthia" },
-  { src: "/images/home/instagram/vending-machine-story.jpg", href: "https://www.instagram.com/p/DRaAAitjNuO/", alt: "A Vending Machine Story, by The Girl With A Camera" },
-];
+// Bande Instagram en bas de page : les cinq derniers posts du compte, lus par
+// l'API Instagram (voir lib/instagram.ts). Les vignettes livrées avec la page
+// sont le filet de secours, elles restent affichées si l'API ne répond pas.
 
 export default async function HomePage({ params }: Props) {
   await params;
@@ -142,16 +132,7 @@ export default async function HomePage({ params }: Props) {
           Follow on Instagram
           <span>@sandrinecppns</span>
         </a>
-        <div className={s.instaRow}>
-          {INSTAGRAM.map((t) => (
-            <a key={t.src} href={t.href ?? "https://www.instagram.com/sandrinecppns/"} target="_blank" rel="noopener noreferrer" className={s.instaTile} aria-label={`${t.alt} on Instagram`}>
-              <Image src={t.src} alt={t.alt} fill sizes="(max-width: 767px) 50vw, 20vw" quality={70} />
-              {t.reel && (
-                <svg className={s.instaReel} viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" /></svg>
-              )}
-            </a>
-          ))}
-        </div>
+        <InstagramRow initial={INSTAGRAM_FALLBACK} />
       </section>
     </main>
   );

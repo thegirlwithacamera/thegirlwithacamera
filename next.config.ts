@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "cdn.sanity.io" },
+      // Vignettes du flux Instagram de l'accueil. Meta sert les images depuis
+      // scontent-xxx.cdninstagram.com, et parfois depuis fbcdn.net.
+      { protocol: "https", hostname: "**.cdninstagram.com" },
+      { protocol: "https", hostname: "**.fbcdn.net" },
     ],
   },
   async redirects() {
