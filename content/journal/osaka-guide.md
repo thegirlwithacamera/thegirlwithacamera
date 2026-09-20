@@ -5,6 +5,7 @@ date: 2026-09-19
 section: travel
 series: japan
 place: Osaka, Japan
+cover: /images/journal/osaka/red-lanterns.jpg
 excerpt: Three days in Osaka in November: the contrast between the castle, Dotonbori and the quiet streets, a tiny yakitori counter, and the best vintage shopping in Japan.
 draft: true
 ---
@@ -29,13 +30,37 @@ What I liked is the contrast: the castle on one side, Dotonbori on the other, an
 
 This is what I would tell anyone: just walk, away from the tourist streets. Osaka is far more than Dotonbori.
 
+![A street in the morning](/images/journal/osaka/street-morning.jpg)
+
+![A man on a bench](/images/journal/osaka/man-bench.jpg)
+
+![Coffee at a crossing](/images/journal/osaka/coffee-crossing.jpg)
+
+![A red car in the street](/images/journal/osaka/red-car.jpg)
+
+![Red lanterns in an alley](/images/journal/osaka/red-lanterns.jpg)
+
+![A corner shop](/images/journal/osaka/corner-shop.jpg)
+
+![A street at night](/images/journal/osaka/night-street.jpg)
+
+![A shop front at night](/images/journal/osaka/shop-night.jpg)
+
 ### Osaka Castle
+
+![Osaka Castle](/images/journal/osaka/castle.jpg)
 
 **Good to know:** the park around the castle is free and open all day. The keep itself costs 600 yen, and it is a reconstruction with a museum inside and a viewing deck at the top. The park is at its best early, before the groups.
 
 ### Dotonbori
 
 The neon, the canal, the Glico running man, the giant crab. It is worth seeing, but it is one street, and it is not the city.
+
+![Dotonbori at night](/images/journal/osaka/dotonbori-night.jpg)
+
+![The giant crab](/images/journal/osaka/crab-sign.jpg)
+
+![The ferris wheel](/images/journal/osaka/ferris-wheel.jpg)
 
 **Good to know:** it is at its most photogenic after dark, when all the signs are lit, and at its worst in the early evening, when it is packed.
 
@@ -48,6 +73,8 @@ Osaka has a lot of vintage shops, and it is the reason I am writing a separate g
 ## Where we ate: Iccho
 
 A tiny yakitori counter in Higashishinsaibashi, run by a couple in their seventies and eighties. We found it by chance, and it was the best meal of our stay.
+
+![The front of Iccho](/images/journal/osaka/iccho-front.jpg)
 
 **Good to know:** Iccho seats eight people at a counter, opens from 6pm to 10pm, and is closed on Sundays. It is cash only, with a seat charge of 330 yen per person and one drink per person. Book ahead if you can: it fills up fast.
 
