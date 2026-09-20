@@ -26,6 +26,8 @@ What surprised me most: despite the size of the city and the number of people, y
 
 **Where we stayed:** the first time, in a guest house in the Korean quarter, Shin-Okubo. The second time, at OTHER SPACE Asakusa, Asakusa 3-4-10, about ten minutes on foot from Asakusa station. It used to be called K3 Asakusa, and some booking sites still show that name. Private rooms, each with its own bathroom.
 
+[Check prices and availability at OTHER SPACE Asakusa](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Fk3-asakusa-dong-jing.html)
+
 **How we got around:** by metro, and a lot on foot.
 
 ## The big sights
@@ -63,6 +65,7 @@ On a first trip, we really did the main ones: Shibuya, Shinjuku, Nakano Broadway
 ![Hundreds of white lucky cats at Gotoku-ji](/images/journal/tokyo-first/gotokuji-cats.jpg)
 
 ![Two women in Halloween costumes, one in pink, one with bunny ears](/images/journal/tokyo-first/halloween.jpg)
+
 ## The Pokémon stores
 
 - **Pokémon Store Tokyo Station**, First Avenue Tokyo Station, ground floor, one minute from the Nihombashi exit. Open every day, 10am to 8:30pm.
@@ -85,6 +88,7 @@ The train driver Pikachu comes from the Tokyo Station store. The airline pilots 
 ![Four small Pokémon plushes on a wooden floor](/images/journal/tokyo-first/plush-four.jpg)
 
 ![Two small Pokémon plushes on a wooden floor](/images/journal/tokyo-first/plush-two.jpg)
+
 ## Shopping, and GR Space
 
 We did a lot of shopping.
@@ -104,6 +108,7 @@ We did a lot of shopping.
 ![A box of matches with a wave print](/images/journal/tokyo-first/matchbox.jpg)
 
 ![An Atlantis Vintage shopping bag in Koenji](/images/journal/tokyo-first/atlantis-bag.jpg)
+
 ## Where we ate
 
 - **Jyoto Curry, Shin-Okubo**, Hyakunincho 1-7-13, thirty seconds from Shin-Okubo station. Every day, 11am to 10pm. A counter of fifteen seats. No credit cards: cash or a transport card like Suica.
@@ -125,6 +130,7 @@ We did a lot of shopping.
 ![The bar at Di Punto](/images/journal/tokyo-first/di-punto-bar.jpg)
 
 ![An izakaya table with empty plates](/images/journal/tokyo-first/izakaya.jpg)
+
 ## A tattoo on the way home
 
 I came back to Tokyo to get tattooed at **PopInk Tokyo**, by Tiemi. Arakicho 6-1, Arakicho Gardens, room 303, Shinjuku. Bookings are online.
@@ -134,6 +140,7 @@ I came back to Tokyo to get tattooed at **PopInk Tokyo**, by Tiemi. Arakicho 6-1
 ![The tattoo stencil on my shoulder](/images/journal/tokyo-first/tattoo-stencil.jpg)
 
 ![The finished tattoo: a samurai Pikachu](/images/journal/tokyo-first/tattoo.jpg)
+
 ## Tokyo first timer FAQ
 
 **Is Tokyo overwhelming the first time?**
@@ -144,3 +151,5 @@ By metro, and on foot.
 
 **Which neighbourhoods are worth it?**
 For me, Harajuku, Ueno, Asakusa and Jimbocho, more than Shibuya and Shinjuku.
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)
