@@ -60,6 +60,8 @@ Tokyo Tower is nice to see from a distance.
 
 **Câlin,** a natural wine bar. Hamamatsucho 1-18-10, one minute from Daimon station, exit A2. Every day, 2pm to 11pm. A really lovely place. I was the only customer, so I chatted with the barman. You can also buy bottles to take away.
 
+**Hamamatsucho,** next door, is where the monorail leaves for Haneda airport. One minute from the JR north exit, **Kyu-Shiba-rikyu** is a small Edo-period garden around a pond, with the towers all around. 9am to 5pm, last entry 4:30pm, 150 yen.
+
 **Film:** I had my films developed at two Palette Plaza shops, one here in Shiba-Daimon and one in Ebisu. About an hour of waiting each time, and they even printed a few photos for me as a bonus, because they liked what I was shooting.
 
 ![The menu at Câlin](/images/journal/tokyo-south/calin-menu.jpg)
@@ -68,9 +70,19 @@ Tokyo Tower is nice to see from a distance.
 
 ![My developed photos from Palette Plaza](/images/journal/tokyo-south/palette-daimon.jpg)
 
+## Oi, Osaki and Shinagawa
+
+After the flea market, I walked a big loop through Shinagawa.
+
+**Oimachi** is a busy station hub on the JR Keihin-Tohoku, Tokyu Oimachi and Rinkai lines, with the Oi Racecourse a little to the east, by the bay.
+
+**Osaki** is the opposite: a redeveloped business district of glass towers around the station, one stop from Gotanda on the Yamanote line.
+
+**Kita-Shinagawa** keeps the memory of Shinagawa-juku, the first stop on the old Tokaido road out of Nihonbashi. The old road is now a long shopping street of small shops and restaurants, two minutes from Kitashinagawa station on the Keikyu line.
+
 ## Gotanda and Musashi-Koyama
 
-On the morning of 21 June I was at the Oi Racecourse flea market (it gets its own article). Then I walked north, through Osaki and Gotanda, to Musashi-Koyama. I wanted to discover, so I walked, and I came across these shopping streets.
+On the morning of 21 June I was at the Oi Racecourse flea market (it gets its own article). Then I kept walking, through Gotanda, to Musashi-Koyama. I wanted to discover, so I walked, and I came across these shopping streets.
 
 **Musashi-Koyama Palm** is the longest covered shopping arcade in Tokyo: about 800 metres and more than 200 shops, right next to Musashi-Koyama station on the Tokyu Meguro line. It opened in 1956, one of the first big covered arcades in Japan.
 

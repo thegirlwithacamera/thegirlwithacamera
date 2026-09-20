@@ -159,6 +159,18 @@ Around ninety shops of fabrics, trimmings and sewing supplies line the streets n
 
 ![A building with round windows](/images/journal/tokyo-east/round-windows.jpg)
 
+## Kuramae and Asakusabashi
+
+South of Asakusa, along the Sumida river, I walked through Kuramae and Asakusabashi.
+
+**Kuramae** means "in front of the storehouses": in the Edo period, this is where the rice granaries of the shogunate stood. Today it is a quiet district of workshops, small designers, coffee roasters and stationery shops, with a riverside promenade and the Skytree across the water. Two Kuramae stations, on the Toei Asakusa and Oedo lines.
+
+**Asakusabashi,** between Akihabara and Ryogoku, is a wholesale district: traditional dolls for the Girls' and Boys' festivals, beads and jewellery parts, shop decorations and stationery, often at wholesale prices. JR Sobu line and Toei Asakusa line.
+
+## Across the Sumida river
+
+From Asakusa, I crossed the Sumida river into Sumida, the ward of the Skytree. From the bridges you get the river, the boats and the tower right in front of you.
+
 ## Ueno and Okachimachi, at night
 
 I only knew Ueno by day, for shopping. At night, the atmosphere is completely different: lively, festive, all lights. I loved it.
