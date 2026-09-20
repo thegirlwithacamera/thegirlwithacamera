@@ -105,6 +105,8 @@ A tiny yakitori counter in Higashishinsaibashi, run by a couple in their seventi
 
 ![The front of Iccho](/images/journal/osaka/iccho-front.jpg)
 
+![The counter at Iccho](/images/journal/osaka/iccho-counter.jpg)
+
 **Good to know:** Iccho seats eight people at a counter, opens from 6pm to 10pm, and is closed on Sundays. It is cash only, with a seat charge of 330 yen per person and one drink per person. Book ahead if you can: it fills up fast.
 
 ## Where we drank: Common
@@ -114,6 +116,8 @@ A tiny yakitori counter in Higashishinsaibashi, run by a couple in their seventi
 ![Wine at Common](/images/journal/osaka/common-wine.jpg)
 
 ![Two glasses at the bar](/images/journal/osaka/common-glasses.jpg)
+
+![The owners of Common posted the evening on their stories](/images/journal/osaka/common-story.jpg)
 
 ## Things to know before you go
 
