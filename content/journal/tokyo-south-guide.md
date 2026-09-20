@@ -82,7 +82,7 @@ After the flea market, I walked a big loop through Shinagawa.
 
 ## Gotanda and Musashi-Koyama
 
-On the morning of 21 June I was at the Oi Racecourse flea market (it gets its own article). Then I kept walking, through Gotanda, to Musashi-Koyama. I wanted to discover, so I walked, and I came across these shopping streets.
+On the morning of 21 June I was at the [Oi Racecourse flea market](/en/journal/oi-flea-market-guide). Then I kept walking, through Gotanda, to Musashi-Koyama. I wanted to discover, so I walked, and I came across these shopping streets.
 
 **Musashi-Koyama Palm** is the longest covered shopping arcade in Tokyo: about 800 metres and more than 200 shops, right next to Musashi-Koyama station on the Tokyu Meguro line. It opened in 1956, one of the first big covered arcades in Japan.
 
