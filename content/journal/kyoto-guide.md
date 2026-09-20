@@ -7,7 +7,7 @@ series: japan
 place: Kyoto, Japan
 cover: /images/journal/kyoto/pagoda-sunset.jpg
 excerpt: Four days in Kyoto in November: the empty torii at sunrise, Ninenzaka before the crowds, a café inside an old bathhouse, a tattoo friendly onsen, and a counter with unlimited wine.
-draft: true
+draft: false
 ---
 
 We arrived in Kyoto on the evening of 1 November 2025 and left at midday on the 6th, with a morning in Arashiyama on the 4th.
