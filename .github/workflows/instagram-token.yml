@@ -34,20 +34,27 @@ jobs:
           DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
         run: |
           set -euo pipefail
-          TEAM=""
-          if [ -n "${TEAM_ID:-}" ]; then TEAM="&teamId=$TEAM_ID"; fi
+          Q="${TEAM_ID:+?teamId=$TEAM_ID}"
 
           echo "Lecture de la variable sur Vercel"
           ENVS=$(curl -sS -H "Authorization: Bearer $VERCEL_TOKEN" \
-            "https://api.vercel.com/v10/projects/$PROJECT_ID/env?decrypt=true$TEAM")
+            "https://api.vercel.com/v10/projects/$PROJECT_ID/env$Q")
 
           ENV_ID=$(echo "$ENVS" | jq -r '[.envs[] | select(.key=="INSTAGRAM_TOKEN")][0].id // empty')
-          OLD=$(echo "$ENVS" | jq -r '[.envs[] | select(.key=="INSTAGRAM_TOKEN")][0].value // empty')
-          if [ -z "$ENV_ID" ] || [ -z "$OLD" ]; then
+          if [ -z "$ENV_ID" ]; then
             echo "INSTAGRAM_TOKEN introuvable sur le projet Vercel." >&2
             exit 1
           fi
 
+          # La liste ne renvoie que la valeur chiffrée. Ce point de terminaison
+          # là renvoie la valeur en clair, variable par variable.
+          OLD=$(curl -sS -H "Authorization: Bearer $VERCEL_TOKEN" \
+            "https://api.vercel.com/v1/projects/$PROJECT_ID/env/$ENV_ID$Q" \
+            | jq -r '.value // empty')
+          if [ -z "$OLD" ]; then
+            echo "Valeur du jeton illisible sur Vercel." >&2
+            exit 1
+          fi
           echo "Jeton lu : ${#OLD} caractères, commence par ${OLD:0:8}"
 
           echo "Demande d'un nouveau jeton à Meta"
@@ -68,7 +75,7 @@ jobs:
           curl -sS -X PATCH \
             -H "Authorization: Bearer $VERCEL_TOKEN" \
             -H "Content-Type: application/json" \
-            "https://api.vercel.com/v9/projects/$PROJECT_ID/env/$ENV_ID${TEAM_ID:+?teamId=$TEAM_ID}" \
+            "https://api.vercel.com/v9/projects/$PROJECT_ID/env/$ENV_ID$Q" \
             -d "$(jq -nc --arg v "$NEW" '{value:$v}')" > /dev/null
 
           echo "Relance du déploiement"
