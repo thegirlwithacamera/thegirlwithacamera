@@ -64,8 +64,6 @@ Tokyo Tower is nice to see from a distance.
 
 ![A glass of red wine at Câlin](/images/journal/tokyo-south/calin-glass.jpg)
 
-![The counter at Câlin](/images/journal/tokyo-south/calin-counter.jpg)
-
 ![My developed photos from Palette Plaza](/images/journal/tokyo-south/palette-daimon.jpg)
 
 ## Gotanda and Musashi-Koyama
