@@ -38,7 +38,7 @@ In twelve days, I really took the time to discover the many sides of Tokyo. No l
 
 **Jimbocho,** the booksellers' district. The bookshop I had photographed there, the photo that went viral on Instagram, no longer exists.
 
-**The hydrangeas along the Toden Arakawa line.** In June, a road of hydrangeas follows the tram tracks.
+**The hydrangeas of Asukayama.** In June, a path of hydrangeas follows the railway between Oji and Kami-Nakazato stations.
 
 ![A guitar shop in Ochanomizu](/images/journal/tokyo-june/guitars.jpg)
 
@@ -165,5 +165,5 @@ Pick a direction each morning, take the metro or a train out there, and walk.
 **Where can you get film developed in Tokyo?**
 I went to Palette Plaza, in Shiba-Daimon and in Ebisu: about an hour of waiting.
 
-**When do the hydrangeas bloom along the Toden Arakawa line?**
+**When do the hydrangeas bloom at Asukayama?**
 In June.
