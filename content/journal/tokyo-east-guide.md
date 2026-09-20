@@ -1,0 +1,149 @@
+---
+title: "Tokyo east: Minowa, Iriya, Minami-Senju, Asakusa and Ueno"
+tile: Tokyo east
+date: 2026-09-20
+section: travel
+series: japan
+place: Tokyo, Japan
+cover: /images/journal/tokyo-east/skytree-street.jpg
+excerpt: The east of Tokyo, where I stayed in June 2026: dawn walks in Minowa and Minami-Senju, two izakaya in Asakusa, a lucky cat shrine found by chance, and Ueno at night.
+draft: false
+---
+
+The east was my base during my twelve days alone in Tokyo. I stayed near Minowa station, so this is where every day began and ended.
+
+![The Skytree at the end of a quiet street](/images/journal/tokyo-east/skytree-street.jpg)
+
+![A yellow tobacco shop on a corner](/images/journal/tokyo-east/tabaco.jpg)
+
+![A cyclist passing a yellow shopfront](/images/journal/tokyo-east/yellow-shop.jpg)
+
+## Tokyo east overview
+
+**When:** June 2026, on my own.
+
+**Where I stayed:** Juyoh Hotel, Kiyokawa 2-15-3, Taito, about ten minutes on foot from Minowa station. Futons, shared bathrooms.
+
+## Minowa and Iriya
+
+Low streets, small shops with old signs, and the Skytree at the end of almost every road. This is where I walked on my first afternoon, straight from the airport, and where I came back every evening.
+
+![A man in a white shirt walking past a garage](/images/journal/tokyo-east/salaryman.jpg)
+
+![An old coffee bean shop](/images/journal/tokyo-east/coffee-shop.jpg)
+
+![A building with yellow balconies](/images/journal/tokyo-east/yellow-balconies.jpg)
+
+![A café with a yellow awning on a corner](/images/journal/tokyo-east/cafe-corner.jpg)
+
+![An old woman crossing with her trolley](/images/journal/tokyo-east/old-woman-crossing.jpg)
+
+![The Skytree from a crossroads](/images/journal/tokyo-east/skytree.jpg)
+
+![An empty road at dusk](/images/journal/tokyo-east/night-road.jpg)
+
+![A corner shop at night](/images/journal/tokyo-east/night-corner.jpg)
+
+![A laundromat lit up at night](/images/journal/tokyo-east/laundromat.jpg)
+
+![A tobacco shop at night](/images/journal/tokyo-east/tobacco-night.jpg)
+
+![A restaurant behind red noren at night](/images/journal/tokyo-east/noren-night.jpg)
+
+![A karaage shop on a corner at night](/images/journal/tokyo-east/karaage-corner.jpg)
+
+![A lit-up karaage sign](/images/journal/tokyo-east/karaage-sign.jpg)
+
+![Hydrangeas in front of a restaurant at night](/images/journal/tokyo-east/hydrangeas-night.jpg)
+
+![A small bar lit up at night](/images/journal/tokyo-east/bar-night.jpg)
+
+## Minami-Senju and Sanya, at dawn
+
+I love making the most of dawn, especially in Japan. It is not called the land of the rising sun for nothing. On my first morning, I was out at six: metal shutters, bicycles, stacked crates, an izakaya still closed, and the first workers of the day.
+
+![A shop in the early morning sun](/images/journal/tokyo-east/dawn-shop.jpg)
+
+![Bicycles in front of rusty shutters](/images/journal/tokyo-east/shutters-bikes.jpg)
+
+![An izakaya still closed at dawn](/images/journal/tokyo-east/azuki-izakaya.jpg)
+
+![A pedestrian crossing at dawn](/images/journal/tokyo-east/dawn-crossing.jpg)
+
+![A woman picking up her things by the road](/images/journal/tokyo-east/morning-sweep.jpg)
+
+![Two road workers talking](/images/journal/tokyo-east/road-workers.jpg)
+
+![A black taxi at a crossroads](/images/journal/tokyo-east/black-taxi.jpg)
+
+![A house covered in plants](/images/journal/tokyo-east/green-house.jpg)
+
+![A man with his coffee outside a konbini](/images/journal/tokyo-east/man-coffee.jpg)
+
+## Asakusa
+
+**Where I ate:** both were very good.
+
+- **Kōen Sakaba Kawayon** (公園酒場 川よん), Asakusa 2-4-2, 150 metres from Asakusa station. Yakitori, tsukune and fried chicken at the counter. Counter and tatami rooms. Cash only, smoking allowed. Tuesday to Friday 4:30pm to 10pm, weekends from 2pm, closed on Mondays.
+- **Torigen Asakusa** (鳥元 浅草店), Asakusa 1-9-8, ground floor. Yakitori and sake. Weekdays from 4:45pm, weekends and public holidays from 11:30am, until 11pm.
+
+![Chicken skewers at Kawayon](/images/journal/tokyo-east/kawayon-yakitori.jpg)
+
+![Tsukune at Kawayon](/images/journal/tokyo-east/kawayon-tsukune.jpg)
+
+![Fried chicken at Kawayon](/images/journal/tokyo-east/kawayon-karaage.jpg)
+
+![Yakitori and egg yolk at Torigen](/images/journal/tokyo-east/torigen.jpg)
+
+**Imado Shrine,** Imado 1-5-22, fifteen minutes on foot from Asakusa station. The shrine of the lucky cats. I found it by chance while walking, and I loved it. Free, 9am to 4pm.
+
+**Hayata Camera** (Photo Bazaar Japan), Asakusa 2-1-3, a beautiful shop for connoisseurs, dedicated to film cameras, with its own repair workshop. 11:30am to 8pm, closed on Thursdays.
+
+**Film:** I bought my rolls at Palette Plaza Asakusa, near Kaminarimon. 10am to 7pm, closed on Wednesdays.
+
+![The two stone lucky cats at Imado Shrine](/images/journal/tokyo-east/imado-cats.jpg)
+
+![The entrance of Hayata Camera](/images/journal/tokyo-east/hayata-camera.jpg)
+
+![A covered scooter at a crossing](/images/journal/tokyo-east/scooter.jpg)
+
+![A Coca-Cola delivery](/images/journal/tokyo-east/coca-cola.jpg)
+
+![Rickshaws parked behind a curtain](/images/journal/tokyo-east/rickshaws.jpg)
+
+![A green building with plants](/images/journal/tokyo-east/green-building.jpg)
+
+![A crane and a worker in a side street](/images/journal/tokyo-east/crane.jpg)
+
+![A man at work in his garage](/images/journal/tokyo-east/workshop.jpg)
+
+![A delivery cyclist](/images/journal/tokyo-east/cyclist.jpg)
+
+![Bottle crates and vending machines](/images/journal/tokyo-east/bottle-crates.jpg)
+
+![A building with round windows](/images/journal/tokyo-east/round-windows.jpg)
+
+## Ueno and Okachimachi, at night
+
+I only knew Ueno by day, for shopping. At night, the atmosphere is completely different, and I loved it.
+
+![A shopping street in Ueno seen from above](/images/journal/tokyo-east/ueno-street.jpg)
+
+![The big crossing in Ueno at night](/images/journal/tokyo-east/ueno-crossing.jpg)
+
+![A man in front of a soba restaurant](/images/journal/tokyo-east/soba.jpg)
+
+![Gashapon machines](/images/journal/tokyo-east/gashapon.jpg)
+
+![A wall of plush toys](/images/journal/tokyo-east/plush-wall.jpg)
+
+## Tokyo east FAQ
+
+**Where to stay in the east of Tokyo?**
+I stayed at the Juyoh Hotel, ten minutes on foot from Minowa station.
+
+**Where to buy film in Asakusa?**
+At Palette Plaza Asakusa, near Kaminarimon.
+
+**Is Ueno worth it at night?**
+Yes. If you only know it by day, the change of atmosphere is incredible.
