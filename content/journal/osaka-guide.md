@@ -103,7 +103,7 @@ A tiny yakitori counter in Higashishinsaibashi, run by a couple in their seventi
 
 ## Where we drank: Common
 
-1-12-24 Shimanouchi, Chuo-ku. The wine bar next to our Airbnb, where we celebrated our eight years together.
+1-12-24 Shimanouchi, Chuo-ku, and [@common_mami](https://www.instagram.com/common_mami/) on Instagram. The wine bar next to our Airbnb, where we celebrated our eight years together.
 
 ![Wine at Common](/images/journal/osaka/common-wine.jpg)
 
@@ -140,7 +140,7 @@ Two: the DX store at Daimaru Shinsaibashi, next to the Pokémon Café, and the b
 Yes. It is reservation only, and bookings open at 6pm Japan time, 31 days before.
 
 **Where to drink wine in Osaka?**
-Common, at 1-12-24 Shimanouchi, in Chuo-ku.
+Common, at 1-12-24 Shimanouchi, in Chuo-ku, on Instagram at @common_mami.
 
 **Where to eat yakitori in Osaka?**
 Iccho, in Higashishinsaibashi, a counter with eight seats run by an older couple. Cash only, closed on Sundays.
