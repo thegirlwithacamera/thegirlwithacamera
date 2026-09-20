@@ -72,13 +72,26 @@ Osaka has a lot of vintage shops, and it is the reason I am writing a separate g
 
 **My advice:** if you love vintage, save your wallet for Osaka. Do not spend it all in Tokyo.
 
-### Two small things I loved
+### The Pokémon Centers
 
-The manhole covers, painted differently from one district to the next, and the Pokémon Center for the pure joy of it.
-
-![A painted manhole cover in Osaka](/images/journal/osaka/manhole.jpg)
+I am a Pokémon fan, so this was not optional.
 
 ![Inside the Pokémon Center](/images/journal/osaka/pokemon-centre.jpg)
+
+**Good to know:** Osaka has two Pokémon Centers.
+
+- **Pokémon Center Osaka DX,** on the 9th floor of the Daimaru Shinsaibashi Main Building, connected underground to exit 4 of Shinsaibashi station. Open 10am to 8pm. It is the experience store, with the themed displays, and the Pokémon Café right next door.
+- **Pokémon Center Osaka,** on the 13th floor of LUCUA 1100 in Umeda, five minutes from Osaka station. Bigger, more stock, the card counter, and Nintendo Osaka on the same floor. This is the one for a serious haul.
+
+Both carry **Kansai exclusives** you will not find in Tokyo, which is worth knowing if you are doing both cities.
+
+**The Pokémon Café** is reservation only, no walk-ins. Bookings open at 6pm Japan time, exactly 31 days before the date you want, online and in English, and the good slots go in the first minutes. Weekday lunchtimes are the easiest.
+
+### The manhole covers
+
+Painted differently from one district to the next, and worth looking down for.
+
+![A painted manhole cover in Osaka](/images/journal/osaka/manhole.jpg)
 
 ## Where we ate: Iccho
 
@@ -119,6 +132,12 @@ Osaka. Keep your budget for it rather than spending it in Tokyo.
 
 **How much is Osaka Castle?**
 The park is free, the keep is 600 yen.
+
+**Is there a Pokémon Center in Osaka?**
+Two: the DX store at Daimaru Shinsaibashi, next to the Pokémon Café, and the bigger one on the 13th floor of LUCUA 1100 in Umeda.
+
+**Do you need to book the Pokémon Café?**
+Yes. It is reservation only, and bookings open at 6pm Japan time, 31 days before.
 
 **Where to drink wine in Osaka?**
 Common, at 1-12-24 Shimanouchi, in Chuo-ku.
