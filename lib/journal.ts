@@ -252,6 +252,19 @@ export function renderMarkdown(md: string): string {
         const cap = img[1] ? `<figcaption>${esc(img[1])}</figcaption>` : "";
         return { kind: "img", ratio: imageRatio(src), html: `<figure><img src="${esc(src)}" alt="${esc(img[1])}" loading="lazy" />${cap}</figure>` };
       }
+      // Vidéo du site (20/09) : une ligne seule avec le chemin du fichier,
+      // par exemple /videos/journal/kyoto-fushimi.mp4, éventuellement suivie
+      // d'un espace et d'une affiche .jpg. Le son est coupé au départ, le
+      // visiteur a les contrôles du navigateur pour l'allumer.
+      const vid = block.match(/^(\/videos\/[^\s]+\.mp4)(?:\s+(\/[^\s]+\.jpg))?$/);
+      if (vid) {
+        const poster = vid[2] ? ` poster="${esc(vid[2])}"` : "";
+        return {
+          kind: "img",
+          ratio: 9 / 16,
+          html: `<figure class="clip"><video src="${esc(vid[1])}"${poster} controls muted loop playsinline preload="metadata"></video></figure>`,
+        };
+      }
       // Reel Instagram intégré (17/09) : une ligne seule contenant le lien
       // du reel ou du post, par exemple https://www.instagram.com/reel/XXXX/
       const ig = block.match(/^https:\/\/www\.instagram\.com\/(reel|p)\/([A-Za-z0-9_-]+)\/?$/);

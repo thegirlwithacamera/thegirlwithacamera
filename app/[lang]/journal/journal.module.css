@@ -169,3 +169,6 @@
 /* Légende sous la tuile (18/09) : "City guide, Vienna". */
 .tileWrap { width: calc((100% - 3 * var(--gutter)) / 4); display: flex; flex-direction: column; gap: 10px; }
 .tileCaption { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone); }
+
+/* Vidéo dans un article (20/09) : même largeur que les photos de la rangée. */
+.body :global(.section .media figure.clip video) { width: 100%; height: auto; display: block; background: #000; }

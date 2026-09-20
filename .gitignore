@@ -59,6 +59,10 @@ public/videos/*
 # Plans drone des bandeaux Destinations et Journal (16/09), compressés en 1080p.
 !public/videos/banners
 !public/videos/banners/**
+
+# Videos embedded in journal articles (20/09), compressed like the others.
+!public/videos/journal
+!public/videos/journal/**
 public/videos/creator/**/.DS_Store
 
 # typescript
