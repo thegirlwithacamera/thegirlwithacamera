@@ -36,16 +36,30 @@ Shinsaibashi-suji 1-2-2, open every day from 11am to 8pm.
 
 I came out with a Louis Vuitton Memphis in Epi leather, for **220 euros**. In Europe, the same bag in the same condition goes for two to three times that, when you find it at all.
 
-### The other addresses on the crossing
+### Which shop for which budget
 
-There are far more than these, but these are the ones worth naming.
+Even the most expensive shops here are cheaper than buying the same piece at home. What changes from one shop to the next is the condition, and how much of the stock is close to new.
 
-- **OKURA Shinsaibashi**, Shinsaibashi-suji 1-5-30, in THE ATRiUM. Hermès and gold, open 11am to 9pm.
-- **ALLU Shinsaibashi**, Shinsaibashi-suji 2-1-19. The big polished one, full runs of Hermès colours, 11am to 9pm.
-- **Brand Gallery**, Higashi-Shinsaibashi 1-17-27. Bags and jewellery, closed on Wednesdays.
-- **LUX&MO**, Souemonchō 4-10. Smaller, calm, noon to 9pm.
-- **LUCA Vintage**, Souemonchō 5-31. Cheaper, more Coach and Dior, 1pm to 10pm.
+**Almost new, the highest prices.** Showroom shops, where "used" often looks unworn. This is where you go for Hermès, or a flap bag in perfect condition.
+
+- **ALLU**, Shinsaibashi-suji 2-1-19, 11am to 8pm.
+- **OKURA**, on Shinsaibashi-suji, 11am to 9pm.
+- **Brand Off**, Shinsaibashi-suji 1-4-12, in the basement, 11am to 8pm.
+- **KOMEHYO**, Shinsaibashi-suji 1-5-31, over 4,000 bags.
+- **GINZO**, Shinsaibashi-suji 1-5-28, 11am to 7pm.
+
+**Real vintage, in good condition.** Older pieces, carefully chosen, priced between the two other levels.
+
+- **Vintage Qoo**, Shinsaibashi-suji 1-1-16, 11:30am to 8pm. Over 3,000 pieces from the 1960s to the 2010s, on two floors.
+- **Brand Gallery**, Higashi-Shinsaibashi 1-17-27, closed on Wednesdays.
+- **Amico Vintage**, Okuno Building, second floor, Higashi-Shinsaibashi.
+
+**The bargains.** Busier, less polished shops. This is where the old Epi Vuittons are.
+
+- **Brand Jungle**, where I found my Memphis.
 - **Kindal Amerikamura**, Nishishinsaibashi 2-18-7. Four floors, clothes as well as bags, 11am to 8pm.
+- **2nd Street**, Shinsaibashi-suji 2-5-3, second floor, 11am to 9pm.
+- **LUCA Vintage**, Souemonchō 5-31, more Coach and Dior, 1pm to 10pm.
 
 ## What things actually cost
 
@@ -56,14 +70,14 @@ Tags I photographed in November 2025, so you know what to expect. Prices are wha
 - **Alma in yellow Epi,** grade AB: ¥59,400, about €330.
 - **Speedy in red Epi,** grade Used B: ¥70,000, about €390.
 - **Jasmin in black Epi,** grade Used A: ¥79,200, about €440.
-- **Lussac in yellow Epi:** ¥52,800, about €295.
+- **Saint-Jacques in yellow Epi:** ¥52,800, about €290.
 - **My Memphis in Epi:** 220 euros.
 
 **The others**
 
-- **Fendi Mamma Baguette in black patent,** grade B: ¥88,800, about €495.
-- **Dior Trotter barrel bag,** vintage: ¥159,900, about €890.
-- **Chanel Maxi flap in black lambskin,** 34 cm, gold hardware, grade Used AB, with its box: ¥462,000, about €2,570.
+- **Fendi Mamma Baguette in black patent,** grade B: ¥88,800, about €490.
+- **Dior Trotter barrel bag,** vintage: ¥175,890, about €970.
+- **Chanel Maxi flap in black lambskin,** 34 cm, gold hardware, grade Used AB, with its box: ¥462,000, about €2,550.
 
 **What that tells you:** the Epi Vuittons sit between €290 and €440, a Fendi around €500, and a Maxi Chanel is still a Maxi Chanel. The bargains are in the models Europe forgot, not in the pieces everyone wants.
 
