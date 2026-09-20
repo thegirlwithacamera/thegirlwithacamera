@@ -90,7 +90,7 @@ A tiny yakitori counter in Higashishinsaibashi, run by a couple in their seventi
 
 ## Where we drank: Common
 
-The wine bar next to our Airbnb, where we celebrated our eight years together.
+1-12-24 Shimanouchi, Chuo-ku. The wine bar next to our Airbnb, where we celebrated our eight years together.
 
 ![Wine at Common](/images/journal/osaka/common-wine.jpg)
 
@@ -119,6 +119,9 @@ Osaka. Keep your budget for it rather than spending it in Tokyo.
 
 **How much is Osaka Castle?**
 The park is free, the keep is 600 yen.
+
+**Where to drink wine in Osaka?**
+Common, at 1-12-24 Shimanouchi, in Chuo-ku.
 
 **Where to eat yakitori in Osaka?**
 Iccho, in Higashishinsaibashi, a counter with eight seats run by an older couple. Cash only, closed on Sundays.
