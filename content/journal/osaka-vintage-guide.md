@@ -20,6 +20,8 @@ Japan has the best second hand luxury in the world, for three reasons: people he
 
 Around the crossing of Shinsaibashi-suji and Nagahori-dori, and in the streets of Higashi-Shinsaibashi just east of it, almost every other shopfront sells second hand luxury. There are dozens of them, within a few hundred metres. I did all of them, in one afternoon.
 
+And I saw models and colours I had never seen before, which says something: I know these bags well. Japan kept pieces that were only sold here, or that Europe stopped importing years ago.
+
 ![A wall of second hand bags](/images/journal/osaka-vintage/colour-row.jpg)
 
 ![Inside one of the shops](/images/journal/osaka-vintage/shop-inside.jpg)
@@ -87,6 +89,7 @@ From 1 November 2026, the instant exemption ends: you pay the full price includi
 - **Do Osaka before Tokyo.** Same brands, lower prices.
 - **Go in with a model in mind**, and compare across three shops before buying. They are five minutes apart.
 - **Check the letter grade,** and ask to see the corners and the strap, which is where these bags age.
+- **Look for the pieces you cannot find at home.** Colours and models that never reached Europe, or that left it decades ago, are the real reason to buy here rather than online.
 
 ## Osaka vintage FAQ
 
