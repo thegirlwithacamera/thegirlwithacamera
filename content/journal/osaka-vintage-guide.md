@@ -49,10 +49,25 @@ There are far more than these, but these are the ones worth naming.
 
 ## What things actually cost
 
-Two tags I photographed, so you know what to expect:
+Tags I photographed in November 2025, so you know what to expect. Prices are what was on the label, tax included where the shop showed both.
 
-- **Louis Vuitton Alma in yellow Epi,** graded AB: ¥54,000 before tax, ¥59,400 with it. About €330.
-- **Louis Vuitton Speedy in red Epi,** graded Used B: ¥63,636 before tax, ¥70,000 with it. About €390.
+**Louis Vuitton**
+
+- **Alma in yellow Epi,** grade AB: ¥59,400, about €330.
+- **Speedy in red Epi,** grade Used B: ¥70,000, about €390.
+- **Jasmin in black Epi,** grade Used A: ¥79,200, about €440.
+- **Lussac in yellow Epi:** ¥52,800, about €295.
+- **My Memphis in Epi:** 220 euros.
+
+**The others**
+
+- **Fendi Mamma Baguette in black patent,** grade B: ¥88,800, about €495.
+- **Dior Trotter barrel bag,** vintage: ¥159,900, about €890.
+- **Chanel Maxi flap in black lambskin,** 34 cm, gold hardware, grade Used AB, with its box: ¥462,000, about €2,570.
+
+**What that tells you:** the Epi Vuittons sit between €290 and €440, a Fendi around €500, and a Maxi Chanel is still a Maxi Chanel. The bargains are in the models Europe forgot, not in the pieces everyone wants.
+
+**One caveat:** these are November 2025 prices, on those particular bags. Stock changes weekly, and so does the yen.
 
 ![A Louis Vuitton Alma in Epi leather, with its price tag](/images/journal/osaka-vintage/lv-alma-tag.jpg)
 
