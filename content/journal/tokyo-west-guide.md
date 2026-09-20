@@ -162,7 +162,7 @@ Shimokitazawa is the neighbourhood of vintage clothing, small theatres and live 
 
 **Koenji,** on the JR Chuo line, is the other big vintage neighbourhood of Tokyo, with live music bars and a famous summer dance festival, the Awa Odori. There are several Trefac shops here; mine is the big one, on a corner. Around the station, residential streets, laundromats and nursery carts full of toddlers.
 
-**Nakano,** one stop further towards Shinjuku, is the home of Nakano Broadway, the building of manga, anime and collectibles I write about in the [first timer guide](/en/journal/tokyo-first-timer-guide).
+**Nakano,** one stop further towards Shinjuku, is the home of Nakano Broadway, the building of manga, anime and collectibles I write about in the [first timer guide](/en/journal/tokyo-first-timer-guide). I came back one evening, in the rain, for the izakaya and the little alleys around the station.
 
 ![A vending machine and two stools](/images/journal/tokyo-west/koenji-vending.jpg)
 
@@ -181,6 +181,26 @@ Shimokitazawa is the neighbourhood of vintage clothing, small theatres and live 
 ![A sequin skirt at Trefac](/images/journal/tokyo-west/trefac-sequins.jpg)
 
 ![A pink vintage shop in Koenji](/images/journal/tokyo-west/koenji-pink-shop.jpg)
+
+<!-- new row -->
+
+![Hachikai izakaya in Nakano at dusk](/images/journal/tokyo-west/nakano-hachikai.jpg)
+
+![A gyoza stand under a parasol at night](/images/journal/tokyo-west/nakano-gyoza.jpg)
+
+![A gyoza shop with a red lantern](/images/journal/tokyo-west/nakano-gyoza-door.jpg)
+
+![A sushi restaurant on a corner](/images/journal/tokyo-west/nakano-sushi.jpg)
+
+![A narrow alley in Nakano](/images/journal/tokyo-west/nakano-alley.jpg)
+
+![A photographer in an alley](/images/journal/tokyo-west/nakano-photographer.jpg)
+
+![Bar Strawberry Fields](/images/journal/tokyo-west/nakano-strawberry.jpg)
+
+![Cooks behind a window](/images/journal/tokyo-west/nakano-window.jpg)
+
+![The Chuo line platform at night](/images/journal/tokyo-west/nakano-station.jpg)
 
 ## Tokyo west FAQ
 

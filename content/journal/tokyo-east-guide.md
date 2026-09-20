@@ -189,6 +189,20 @@ I only knew Ueno by day, for shopping. At night, the atmosphere is completely di
 
 ![A wall of plush toys](/images/journal/tokyo-east/plush-wall.jpg)
 
+<!-- new row -->
+
+![An izakaya entrance in Ueno at night](/images/journal/tokyo-east/ueno-izakaya-door.jpg)
+
+![A crowded standing counter](/images/journal/tokyo-east/ueno-counter.jpg)
+
+![Lanterns and a man under a clear umbrella](/images/journal/tokyo-east/ueno-lanterns.jpg)
+
+![Customers under paper lanterns](/images/journal/tokyo-east/ueno-okinawa.jpg)
+
+![A yakitori stand under the tracks](/images/journal/tokyo-east/ueno-yakitori.jpg)
+
+![A tempura and sake bar](/images/journal/tokyo-east/ueno-tempura.jpg)
+
 ## Tokyo east FAQ
 
 **Where to stay in the east of Tokyo?**
