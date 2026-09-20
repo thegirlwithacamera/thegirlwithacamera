@@ -74,7 +74,7 @@ Osaka has a lot of vintage shops, and it is the reason I am writing a separate g
 
 ### The Pokémon Centers
 
-I am a Pokémon fan, so this was not optional.
+I am a Pokémon fan, so this was not optional. I did not do the café, but I came out with plush toys.
 
 ![Inside the Pokémon Center](/images/journal/osaka/pokemon-centre.jpg)
 
@@ -85,7 +85,7 @@ I am a Pokémon fan, so this was not optional.
 
 Both carry **Kansai exclusives** you will not find in Tokyo, which is worth knowing if you are doing both cities.
 
-**The Pokémon Café** is reservation only, no walk-ins. Bookings open at 6pm Japan time, exactly 31 days before the date you want, online and in English, and the good slots go in the first minutes. Weekday lunchtimes are the easiest.
+**The Pokémon Café**, which we skipped, is reservation only, no walk-ins. Bookings open at 6pm Japan time, exactly 31 days before the date you want, online and in English, and the good slots go in the first minutes. Weekday lunchtimes are the easiest.
 
 ### The manhole covers
 
