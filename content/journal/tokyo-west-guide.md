@@ -5,7 +5,7 @@ date: 2026-09-20
 section: travel
 series: japan
 place: Tokyo, Japan
-cover: /images/journal/tokyo-west/match-daruma.jpg
+cover: /images/journal/tokyo-west/kabukicho-rain.jpg
 excerpt: The west of Tokyo in June 2026: Omotesando at 7am, film shopping in Shibuya, the day Japan won, a haircut, curry in a fantasy basement in Kabukicho, and vintage in Shimokitazawa and Koenji.
 draft: false
 ---
