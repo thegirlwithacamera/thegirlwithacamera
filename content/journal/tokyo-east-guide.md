@@ -117,6 +117,8 @@ On my first morning, I was out at six: metal shutters, bicycles, stacked crates,
 
 ![The entrance of Hayata Camera](/images/journal/tokyo-east/hayata-camera.jpg)
 
+<!-- new row -->
+
 ![A covered scooter at a crossing](/images/journal/tokyo-east/scooter.jpg)
 
 ![A Coca-Cola delivery](/images/journal/tokyo-east/coca-cola.jpg)
@@ -146,6 +148,8 @@ I only knew Ueno by day, for shopping. At night, the atmosphere is completely di
 ![The big crossing in Ueno at night](/images/journal/tokyo-east/ueno-crossing.jpg)
 
 ![A man in front of a soba restaurant](/images/journal/tokyo-east/soba.jpg)
+
+<!-- new row -->
 
 ![Gashapon machines](/images/journal/tokyo-east/gashapon.jpg)
 

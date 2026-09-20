@@ -237,11 +237,15 @@ function inline(s: string): string {
 // dessous (trois par ligne, deux si elles sont deux), sans grands blancs.
 export function renderMarkdown(md: string): string {
   const blocks = md.replace(/\r\n/g, "\n").split(/\n{2,}/);
-  type Part = { html: string; kind: "img" | "h2" | "h3" | "text"; ratio?: number };
+  type Part = { html: string; kind: "img" | "h2" | "h3" | "text" | "brk"; ratio?: number };
   const parts: Part[] = blocks
     .map((b): Part | null => {
       const block = b.trim();
       if (!block) return null;
+      // 20/09 (Sandrine) : jamais une photo iPhone et une photo Ricoh sur la
+      // même rangée. Une ligne "<!-- new row -->" entre deux groupes de
+      // photos force une nouvelle rangée.
+      if (block === "<!-- new row -->") return { kind: "brk", html: "" };
       const img = block.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/);
       if (img) {
         const src = /^(https?:\/\/|\/)/.test(img[2]) ? img[2] : "";
@@ -291,21 +295,28 @@ export function renderMarkdown(md: string): string {
   }
   return sections
     .map((sec) => {
-      const text = sec.filter((x) => x.kind !== "img").map((x) => x.html).join("\n");
+      const text = sec.filter((x) => x.kind !== "img" && x.kind !== "brk").map((x) => x.html).join("\n");
       const imgs = sec.filter((x) => x.kind === "img");
+      const groups: Part[][] = [[]];
+      for (const x of sec) {
+        if (x.kind === "brk" && groups[groups.length - 1].length) groups.push([]);
+        else if (x.kind === "img") groups[groups.length - 1].push(x);
+      }
       // Rangées de trois (deux par deux s'il y en a deux ou quatre). Chaque
       // photo prend une largeur proportionnelle à son format : même hauteur,
       // photo entière, aucun recadrage.
       // Découpage en rangées de 3, sauf 2 et 4 qui vont deux par deux. Jamais
       // une photo seule en fin de bloc (18/09) : 7 donne 3+2+2, 10 donne 3+3+2+2.
       const rows: Part[][] = [];
-      let rest = imgs.slice();
-      if (rest.length === 2 || rest.length === 4) {
-        while (rest.length) rows.push(rest.splice(0, 2));
-      } else {
-        while (rest.length) {
-          const take = rest.length % 3 === 1 && rest.length > 3 ? 2 : Math.min(3, rest.length);
-          rows.push(rest.splice(0, take));
+      for (const g of groups) {
+        const rest = g.slice();
+        if (rest.length === 2 || rest.length === 4) {
+          while (rest.length) rows.push(rest.splice(0, 2));
+        } else {
+          while (rest.length) {
+            const take = rest.length % 3 === 1 && rest.length > 3 ? 2 : Math.min(3, rest.length);
+            rows.push(rest.splice(0, take));
+          }
         }
       }
       const media = rows
