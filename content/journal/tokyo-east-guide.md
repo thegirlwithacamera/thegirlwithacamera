@@ -1,5 +1,5 @@
 ---
-title: "Tokyo east: Minowa, Iriya, Minami-Senju, Asakusa and Ueno"
+title: "Tokyo east: Minowa, Iriya, Minami-Senju, Nippori, Asakusa and Ueno"
 tile: Tokyo east
 date: 2026-09-20
 section: travel
@@ -29,6 +29,8 @@ I chose it because I wanted to be in the real life of Tokyo, not in a hotel dist
 **Getting around:** Minowa station is on the Tokyo Metro Hibiya line, which runs straight to Ueno, Akihabara and Ginza. Minowabashi, next door, is the terminus of the Toden Arakawa line, the last tram line in Tokyo.
 
 **When to go out:** early. I was up at five every morning.
+
+**Where I walked:** most of Taito and the south of Arakawa: Minowa, Iriya, Minami-Senju, Nippori, Asakusa, Kuramae, Asakusabashi, Ueno and Okachimachi, and across the Sumida river.
 
 ## Minowa and Iriya
 
@@ -91,6 +93,26 @@ On my first morning, I was out at six: metal shutters, bicycles, stacked crates,
 ![A house covered in plants](/images/journal/tokyo-east/green-house.jpg)
 
 ![A man with his coffee outside a konbini](/images/journal/tokyo-east/man-coffee.jpg)
+
+## Nippori Fabric Town
+
+The fabric district, a short walk from my hotel. I shot it on film.
+
+Around ninety shops of fabrics, trimmings and sewing supplies line the streets near Nippori station. Most open from about 9am to 7pm; on Sundays, hours vary from shop to shop.
+
+**Tomato,** the best known, Higashi-Nippori 6-44-6: five floors of fabric, and several annexes along the street. 10:30am to 6pm, closed on Sundays and public holidays.
+
+![The Tomato building in Nippori](/images/journal/tokyo-east/nippori-tomato.jpg)
+
+![Umbrellas crossing the street in the fabric district](/images/journal/tokyo-east/nippori-crossing.jpg)
+
+![A woman under a clear umbrella](/images/journal/tokyo-east/nippori-umbrella.jpg)
+
+![Rolls of fabric offcuts outside a shop](/images/journal/tokyo-east/nippori-offcuts.jpg)
+
+![Inside a fabric shop](/images/journal/tokyo-east/nippori-shop.jpg)
+
+![The Nagato fabric shop at dusk](/images/journal/tokyo-east/nippori-nagato.jpg)
 
 ## Asakusa
 
