@@ -7,7 +7,7 @@ series: japan
 place: Osaka, Japan
 cover: /images/journal/osaka/red-lanterns.jpg
 excerpt: Three days in Osaka in November: the contrast between the castle, Dotonbori and the quiet streets, a tiny yakitori counter, and the best vintage shopping in Japan.
-draft: true
+draft: false
 ---
 
 We were in Osaka from 6 to 10 November 2025, with a day trip to Nara in the middle, and a 6am train to Tokyo on the last morning. So three full days in the city.
