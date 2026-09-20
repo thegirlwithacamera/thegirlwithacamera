@@ -7,7 +7,7 @@ series: japan
 place: Tokyo, Japan
 cover: /images/journal/tokyo-center/jimbocho-walker.jpg
 excerpt: The center of Tokyo in June 2026: film cameras in Akihabara, the bookshops of Jimbocho in the rain, the guitar street of Ochanomizu, Tokyo Station, the office towers of Otemachi, and the alleys of Kagurazaka.
-draft: true
+draft: false
 ---
 
 The center was several days of my twelve days alone in Tokyo. Each morning I picked a direction, took the metro out there, and walked.
