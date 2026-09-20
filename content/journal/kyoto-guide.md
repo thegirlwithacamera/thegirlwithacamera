@@ -38,7 +38,12 @@ The owner is lovely, and he runs several apartments in the same building, each l
 
 **Why the location is good:** it is Nishijin, quiet and residential, three minutes on foot from Funaoka Onsen and five from Sarasa Nishijin, with the Golden Pavilion about fifteen minutes away on foot. The apartment has a kitchen, a washing machine, free bikes and a pocket wifi.
 
-> À COMPLÉTER : ouvre la fiche sur booking.com (le site normal, pas l'app pro) et copie-moi l'adresse de la page, je mets le lien affilié.
+Four of his apartments, if you want to book one:
+
+- [Take it easy 204, the one we had](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Ffree-bike-and-free-portable-wifi-204-take-it-easy.html)
+- [Take it easy 304](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Ffree-bike-and-free-wifi-304-take-it-easy.html)
+- [Take it easy 301](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Ffree-bike-free-portable-wifi-301-take-it-easy.html)
+- [Another one of his flats](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fjp%2Ffree-bike-amp-free-portable-wifi-he.html)
 
 ## Best things to do in Kyoto
 
@@ -139,3 +144,5 @@ Sarasa Nishijin, a café inside the former Fujinomori sento.
 
 **Is photography allowed in Gion?**
 Not in the private alleys, where it is banned and fined. The main streets are fine.
+
+Affiliate disclosure: some links in this article are affiliate links. If you book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)
