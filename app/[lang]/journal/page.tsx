@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     lang: "en",
     path: "/journal",
     title: "Journal",
-    description: "Travel stories and guides by Sandrine Ceuppens, travel photographer and content creator.",
+    description: "Travel guides, and notes on the cameras and edits I use, by Sandrine Ceuppens, travel photographer and content creator.",
   });
 }
 
@@ -60,11 +60,11 @@ export default async function JournalPage({ params }: Props) {
           sound={false}
         />
         <span className={s.bannerVeil} aria-hidden="true" />
-        <p className={s.bannerWord}>Travel Journal</p>
+        <p className={s.bannerWord}>The Journal</p>
       </section>
       <PageHead
-        title="Notes from *the road*."
-        lede="Stories and guides from the places I photograph: where to stay, where to walk, and what a city looks like before it wakes up."
+        title="Travel, and *the camera in my hand*."
+        lede="Travel guides from the places I photograph, and honest notes on the cameras and edits I use every day."
         split
       />
       {posts.length === 0 ? (
