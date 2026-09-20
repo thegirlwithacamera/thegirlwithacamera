@@ -66,9 +66,19 @@ The neon, the canal, the Glico running man, the giant crab. It is worth seeing, 
 
 ### Vintage shopping
 
-Osaka has a lot of vintage shops, and it is the reason I am writing a separate guide about them.
+Osaka has a lot of vintage shops, and it is the reason I am writing a separate guide about them. Second hand luxury in particular: bags, wallets, jewellery, at prices you will not find in Europe.
+
+![Vintage bags in an Osaka shop](/images/journal/osaka/vintage-bags.jpg)
 
 **My advice:** if you love vintage, save your wallet for Osaka. Do not spend it all in Tokyo.
+
+### Two small things I loved
+
+The manhole covers, painted differently from one district to the next, and the Pokémon Center for the pure joy of it.
+
+![A painted manhole cover in Osaka](/images/journal/osaka/manhole.jpg)
+
+![Inside the Pokémon Center](/images/journal/osaka/pokemon-centre.jpg)
 
 ## Where we ate: Iccho
 
@@ -77,6 +87,14 @@ A tiny yakitori counter in Higashishinsaibashi, run by a couple in their seventi
 ![The front of Iccho](/images/journal/osaka/iccho-front.jpg)
 
 **Good to know:** Iccho seats eight people at a counter, opens from 6pm to 10pm, and is closed on Sundays. It is cash only, with a seat charge of 330 yen per person and one drink per person. Book ahead if you can: it fills up fast.
+
+## Where we drank: Common
+
+The wine bar next to our Airbnb, where we celebrated our eight years together.
+
+![Wine at Common](/images/journal/osaka/common-wine.jpg)
+
+![Two glasses at the bar](/images/journal/osaka/common-glasses.jpg)
 
 ## Things to know before you go
 
