@@ -25,9 +25,13 @@ Kyoto took my heart.
 
 ## Where we stayed
 
-A guesthouse in Nishijin, in the north west of the city, with free bikes and wifi. The owner is lovely, and he runs several places, each with its own listing.
+We rented one of the "Free bike and free WIFI, Take it easy" apartments, at 12-22 Murasakino Nishifujinomori-chō, in Kita Ward. Ours was number 204.
 
-> À COMPLÉTER : le nom exact du logement, et si tu veux que je mette le lien Booking affilié de celui-là.
+The owner is lovely, and he runs several apartments in the same building, each listed separately, so check the numbers when you book.
+
+**Why the location is good:** it is Nishijin, quiet and residential, three minutes on foot from Funaoka Onsen and five from Sarasa Nishijin, with the Golden Pavilion about fifteen minutes away on foot. The apartment has a kitchen, a washing machine, free bikes and a pocket wifi.
+
+> À COMPLÉTER : ouvre la fiche sur booking.com (le site normal, pas l'app pro) et copie-moi l'adresse de la page, je mets le lien affilié.
 
 ## Best things to do in Kyoto
 
