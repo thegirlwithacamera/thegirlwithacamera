@@ -172,3 +172,10 @@
 
 /* Vidéo dans un article (20/09) : même largeur que les photos de la rangée. */
 .body :global(.section .media figure.clip video) { width: 100%; height: auto; display: block; background: #000; }
+
+/* 20/09 : la règle .tileWrap ci-dessus écrasait les media queries plus haut,
+   d'où quatre tuiles minuscules par rangée sur mobile et des noms coupés.
+   On les répète ici, après, pour qu'elles s'appliquent. */
+@media (max-width: 900px) { .tileWrap { width: calc((100% - var(--gutter)) / 2); } }
+@media (max-width: 767px) { .tileWrap { width: calc((100% - 12px) / 2); } .tileLabel { font-size: 1.375rem; } }
+.tileLabel { max-width: 100%; overflow-wrap: break-word; }
