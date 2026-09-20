@@ -95,6 +95,14 @@ The rest of my Kyoto was the streets: the temples between two neighbourhoods, th
 
 ![An old facade in Kyoto](/images/journal/kyoto/old-facade.jpg)
 
+### The Pokémon Center
+
+I went, of course. I came out with the geisha Pikachu.
+
+![The geisha Pikachu keyrings from Kyoto](/images/journal/kyoto/pikachu-geisha.jpg)
+
+**Good to know:** Pokémon Center Kyoto is in the Takashimaya T8 building, near Kawaramachi station. It is smaller than the Osaka stores, but it carries Kyoto exclusives, with designs that borrow from local motifs, yukata patterns and woodblock prints. Those are the ones to buy here, because you will not find them anywhere else.
+
 ### Arashiyama
 
 We spent a morning there on the 4th. It has its own guide here: [Arashiyama travel guide](/en/journal/arashiyama-guide).
@@ -141,6 +149,9 @@ Yes, at Funaoka Onsen, in Kita Ward.
 
 **Where can you eat in an old bathhouse in Kyoto?**
 Sarasa Nishijin, a café inside the former Fujinomori sento.
+
+**Is there a Pokémon Center in Kyoto?**
+Yes, in the Takashimaya T8 building near Kawaramachi, with Kyoto exclusive designs.
 
 **Is photography allowed in Gion?**
 Not in the private alleys, where it is banned and fined. The main streets are fine.
