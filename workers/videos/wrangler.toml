@@ -1,0 +1,11 @@
+name = "tgwac-videos"
+main = "src/index.js"
+compatibility_date = "2026-09-20"
+
+# Publie sur une adresse workers.dev : aucun domaine a brancher.
+workers_dev = true
+
+# Le bucket est attache au Worker : aucune cle d'acces ne circule.
+[[r2_buckets]]
+binding = "VIDEOS"
+bucket_name = "tgwac-videos"

@@ -22,6 +22,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import s from "./CaseFilms.module.css";
+import { videoUrl } from "@/lib/video-url";
 
 export type CaseFilmItem = { src: string; poster?: string; label?: string };
 
@@ -78,7 +79,7 @@ function Film({ item, lang }: { item: CaseFilmItem; lang: "fr" | "en" }) {
       <div className={s.frame} style={ratio ? { aspectRatio: String(ratio) } : undefined}>
         <video
           ref={ref}
-          src={item.src}
+          src={videoUrl(item.src)}
           poster={item.poster}
           playsInline
           muted

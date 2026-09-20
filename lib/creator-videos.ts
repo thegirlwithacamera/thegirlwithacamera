@@ -11,6 +11,66 @@ const CREATOR_DIR = path.join(process.cwd(), "public", "videos", "creator");
 const VIDEO_RE = /\.(mp4|mov|webm)$/i;
 const POSTER_EXTS = [".jpg", ".jpeg", ".png", ".webp"];
 
+// Les fichiers video ne sont plus dans le depot : ils pesaient 333 Mo et
+// repartaient en copie a chaque deploiement. Ils vivent sur un stockage
+// Cloudflare R2, et le depot ne garde que les posters (6 Mo) et un
+// manifeste qui decrit l'arborescence du dossier.
+//
+// Rien ne change dans la maniere de travailler : on pose la video dans le
+// bon sous-dossier de public/videos/creator, on lance `npm run videos`,
+// et le script l'envoie sur R2 puis met le manifeste a jour.
+
+type Manifest = Record<string, { files: string[]; dirs: string[] }>;
+
+let manifestCache: Manifest | null = null;
+
+function manifest(): Manifest {
+  if (manifestCache) return manifestCache;
+  try {
+    const raw = fs.readFileSync(path.join(process.cwd(), "content", "creator-videos.json"), "utf8");
+    manifestCache = JSON.parse(raw) as Manifest;
+  } catch {
+    manifestCache = {};
+  }
+  return manifestCache;
+}
+
+// Contenu d'un sous-dossier de public/videos/creator, d'apres le manifeste.
+// Repli sur le disque quand le manifeste ne connait pas le dossier : en
+// local les fichiers sont la, et un dossier tout juste cree doit apparaitre
+// avant meme d'avoir lance la synchro.
+function entriesOf(rel: string): { files: string[]; dirs: string[] } {
+  const fromManifest = manifest()[rel];
+  const dir = path.join(CREATOR_DIR, rel);
+  let onDisk: { files: string[]; dirs: string[] } = { files: [], dirs: [] };
+  try {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.isDirectory()) onDisk.dirs.push(e.name);
+      else onDisk.files.push(e.name);
+    }
+  } catch {
+    onDisk = { files: [], dirs: [] };
+  }
+  if (!fromManifest) return onDisk;
+  // Union des deux : le manifeste fait foi pour les videos parties sur R2,
+  // le disque ajoute ce qui vient d'etre pose et pas encore synchronise.
+  return {
+    files: Array.from(new Set([...fromManifest.files, ...onDisk.files])),
+    dirs: Array.from(new Set([...fromManifest.dirs, ...onDisk.dirs])),
+  };
+}
+
+function hasDir(rel: string): boolean {
+  if (manifest()[rel]) return true;
+  return fs.existsSync(path.join(CREATOR_DIR, rel));
+}
+
+// Chemin public d'une video. Il reste relatif : la traduction en adresse
+// complete se fait a l'affichage, dans lib/video-url.ts.
+function videoSrc(rel: string): string {
+  return `/videos/creator/${rel}`;
+}
+
 // "product-in-use.mp4" -> "Product In Use"
 // Une apostrophe finale sert juste a differencier deux fichiers de meme
 // titre dans le dossier (macOS interdit deux noms identiques). On la retire
@@ -74,18 +134,13 @@ function posterFor(files: string[], folder: string, videoFile: string): string |
 
 // Lit un sous-dossier vertical (GEAR, LIFESTYLE, UNBOXING, TALK).
 function readFolder(folder: string): Clip[] {
-  const dir = path.join(CREATOR_DIR, folder);
-  let files: string[];
-  try {
-    files = fs.readdirSync(dir);
-  } catch {
-    return [];
-  }
+  const files = entriesOf(folder).files;
+  if (files.length === 0) return [];
   return files
     .filter((f) => VIDEO_RE.test(f))
     .sort()
     .map((f) => ({
-      src: `/videos/creator/${folder}/${f}`,
+      src: videoSrc(`${folder}/${f}`),
       label: toLabel(f),
       poster: posterFor(files, folder, f),
     }));
@@ -121,25 +176,26 @@ export function readCreatorData() {
 export function readDiary(): Diary {
   const groups: Diary = { hotels: [], tables: [], spa: [], cities: [], journeys: [], places: [], lifestyle: [], fashion: [], bts: [] };
 
-  const root = ["FILMMAKER", "CINEMATIC"]
-    .map((d) => path.join(CREATOR_DIR, d))
-    .find((p) => fs.existsSync(p));
-  if (!root) return groups;
-  const rootName = path.basename(root);
+  const rootName = ["FILMMAKER", "CINEMATIC"].find((d) => hasDir(d));
+  if (!rootName) return groups;
 
-  const entries = fs.readdirSync(root, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name));
+  const rootEntries = entriesOf(rootName);
+  const entries = [
+    ...rootEntries.dirs.map((name) => ({ name, isDirectory: () => true })),
+    ...rootEntries.files.map((name) => ({ name, isDirectory: () => false })),
+  ].sort((a, b) => a.name.localeCompare(b.name));
 
   for (const e of entries) {
     if (e.isDirectory()) {
       // Un dossier par categorie ; les dossiers au nom inconnu sont ignores.
       const cat = matchCat(e.name);
       if (!cat) continue;
-      const files = fs.readdirSync(path.join(root, e.name));
+      const files = entriesOf(`${rootName}/${e.name}`).files;
       // Du plus recent au plus ancien, pas par ordre alphabetique : la page
       // doit ouvrir sur le dernier travail.
       for (const f of files.filter((f) => VIDEO_RE.test(f) && !isHiddenFilm(f)).sort(byNewest)) {
         groups[cat].push({
-          src: `/videos/creator/${rootName}/${e.name}/${f}`,
+          src: videoSrc(`${rootName}/${e.name}/${f}`),
           label: diaryLabel(f),
           poster: posterFor(files, `${rootName}/${e.name}`, f),
         });
@@ -148,7 +204,7 @@ export function readDiary(): Diary {
       // Fichier en vrac (ancienne convention) : categorie via le nom.
       const rootFiles = entries.map((x) => x.name);
       groups[matchCat(e.name) ?? "places"].push({
-        src: `/videos/creator/${rootName}/${e.name}`,
+        src: videoSrc(`${rootName}/${e.name}`),
         label: diaryLabel(e.name),
         poster: posterFor(rootFiles, rootName, e.name),
       });

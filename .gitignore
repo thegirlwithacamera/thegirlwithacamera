@@ -73,3 +73,12 @@ tsconfig.check.json
 # Sélections mises de côté (non servies, non versionnées) et corbeille manuelle
 /_attente/
 /_to_delete/
+
+# Videos du portfolio : hebergees sur Cloudflare R2, pas dans le depot.
+# Elles pesaient 333 Mo et repartaient en copie a chaque deploiement.
+# Les posters, eux, restent ici. Voir scripts/sync-videos.mjs.
+public/videos/creator/**/*.mp4
+public/videos/creator/**/*.MP4
+public/videos/creator/**/*.mov
+public/videos/creator/**/*.MOV
+public/videos/creator/**/*.webm

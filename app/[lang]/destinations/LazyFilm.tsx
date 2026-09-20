@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import s from "./page.module.css";
+import { videoUrl } from "@/lib/video-url";
 
 // Film en boucle, qui ne se charge et ne joue que lorsqu'il est à l'écran
 // (16/09, page Destinations). Les fichiers pèsent de 8 à 25 Mo : les lancer
@@ -63,7 +64,7 @@ export default function LazyFilm({
     return () => io.disconnect();
   }, []);
 
-  const film = <video ref={ref} src={src} poster={poster} muted loop playsInline preload="none" aria-label={label} />;
+  const film = <video ref={ref} src={videoUrl(src)} poster={poster} muted loop playsInline preload="none" aria-label={label} />;
 
   if (!sound) return film;
 

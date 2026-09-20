@@ -9,6 +9,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import type { Clip } from "../creator/constants";
 import Caption from "./editorial/Caption";
+import { videoUrl } from "@/lib/video-url";
 
 export type Sound = {
   unmutedKey: string | null;
@@ -95,7 +96,7 @@ function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: stri
   const video = (
     <video
       ref={(el) => sound.registerRef(cardKey, el)}
-      src={clip.src}
+      src={videoUrl(clip.src)}
       poster={clip.poster}
       autoPlay
       muted
@@ -177,7 +178,7 @@ function MobileStack({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kin
               else localRefs.current.delete(i);
               sound.registerRef(key, el);
             }}
-            src={clip.src}
+            src={videoUrl(clip.src)}
             poster={clip.poster}
             autoPlay={i === active}
             muted
@@ -280,7 +281,7 @@ export function FocusOverlay({ clip, kind, onClose }: { clip: Clip; kind: "phone
 
   const video = (
     <video
-      src={clip.src}
+      src={videoUrl(clip.src)}
       poster={clip.poster}
       autoPlay
       muted={muted}

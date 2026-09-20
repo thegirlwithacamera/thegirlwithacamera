@@ -2,6 +2,7 @@ import { readDiary } from "@/lib/creator-videos";
 import { PUBLISHED_DIARY_CATS } from "@/app/[lang]/filmmaker/constants";
 import { findCaseByFilm } from "@/app/[lang]/photographer/constants";
 import { site } from "@/lib/site";
+import { videoUrl } from "@/lib/video-url";
 
 export const dynamic = "force-static";
 
@@ -32,6 +33,13 @@ export async function GET() {
   const diary = readDiary();
   const langs: Array<"fr" | "en"> = ["en"];
 
+  // Google doit recevoir l'adresse reelle du fichier. Les videos sont
+  // servies depuis le stockage R2, les posters depuis le site.
+  const abs = (u: string) => {
+    const full = videoUrl(u);
+    return /^https?:\/\//i.test(full) ? full : `${base}${full}`;
+  };
+
   const urls: string[] = [];
 
   for (const lang of langs) {
@@ -59,10 +67,10 @@ export async function GET() {
   <url>
     <loc>${page}</loc>
     <video:video>
-      <video:thumbnail_loc>${base}${esc(clip.poster ?? "/og-image.jpg")}</video:thumbnail_loc>
+      <video:thumbnail_loc>${esc(abs(clip.poster ?? "/og-image.jpg"))}</video:thumbnail_loc>
       <video:title>${esc(`${title}${place}`)}</video:title>
       <video:description>${esc(description)}</video:description>
-      <video:content_loc>${base}${esc(clip.src)}</video:content_loc>
+      <video:content_loc>${esc(abs(clip.src))}</video:content_loc>
       <video:family_friendly>yes</video:family_friendly>
       <video:live>no</video:live>
     </video:video>

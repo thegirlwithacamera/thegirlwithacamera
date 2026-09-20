@@ -1,0 +1,187 @@
+{
+  "": {
+    "files": [],
+    "dirs": [
+      "CINEMATIC",
+      "EXPERIENCES",
+      "GEAR",
+      "TALK",
+      "UNBOXING"
+    ]
+  },
+  "CINEMATIC": {
+    "files": [],
+    "dirs": [
+      "BTS",
+      "CITIES",
+      "FASHION",
+      "HOTELS",
+      "JOURNEYS",
+      "LIFESTYLE",
+      "SPA",
+      "TABLES"
+    ]
+  },
+  "CINEMATIC/BTS": {
+    "files": [
+      "Photographer Diary Ep.01.jpg",
+      "Photographer Diary Ep.01.mp4",
+      "Photographer Diary Ep.02.jpg",
+      "Photographer Diary Ep.02.mp4",
+      "Photographer Diary Ep.03.jpg",
+      "Photographer Diary Ep.03.mp4",
+      "Photographer Diary Ep.04.jpg",
+      "Photographer Diary Ep.04.mp4",
+      "Photographer Diary Ep.05.jpg",
+      "Photographer Diary Ep.05.mp4"
+    ],
+    "dirs": []
+  },
+  "CINEMATIC/CITIES": {
+    "files": [
+      "City Diary Kyoto.jpg",
+      "City Diary Kyoto.mp4",
+      "City Diary Nara.jpg",
+      "City Diary Nara.mp4",
+      "City Diary Osaka.jpg",
+      "City Diary Osaka.mp4",
+      "City Diary Tokyo Night.jpg",
+      "City Diary Tokyo Night.mp4",
+      "City Diary Tokyo.jpg",
+      "City Diary Tokyo.mp4",
+      "Graz.jpg",
+      "Graz.mp4",
+      "Villach.jpg",
+      "Villach.mp4"
+    ],
+    "dirs": []
+  },
+  "CINEMATIC/FASHION": {
+    "files": [
+      "sans nom.jpg",
+      "sans nom.mp4"
+    ],
+    "dirs": []
+  },
+  "CINEMATIC/HOTELS": {
+    "files": [
+      "Altstadt Vienna.jpg",
+      "Altstadt Vienna.mp4",
+      "Coloc Housing.jpg",
+      "Coloc Housing.mp4",
+      "Hotel Rathaus.jpg",
+      "Hotel Rathaus.mp4",
+      "Naturel Dorf Schönleitn.jpg",
+      "Naturel Dorf Schönleitn.mp4",
+      "mk hotel Munich.jpg",
+      "mk hotel Munich.mp4"
+    ],
+    "dirs": []
+  },
+  "CINEMATIC/JOURNEYS": {
+    "files": [
+      "Interrail 2.jpg",
+      "Interrail 2.mp4",
+      "Interrail.jpg",
+      "Interrail.mp4"
+    ],
+    "dirs": []
+  },
+  "CINEMATIC/LIFESTYLE": {
+    "files": [
+      "Coloc Housing.jpg",
+      "Coloc Housing.mp4",
+      "Edifier.jpg",
+      "Edifier.mp4",
+      "The Office.jpg",
+      "The Office.mp4"
+    ],
+    "dirs": []
+  },
+  "CINEMATIC/SPA": {
+    "files": [
+      "Dao Liège.jpg",
+      "Dao Liège.mp4"
+    ],
+    "dirs": []
+  },
+  "CINEMATIC/TABLES": {
+    "files": [
+      "Cé-Pages.jpg",
+      "Cé-Pages.mp4",
+      "VanDerValk Sélys.jpg",
+      "VanDerValk Sélys.mp4"
+    ],
+    "dirs": []
+  },
+  "EXPERIENCES": {
+    "files": [
+      "Antidote.MP4",
+      "Antidote.jpg",
+      "Tokyo GR Space.jpg",
+      "Tokyo GR Space.mp4",
+      "Tokyo Hairdresser.jpg",
+      "Tokyo Hairdresser.mp4",
+      "Tokyo Head Spa.jpg",
+      "Tokyo Head Spa.mp4",
+      "Tokyo Tattoo.jpg",
+      "Tokyo Tattoo.mp4"
+    ],
+    "dirs": []
+  },
+  "GEAR": {
+    "files": [
+      "Godox C100.jpg",
+      "Godox C100.mp4",
+      "Godox IM30 Pro.jpg",
+      "Godox IM30 Pro.mp4",
+      "Insta360 Ace Pro 2'.jpg",
+      "Insta360 Ace Pro 2'.mp4",
+      "Insta360 Ace Pro 2.jpg",
+      "Insta360 Ace Pro 2.mp4",
+      "Insta360 Pocket Printer.jpg",
+      "Insta360 Pocket Printer.mp4",
+      "Pentax 17.jpg",
+      "Pentax 17.mp4",
+      "Ricoh GR III'.jpg",
+      "Ricoh GR III'.mp4",
+      "Ricoh GR III.jpg",
+      "Ricoh GR III.mp4"
+    ],
+    "dirs": []
+  },
+  "TALK": {
+    "files": [
+      "Kodak Charmera.jpg",
+      "Kodak Charmera.mp4",
+      "Nishika N8000.jpg",
+      "Nishika N8000.mp4",
+      "Pentax 17.jpg",
+      "Pentax 17.mp4",
+      "Ricoh GR III.jpg",
+      "Ricoh GR III.mp4"
+    ],
+    "dirs": []
+  },
+  "UNBOXING": {
+    "files": [
+      "Insta360 Ace Pro 2'.jpg",
+      "Insta360 Ace Pro 2'.mp4",
+      "Insta360 Ace Pro 2.jpg",
+      "Insta360 Ace Pro 2.mp4",
+      "Insta360 Luna Ultra'.MP4",
+      "Insta360 Luna Ultra'.jpg",
+      "Insta360 Luna Ultra.jpg",
+      "Insta360 Luna Ultra.mp4",
+      "Kodak Charmera Millennium.jpg",
+      "Kodak Charmera Millennium.mp4",
+      "Kodak Charmera.jpg",
+      "Kodak Charmera.mp4",
+      "Pentax 17.jpg",
+      "Pentax 17.mp4",
+      "Telesin.jpg",
+      "Telesin.mp4"
+    ],
+    "dirs": []
+  }
+}
