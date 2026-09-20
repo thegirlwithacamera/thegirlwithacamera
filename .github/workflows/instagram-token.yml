@@ -48,6 +48,8 @@ jobs:
             exit 1
           fi
 
+          echo "Jeton lu : ${#OLD} caractères, commence par ${OLD:0:8}"
+
           echo "Demande d'un nouveau jeton à Meta"
           RES=$(curl -sS -G "https://graph.instagram.com/refresh_access_token" \
             --data-urlencode "grant_type=ig_refresh_token" \
