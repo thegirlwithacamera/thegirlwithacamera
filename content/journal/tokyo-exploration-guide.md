@@ -1,5 +1,5 @@
 ---
-title: Tokyo zone by zone: how I photograph the city
+title: "Tokyo exploration: twelve days alone, zone by zone"
 tile: Tokyo
 date: 2026-09-12
 section: travel

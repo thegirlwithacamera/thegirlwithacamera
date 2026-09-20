@@ -72,7 +72,7 @@ export const JOURNAL_SERIES: Record<string, { label: string; cover: string; orde
   japan: {
     label: "Japan",
     cover: "/images/journal/kawaguchiko/fuji-square.jpg",
-    order: ["nara-guide", "kawaguchiko-guide", "arashiyama-guide", "osaka-guide", "kyoto-guide", "osaka-vintage-guide"],
+    order: ["nara-guide", "kawaguchiko-guide", "arashiyama-guide", "osaka-guide", "kyoto-guide", "osaka-vintage-guide", "tokyo-first-timer-guide"],
   },
   portugal: {
     label: "Portugal",
