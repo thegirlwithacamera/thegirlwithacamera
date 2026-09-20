@@ -127,10 +127,6 @@ We did a lot of shopping.
 
 ![A glass of white wine at Di Punto](/images/journal/tokyo-first/di-punto.jpg)
 
-![The bar at Di Punto](/images/journal/tokyo-first/di-punto-bar.jpg)
-
-![An izakaya table with empty plates](/images/journal/tokyo-first/izakaya.jpg)
-
 ## A tattoo on the way home
 
 I came back to Tokyo to get tattooed at **PopInk Tokyo**, by Tiemi. Arakicho 6-1, Arakicho Gardens, room 303, Shinjuku. Bookings are online.
