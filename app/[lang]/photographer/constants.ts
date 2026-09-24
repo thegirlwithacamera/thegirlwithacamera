@@ -222,6 +222,18 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
         //
         // 03 est laisse libre pour le Red Salon, que Sandrine n'avait pas fini
         // le 02/09 : il se posera sans rien renumeroter.
+        // Recu le 21/09 d'Elena Kuhn, marketing de la maison, avec l'accord
+        // de le publier sur le site. Original en anglais, traduit pour la
+        // version francaise.
+        testimonial: {
+          quote: {
+            fr: "Travailler avec Sandrine et son compagnon Alexis a été une très belle expérience du début à la fin. La communication a toujours été chaleureuse, simple et professionnelle, et nous avons particulièrement apprécié l'intérêt sincère, la créativité et l'initiative qu'ils ont apportés à la collaboration. Ils ont vraiment pris le temps de comprendre l'Altstadt Vienna et ont saisi l'atmosphère de notre hôtel de manière très authentique. Nous avons beaucoup aimé travailler avec eux et nous sommes très heureux du résultat.",
+            en: "Working with Sandrine and her partner Alexis was a wonderful experience from start to finish. Communication was always warm, easy and professional, and we particularly appreciated how much genuine interest, creativity and initiative they brought to the collaboration. They really took the time to understand the Altstadt Vienna and captured the atmosphere of our hotel in a very authentic way. We truly enjoyed working with them and are very happy with the result.",
+          },
+          author: "Elena Kuhn",
+          role: { fr: "Marketing", en: "Marketing" },
+          company: "Altstadt Vienna",
+        },
         chapters: {
           // Le dossier garde son nom, c'est l'ancre de la tuile d'accueil.
           // Seul le libelle change : Sandrine veut lire le nom de la maison,
