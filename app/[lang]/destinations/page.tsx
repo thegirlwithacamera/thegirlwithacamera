@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
 type Project = {
   id: string;
   name: string;
-  place: string;
+  place?: string;
   note?: string;
   href?: string;
   film: { src: string; poster: string };
@@ -75,7 +75,6 @@ const PROJECTS: Project[] = [
   {
     id: "interrail",
     name: "Interrail",
-    place: "One pass, twelve stops, one summer",
     film: { src: `${F}/JOURNEYS/Interrail.mp4`, poster: `${F}/JOURNEYS/Interrail.jpg` },
     film2: { src: `${F}/JOURNEYS/Interrail 2.mp4`, poster: `${F}/JOURNEYS/Interrail 2.jpg` },
     photos: [],
@@ -142,11 +141,11 @@ export default async function DestinationsPage({ params }: Props) {
       </p>
 
       {PROJECTS.map((p) => {
-        const alt = `${p.name}, ${p.place}, photographed by Sandrine Ceuppens`;
+        const alt = `${[p.name, p.place].filter(Boolean).join(", ")}, photographed by Sandrine Ceuppens`;
         const label = (
           <div className={s.label}>
             <h2 className={s.name}>{p.name}</h2>
-            <p className={s.place}>{p.place}</p>
+            {p.place && <p className={s.place}>{p.place}</p>}
             {p.href && <Link href={p.href} className={s.more}>See the project →</Link>}
           </div>
         );
