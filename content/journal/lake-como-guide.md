@@ -5,7 +5,7 @@ date: 2026-09-26
 section: travel
 series: italy
 place: Lake Como, Italy
-excerpt: Two days in the central triangle of Lake Como: the coloured houses of Varenna, the ferries, where we ate, and why you should get up early.
+excerpt: Two days in the central triangle of Lake Como: the coloured houses of Varenna, the gates of Villa Cipressi, the ferries, three good tables, and why you should get up early.
 draft: true
 ---
 
@@ -39,9 +39,9 @@ Via Luigi Cadorna 91, Menaggio.
 
 The coloured houses are what did it. Varenna climbs straight out of the water in pink, ochre and green, and the streets are stairs.
 
-I visited the villa, and went to the Gates of Heaven.
+We visited **Villa Cipressi** and its terraced gardens, and the gates that open straight onto the lake, the ones people call the gates of heaven. That is the photo everyone comes for, and it is worth being there before the first boats.
 
-> À COMPLÉTER : laquelle des deux villas, Monastero ou Cipressi ? Et les "gates of heaven", c'est quoi exactement, un point de vue ? Envoie-moi le lien Maps, je ne le trouve pas.
+**Good to know:** Villa Cipressi is a late Renaissance villa turned hotel, but the gardens are open to visitors for a few euros, terraced down to the water between cypresses and magnolias. The lakefront path next to it is the Passeggiata degli Innamorati, the lovers' walk, which runs from the ferry landing along the shore.
 
 ### Bellagio
 
@@ -61,13 +61,15 @@ The three villages are linked by the ferries of the central lake, and crossing f
 
 ### Comocafé, Varenna
 
-Excellent pizza, which we had before taking the train.
+Excellent pizza before taking the train. I had the Luciferia, their diavola, and it really burned, which is exactly what I wanted.
 
 ### Bistrot Antichi Sapori, Bellagio
 
+A pizza diavola, and it was good.
+
 ### La Grolla, Menaggio
 
-> À COMPLÉTER : une ligne sur chacun des deux, ce que tu as pris ou pourquoi tu y retournerais.
+Tagliolini with pistachio cream and prawns, which was incredible, and a tiramisu for dessert that was just as good.
 
 ## Things to know before you go
 
