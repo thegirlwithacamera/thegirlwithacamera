@@ -60,6 +60,26 @@ The Leica colour profiles give a cinematic look straight out of the camera, whic
 
 Three axes, mechanical. Walking shots hold, and that is the whole reason a camera like this exists rather than a phone.
 
+## Shot on the Luna Ultra
+
+Frames from two days at Lake Como, in September 2026, straight out of the camera with a Leica profile.
+
+![Lake Como from the ferry, shot on the Luna Ultra](/images/journal/gear/luna/ferry-lake.jpg)
+
+![The hillside above Bellagio](/images/journal/gear/luna/bellagio-hillside.jpg)
+
+![The lake and the mountains](/images/journal/gear/luna/lake-mountains.jpg)
+
+![The lake at night](/images/journal/gear/luna/night-lake.jpg)
+
+![On the ferry](/images/journal/gear/luna/on-the-ferry.jpg)
+
+![The gorge above the water](/images/journal/gear/luna/gorge.jpg)
+
+And a clip, so you can see the stabilisation and the colour in motion:
+
+/videos/journal/luna-ultra-lake-como.mp4 /videos/journal/luna-ultra-lake-como.jpg
+
 ## Any downsides?
 
 Honestly, none for me. In my use, the Luna Ultra is perfect. That is worth saying plainly: I film short takes, in daylight, and I never asked this camera for something it could not give.
