@@ -5,7 +5,7 @@ date: 2026-09-26
 section: travel
 series: italy
 place: Lake Como, Italy
-cover: /images/journal/lake-como/varenna-from-water.jpg
+cover: /images/journal/lake-como/nesso-facades.jpg
 excerpt: Two days in the central triangle of Lake Como: the coloured houses of Varenna, the gates of Villa Cipressi, the ferries, where we ate in each village, and why you should get up early.
 draft: false
 ---
