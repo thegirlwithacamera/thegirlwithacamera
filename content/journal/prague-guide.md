@@ -84,6 +84,14 @@ But this is also the restaurant that added a 10 percent tip to our bill without 
 
 Really watch out for tips. Some places add them to your bill sneakily, or practically demand them. Read your bill before you pay.
 
+**What is normal:** rounding up, or around 10 percent in a restaurant when you are happy. Anything already printed on the bill as a service charge means you owe nothing more.
+
+### Public transport
+
+We walked almost everywhere, but the network is good and cheap.
+
+**Good to know:** one ticket covers the metro, trams, buses and the river ferries. Since 1 January 2026, a 30 minute ticket is 36 CZK in the PID Lítačka app or 39 CZK on paper, a 90 minute ticket 46 or 50 CZK, a 24 hour pass 140 or 150 CZK, and 72 hours 340 CZK. Tickets are cheaper in the app, and they must be validated before you travel, every time. The Petřín funicular needs its own ticket.
+
 ### Ride apps
 
 Our Uber driver left without us, and we were still charged for the ride as if we had been in the car. Check your trip in the app before you pay.

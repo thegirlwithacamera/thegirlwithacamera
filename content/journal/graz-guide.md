@@ -36,6 +36,10 @@ The hill in the middle of the city, with its clock tower. This is where I saw th
 
 We took the funicular up.
 
+**Good to know:** there are two ways up without walking. The Schlossbergbahn funicular, running since 1894 from Kaiser-Franz-Josef-Kai, climbs a 60 percent gradient in about a minute and a half, and it is part of the normal city transport network. The glass lift inside the hill, from Schlossbergplatz, takes 30 seconds and comes out by the clock tower. A combined ticket is around 4.90 euros, and both are free with the Graz Card.
+
+**Free anyway:** the hill itself is a public park, open at all hours, and walking around the Uhrturm and the gardens costs nothing. The stairs from Schlossbergplatz are the third way up, if your legs are willing.
+
 ![The red rooftops of Graz from the Schlossberg](/images/journal/graz/schlossberg-view.jpg)
 
 ![Graz from the Schlossberg at the end of the day](/images/journal/graz/schlossberg-trees.jpg)
@@ -68,13 +72,13 @@ The Graz Card works for 24, 48 or 72 hours, and costs €32, €42 or €47. It 
 
 ### Café Restaurant Demiri
 
-On Lendplatz, in Lend. A small restaurant known for its ćevapčići, the small grilled sausages.
+On Lendplatz, in Lend. A small Balkan restaurant known for its ćevapčići, the little grilled minced meat sausages served with flatbread, raw onion and ajvar. Lendplatz is the market square of the district, and the restaurant sits in the row of places around it, which is exactly the point: you eat where the neighbourhood eats, not where the tourists do.
 
 ### Der Steirer
 
 Belgiergasse 1, in Lend. We had dinner there, and I had a goulash.
 
-**Good to know:** Der Steirer is known for Styrian cooking and its "Styrian tapas", small seasonal plates. It is also open on Sundays.
+**Good to know:** Der Steirer is known for Styrian cooking and its "Styrian tapas", small seasonal plates meant to be shared, alongside classics like goulash and backhendl, the Styrian fried chicken. The region's pumpkin seed oil turns up on almost everything, including, if you are curious, vanilla ice cream. It is also open on Sundays, which is rare in Austria and useful to know.
 
 ## How many days in Graz?
 
