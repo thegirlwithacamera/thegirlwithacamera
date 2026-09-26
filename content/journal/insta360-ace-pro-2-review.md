@@ -69,6 +69,26 @@ https://www.instagram.com/reel/DZ_-1YASMFB/
 
 https://www.instagram.com/reel/DaAhL6EyWXL/
 
+## Shot on the Ace Pro 2
+
+Frames from Tokyo, in June 2026, straight out of the camera.
+
+![A Tokyo street in the rain, shot on the Ace Pro 2](/images/journal/gear/ace/rain-street.jpg)
+
+![Red lanterns on a corner](/images/journal/gear/ace/red-lanterns.jpg)
+
+![A temple in the morning](/images/journal/gear/ace/temple.jpg)
+
+![Flowers in a water basin](/images/journal/gear/ace/water-flowers.jpg)
+
+![A cyclist in a side street](/images/journal/gear/ace/cyclist.jpg)
+
+![A yatai at night](/images/journal/gear/ace/yatai-night.jpg)
+
+And a night clip, which is where PureVideo earns its place:
+
+/videos/journal/ace-pro-2-tokyo.mp4 /videos/journal/ace-pro-2-tokyo.jpg
+
 ## The downside
 
 **The grip battery.** It is the only downside I found.
