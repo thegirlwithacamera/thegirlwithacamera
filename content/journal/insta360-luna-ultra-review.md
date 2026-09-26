@@ -30,7 +30,11 @@ Before the Luna Ultra, I vlogged with the DJI Osmo Pocket 3.
 
 **Stabilisation.** A 3-axis mechanical gimbal, combined with electronic stabilisation.
 
-**Weight.** Just over 200 grams.
+**Weight.** Just over 200 grams, so it lives in a coat pocket.
+
+**Screen.** A 2-inch OLED touchscreen that detaches and becomes a remote.
+
+**Audio.** A built-in microphone on the camera and another on the remote, plus wireless microphone support.
 
 **Leica looks.** Three Leica colour profiles, Leica Natural, Leica Vivid and Leica Chrome, plus cinematic filters.
 
@@ -50,11 +54,15 @@ https://www.instagram.com/reel/DblYrv0MJeV/
 
 ### 3. The Leica filters
 
-The Leica colour profiles give a cinematic look straight out of the camera.
+The Leica colour profiles give a cinematic look straight out of the camera, which means far less grading afterwards. On a hotel film, that is hours saved.
+
+### 4. The gimbal
+
+Three axes, mechanical. Walking shots hold, and that is the whole reason a camera like this exists rather than a phone.
 
 ## Any downsides?
 
-Honestly, none for me. In my use, the Luna Ultra is perfect.
+Honestly, none for me. In my use, the Luna Ultra is perfect. That is worth saying plainly: I film short takes, in daylight, and I never asked this camera for something it could not give.
 
 To be complete, here is what other reviews point out, so you know before you buy:
 
@@ -66,6 +74,8 @@ To be complete, here is what other reviews point out, so you know before you buy
 
 **Leica Vivid.** It is the profile I use.
 
+**And for hotels:** the detachable screen on a tripod, so I can frame the room, walk into it, and start the shot from inside the frame. That is the single feature that changed how I film stays.
+
 ## Accessories I use
 
 - **The protective case.** It comes in the Standard Bundle, with a wind guard, a handle and a wrist strap.
@@ -73,6 +83,23 @@ To be complete, here is what other reviews point out, so you know before you buy
 ## Price
 
 [The Luna Ultra](https://www.insta360.com/sal/luna-series?utm_source=AffiliateCenter&utm_medium=copylink&utm_term=sandrinecppns) starts at €729 in Europe ($769.99 in the US) for the Standard Bundle. A Creator Bundle adds a Mic Pro wireless microphone, a wide-angle lens, a battery handle and a carry bag.
+
+## Insta360 Luna Ultra FAQ
+
+**Is the Luna Ultra better than the DJI Osmo Pocket 3?**
+For me, yes, and it is what I switched from. The detachable screen, the second lens and the Leica profiles are what did it. The Pocket 3 remains excellent and cheaper.
+
+**Does the zoom really work?**
+Up to about 6x, yes, thanks to the telephoto lens. Beyond that the camera crops into the sensor and it shows.
+
+**Can you film yourself with it?**
+Yes, and that is its best trick: the screen comes off and becomes a remote with a live view, up to 20 metres away.
+
+**Does it overheat?**
+On long takes in the highest modes, yes. Tests report shutdowns at around 44 minutes in 4K120 and 49 minutes in 8K24. It has never been a problem in my use, because I film in short takes.
+
+**How much is it?**
+From €729 in Europe for the Standard Bundle.
 
 ## Who should buy the Luna Ultra?
 

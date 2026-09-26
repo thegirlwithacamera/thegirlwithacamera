@@ -19,15 +19,25 @@ Nothing. I did not have another camera for this kind of shooting.
 
 ## Insta360 Ace Pro 2: the key specs
 
-**Sensor and lens.** A 1/1.3-inch sensor, with a Leica Summarit lens.
+**Sensor and lens.** A 1/1.3-inch 8K sensor, with a Leica Summarit lens and a 157 degree field of view.
 
-**Video.** Up to 8K at 30 frames per second, and 4K at 60 frames per second with Active HDR.
+**The chips.** Two of them, which is what makes this camera different from the first Ace Pro: a dedicated imaging chip for noise reduction, and a 5nm AI chip for everything else, with twice the computing power of the previous model.
+
+**Video.** Up to 8K at 30 frames per second, 4K at 60 with Active HDR, and 4K at 120 for slow motion.
+
+**Low light.** PureVideo, a dedicated night mode with AI noise reduction, up to 4K60.
+
+**Battery.** Up to 180 minutes in endurance mode, at 1080p24 in a lab. In real use, plan on far less, but it lasts a day of travel with a second battery.
+
+**Storage.** No internal memory, microSD up to 1TB.
 
 **Photos.** Up to 50MP stills.
 
 **Waterproof.** Down to 12 metres, straight out of the box, no case needed.
 
-**Screen.** A 2.5-inch touchscreen that flips up, so you can frame yourself.
+**Screen.** A 2.5-inch touchscreen that flips up, so you can frame yourself. It is brighter and denser than the previous one, which matters in full sun.
+
+**Colour.** Leica profiles, Natural, Vivid, B&W High Contrast and Eternal, plus a long list of film looks.
 
 **Arctic White Limited Edition.** Technically, it is the same camera as the black Ace Pro 2. Only the design changes, with an all-white finish and matching accessories.
 
@@ -39,7 +49,9 @@ It is waterproof straight out of the box, without a housing.
 
 ### 2. It is very versatile
 
-One small camera for a lot of different situations.
+One small camera for a lot of different situations: in the water, on a strap, on a table, in the hand.
+
+**Where it shines in my work:** hotel bathrooms and pools, where I would not take the GR III. Rain. Boats. Anywhere I want to keep filming without thinking about the camera.
 
 ### 3. It is perfect for still frames
 
@@ -61,6 +73,8 @@ https://www.instagram.com/reel/DaAhL6EyWXL/
 
 **The grip battery.** It is the only downside I found.
 
+**What other reviews point out,** so you know before you buy: 8K30 files are heavy and eat cards and batteries, the lens guard is removable but scratches easily, and the microphone, even with the wind guard, is still an action camera microphone rather than a vlogging one.
+
 ## My favourite setting
 
 **The Leica filter.** It is the look I use.
@@ -76,6 +90,27 @@ https://www.instagram.com/reel/DaAhL6EyWXL/
 - **Anyone looking for a first action camera** that is this versatile.
 
 If your budget is higher and vlogging is your main use, read my [Insta360 Luna Ultra review](/en/journal/insta360-luna-ultra-review).
+
+## Price
+
+The standard bundle launched at $399.99 in the United States, which is less than the first Ace Pro. The Xplorer bundles add the grip and the accessories that turn it into a compact camera.
+
+## Insta360 Ace Pro 2 FAQ
+
+**Is the Ace Pro 2 waterproof without a case?**
+Yes, down to 12 metres straight out of the box, and 60 metres with the dive case.
+
+**Is it good for photos?**
+Yes, up to 50MP, and I use it as a photo camera, not only for video.
+
+**Ace Pro 2 or Luna Ultra?**
+The Ace Pro 2 if you want something rugged, waterproof and cheaper. The Luna Ultra if your main job is vlogging and you want the gimbal and the detachable screen.
+
+**What is the Arctic White Limited Edition?**
+The same camera as the black one, with a white finish and matching accessories.
+
+**Does it shoot in low light?**
+Yes, with PureVideo, its night mode, up to 4K60.
 
 ## Final thoughts
 
