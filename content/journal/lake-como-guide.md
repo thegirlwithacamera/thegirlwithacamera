@@ -6,7 +6,7 @@ section: travel
 series: italy
 place: Lake Como, Italy
 cover: /images/journal/lake-como/varenna-from-water.jpg
-excerpt: Two days in the central triangle of Lake Como: the coloured houses of Varenna, the gates of Villa Cipressi, the ferries, three good tables, and why you should get up early.
+excerpt: Two days in the central triangle of Lake Como: the coloured houses of Varenna, the gates of Villa Cipressi, the ferries, where we ate in each village, and why you should get up early.
 draft: false
 ---
 
@@ -32,15 +32,15 @@ Via Luigi Cadorna 91, Menaggio.
 
 ![A doorway at the hotel](/images/journal/lake-como/adler-doorway.jpg)
 
+![The hotel at night](/images/journal/lake-como/adler-night.jpg)
+
 **Good to know:** it is a family run hotel with a garden and a pool looking out over the lake and the mountains, about five minutes from the centre of Menaggio, with the bus stop right outside. Breakfast is a buffet.
 
 **What made it:** the owner. He is adorable, he speaks French, and it is a genuinely good hotel.
 
 [Check prices and availability at Hotel Adler](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fit%2Fadler-menaggio.html)
 
-## The three villages
-
-### Varenna, my favourite
+## Varenna, my favourite
 
 The coloured houses are what did it. Varenna climbs straight out of the water in pink, ochre and green, and the streets are stairs.
 
@@ -60,7 +60,15 @@ We visited **Villa Cipressi** and its terraced gardens, and the gates that open 
 
 **Good to know:** Villa Cipressi is a late Renaissance villa turned hotel, but the gardens are open to visitors for a few euros, terraced down to the water between cypresses and magnolias. The lakefront path next to it is the Passeggiata degli Innamorati, the lovers' walk, which runs from the ferry landing along the shore.
 
-### Bellagio
+### Breakfast at Bar il Molo
+
+On the waterfront, with the lake right there. Eggs, salmon, and the view.
+
+![Breakfast at Bar il Molo](/images/journal/lake-como/molo-breakfast-1.jpg)
+
+![The table at Bar il Molo](/images/journal/lake-como/molo-breakfast-2.jpg)
+
+## Bellagio
 
 We walked, ate, and drank spritz. That is the honest version, and it is enough.
 
@@ -76,21 +84,35 @@ And a red Ferrari parked on the cobbles, because Bellagio is also that.
 
 ![The Ferrari from the front](/images/journal/lake-como/ferrari-2.jpg)
 
+### Lunch at Bistrot Antichi Sapori
+
+A pizza diavola, and it was good.
+
+![Pizza at Bistrot Antichi Sapori](/images/journal/lake-como/bellagio-pizza.jpg)
+
 ![A spritz in Bellagio](/images/journal/lake-como/bellagio-spritz.jpg)
 
 ![Shopping in Bellagio](/images/journal/lake-como/bellagio-shopping.jpg)
 
-### Menaggio
+## Menaggio
 
 Same, and it is where we slept.
 
 ![The lake from Menaggio](/images/journal/lake-como/menaggio-lake.jpg)
 
-### Nesso
+### Dinner at La Grolla
 
-The village in the gorge, on the western shore south of Menaggio, with its stone bridge over the waterfall and its houses stacked above the water. It is smaller than the other three and far less walked.
+Tagliolini with pistachio cream and prawns, which was incredible, and a tiramisu for dessert that was just as good.
 
-**How we got there:** by bus from Bellagio, down the eastern side of the Bellagio peninsula. The bus stops on the main road above the village, and from there it is stairs down to the water.
+![The table at La Grolla](/images/journal/lake-como/grolla-table.jpg)
+
+![Tagliolini with pistachio cream and prawns](/images/journal/lake-como/grolla-tagliolini.jpg)
+
+## Nesso
+
+The village in the gorge, with its stone bridge over the waterfall and its houses stacked above the water. It is smaller than the other three and far less walked.
+
+**How we got there:** by bus from Bellagio. The bus stops on the main road above the village, and from there it is stairs down to the water.
 
 ![The houses of Nesso above the water](/images/journal/lake-como/nesso-house.jpg)
 
@@ -104,6 +126,14 @@ The village in the gorge, on the western shore south of Menaggio, with its stone
 
 ![Buoys in the water](/images/journal/lake-como/nesso-buoys.jpg)
 
+## Como, before the train
+
+### Comocafé
+
+Excellent pizza before taking the train home. I had the Luciferia, their diavola, and it really burned, which is exactly what I wanted.
+
+![Pizza at Comocafé](/images/journal/lake-como/comocafe-pizza.jpg)
+
 ## Getting around: the ferries
 
 The three villages are linked by the ferries of the central lake, and crossing from one to the next takes about fifteen to twenty minutes.
@@ -113,38 +143,6 @@ The three villages are linked by the ferries of the central lake, and crossing f
 ![Inside the ferry](/images/journal/lake-como/ferry-inside.jpg)
 
 **Good to know:** Varenna to Bellagio and Bellagio to Menaggio are the two short hops, and the car ferry also takes foot passengers. Buy at the landing stage, check the last departure of the evening before you settle in for a spritz, and remember that timetables thin out a lot outside the summer season.
-
-### Breakfast at Bar il Molo, Varenna
-
-On the waterfront, with the lake right there. Eggs, salmon, and the view.
-
-![Breakfast at Bar il Molo](/images/journal/lake-como/molo-breakfast-1.jpg)
-
-![The table at Bar il Molo](/images/journal/lake-como/molo-breakfast-2.jpg)
-
-## Where we ate
-
-### Comocafé, in Como
-
-Excellent pizza before taking the train home. I had the Luciferia, their diavola, and it really burned, which is exactly what I wanted.
-
-![Pizza at Comocafé](/images/journal/lake-como/comocafe-pizza.jpg)
-
-### Bistrot Antichi Sapori, Bellagio
-
-A pizza diavola, and it was good.
-
-![Pizza at Bistrot Antichi Sapori](/images/journal/lake-como/bellagio-pizza.jpg)
-
-### La Grolla, Menaggio
-
-Tagliolini with pistachio cream and prawns, which was incredible, and a tiramisu for dessert that was just as good.
-
-![The front of La Grolla](/images/journal/lake-como/grolla-front.jpg)
-
-![The table at La Grolla](/images/journal/lake-como/grolla-table.jpg)
-
-![Tagliolini with pistachio cream and prawns](/images/journal/lake-como/grolla-tagliolini.jpg)
 
 ## Things to know before you go
 
