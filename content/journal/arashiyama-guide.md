@@ -62,7 +62,21 @@ Tenryu-ji and its garden, and the Togetsukyo bridge over the river.
 
 ![Autumn colours along the river](/images/journal/arashiyama/river-autumn.jpg)
 
-**Good to know:** Tenryu-ji opens at 8:30am, 500 yen for the garden, 300 more for the buildings. The bridge is free.
+**Good to know:** Tenryu-ji opens at 8:30am, 500 yen for the garden, 800 with the Hojo hall. It is one of Kyoto's five great Zen temples, and its Sogenchi pond garden dates from 1345: the pond is placed so that the mountain of Arashiyama is reflected in it, a technique called shakkei, borrowed scenery.
+
+The Togetsukyo, the Moon Crossing Bridge, is 155 metres of wooden deck over the Oi river, free at any hour, with the forested hills behind. It is the postcard of Arashiyama.
+
+### The small temples on the hillside
+
+Behind the bamboo grove, Jojakko-ji, Nison-in and Gio-ji cost 300 to 500 yen each and receive a fraction of the crowd. Gio-ji is the moss temple, small and green, and the most photogenic of the three.
+
+### Okochi Sanso
+
+The villa and garden of a silent film actor, at the end of the bamboo path. A thousand yen, and a bowl of matcha is included. Most people walk past the entrance without going in, which is exactly why it is calm.
+
+### The Sagano Romantic Train, which we skipped
+
+The old sightseeing train between Saga and Kameoka, 25 minutes along the Hozu gorge, 880 yen one way. Book ahead in autumn, it sells out, and ask for a seat on the river side.
 
 ## Where we ate
 
@@ -73,6 +87,8 @@ Back in Kyoto, after the morning.
 - **Come very, very early.** It is the difference between having the bamboo to yourself and queuing for a photo.
 - **Watch the stairs.** I went down hard on them.
 - **Do not be afraid of the monkeys.** They are calm, and the rules are there to keep it that way.
+
+**How to plan the morning:** the grove takes half an hour, Tenryu-ji an hour, the bridge twenty minutes. With the monkey park, count four to six hours in all. That is why half a day works.
 
 ## How long do you need in Arashiyama?
 
@@ -91,6 +107,15 @@ Yes, and it is open at any hour.
 
 **Are the monkeys dangerous?**
 No. They are wild, but calm. Follow the rules at the feeding hut and it is fine.
+
+**How much is Tenryu-ji?**
+500 yen for the garden, 800 with the main hall.
+
+**Is the Sagano Romantic Train worth it?**
+We did not take it, but it is 880 yen for 25 minutes along the gorge, and it sells out in autumn.
+
+**What is there besides the bamboo grove?**
+Tenryu-ji and its 14th century garden, the Togetsukyo bridge, the monkey park, and the small hillside temples, Jojakko-ji, Nison-in and Gio-ji.
 
 **How do you get to Arashiyama from Kyoto?**
 JR Sagano line to Saga-Arashiyama, about 15 minutes. Before the first trains, take a taxi.
