@@ -50,13 +50,25 @@ The campanile of the church of San Martino leans visibly, like a small Venetian 
 
 ### Lace
 
-Burano has been a lace island for centuries, with its own needle lace technique. There is a lace museum on the main square, and the shops around it sell everything from real handmade pieces to machine-made souvenirs.
+Burano has been a lace island for centuries, with its own needle lace technique, the punto in aria.
+
+**The Lace Museum,** on Piazza Galuppi, sits in the building of the old lace school, which trained the island's women from 1872 to 1970. It shows more than two hundred pieces from the 16th to the 20th century, and lacemakers often work in the rooms while you visit. Five euros, three fifty reduced, open from 10am to 4pm and closed on Mondays.
+
+**How to spot the real thing:** very cheap lace is machine made or imported. Handmade stitches are never perfectly regular, so look for tiny irregularities. Machine lace is flawless. For anything expensive, ask for the workshop's name and a certificate.
 
 ### A spritz
 
 The best moment of our day on the island.
 
 ![A spritz in Burano](/images/journal/burano/spritz.jpg)
+
+### The leaning bell tower
+
+The campanile of San Martino leans visibly, like a small Venetian Pisa. The church below it is free to enter, and it holds a Crucifixion by Tiepolo.
+
+### The bussolà
+
+The island's biscuit, a ring of buttery shortbread, sold in every bakery on the main square. The S shaped version is the esse. They keep for days, which is how they started: they were baked for the fishermen.
 
 ## How long do you need in Burano?
 
@@ -72,6 +84,12 @@ Vaporetto line 12 from Fondamente Nove, about 40 to 45 minutes.
 
 **Why are the houses in Burano coloured?**
 The tradition comes from the fishing families, and the colours are still regulated by the commune today.
+
+**How much is the Lace Museum?**
+Five euros, and it is closed on Mondays.
+
+**How do you know if Burano lace is real?**
+Handmade lace has small irregularities and a price to match. Perfectly regular and very cheap means machine made.
 
 **Is Burano worth it?**
 Yes. With the alleys of Venice, it is what I photographed the most on this trip.
