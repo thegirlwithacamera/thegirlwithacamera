@@ -20,7 +20,13 @@ We stayed three nights at At the Golden Pear, in the castle district, in Septemb
 
 Nový Svět, in Hradčany, a five minute walk from Prague Castle, the Loreto and Strahov Monastery.
 
-**What it is:** a listed 17th century house from the time of Emperor Rudolf II, which is also a beer spa. The stay includes unlimited tank beer from the fountain.
+**What it is:** a listed 17th century house from the time of Emperor Rudolf II, restored and turned into apartments above a beer spa. The stay includes unlimited beer from the fountain, and the spa itself, Spa Beerland Chateaux, is in the vaulted cellar.
+
+**The address:** 3 Nový Svět, in Hradčany. The castle is five to seven minutes on foot, St Vitus six, the Loreto and Strahov about the same. Charles Bridge is twenty minutes downhill, and the Old Town about twenty five.
+
+**The street:** Nový Svět is the quietest corner of the castle district, a row of small former craftsmen's houses. The astronomer Tycho Brahe lived on it, which the spa downstairs plays on with its alchemist decor.
+
+**The rooms:** three of them, individually decorated, from 25 to 40 square metres, with Frette linen and a park view. Check in from 2pm, check out by noon.
 
 ## The room
 

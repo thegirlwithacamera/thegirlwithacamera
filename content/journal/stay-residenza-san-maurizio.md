@@ -18,6 +18,12 @@ We stayed two nights at the Residenza San Maurizio, in October 2024.
 
 In the San Marco sestiere, a few minutes from the Accademia bridge and about ten from Saint Mark's Square.
 
+**What it is:** a small guest house in a Venetian building, the kind of place Venice does better than hotels: a handful of rooms, a staircase, no lobby.
+
+**Why the location works:** San Marco puts you inside the city rather than across the water in Mestre, which also matters for the access fee, since anyone sleeping in the municipality is exempt. The Accademia bridge is the crossing to Dorsoduro, where the good tables are, and Saint Mark's is ten minutes the other way.
+
+**Getting there with bags:** the nearest vaporetto stops are Santa Maria del Giglio and Accademia. From the station, expect one boat and a short walk with steps and bridges.
+
 
 ## The room
 

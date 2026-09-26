@@ -22,6 +22,10 @@ Latschach, at the foot of the Mittagskogel, above Lake Faak, about 15 minutes fr
 
 **What it is:** not a single building but a village of chalets in the forest, with a pool, a sauna area, and access to the private beach of its sister village on the lake, Naturel Hoteldorf Seeleitn, about 2 km away.
 
+**Where it puts you:** at the foot of the Mittagskogel, above Lake Faak, about fifteen minutes from Villach, with the Karawanks on the far side of the water. Buses run between the hotel, the lake and the town, which is how we got around without a car.
+
+**What there is on site:** the pool, the sauna area, the restaurant, and the forest paths that start at the door. The chalets have their own kitchen and terrace, which changes how a stay feels: you are not in a hotel room, you are in a small house.
+
 ## The chalet
 
 > À COMPLÉTER : ton chalet, la pièce de vie, la terrasse, la vue, le lit.

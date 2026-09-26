@@ -20,7 +20,13 @@ We stayed two nights at Hotel Rathaus Wein & Design, in September 2026.
 
 Lange Gasse 13, in Josefstadt, the 8th district, a few minutes from the Rathaus and the Ring.
 
-**What it is:** a hotel built around Austrian wine. Every room is dedicated to an Austrian winemaker, with their bottles in the minibar, and the house list runs to more than 450 wines.
+**What it is:** a hotel built around Austrian wine. It has 39 rooms and one attic suite, each dedicated to a top Austrian winemaker, with that winemaker's bottles in the room's own little wine bar. The house list runs to more than 450 Austrian wines, and wine is served at any hour in the lounge, with a sommelier on hand.
+
+**The building:** a historic Viennese townhouse in Josefstadt, with two courtyards and a garden. Reception is open 24 hours, and the rooms are air conditioned, with bathrobes and slippers.
+
+**Where it puts you:** five minutes on foot from the Rathaus, about the same from the Ring, and roughly ten from the Hofburg. It is a quiet street, which is rare this close to the centre.
+
+**Breakfast:** a buffet of regional produce, with antipasti and a long cheese selection, and eggs cooked to order on request. There is also a small breakfast option, coffee or tea with a croissant.
 
 ## The room
 
