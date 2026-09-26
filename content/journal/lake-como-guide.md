@@ -60,6 +60,13 @@ We visited **Villa Cipressi** and its terraced gardens, and the gates that open 
 
 **Good to know:** Villa Cipressi is a late Renaissance villa turned hotel, but the gardens are open to visitors for a few euros, terraced down to the water between cypresses and magnolias. The lakefront path next to it is the Passeggiata degli Innamorati, the lovers' walk, which runs from the ferry landing along the shore.
 
+**What else there is to do in Varenna**
+
+- **Villa Monastero,** next door to Cipressi, a former monastery with a botanical garden that runs almost two kilometres along the shore. Usually open from April to November.
+- **Castello di Vezio,** twenty minutes uphill from the village. Eleventh century ruins, four euros, and the best view of the middle of the lake, with Bellagio straight across and Menaggio to the north. There are falconry displays in season.
+- **The Passeggiata degli Innamorati,** four hundred metres of walkway between the ferry dock and the villas. Walk it before the first boats, and again at sunset when the mountains on the western shore catch the last light.
+- **The church of San Giorgio,** on the main square, and the small beach below the village if the weather is with you.
+
 ### Breakfast at Bar il Molo
 
 On the waterfront, with the lake right there. Eggs, salmon, and the view.
@@ -77,6 +84,13 @@ We walked, ate, and drank spritz. That is the honest version, and it is enough.
 ![An alley in Bellagio](/images/journal/lake-como/bellagio-alley.jpg)
 
 ![The lake from Bellagio](/images/journal/lake-como/bellagio-lake.jpg)
+
+**What else there is to do in Bellagio**
+
+- **The gardens of Villa Melzi,** along the lakefront south of the centre. A neoclassical villa from 1808, with a botanical garden full of camellias, rhododendrons and Japanese ponds, a family chapel and a small museum. Ten euros, open from late March to late October. The villa itself stays private.
+- **Punta Spartivento,** the tip of the promontory, a ten minute walk from the centre. This is the point where the lake splits into its three arms, with Varenna on one side and Menaggio on the other. It is free, and it is the best photograph in Bellagio.
+- **The old town stairs,** the stepped alleys between the waterfront and the church of San Giacomo, which are the postcard everyone comes for.
+- **The park of Villa Serbelloni,** on guided visits only, above the village.
 
 And a red Ferrari parked on the cobbles, because Bellagio is also that.
 
@@ -102,9 +116,17 @@ Silk is the speciality of this lake, and Bellagio is where I bought mine, at Aza
 
 ## Menaggio
 
-Same, and it is where we slept.
+Same, and it is where we slept. Menaggio is the quietest of the three, and the one where people actually live.
 
 ![The lake from Menaggio](/images/journal/lake-como/menaggio-lake.jpg)
+
+**What there is to do in Menaggio**
+
+- **The lido,** a lakeside pool and pebble beach at the edge of the village, open in season, with a bar and a view of Bellagio.
+- **The Greenway del Lago,** a marked walking path that starts near Menaggio and follows the western shore through old villages, gardens and lanes.
+- **The hiking,** more than fifty marked trails start from here, from a flat hour by the water to the ridges above the lake.
+- **Villa Carlotta,** a few minutes south by bus or boat, at Tremezzo, with its terraced garden and its sculptures. It is the one big villa of the western shore.
+- **The flattest waterfront on the lake,** which sounds like nothing until you have spent two days climbing the stairs of Varenna and Bellagio.
 
 ### Dinner at La Grolla
 
@@ -119,6 +141,8 @@ Tagliolini with pistachio cream and prawns, which was incredible, and a tiramisu
 The village in the gorge, with its stone bridge over the waterfall and its houses stacked above the water. It is smaller than the other three and far less walked.
 
 **How we got there:** by bus from Bellagio. The bus stops on the main road above the village, and from there it is stairs down to the water.
+
+**What to see:** the Ponte della Civera, the humpbacked Roman bridge over the gorge, the waterfall of the Orrido di Nesso that drops between the two halves of the village, and the small harbour below, which is where the postcard photograph is taken from. Count an hour, maybe two with a drink.
 
 ![The houses of Nesso above the water](/images/journal/lake-como/nesso-house.jpg)
 
