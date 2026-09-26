@@ -20,7 +20,17 @@ We stayed two nights at Altstadt Vienna, in September 2026, during our four nigh
 
 Kirchengasse 41, in Spittelberg, in the 7th district, a five minute walk from the MuseumsQuartier and about fifteen from the Ring.
 
-**What it is:** a boutique hotel in a 19th century townhouse, with 56 rooms and suites, all decorated differently. The owner's collection of contemporary art hangs through the salons and the corridors, and several rooms were designed by Matteo Thun.
+**What it is:** an art collection with rooms in it. The house is a patrician townhouse from 1902, a former pension that the Viennese art collector Otto Ernst Wiesenthal turned into a hotel in 1991. It is still run by his family, 35 years later.
+
+**The art:** more than 400 contemporary works hang through the salons, the corridors and the rooms, some owned by the family, some on loan from museums, with names like Andy Warhol, Annie Leibovitz and Brigitte Kowanz. Even the bathrooms of the Level_41 space carry work by Yayoi Kusama.
+
+**The rooms:** 62 of them, across five floors, and no two alike. Each was given to a different designer, among them the architect Matteo Thun and the fashion designers Lena Hoschek and Atıl Kutoğlu. One has a freestanding bath in the middle of the bedroom, another an original Bösendorfer piano, another a vinyl collection. Newer ones include a Freud suite and a suite dedicated to the dancer Grete Wiesenthal.
+
+**The salons:** on the Belle Etage, half living room and half gallery, with a fireplace in the Red Salon. Breakfast is served there, afternoon tea and cake too, and a small bar menu in the evening.
+
+**Where it puts you:** Spittelberg, the artists' quarter of the 7th district, five minutes from the MuseumsQuartier, about ten from the Volkstheater, and just outside the Ring. It is a neighbourhood of locals rather than shoppers.
+
+**Good to know:** free bikes for guests, a rooftop terrace, pets under five kilos welcome for a fee, and it was the first hotel in Vienna to get the Austrian eco label.
 
 ## The room
 
@@ -32,7 +42,7 @@ Kirchengasse 41, in Spittelberg, in the 7th district, a five minute walk from th
 
 ## The afternoon tea
 
-Every afternoon, tea and homemade cake are served by the fireplace, included for guests.
+Every afternoon, tea and homemade cake are served by the fireplace of the Red Salon, included for guests. Some afternoons there is a pianist. In the evening the same room serves drinks and small plates.
 
 > À COMPLÉTER : tu en as profité ? c'était comment ?
 
@@ -65,6 +75,12 @@ Kirchengasse 41, in Spittelberg, in the 7th district.
 > À COMPLÉTER
 
 **What makes Altstadt Vienna different?**
-Every room is decorated differently, the owner's contemporary art collection hangs on the walls, and tea and cake are served by the fireplace every afternoon.
+It was founded by an art collector in 1991, in a 1902 townhouse. There are 62 rooms, each designed by a different creative, more than 400 contemporary artworks on the walls, and tea and homemade cake by the fireplace every afternoon.
+
+**Who designed the rooms at Altstadt Vienna?**
+Among others, the architect Matteo Thun and the fashion designers Lena Hoschek and Atıl Kutoğlu. No two rooms are the same.
+
+**Is breakfast included at Altstadt Vienna?**
+Yes, a buffet served in the salons, with eggs and omelettes made to order.
 
 Affiliate disclosure: some links in this article are affiliate links. If you book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)
