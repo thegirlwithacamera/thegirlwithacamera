@@ -85,6 +85,8 @@ We walked, ate, and drank spritz. That is the honest version, and it is enough.
 
 ![The lake from Bellagio](/images/journal/lake-como/bellagio-lake.jpg)
 
+/videos/journal/lake-como-bellagio.mp4 /videos/journal/lake-como-bellagio.jpg
+
 **What else there is to do in Bellagio**
 
 - **The gardens of Villa Melzi,** along the lakefront south of the centre. A neoclassical villa from 1808, with a botanical garden full of camellias, rhododendrons and Japanese ponds, a family chapel and a small museum. Ten euros, open from late March to late October. The villa itself stays private.
@@ -171,6 +173,8 @@ The three villages are linked by the ferries of the central lake, and crossing f
 ![On the ferry deck](/images/journal/lake-como/ferry-deck.jpg)
 
 ![Inside the ferry](/images/journal/lake-como/ferry-inside.jpg)
+
+/videos/journal/lake-como-ferry.mp4 /videos/journal/lake-como-ferry.jpg
 
 **Good to know:** Varenna to Bellagio and Bellagio to Menaggio are the two short hops, and the car ferry also takes foot passengers. Buy at the landing stage, check the last departure of the evening before you settle in for a spritz, and remember that timetables thin out a lot outside the summer season.
 
