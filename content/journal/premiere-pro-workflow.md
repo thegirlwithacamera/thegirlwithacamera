@@ -108,3 +108,8 @@ I think you need to love video editing to use software like this.
 ## Final thoughts
 
 Sort by project, select, tell the story, then music, colour, and subtitles. Premiere Pro looks scary at first, but once you are inside, the shortcuts make it feel natural.
+
+## Read next
+
+- [Insta360 Luna Ultra review](/en/journal/insta360-luna-ultra-review), the camera I film with
+- [Insta360 Ace Pro 2 review](/en/journal/insta360-ace-pro-2-review)

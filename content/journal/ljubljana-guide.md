@@ -154,4 +154,11 @@ Every Sunday, from 8am to 3pm, along the river.
 
 [Continue to my Lake Bled guide](/en/journal/lake-bled-guide)
 
+
+## Read next
+
+More from Slovenia:
+
+- [Lake Bled travel guide: walk the loop, swim for free, climb Mala Osojnica](/en/journal/lake-bled-guide)
+
 Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

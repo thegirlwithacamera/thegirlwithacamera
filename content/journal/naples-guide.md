@@ -92,3 +92,12 @@ The Alibus shuttle to the central station, for about €5.
 
 **How do you get up to the top of Naples?**
 By funicular from the centre, included in the normal transport ticket, to the Vomero hill and Castel Sant'Elmo.
+
+## Read next
+
+More from Italy:
+
+- [Burano travel guide: coloured houses, lace and a spritz](/en/journal/burano-guide)
+- [Cefalù travel guide: a day trip from Palermo](/en/journal/cefalu-guide)
+- [Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping](/en/journal/florence-guide)
+- [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)

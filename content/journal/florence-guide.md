@@ -105,3 +105,12 @@ The cathedral itself is free, but the dome climb needs a combined ticket with a 
 
 **Where to stay in Florence?**
 We stayed in an Airbnb slightly outside the centre, which was quieter and cheaper.
+
+## Read next
+
+More from Italy:
+
+- [Burano travel guide: coloured houses, lace and a spritz](/en/journal/burano-guide)
+- [Cefalù travel guide: a day trip from Palermo](/en/journal/cefalu-guide)
+- [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)
+- [Naples travel guide: dirty, intimidating, and very good for street photography](/en/journal/naples-guide)

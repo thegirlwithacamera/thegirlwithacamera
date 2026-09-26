@@ -142,4 +142,14 @@ Five days with a day trip, or better, ten days for the whole island by car.
 **Where to drink wine in Palermo?**
 Dal Barone, in the Kalsa, for natural Sicilian wine and a board of cheese and cured meats.
 
+
+## Read next
+
+More from Italy:
+
+- [Burano travel guide: coloured houses, lace and a spritz](/en/journal/burano-guide)
+- [Cefalù travel guide: a day trip from Palermo](/en/journal/cefalu-guide)
+- [Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping](/en/journal/florence-guide)
+- [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)
+
 Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

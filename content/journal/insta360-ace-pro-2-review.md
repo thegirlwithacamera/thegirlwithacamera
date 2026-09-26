@@ -140,4 +140,10 @@ Waterproof, versatile, great for still frames, and with the grip, a camera that 
 
 [Shop the Ace Pro 2 Xplorer bundles](https://www.insta360.com/sal/ace-pro-2-xplorer-series?utm_source=AffiliateCenter&utm_medium=copylink&utm_term=sandrinecppns)
 
+
+## Where you can see it in use
+
+- [Tokyo, first timer guide](/en/journal/tokyo-first-timer-guide)
+- [How I edit my travel and hotel videos in Premiere Pro](/en/journal/premiere-pro-workflow)
+
 Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

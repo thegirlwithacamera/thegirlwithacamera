@@ -93,3 +93,12 @@ With shika senbei crackers, 200 yen a bundle, bought in the park. Never show the
 
 **Is Nara Park free?**
 Yes. The park is free, the Great Buddha Hall is 800 yen.
+
+## Read next
+
+More from Japan:
+
+- [Arashiyama travel guide: go before sunrise](/en/journal/arashiyama-guide)
+- [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
+- [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
+- [Oi Racecourse flea market: one of Tokyo's biggest flea markets](/en/journal/oi-flea-market-guide)

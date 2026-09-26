@@ -99,3 +99,10 @@ At Café Restaurant Demiri, on Lendplatz.
 
 **Where to stay in Graz?**
 We stayed in an apartment in Lend, a pleasant neighbourhood close to the Kunsthaus.
+
+## Read next
+
+More from Austria:
+
+- [Vienna travel guide: a city of grandeur, best seen on foot](/en/journal/vienna-slow-guide)
+- [Villach and Lake Faak travel guide: a charming town and a turquoise lake to disconnect](/en/journal/villach-faaker-see-guide)

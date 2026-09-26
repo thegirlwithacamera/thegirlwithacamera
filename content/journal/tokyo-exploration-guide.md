@@ -94,3 +94,12 @@ I went to Palette Plaza, in Shiba-Daimon and in Ebisu: about an hour of waiting.
 
 **Is Tokyo a good place to travel alone?**
 For me, yes. From the train out of the airport, I felt at home.
+
+## Read next
+
+More from Japan:
+
+- [Arashiyama travel guide: go before sunrise](/en/journal/arashiyama-guide)
+- [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
+- [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
+- [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)

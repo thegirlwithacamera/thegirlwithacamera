@@ -132,3 +132,12 @@ Yes, it has been ticketed and pre-booked since 2025.
 
 **Where to stay in Venice?**
 We stayed at the Residenza San Maurizio, in San Marco.
+
+## Read next
+
+More from Italy:
+
+- [Burano travel guide: coloured houses, lace and a spritz](/en/journal/burano-guide)
+- [Cefalù travel guide: a day trip from Palermo](/en/journal/cefalu-guide)
+- [Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping](/en/journal/florence-guide)
+- [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)

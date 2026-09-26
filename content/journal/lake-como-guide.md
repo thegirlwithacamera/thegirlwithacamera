@@ -205,4 +205,14 @@ Silk. It is the local speciality.
 **How long do you need at Lake Como?**
 Two days for the central triangle, a week if you want a village a day.
 
+
+## Read next
+
+More from Italy:
+
+- [Burano travel guide: coloured houses, lace and a spritz](/en/journal/burano-guide)
+- [Cefalù travel guide: a day trip from Palermo](/en/journal/cefalu-guide)
+- [Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping](/en/journal/florence-guide)
+- [Naples travel guide: dirty, intimidating, and very good for street photography](/en/journal/naples-guide)
+
 Affiliate disclosure: some links in this article are affiliate links. If you book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

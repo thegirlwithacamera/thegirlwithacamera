@@ -111,3 +111,10 @@ Because of the limestone of the Karawanks, the mountains on the far side of the 
 
 **How many days at Lake Faak?**
 As many as you can. You could easily spend one or two weeks there.
+
+## Read next
+
+More from Austria:
+
+- [Graz travel guide: a peaceful city, red rooftops and the Schlossberg](/en/journal/graz-guide)
+- [Vienna travel guide: a city of grandeur, best seen on foot](/en/journal/vienna-slow-guide)

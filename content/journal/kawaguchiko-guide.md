@@ -111,4 +111,14 @@ By shared bike. Register on the app before you need it.
 **What should you pack for Kawaguchiko?**
 Gloves and warm clothes, even in October.
 
+
+## Read next
+
+More from Japan:
+
+- [Arashiyama travel guide: go before sunrise](/en/journal/arashiyama-guide)
+- [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
+- [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)
+- [Oi Racecourse flea market: one of Tokyo's biggest flea markets](/en/journal/oi-flea-market-guide)
+
 Affiliate disclosure: some links in this article are affiliate links. If you book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

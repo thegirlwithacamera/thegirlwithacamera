@@ -104,3 +104,12 @@ Jizo-dori, the grannies' Harajuku, a long shopping street for older people, with
 
 **Is Otsuka worth a visit?**
 Yes. It is one stop from Ikebukuro, quiet and low, with the last tram line of Tokyo.
+
+## Read next
+
+More from Japan:
+
+- [Arashiyama travel guide: go before sunrise](/en/journal/arashiyama-guide)
+- [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
+- [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
+- [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)

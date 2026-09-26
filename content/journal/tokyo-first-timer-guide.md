@@ -148,4 +148,14 @@ By metro, and on foot.
 **Which neighbourhoods are worth it?**
 For me, Harajuku, Ueno, Asakusa and Jimbocho, more than Shibuya and Shinjuku.
 
+
+## Read next
+
+More from Japan:
+
+- [Arashiyama travel guide: go before sunrise](/en/journal/arashiyama-guide)
+- [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
+- [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
+- [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)
+
 Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

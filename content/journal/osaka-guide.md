@@ -154,3 +154,12 @@ Common, at 1-12-24 Shimanouchi, in Chuo-ku, on Instagram at @common_mami.
 
 **Where to eat yakitori in Osaka?**
 Iccho, in Higashishinsaibashi, a counter with eight seats run by an older couple. Cash only, closed on Sundays.
+
+## Read next
+
+More from Japan:
+
+- [Arashiyama travel guide: go before sunrise](/en/journal/arashiyama-guide)
+- [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
+- [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
+- [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)

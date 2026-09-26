@@ -126,3 +126,9 @@ By pletna boat, paid in cash to the rower, or by renting a rowing boat.
 From the Park Hotel café, where it was created in 1953.
 
 [Read my Ljubljana guide](/en/journal/ljubljana-guide)
+
+## Read next
+
+More from Slovenia:
+
+- [Ljubljana travel guide: a walkable capital built for people](/en/journal/ljubljana-guide)

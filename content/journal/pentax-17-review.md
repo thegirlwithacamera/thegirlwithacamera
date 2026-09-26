@@ -98,4 +98,10 @@ A few frames from Tokyo, in June 2026.
 
 Two pictures at a time, seventy-two per roll, and a camera that makes you slow down.
 
+
+## Read next
+
+- [Ricoh GR III Diary Edition review](/en/journal/ricoh-gr-iii-review)
+- [Tokyo, first timer guide](/en/journal/tokyo-first-timer-guide)
+
 Affiliate disclosure: some links in this article are affiliate links. If you buy through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

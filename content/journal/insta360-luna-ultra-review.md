@@ -131,4 +131,10 @@ After the DJI Osmo Pocket 3, the Luna Ultra is now my vlogging camera. The detac
 
 [Shop the Insta360 Luna Ultra](https://www.insta360.com/sal/luna-series?utm_source=AffiliateCenter&utm_medium=copylink&utm_term=sandrinecppns)
 
+
+## Where you can see it in use
+
+- [Lake Como travel guide](/en/journal/lake-como-guide), filmed with it
+- [How I edit my travel and hotel videos in Premiere Pro](/en/journal/premiere-pro-workflow)
+
 Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

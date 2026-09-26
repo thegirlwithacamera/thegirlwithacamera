@@ -93,3 +93,12 @@ Handmade lace has small irregularities and a price to match. Perfectly regular a
 
 **Is Burano worth it?**
 Yes. With the alleys of Venice, it is what I photographed the most on this trip.
+
+## Read next
+
+More from Italy:
+
+- [Cefalù travel guide: a day trip from Palermo](/en/journal/cefalu-guide)
+- [Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping](/en/journal/florence-guide)
+- [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)
+- [Naples travel guide: dirty, intimidating, and very good for street photography](/en/journal/naples-guide)

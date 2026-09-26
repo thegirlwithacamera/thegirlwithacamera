@@ -104,4 +104,14 @@ Small, fast, and with its recipes, the GR III Diary Edition lives up to its name
 
 [Shop the Ricoh GR IV, the successor of the GR III](https://www.amazon.com.be/dp/B0G881XZDK?tag=sandrinecppns-21)
 
+
+## Shot on the GR III
+
+Most of the street photographs in these guides were taken with it:
+
+- [Prague travel guide](/en/journal/prague-guide)
+- [Palermo travel guide](/en/journal/palermo-guide)
+- [Osaka travel guide](/en/journal/osaka-guide)
+- [Kyoto travel guide](/en/journal/kyoto-guide)
+
 Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

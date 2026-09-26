@@ -128,3 +128,12 @@ It is the condition grade, from S for unused down to C for visibly worn.
 
 **Can you get tax free on second hand luxury in Japan?**
 Yes, but from 1 November 2026 the refund happens after customs confirms the export, not at the till.
+
+## Read next
+
+More from Japan:
+
+- [Arashiyama travel guide: go before sunrise](/en/journal/arashiyama-guide)
+- [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
+- [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
+- [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)

@@ -110,3 +110,12 @@ Late afternoon. There is almost no shade, and the light on the roofs is best at 
 
 **Is Cefalù touristy?**
 Yes, much more than Palermo, and much more polished.
+
+## Read next
+
+More from Italy:
+
+- [Burano travel guide: coloured houses, lace and a spritz](/en/journal/burano-guide)
+- [Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping](/en/journal/florence-guide)
+- [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)
+- [Naples travel guide: dirty, intimidating, and very good for street photography](/en/journal/naples-guide)

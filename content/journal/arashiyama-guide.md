@@ -119,3 +119,12 @@ Tenryu-ji and its 14th century garden, the Togetsukyo bridge, the monkey park, a
 
 **How do you get to Arashiyama from Kyoto?**
 JR Sagano line to Saga-Arashiyama, about 15 minutes. Before the first trains, take a taxi.
+
+## Read next
+
+More from Japan:
+
+- [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
+- [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
+- [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)
+- [Oi Racecourse flea market: one of Tokyo's biggest flea markets](/en/journal/oi-flea-market-guide)

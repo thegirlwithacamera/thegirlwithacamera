@@ -162,3 +162,12 @@ Musashi-Koyama Palm, a covered arcade of about 800 metres next to Musashi-Koyama
 
 **Where to escape the tourist areas in Tokyo?**
 Nakameguro and Daikanyama: much more real and simple.
+
+## Read next
+
+More from Japan:
+
+- [Arashiyama travel guide: go before sunrise](/en/journal/arashiyama-guide)
+- [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
+- [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
+- [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)
