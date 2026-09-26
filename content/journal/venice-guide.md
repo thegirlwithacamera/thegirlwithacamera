@@ -78,6 +78,28 @@ I had lobster pasta there.
 
 Dorsoduro in general is where you find the good tables, away from the tourist route.
 
+## The practical side of Venice
+
+### The access fee
+
+Since 2024, day visitors pay a contributo di accesso to enter the historic centre on the busiest days. In 2026 it applied on 60 days between 3 April and 26 July, from 8:30am to 4pm: 5 euros booked at least five days ahead, 10 euros last minute, with fines from 50 to 300 euros if you are checked without a code.
+
+**Who does not pay:** anyone sleeping in the municipality of Venice, Mestre included, and children under 14. You still register for a free QR code. Arriving after 4pm on a chargeable day also avoids it.
+
+**Where:** only on the official portal, cda.ve.it. Check the calendar before you travel, the dates change every year.
+
+### The vaporetto
+
+A single ride is 9.50 euros and lasts 75 minutes. If you plan to use the boats, a day pass from around 25 euros is far better value.
+
+**My advice:** in the centre, walk. The vaporetto earns its price for the islands and the Grand Canal, not for crossing a city you can cross on foot.
+
+### Saint Mark's, if you want to see it
+
+Since 2025 the basilica is ticketed and booked in advance, around 10 euros for the church and more with the Pala d'Oro, the museum and the terrace with the bronze horses. The campanile is separate, around 15 euros. The Doge's Palace goes with the Saint Mark's Square museums ticket, cheaper booked a month ahead and valid three months.
+
+**Book early:** the Secret Itineraries tour of the palace sells out four to six weeks ahead, the basilica and the campanile two to four weeks.
+
 ## Things to know before you go
 
 - **Get up early.** It is the single best piece of advice I can give for Venice.
@@ -98,6 +120,15 @@ Three to four days, including a day for Burano and Murano.
 
 **When is the best time of day in Venice?**
 Early morning. The alleys are empty and the light is soft.
+
+**Do you have to pay to enter Venice?**
+Day visitors do, on around 60 designated days a year, from 8:30am to 4pm. If you sleep in Venice, you are exempt but still register for a free code.
+
+**How much is the vaporetto?**
+9.50 euros for a single ride valid 75 minutes, or a day pass from about 25 euros.
+
+**Do you need to book Saint Mark's Basilica?**
+Yes, it has been ticketed and pre-booked since 2025.
 
 **Where to stay in Venice?**
 We stayed at the Residenza San Maurizio, in San Marco.
