@@ -46,6 +46,19 @@ We stopped at 17's Bar for a spritz and some chicken wings, which cost almost no
 
 **Good to know:** 17's Bar is on Hviezdoslavovo námestie, the long square between the old town and the Danube, with tables outside.
 
+## What I would do with a night there
+
+We only had four hours, so this is what I would add if I came back, all of it within walking distance of the old town.
+
+- **Bratislava Castle.** The white block on the hill above the Danube. The grounds and the terraces are free and open from 8am to 10pm, and that is where the view is. The museum inside costs 10 euros. Count fifteen to twenty minutes uphill from the old town by Zámocká street, or bus 203.
+- **The UFO observation deck,** on the SNP bridge, 95 metres above the river. Around 7 to 10 euros depending on the day and the hour, open from 10am to 11pm, with a lift that takes 45 seconds. It is the only place you see the castle, the old town, the Danube and the communist era blocks of Petržalka in one turn.
+- **Michael's Gate,** the last medieval city gate, 51 metres, with a small museum and a viewing platform for about 5 euros.
+- **The statue hunt.** Čumil, the bronze man peering out of a manhole, Napoleon's soldier leaning on a bench, the photographer at the corner. They are free, and they are what makes walking this old town fun.
+- **Slavín,** the Soviet war memorial on the hill north of the centre, open at all hours, free, and the quietest view of the city.
+- **The Old Market Hall,** on Saturdays, for the food market.
+
+**And an evening plan:** the terraces on Hviezdoslavovo námestie for a drink, then the riverside, then the UFO at nightfall.
+
 ## Should you stop in Bratislava?
 
 You should stop, and you should sleep there. Four hours was not enough.
@@ -56,6 +69,12 @@ You should stop, and you should sleep there. Four hours was not enough.
 
 **Is Bratislava worth visiting?**
 Yes. Super safe, super clean and super cheap. Stop, and stay the night.
+
+**Is Bratislava expensive?**
+No. It was the cheapest stop of my Interrail route, and a drink there costs a fraction of what it costs in Vienna.
+
+**What is free in Bratislava?**
+The castle grounds and their terraces, the Blue Church from the street, Slavín, the statues of the old town, and the Danube promenade.
 
 **How long do you need in Bratislava?**
 More than the four hours we had. At least one night.
