@@ -7,7 +7,7 @@ series: italy
 place: Lake Como, Italy
 cover: /images/journal/lake-como/varenna-from-water.jpg
 excerpt: Two days in the central triangle of Lake Como: the coloured houses of Varenna, the gates of Villa Cipressi, the ferries, three good tables, and why you should get up early.
-draft: true
+draft: false
 ---
 
 Lake Como is incredibly beautiful.
