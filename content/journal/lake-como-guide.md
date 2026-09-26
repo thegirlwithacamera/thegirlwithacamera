@@ -34,7 +34,7 @@ Via Luigi Cadorna 91, Menaggio.
 
 ![The hotel at night](/images/journal/lake-como/adler-night.jpg)
 
-**Good to know:** it is a family run hotel with a garden and a pool looking out over the lake and the mountains, about five minutes from the centre of Menaggio, with the bus stop right outside. Breakfast is a buffet.
+**Good to know:** it is a family run hotel with a garden and a pool looking out over the lake and the mountains, on the hill above Menaggio. Count five minutes by car or about thirty five on foot down to the centre, with the bus stop right outside the door. Breakfast is a buffet.
 
 **What made it:** the owner. He is adorable, he speaks French, and it is a genuinely good hotel.
 
