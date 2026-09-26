@@ -16,9 +16,13 @@ We stayed four nights at Calamarina Centro, in Palermo, in March 2026.
 
 ## The place
 
-In the historic centre, a few minutes from Via Maqueda and the Quattro Canti, and walking distance from the Mercato del Capo.
+In the historic centre, a few minutes from Via Maqueda and the Quattro Canti, steps from Via Roma and the Teatro Massimo, and walking distance from the Mercato del Capo.
 
-> À COMPLÉTER : c'est un hôtel, un appart, des chambres d'hôtes ? Il y a une réception ?
+**What it is:** a guest house rather than a hotel, with rooms named after the markets and quarters of Palermo, a rooftop terrace, air conditioning and private bathrooms.
+
+**One thing to know before booking:** the flat is up a staircase of about 40 steps, with no lift. With big bags, or with anyone who struggles with stairs, that matters.
+
+> À COMPLÉTER : tu confirmes l'escalier ? Et il y avait une vraie réception ou un code d'entrée ?
 
 ## The room
 

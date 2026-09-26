@@ -20,6 +20,10 @@ Rua de Berlim, about fifteen minutes on foot from the old town.
 
 **What it is:** a renovated guest house with free bikes, breakfast, and a rooftop terrace with yellow chairs.
 
+**Where it puts you:** outside the old town, in a residential street, which is why it costs what it costs. Fifteen minutes on foot to the Cidade Velha, about the same to the marina, and the bikes make the Ria Formosa and the beach easy.
+
+**Why Faro as a base:** sleeping in Faro is far cheaper than in the resort towns, and everything on the coast is a day trip from here, including the cliffs of Falésia and the boats of the Ria Formosa.
+
 ## The room
 
 For Valentine's Day, they had prepared the room for us: red roses, a bottle of Portuguese sparkling wine, two glasses, a box of chocolates and a bowl of strawberries.

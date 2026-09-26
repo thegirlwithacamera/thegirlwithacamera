@@ -18,7 +18,11 @@ We stayed six to seven nights at the Expo Hotel Barcelona, in September 2023.
 
 Next to Sants station, the main train station of Barcelona, which makes it easy if you arrive by train or by airport bus.
 
-**What it is:** a large city hotel whose selling point is the rooftop pool, open in summer.
+**What it is:** a large city hotel whose selling point is the rooftop pool, open in summer, with the city spread out below.
+
+**Why the location works:** Sants is the main station, so you arrive with your bags and you are there. The airport bus and two metro lines stop at the door, and the Eixample starts fifteen minutes away on foot.
+
+**Why it might not suit you:** Sants is a working neighbourhood, not a tourist one. You sleep well and you travel easily, but the Gothic Quarter and the beach are a metro ride away, not a walk.
 
 ## The room
 
