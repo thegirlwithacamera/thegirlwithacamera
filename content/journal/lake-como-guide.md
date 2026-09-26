@@ -92,7 +92,13 @@ A pizza diavola, and it was good.
 
 ![A spritz in Bellagio](/images/journal/lake-como/bellagio-spritz.jpg)
 
-![Shopping in Bellagio](/images/journal/lake-como/bellagio-shopping.jpg)
+### The silk
+
+Silk is the speciality of this lake, and Bellagio is where I bought mine, at Azalea.
+
+![My bag from the silk shop in Bellagio](/images/journal/lake-como/bellagio-shopping.jpg)
+
+**Good to know:** Como has been weaving silk since the sixteenth century, and the lake still produces a large share of Europe's silk. The scarves and ties sold in the villages are the souvenir worth carrying home, and the small shops are usually cheaper than the ones facing the ferry landing.
 
 ## Menaggio
 
@@ -148,7 +154,7 @@ The three villages are linked by the ferries of the central lake, and crossing f
 
 - **Give yourself time, and patience.** Everything moves at the speed of the boats, and so do the crowds.
 - **Get up early.** Very early. It is the only way to have Varenna and Bellagio to yourself.
-- **Buy a silk souvenir.** Silk is the speciality of this lake, and it has been for centuries.
+- **Buy a silk souvenir.** It is the speciality of this lake, and it has been for centuries.
 
 ## How long do you need at Lake Como?
 
