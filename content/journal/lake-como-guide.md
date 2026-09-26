@@ -34,7 +34,7 @@ Via Luigi Cadorna 91, Menaggio.
 
 **Good to know:** it is a family run hotel with a garden and a pool looking out over the lake and the mountains, about five minutes from the centre of Menaggio, with the bus stop right outside. Breakfast is a buffet.
 
-> À COMPLÉTER : ta chambre, la vue, le petit-déjeuner, ce que tu as aimé et ce que tu as moins aimé. Et confirme-moi que le lien Booking ci-dessous tombe bien sur le bon hôtel.
+**What made it:** the owner. He is adorable, he speaks French, and it is a genuinely good hotel.
 
 [Check prices and availability at Hotel Adler](https://www.kqzyfj.com/click-101884973-15734897?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fit%2Fadler-menaggio.html)
 
@@ -89,6 +89,8 @@ Same, and it is where we slept.
 ### Nesso
 
 The village in the gorge, on the western shore south of Menaggio, with its stone bridge over the waterfall and its houses stacked above the water. It is smaller than the other three and far less walked.
+
+**How we got there:** by bus, along the western shore from Menaggio. The buses run all day and stop on the main road above the village, then it is stairs down to the water.
 
 ![The houses of Nesso above the water](/images/journal/lake-como/nesso-house.jpg)
 
@@ -155,6 +157,9 @@ Tagliolini with pistachio cream and prawns, which was incredible, and a tiramisu
 A week, easily, if you change village every day. Two days gives you the triangle and nothing else.
 
 ## Lake Como FAQ
+
+**How do you get to Nesso?**
+By bus along the western shore. It is not on the ferry triangle.
 
 **Which village should you stay in?**
 We slept in Menaggio and my favourite to walk was Varenna, for its coloured houses.
