@@ -90,7 +90,7 @@ Same, and it is where we slept.
 
 The village in the gorge, on the western shore south of Menaggio, with its stone bridge over the waterfall and its houses stacked above the water. It is smaller than the other three and far less walked.
 
-**How we got there:** by bus, along the western shore from Menaggio. The buses run all day and stop on the main road above the village, then it is stairs down to the water.
+**How we got there:** by bus from Bellagio, down the eastern side of the Bellagio peninsula. The bus stops on the main road above the village, and from there it is stairs down to the water.
 
 ![The houses of Nesso above the water](/images/journal/lake-como/nesso-house.jpg)
 
@@ -159,7 +159,7 @@ A week, easily, if you change village every day. Two days gives you the triangle
 ## Lake Como FAQ
 
 **How do you get to Nesso?**
-By bus along the western shore. It is not on the ferry triangle.
+By bus from Bellagio. It is not on the ferry triangle.
 
 **Which village should you stay in?**
 We slept in Menaggio and my favourite to walk was Varenna, for its coloured houses.
