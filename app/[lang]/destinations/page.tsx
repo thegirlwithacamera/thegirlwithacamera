@@ -201,7 +201,12 @@ export default async function DestinationsPage({ params }: Props) {
       })}
 
       {/* 27/09 : après les trois projets, le lien vers tout le reste. */}
-      <p className={s.allLink}><Link href="/en/destinations/all">All destinations →</Link></p>
+      {/* 27/09 (Sandrine) : le petit lien se perdait. Une phrase et un vrai
+          bouton, même style que « Read my story » sur l'accueil. */}
+      <div className={s.allLink}>
+        <p className={s.allLead}>More hotels, tables and cities, from Italy to Japan.</p>
+        <Link href="/en/destinations/all" className={s.allButton}>See all destinations</Link>
+      </div>
 
       <section className={s.logos}>
         <TrustLogos lang="en" cats={["stays", "travel"]} hideLabel />

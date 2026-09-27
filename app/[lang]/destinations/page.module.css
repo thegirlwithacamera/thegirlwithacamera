@@ -140,18 +140,33 @@
 .filmWrap:hover .sound, .sound:focus-visible { opacity: 1; background: rgba(0, 0, 0, 0.62); }
 @media (max-width: 767px) { .sound { opacity: 0.9; right: 8px; top: 8px; } }
 
-/* Lien discret vers toutes les destinations (27/09). */
+/* Lien vers toutes les destinations (27/09) : phrase et bouton encadré,
+   même style que le bouton « Read my story » de l'accueil. */
 .allLink {
-  margin: clamp(48px, 6vw, 88px) auto 0;
+  margin: clamp(64px, 8vw, 112px) auto 0;
   padding: 0 var(--pad);
   text-align: center;
 }
-.allLink a {
+.allLead {
+  margin: 0 auto;
+  max-width: 560px;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+  line-height: 1.45;
+  color: var(--ink);
+}
+.allButton {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 34px;
+  border: 1px solid var(--ink);
   font-family: var(--font-sans);
   font-size: var(--text-label);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease;
 }
-.allLink a:hover { color: var(--brick); }
+.allButton:hover { background: var(--ink); color: var(--paper); }
+.allButton:focus-visible { outline: 2px solid var(--brick); outline-offset: 4px; }
