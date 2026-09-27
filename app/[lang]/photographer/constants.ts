@@ -531,16 +531,9 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
 // Une catégorie qui n'a plus aucun projet disparaît d'elle-même.
 // Les anciennes adresses renvoient vers /en/destinations (next.config.ts).
 // ─────────────────────────────────────────────────────────────
-export const HIDDEN_CASES: readonly string[] = [
-  "ce-pages",
-  "van-der-valk-selys",
-  "tokyo",
-  "kyoto",
-  "napoli",
-  "burano",
-  "venezia",
-  "palermo",
-];
+// 27/09, décision de Sandrine : Japon, Italie et Belgique reviennent, avec
+// leurs films, et se retrouvent sur /en/destinations/all.
+export const HIDDEN_CASES: readonly string[] = [];
 
 export const PHOTO_CATEGORIES: PhotoCategory[] = ALL_PHOTO_CATEGORIES
   .map((cat) => ({ ...cat, cases: cat.cases.filter((c) => !HIDDEN_CASES.includes(c.slug)) }))

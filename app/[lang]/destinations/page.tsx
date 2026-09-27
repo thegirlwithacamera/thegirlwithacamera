@@ -139,6 +139,8 @@ export default async function DestinationsPage({ params }: Props) {
       <p className={s.statement}>
         Hotels, cities and journeys, told the way they felt: first light, quiet rooms, the moments in between.
       </p>
+      {/* 27/09 : petit lien vers tous les projets, Japon et Italie compris. */}
+      <p className={s.allLink}><Link href="/en/destinations/all">All destinations →</Link></p>
 
       {PROJECTS.map((p) => {
         const alt = `${[p.name, p.place].filter(Boolean).join(", ")}, photographed by Sandrine Ceuppens`;

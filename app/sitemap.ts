@@ -26,6 +26,7 @@ function buildPaths(): Entry[] {
     // le reste.
     { path: "", priority: 1, changeFrequency: "weekly", lastModified: now },
     { path: "/destinations", priority: 0.9, changeFrequency: "weekly", lastModified: now },
+    { path: "/destinations/all", priority: 0.8, changeFrequency: "weekly", lastModified: now },
     { path: "/contact", priority: 0.9, changeFrequency: "monthly", lastModified: now },
     { path: "/journal", priority: 0.7, changeFrequency: "weekly", lastModified: now },
     { path: "/creator", priority: 0.8, changeFrequency: "monthly", lastModified: now },

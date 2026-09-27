@@ -139,3 +139,19 @@
 .sound svg { width: 17px; height: 17px; }
 .filmWrap:hover .sound, .sound:focus-visible { opacity: 1; background: rgba(0, 0, 0, 0.62); }
 @media (max-width: 767px) { .sound { opacity: 0.9; right: 8px; top: 8px; } }
+
+/* Lien discret vers toutes les destinations (27/09). */
+.allLink {
+  margin: 20px auto 0;
+  padding: 0 var(--pad);
+  text-align: center;
+}
+.allLink a {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+.allLink a:hover { color: var(--brick); }

@@ -40,10 +40,7 @@ const nextConfig: NextConfig = {
       // HIDDEN_CASES) aussi. Les pages de projet autrichiennes restent.
       { source: "/en/filmmaker", destination: "/en/destinations", permanent: false },
       { source: "/en/filmmaker/:path*", destination: "/en/destinations", permanent: false },
-      { source: "/en/photographer/:category(hospitality|restaurants|travel)", destination: "/en/destinations", permanent: false },
-      { source: "/en/photographer/restaurants/:path*", destination: "/en/destinations", permanent: false },
-      { source: "/en/photographer/travel/:case(tokyo|kyoto|napoli|burano|venezia|palermo)", destination: "/en/destinations", permanent: false },
-      { source: "/en/photographer/travel/:case(tokyo|kyoto|napoli|burano|venezia|palermo)/:path*", destination: "/en/destinations", permanent: false },
+      { source: "/en/photographer/:category(hospitality|restaurants|travel)", destination: "/en/destinations/all", permanent: false },
       { source: "/en/shop", destination: "/en", permanent: false },
       // /da was a half-built page with missing assets, keep the URL valuable
       { source: "/da", destination: "/en/contact", permanent: true },
