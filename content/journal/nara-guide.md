@@ -60,11 +60,17 @@ Todai-ji and its Great Buddha, and the shrines around the park.
 
 ![Two men at the temple](/images/journal/nara/two-men-temple.jpg)
 
+**Kasuga Taisha,** the vermilion shrine at the far end of the park, is worth the walk: around 2,000 stone lanterns line its approach and 1,000 bronze ones hang from the buildings. The outer grounds are free, the inner area is paid, and the lanterns are lit only twice a year, in early February and mid August.
+
+**The gardens:** Isuien, a Meiji era garden laid out so that the gate of Todai-ji and the hills behind become part of the view, costs 1,200 yen. Yoshikien next door is free for foreign visitors.
+
 **Good to know:** the Great Buddha Hall costs 800 yen and opens at 7:30am from April to October, 8am from November to March. The Nandaimon gate and the outer grounds are free, as are the outer grounds of Kasuga Taisha and the Kofuku-ji pagoda area. Come at opening time: after 9am, the school groups arrive.
 
 ### The old town
 
 Naramachi, the old merchant district, with its wooden houses, just south of the park.
+
+**Good to know:** no tickets and no queues here, and several of the old machiya houses are open as small free museums, among them Naramachi Koshi-no-Ie, a reconstructed merchant house you can walk through. It is the quietest part of Nara, ten minutes from the deer.
 
 ![A street in Nara](/images/journal/nara/town-street.jpg)
 
@@ -90,6 +96,9 @@ Yes. The deer walk everywhere, even in the middle of the road, and the temples a
 
 **How do you feed the deer in Nara?**
 With shika senbei crackers, 200 yen a bundle, bought in the park. Never show the whole pack at once.
+
+**What is free in Nara?**
+The park and its 502 hectares, the outer grounds of Kasuga Taisha, the whole Naramachi district with its free machiya museums, and Yoshikien garden for foreign visitors.
 
 **Is Nara Park free?**
 Yes. The park is free, the Great Buddha Hall is 800 yen.
