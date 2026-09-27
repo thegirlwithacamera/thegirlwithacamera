@@ -63,6 +63,11 @@ export const BRANDS: Brand[] = [
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
   { name: "HOTEL RATHAUS WEIN & DESIGN", logo: "/images/brands/hotel-rathaus-wien-dark.svg", cat: "stays", href: "/photographer/hospitality/hotel-rathaus-wien", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "ALTSTADT VIENNA, AN SLH HOTEL", logo: "/images/brands/altstadt-mono.png", cat: "stays", href: "/photographer/hospitality/altstadt-vienna", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
+  // 27/09, décision de Sandrine : les projets belges reviennent sur le site
+  // (All destinations), leurs logos aussi, cliquables vers leur page.
+  { name: "VAN DER VALK SÉLYS", logo: "/images/brands/van-der-valk-selys-mono.png", cat: "stays", href: "/photographer/restaurants/van-der-valk-selys", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
+  { name: "DAO LIÈGE", logo: "/images/brands/dao-liege.png", cat: "stays", bandHidden: true },
+  { name: "CÉ·PAGES", logo: "/images/brands/ce-pages-mono.png", cat: "stays", href: "/photographer/restaurants/ce-pages", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "AT THE GOLDEN PEAR", logo: "/images/brands/golden-pear.png", tall: true, cat: "stays", pending: true },
   // PRAGUESTREAM retire le 14/09 : la nuit sur le houseboat des 6 et 7
   // septembre a ete annulee, aucun livrable n'a ete tourne. La ligne
@@ -80,6 +85,9 @@ export const BRANDS: Brand[] = [
   // logo sans travail derriere n'a plus de raison d'etre. Les fichiers restent
   // dans public/images/brands.
   { name: "INTERRAIL", logo: "/images/brands/interrail.svg", cat: "travel", href: "/destinations#interrail", hrefLabel: { fr: "Film", en: "Film" } },
+  // 27/09 : le voyage Bruxelles-Côme a eu lieu (21-23/09), le logo revient.
+  // Pas de lien tant que le film n'est pas en ligne.
+  { name: "EUROPEAN SLEEPER", logo: "/images/brands/european-sleeper-mono.png", cat: "travel" },
   // Logo en pastille, avec sa carte blanche et son ombre : il a besoin de la
   // hauteur des badges pour rester lisible entre deux wordmarks larges.
   { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "travel", href: "/photographer/travel/villach", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
