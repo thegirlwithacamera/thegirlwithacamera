@@ -176,6 +176,22 @@ export function tileCaption(post: JournalPost): string {
   return post.title;
 }
 
+// Les paires question/reponse de la fin des articles (26/09), pour le bloc
+// FAQ de Google. Une question est une ligne en gras qui finit par "?", la
+// reponse est la ligne juste en dessous.
+export function extractFaq(body: string): { q: string; a: string }[] {
+  const out: { q: string; a: string }[] = [];
+  const lines = body.split("\n");
+  for (let i = 0; i < lines.length - 1; i++) {
+    const q = lines[i].match(/^\*\*(.+\?)\*\*$/);
+    if (!q) continue;
+    const a = lines[i + 1].trim();
+    if (!a || a.startsWith("**") || a.startsWith("#") || a.startsWith("!")) continue;
+    out.push({ q: q[1], a: a.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*/g, "") });
+  }
+  return out;
+}
+
 export function findPost(slug: string): JournalPost | undefined {
   return allPosts().find((p) => p.slug === slug);
 }

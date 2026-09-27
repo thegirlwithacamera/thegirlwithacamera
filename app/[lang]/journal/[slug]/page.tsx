@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { allPosts, findPost, formatDate, renderMarkdown } from "@/lib/journal";
+import { allPosts, findPost, formatDate, renderMarkdown, extractFaq } from "@/lib/journal";
 import { pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { PageHead } from "../../components/editorial";
@@ -37,6 +37,8 @@ export default async function PostPage({ params }: Props) {
   const post = findPost(slug);
   if (!post) notFound();
 
+  const faq = extractFaq(post.body);
+
   return (
     <main className={s.main}>
       <PageHead
@@ -57,10 +59,27 @@ export default async function PostPage({ params }: Props) {
         "@type": "BlogPosting",
         headline: post.title,
         datePublished: post.date,
+        dateModified: post.date,
+        description: post.excerpt,
         image: post.cover ? `${site.url}${post.cover}` : undefined,
         author: { "@type": "Person", name: site.name, url: site.url },
+        publisher: { "@type": "Organization", name: site.name, url: site.url },
         mainEntityOfPage: `${site.url}/en/journal/${post.slug}`,
       }) }} />
+      {/* Les questions de fin d'article deviennent un bloc FAQ pour Google
+          (26/09) : c'est ce qui fait apparaître les reponses directement dans
+          les resultats de recherche. */}
+      {faq.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faq.map((q) => ({
+            "@type": "Question",
+            name: q.q,
+            acceptedAnswer: { "@type": "Answer", text: q.a },
+          })),
+        }) }} />
+      )}
     </main>
   );
 }
