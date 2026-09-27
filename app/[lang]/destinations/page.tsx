@@ -132,13 +132,14 @@ export default async function DestinationsPage({ params }: Props) {
   return (
     <main className={s.main}>
       <section className={s.banner}>
-        {/* Plan drone en boucle, muet (16/09, choix de Sandrine). Même lecteur
+        {/* Plan drone en boucle, muet (16/09, choix de Sandrine ; remplacé le
+            27/09 par son plan drone du lac de Côme, 23/09). Même lecteur
             que les films : il ne joue qu'à l'écran, et reste sur l'affiche si
             le visiteur a demandé moins d'animations. */}
         <LazyFilm
-          src="/videos/banners/destinations-drone.mp4"
-          poster="/videos/banners/destinations-drone.jpg"
-          label="Aerial view of a city at sunset"
+          src="/videos/banners/destinations-como.mp4"
+          poster="/videos/banners/destinations-como.jpg"
+          label="Aerial view of a village above a waterfall, Lake Como"
           sound={false}
         />
         <span className={s.bannerVeil} aria-hidden="true" />
