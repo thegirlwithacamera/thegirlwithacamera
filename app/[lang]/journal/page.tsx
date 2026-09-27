@@ -54,8 +54,8 @@ export default async function JournalPage({ params }: Props) {
     <main className={s.main}>
       <section className={s.banner}>
         <LazyFilm
-          src="/videos/banners/journal-drone.mp4"
-          poster="/videos/banners/journal-drone.jpg"
+          src="/videos/banners/journal-drone-vivid.mp4"
+          poster="/videos/banners/journal-drone-vivid.jpg"
           label="Aerial view of a castle above a lake"
           sound={false}
         />

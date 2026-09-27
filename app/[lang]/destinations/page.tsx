@@ -137,8 +137,8 @@ export default async function DestinationsPage({ params }: Props) {
             que les films : il ne joue qu'à l'écran, et reste sur l'affiche si
             le visiteur a demandé moins d'animations. */}
         <LazyFilm
-          src="/videos/banners/destinations-como.mp4"
-          poster="/videos/banners/destinations-como.jpg"
+          src="/videos/banners/destinations-como-vivid.mp4"
+          poster="/videos/banners/destinations-como-vivid.jpg"
           label="Aerial view of a village above a waterfall, Lake Como"
           sound={false}
         />
