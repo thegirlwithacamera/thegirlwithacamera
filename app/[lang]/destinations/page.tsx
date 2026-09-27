@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "/destinations",
     title: "Destinations",
     description:
-      "Hotels, cities and journeys photographed and filmed by Sandrine Ceuppens: Altstadt Vienna, Hotel Rathaus, Naturel Hoteldorf Schönleitn, Graz, Villach and Interrail.",
+      "Hotels, cities and journeys photographed and filmed by Sandrine Ceuppens: Altstadt Vienna, Interrail, Naturel Hoteldorf Schönleitn, and every other destination.",
     image: "/images/portfolio/hospitality/naturel-dorf-schonleitn/1.jpg",
   });
 }
@@ -51,6 +51,14 @@ type Project = {
   film2?: { src: string; poster: string };
   photos: string[];
 };
+
+// 27/09, décision de Sandrine : la page ne montre que les trois plus beaux
+// projets, et se met à jour avec les nouveautés. Le reste vit sur
+// /en/destinations/all. Pour changer la sélection, changer les id ci-dessous
+// (dans l'ordre d'affichage) ; PROJECTS garde les compositions prêtes.
+// Interrail reste dedans : c'est un deal signé et son film n'a pas d'autre
+// page (lien #interrail depuis le logo et le sitemap vidéo).
+const FEATURED = ["altstadt-vienna", "interrail", "naturel-dorf-schonleitn"];
 
 const P = "/images/portfolio";
 const F = "/videos/creator/CINEMATIC";
@@ -117,8 +125,9 @@ export default async function DestinationsPage({ params }: Props) {
   await params;
   // Alternance a/b comptée sur les seuls projets à photos : un projet film
   // seul (Interrail) ne casse pas le rythme.
+  const shown = FEATURED.map((id) => PROJECTS.find((p) => p.id === id)).filter((p): p is Project => !!p);
   const variants = new Map<string, "a" | "b">();
-  PROJECTS.filter((p) => p.photos.length > 0).forEach((p, i) => variants.set(p.id, i % 2 === 0 ? "a" : "b"));
+  shown.filter((p) => p.photos.length > 0).forEach((p, i) => variants.set(p.id, i % 2 === 0 ? "a" : "b"));
 
   return (
     <main className={s.main}>
@@ -139,10 +148,8 @@ export default async function DestinationsPage({ params }: Props) {
       <p className={s.statement}>
         Hotels, cities and journeys, told the way they felt: first light, quiet rooms, the moments in between.
       </p>
-      {/* 27/09 : petit lien vers tous les projets, Japon et Italie compris. */}
-      <p className={s.allLink}><Link href="/en/destinations/all">All destinations →</Link></p>
 
-      {PROJECTS.map((p) => {
+      {shown.map((p) => {
         const alt = `${[p.name, p.place].filter(Boolean).join(", ")}, photographed by Sandrine Ceuppens`;
         const label = (
           <div className={s.label}>
@@ -191,6 +198,9 @@ export default async function DestinationsPage({ params }: Props) {
           </section>
         );
       })}
+
+      {/* 27/09 : après les trois projets, le lien vers tout le reste. */}
+      <p className={s.allLink}><Link href="/en/destinations/all">All destinations →</Link></p>
 
       <section className={s.logos}>
         <TrustLogos lang="en" cats={["stays", "travel"]} hideLabel />
