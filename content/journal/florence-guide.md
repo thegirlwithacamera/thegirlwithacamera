@@ -80,9 +80,22 @@ The Renaissance gardens behind the Pitti Palace, with terraces, fountains and vi
 
 **Good to know:** the gardens are paid, and the ticket is usually combined with the Pitti Palace. Allow one to two hours: it climbs, and the best views are at the top.
 
+### The museums we skipped, and what they cost
+
+We did not do the Uffizi or the Accademia, but if you have more than two days, here is what you are dealing with.
+
+- **The Uffizi:** 25 euros full price in 2026, plus a booking fee of about 4 euros online. Since January 2026 there is a 16 euro ticket for entry from 4pm. Open Tuesday to Sunday, closed Mondays, last entry 5:30pm.
+- **The Accademia,** for Michelangelo's David: 16 euros, about 20 with the booking fee, entry every 15 minutes, closed Mondays.
+- **The Bargello,** for sculpture, is quieter, cheaper and rarely needs booking.
+- **Free entry** to the state museums on the first Sunday of the month, which also means the longest queues of the month. Locals avoid it.
+
+**The rule:** book the Uffizi and the Accademia weeks ahead, or go late in the day.
+
 ### Vintage shopping
 
 Not one shop in particular: there are many vintage shops in the centre, and the selection is really good. Give yourself an afternoon to go through them.
+
+**Where to look:** the streets around Santa Croce and Via dei Neri, and the lanes of the Oltrarno on the other side of the river, where the workshops are. Florence has been a leather and tailoring city for centuries, and that is what you find second hand here: coats, bags, belts, silk.
 
 ## Where to eat in Florence
 
@@ -102,6 +115,12 @@ At sunrise. The view over the whole city is the same, and you have the place alm
 
 **Do you need to book for the Duomo?**
 The cathedral itself is free, but the dome climb needs a combined ticket with a reserved time slot, booked in advance.
+
+**How much are the Uffizi and the Accademia?**
+25 euros for the Uffizi in 2026, 16 for the Accademia, plus about 4 euros of booking fee each. There is a 16 euro Uffizi ticket after 4pm.
+
+**Do you need to book the museums in Florence?**
+For those two, yes, weeks ahead in high season.
 
 **Where to stay in Florence?**
 We stayed in an Airbnb slightly outside the centre, which was quieter and cheaper.
