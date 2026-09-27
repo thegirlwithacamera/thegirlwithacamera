@@ -76,10 +76,6 @@ Frames from two days at Lake Como, in September 2026, straight out of the camera
 
 ![The gorge above the water](/images/journal/gear/luna/gorge.jpg)
 
-And a clip, so you can see the stabilisation and the colour in motion:
-
-/videos/journal/luna-ultra-lake-como.mp4 /videos/journal/luna-ultra-lake-como.jpg
-
 ## Any downsides?
 
 Honestly, none for me. In my use, the Luna Ultra is perfect. That is worth saying plainly: I film short takes, in daylight, and I never asked this camera for something it could not give.

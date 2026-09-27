@@ -85,10 +85,6 @@ Frames from Tokyo, in June 2026, straight out of the camera.
 
 ![A yatai at night](/images/journal/gear/ace/yatai-night.jpg)
 
-And a night clip, which is where PureVideo earns its place:
-
-/videos/journal/ace-pro-2-tokyo.mp4 /videos/journal/ace-pro-2-tokyo.jpg
-
 ## The downside
 
 **The grip battery.** It is the only downside I found.
