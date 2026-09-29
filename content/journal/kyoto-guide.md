@@ -143,7 +143,7 @@ The Golden Pavilion. And I would have seen far more without the dentist.
 
 ![Inside Sarasa Nishijin, the old bathhouse](/images/journal/kyoto/sarasa-inside.jpg)
 
-![The sign outside Sarasa Nishijin](/images/journal/kyoto/funaoka-sign.jpg)
+![Lunch at Sarasa Nishijin](/images/journal/kyoto/lunch-fried.jpg)
 
 ### BASE358, for dinner
 
@@ -161,7 +161,7 @@ The Golden Pavilion. And I would have seen far more without the dentist.
 
 **Good to know:** this is one of the rare public baths in Japan that lets you in with tattoos, which is why people travel across the city for it. It is a 1923 bathhouse with carved wood panels, several baths, an outdoor one, a sauna and a cold bath, for the price of a normal sento. Open from 3pm to 11:30pm, from 8am on Sundays, closed on Tuesdays.
 
-![Fried chicken for lunch](/images/journal/kyoto/lunch-fried.jpg)
+![The sign of Funaoka Onsen](/images/journal/kyoto/funaoka-sign.jpg)
 
 ## Things to know before you go
 
