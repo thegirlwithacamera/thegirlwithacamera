@@ -64,6 +64,8 @@ We walked through the old town. For photos, my favourite spot in Graz is simply 
 
 ![A park in Graz](/images/journal/graz/city-park.jpg)
 
+[Book a private walking tour of the old town](https://www.getyourguide.com/graz-l32599/graz-old-town-highlights-private-walking-tour-t403767/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=graz-guide)
+
 ## Good to know: the Graz Card
 
 The Graz Card works for 24, 48 or 72 hours, and costs €32, €42 or €47. It includes public transport in zone 101, the Schlossbergbahn funicular and the Schlossberg lift, free entry to the Kunsthaus and the other Joanneum museums, and a guided walk through the old town. If you already have a transport ticket, the cheaper Graz Card Light has the same museum benefits without public transport.
@@ -110,3 +112,5 @@ More from Austria:
 
 - [Vienna travel guide: a city of grandeur, best seen on foot](/en/journal/vienna-slow-guide)
 - [Villach and Lake Faak travel guide: a charming town and a turquoise lake to disconnect](/en/journal/villach-faaker-see-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

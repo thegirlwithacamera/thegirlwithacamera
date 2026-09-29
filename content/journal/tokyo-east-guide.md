@@ -159,6 +159,8 @@ Around ninety shops of fabrics, trimmings and sewing supplies line the streets n
 
 ![A building with round windows](/images/journal/tokyo-east/round-windows.jpg)
 
+[Book an Asakusa walking tour with Sensoji](https://www.getyourguide.com/tokyo-l193/asakusa-sensoji-temple-walking-tour-tokyo-t586567/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=tokyo-east-guide)
+
 ## Kuramae and Asakusabashi
 
 South of Asakusa, along the Sumida river, I walked through Kuramae and Asakusabashi.
@@ -170,6 +172,8 @@ South of Asakusa, along the Sumida river, I walked through Kuramae and Asakusaba
 ## Across the Sumida river
 
 From Asakusa, I crossed the Sumida river into Sumida, the ward of the Skytree. From the bridges you get the river, the boats and the tower right in front of you.
+
+[Book a dinner cruise on a traditional boat on the Sumida](https://www.getyourguide.com/tokyo-l193/sumida-river-japanese-traditional-yakatabune-dinner-cruise-t438005/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=tokyo-east-guide)
 
 ## Ueno and Okachimachi, at night
 
@@ -225,3 +229,5 @@ More from Japan:
 - [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
 - [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
 - [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

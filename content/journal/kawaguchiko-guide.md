@@ -20,6 +20,8 @@ We used a Mount Fuji visibility site, and booked the night that looked best.
 
 **Booking two nights on different dates, and cancelling one,** is the trick if your dates are flexible. That is what we did.
 
+[No car? Book a day tour to Mount Fuji and Lake Kawaguchi from Tokyo](https://www.getyourguide.com/tokyo-l193/tokyo-mont-fuji-pagode-chureito-lac-kawaguchi-et-oshino-hakkai-t792363/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=kawaguchiko-guide)
+
 ## When is Mount Fuji actually visible?
 
 Rarely, is the honest answer. The mountain is clear only a fraction of the year, and the pattern is strongly seasonal.

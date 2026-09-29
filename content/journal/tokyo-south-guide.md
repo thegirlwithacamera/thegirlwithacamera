@@ -38,6 +38,8 @@ It was great. An incredible atmosphere.
 
 ![Customers at a counter in Tsukiji](/images/journal/tokyo-south/tsukiji-counter.jpg)
 
+[Book a guided food walk at Tsukiji](https://www.getyourguide.com/tokyo-l193/tokyo-tsukiji-fish-market-food-and-walking-tour-t695948/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=tokyo-south-guide)
+
 ## Lunch in Shinbashi
 
 A curry with fried chicken, in a restaurant inside Shinbashi station.
@@ -55,6 +57,8 @@ Tokyo Tower is nice to see from a distance.
 ![Tokyo Tower at the end of a street](/images/journal/tokyo-south/tower-street.jpg)
 
 ![Tokyo Tower through the trees](/images/journal/tokyo-south/tower-trees.jpg)
+
+[Book a Tokyo Tower ticket](https://www.getyourguide.com/tokyo-l193/tokyo-tower-admission-ticket-t290925/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=tokyo-south-guide)
 
 ## Daimon and Hamamatsucho
 
@@ -171,3 +175,5 @@ More from Japan:
 - [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
 - [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
 - [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

@@ -78,6 +78,8 @@ The lagoon and its islands, between the city and the sea. It is a natural park, 
 
 ![The salt marshes of the Ria Formosa](/images/journal/faro/ria-salt-marsh.jpg)
 
+[Book a full day boat tour of three Ria Formosa islands](https://www.getyourguide.com/algarve-l66/from-olhao-ria-formosa-3-island-full-day-tour-t397184/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=faro-guide)
+
 ### The red cliffs of Praia da Falésia
 
 The cliffs in the town next door, near Albufeira, with their red and ochre walls dropping into the sand.

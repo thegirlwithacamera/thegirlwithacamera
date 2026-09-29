@@ -18,6 +18,10 @@ Vaporetto line 12 from Fondamente Nove, on the north side of Venice, about 40 to
 
 **Good to know:** a single ticket is €9.50 and lasts 75 minutes, so it does not cover the round trip. For an island day the 24-hour pass at €25 pays for itself, since going to Murano and Burano and back is four boardings.
 
+[Book a guided trip to Murano and Burano](https://www.getyourguide.com/venise-l35/iles-de-venise-visite-guidee-de-murano-glass-et-burano-colors-t747424/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=burano-guide)
+
+[Or a boat trip with a glass factory visit in Murano](https://www.getyourguide.com/venise-l35/murano-et-burano-sortie-en-bateau-avec-guide-et-visite-d-une-verrerie-t415014/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=burano-guide)
+
 ## What to do in Burano
 
 ### Photograph the houses
@@ -102,3 +106,5 @@ More from Italy:
 - [Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping](/en/journal/florence-guide)
 - [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)
 - [Naples travel guide: dirty, intimidating, and very good for street photography](/en/journal/naples-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

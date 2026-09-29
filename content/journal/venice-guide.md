@@ -50,6 +50,8 @@ The alleys are my photo spot in Venice, and the whole point is to be out before 
 
 ![Rooftops of Venice](/images/journal/venice/rooftops.jpg)
 
+[If you want a gondola, book a Grand Canal ride](https://www.getyourguide.com/venise-l35/venise-balade-en-gondole-sur-le-grand-canal-avec-commentaire-t221382/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=venice-guide)
+
 ### A day trip to Burano
 
 The island of coloured houses, out in the lagoon, is the other place I photographed the most. It has its own guide here: [Burano travel guide](/en/journal/burano-guide).
@@ -63,6 +65,8 @@ The island of coloured houses, out in the lagoon, is the other place I photograp
 ![Sunset over the lagoon](/images/journal/venice/sunset-lagoon.jpg)
 
 ![Silhouettes at sunset](/images/journal/venice/sunset-silhouettes.jpg)
+
+[Book a guided trip to Murano and Burano](https://www.getyourguide.com/venise-l35/iles-de-venise-visite-guidee-de-murano-glass-et-burano-colors-t747424/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=venice-guide)
 
 ## Where to eat and drink in Venice
 
@@ -99,6 +103,10 @@ A single ride is 9.50 euros and lasts 75 minutes. If you plan to use the boats, 
 Since 2025 the basilica is ticketed and booked in advance, around 10 euros for the church and more with the Pala d'Oro, the museum and the terrace with the bronze horses. The campanile is separate, around 15 euros. The Doge's Palace goes with the Saint Mark's Square museums ticket, cheaper booked a month ahead and valid three months.
 
 **Book early:** the Secret Itineraries tour of the palace sells out four to six weeks ahead, the basilica and the campanile two to four weeks.
+
+[Book a Doge's Palace entry ticket](https://www.getyourguide.com/venise-l35/venise-palais-des-doges-billet-d-entree-reserve-t451265/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=venice-guide)
+
+[Or a guided tour of Saint Mark's Basilica and the Doge's Palace](https://www.getyourguide.com/venise-l35/venise-la-basilique-saint-marc-le-palais-des-doges-et-le-pont-des-soupirs-t927092/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=venice-guide)
 
 ## Things to know before you go
 
@@ -141,3 +149,5 @@ More from Italy:
 - [Cefalù travel guide: a day trip from Palermo](/en/journal/cefalu-guide)
 - [Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping](/en/journal/florence-guide)
 - [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

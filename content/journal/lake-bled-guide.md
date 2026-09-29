@@ -30,6 +30,8 @@ We arrived at the station around 11am and took the bus to the lake.
 
 **Our bags:** we kept our backpacks with us all day. Yes, even for the viewpoint.
 
+[Rather not do it alone? Book a trip to Lake Bled and Bled Castle from Ljubljana](https://www.getyourguide.com/ljubljana-l318/experience-lake-bled-t71087/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=lake-bled-guide)
+
 ### Good to know: the two stations
 
 **Lesce-Bled** is the main station, with the most trains to Ljubljana, but it is about 4.5 km from the lake. You need a bus or a taxi to get there.
@@ -132,3 +134,5 @@ From the Park Hotel café, where it was created in 1953.
 More from Slovenia:
 
 - [Ljubljana travel guide: a walkable capital built for people](/en/journal/ljubljana-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

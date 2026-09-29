@@ -68,6 +68,8 @@ Just off Spaccanapoli, Via San Gregorio Armeno is the street of the nativity fig
 
 ![Baskets hanging in the street](/images/journal/naples/basket-shop-2.jpg)
 
+[Book a guided tour of Naples Underground](https://www.getyourguide.com/naples-l162/billet-d-entree-au-naples-souterrain-t144159/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=naples-guide)
+
 ## Getting to Florence
 
 From Naples, we took the train to Florence. Fast trains do it in about three hours, from Napoli Centrale to Firenze Santa Maria Novella.
@@ -75,6 +77,8 @@ From Naples, we took the train to Florence. Fast trains do it in about three hou
 ## How many days in Naples?
 
 Three days, I think. With two, and a storm, I did not see enough.
+
+[With an extra day, book a small group trip to Pompeii](https://www.getyourguide.com/naples-l162/depuis-naples-visite-coupe-file-de-pompei-visite-en-petit-groupe-t15658/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=naples-guide)
 
 ## Naples FAQ
 
@@ -101,3 +105,5 @@ More from Italy:
 - [Cefalù travel guide: a day trip from Palermo](/en/journal/cefalu-guide)
 - [Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping](/en/journal/florence-guide)
 - [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

@@ -38,6 +38,8 @@ Akihabara is known for electronics, anime and maid cafés. In the morning, befor
 
 ![The Tokyo Camera sign](/images/journal/tokyo-center/tokyo-camera-sign.jpg)
 
+[Book an anime and pop culture tour of Akihabara](https://www.getyourguide.com/tokyo-l193/tokyo-akihabara-anime-manga-games-and-pop-culture-tour-t543410/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=tokyo-center-guide)
+
 ## Akihabara at night, in the rain
 
 I came back at nightfall. Under the rain, with the clear umbrellas and the neon of the electronics stores, Akihabara looks like a film set.
@@ -183,3 +185,5 @@ More from Japan:
 - [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
 - [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
 - [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

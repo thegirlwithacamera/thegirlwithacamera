@@ -54,6 +54,8 @@ Santa Maria del Fiore and Brunelleschi's dome, the biggest masonry dome ever bui
 
 **Good to know:** entering the cathedral is free, but you queue. Everything else, the dome climb, Giotto's bell tower, the baptistery, the crypt and the museum, works with a combined pass from the Opera del Duomo. The dome climb needs a reserved time slot, and slots go fast: book online well ahead.
 
+[Book a ticket to climb Brunelleschi's Dome](https://www.getyourguide.com/florence-l32/florence-billet-pour-le-dome-de-brunelleschi-avec-vue-panoramique-t602373/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=florence-guide)
+
 ### The Ponte Vecchio
 
 The old bridge lined with goldsmiths' shops, the only bridge in Florence that survived the war.
@@ -90,6 +92,10 @@ We did not do the Uffizi or the Accademia, but if you have more than two days, h
 - **Free entry** to the state museums on the first Sunday of the month, which also means the longest queues of the month. Locals avoid it.
 
 **The rule:** book the Uffizi and the Accademia weeks ahead, or go late in the day.
+
+[Book a timed entry to see Michelangelo's David](https://www.getyourguide.com/florence-l32/florence-timed-entry-to-michelangelo-s-david-audio-app-t61153/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=florence-guide)
+
+[Book a timed entry to the Uffizi Gallery](https://www.getyourguide.com/florence-l32/florence-billet-d-entree-programmee-a-la-galerie-des-offices-et-audioguide-t632239/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=florence-guide)
 
 ### Vintage shopping
 
@@ -133,3 +139,5 @@ More from Italy:
 - [Cefalù travel guide: a day trip from Palermo](/en/journal/cefalu-guide)
 - [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)
 - [Naples travel guide: dirty, intimidating, and very good for street photography](/en/journal/naples-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

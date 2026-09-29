@@ -54,6 +54,10 @@ Very early in the morning, we walked through the castle district and up on the h
 
 ![A yellow wall in the castle district](/images/journal/prague/yellow-wall.jpg)
 
+[Book a Prague Castle entry ticket](https://www.getyourguide.com/prague-ville-capitale-l10/prague-billet-pour-le-chateau-de-prague-t406279/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=prague-guide)
+
+[Or visit the castle with a local guide](https://www.getyourguide.com/prague-ville-capitale-l10/chateau-de-prague-visite-en-petit-groupe-avec-guide-de-la-region-et-droit-d-entree-t219531/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=prague-guide)
+
 ### Walk through the historic centre
 
 After a break at the hotel, we went down to the city by Uber and walked around the historic centre.
@@ -61,6 +65,8 @@ After a break at the hotel, we went down to the city by Uber and walked around t
 ![Tourists photographing a sentry box](/images/journal/prague/tourists-guard.jpg)
 
 ![Light on the Vltava](/images/journal/prague/vltava-water.jpg)
+
+[Book a walking tour of the Old Town](https://www.getyourguide.com/prague-ville-capitale-l10/3-heures-de-visite-a-pied-de-prague-en-hiver-avec-des-arrets-pour-se-rechauffer-t42322/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=prague-guide)
 
 ## Where to eat and drink in Prague
 
@@ -123,3 +129,5 @@ We stayed in the castle district, five minutes from the castle, at At the Golden
 
 **Where to have coffee near Prague Castle?**
 At Mandlárna, in the castle district.
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

@@ -20,6 +20,8 @@ By train, from Palermo Centrale. Regional trains take about 45 minutes to an hou
 
 **Good to know:** it is a cheap ride, a few euros each way, and trains run through the day. Buy at the machine in the station and validate before boarding.
 
+[Or book a half day trip to Monreale and Cefalù from Palermo](https://www.getyourguide.com/palerme-l387/visite-d-une-demi-journee-de-monreale-et-cefalu-au-depart-de-palerme-t63358/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=cefalu-guide)
+
 ## What to do in Cefalù
 
 ### The old town and the sea
@@ -119,3 +121,5 @@ More from Italy:
 - [Florence travel guide: sunrise over the city, the Boboli Gardens and vintage shopping](/en/journal/florence-guide)
 - [Lake Como travel guide: Varenna, Bellagio and Menaggio](/en/journal/lake-como-guide)
 - [Naples travel guide: dirty, intimidating, and very good for street photography](/en/journal/naples-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

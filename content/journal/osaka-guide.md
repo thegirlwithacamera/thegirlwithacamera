@@ -52,6 +52,8 @@ This is what I would tell anyone: just walk, away from the tourist streets. Osak
 
 **Good to know:** the park around the castle is free and open all day. The keep itself costs 600 yen, and it is a reconstruction with a museum inside and a viewing deck at the top. The park is at its best early, before the groups.
 
+[Book a castle tower ticket with a guided walk](https://www.getyourguide.com/osaka-l1204/osaka-castle-history-walking-tour-castle-tower-admission-t1038691/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=osaka-guide)
+
 ### Dotonbori
 
 The neon, the canal, the Glico running man, the giant crab. It is worth seeing, but it is one street, and it is not the city.
@@ -63,6 +65,8 @@ The neon, the canal, the Glico running man, the giant crab. It is worth seeing, 
 ![The ferris wheel](/images/journal/osaka/ferris-wheel.jpg)
 
 **Good to know:** it is at its most photogenic after dark, when all the signs are lit, and at its worst in the early evening, when it is packed.
+
+[Book a Dotonbori street food tour](https://www.getyourguide.com/osaka-l1204/osaka-2-hour-local-street-food-tour-dotonbori-namba-t731319/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=osaka-guide)
 
 ### Vintage shopping
 
@@ -163,3 +167,5 @@ More from Japan:
 - [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
 - [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
 - [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

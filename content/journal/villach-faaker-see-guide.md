@@ -78,6 +78,8 @@ We did not have time for these, but they are all within half an hour of the town
 
 **And in winter:** the Villacher Fasching, the carnival that runs from 11 November to Lent, is the biggest event of the year here.
 
+[Book a tandem paragliding flight over Lake Ossiach](https://www.getyourguide.com/villach-l140041/villachossiachersee-paragliding-panorama-tandemflug-t461994/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=villach-faaker-see-guide)
+
 ## Where to eat
 
 We ate at the hotel.
@@ -118,3 +120,5 @@ More from Austria:
 
 - [Graz travel guide: a peaceful city, red rooftops and the Schlossberg](/en/journal/graz-guide)
 - [Vienna travel guide: a city of grandeur, best seen on foot](/en/journal/vienna-slow-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

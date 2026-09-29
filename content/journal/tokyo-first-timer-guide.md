@@ -66,6 +66,12 @@ On a first trip, we really did the main ones: Shibuya, Shinjuku, Nakano Broadway
 
 ![Two women in Halloween costumes, one in pink, one with bunny ears](/images/journal/tokyo-first/halloween.jpg)
 
+[Book a teamLab Planets ticket](https://www.getyourguide.com/tokyo-l193/tokyo-teamlab-planets-tokyo-digital-art-museum-entry-ticket-t260407/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=tokyo-first-timer-guide)
+
+[Book a sumo show in Shinjuku](https://www.getyourguide.com/tokyo-l193/tokyo-spectacle-de-sumo-et-experience-a-shinjuku-avec-photo-t1042988/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=tokyo-first-timer-guide)
+
+[Book Shibuya Sky at night with a crossing tour](https://www.getyourguide.com/tokyo-l193/tokyo-shibuya-sky-night-view-neon-3d-photo-tour-t1208208/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=tokyo-first-timer-guide)
+
 ## The Pokémon stores
 
 - **Pokémon Store Tokyo Station**, First Avenue Tokyo Station, ground floor, one minute from the Nihombashi exit. Open every day, 10am to 8:30pm.

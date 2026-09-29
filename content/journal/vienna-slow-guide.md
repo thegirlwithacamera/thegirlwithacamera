@@ -56,6 +56,8 @@ Lange Gasse 13, in Josefstadt. A hotel dedicated to Austrian wine, with a list o
 
 We walked everywhere, non stop.
 
+[Planning a lot of museums? The Vienna Pass covers more than 85 sights](https://www.getyourguide.com/vienna-l7/vienna-pass-all-of-vienna-on-one-card-t50028/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=vienna-slow-guide)
+
 ### Good to know: public transport
 
 If your legs need a break, Vienna has underground, trams and buses. A single ticket costs €3.20 and is valid for 80 minutes, with changes allowed. A 7-day ticket costs €28.90. Tickets bought in the WienMobil app or online are a little cheaper than paper ones. Since January 2026, the 48-hour and 72-hour tickets no longer exist: for a short stay, buy 24-hour tickets or the 7-day ticket.
@@ -136,6 +138,10 @@ With four nights, we had to choose between the city and the museums, and we chos
 - **The Albertina,** right next to Café Mozart.
 - **The MuseumsQuartier,** a five minute walk from Altstadt Vienna.
 - **Schönbrunn Palace,** the imperial summer residence.
+
+[Book a guided tour of Schönbrunn Palace and its gardens](https://www.getyourguide.com/vienna-l7/vienna-schonbrunn-palace-gardens-skip-the-line-tour-t397843/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=vienna-slow-guide)
+
+[Or a day trip to Bratislava and Budapest](https://www.getyourguide.com/bratislava-l765/from-vienna-bratislava-and-budapest-guided-day-trip-t1042046/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=vienna-slow-guide)
 
 ## How many days in Vienna?
 

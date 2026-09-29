@@ -66,6 +66,8 @@ On my first trip, Shibuya was not my thing. This time I came for film.
 
 ![A rack of film boxes](/images/journal/tokyo-west/film-rack.jpg)
 
+[Book Shibuya Sky at night with a crossing tour](https://www.getyourguide.com/tokyo-l193/tokyo-shibuya-sky-night-view-neon-3d-photo-tour-t1208208/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=tokyo-west-guide)
+
 ## Shibuya, the day Japan won
 
 A Friday, 26 June, during the day. Japan had just won their football match, and the whole Shibuya crossing was out in the street, celebrating: drums, flags, replica trophies, and the police with megaphones trying to keep the crossing moving.
@@ -137,6 +139,8 @@ Shinjuku is the busiest station in the world, and Kabukicho, just north of it, i
 ![A Gucci bamboo backpack](/images/journal/tokyo-west/gucci-bamboo.jpg)
 
 ![A black coat with red roses](/images/journal/tokyo-west/rose-coat.jpg)
+
+[Book a local bar and izakaya crawl in Shinjuku](https://www.getyourguide.com/tokyo-l193/shinjuku-local-bar-izakaya-crawl-t535299/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=tokyo-west-guide)
 
 ## Yotsuya: a second tattoo
 
@@ -221,3 +225,5 @@ More from Japan:
 - [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
 - [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
 - [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

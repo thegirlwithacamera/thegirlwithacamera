@@ -42,6 +42,8 @@ We got up very early, for sunrise, to avoid the crowds. That is the whole point 
 
 **Good to know:** the grove is free, open day and night, and there is no ticket. Before 8am the path is quiet, and you can actually hear the bamboo. By 10am it is packed and photographing it becomes difficult.
 
+[Book a tour of the bamboo grove, the monkey park and the temples](https://www.getyourguide.com/kyoto-l96826/kyoto-bambous-d-arashiyama-matcha-singes-et-visite-de-temples-t1009737/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=arashiyama-guide)
+
 ### The monkey park
 
 **Good to know:** the Arashiyama Monkey Park Iwatayama is on the other side of the river, south of Togetsukyo bridge. Entry is 800 yen, cash only at the gate, and the climb takes 20 to 30 minutes uphill for 160 metres of elevation. Around 120 wild macaques live at the top, with a view over the whole of Kyoto. You feed them from inside a hut, not out in the open.
@@ -77,6 +79,8 @@ The villa and garden of a silent film actor, at the end of the bamboo path. A th
 ### The Sagano Romantic Train, which we skipped
 
 The old sightseeing train between Saga and Kameoka, 25 minutes along the Hozu gorge, 880 yen one way. Book ahead in autumn, it sells out, and ask for a seat on the river side.
+
+[If you want to try it, book the Sagano train with the Hozugawa river boat](https://www.getyourguide.com/kyoto-l96826/croisiere-fluviale-sur-la-hozugawa-et-experience-en-train-de-sagano-t1372764/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=arashiyama-guide)
 
 ## Where we ate
 
@@ -128,3 +132,5 @@ More from Japan:
 - [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
 - [Nara travel guide: a day trip from Osaka, with the deer](/en/journal/nara-guide)
 - [Oi Racecourse flea market: one of Tokyo's biggest flea markets](/en/journal/oi-flea-market-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

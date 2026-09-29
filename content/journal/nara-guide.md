@@ -24,6 +24,8 @@ What is funny is seeing the deer walk absolutely anywhere, in the middle of the 
 
 **Good to know:** from Osaka-Namba, the Kintetsu Nara Line takes about 35 to 40 minutes to Kintetsu Nara station, for 680 yen, and that station is five minutes from the first deer. The JR line from Osaka works too, for 840 yen, and is free with a JR Pass, but it drops you further out, about twenty minutes west of the park.
 
+[Book a day trip from Kyoto or Osaka that includes Nara, Fushimi Inari and Arashiyama](https://www.getyourguide.com/kyoto-l96826/kyotoosaka-nara-fushimi-inari-taisha-arashiyama-bus-tour-t851858/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=nara-guide)
+
 ## What we did in Nara
 
 ### The deer park
@@ -49,6 +51,8 @@ I loved photographing the deer, even if it was sometimes complicated with the cr
 **Good to know:** there are around 1,200 wild deer in Nara Park, protected as a national treasure. The only food you may give them is shika senbei, the rice bran crackers sold by licensed vendors for 200 yen a bundle. Many deer bow to ask for one, and bow back if you bow first. The park itself is free.
 
 **My advice:** do not show the whole pack of crackers, or you will have a riot. Buy one bundle when you are ready to feed them, keep it out of sight until then, and show your open hands when you are done. Deer also eat paper and plastic, so keep maps, tickets and bags zipped.
+
+[Book a guided tour of the deer park and the Great Buddha](https://www.getyourguide.com/nara-l1707/nara-deer-great-buddha-mochi-pounding-demonstration-tour-t1120895/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=nara-guide)
 
 ### The temples
 
@@ -111,3 +115,5 @@ More from Japan:
 - [Kawaguchiko travel guide: up at 4:30am to see Mount Fuji](/en/journal/kawaguchiko-guide)
 - [Kyoto travel guide: sunrise at Fushimi Inari, and a bathhouse for lunch](/en/journal/kyoto-guide)
 - [Oi Racecourse flea market: one of Tokyo's biggest flea markets](/en/journal/oi-flea-market-guide)
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

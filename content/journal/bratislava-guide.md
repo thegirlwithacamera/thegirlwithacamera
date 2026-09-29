@@ -65,6 +65,8 @@ You should stop, and you should sleep there. Four hours was not enough.
 
 **Good to know:** Vienna to Bratislava takes about an hour by train, with departures through the day, so it also works as a day trip. If you do stop between two trains, the main station has luggage lockers, and the old town is about twenty minutes away on foot.
 
+[Coming from Vienna? Book a day trip to Bratislava and Budapest](https://www.getyourguide.com/bratislava-l765/from-vienna-bratislava-and-budapest-guided-day-trip-t1042046/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=bratislava-guide)
+
 ## Bratislava FAQ
 
 **Is Bratislava worth visiting?**
@@ -84,3 +86,5 @@ The old town and the Blue Church.
 
 **How far is Bratislava from Vienna?**
 About an hour by train.
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

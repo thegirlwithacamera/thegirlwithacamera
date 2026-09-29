@@ -67,6 +67,8 @@ We visited **Villa Cipressi** and its terraced gardens, and the gates that open 
 - **The Passeggiata degli Innamorati,** four hundred metres of walkway between the ferry dock and the villas. Walk it before the first boats, and again at sunset when the mountains on the western shore catch the last light.
 - **The church of San Giorgio,** on the main square, and the small beach below the village if the weather is with you.
 
+[Book a 90 minute boat tour from Varenna](https://www.getyourguide.com/varenna-l106152/excursion-touristique-en-bateau-de-90-minutes-a-partir-de-varenna-t641294/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=lake-como-guide)
+
 ### Breakfast at Bar il Molo
 
 On the waterfront, with the lake right there. Eggs, salmon, and the view.
@@ -177,6 +179,8 @@ The three villages are linked by the ferries of the central lake, and crossing f
 /videos/journal/lake-como-ferry.mp4 /videos/journal/lake-como-ferry.jpg
 
 **Good to know:** Varenna to Bellagio and Bellagio to Menaggio are the two short hops, and the car ferry also takes foot passengers. Buy at the landing stage, check the last departure of the evening before you settle in for a spritz, and remember that timetables thin out a lot outside the summer season.
+
+[Short on time? Book a day trip from Milan with a private boat](https://www.getyourguide.com/milan-l139/au-depart-de-milan-excursion-en-bateau-prive-a-come-bellagio-et-lugano-t739373/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=lake-como-guide)
 
 ## Things to know before you go
 

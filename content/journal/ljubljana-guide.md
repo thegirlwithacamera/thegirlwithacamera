@@ -48,6 +48,8 @@ A single bus ride costs €1.50 and covers up to 90 minutes, even if you change 
 
 ## Best things to do in Ljubljana
 
+[Book a two hour walking tour with a local guide](https://www.getyourguide.com/ljubljana-l318/ljubljana-25h-walking-tour-with-local-guide-t683424/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=ljubljana-guide)
+
 ### The Central Market
 
 My favourite playground for street photography.
@@ -104,6 +106,8 @@ This is where I filmed the most: the small streets of the historic centre, and t
 
 ## Where to eat and drink in Ljubljana
 
+[Book a traditional food tour](https://www.getyourguide.com/ljubljana-l318/ljubljana-s-traditional-flavors-a-3-hour-food-journey-t228475/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=ljubljana-guide)
+
 ### Kodila Gourmet & Bistro Market
 
 Right by the Central Market, under Plečnik's arcades. We had čevapčiči, the small grilled sausages served in bread.
@@ -131,6 +135,8 @@ Ideas for next time, that I have not done yet:
 - **Metelkova,** the alternative art quarter covered in street art.
 - **Tivoli Park,** the big green park at the edge of the centre.
 - **Lake Bled,** one hour away. [Read my Lake Bled guide](/en/journal/lake-bled-guide).
+
+[Book a trip to Lake Bled and Bled Castle](https://www.getyourguide.com/ljubljana-l318/experience-lake-bled-t71087/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=ljubljana-guide)
 
 ## Ljubljana FAQ
 

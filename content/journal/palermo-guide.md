@@ -84,6 +84,8 @@ Something fried at a market stall at noon, a pizza in the evening.
 
 **Good to know:** Palermo is a street food city. The classics are panelle (chickpea fritters), arancine (the rice balls, feminine here, unlike in Catania), sfincione (the local spongy pizza) and, for the brave, pane con la milza, the spleen sandwich.
 
+[Book a street food and history walking tour](https://www.getyourguide.com/palermo-l387/palermo-street-food-and-history-walking-tour-t56006/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=palermo-guide)
+
 ### Nni Franco U Vastiddaru, for a sandwich
 
 Via Vittorio Emanuele 102, by the fountain. A Palermo street food institution, with tables outside. I had ham, cheese and salad on bread.
@@ -123,6 +125,8 @@ Via Alessandro Paternostro 87, in the Kalsa. A tiny natural wine bar, where you 
 ## A day trip to Cefalù
 
 We took the train for the day. It has its own guide here: [Cefalù travel guide](/en/journal/cefalu-guide).
+
+[Or book a half day trip to Monreale and Cefalù](https://www.getyourguide.com/palerme-l387/visite-d-une-demi-journee-de-monreale-et-cefalu-au-depart-de-palerme-t63358/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=palermo-guide)
 
 ## How many days in Palermo?
 

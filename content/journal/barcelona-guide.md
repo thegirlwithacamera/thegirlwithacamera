@@ -58,6 +58,8 @@ For the basilica itself, book your ticket online too, with a time slot. Queues a
 
 ![The Sagrada Família seen from the Sercotel Rosellón rooftop](/images/journal/barcelona/sagrada-familia.jpg)
 
+[Book a Sagrada Família entry ticket with audio guide](https://www.getyourguide.com/barcelona-l45/sagrada-familia-skip-the-line-ticket-t50027/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=barcelona-guide)
+
 ### Park Güell
 
 Magnificent.
@@ -88,6 +90,8 @@ Magnificent.
 The Gothic Quarter is the medieval heart of the city, a maze of narrow streets between the cathedral and the Ramblas. Just next to it, El Born is quieter, with its artisan shops and its tapas bars. And at the end of the streets, the beach of Barceloneta.
 
 **My advice:** go beyond these two. Gràcia, further up, feels like a village, with pedestrian squares and cafés where you hear almost no English. It is the Barcelona I would go back for.
+
+[Book a walking tour of the Old Town and the Gothic Quarter](https://www.getyourguide.com/barcelona-l45/barcelona-old-town-and-gothic-quarter-walking-tour-t61664/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=barcelona-guide)
 
 ### La Boqueria
 
@@ -210,3 +214,5 @@ We went in September, which is warm without the peak of summer.
 
 **Is Barcelona safe?**
 Yes for violent crime, but it is one of the world's capitals of pickpocketing. Watch your bag on La Rambla, in the metro and around the Sagrada Família.
+
+Affiliate disclosure: some links in this article are affiliate links. If you buy or book through them, I earn a small commission at no extra cost to you. [More](/en/affiliate-disclosure)

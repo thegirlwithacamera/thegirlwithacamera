@@ -67,6 +67,8 @@ The thousands of vermilion torii climbing the hill. At sunrise, it was empty.
 
 **Good to know:** Fushimi Inari is free and open 24 hours a day, which is exactly why you should be there at first light. The full loop to the top of Mount Inari takes two to three hours. Most people turn back at the Yotsutsuji viewpoint, about 45 minutes up, and that is where the crowd stops too.
 
+[Book a morning tour of Fushimi Inari, Arashiyama and Kinkakuji](https://www.getyourguide.com/kyoto-l96826/visite-matinale-de-kyoto-avec-guide-anglophone-t543724/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=kyoto-guide)
+
 ### Kiyomizu-dera and Ninenzaka
 
 The temple on its wooden stage, and the stepped streets below it. Ninenzaka was empty too, at that hour.
@@ -79,6 +81,8 @@ The temple on its wooden stage, and the stepped streets below it. Ninenzaka was 
 
 **Good to know:** Kiyomizu-dera opens at 6am, earlier than almost everything else in Kyoto, for 500 yen. Ninenzaka and Sannenzaka are public streets, free at any time. Between 10am and 5pm they are packed, and photographing them properly becomes impossible.
 
+[Book a tea ceremony in a garden tea house near Kiyomizu-dera](https://www.getyourguide.com/kyoto-l96826/kyoto-tea-ceremony-in-a-traditional-tea-house-in-kiyomizu-t551173/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=kyoto-guide)
+
 ### Gion
 
 The old geisha district, with its wooden machiya and its lanterns at night.
@@ -86,6 +90,8 @@ The old geisha district, with its wooden machiya and its lanterns at night.
 ![Lanterns in Gion](/images/journal/kyoto/gion-lanterns.jpg)
 
 **Good to know:** the private alleys of Gion are closed to photography, with fines posted at the entrances. Photograph the main streets, and leave the residents alone.
+
+[Book a Gion walking tour at night](https://www.getyourguide.com/kyoto-l96826/kyoto-gion-magical-night-walking-tour-with-geisha-trivia-t659135/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=kyoto-guide)
 
 ### Just walking
 
@@ -106,6 +112,8 @@ The rest of my Kyoto was the streets: the temples between two neighbourhoods, th
 ![An autumn lane](/images/journal/kyoto/autumn-lane.jpg)
 
 ![An old facade in Kyoto](/images/journal/kyoto/old-facade.jpg)
+
+[Book a kimono rental with hair styling](https://www.getyourguide.com/kyoto-l96826/kyoto-location-de-kimono-avec-coiffure-et-accessoires-t880516/?partner_id=SFWXKHX&utm_medium=online_publisher&cmp=kyoto-guide)
 
 ### The Pokémon Center
 
