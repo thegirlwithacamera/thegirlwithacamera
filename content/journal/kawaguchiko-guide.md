@@ -50,7 +50,9 @@ We went at the end of October, which is the start of the good season. It worked.
 
 Up at 4:30am. At 5am we found the shared bikes, and managed to unlock them.
 
-![Riding to the lake in the dark](/images/journal/kawaguchiko/bike-night.jpg) Then a race against the clock to reach the lake before the sun, with its shadow already drawing itself on the mountain.
+![Riding to the lake in the dark](/images/journal/kawaguchiko/bike-night.jpg)
+
+Then a race against the clock to reach the lake before the sun, with its shadow already drawing itself on the mountain.
 
 ![Mount Fuji in the morning](/images/journal/kawaguchiko/fuji-morning.jpg)
 
