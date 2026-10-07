@@ -61,12 +61,12 @@
 
 .chipLeft {
   left: 12px;
-  background: var(--ink);
-  color: var(--paper);
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  color: var(--ink);
 }
 
 .chipRight {
   right: 12px;
-  background: color-mix(in srgb, var(--paper) 82%, transparent);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
 }

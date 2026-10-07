@@ -11,7 +11,7 @@ interface Props {
 }
 
 // Avant/apres dont la ligne suit la souris (ou le doigt) : a gauche de la
-// ligne le preset applique, a droite la photo brute.
+// ligne la photo brute, a droite le preset applique.
 export default function BeforeAfter({ before, after, name, beforeLabel }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState(50);
@@ -39,7 +39,7 @@ export default function BeforeAfter({ before, after, name, beforeLabel }: Props)
         draggable={false}
         loading="lazy"
         className={s.after}
-        style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+        style={{ clipPath: `inset(0 0 0 ${pos}%)` }}
       />
       <div className={s.line} style={{ left: `${pos}%` }} aria-hidden>
         <span className={s.knob}>
@@ -48,8 +48,8 @@ export default function BeforeAfter({ before, after, name, beforeLabel }: Props)
           </svg>
         </span>
       </div>
-      <span className={`${s.chip} ${s.chipLeft}`}>{name}</span>
-      <span className={`${s.chip} ${s.chipRight}`}>{beforeLabel}</span>
+      <span className={`${s.chip} ${s.chipLeft}`}>{beforeLabel}</span>
+      <span className={`${s.chip} ${s.chipRight}`}>{name}</span>
     </div>
   );
 }
