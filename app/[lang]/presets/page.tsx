@@ -33,7 +33,7 @@ const content = {
     eyebrow: "The Girl With A Camera",
     title: "Pack *101*",
     lede:
-      "Mon rendu, enfin en presets. Quatre looks construits sur ma vraie recette boîtier — un preset par situation, pour Lightroom desktop et mobile.",
+      "Mon rendu, enfin en presets. Quatre looks construits sur ma vraie recette boîtier, un preset par situation, pour Lightroom desktop et mobile.",
     meta: ["4 presets Lightroom", "Desktop & mobile", PRICE],
     buy: `Acheter le pack · ${PRICE}`,
     buyNote: "Téléchargement immédiat · guide d’installation FR/EN · licence commerciale incluse",
@@ -46,7 +46,7 @@ const content = {
     eyebrow: "The Girl With A Camera",
     title: "Pack *101*",
     lede:
-      "My look, finally as presets. Four looks built on my actual in-camera recipe — one preset per situation, for Lightroom desktop & mobile.",
+      "My look, finally as presets. Four looks built on my actual in-camera recipe, one preset per situation, for Lightroom desktop & mobile.",
     meta: ["4 Lightroom presets", "Desktop & mobile", PRICE],
     buy: `Buy the pack · ${PRICE}`,
     buyNote: "Instant download · install guide EN/FR · commercial license included",
@@ -65,8 +65,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: "Pack 101",
     description:
       lang === "fr"
-        ? "Pack 101 — le rendu de Sandrine Ceuppens en 4 presets Lightroom (Street, Travel, Market, Neon). Desktop et mobile, guide inclus."
-        : "Pack 101 — Sandrine Ceuppens' look in 4 Lightroom presets (Street, Travel, Market, Neon). Desktop & mobile, guide included.",
+        ? "Pack 101 : le rendu de Sandrine Ceuppens en 4 presets Lightroom (Street, Travel, Market, Neon). Desktop et mobile, guide inclus."
+        : "Pack 101: Sandrine Ceuppens' look in 4 Lightroom presets (Street, Travel, Market, Neon). Desktop & mobile, guide included.",
     image: "/presets101/neon-after.jpg",
   });
   // Avant-première : pas d'indexation tant que la page n'est pas lancée.
