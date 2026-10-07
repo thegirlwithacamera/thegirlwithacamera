@@ -1,0 +1,80 @@
+/* Page Pack 101 : hero centre, un slider par preset, CTA encadres. */
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.buy {
+  display: inline-block;
+  font-family: var(--font-inter, Inter), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 44px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.buyNote {
+  font-family: var(--font-inter, Inter), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--stone);
+  margin-top: 14px;
+}
+
+.presetList {
+  display: grid;
+  gap: 72px;
+  margin-top: 72px;
+}
+
+.presetHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.presetUsage {
+  font-family: var(--font-inter, Inter), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.hint {
+  font-family: var(--font-inter, Inter), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--stone);
+  text-align: center;
+  margin: 20px 0 0;
+}
+
+.outro {
+  text-align: center;
+  margin-top: 88px;
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .presetList {
+    gap: 48px;
+    margin-top: 48px;
+  }
+}
