@@ -1,5 +1,81 @@
 import type { NextConfig } from "next";
 
+// ─────────────────────────────────────────────────────────────
+// Anciennes adresses.
+//
+// Chaque règle est écrite sans langue et part directement vers sa page
+// finale, en un seul saut, depuis /en/x, /fr/x et /x. Avant le 07/10, une
+// règle n'existait souvent qu'en /en : /fr/x passait par le middleware
+// (/fr/x -> /en/x) puis par la règle, deux redirections au lieu d'une, et
+// certaines destinations redirigeaient encore (/video -> /filmmaker ->
+// /destinations). D'où deux règles :
+// - la destination est toujours une page qui existe, jamais une adresse
+//   elle-même redirigée. Si une page cible disparaît, mettre à jour ici les
+//   règles qui pointent vers elle ;
+// - l'ordre compte : la première règle qui correspond l'emporte.
+// ─────────────────────────────────────────────────────────────
+
+const LANG_PREFIXES = ["/en", "/fr", ""];
+
+type OldUrl = { from: string; to: string; permanent: boolean };
+
+const OLD_URLS: OldUrl[] = [
+  // Refonte du 16/09 : site en anglais, menu Destinations, Content
+  // creator, Journal, About, Contact. La page Services laisse la place à
+  // Contact (plus de liste d'offres), Photographer à Destinations, et le
+  // journal revient sur le site. Substack est abandonné.
+  { from: "/services", to: "/en/contact", permanent: true },
+  { from: "/photographer", to: "/en/destinations", permanent: true },
+  { from: "/diary", to: "/en/journal", permanent: true },
+  // 17/09 : les six premiers articles sont repassés en brouillon, décision
+  // de Sandrine, pour les refaire en vrais guides. Leurs adresses renvoient
+  // vers le journal en attendant (redirection temporaire).
+  { from: "/journal/:slug(interrail-twelve-stops|interrail-how-i-used-the-pass|interrail-what-i-packed|whats-in-my-camera-bag|my-first-drone)", to: "/en/journal", permanent: false },
+  { from: "/journal/:kind(category|series|destination)/:key(interrail)", to: "/en/journal", permanent: false },
+  { from: "/journal/series/:key", to: "/en/journal/category/:key", permanent: true },
+  { from: "/journal/destination/:key", to: "/en/journal/category/:key", permanent: true },
+  { from: "/diary/:slug", to: "/en/journal", permanent: true },
+  // 16/09, suite : plus aucune page hors menu. Vidéaste et les pages de
+  // catégorie photo renvoient vers Destinations, où vivent les projets et
+  // leurs films. Les pages de projet autrichiennes restent.
+  // /filmmaker/:path* couvre aussi les anciennes rubriques (places, lifestyle,
+  // bts, fashion) qui avaient chacune leur règle.
+  { from: "/filmmaker", to: "/en/destinations", permanent: false },
+  { from: "/filmmaker/:path*", to: "/en/destinations", permanent: false },
+  { from: "/photographer/:category(hospitality|restaurants|travel)", to: "/en/destinations/all", permanent: false },
+  { from: "/shop", to: "/en", permanent: false },
+  // Anciennes adresses d'avant la refonte, encore connues de Google
+  // (Search Console, 404 du 07/10). /video menait à Vidéaste, elle va
+  // directement là où Vidéaste renvoie aujourd'hui.
+  { from: "/video", to: "/en/destinations", permanent: true },
+  { from: "/press", to: "/en/about", permanent: true },
+  { from: "/creation", to: "/en/creator", permanent: true },
+  { from: "/gallery/:path*", to: "/en/destinations/all", permanent: true },
+  // Anciennes sections de Creator, aussi gérées par la page
+  // creator/[...section] : les déclarer ici évite le saut par le middleware.
+  { from: "/creator/diary/:path*", to: "/en/destinations", permanent: true },
+  { from: "/creator/experiences", to: "/en/creator/lifestyle", permanent: true },
+  // /da was a half-built page with missing assets, keep the URL valuable
+  { from: "/da", to: "/en/contact", permanent: true },
+  // Portraits retire du site le 01/09. Les URLs restaient indexees, elles
+  // renvoyaient vers la page Photographe, devenue Destinations.
+  { from: "/photographer/portraits", to: "/en/destinations", permanent: true },
+  { from: "/photographer/portraits/:slug", to: "/en/destinations", permanent: true },
+  // Portfolio : passage aux catégories par mission et aux cas (2026-08-27).
+  // Les anciens slugs par genre photo restent indexés, ils pointent vers
+  // la page qui a absorbé leurs images. Ceux dont les images sont sorties
+  // de la grille renvoient à l'accueil ou à Creator. Ceux qui menaient à une
+  // catégorie (restaurants, travel) suivent sa redirection temporaire vers
+  // toutes les destinations, et restent donc temporaires.
+  // Sélys : rangé dans Restaurants & bars le 08/09, seuls le restaurant
+  // et le spa ont été couverts.
+  { from: "/photographer/hospitality/van-der-valk-selys", to: "/en/photographer/restaurants/van-der-valk-selys", permanent: true },
+  { from: "/photographer/:slug(details|venues|street)", to: "/en/destinations/all", permanent: false },
+  { from: "/photographer/:slug(architecture|product)", to: "/en/creator", permanent: true },
+  { from: "/photographer/:slug(jewelry|studio|portrait|fashion|beauty)", to: "/en/destinations", permanent: true },
+  { from: "/photographer/:slug(conceptual|creative|events)", to: "/en", permanent: true },
+];
+
 const nextConfig: NextConfig = {
   // Les pages lisent public/images et public/videos avec fs uniquement au
   // build (pages SSG). Sans cette exclusion, Vercel embarque les fichiers
@@ -18,95 +94,9 @@ const nextConfig: NextConfig = {
     ],
   },
   async redirects() {
-    return [
-      // Refonte du 16/09 : site en anglais, menu Destinations, Content
-      // creator, Journal, About, Contact. La page Services laisse la place à
-      // Contact (plus de liste d'offres), Photographer à Destinations, et le
-      // journal revient sur le site. Substack est abandonné.
-      { source: "/en/services", destination: "/en/contact", permanent: true },
-      { source: "/en/photographer", destination: "/en/destinations", permanent: true },
-      { source: "/en/diary", destination: "/en/journal", permanent: true },
-      { source: "/en/journal/series/:key", destination: "/en/journal/category/:key", permanent: true },
-      // 17/09 : les six premiers articles sont repassés en brouillon, décision
-      // de Sandrine, pour les refaire en vrais guides. Leurs adresses renvoient
-      // vers le journal en attendant (redirection temporaire).
-      { source: "/en/journal/:slug(interrail-twelve-stops|interrail-how-i-used-the-pass|interrail-what-i-packed|whats-in-my-camera-bag|my-first-drone)", destination: "/en/journal", permanent: false },
-      { source: "/en/journal/category/:key(interrail)", destination: "/en/journal", permanent: false },
-      { source: "/en/journal/destination/:key", destination: "/en/journal/category/:key", permanent: true },
-      { source: "/en/diary/:slug", destination: "/en/journal", permanent: true },
-      // 16/09, suite : plus aucune page hors menu. Vidéaste et les pages de
-      // catégorie photo renvoient vers Destinations, où vivent les projets et
-      // leurs films. Les projets retirés (Italie, Japon, Belgique, voir
-      // HIDDEN_CASES) aussi. Les pages de projet autrichiennes restent.
-      { source: "/en/filmmaker", destination: "/en/destinations", permanent: false },
-      { source: "/en/filmmaker/:path*", destination: "/en/destinations", permanent: false },
-      { source: "/en/photographer/:category(hospitality|restaurants|travel)", destination: "/en/destinations/all", permanent: false },
-      { source: "/en/shop", destination: "/en", permanent: false },
-      // /da was a half-built page with missing assets, keep the URL valuable
-      { source: "/da", destination: "/en/contact", permanent: true },
-      { source: "/fr/da", destination: "/fr/services", permanent: true },
-      { source: "/en/da", destination: "/en/services", permanent: true },
-      // Pointait vers /film, une route qui n'existe pas : la page s'appelle
-      // /filmmaker. Corrigé le 01/09.
-      { source: "/fr/video", destination: "/fr/filmmaker", permanent: true },
-      { source: "/en/video", destination: "/en/filmmaker", permanent: true },
-      // Videaste decoupe en cinq rubriques le 12/09 : "Maisons & tables" se
-      // separe en Hotels, Tables et Spa, et les trains sortent de Voyage.
-      // L'ancienne URL /filmmaker/places etait en ligne et dans les
-      // sitemaps, elle mene a la rubrique qui a repris ses films.
-      { source: "/fr/filmmaker/places", destination: "/fr/filmmaker/hotels", permanent: true },
-      { source: "/en/filmmaker/places", destination: "/en/filmmaker/hotels", permanent: true },
-      // Portraits retire du site le 01/09. Les trois URLs restaient
-      // indexees, elles renvoient vers la page Photographe.
-      { source: "/fr/photographer/portraits", destination: "/fr/photographer", permanent: true },
-      { source: "/en/photographer/portraits", destination: "/en/photographer", permanent: true },
-      { source: "/fr/photographer/portraits/:slug", destination: "/fr/photographer", permanent: true },
-      { source: "/en/photographer/portraits/:slug", destination: "/en/photographer", permanent: true },
-      // Portfolio : passage aux catégories par mission et aux cas (2026-08-27).
-      // Les anciens slugs par genre photo restent indexés, ils pointent vers
-      // la catégorie qui a absorbé leurs images. Ceux dont les images sont
-      // sorties de la grille renvoient à l'accueil ou à Creator.
-      // /photographer/travel est le seul ancien slug encore valide tel quel.
-      // Sélys : rangé dans Restaurants & bars le 08/09, seuls le restaurant
-      // et le spa ont été couverts.
-      { source: "/fr/photographer/hospitality/van-der-valk-selys", destination: "/fr/photographer/restaurants/van-der-valk-selys", permanent: true },
-      { source: "/en/photographer/hospitality/van-der-valk-selys", destination: "/en/photographer/restaurants/van-der-valk-selys", permanent: true },
-      { source: "/fr/photographer/details", destination: "/fr/photographer/restaurants", permanent: true },
-      { source: "/en/photographer/details", destination: "/en/photographer/restaurants", permanent: true },
-      { source: "/fr/photographer/architecture", destination: "/fr/creator", permanent: true },
-      { source: "/en/photographer/architecture", destination: "/en/creator", permanent: true },
-      { source: "/fr/photographer/jewelry", destination: "/fr/photographer", permanent: true },
-      { source: "/en/photographer/jewelry", destination: "/en/photographer", permanent: true },
-      { source: "/fr/photographer/conceptual", destination: "/fr", permanent: true },
-      { source: "/en/photographer/conceptual", destination: "/en", permanent: true },
-      { source: "/fr/photographer/creative", destination: "/fr", permanent: true },
-      { source: "/en/photographer/creative", destination: "/en", permanent: true },
-      { source: "/fr/photographer/studio", destination: "/fr/photographer", permanent: true },
-      { source: "/en/photographer/studio", destination: "/en/photographer", permanent: true },
-      { source: "/fr/photographer/venues", destination: "/fr/photographer/restaurants", permanent: true },
-      { source: "/en/photographer/venues", destination: "/en/photographer/restaurants", permanent: true },
-      { source: "/fr/photographer/portrait", destination: "/fr/photographer", permanent: true },
-      { source: "/en/photographer/portrait", destination: "/en/photographer", permanent: true },
-      { source: "/fr/photographer/street", destination: "/fr/photographer/travel", permanent: true },
-      { source: "/en/photographer/street", destination: "/en/photographer/travel", permanent: true },
-      { source: "/fr/photographer/fashion", destination: "/fr/photographer", permanent: true },
-      { source: "/en/photographer/fashion", destination: "/en/photographer", permanent: true },
-      { source: "/fr/photographer/events", destination: "/fr", permanent: true },
-      { source: "/en/photographer/events", destination: "/en", permanent: true },
-      { source: "/fr/photographer/product", destination: "/fr/creator", permanent: true },
-      { source: "/en/photographer/product", destination: "/en/creator", permanent: true },
-      { source: "/fr/photographer/beauty", destination: "/fr/photographer", permanent: true },
-      // Vidéaste : Quotidien, Coulisses et Mode retirés le 28/08, la page ne
-      // montre plus que du travail de lieu.
-      { source: "/fr/filmmaker/lifestyle", destination: "/fr/filmmaker", permanent: true },
-      { source: "/en/filmmaker/lifestyle", destination: "/en/filmmaker", permanent: true },
-      { source: "/fr/filmmaker/bts", destination: "/fr/filmmaker", permanent: true },
-      { source: "/en/filmmaker/bts", destination: "/en/filmmaker", permanent: true },
-      { source: "/fr/filmmaker/fashion", destination: "/fr/filmmaker", permanent: true },
-      { source: "/en/filmmaker/fashion", destination: "/en/filmmaker", permanent: true },
-
-      { source: "/en/photographer/beauty", destination: "/en/photographer", permanent: true },
-    ];
+    return OLD_URLS.flatMap(({ from, to, permanent }) =>
+      LANG_PREFIXES.map((prefix) => ({ source: `${prefix}${from}`, destination: to, permanent })),
+    );
   },
   async headers() {
     return [
