@@ -275,7 +275,7 @@ export default async function AboutPage({ params }: Props) {
         mainEntity: {
           "@type": "Person",
           jobTitle: lang === "fr" ? "Photographe et vidéaste documentaire" : "Travel photographer & content creator",
-          url: "https://thegirlwithacamera.com",
+          url: "https://www.thegirlwithacamera.com",
           sameAs: SOCIALS.map((so) => so.href),
         },
       })}} />

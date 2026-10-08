@@ -1,5 +1,7 @@
 ---
 title: Faro travel guide: a calm base in the Algarve
+seoTitle: "Faro travel guide: what to do"
+description: "Faro travel guide: the old town, the chapel of bones, the beach, the Ria Formosa and Praia da Falésia, where to eat and how many days to spend in Faro."
 tile: Faro
 date: 2026-09-07
 section: travel

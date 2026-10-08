@@ -1,5 +1,7 @@
 ---
 title: Arashiyama travel guide: go before sunrise
+seoTitle: "Arashiyama guide: go before sunrise"
+description: "Arashiyama from Kyoto: the bamboo grove before the crowds, the monkey park, Okochi Sanso, where to eat and how long you need. A one morning itinerary."
 tile: Arashiyama
 date: 2026-09-19
 section: travel

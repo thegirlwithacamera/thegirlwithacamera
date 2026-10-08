@@ -118,6 +118,11 @@ export type JournalPost = {
   place?: string;
   cover?: string;
   excerpt?: string;
+  // Titre et description pour Google (08/10), facultatifs. La Search Console
+  // montrait des titres coupés : le titre de l'article plus le nom du site
+  // dépassait 60 signes. Sans eux, on retombe sur title et excerpt.
+  seoTitle?: string;
+  description?: string;
   body: string;
 };
 
@@ -143,6 +148,8 @@ function parse(file: string): JournalPost | null {
     place: meta.place || undefined,
     cover: meta.cover || undefined,
     excerpt: meta.excerpt || undefined,
+    seoTitle: meta.seoTitle || undefined,
+    description: meta.description || undefined,
     body: m[2].trim(),
   };
 }

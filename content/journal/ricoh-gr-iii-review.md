@@ -1,5 +1,7 @@
 ---
 title: Ricoh GR III Diary Edition review: the camera I use as my photo diary
+seoTitle: "Ricoh GR III Diary Edition review"
+description: "My Ricoh GR III Diary Edition review after two years: size, speed, recipes, the downsides, my favourite setting, and what to know now the GR IV replaces it."
 tile: Ricoh GR III
 date: 2026-09-06
 section: creator

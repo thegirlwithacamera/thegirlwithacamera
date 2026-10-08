@@ -209,11 +209,11 @@ export default function CaseView({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Destinations", item: `https://thegirlwithacamera.com/${lang}/destinations` },
+          { "@type": "ListItem", position: 1, name: "Destinations", item: `https://www.thegirlwithacamera.com/${lang}/destinations` },
           ...(isRoot
             ? [{ "@type": "ListItem", position: 2, name: item.label[lang] }]
             : [
-                { "@type": "ListItem", position: 2, name: item.label[lang], item: `https://thegirlwithacamera.com${base}` },
+                { "@type": "ListItem", position: 2, name: item.label[lang], item: `https://www.thegirlwithacamera.com${base}` },
                 { "@type": "ListItem", position: 3, name: shown?.title ?? "" },
               ]),
         ],

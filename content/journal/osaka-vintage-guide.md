@@ -1,5 +1,7 @@
 ---
 title: "Vintage shopping in Osaka: where to buy second hand luxury"
+seoTitle: "Vintage shopping in Osaka: where to go"
+description: "Where to buy second hand luxury in Osaka: the best vintage shops, real prices (a Louis Vuitton for 220 euros) and the tax free change of November 2026."
 tile: Vintage shopping
 date: 2026-09-20
 section: travel

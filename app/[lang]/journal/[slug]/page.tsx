@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return pageMeta({
     lang: "en",
     path: `/journal/${post.slug}`,
-    title: post.title,
-    description: post.excerpt ?? `${post.title}, a story by Sandrine Ceuppens.`,
+    title: post.seoTitle ?? post.title,
+    description: post.description ?? post.excerpt ?? `${post.title}, a story by Sandrine Ceuppens.`,
     image: post.cover,
     type: "article",
   });

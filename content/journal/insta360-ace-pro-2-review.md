@@ -1,5 +1,7 @@
 ---
 title: Insta360 Ace Pro 2 review: the waterproof action camera I shoot like a compact camera
+seoTitle: "Insta360 Ace Pro 2 review"
+description: "My Insta360 Ace Pro 2 review: waterproof, versatile, great for still frames, and a compact camera with the Xplorer grip. Specs, downsides, price, settings."
 tile: Ace Pro 2
 date: 2026-09-05
 section: creator

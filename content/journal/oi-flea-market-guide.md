@@ -1,5 +1,7 @@
 ---
 title: "Oi Racecourse flea market: one of Tokyo's biggest flea markets"
+seoTitle: "Oi Racecourse Flea Market, Tokyo guide"
+description: "Oi Racecourse flea market in Tokyo: up to 600 stalls, free entry, weekends 9am to 2:30pm. How to get there by monorail, when to go and what I found."
 tile: Oi flea market
 date: 2026-09-20
 section: travel

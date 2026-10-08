@@ -4,7 +4,7 @@
 export const site = {
   name: "Sandrine Ceuppens",
   tagline: "The Girl With A Camera",
-  url: "https://thegirlwithacamera.com",
+  url: "https://www.thegirlwithacamera.com",
   email: "hello@thegirlwithacamera.com",
   pressEmail: "press@thegirlwithacamera.com",
   city: "Brussels",
