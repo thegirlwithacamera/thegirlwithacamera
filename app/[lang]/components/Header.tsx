@@ -63,6 +63,7 @@ export default function Header() {
     { href: "/en/destinations", label: "Destinations" },
     { href: "/en/creator", label: "Content creator" },
     { href: "/en/journal", label: "Journal" },
+    { href: "/en/store", label: "Store" },
     { href: "/en/about", label: "About" },
   ];
   const contact: NavLink = { href: "/en/contact", label: "Contact" };

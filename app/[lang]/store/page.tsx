@@ -9,9 +9,8 @@ import s from "./presets.module.css";
 // Sandrine. Paiement en overlay Gumroad (le visiteur reste sur le site,
 // Gumroad reste vendeur officiel : TVA, factures, livraison du fichier).
 //
-// Page en avant-première : pas encore dans le menu ni le sitemap, et
-// noindex tant que Sandrine n'a pas validé. Au lancement : retirer
-// `robots`, ajouter le lien dans Header.tsx et "/presets" dans sitemap.ts.
+// Page Store : pour l'instant un seul produit (Pack 101), concue pour
+// accueillir les suivants.
 
 // À mettre à jour si le username Gumroad change (ex. thegirlwithacamera).
 const GUMROAD_URL = "https://thegirlwithacamera.gumroad.com/l/pack-101";
@@ -61,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   const base = pageMeta({
     lang,
-    path: "/presets",
+    path: "/store",
     title: "Pack 101",
     description:
       lang === "fr"
@@ -69,8 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         : "Pack 101: Sandrine Ceuppens' look in 4 Lightroom presets (Street, Travel, Market, Neon). Desktop & mobile, guide included.",
     image: "/presets101/neon-after.jpg",
   });
-  // Avant-première : pas d'indexation tant que la page n'est pas lancée.
-  return { ...base, robots: { index: false, follow: false } };
+  return base;
 }
 
 function BuyButton({ label }: { label: string }) {
