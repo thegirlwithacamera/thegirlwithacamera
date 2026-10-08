@@ -12,8 +12,8 @@ import s from "./presets.module.css";
 // Page Store : pour l'instant un seul produit (Pack 101), concue pour
 // accueillir les suivants.
 
-// À mettre à jour si le username Gumroad change (ex. thegirlwithacamera).
-const GUMROAD_URL = "https://thegirlwithacamera.gumroad.com/l/pack-101";
+// Domaine custom du produit : aucune URL Gumroad visible pour l'acheteuse.
+const GUMROAD_URL = "https://shop.thegirlwithacamera.com";
 const PRICE = "39 €";
 
 const PRESETS = [
