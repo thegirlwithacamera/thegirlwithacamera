@@ -31,14 +31,10 @@ interface Props {
 
 const content = {
   fr: {
-    eyebrow: "The Girl With A Camera",
-    title: "Store",
-    lede: "Mes presets et les prochains objets de la boutique, faits avec le même soin que mes photos.",
+    title: "Mes presets et la suite. *Faits avec le même soin que mes photos.*",
   },
   en: {
-    eyebrow: "The Girl With A Camera",
-    title: "Store",
-    lede: "My presets and whatever comes next, made with the same care as my photos.",
+    title: "My presets and whatever comes next. *Made with the same care as my photos.*",
   },
 } as const;
 
@@ -62,8 +58,16 @@ export default async function StorePage({ params }: Props) {
 
   return (
     <main>
+      <section className={s.banner}>
+        <img
+          src="/store/banner.jpg"
+          alt="Street, Travel, Market and Neon, the four presets side by side"
+        />
+        <span className={s.bannerVeil} aria-hidden="true" />
+        <p className={s.bannerWord}>The Store</p>
+      </section>
       <div className={s.container}>
-        <PageHead eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
+        <PageHead title={t.title} />
         <div className={s.grid}>
           {PRODUCTS.map((p) => (
             <Link key={p.slug} href={`/${lang}/store/${p.slug}`} className={s.card}>
