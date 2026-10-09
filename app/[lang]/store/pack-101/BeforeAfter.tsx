@@ -34,7 +34,7 @@ export default function BeforeAfter({ before, after, name, beforeLabel, compact 
       onTouchMove={(e) => move(e.touches[0].clientX)}
       onTouchStart={(e) => move(e.touches[0].clientX)}
     >
-      <img src={before} alt={`${name} — ${beforeLabel}`} draggable={false} loading="lazy" />
+      <img src={before} alt={`${name} · ${beforeLabel}`} draggable={false} loading="lazy" />
       <img
         src={after}
         alt={name}
