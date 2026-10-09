@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Eyebrow, Display, PageHead, Section } from "../../components/editorial";
+import { Display, PageHead } from "../../components/editorial";
 import { pageMeta } from "@/lib/seo";
 import BeforeAfter from "../pack-101/BeforeAfter";
 import s from "../pack-101/presets.module.css";
@@ -74,14 +74,12 @@ export default async function StreetPage({ params }: Props) {
         </PageHead>
         <p className={s.hint}>{t.hint}</p>
         <div className={s.singleSlider}>
-          <Section>
-            <BeforeAfter
-              before="/presets101/street-before.jpg"
-              after="/presets101/street-after.jpg"
-              name="Street"
-              beforeLabel={t.before}
-            />
-          </Section>
+          <BeforeAfter
+            before="/presets101/street-before.jpg"
+            after="/presets101/street-after.jpg"
+            name="Street"
+            beforeLabel={t.before}
+          />
         </div>
         <div className={s.outro}>
           <Display size="m" as="p" italic>{t.packTitle}</Display>

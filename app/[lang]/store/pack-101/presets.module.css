@@ -58,10 +58,10 @@
   color: var(--stone);
 }
 
-/* Page Street : un seul slider, pleine largeur du conteneur. */
+/* Page Street : un seul slider, largeur contenue (photo portrait). */
 .singleSlider {
-  display: grid;
-  margin-top: 56px;
+  max-width: 540px;
+  margin: 40px auto 0;
 }
 
 .hint {
