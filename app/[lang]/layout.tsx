@@ -4,7 +4,6 @@ import "./globals.css";
 import "./components/showcase.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import NewsletterGate from "./components/NewsletterGate";
 import { site } from "@/lib/site";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
@@ -235,7 +234,6 @@ export default async function RootLayout({ children, params }: Props) {
         <Header />
         <main id="main" className="flex-1">{children}</main>
         <Footer />
-        <NewsletterGate lang={lang === "fr" ? "fr" : "en"} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <SpeedInsights />

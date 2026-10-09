@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import s from './gate.module.css';
 
-// Pop-up newsletter force sur tout le site : l'email est demande a la
-// premiere visite (inscription via /api/newsletter, Resend dedoublonne),
+// Pop-up newsletter force sur la boutique uniquement : l'email est
+// demande a la premiere visite de /store (inscription via /api/newsletter, Resend dedoublonne),
 // en echange du mini-guide offert. Le passage est memorise par navigateur.
 
 const KEY = 'tgwac-store-gate';
@@ -26,13 +26,13 @@ const texts = {
     doneTitle: 'C’est pour toi.',
     doneBody: 'Ton mini-guide est prêt, et la boutique est ouverte.',
     download: 'Télécharger le mini-guide',
-    enter: 'Continuer',
+    enter: 'Entrer dans la boutique',
   },
   en: {
     eyebrow: 'The Girl With A Camera',
     title: 'Come in.',
     body:
-      'Leave your email and get my FREE street mini guide (Five Shy Street Tricks) plus the newsletter, with new presets and guides first.',
+      'Leave your email to enter the store: you get my FREE street mini guide (Five Shy Street Tricks) plus the newsletter, with new presets and guides first.',
     placeholder: 'you@email.com',
     cta: 'Get the free guide',
     sending: 'One second…',
@@ -40,9 +40,9 @@ const texts = {
     error: 'That email does not look right, try again.',
     failed: 'Small connection issue, try again.',
     doneTitle: 'It’s yours.',
-    doneBody: 'Your mini guide is ready. Enjoy the site.',
+    doneBody: 'Your mini guide is ready, and the store is open.',
     download: 'Download the mini guide',
-    enter: 'Continue',
+    enter: 'Enter the store',
   },
 } as const;
 
