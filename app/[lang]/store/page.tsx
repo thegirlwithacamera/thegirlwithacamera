@@ -23,6 +23,13 @@ const PRODUCTS = [
     meta: { fr: "4 presets Lightroom · 39 €", en: "4 Lightroom presets · 39 €" },
     alt: "Pack 101, 4 film presets for Lightroom",
   },
+  {
+    slug: "shy",
+    image: "/store/shy.jpg",
+    name: "Shy With A Camera",
+    meta: { fr: "Le guide street pour les timides · 19 €", en: "The shy street guide · 19 €" },
+    alt: "Shy With A Camera, the street photography guide for shy people",
+  },
 ] as const;
 
 interface Props {

@@ -64,6 +64,34 @@
   margin: 40px auto 0;
 }
 
+/* Page Shy : liste "dedans" du guide. */
+.insideList {
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 16px;
+}
+
+.insideList li {
+  font-family: var(--font-serif, Georgia), serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+  padding-left: 26px;
+  position: relative;
+}
+
+.insideList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  background: var(--brick);
+}
+
 .hint {
   font-family: var(--font-inter, Inter), system-ui, sans-serif;
   font-size: 11px;
