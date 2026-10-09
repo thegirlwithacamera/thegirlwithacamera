@@ -71,7 +71,16 @@
   color: var(--paper);
 }
 
-/* Variante compacte : vignettes en grille 4 colonnes. */
+/* Variante compacte : vignettes en grille 4 colonnes, cadrage 3:4 uniforme. */
+.compact {
+  aspect-ratio: 3 / 4;
+}
+
+.compact img {
+  height: 100%;
+  object-fit: cover;
+}
+
 .compact .knob {
   width: 26px;
   height: 26px;

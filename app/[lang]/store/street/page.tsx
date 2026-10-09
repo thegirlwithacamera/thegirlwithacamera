@@ -73,7 +73,7 @@ export default async function StreetPage({ params }: Props) {
           </div>
         </PageHead>
         <p className={s.hint}>{t.hint}</p>
-        <div className={s.presetList}>
+        <div className={s.singleSlider}>
           <Section>
             <BeforeAfter
               before="/presets101/street-before.jpg"
