@@ -1,0 +1,118 @@
+/* Porte email de la boutique : voile flou + carte editoriale centree. */
+
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: color-mix(in srgb, var(--paper) 55%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.card {
+  width: min(520px, 100%);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 48px 44px 36px;
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(20, 20, 20, 0.14);
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-family: var(--font-inter, Inter), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brick);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-serif, Georgia), serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.body {
+  margin: 16px auto 26px;
+  max-width: 400px;
+  font-family: var(--font-serif, Georgia), serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--stone);
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.input {
+  font-family: var(--font-inter, Inter), system-ui, sans-serif;
+  font-size: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--ink);
+}
+
+.cta {
+  font-family: var(--font-inter, Inter), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  cursor: pointer;
+}
+
+.cta:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.error {
+  margin: 12px 0 0;
+  font-family: var(--font-inter, Inter), system-ui, sans-serif;
+  font-size: 12px;
+  color: var(--brick);
+}
+
+.note {
+  margin: 22px 0 0;
+  font-family: var(--font-inter, Inter), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  color: var(--stone);
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 36px 24px 28px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+  }
+}
