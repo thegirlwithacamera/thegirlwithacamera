@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import s from './gate.module.css';
 
-// Porte d'entree de la boutique : l'email est demande avant de parcourir
-// le store (inscription newsletter via /api/newsletter, Resend dedoublonne
-// les contacts existants). Le passage est memorise par navigateur.
+// Pop-up newsletter force sur tout le site : l'email est demande a la
+// premiere visite (inscription via /api/newsletter, Resend dedoublonne),
+// en echange du mini-guide offert. Le passage est memorise par navigateur.
 
 const KEY = 'tgwac-store-gate';
 
@@ -26,13 +26,13 @@ const texts = {
     doneTitle: 'C’est pour toi.',
     doneBody: 'Ton mini-guide est prêt, et la boutique est ouverte.',
     download: 'Télécharger le mini-guide',
-    enter: 'Entrer dans la boutique',
+    enter: 'Continuer',
   },
   en: {
     eyebrow: 'The Girl With A Camera',
     title: 'Come in.',
     body:
-      'Leave your email to enter: you get my FREE street mini guide (Five Shy Street Tricks) and the newsletter, with new presets and guides first.',
+      'Leave your email and get my FREE street mini guide (Five Shy Street Tricks) plus the newsletter, with new presets and guides first.',
     placeholder: 'you@email.com',
     cta: 'Get the free guide',
     sending: 'One second…',
@@ -40,13 +40,13 @@ const texts = {
     error: 'That email does not look right, try again.',
     failed: 'Small connection issue, try again.',
     doneTitle: 'It’s yours.',
-    doneBody: 'Your mini guide is ready, and the store is open.',
+    doneBody: 'Your mini guide is ready. Enjoy the site.',
     download: 'Download the mini guide',
-    enter: 'Enter the store',
+    enter: 'Continue',
   },
 } as const;
 
-export default function StoreGate({ lang }: { lang: 'fr' | 'en' }) {
+export default function NewsletterGate({ lang }: { lang: 'fr' | 'en' }) {
   const t = texts[lang];
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState('');
