@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Eyebrow, Display, PageHead, Section } from "../../components/editorial";
+import { Eyebrow, Display, PageHead } from "../../components/editorial";
 import { pageMeta } from "@/lib/seo";
 import BeforeAfter from "./BeforeAfter";
 import s from "./presets.module.css";
@@ -35,8 +35,8 @@ const content = {
       "Mon rendu, enfin en presets. Quatre looks construits sur ma vraie recette boîtier, un preset par situation, pour Lightroom desktop et mobile.",
     meta: ["4 presets Lightroom", "Desktop & mobile", PRICE],
     buy: `Acheter le pack · ${PRICE}`,
-    buyNote: "Téléchargement immédiat · guide d’installation FR/EN · licence commerciale incluse",
-    hint: "Glisse la ligne sur chaque photo : à gauche le preset, à droite la photo brute.",
+    buyNote: "Téléchargement immédiat · guide d’installation FR/EN · usage personnel",
+    hint: "Glisse la ligne sur chaque photo : à gauche la photo brute, à droite le preset.",
     before: "Avant",
     outro: "Une question avant d’acheter ?",
     outroCta: "Écris-moi",
@@ -48,8 +48,8 @@ const content = {
       "My look, finally as presets. Four looks built on my actual in-camera recipe, one preset per situation, for Lightroom desktop & mobile.",
     meta: ["4 Lightroom presets", "Desktop & mobile", PRICE],
     buy: `Buy the pack · ${PRICE}`,
-    buyNote: "Instant download · install guide EN/FR · commercial license included",
-    hint: "Drag the line on each photo: preset on the left, straight-out-of-camera on the right.",
+    buyNote: "Instant download · install guide EN/FR · personal use license",
+    hint: "Drag the line on each photo: straight-out-of-camera on the left, preset on the right.",
     before: "Before",
     outro: "A question before buying?",
     outroCta: "Write me",
@@ -109,9 +109,9 @@ export default async function PresetsPage({ params }: Props) {
 
         <div className={s.presetList}>
           {PRESETS.map((p) => (
-            <Section key={p.key}>
+            <div key={p.key}>
               <div className={s.presetHead}>
-                <Display size="m" as="h2">{p.name}</Display>
+                <h2 className={s.presetName}>{p.name}</h2>
                 <span className={s.presetUsage}>{p.usage[lang]}</span>
               </div>
               <BeforeAfter
@@ -119,8 +119,9 @@ export default async function PresetsPage({ params }: Props) {
                 after={`/presets101/${p.key}-after.jpg`}
                 name={p.name}
                 beforeLabel={t.before}
+                compact
               />
-            </Section>
+            </div>
           ))}
         </div>
 

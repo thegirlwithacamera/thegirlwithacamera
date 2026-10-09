@@ -70,3 +70,29 @@
   background: var(--ink);
   color: var(--paper);
 }
+
+/* Variante compacte : vignettes en grille 4 colonnes. */
+.compact .knob {
+  width: 26px;
+  height: 26px;
+}
+
+.compact .knob svg {
+  width: 14px;
+  height: 7px;
+}
+
+.compact .chip {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  padding: 3px 6px;
+  bottom: 8px;
+}
+
+.compact .chipLeft {
+  left: 8px;
+}
+
+.compact .chipRight {
+  right: 8px;
+}

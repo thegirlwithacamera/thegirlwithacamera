@@ -8,11 +8,13 @@ interface Props {
   after: string;
   name: string;
   beforeLabel: string;
+  compact?: boolean;
 }
 
 // Avant/apres dont la ligne suit la souris (ou le doigt) : a gauche de la
-// ligne la photo brute, a droite le preset applique.
-export default function BeforeAfter({ before, after, name, beforeLabel }: Props) {
+// ligne la photo brute, a droite le preset applique. `compact` reduit
+// poignee et pastilles pour les petites vignettes en grille.
+export default function BeforeAfter({ before, after, name, beforeLabel, compact }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState(50);
 
@@ -27,7 +29,7 @@ export default function BeforeAfter({ before, after, name, beforeLabel }: Props)
   return (
     <div
       ref={ref}
-      className={s.wrap}
+      className={compact ? `${s.wrap} ${s.compact}` : s.wrap}
       onPointerMove={(e) => e.pointerType !== 'touch' && move(e.clientX)}
       onTouchMove={(e) => move(e.touches[0].clientX)}
       onTouchStart={(e) => move(e.touches[0].clientX)}
