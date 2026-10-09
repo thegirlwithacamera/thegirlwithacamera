@@ -8,7 +8,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 460px));
+  grid-template-columns: repeat(2, minmax(0, 420px));
   gap: 48px;
   margin-top: 56px;
   justify-content: center;
