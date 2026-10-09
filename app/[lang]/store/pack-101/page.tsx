@@ -13,7 +13,7 @@ import s from "./presets.module.css";
 // accueillir les suivants.
 
 // Domaine custom du produit : aucune URL Gumroad visible pour l'acheteuse.
-const GUMROAD_URL = "https://shop.thegirlwithacamera.com";
+const GUMROAD_URL = "https://shop.thegirlwithacamera.com/l/pack-101";
 const PRICE = "39 €";
 
 const PRESETS = [

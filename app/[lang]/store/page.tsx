@@ -10,6 +10,13 @@ import s from "./store.module.css";
 
 const PRODUCTS = [
   {
+    slug: "street",
+    image: "/store/street.jpg",
+    name: "Street",
+    meta: { fr: "Le preset signature · 15 €", en: "The signature preset · 15 €" },
+    alt: "Street, the signature Lightroom preset",
+  },
+  {
     slug: "pack-101",
     image: "/store/pack-101.jpg",
     name: "Pack 101",
