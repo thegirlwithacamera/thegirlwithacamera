@@ -124,6 +124,15 @@ export default async function PresetsPage({ params }: Props) {
           ))}
         </div>
 
+        <section style={{ marginTop: "72px" }}>
+          <img
+            src="/store/pack-101-contents.jpg"
+            alt={lang === "fr" ? "Le contenu du Pack 101 : 4 presets, le guide PDF, les DNG mobiles et la licence" : "What you get in Pack 101: 4 presets, the PDF guide, mobile DNGs and the license"}
+            loading="lazy"
+            style={{ width: "100%", display: "block" }}
+          />
+        </section>
+
         <div className={s.outro}>
           <BuyButton label={t.buy} />
           <Display size="m" as="p" italic>
