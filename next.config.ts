@@ -23,6 +23,14 @@ const nextConfig: NextConfig = {
       // creator, Journal, About, Contact. La page Services laisse la place à
       // Contact (plus de liste d'offres), Photographer à Destinations, et le
       // journal revient sur le site. Substack est abandonné.
+      // Nettoyage GSC du 19/10 : 29 URLs du tout premier site encore
+      // explorées par Google (rapport Indexation). Creation etait la page
+      // creation de contenu (devenue Creator), press et les galeries ont
+      // ete absorbees par About et Destinations, legal n'existe plus.
+      { source: "/:lang(fr|en)/creation", destination: "/en/creator", permanent: true },
+      { source: "/:lang(fr|en)/press", destination: "/en/about", permanent: true },
+      { source: "/:lang(fr|en)/gallery/:slug*", destination: "/en/destinations/all", permanent: true },
+      { source: "/:lang(fr|en)/legal/:page*", destination: "/en/about", permanent: true },
       { source: "/en/services", destination: "/en/contact", permanent: true },
       { source: "/en/photographer", destination: "/en/destinations", permanent: true },
       { source: "/en/diary", destination: "/en/journal", permanent: true },
