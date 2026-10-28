@@ -31,10 +31,10 @@ import { BRAND_CATS, CAT_LABEL, CAT_NOTE, TRUST_LABEL, brandsIn, type BrandCat }
 //
 //    Premiere version : rien ne les distinguait au repos, pour ne degrader
 //    aucun client, le survol revelait. Resultat le 31/08 : "rien n'est
-//    cliquable". Cinq liens sur dix-huit logos, invisibles, personne ne tombe
-//    dessus par hasard. Une petite legende sous le logo dit maintenant ce
-//    qu'on y trouve, Photos, Film, Photos & film. Meme vocabulaire que les
-//    legendes de l'accueil et de la grille, avec la meme fleche.
+//    cliquable". Une petite legende sous le logo disait alors ce qu'on y
+//    trouve (Photos & film, Film). Retiree le 28/10 a la demande de
+//    Sandrine : le logo seul est cliquable, et pour les marques il n'y a plus
+//    de lien par logo, c'est l'intertitre Brands qui mene a la page.
 //
 // 3. Deux tailles de logo, pas une. Les marques ont des wordmarks larges qui
 //    remplissent toute leur hauteur ; les adresses ont des marques compactes,
@@ -78,6 +78,8 @@ export default function TrustLogos({
         .trust-group { margin: 0 auto 40px; }
         .trust-group:last-child { margin-bottom: 0; }
         .trust-cat { font-family: var(--font-serif); font-style: italic; font-size: var(--text-body); color: var(--stone); text-align: center; margin: 0 0 20px; }
+        .trust-cat a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+        .trust-cat a:hover, .trust-cat a:focus-visible { color: var(--brick); border-bottom-color: currentColor; }
         .trust-note { font-family: var(--font-serif); font-size: var(--text-caption); line-height: 1.6; font-style: italic; color: var(--stone); text-align: center; max-width: 520px; margin: 18px auto 0; padding: 0 24px; }
         /* align-items: flex-start et une boite de hauteur fixe : les logos
            restent alignes entre eux, les legendes pendent en dessous sans
@@ -85,17 +87,6 @@ export default function TrustLogos({
         .brands-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 22px 34px; max-width: 920px; margin: 0 auto; padding: 0 24px; }
         .brand-item { display: flex; flex-direction: column; align-items: center; gap: 9px; text-decoration: none; }
         .brand-box { display: flex; align-items: center; justify-content: center; }
-        .brand-cap {
-          font-family: var(--font-sans);
-          font-size: 0.6875rem;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: var(--stone);
-          transition: color 0.2s;
-          white-space: nowrap;
-        }
-        .brand-cap::after { content: " →"; }
-        .brand-link:hover .brand-cap { color: var(--brick); }
         .brand-chip { font-family: var(--font-serif); font-size: var(--text-body); letter-spacing: 0.02em; color: var(--ink); }
         .brand-logo { width: auto; max-height: 100%; object-fit: contain; opacity: 0.85; transition: opacity 0.2s; display: block; mix-blend-mode: multiply; }
         .brand-link { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1); }
@@ -146,7 +137,6 @@ export default function TrustLogos({
           .trust-group--brand .brand-box { height: 34px; }
           .trust-group--brand .brand-logo { height: 24px; max-width: 120px; }
           .trust-group--brand .brand-logo--tall { height: 34px; }
-          .brand-cap { font-size: 0.6875rem; letter-spacing: 0.1em; }
         }
         .trust-left .brands-strip { justify-content: flex-start; padding: 0; margin: 0; max-width: none; }
 
@@ -180,7 +170,9 @@ export default function TrustLogos({
               />
             </span>
           );
-          if (!b.href || noLinks) return <span key={b.name} className="brand-item" aria-hidden={copy || undefined}>{box}</span>;
+          // Marques : pas de lien par logo, c'est l'intertitre Brands qui mène
+          // à la page (28/10, Sandrine).
+          if (!b.href || noLinks || g.cat === "brand") return <span key={b.name} className="brand-item" aria-hidden={copy || undefined}>{box}</span>;
           return (
             <Link
               key={b.name}
@@ -191,7 +183,6 @@ export default function TrustLogos({
               title={b.hrefLabel ? `${b.name} — ${b.hrefLabel[lang]}` : b.name}
             >
               {box}
-              {b.hrefLabel && <span className="brand-cap">{b.hrefLabel[lang]}</span>}
             </Link>
           );
         };
@@ -202,7 +193,11 @@ export default function TrustLogos({
         const loop = [...half, ...half];
         return (
           <div className={`trust-group trust-group--${g.cat}${align === "left" ? " trust-left" : ""}`} key={g.cat}>
-            {showCatLabels && <p className="trust-cat">{CAT_LABEL[g.cat][lang]}</p>}
+            {showCatLabels && (
+              <p className="trust-cat">
+                {g.cat === "brand" ? <Link href={`/${lang}/creator`}>{CAT_LABEL[g.cat][lang]} →</Link> : CAT_LABEL[g.cat][lang]}
+              </p>
+            )}
             {marquee ? (
               <div className="brands-marquee">
                 <div className="brands-track" style={{ "--trust-speed": `${half.length * 4}s` } as React.CSSProperties}>
