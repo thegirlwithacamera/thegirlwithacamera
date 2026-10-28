@@ -31,6 +31,10 @@ export async function generateMetadata(): Promise<Metadata> {
 // et le sommaire /destinations/all (qui renvoie ici) : Sandrine trouvait que
 // tout se mélangeait. Les hôtels sont sur /hotels.
 //
+// Les films de voyage en train, sans page projet : Interrail (ancre
+// #interrail) et European Sleeper, Bruxelles-Côme en train de nuit (ancre
+// #european-sleeper, ajouté le 28/10). Les logos y mènent.
+//
 // Couverture : le film de Graz (le plan drone du lac de Côme est passé sur
 // l'accueil le 28/10, pour ne pas montrer deux fois le même). Puis la grille des villes, et
 // les films d'Interrail, qui n'ont pas d'autre page (ancre #interrail,
@@ -52,6 +56,13 @@ export default async function DestinationsPage({ params }: Props) {
         cats={["travel"]}
         lede="Cities and journeys, told the way they felt: first light, markets before the crowds, the moments in between."
       />
+      <section id="european-sleeper" className={s.road}>
+        <h2 className={s.roadTitle}>On the road · European Sleeper</h2>
+        <p className={s.roadSub}>Brussels to Lake Como by night train, September 2026.</p>
+        <div className={s.film}>
+          <LazyFilm src={`${J}/European Sleeper.mp4`} poster={`${J}/European Sleeper.jpg`} label="European Sleeper film, Brussels to Lake Como" />
+        </div>
+      </section>
       <section id="interrail" className={s.road}>
         <h2 className={s.roadTitle}>On the road · Interrail</h2>
         <div className={s.films}>

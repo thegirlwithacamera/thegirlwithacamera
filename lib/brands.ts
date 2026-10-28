@@ -91,8 +91,8 @@ export const BRANDS: Brand[] = [
   // dans public/images/brands.
   { name: "INTERRAIL", logo: "/images/brands/interrail.svg", cat: "travel", href: "/destinations#interrail", hrefLabel: { fr: "Film", en: "Film" } },
   // 27/09 : le voyage Bruxelles-Côme a eu lieu (21-23/09), le logo revient.
-  // Pas de lien tant que le film n'est pas en ligne.
-  { name: "EUROPEAN SLEEPER", logo: "/images/brands/european-sleeper-mono.png", cat: "travel" },
+  // 28/10 : le film est en ligne sur Destinations, le logo y mène.
+  { name: "EUROPEAN SLEEPER", logo: "/images/brands/european-sleeper-mono.png", cat: "travel", href: "/destinations#european-sleeper", hrefLabel: { fr: "Film", en: "Film" } },
   // Logo en pastille, avec sa carte blanche et son ombre : il a besoin de la
   // hauteur des badges pour rester lisible entre deux wordmarks larges.
   { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "travel", href: "/photographer/travel/villach", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },

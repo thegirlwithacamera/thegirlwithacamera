@@ -46,14 +46,14 @@ export async function GET() {
     for (const cat of PUBLISHED_DIARY_CATS) {
       for (const clip of diary[cat]) {
         const found = findCaseByFilm(clip.src);
-        // Depuis le 16/09, un film n'est servi que s'il a un projet sur
-        // Destinations, ou s'il est le film Interrail, montré sur Destinations
-        // même. Les autres ne sont plus visibles nulle part.
-        const isInterrail = /interrail/i.test(clip.src);
-        if (!found && !isInterrail) continue;
+        // Depuis le 16/09, un film n'est servi que s'il a un projet, ou s'il
+        // est un film de train montré sur Destinations même (Interrail, et
+        // European Sleeper depuis le 28/10). Les autres ne sont visibles nulle part.
+        const anchor = /interrail/i.test(clip.src) ? "interrail" : /european sleeper/i.test(clip.src) ? "european-sleeper" : null;
+        if (!found && !anchor) continue;
         const page = found
           ? `${base}/${lang}/photographer/${found.cat.slug}/${found.item.slug}`
-          : `${base}/${lang}/destinations#interrail`;
+          : `${base}/${lang}/destinations#${anchor}`;
 
         const title = found ? found.item.label[lang] : clip.label;
         const place = found?.item.place ? `, ${found.item.place[lang]}` : "";
