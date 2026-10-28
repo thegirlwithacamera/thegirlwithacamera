@@ -1,4 +1,19 @@
 .main { padding-bottom: 8px; }
+/* Sous la couverture : la phrase du lieu, la date, les pièces. */
+.lead {
+  max-width: 760px;
+  margin: clamp(40px, 6vw, 80px) auto 0;
+  padding: 0 var(--pad);
+  text-align: center;
+}
+.intro {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  line-height: 1.6;
+  color: var(--ink);
+}
+.lead .chips { margin-top: 24px; }
 .shot {
   margin: 12px 0 0;
   font-family: var(--font-serif);

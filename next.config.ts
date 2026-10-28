@@ -29,11 +29,15 @@ const nextConfig: NextConfig = {
       // ete absorbees par About et Destinations, legal n'existe plus.
       { source: "/:lang(fr|en)/creation", destination: "/en/creator", permanent: true },
       { source: "/:lang(fr|en)/press", destination: "/en/about", permanent: true },
-      { source: "/:lang(fr|en)/gallery/:slug*", destination: "/en/destinations/all", permanent: true },
+      { source: "/:lang(fr|en)/gallery/:slug*", destination: "/en/destinations", permanent: true },
+      // 28/10 : le sommaire est remplacé par Hotels & Houses et Destinations,
+      // et la page Contact est fusionnée dans About.
+      { source: "/:lang(fr|en)/destinations/all", destination: "/en/destinations", permanent: true },
+      { source: "/:lang(fr|en)/contact", destination: "/en/about#contact", permanent: true },
       { source: "/:lang(fr|en)/legal/:page*", destination: "/en/about", permanent: true },
-      { source: "/:lang(fr|en)/services", destination: "/en/contact", permanent: true },
+      { source: "/:lang(fr|en)/services", destination: "/en/about#contact", permanent: true },
       { source: "/:lang(fr|en)/film", destination: "/en/destinations", permanent: true },
-      { source: "/en/photographer", destination: "/en/destinations", permanent: true },
+      { source: "/en/photographer", destination: "/en/hotels", permanent: true },
       { source: "/en/diary", destination: "/en/journal", permanent: true },
       { source: "/en/journal/series/:key", destination: "/en/journal/category/:key", permanent: true },
       // 17/09 : les six premiers articles sont repassés en brouillon, décision
@@ -49,10 +53,11 @@ const nextConfig: NextConfig = {
       // HIDDEN_CASES) aussi. Les pages de projet autrichiennes restent.
       { source: "/en/filmmaker", destination: "/en/destinations", permanent: false },
       { source: "/en/filmmaker/:path*", destination: "/en/destinations", permanent: false },
-      { source: "/en/photographer/:category(hospitality|restaurants|travel)", destination: "/en/destinations/all", permanent: false },
+      { source: "/en/photographer/:category(hospitality|restaurants)", destination: "/en/hotels", permanent: false },
+      { source: "/en/photographer/travel", destination: "/en/destinations", permanent: false },
       { source: "/en/shop", destination: "/en", permanent: false },
       // /da was a half-built page with missing assets, keep the URL valuable
-      { source: "/da", destination: "/en/contact", permanent: true },
+      { source: "/da", destination: "/en/about#contact", permanent: true },
       { source: "/fr/da", destination: "/fr/services", permanent: true },
       { source: "/en/da", destination: "/en/services", permanent: true },
       // Pointait vers /film, une route qui n'existe pas : la page s'appelle

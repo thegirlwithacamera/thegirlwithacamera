@@ -1,0 +1,83 @@
+/* Le film ou les photos plein cadre, posés sur le blanc avec une fine marge,
+   et une mention dans chaque coin. */
+.cover {
+  position: relative;
+  height: calc(100svh - 2 * clamp(8px, 1.2vw, 16px));
+  min-height: 480px;
+  margin: clamp(8px, 1.2vw, 16px);
+  overflow: hidden;
+  background: var(--well);
+}
+.short { height: min(62svh, 620px); min-height: 380px; }
+
+.media, .media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.tall { display: none; }
+.spread { display: grid; grid-template-columns: 1fr; gap: 0; }
+.spread[data-count="2"] { grid-template-columns: 1fr 1fr; }
+.page { position: relative; overflow: hidden; }
+.page img { object-fit: cover; }
+.veil { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.15); pointer-events: none; }
+
+.corner {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+.corner p { margin: 0; }
+.corner a { color: inherit; text-decoration: none; align-self: inherit; border-bottom: 1px solid transparent; transition: border-color 0.2s ease; }
+.corner a:hover, .corner a:focus-visible { border-bottom-color: currentColor; outline: none; }
+.tl { top: 22px; left: 24px; align-items: flex-start; }
+.tr { top: 22px; right: 24px; align-items: flex-end; text-align: right; }
+.bl { bottom: 22px; left: 24px; align-items: flex-start; }
+.br { bottom: 22px; right: 24px; align-items: flex-end; text-align: right; }
+
+/* Le nom de la page, en serif, dans le coin en haut à droite. */
+.title {
+  margin: 4px 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Le nom d'un lieu ou d'une page, quand une couverture en porte un. */
+.center {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-content: center;
+  padding: 0 24px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .wide { display: none; }
+  .tall { display: block; }
+  .tl, .tr { top: 14px; }
+  .bl, .br { bottom: 14px; }
+  .tl, .bl { left: 14px; }
+  .tr, .br { right: 14px; }
+  .corner { font-size: 0.6875rem; }
+  /* Les deux coins du haut se partagent la largeur et passent à la ligne
+     plutôt que de se chevaucher. */
+  .tl, .tr { max-width: calc(50% - 20px); }
+  /* Deux pages côte à côte deviennent une seule sur téléphone. */
+  .spread[data-count="2"] { grid-template-columns: 1fr; }
+  .spread[data-count="2"] .page:last-child { display: none; }
+}

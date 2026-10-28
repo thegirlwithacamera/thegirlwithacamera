@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { allPosts, formatDate } from "@/lib/journal";
 import { pageMeta } from "@/lib/seo";
-import Image from "next/image";
 import Link from "next/link";
 import { Cta, Display, em, Eyebrow, ProjectCard, ProjectGrid, SectionBar } from "./components/editorial";
 import Band from "./components/Band";
 import TrustLogos from "./components/TrustLogos";
 import TestimonialCarousel from "./components/TestimonialCarousel";
-import LazyFilm from "./destinations/LazyFilm";
+import Cover from "./components/Cover";
 import { allTestimonials } from "./photographer/constants";
 import InstagramRow from "./components/InstagramRow";
 import { INSTAGRAM_FALLBACK } from "@/lib/instagram";
@@ -39,14 +38,10 @@ export async function generateMetadata(): Promise<Metadata> {
 // ACCUEIL, refait le 16/09 sur la structure d'adriana-maria.com, puis
 // réordonné le 28/10 pour vendre la photo ET le film aux clients.
 //
-// Ouverture : un seul film en boucle, muet, en fond, celui de Nishimuraya
-// (Japon). Un projet entier plutôt qu'un montage de plusieurs (choix de
-// Sandrine le 28/10). Version horizontale sur ordinateur, verticale sur
-// téléphone, coupées après le carton "Welcome to Nishimuraya" pour ne pas
-// doubler le titre. Le portrait de Sandrine devant le Fuji est posé à
-// droite par dessus.
-// Le titre dit "photograph and film" : le film ne se voyait nulle part dans
-// le premier écran.
+// Ouverture (28/10, d'après la couverture de Lola Fechino) : le film de
+// mizuya plein cadre sur fond blanc, coupé après son carton "Welcome to", et
+// une mention dans chaque coin. Plus de menu en haut : les rubriques sont
+// dans les coins (composant Cover). Le titre passe sous la couverture.
 //
 // Ensuite, dans l'ordre où un client se pose les questions : qui t'a fait
 // confiance (logos), qu'as-tu fait (trois projets, tous photo + film),
@@ -55,9 +50,8 @@ export async function generateMetadata(): Promise<Metadata> {
 // ─────────────────────────────────────────────────────────────
 
 const HERO = {
-  film: { src: "/videos/banners/home-nishimuraya.mp4", poster: "/videos/banners/home-nishimuraya.jpg" },
-  filmVertical: { src: "/videos/banners/home-nishimuraya-vertical.mp4", poster: "/videos/banners/home-nishimuraya-vertical.jpg" },
-  portrait: "/images/about/hero.jpg",
+  film: { src: "/videos/banners/home-mizuya.mp4", poster: "/videos/banners/home-mizuya.jpg" },
+  filmVertical: { src: "/videos/banners/home-mizuya-vertical.mp4", poster: "/videos/banners/home-mizuya-vertical.jpg" },
 };
 
 // Trois projets commandés, chacun avec photos et film. Pour changer la
@@ -85,37 +79,16 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <main className={s.main}>
-      <section className={s.hero}>
-        {/* Une seule des deux versions est affichée ; l'autre, masquée, n'entre
-            jamais à l'écran et ne se charge donc pas. */}
-        <div className={`${s.heroBg} ${s.heroWide}`}>
-          <LazyFilm {...HERO.film} label="Nishimuraya, a ryokan in Japan, filmed by Sandrine Ceuppens" sound={false} />
-        </div>
-        <div className={`${s.heroBg} ${s.heroTall}`}>
-          <LazyFilm {...HERO.filmVertical} label="Nishimuraya, a ryokan in Japan, filmed by Sandrine Ceuppens" sound={false} />
-        </div>
-        <span className={s.heroVeil} aria-hidden="true" />
-        <div className={s.heroInner}>
-          <div className={s.heroText}>
-            <h1 className={s.heroTitle}>I photograph and film <em>the way it feels.</em></h1>
-            <p className={s.heroSub}>Hotels, destinations &amp; brands · Photo &amp; film</p>
-            <Link href="/en/contact" className={s.heroButton}>Work with me</Link>
-          </div>
-          <div className={s.heroPortrait}>
-            <Image
-              src={HERO.portrait}
-              alt="Sandrine Ceuppens with her camera in front of Mount Fuji"
-              width={1259}
-              height={1800}
-              priority
-              sizes="(max-width: 767px) 70vw, 460px"
-              quality={82}
-            />
-          </div>
-        </div>
-      </section>
+      <Cover
+        film={HERO.film}
+        filmVertical={HERO.filmVertical}
+        label="mizuya, Miyazu, filmed by Sandrine Ceuppens"
+        tl={<p>Brussels<br />Belgium</p>}
+        tr={<Link href="/en/about">Photographer &amp; filmmaker</Link>}
+      />
 
       <section className={s.intro}>
+        <h1 className={s.introTitle}>I photograph and film <em>the way it feels.</em></h1>
         <p className={s.introText}>
           Travel photographer, filmmaker &amp; content creator. I work in natural light, with nothing staged. I arrive before everyone else, often at five in the morning, to catch the moment a room or a street feels like itself. Stills and film on the same visit, so the place reads as a whole.
         </p>
@@ -128,7 +101,7 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section className={s.selected}>
-        <SectionBar label="Selected work" sub="Photographs & film" href="/en/destinations/all" linkLabel="Contents" />
+        <SectionBar label="Selected work" sub="Photographs & film" href="/en/hotels" linkLabel="Hotels & Houses" />
         <ProjectGrid>
           {SELECTED.map((p) => (
             <ProjectCard
@@ -160,7 +133,7 @@ export default async function HomePage({ params }: Props) {
       <section className={s.closing}>
         <Display size="l" as="h2">{em("Your place, *told the way it feels.*")}</Display>
         <p className={s.closingText}>Hotels, tourism boards and brands: tell me about the place and the dates. I answer within a few days.</p>
-        <Cta href="/en/contact" variant="button">Work with me</Cta>
+        <Cta href="/en/about#contact" variant="button">Work with me</Cta>
       </section>
 
       {posts.length > 0 && (

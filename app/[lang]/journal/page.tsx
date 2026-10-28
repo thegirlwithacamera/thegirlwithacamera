@@ -4,7 +4,7 @@ import { allPosts, JOURNAL_SECTIONS, JOURNAL_SERIES, tileCaption } from "@/lib/j
 import { pageMeta } from "@/lib/seo";
 import { PageHead } from "../components/editorial";
 import Tile from "./Tile";
-import LazyFilm from "../destinations/LazyFilm";
+import Cover from "../components/Cover";
 import s from "./journal.module.css";
 
 interface Props {
@@ -52,18 +52,16 @@ export default async function JournalPage({ params }: Props) {
 
   return (
     <main className={s.main}>
-      <section className={s.banner}>
-        <LazyFilm
-          src="/videos/banners/journal-drone-vivid.mp4"
-          poster="/videos/banners/journal-drone-vivid.jpg"
-          label="Aerial view of a castle above a lake"
-          sound={false}
-        />
-        <span className={s.bannerVeil} aria-hidden="true" />
-        <p className={s.bannerWord}>The Journal</p>
-      </section>
+      {/* Couverture (28/10) comme les autres rubriques : le plan drone du
+          château, le titre dans le coin. */}
+      <Cover
+        film={{ src: "/videos/banners/journal-drone-vivid.mp4", poster: "/videos/banners/journal-drone-vivid.jpg" }}
+        label="Aerial view of a castle above a lake"
+        title="Journal"
+      />
       <PageHead
         title="Travel, cameras and workflow. *How I started a new life at 30*."
+        as="h2"
         lede="When everything else stopped, a camera is what helped me find myself again. Today it is how I work and travel. Here you will find guides from the places I photograph, where I stayed and where I ate, and honest notes on the cameras, the edits and the workflow I use every day."
         split
       />

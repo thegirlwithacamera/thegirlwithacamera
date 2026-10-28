@@ -9,6 +9,9 @@ import TestimonialCarousel from "../components/TestimonialCarousel";
 import { allTestimonials } from "../photographer/constants";
 import HashScroll from "../components/HashScroll";
 import { pageMeta } from "@/lib/seo";
+import Cover from "../components/Cover";
+import ContactForm from "./ContactForm";
+import "./form.css";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -20,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     lang,
     path: "/about",
     type: "profile",
-    title: "About",
+    title: "About & contact",
     description: lang === "fr"
       ? "À propos de Sandrine Ceuppens. Photographe documentaire et créatrice de contenu basée à Bruxelles. Collaborations avec Ricoh Europe, Pentax Europe et Insta360."
       : "About Sandrine Ceuppens, travel photographer and content creator based in Brussels. Collaborations with Ricoh Europe, Pentax Europe and Insta360.",
@@ -35,6 +38,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // elle est, About montre sa façon de voir. Pas d'original, c'est une capture
 // en 1144 x 1502, juste suffisante pour cet emplacement.
 const HERO_PHOTO = "/images/about/portrait-beach.jpg";
+
+// Questions du bas de page, reprises de l'ancienne page Contact (16/09).
+// Toujours aucun prix : les formules et les droits vivent dans les devis.
+const FAQ = [
+  {
+    q: "What do you do?",
+    a: "I photograph and film hotels, destinations and brands, for their channels and for mine. Photos of the place, short films, and content for social media, with or without me on screen. Tell me what you have in mind, and I come back with a proposal and a quote.",
+  },
+  {
+    q: "Do you travel?",
+    a: "Yes, anywhere. I am based in Brussels, and travel within two hours by train is included. Further away, it is added to the quote, and I am happy to combine several places on one trip.",
+  },
+  {
+    q: "Je peux vous écrire en français ?",
+    a: "Oui, bien sûr. Le site est en anglais, mais vous pouvez m'écrire en français.",
+  },
+];
 
 // Clients (bande "Ils me font confiance") : donnees dans lib/brands.ts,
 // rendu via le composant partage TrustLogos (reutilise aussi sur /creator).
@@ -181,18 +201,23 @@ export default async function AboutPage({ params }: Props) {
     <main className={s.main}>
       <HashScroll />
 
-      <header className={s.top}>
-        <Display size="xl" as="h1">
-          Sandrine Ceuppens
-          <br />
-          <em>travel photographer &amp; content creator</em>
-        </Display>
-      </header>
+      {/* Couverture (28/10) comme les autres pages : deux portraits en double
+          page, le nom et le métier dans le coin. About et Contact ne font
+          plus qu'une page : le formulaire est en bas, ancre #contact. */}
+      <Cover
+        images={[HERO_PHOTO, "/images/about/hero.jpg"]}
+        label="Sandrine Ceuppens"
+        title="Sandrine Ceuppens"
+        tr={<p>Photographer &amp; filmmaker</p>}
+        br={
+          <>
+            <Link href="/en/journal">Journal</Link>
+            <a href="#contact">Contact</a>
+          </>
+        }
+      />
 
       <section className={s.hero}>
-        <div className={s.photo}>
-          <Image src={HERO_PHOTO} alt="Sandrine Ceuppens on a beach, in black and white" fill sizes="(max-width: 900px) 420px, 560px" priority quality={82} />
-        </div>
         <div>
           <Lede className={s.bio} align="center">{t.bio}</Lede>
           {/* Deux rangees. En haut la seule porte commerciale, en mots. En
@@ -201,7 +226,7 @@ export default async function AboutPage({ params }: Props) {
               noyaient. Le nom reste dans aria-label et title pour la lecture
               d'ecran et le survol. */}
           <ul className={s.links}>
-            <li><Link href="/en/contact" className={s.brick}>Work with me →</Link></li>
+            <li><a href="#contact" className={s.brick}>Work with me →</a></li>
           </ul>
           <ul className={s.socials}>
             {SOCIALS.map((so) => (
@@ -254,16 +279,44 @@ export default async function AboutPage({ params }: Props) {
         </div>
       </Section>
 
-      <Section>
-        <div className={s.clients}>
-          <Eyebrow tone="brick" className={s.eyebrow}>{t.contact}</Eyebrow>
-          <Eyebrow>{t.based}</Eyebrow>
-          <ul className={s.mails}>
-            <li><a href="mailto:hello@thegirlwithacamera.com" className={s.mail}><span>{lang === "fr" ? "Projets" : "Projects"}</span>hello@thegirlwithacamera.com</a></li>
-            <li><a href="mailto:press@thegirlwithacamera.com" className={s.mail}><span>{lang === "fr" ? "Presse" : "Press"}</span>press@thegirlwithacamera.com</a></li>
-          </ul>
+      <section className={s.contact} id="contact">
+        <Display size="l" as="h2">Get in <em>touch</em></Display>
+        <div className={s.words}>
+          <p>Hotels, tourism boards and brands: write me a few lines about the place, the dates and what you want people to feel. I answer within a few days.</p>
+          <p lang="fr" className={s.fr}>Je parle aussi français.</p>
+          <p className={s.mails}>
+            <a href="mailto:hello@thegirlwithacamera.com">hello@thegirlwithacamera.com</a>
+            <br />
+            <span>Press</span> <a href="mailto:press@thegirlwithacamera.com">press@thegirlwithacamera.com</a>
+            <br />
+            {t.based}
+          </p>
         </div>
-      </Section>
+        <ContactForm />
+      </section>
+
+      <section className={s.faqBlock} id="faq">
+        <Display size="m" as="h2">Questions</Display>
+        <div className={s.faq}>
+          {FAQ.map((f) => (
+            <details key={f.q}>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": "https://www.thegirlwithacamera.com/en/about#faq",
+        mainEntity: FAQ.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }) }} />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
         "@context": "https://schema.org",

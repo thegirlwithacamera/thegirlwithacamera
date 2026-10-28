@@ -94,7 +94,7 @@ export default function CreatorClient({
 
   return (
     <main className={s.main}>
-      <PageHead title={t.title} lede={t.lede} split />
+      <PageHead title={t.title} lede={t.lede} as="h2" split />
 
       <CreatorNav
         lang={lang}

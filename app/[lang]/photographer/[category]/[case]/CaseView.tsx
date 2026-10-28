@@ -10,7 +10,7 @@ import PhotoPager from "../PhotoPager";
 import CaseFilms from "./CaseFilms";
 import CaseClient from "../../../components/CaseClient";
 import CaseTestimonial from "../../../components/CaseTestimonial";
-import { PageHead } from "../../../components/editorial";
+import Cover from "../../../components/Cover";
 import s from "./page.module.css";
 
 // ─────────────────────────────────────────────────────────────
@@ -81,6 +81,17 @@ export default function CaseView({
   const nextCase = at >= 0 && at < book.length - 1 ? book[at + 1] : null;
 
   const dir = `/images/portfolio/${cat.slug}/${item.slug}/`;
+
+  // La rubrique d'où vient le chapitre : les villes sur Destinations, les
+  // maisons et les tables sur Hotels & Houses.
+  const indexHref = cat.citySeries ? `/${lang}/destinations` : `/${lang}/hotels`;
+  const indexLabel = cat.citySeries ? "Destinations" : "Hotels & Houses";
+
+  // Les deux photos de la couverture : celles de la pièce affichée, ou la
+  // couverture du cas suivie de la première autre photo.
+  const pool = shown ? shown.photos.map((p) => p.src) : photos.map((p) => p.src);
+  const first = !activeChapter && item.coverImage ? item.coverImage : pool[0];
+  const coverImages = [first, pool.find((src) => src !== first)].filter((x): x is string => !!x);
   const caption = (src: string) => item.plates?.[src.replace(dir, "")]?.[lang];
 
   // Sur un cas à chapitres, le bas de page enchaîne les pièces ; on ne sort
@@ -117,20 +128,30 @@ export default function CaseView({
   return (
     <>
       <main className={s.main}>
-        <PageHead
-          back={{ href: `/${lang}/destinations/all`, label: lang === "fr" ? "Sommaire" : "Contents" }}
-          eyebrow={chapterNo ? `${lang === "fr" ? "Chapitre" : "Chapter"} ${no2(chapterNo)}` : undefined}
-          title={item.label[lang]}
-          size="xl"
-          meta={[cat.label[lang], item.place?.[lang]]}
-          lede={item.intro ? (
+        {/* Couverture (28/10) : deux photos du chapitre en double page, le
+            nom du lieu et son numéro dans les coins, comme l'accueil. */}
+        <Cover
+          images={coverImages}
+          label={`${item.label[lang]}${item.place ? `, ${item.place[lang]}` : ""}`}
+          tl={
             <>
-              {item.intro[lang]}
-              {item.shotAt && <span className={s.shot} style={{ display: "block" }}>{item.shotAt[lang]}</span>}
+              <Link href={`/${lang}`}>The Girl With A Camera</Link>
+              <Link href={indexHref}>← {indexLabel}</Link>
             </>
-          ) : undefined}
-          split
-        >
+          }
+          kicker={chapterNo ? <>{lang === "fr" ? "Chapitre" : "Chapter"} {no2(chapterNo)} · {cat.label[lang]}</> : undefined}
+          title={item.label[lang]}
+          tr={
+            <>
+              {item.place && <p>{item.place[lang]}</p>}
+              {!isRoot && shown && <p>{shown.title}</p>}
+            </>
+          }
+        />
+
+        <div className={s.lead}>
+          {item.intro && <p className={s.intro}>{item.intro[lang]}</p>}
+          {item.shotAt && <p className={s.shot}>{item.shotAt[lang]}</p>}
           {(chapters.length > 1 || films.length > 0) && (
             <nav className={s.chips} aria-label={lang === "fr" ? "Pièces" : "Rooms"}>
               {chapters.length > 1 && chapters.map((ch, ci) => (
@@ -150,7 +171,7 @@ export default function CaseView({
               )}
             </nav>
           )}
-        </PageHead>
+        </div>
 
         {shown ? (
           <section className={s.chapter}>
@@ -191,7 +212,7 @@ export default function CaseView({
 
         {isRoot && <CaseClient lang={lang} category={cat.slug} caseSlug={item.slug} />}
 
-        <p className={s.talk}><Link href={`/${lang}/contact`}>{talk}</Link></p>
+        <p className={s.talk}><Link href={`/${lang}/about#contact`}>{talk}</Link></p>
 
         {/* Tourner la page : le chapitre (ou la pièce) d'avant et d'après,
             en grand, avec son numéro. */}
@@ -215,7 +236,7 @@ export default function CaseView({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Destinations", item: `https://www.thegirlwithacamera.com/${lang}/destinations` },
+          { "@type": "ListItem", position: 1, name: indexLabel, item: `https://www.thegirlwithacamera.com${indexHref}` },
           ...(isRoot
             ? [{ "@type": "ListItem", position: 2, name: item.label[lang] }]
             : [

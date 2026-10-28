@@ -44,7 +44,7 @@ export default async function AffiliateDisclosurePage({ params }: Props) {
               offered to me by a brand or a tourism board, it is written at the top of the article.
             </p>
             <p>
-              Questions about this page? <Link href="/en/contact">Get in touch</Link>.
+              Questions about this page? <Link href="/en/about#contact">Get in touch</Link>.
             </p>
           </div>
         </section>

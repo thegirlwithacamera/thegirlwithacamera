@@ -1,93 +1,20 @@
 .main { padding-bottom: 8px; }
 
-/* Ouverture : photo horizontale en fond, portrait vertical posé à droite,
-   titre en bas à gauche. Le voile ne fonce que le bas gauche, là où se pose
-   le titre : le reste de la photo garde ses néons. */
-.hero {
-  position: relative;
-  min-height: clamp(560px, 88vh, 920px);
-  background: var(--ink);
-}
-.heroBg { position: absolute; inset: 0; overflow: hidden; }
-.heroBg video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.heroTall { display: none; }
-.heroVeil {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to top, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.25) 45%, rgba(10, 10, 10, 0) 70%),
-    linear-gradient(to right, rgba(10, 10, 10, 0.35) 0%, rgba(10, 10, 10, 0) 55%);
-}
-.heroInner {
-  position: relative;
-  max-width: var(--page-max);
-  min-height: inherit;
-  margin: 0 auto;
-  padding: 0 var(--pad);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr);
-  gap: clamp(24px, 4vw, 64px);
-}
-.heroText {
-  align-self: end;
-  margin: 0 0 clamp(40px, 7vw, 96px);
-  position: relative;
-  z-index: 2;
-}
-.heroTitle {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(3rem, 7.2vw, 6.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.01em;
-  color: #fff;
-  text-wrap: balance;
-  position: relative;
-  z-index: 2;
-}
-.heroTitle em { font-style: italic; }
-.heroSub {
-  margin: 22px 0 0;
-  font-family: var(--font-sans);
-  font-size: var(--text-label);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-}
-.heroButton {
-  display: inline-block;
-  margin-top: 26px;
-  padding: 14px 34px;
-  border: 1px solid #fff;
-  font-family: var(--font-sans);
-  font-size: var(--text-label);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #fff;
-  text-decoration: none;
-  transition: background 0.25s ease, color 0.25s ease;
-}
-.heroButton:hover { background: #fff; color: var(--ink); }
-.heroButton:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
-/* Le portrait déborde sous l'ouverture, sur le blanc (16/09, comme chez
-   Adriana) : l'ouverture n'est plus rognée, le portrait passe devant. */
-.heroPortrait {
-  align-self: end;
-  position: relative;
-  z-index: 3;
-  margin-top: clamp(96px, 16vh, 180px);
-  margin-bottom: calc(-1 * clamp(90px, 16vh, 200px));
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-}
-.heroPortrait img { width: 100%; height: auto; display: block; }
-
 .intro {
   max-width: 820px;
   margin: 0 auto;
-  padding: calc(var(--section) + clamp(90px, 16vh, 200px)) var(--pad) var(--section);
+  padding: var(--section) var(--pad);
   text-align: center;
 }
+.introTitle {
+  margin: 0 0 28px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-l);
+  line-height: 1.1;
+  color: var(--ink);
+}
+.introTitle em { font-style: italic; color: var(--brick); }
 .introText {
   margin: 0;
   font-family: var(--font-serif);
@@ -151,19 +78,7 @@
 .instaReel { position: absolute; top: 10px; right: 10px; width: 22px; height: 22px; color: #fff; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.45)); }
 .latest { padding-top: var(--section); }
 
-@media (max-width: 900px) {
-  /* Téléphone : la photo de Tokyo reste en grand derrière toute l'ouverture
-     (retour de Sandrine le 16/09, seules les bandes plus bas gardent leur
-     format). Le portrait est en haut, le titre dessous, sans débordement. */
-  .hero { overflow: hidden; }
-  .intro { padding-top: var(--section); }
-  .heroInner { grid-template-columns: 1fr; }
-  .heroPortrait { grid-row: 1; width: min(70vw, 360px); justify-self: end; margin: clamp(48px, 10vh, 96px) 0 0; }
-  .heroText { grid-row: 2; margin-top: 28px; }
-}
 @media (max-width: 767px) {
-  .heroWide { display: none; }
-  .heroTall { display: block; }
   .intro { padding-left: 20px; padding-right: 20px; }
   .instaRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .instaRow > a:nth-child(5) { display: none; }

@@ -574,7 +574,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
 // Les anciennes adresses renvoient vers /en/destinations (next.config.ts).
 // ─────────────────────────────────────────────────────────────
 // 27/09, décision de Sandrine : Japon, Italie et Belgique reviennent, avec
-// leurs films, et se retrouvent sur /en/destinations/all.
+// leurs films, et se retrouvent sur /en/hotels et /en/destinations.
 export const HIDDEN_CASES: readonly string[] = [];
 
 export const PHOTO_CATEGORIES: PhotoCategory[] = ALL_PHOTO_CATEGORIES

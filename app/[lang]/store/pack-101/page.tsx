@@ -140,7 +140,7 @@ export default async function PresetsPage({ params }: Props) {
             {t.outro}
           </Display>
           <Eyebrow>
-            <a href={`/${lang}/contact`} style={{ color: "inherit" }}>{t.outroCta}</a>
+            <a href={`/${lang}/about#contact`} style={{ color: "inherit" }}>{t.outroCta}</a>
           </Eyebrow>
         </div>
       </div>

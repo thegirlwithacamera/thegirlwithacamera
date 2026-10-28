@@ -1,0 +1,10 @@
+.lede {
+  max-width: 640px;
+  margin: clamp(40px, 6vw, 80px) auto clamp(32px, 4vw, 56px);
+  padding: 0 var(--pad);
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  line-height: 1.6;
+  color: var(--ink);
+}

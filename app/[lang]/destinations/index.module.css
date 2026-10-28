@@ -1,0 +1,16 @@
+/* Pages Hotels & Houses et Destinations : couverture, grille, films. */
+.main { padding-bottom: 8px; }
+.road { max-width: var(--page-max); margin: var(--section) auto 0; padding: 0 var(--pad); scroll-margin-top: 24px; }
+.roadTitle {
+  margin: 0 0 24px;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-m);
+}
+.films { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); }
+.films video { width: 100%; display: block; background: var(--well); }
+.logos { margin-top: var(--section); }
+@media (max-width: 767px) {
+  .films { grid-template-columns: 1fr; gap: 12px; }
+}

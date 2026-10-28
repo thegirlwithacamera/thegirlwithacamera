@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import s from "./page.module.css";
+import s from "./LazyFilm.module.css";
 import { videoUrl } from "@/lib/video-url";
 
 // Film en boucle, qui ne se charge et ne joue que lorsqu'il est à l'écran

@@ -5,7 +5,7 @@ import { countCasePhotos, readPhotoRatio, type PortfolioPhoto } from "@/lib/port
 // Le portfolio se lit comme un livre (28/10, direction "photobook" choisie
 // par Sandrine). Chaque projet est un chapitre numéroté, dans l'ordre de
 // constants.ts : les maisons, puis les tables, puis les villes. Le sommaire
-// (/destinations/all) et les pages de projet comptent ici, pour que le
+// (Hotels & Houses, Destinations) et les pages de projet comptent ici, pour que le
 // numéro soit le même partout.
 // ─────────────────────────────────────────────────────────────
 

@@ -17,6 +17,7 @@ export default function PageHead({
   lede,
   back,
   align = "center",
+  as = "h1",
   children,
 }: {
   title: ReactNode;
@@ -27,6 +28,8 @@ export default function PageHead({
   back?: { href: string; label: string };
   align?: "center" | "left";
   split?: boolean;
+  // h2 quand la page a déjà son h1 dans une couverture (Cover).
+  as?: "h1" | "h2";
   children?: ReactNode;
 }) {
   const metaItems = (meta ?? []).filter(Boolean) as string[];
@@ -35,7 +38,7 @@ export default function PageHead({
     <>
       {back && <Link href={back.href} className={s.back}>← {back.label}</Link>}
       {eyebrow && <Eyebrow className={s.eyebrow} tone="brick">{eyebrow}</Eyebrow>}
-      <Display size={size}>{title}</Display>
+      <Display size={size} as={as}>{title}</Display>
       {metaItems.length > 0 && (
         <ul className={s.meta}>
           {metaItems.map((m) => <li key={m}>{m}</li>)}

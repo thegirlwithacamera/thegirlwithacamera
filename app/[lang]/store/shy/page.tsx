@@ -121,7 +121,7 @@ export default async function ShyPage({ params }: Props) {
             {t.outro}
           </Display>
           <p className={s.buyNote}>
-            <a href={`/${lang}/contact`} style={{ color: "inherit" }}>{t.outroCta}</a>
+            <a href={`/${lang}/about#contact`} style={{ color: "inherit" }}>{t.outroCta}</a>
           </p>
         </div>
       </div>
