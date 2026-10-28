@@ -128,7 +128,7 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section className={s.selected}>
-        <SectionBar label="Selected work" sub="Photographs & film" href="/en/destinations" linkLabel="All destinations" />
+        <SectionBar label="Selected work" sub="Photographs & film" href="/en/destinations/all" linkLabel="Contents" />
         <ProjectGrid>
           {SELECTED.map((p) => (
             <ProjectCard

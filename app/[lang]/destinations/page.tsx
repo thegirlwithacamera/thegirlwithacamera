@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMeta({
     lang: "en",
     path: "/destinations",
-    title: "Destinations",
+    title: "Work · Hotels, tables and destinations",
     description:
       "Hotels, cities and journeys photographed and filmed by Sandrine Ceuppens: Altstadt Vienna, Interrail, Naturel Hoteldorf Schönleitn, and every other destination.",
     image: "/images/portfolio/hospitality/naturel-dorf-schonleitn/1.jpg",
@@ -143,7 +143,7 @@ export default async function DestinationsPage({ params }: Props) {
           sound={false}
         />
         <span className={s.bannerVeil} aria-hidden="true" />
-        <h1 className={s.bannerWord}>Destinations</h1>
+        <h1 className={s.bannerWord}>Work</h1>
       </section>
 
       <p className={s.statement}>
@@ -205,7 +205,7 @@ export default async function DestinationsPage({ params }: Props) {
           bouton, même style que « Read my story » sur l'accueil. */}
       <div className={s.allLink}>
         <p className={s.allLead}>More hotels, tables and cities, from Italy to Japan.</p>
-        <Link href="/en/destinations/all" className={s.allButton}>See all destinations</Link>
+        <Link href="/en/destinations/all" className={s.allButton}>Open the contents</Link>
       </div>
 
       <section className={s.logos}>

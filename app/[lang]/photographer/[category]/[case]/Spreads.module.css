@@ -1,0 +1,59 @@
+/* Un chapitre en pages de livre : beaucoup de blanc entre les pages, chaque
+   photo dans son format, le numéro de planche dessous. */
+.book {
+  max-width: var(--page-max);
+  margin: clamp(32px, 5vw, 72px) auto 0;
+  padding: 0 var(--pad);
+  display: grid;
+  gap: clamp(56px, 9vw, 140px);
+}
+.spread { display: grid; align-items: end; }
+
+/* Horizontale : toute la largeur. */
+.bleed { grid-template-columns: 1fr; }
+
+/* Pleine page : une verticale seule, décalée d'un côté puis de l'autre,
+   comme une photo posée sur une page de droite ou de gauche. */
+.solo { grid-template-columns: minmax(0, 1fr); width: min(46%, 560px); margin-left: 12%; }
+.solo.right { margin-left: auto; margin-right: 12%; }
+
+/* Double page : deux verticales côte à côte, la gouttière du livre au milieu. */
+.pair { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 36px); }
+
+/* Triptyque : trois plus petites, celle du milieu remonte. */
+.trio { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.8vw, 28px); width: 86%; margin: 0 auto; }
+.trio .plate:nth-child(2) { transform: translateY(calc(-1 * clamp(24px, 4vw, 64px))); }
+
+.plate { margin: 0; min-width: 0; }
+.frame { position: relative; overflow: hidden; background: var(--well); }
+.frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.cap {
+  margin: 12px 0 0;
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  font-family: var(--font-serif);
+  font-size: var(--text-caption);
+  font-style: italic;
+  color: var(--stone);
+}
+.cap b {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  color: var(--brick);
+}
+
+@media (max-width: 767px) {
+  .book { padding: 0 12px; gap: 48px; }
+  .solo, .solo.right { width: 78%; margin: 0; }
+  .solo.right { margin-left: auto; }
+  .pair { gap: 8px; }
+  .trio { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .trio .plate:nth-child(1) { grid-column: 1 / -1; width: 78%; }
+  .trio .plate:nth-child(2) { transform: none; }
+  .cap { margin-top: 8px; gap: 10px; }
+}

@@ -1,0 +1,127 @@
+/* Sommaire du livre : numéro, titre, points de conduite, lieu. */
+.main { max-width: 980px; margin: 0 auto; padding: clamp(48px, 7vw, 104px) var(--pad) var(--section); }
+.head { text-align: center; margin-bottom: clamp(48px, 7vw, 96px); }
+.lede {
+  margin: 18px auto 0;
+  max-width: 480px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-body);
+  color: var(--stone);
+}
+
+.part + .part { margin-top: clamp(48px, 6vw, 80px); }
+.partTitle {
+  margin: 0 0 18px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: var(--text-m);
+  color: var(--ink);
+}
+.partTitle span {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brick);
+}
+
+.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.list li { border-bottom: 1px solid var(--line); }
+.row {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 16px 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.no {
+  flex: 0 0 auto;
+  width: 2.2em;
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.14em;
+  color: var(--brick);
+}
+.name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+.leader {
+  flex: 1 1 auto;
+  min-width: 24px;
+  border-bottom: 1px dotted var(--stone);
+  opacity: 0.6;
+  transform: translateY(-4px);
+}
+.place {
+  flex: 0 0 auto;
+  font-family: var(--font-serif);
+  font-size: var(--text-caption);
+  color: var(--stone);
+}
+.place em { color: var(--brick); }
+
+/* La couverture apparaît au survol, posée de travers sur la ligne, comme un
+   tirage glissé dans le livre. */
+.thumb {
+  position: absolute;
+  z-index: 2;
+  right: 22%;
+  top: 50%;
+  width: 180px;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) rotate(-3deg) scale(0.96);
+  transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.row:hover .thumb, .row:focus-visible .thumb { opacity: 1; transform: translateY(-50%) rotate(-3deg) scale(1); }
+.row:hover .name { color: var(--brick); font-style: italic; }
+.row:focus-visible { outline: 2px solid var(--brick); outline-offset: 4px; }
+
+.back { margin: clamp(48px, 6vw, 80px) 0 0; text-align: center; }
+.back a {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-decoration: none;
+}
+.back a:hover { color: var(--brick); }
+
+@media (hover: none), (max-width: 767px) {
+  /* Pas de survol au doigt : la couverture devient une petite vignette en
+     tête de ligne. */
+  .row { align-items: center; gap: 12px; }
+  .thumb {
+    position: static;
+    order: -1;
+    flex: 0 0 auto;
+    width: 48px;
+    opacity: 1;
+    transform: none;
+    box-shadow: none;
+  }
+  .row:hover .thumb { transform: none; }
+  .leader { display: none; }
+  .name { flex: 1 1 auto; }
+}
+@media (max-width: 767px) {
+  .main { padding-left: 16px; padding-right: 16px; }
+  .no { width: auto; }
+  .row { flex-wrap: wrap; }
+  .place { flex-basis: 100%; padding-left: calc(48px + 12px); margin-top: -6px; }
+}

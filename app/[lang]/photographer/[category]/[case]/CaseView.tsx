@@ -1,14 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import type React from "react";
-import { allCases, type PhotoCategory, type PhotoCase } from "../../constants";
-import { readCasePhotos, readCaseChapters, readPhotoRatio, countCasePhotos } from "@/lib/portfolio";
+import type { PhotoCategory, PhotoCase } from "../../constants";
+import { readCasePhotos, readCaseChapters } from "@/lib/portfolio";
+import { bookChapters, layoutSpreads, no2 } from "../../book";
+import Spreads from "./Spreads";
 import { posterForPath } from "@/lib/creator-videos";
 import PhotoPager from "../PhotoPager";
 import CaseFilms from "./CaseFilms";
 import CaseClient from "../../../components/CaseClient";
 import CaseTestimonial from "../../../components/CaseTestimonial";
-import { PageHead, ProjectGrid } from "../../../components/editorial";
+import { PageHead } from "../../../components/editorial";
 import s from "./page.module.css";
 
 // ─────────────────────────────────────────────────────────────
@@ -26,6 +28,10 @@ import s from "./page.module.css";
 // page : c'est l'entrée, elle garde l'URL déjà partagée et déjà indexée.
 // Le film reste sur cette page d'entrée, une seule fois ; depuis une pièce,
 // la pastille du film y ramène.
+//
+// 28/10, direction "photobook" : chaque cas est un chapitre numéroté du
+// livre (voir book.ts), les photos sont montées en pages (Spreads) au lieu
+// d'une grille, et le bas de page tourne la page vers le chapitre suivant.
 // ─────────────────────────────────────────────────────────────
 
 export function chapterTitle(slug: string): string {
@@ -67,13 +73,15 @@ export default function CaseView({
     label: item.films!.length > 1 ? f.label?.[lang] : undefined,
   }));
 
-  const flatRatio = chapters.length === 0 && photos[0] ? readPhotoRatio(photos[0].src) : 1066 / 1600;
+  // Numéro du chapitre, cas précédent et suivant : l'ordre du livre.
+  const book = bookChapters();
+  const at = book.findIndex((c) => c.cat.slug === cat.slug && c.item.slug === item.slug);
+  const chapterNo = at >= 0 ? book[at].no : null;
+  const prevCase = at > 0 ? book[at - 1] : null;
+  const nextCase = at >= 0 && at < book.length - 1 ? book[at + 1] : null;
 
-  // Cas précédent et suivant, dans l'ordre de constants.ts.
-  const live = allCases().filter((c) => countCasePhotos(c.cat.slug, c.item.slug) > 0);
-  const at = live.findIndex((c) => c.cat.slug === cat.slug && c.item.slug === item.slug);
-  const prevCase = at > 0 ? live[at - 1] : null;
-  const nextCase = at >= 0 && at < live.length - 1 ? live[at + 1] : null;
+  const dir = `/images/portfolio/${cat.slug}/${item.slug}/`;
+  const caption = (src: string) => item.plates?.[src.replace(dir, "")]?.[lang];
 
   // Sur un cas à chapitres, le bas de page enchaîne les pièces ; on ne sort
   // du cas qu'à la dernière. Sur un cas simple, il enchaîne les cas.
@@ -86,24 +94,21 @@ export default function CaseView({
   const prevLabel = prevChapter
     ? prevChapter.title
     : prevCase ? (prevCase.item.short?.[lang] ?? prevCase.item.label[lang]) : null;
+  const prevNo = prevChapter ? no2(activeIndex) : prevCase ? no2(prevCase.no) : null;
   const nextHref = nextChapter ? `${base}/${nextChapter.slug}` : nextCase ? `/${lang}${nextCase.href}` : null;
   const nextLabel = nextChapter
     ? nextChapter.title
     : nextCase ? (nextCase.item.short?.[lang] ?? nextCase.item.label[lang]) : null;
+  const nextNo = nextChapter ? no2(activeIndex + 2) : nextCase ? no2(nextCase.no) : null;
+  // Dans une maison à pièces on tourne les pièces, ailleurs les chapitres.
+  const prevKind = prevChapter ? (lang === "fr" ? "Pièce" : "Room") : (lang === "fr" ? "Chapitre" : "Chapter");
+  const nextKind = nextChapter ? (lang === "fr" ? "Pièce" : "Room") : (lang === "fr" ? "Chapitre" : "Chapter");
 
   const talk = cat.citySeries
     ? lang === "fr" ? "Votre ville, vue comme ça ? Parlons-en →" : "Your city, seen like this? Let's talk →"
     : cat.slug === "restaurants"
       ? lang === "fr" ? "Même idée pour votre table ? Parlons-en →" : "Same idea for your table? Let's talk →"
       : lang === "fr" ? "Même idée pour votre maison ? Parlons-en →" : "Same idea for your house? Let's talk →";
-
-  const no = (n: number) => String(n).padStart(2, "0");
-
-  const cell = (src: string, alt: string, priority: boolean, width = 1066, height = 1600, sizes = "(max-width: 767px) 33vw, 400px") => (
-    <div key={src} className={s.cell}>
-      <Image src={src} alt={alt} width={width} height={height} sizes={sizes} priority={priority} quality={75} />
-    </div>
-  );
 
   const filmLabel = lang === "fr"
     ? films.length > 1 ? "Les films" : "Le film"
@@ -113,9 +118,11 @@ export default function CaseView({
     <>
       <main className={s.main}>
         <PageHead
-          back={{ href: `/${lang}/destinations`, label: "Destinations" }}
-          eyebrow={[cat.label[lang], item.place?.[lang]].filter(Boolean).join(" · ")}
+          back={{ href: `/${lang}/destinations/all`, label: lang === "fr" ? "Sommaire" : "Contents" }}
+          eyebrow={chapterNo ? `${lang === "fr" ? "Chapitre" : "Chapter"} ${no2(chapterNo)}` : undefined}
           title={item.label[lang]}
+          size="xl"
+          meta={[cat.label[lang], item.place?.[lang]]}
           lede={item.intro ? (
             <>
               {item.intro[lang]}
@@ -146,46 +153,30 @@ export default function CaseView({
         </PageHead>
 
         {shown ? (
-          <section
-            className={`${s.chapter} ${s.first}`}
-            style={{ "--cell": String(shown.ratio) } as React.CSSProperties}
-          >
+          <section className={s.chapter}>
             {/* Sur la page d'entree, le titre du cas nomme deja la piece juste
                 au dessus : le repeter ferait deux fois le meme nom. */}
             {!isRoot && (
               <div className={s.chapterHead}>
-                <h2 className={s.chapterTitle}><b>{no(activeIndex + 1)}</b>{shown.title}</h2>
+                <h2 className={s.chapterTitle}><b>{no2(activeIndex + 1)}</b>{shown.title}</h2>
               </div>
             )}
-            <ProjectGrid tight keep3>
-              {shown.photos.map((p, i) =>
-                cell(
-                  p.src,
-                  `${item.label.en}, ${shown.title}, photograph ${i + 1} by Sandrine Ceuppens`,
-                  i < 3,
-                  Math.round(1600 * shown.ratio),
-                  1600,
-                  "(max-width: 767px) 33vw, 460px",
-                ),
-              )}
-            </ProjectGrid>
+            <Spreads
+              spreads={layoutSpreads(shown.photos)}
+              alt={(n) => `${item.label.en}, ${shown.title}, photograph ${n} by Sandrine Ceuppens`}
+              caption={caption}
+            />
           </section>
         ) : photos.length > 12 ? (
           <div className={s.grid}>
             <PhotoPager photos={photos} catLabel={`${item.label.en} — ${cat.label.en}`} startIndex={0} />
           </div>
         ) : (
-          <ProjectGrid tight keep3 className={s.grid} style={{ "--cell": String(flatRatio) } as React.CSSProperties}>
-            {photos.map((p, i) =>
-              cell(
-                p.src,
-                `${item.label.en} — ${cat.label.en} photograph ${i + 1} by Sandrine Ceuppens`,
-                i < 6,
-                Math.round(1600 * flatRatio),
-                1600,
-              ),
-            )}
-          </ProjectGrid>
+          <Spreads
+            spreads={layoutSpreads(photos)}
+            alt={(n) => `${item.label.en} — ${cat.label.en} photograph ${n} by Sandrine Ceuppens`}
+            caption={caption}
+          />
         )}
 
         {isRoot && (
@@ -198,10 +189,23 @@ export default function CaseView({
 
         {isRoot && <CaseClient lang={lang} category={cat.slug} caseSlug={item.slug} />}
 
-        <nav className={s.next} aria-label={lang === "fr" ? "Suite" : "More"}>
-          <div>{prevHref && <Link href={prevHref}>← {prevLabel}</Link>}</div>
-          <Link href={`/${lang}/contact`} className={s.nextTalk}>{talk}</Link>
-          <div className={s.nextRight}>{nextHref && <Link href={nextHref}>{nextLabel} →</Link>}</div>
+        <p className={s.talk}><Link href={`/${lang}/contact`}>{talk}</Link></p>
+
+        {/* Tourner la page : le chapitre (ou la pièce) d'avant et d'après,
+            en grand, avec son numéro. */}
+        <nav className={s.turn} aria-label={lang === "fr" ? "Suite" : "More"}>
+          {prevHref ? (
+            <Link href={prevHref} className={s.turnLink}>
+              <span className={s.turnKind}>← {prevKind} {prevNo}</span>
+              <span className={s.turnName}>{prevLabel}</span>
+            </Link>
+          ) : <span />}
+          {nextHref ? (
+            <Link href={nextHref} className={`${s.turnLink} ${s.turnNext}`}>
+              <span className={s.turnKind}>{nextKind} {nextNo} →</span>
+              <span className={s.turnName}>{nextLabel}</span>
+            </Link>
+          ) : <span />}
         </nav>
       </main>
 

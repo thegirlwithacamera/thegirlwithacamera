@@ -58,6 +58,12 @@ export type PhotoCase = {
   // "01-suite-du-toit" donne "Suite du toit". Sert à remettre les accents et
   // les majuscules propres, que le nom de dossier ne porte pas.
   chapters?: Record<string, { fr: string; en: string }>;
+  // Légende d'une planche, sous son numéro, à la manière d'un livre photo :
+  // l'heure et ce qui se passe. Clé = chemin de la photo dans le dossier du
+  // cas, "4.jpg" ou "02-red-salon/3.jpg". Exemple :
+  //   plates: { "4.jpg": { fr: "05:40, le jardin avant le petit-déjeuner", en: "05:40, the garden before breakfast" } }
+  // Sans entrée, la planche n'a que son numéro.
+  plates?: Record<string, { fr: string; en: string }>;
   // À true, l'accueil montre une tuile par chapitre au lieu d'une tuile pour
   // le cas. Décision de Sandrine du 02/09 pour Altstadt : neuf chambres
   // dessinées chacune par quelqu'un d'autre, une seule vignette n'en montrait

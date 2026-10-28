@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { pageMeta } from "@/lib/seo";
-import { allCases } from "../../photographer/constants";
-import { countCasePhotos, readCaseCover } from "@/lib/portfolio";
-import Tile from "../../journal/Tile";
-import s from "../../journal/journal.module.css";
+import { readCaseCover } from "@/lib/portfolio";
+import { bookChapters, no2 } from "../../photographer/book";
+import { Display, Eyebrow } from "../../components/editorial";
+import s from "./contents.module.css";
 
 interface Props {
   params: Promise<{ lang: "en" }>;
@@ -18,53 +19,75 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMeta({
     lang: "en",
     path: "/destinations/all",
-    title: "All destinations",
+    title: "Contents",
     description:
-      "Every hotel, table and city photographed and filmed by Sandrine Ceuppens, from Austria to Italy and Japan.",
+      "Every hotel, table and city photographed and filmed by Sandrine Ceuppens, from Austria to Italy and Japan, as the chapters of a book.",
     image: "/images/portfolio/travel/tokyo/1.jpg",
   });
 }
 
 // ─────────────────────────────────────────────────────────────
-// Toutes les destinations (27/09, demande de Sandrine) : la page Destinations
-// reste la vitrine des projets commandés, celle-ci montre tout, pays par pays,
-// en carrés photo avec le nom dessus (même tuile que le Journal). Chaque carré
-// mène à la page du projet, photos et films. Un projet sans photos n'apparaît
-// pas. Pour cacher un projet : HIDDEN_CASES dans photographer/constants.ts.
+// Le sommaire du livre (28/10, direction "photobook"). Remplace la page
+// "All destinations" en carrés du 27/09 : même adresse, même contenu, tous
+// les projets avec photos, mais lus comme la table des matières d'un livre
+// photo. Une partie par catégorie, un chapitre par projet, numéroté comme
+// sur sa page (book.ts). Au survol, la couverture du chapitre apparaît.
+// Pour cacher un projet : HIDDEN_CASES dans photographer/constants.ts.
 // ─────────────────────────────────────────────────────────────
 
-export default async function AllDestinationsPage({ params }: Props) {
-  await params;
-  const cases = allCases()
-    .filter((c) => countCasePhotos(c.cat.slug, c.item.slug) > 0)
-    .map((c) => {
-      const place = c.item.place?.en ?? "";
-      const country = place.split(",").pop()?.trim() || "Elsewhere";
-      return {
-        key: `${c.cat.slug}-${c.item.slug}`,
-        href: `/en${c.href}`,
-        label: (c.item.short ?? c.item.label).en,
-        cover: c.item.coverImage ?? readCaseCover(c.cat.slug, c.item.slug) ?? undefined,
-        country,
-      };
-    });
+const ROMAN = ["I", "II", "III", "IV", "V", "VI"];
 
-  const countries = [...new Set(cases.map((c) => c.country))].sort((a, b) => a.localeCompare(b));
+export default async function ContentsPage({ params }: Props) {
+  await params;
+  const chapters = bookChapters();
+  const parts = [...new Map(chapters.map((c) => [c.cat.slug, c.cat])).values()].map((cat) => ({
+    cat,
+    chapters: chapters.filter((c) => c.cat.slug === cat.slug),
+  }));
 
   return (
     <main className={s.main}>
-      <h1 className={s.sectionTitle} style={{ paddingTop: "clamp(40px, 5vw, 72px)" }}>All destinations</h1>
-      {countries.map((country) => (
-        <section key={country} id={country.toLowerCase()} className={s.section}>
-          <h2 className={s.sectionTitle}>{country}</h2>
-          <div className={s.tiles}>
-            {cases.filter((c) => c.country === country).map((c) => (
-              <Tile key={c.key} href={c.href} cover={c.cover} label={c.label} />
-            ))}
-          </div>
+      <header className={s.head}>
+        <Eyebrow tone="brick">The Girl With A Camera</Eyebrow>
+        <Display size="xl">Contents</Display>
+        <p className={s.lede}>
+          {chapters.length} chapters, photographed and filmed between first light and the last train.
+        </p>
+      </header>
+
+      {parts.map((part, pi) => (
+        <section key={part.cat.slug} className={s.part}>
+          <h2 className={s.partTitle}>
+            <span>Part {ROMAN[pi] ?? pi + 1}</span>
+            {part.cat.label.en}
+          </h2>
+          <ol className={s.list}>
+            {part.chapters.map((c) => {
+              const cover = c.item.coverImage ?? readCaseCover(c.cat.slug, c.item.slug);
+              return (
+                <li key={c.href}>
+                  <Link href={`/en${c.href}`} className={s.row}>
+                    {cover && (
+                      <span className={s.thumb} aria-hidden="true">
+                        <Image src={cover} alt="" width={360} height={450} sizes="(max-width: 767px) 56px, 200px" quality={70} />
+                      </span>
+                    )}
+                    <span className={s.no}>{no2(c.no)}</span>
+                    <span className={s.name}>{c.item.label.en}</span>
+                    <span className={s.leader} aria-hidden="true" />
+                    <span className={s.place}>
+                      {c.item.place?.en}
+                      {c.item.films && c.item.films.length > 0 && <em> · film</em>}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ol>
         </section>
       ))}
-      <p className={s.back}><Link href="/en/destinations">Back to destinations →</Link></p>
+
+      <p className={s.back}><Link href="/en/destinations">← Selected work</Link></p>
     </main>
   );
 }

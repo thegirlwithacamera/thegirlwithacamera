@@ -60,7 +60,7 @@ export default function Header() {
   }, [menuOpen]);
 
   const navLinks: NavLink[] = [
-    { href: "/en/destinations", label: "Destinations" },
+    { href: "/en/destinations", label: "Work" },
     { href: "/en/creator", label: "Content creator" },
     { href: "/en/journal", label: "Journal" },
     { href: "/en/about", label: "About" },
