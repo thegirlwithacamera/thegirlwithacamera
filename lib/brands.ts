@@ -58,6 +58,11 @@ export const BRANDS: Brand[] = [
   // MK HOTELS retire le 05/09, decision de Sandrine : le travail n'est pas au
   // niveau du reste. Le cas et le film sont retires en meme temps. Le fichier
   // mk-hotels.png reste dans public/images/brands, remettre la ligne suffit.
+  // Japon, octobre 2026 (ajoutés le 28/10). Logos envoyés par Sandrine en
+  // capture d'écran, détourés en encre sombre sur fond transparent. Le
+  // calligramme de Nishimuraya est presque carré : hauteur des badges (tall).
+  { name: "NISHIMURAYA HOTEL SHOGETSUTEI", logo: "/images/brands/nishimuraya-shogetsutei.png", tall: true, cat: "stays", href: "/photographer/hospitality/nishimuraya", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
+  { name: "MIZUYA", logo: "/images/brands/mizuya.png", cat: "stays", href: "/photographer/hospitality/mizuya", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.

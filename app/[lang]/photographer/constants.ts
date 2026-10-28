@@ -343,7 +343,9 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       {
         slug: "nishimuraya",
         date: "2026-10-08",
-        label: { fr: "Nishimuraya", en: "Nishimuraya" },
+        // Nom confirmé par le logo envoyé le 28/10 (西村屋 招月庭).
+        label: { fr: "Nishimuraya Hotel Shogetsutei", en: "Nishimuraya Hotel Shogetsutei" },
+        short: { fr: "Nishimuraya", en: "Nishimuraya" },
         place: { fr: "Kinosaki Onsen, Japon", en: "Kinosaki Onsen, Japan" },
         intro: {
           fr: "Une ville thermale du nord de Hyōgo : les parapluies alignés à l'entrée pour la promenade du soir, une piscine sous les arbres, les bains dans la lumière de l'après-midi.",
