@@ -66,7 +66,10 @@ export default async function AboutPage({ params }: Props) {
 
       <section className={s.intro}>
         <p>
-          I photograph and film hotels, destinations and brands, in natural light and with nothing staged. Cities at five in the morning, markets before the crowds, houses while they are alive. Stills and film on the same visit, so the place reads as a whole. Based in Brussels, available worldwide.
+          I photograph and film hotels, destinations and brands, in natural light, with nothing staged. I arrive before everyone else, often at five in the morning, to catch the moment a room or a street feels like itself. Stills and film are made on the same visit, so the place reads as a whole: the walls tell one part of the story, the people who work there tell the rest. Based in Brussels, I travel wherever the work takes me.
+        </p>
+        <p className={s.shown}>
+          My work has been exhibited at Les Rencontres d&apos;Arles, at the Salon de la Photo at La Villette in Paris, and at the GR Community Space in Paris.
         </p>
       </section>
 

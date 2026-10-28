@@ -27,6 +27,14 @@
 }
 .quotes { max-width: 860px; margin: clamp(40px, 5vw, 64px) auto 0; }
 
+/* Les expositions, sous la présentation, plus discrètes. */
+.intro .shown {
+  margin-top: 24px;
+  font-style: italic;
+  font-size: var(--text-body);
+  color: var(--stone);
+}
+
 /* Le formulaire, sous l'ancre #contact. */
 .contact {
   max-width: 640px;

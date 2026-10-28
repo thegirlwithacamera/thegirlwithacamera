@@ -33,8 +33,8 @@ import { BRAND_CATS, CAT_LABEL, CAT_NOTE, TRUST_LABEL, brandsIn, type BrandCat }
 //    aucun client, le survol revelait. Resultat le 31/08 : "rien n'est
 //    cliquable". Une petite legende sous le logo disait alors ce qu'on y
 //    trouve (Photos & film, Film). Retiree le 28/10 a la demande de
-//    Sandrine : le logo seul est cliquable, et pour les marques il n'y a plus
-//    de lien par logo, c'est l'intertitre Brands qui mene a la page.
+//    Sandrine : le logo seul est cliquable, et tous les logos de marques
+//    menent a la page Brands.
 //
 // 3. Deux tailles de logo, pas une. Les marques ont des wordmarks larges qui
 //    remplissent toute leur hauteur ; les adresses ont des marques compactes,
@@ -78,8 +78,6 @@ export default function TrustLogos({
         .trust-group { margin: 0 auto 40px; }
         .trust-group:last-child { margin-bottom: 0; }
         .trust-cat { font-family: var(--font-serif); font-style: italic; font-size: var(--text-body); color: var(--stone); text-align: center; margin: 0 0 20px; }
-        .trust-cat a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
-        .trust-cat a:hover, .trust-cat a:focus-visible { color: var(--brick); border-bottom-color: currentColor; }
         .trust-note { font-family: var(--font-serif); font-size: var(--text-caption); line-height: 1.6; font-style: italic; color: var(--stone); text-align: center; max-width: 520px; margin: 18px auto 0; padding: 0 24px; }
         /* align-items: flex-start et une boite de hauteur fixe : les logos
            restent alignes entre eux, les legendes pendent en dessous sans
@@ -170,17 +168,18 @@ export default function TrustLogos({
               />
             </span>
           );
-          // Marques : pas de lien par logo, c'est l'intertitre Brands qui mène
-          // à la page (28/10, Sandrine).
-          if (!b.href || noLinks || g.cat === "brand") return <span key={b.name} className="brand-item" aria-hidden={copy || undefined}>{box}</span>;
+          // Marques : chaque logo mène à la page Brands (28/10, Sandrine), pas
+          // à une vidéo en particulier.
+          const href = g.cat === "brand" ? "/creator" : b.href;
+          if (!href || noLinks) return <span key={b.name} className="brand-item" aria-hidden={copy || undefined}>{box}</span>;
           return (
             <Link
               key={b.name}
-              href={`/${lang}${b.href}`}
+              href={`/${lang}${href}`}
               className="brand-item brand-link"
               aria-hidden={copy || undefined}
               tabIndex={copy ? -1 : undefined}
-              title={b.hrefLabel ? `${b.name} — ${b.hrefLabel[lang]}` : b.name}
+              title={b.name}
             >
               {box}
             </Link>
@@ -193,11 +192,7 @@ export default function TrustLogos({
         const loop = [...half, ...half];
         return (
           <div className={`trust-group trust-group--${g.cat}${align === "left" ? " trust-left" : ""}`} key={g.cat}>
-            {showCatLabels && (
-              <p className="trust-cat">
-                {g.cat === "brand" ? <Link href={`/${lang}/creator`}>{CAT_LABEL[g.cat][lang]} →</Link> : CAT_LABEL[g.cat][lang]}
-              </p>
-            )}
+            {showCatLabels && <p className="trust-cat">{CAT_LABEL[g.cat][lang]}</p>}
             {marquee ? (
               <div className="brands-marquee">
                 <div className="brands-track" style={{ "--trust-speed": `${half.length * 4}s` } as React.CSSProperties}>
