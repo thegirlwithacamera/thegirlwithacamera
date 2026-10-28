@@ -1,10 +1,10 @@
-/* Le film ou les photos plein cadre, posés sur le blanc avec une fine marge,
-   et une mention dans chaque coin. */
+/* Le film ou les photos plein écran, bord à bord (la marge blanche du 28/10
+   est retirée le même jour, demande de Sandrine), et une mention dans
+   chaque coin. */
 .cover {
   position: relative;
-  height: calc(100svh - 2 * clamp(8px, 1.2vw, 16px));
+  height: 100svh;
   min-height: 480px;
-  margin: clamp(8px, 1.2vw, 16px);
   overflow: hidden;
   background: var(--well);
 }
@@ -16,7 +16,17 @@
 .spread[data-count="2"] { grid-template-columns: 1fr 1fr; }
 .page { position: relative; overflow: hidden; }
 .page img { object-fit: cover; }
-.veil { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.15); pointer-events: none; }
+/* Voile léger sur toute l'image, plus sombre en haut et en bas, là où se
+   posent les mentions des coins : elles restent lisibles même sur un ciel
+   ou une façade claire. */
+.veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 26%, rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0.55) 100%),
+    rgba(0, 0, 0, 0.1);
+}
 
 .corner {
   position: absolute;
@@ -27,19 +37,20 @@
   gap: 2px;
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
-  line-height: 1.6;
+  line-height: 1.7;
   text-transform: uppercase;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), 0 0 18px rgba(0, 0, 0, 0.3);
 }
 .corner p { margin: 0; }
 .corner a { color: inherit; text-decoration: none; align-self: inherit; border-bottom: 1px solid transparent; transition: border-color 0.2s ease; }
 .corner a:hover, .corner a:focus-visible { border-bottom-color: currentColor; outline: none; }
-.tl { top: 22px; left: 24px; align-items: flex-start; }
-.tr { top: 22px; right: 24px; align-items: flex-end; text-align: right; }
-.bl { bottom: 22px; left: 24px; align-items: flex-start; }
-.br { bottom: 22px; right: 24px; align-items: flex-end; text-align: right; }
+.tl { top: 28px; left: 32px; align-items: flex-start; }
+.tr { top: 28px; right: 32px; align-items: flex-end; text-align: right; }
+.bl { bottom: 28px; left: 32px; align-items: flex-start; }
+.br { bottom: 28px; right: 32px; align-items: flex-end; text-align: right; }
 
 /* Le nom de la page, en serif, dans le coin en haut à droite. */
 .title {
@@ -84,11 +95,11 @@
 @media (max-width: 767px) {
   .wide { display: none; }
   .tall { display: block; }
-  .tl, .tr { top: 14px; }
-  .bl, .br { bottom: 14px; }
-  .tl, .bl { left: 14px; }
-  .tr, .br { right: 14px; }
-  .corner { font-size: 0.6875rem; }
+  .tl, .tr { top: 18px; }
+  .bl, .br { bottom: 18px; }
+  .tl, .bl { left: 18px; }
+  .tr, .br { right: 18px; }
+  .corner { font-size: 0.75rem; }
   /* Les deux coins du haut se partagent la largeur et passent à la ligne
      plutôt que de se chevaucher. */
   .tl, .tr { max-width: calc(50% - 20px); }
