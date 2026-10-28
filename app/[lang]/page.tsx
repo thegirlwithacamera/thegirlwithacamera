@@ -23,15 +23,15 @@ export async function generateMetadata(): Promise<Metadata> {
 
 // ─────────────────────────────────────────────────────────────
 // ACCUEIL (28/10, décisions de Sandrine) : la couverture seule, et rien en
-// dessous, ni texte ni pied de page. Le film d'Altstadt Vienna plein cadre,
-// recadré par le haut pour sortir ses sous-titres incrustés
-// (public/videos/banners/home-altstadt*.mp4, encodé à la définition de la
-// source, sans réduction), le nom du site au centre, et une mention dans
-// chaque coin : c'est là que vivent les rubriques (composant Cover).
+// dessous, ni texte ni pied de page. Le plan drone du lac de Côme plein
+// cadre (version verticale recadrée au centre sur téléphone), son nom au
+// centre avec son métier dessous, et une mention dans chaque coin : c'est là
+// que vivent les rubriques (composant Cover). Altstadt et le titre "The Girl
+// With A Camera" au centre ont été essayés et refusés le même jour.
 // ─────────────────────────────────────────────────────────────
 
-const FILM = { src: "/videos/banners/home-altstadt-hd.mp4", poster: "/videos/banners/home-altstadt-hd.jpg" };
-const FILM_VERTICAL = { src: "/videos/banners/home-altstadt-hd-vertical.mp4", poster: "/videos/banners/home-altstadt-hd-vertical.jpg" };
+const FILM = { src: "/videos/banners/destinations-como-vivid.mp4", poster: "/videos/banners/destinations-como-vivid.jpg" };
+const FILM_VERTICAL = { src: "/videos/banners/home-como-vertical.mp4", poster: "/videos/banners/home-como-vertical.jpg" };
 
 export default async function HomePage({ params }: Props) {
   await params;
@@ -39,10 +39,15 @@ export default async function HomePage({ params }: Props) {
     <Cover
       film={FILM}
       filmVertical={FILM_VERTICAL}
-      label="Altstadt Vienna, filmed by Sandrine Ceuppens"
+      label="Aerial view of a village above a waterfall, Lake Como, filmed by Sandrine Ceuppens"
       tl={<p>Brussels<br />Belgium</p>}
-      tr={<Link href="/en/about">Photographer &amp; filmmaker</Link>}
-      center={<h1>The Girl With A Camera</h1>}
+      tr={<Link href="/en/about">The Girl With A Camera</Link>}
+      center={
+        <>
+          <h1>Sandrine Ceuppens</h1>
+          <p>Photographer &amp; filmmaker</p>
+        </>
+      }
     />
   );
 }

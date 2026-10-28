@@ -31,7 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
 // et le sommaire /destinations/all (qui renvoie ici) : Sandrine trouvait que
 // tout se mélangeait. Les hôtels sont sur /hotels.
 //
-// Couverture : le plan drone du lac de Côme. Puis la grille des villes, et
+// Couverture : le film de Graz (le plan drone du lac de Côme est passé sur
+// l'accueil le 28/10, pour ne pas montrer deux fois le même). Puis la grille des villes, et
 // les films d'Interrail, qui n'ont pas d'autre page (ancre #interrail,
 // utilisée par le logo, le sitemap vidéo et le Journal).
 // ─────────────────────────────────────────────────────────────
@@ -43,8 +44,8 @@ export default async function DestinationsPage({ params }: Props) {
   return (
     <main className={s.main}>
       <Cover
-        film={{ src: "/videos/banners/destinations-como-vivid.mp4", poster: "/videos/banners/destinations-como-vivid.jpg" }}
-        label="Aerial view of a village above a waterfall, Lake Como"
+        film={{ src: "/videos/creator/CINEMATIC/CITIES/Graz.mp4", poster: "/videos/creator/CINEMATIC/CITIES/Graz.jpg" }}
+        label="Graz, filmed by Sandrine Ceuppens for Graz Tourismus"
         title="Destinations"
       />
       <ChapterIndex
