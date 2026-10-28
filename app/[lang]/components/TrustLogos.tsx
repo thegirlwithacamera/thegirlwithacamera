@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Fragment } from "react";
 import type React from "react";
-import { BRAND_CATS, CAT_LABEL, CAT_NOTE, TRUST_LABEL, brandsIn, type BrandCat } from "@/lib/brands";
+import { BRAND_CATS, CAT_LABEL, TRUST_LABEL, brandsIn, type BrandCat } from "@/lib/brands";
 
 // Bande "Ils me font confiance" partagee entre About et Creator.
 // Source unique des donnees : lib/brands.ts. Composant presentationnel sans
@@ -78,7 +78,6 @@ export default function TrustLogos({
         .trust-group { margin: 0 auto 40px; }
         .trust-group:last-child { margin-bottom: 0; }
         .trust-cat { font-family: var(--font-serif); font-style: italic; font-size: var(--text-body); color: var(--stone); text-align: center; margin: 0 0 20px; }
-        .trust-note { font-family: var(--font-serif); font-size: var(--text-caption); line-height: 1.6; font-style: italic; color: var(--stone); text-align: center; max-width: 520px; margin: 18px auto 0; padding: 0 24px; }
         /* align-items: flex-start et une boite de hauteur fixe : les logos
            restent alignes entre eux, les legendes pendent en dessous sans
            decaler la rangee. */
@@ -152,7 +151,6 @@ export default function TrustLogos({
           .brands-marquee { overflow-x: auto; scrollbar-width: none; }
           .brands-track { animation: none; }
         }
-        .trust-left .trust-note { text-align: left; padding: 0; margin-left: 0; }
       `}</style>
       {!hideLabel && <p className="trust-label">{TRUST_LABEL[lang]}</p>}
       {groups.map((g) => {
@@ -202,7 +200,6 @@ export default function TrustLogos({
             ) : (
               <div className="brands-strip">{g.brands.map((b) => item(b))}</div>
             )}
-            {CAT_NOTE[g.cat] && <p className="trust-note">{CAT_NOTE[g.cat]![lang]}</p>}
           </div>
         );
       })}

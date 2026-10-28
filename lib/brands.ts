@@ -158,19 +158,6 @@ export const CAT_LABEL: Record<BrandCat, Record<"fr" | "en", string>> = {
   brand: { fr: "MARQUES", en: "BRANDS" },
 };
 
-// Une ligne de contexte sous un groupe, quand les logos seuls disent moins que
-// la verite. Ricoh et Pentax lus comme deux marques de materiel racontent un
-// partenariat produit ; la meme paire, avec Arles, raconte que deux maisons ont
-// choisi ces images pour le festival de reference en Europe. C'est la place de
-// cette ligne : sous les logos qu'elle requalifie, pas dans les offres, ou une
-// exposition n'a rien a voir avec ce qu'on achete.
-export const CAT_NOTE: Partial<Record<BrandCat, Record<"fr" | "en", string>>> = {
-  brand: {
-    fr: "Ricoh France et Pentax Europe ont exposé mon travail aux Rencontres d'Arles.",
-    en: "Ricoh France and Pentax Europe exhibited my work at Les Rencontres d'Arles.",
-  },
-};
-
 // Logos du ou des clients d'un cas, pour la page du cas elle meme.
 // Pose le 10/09 : jusque la, la preuve qu'un cas etait une commande vivait
 // uniquement sur About, alors que la plupart des visiteurs arrivent
