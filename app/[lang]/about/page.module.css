@@ -15,6 +15,18 @@
   color: var(--ink);
 }
 
+/* Les logos des clients, puis leurs mots. */
+.clients { max-width: var(--page-max); margin: var(--section) auto 0; padding: 0 var(--pad); text-align: center; }
+.clientsLabel {
+  margin: 0 0 28px;
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brick);
+}
+.quotes { max-width: 860px; margin: clamp(40px, 5vw, 64px) auto 0; }
+
 /* Le formulaire, sous l'ancre #contact. */
 .contact {
   max-width: 640px;
@@ -48,3 +60,4 @@
 @media (max-width: 767px) {
   .intro, .contact { padding-left: 20px; padding-right: 20px; }
 }
+.quotes :global(.tcar-nav) { justify-content: center; }

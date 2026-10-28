@@ -25,25 +25,24 @@ export async function generateMetadata(): Promise<Metadata> {
 // ACCUEIL (28/10, décisions de Sandrine) : la couverture seule, et rien en
 // dessous, ni texte ni pied de page. Le film d'Altstadt Vienna plein cadre,
 // recadré par le haut pour sortir ses sous-titres incrustés
-// (public/videos/banners/home-altstadt*.mp4), et une mention dans chaque
-// coin : c'est là que vivent les rubriques (composant Cover).
+// (public/videos/banners/home-altstadt*.mp4, encodé à la définition de la
+// source, sans réduction), le nom du site au centre, et une mention dans
+// chaque coin : c'est là que vivent les rubriques (composant Cover).
 // ─────────────────────────────────────────────────────────────
 
-const FILM = { src: "/videos/banners/home-altstadt.mp4", poster: "/videos/banners/home-altstadt.jpg" };
-const FILM_VERTICAL = { src: "/videos/banners/home-altstadt-vertical.mp4", poster: "/videos/banners/home-altstadt-vertical.jpg" };
+const FILM = { src: "/videos/banners/home-altstadt-hd.mp4", poster: "/videos/banners/home-altstadt-hd.jpg" };
+const FILM_VERTICAL = { src: "/videos/banners/home-altstadt-hd-vertical.mp4", poster: "/videos/banners/home-altstadt-hd-vertical.jpg" };
 
 export default async function HomePage({ params }: Props) {
   await params;
   return (
-    <>
-      <h1 className="sr-only">Sandrine Ceuppens, travel photographer, filmmaker and content creator</h1>
-      <Cover
-        film={FILM}
-        filmVertical={FILM_VERTICAL}
-        label="Altstadt Vienna, filmed by Sandrine Ceuppens"
-        tl={<p>Brussels<br />Belgium</p>}
-        tr={<Link href="/en/about">Photographer &amp; filmmaker</Link>}
-      />
-    </>
+    <Cover
+      film={FILM}
+      filmVertical={FILM_VERTICAL}
+      label="Altstadt Vienna, filmed by Sandrine Ceuppens"
+      tl={<p>Brussels<br />Belgium</p>}
+      tr={<Link href="/en/about">Photographer &amp; filmmaker</Link>}
+      center={<h1>The Girl With A Camera</h1>}
+    />
   );
 }

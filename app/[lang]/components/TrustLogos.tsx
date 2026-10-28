@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Fragment } from "react";
+import type React from "react";
 import { BRAND_CATS, CAT_LABEL, CAT_NOTE, TRUST_LABEL, brandsIn, type BrandCat } from "@/lib/brands";
 
 // Bande "Ils me font confiance" partagee entre About et Creator.
@@ -18,6 +20,10 @@ import { BRAND_CATS, CAT_LABEL, CAT_NOTE, TRUST_LABEL, brandsIn, type BrandCat }
 //    d'etablissement y figure. En mobile la ligne devient un defilement
 //    horizontal, au doigt et jamais automatique : c'est le seul endroit ou
 //    l'empilement est trop long.
+//
+//    28/10 : sur la page About, Sandrine préfère une ligne qui défile par
+//    catégorie plutôt que plusieurs rangées (prop marquee). Les autres pages
+//    gardent la grille statique.
 //
 // 4. Un logo qui mene au travail fait pour ce client devient un lien. Pas tous :
 //    seulement ceux dont le contenu est en ligne, un logo cliquable qui ouvre
@@ -40,6 +46,7 @@ export default function TrustLogos({
   hideLabel = false,
   align = "center",
   noLinks = false,
+  marquee = false,
 }: {
   lang: "fr" | "en";
   cats?: readonly BrandCat[];
@@ -48,6 +55,12 @@ export default function TrustLogos({
   align?: "center" | "left";
   // Logos sans lien (page Content creator, où les vidéos sont juste au dessus).
   noLinks?: boolean;
+  // Une ligne qui défile par catégorie au lieu de plusieurs rangées (28/10,
+  // demande de Sandrine pour la page About). Les logos sont répétés deux fois
+  // pour boucler sans à-coup ; la copie est cachée aux lecteurs d'écran et au
+  // clavier. Le défilement s'arrête au survol, et ne démarre pas si le
+  // visiteur a demandé moins d'animations (la ligne se fait alors glisser).
+  marquee?: boolean;
 }) {
   const groups = cats
     .map((c) => ({ cat: c, brands: brandsIn(c) }))
@@ -136,42 +149,73 @@ export default function TrustLogos({
           .brand-cap { font-size: 0.6875rem; letter-spacing: 0.1em; }
         }
         .trust-left .brands-strip { justify-content: flex-start; padding: 0; margin: 0; max-width: none; }
+
+        .brands-marquee {
+          overflow: hidden;
+          -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+        }
+        .brands-track { display: flex; align-items: flex-start; width: max-content; animation: trust-scroll var(--trust-speed, 40s) linear infinite; }
+        .trust-group:nth-of-type(even) .brands-track { animation-direction: reverse; }
+        .brands-marquee:hover .brands-track, .brands-marquee:focus-within .brands-track { animation-play-state: paused; }
+        .brands-track > * { flex: 0 0 auto; margin-right: clamp(32px, 4vw, 56px); }
+        @keyframes trust-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @media (prefers-reduced-motion: reduce) {
+          .brands-marquee { overflow-x: auto; scrollbar-width: none; }
+          .brands-track { animation: none; }
+        }
         .trust-left .trust-note { text-align: left; padding: 0; margin-left: 0; }
       `}</style>
       {!hideLabel && <p className="trust-label">{TRUST_LABEL[lang]}</p>}
-      {groups.map((g) => (
-        <div className={`trust-group trust-group--${g.cat}${align === "left" ? " trust-left" : ""}`} key={g.cat}>
-          {showCatLabels && <p className="trust-cat">{CAT_LABEL[g.cat][lang]}</p>}
-          <div className="brands-strip">
-            {g.brands.map((b) => {
-              if (!b.logo) return <span key={b.name} className="brand-chip">{b.name}</span>;
-              const box = (
-                <span className="brand-box">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={b.logo}
-                    alt={b.name}
-                    className={`brand-logo${b.tall ? " brand-logo--tall" : ""}`}
-                  />
-                </span>
-              );
-              if (!b.href || noLinks) return <span key={b.name} className="brand-item">{box}</span>;
-              return (
-                <Link
-                  key={b.name}
-                  href={`/${lang}${b.href}`}
-                  className="brand-item brand-link"
-                  title={b.hrefLabel ? `${b.name} — ${b.hrefLabel[lang]}` : b.name}
-                >
-                  {box}
-                  {b.hrefLabel && <span className="brand-cap">{b.hrefLabel[lang]}</span>}
-                </Link>
-              );
-            })}
+      {groups.map((g) => {
+        const item = (b: (typeof g.brands)[number], copy = false) => {
+          if (!b.logo) return <span key={b.name} className="brand-chip" aria-hidden={copy || undefined}>{b.name}</span>;
+          const box = (
+            <span className="brand-box">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={b.logo}
+                alt={b.name}
+                className={`brand-logo${b.tall ? " brand-logo--tall" : ""}`}
+              />
+            </span>
+          );
+          if (!b.href || noLinks) return <span key={b.name} className="brand-item" aria-hidden={copy || undefined}>{box}</span>;
+          return (
+            <Link
+              key={b.name}
+              href={`/${lang}${b.href}`}
+              className="brand-item brand-link"
+              aria-hidden={copy || undefined}
+              tabIndex={copy ? -1 : undefined}
+              title={b.hrefLabel ? `${b.name} — ${b.hrefLabel[lang]}` : b.name}
+            >
+              {box}
+              {b.hrefLabel && <span className="brand-cap">{b.hrefLabel[lang]}</span>}
+            </Link>
+          );
+        };
+        // La boucle : assez de logos pour dépasser la largeur d'un grand écran
+        // (au moins huit), puis la même suite une seconde fois. Le défilement
+        // va jusqu'à la moitié et repart, sans à-coup.
+        const half = Array.from({ length: Math.ceil(8 / g.brands.length) }, () => g.brands).flat();
+        const loop = [...half, ...half];
+        return (
+          <div className={`trust-group trust-group--${g.cat}${align === "left" ? " trust-left" : ""}`} key={g.cat}>
+            {showCatLabels && <p className="trust-cat">{CAT_LABEL[g.cat][lang]}</p>}
+            {marquee ? (
+              <div className="brands-marquee">
+                <div className="brands-track" style={{ "--trust-speed": `${half.length * 4}s` } as React.CSSProperties}>
+                  {loop.map((b, i) => <Fragment key={`${b.name}-${i}`}>{item(b, i >= g.brands.length)}</Fragment>)}
+                </div>
+              </div>
+            ) : (
+              <div className="brands-strip">{g.brands.map((b) => item(b))}</div>
+            )}
+            {CAT_NOTE[g.cat] && <p className="trust-note">{CAT_NOTE[g.cat]![lang]}</p>}
           </div>
-          {CAT_NOTE[g.cat] && <p className="trust-note">{CAT_NOTE[g.cat]![lang]}</p>}
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 }

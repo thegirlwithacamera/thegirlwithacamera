@@ -3,6 +3,9 @@ import Link from "next/link";
 import { pageMeta } from "@/lib/seo";
 import Cover from "../components/Cover";
 import HashScroll from "../components/HashScroll";
+import TrustLogos from "../components/TrustLogos";
+import TestimonialCarousel from "../components/TestimonialCarousel";
+import { allTestimonials } from "../photographer/constants";
 import ContactForm from "./ContactForm";
 import s from "./page.module.css";
 import "./form.css";
@@ -26,9 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // ─────────────────────────────────────────────────────────────
 // About & contact (28/10, décisions de Sandrine) : la couverture avec ses
-// deux portraits, un court texte de présentation, puis le formulaire. Plus
-// de parcours, de logos, de témoignages ni de questions sur cette page, et
-// plus d'adresse presse. L'ancienne page Contact renvoie ici (#contact).
+// deux portraits, un court texte de présentation, les logos et les mots des
+// clients, puis le formulaire. Plus de parcours ni de questions sur cette
+// page, et plus d'adresse presse. L'ancienne page Contact renvoie ici (#contact).
 // ─────────────────────────────────────────────────────────────
 
 const PORTRAIT = "/images/about/portrait-beach.jpg";
@@ -65,6 +68,17 @@ export default async function AboutPage({ params }: Props) {
         <p>
           I photograph and film hotels, destinations and brands, in natural light and with nothing staged. Cities at five in the morning, markets before the crowds, houses while they are alive. Stills and film on the same visit, so the place reads as a whole. Based in Brussels, available worldwide.
         </p>
+      </section>
+
+      <section className={s.clients}>
+        <p className={s.clientsLabel}>They trusted me</p>
+        <TrustLogos lang="en" hideLabel marquee />
+        <div className={s.quotes}>
+          <TestimonialCarousel
+            lang="en"
+            items={allTestimonials().map((x) => ({ t: x.t, href: x.href, label: x.label.en }))}
+          />
+        </div>
       </section>
 
       <section className={s.contact} id="contact">
