@@ -31,7 +31,8 @@ const nextConfig: NextConfig = {
       { source: "/:lang(fr|en)/press", destination: "/en/about", permanent: true },
       { source: "/:lang(fr|en)/gallery/:slug*", destination: "/en/destinations/all", permanent: true },
       { source: "/:lang(fr|en)/legal/:page*", destination: "/en/about", permanent: true },
-      { source: "/en/services", destination: "/en/contact", permanent: true },
+      { source: "/:lang(fr|en)/services", destination: "/en/contact", permanent: true },
+      { source: "/:lang(fr|en)/film", destination: "/en/destinations", permanent: true },
       { source: "/en/photographer", destination: "/en/destinations", permanent: true },
       { source: "/en/diary", destination: "/en/journal", permanent: true },
       { source: "/en/journal/series/:key", destination: "/en/journal/category/:key", permanent: true },
@@ -56,8 +57,8 @@ const nextConfig: NextConfig = {
       { source: "/en/da", destination: "/en/services", permanent: true },
       // Pointait vers /film, une route qui n'existe pas : la page s'appelle
       // /filmmaker. Corrigé le 01/09.
-      { source: "/fr/video", destination: "/fr/filmmaker", permanent: true },
-      { source: "/en/video", destination: "/en/filmmaker", permanent: true },
+      { source: "/fr/video", destination: "/en/destinations", permanent: true },
+      { source: "/en/video", destination: "/en/destinations", permanent: true },
       // Videaste decoupe en cinq rubriques le 12/09 : "Maisons & tables" se
       // separe en Hotels, Tables et Spa, et les trains sortent de Voyage.
       // L'ancienne URL /filmmaker/places etait en ligne et dans les
