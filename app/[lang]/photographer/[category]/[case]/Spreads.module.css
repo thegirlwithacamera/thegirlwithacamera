@@ -1,5 +1,5 @@
 /* Un chapitre en pages de livre : beaucoup de blanc entre les pages, chaque
-   photo dans son format, le numéro de planche dessous. */
+   photo dans son format. */
 .book {
   max-width: var(--page-max);
   margin: clamp(32px, 5vw, 72px) auto 0;
@@ -30,21 +30,10 @@
 
 .cap {
   margin: 12px 0 0;
-  display: flex;
-  gap: 14px;
-  align-items: baseline;
   font-family: var(--font-serif);
   font-size: var(--text-caption);
   font-style: italic;
   color: var(--stone);
-}
-.cap b {
-  font-family: var(--font-sans);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 0.6875rem;
-  letter-spacing: 0.16em;
-  color: var(--brick);
 }
 
 @media (max-width: 767px) {
@@ -55,5 +44,5 @@
   .trio { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   .trio .plate:nth-child(1) { grid-column: 1 / -1; width: 78%; }
   .trio .plate:nth-child(2) { transform: none; }
-  .cap { margin-top: 8px; gap: 10px; }
+  .cap { margin-top: 8px; }
 }

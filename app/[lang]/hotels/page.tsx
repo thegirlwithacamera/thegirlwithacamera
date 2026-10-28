@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Hotels & Houses · Hotel photographer and filmmaker",
     description:
       "Hotels, ryokans, guesthouses and tables photographed and filmed by Sandrine Ceuppens, from Vienna to Japan.",
-    image: "/images/portfolio/hospitality/mizuya/7.jpg",
+    image: "/images/portfolio/hospitality/mizuya/2.jpg",
   });
 }
 
@@ -36,7 +36,7 @@ export default async function HotelsPage({ params }: Props) {
   return (
     <main className={s.main}>
       <Cover
-        images={["/images/portfolio/hospitality/mizuya/7.jpg", "/images/portfolio/hospitality/nishimuraya/10.jpg"]}
+        images={["/images/portfolio/hospitality/mizuya/2.jpg", "/images/portfolio/hospitality/nishimuraya/6.jpg"]}
         label="Hotels & Houses"
         title="Hotels & Houses"
       />

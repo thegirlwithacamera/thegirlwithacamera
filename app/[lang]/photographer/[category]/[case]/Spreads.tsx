@@ -1,11 +1,10 @@
 import Image from "next/image";
 import type { Spread } from "../../book";
-import { no2 } from "../../book";
 import s from "./Spreads.module.css";
 
 // Les photos d'un chapitre, montées en pages de livre (voir layoutSpreads).
-// Sous chaque image, son numéro de planche, et sa légende quand le cas en a
-// une (champ plates de constants.ts).
+// Pas de numéro sous les photos (retirés le 28/10, Sandrine) ; une légende
+// seulement quand le cas en a une (champ plates de constants.ts).
 export default function Spreads({
   spreads,
   alt,
@@ -42,10 +41,7 @@ export default function Spreads({
                     quality={78}
                   />
                 </div>
-                <figcaption className={s.cap}>
-                  <b>{no2(p.no)}</b>
-                  {cap && <span>{cap}</span>}
-                </figcaption>
+                {cap && <figcaption className={s.cap}>{cap}</figcaption>}
               </figure>
             );
           })}

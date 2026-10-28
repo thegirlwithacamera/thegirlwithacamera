@@ -318,7 +318,8 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
         // Film déposé le 08/09, réencodé en 1080p depuis le master 4K du bureau.
         films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Naturel Dorf Schönleitn.mp4" }],
       },
-      // Japon, octobre 2026 (ajoutés le 28/10). Photos au Ricoh GR III,
+      // Japon, octobre 2026 (ajoutés le 28/10, resserrés à 9 photos chacun le
+      // même jour à la demande de Sandrine). Photos au Ricoh GR III,
       // exportées en 1800 px sans métadonnées, originaux dans _originals/.
       // Films réencodés en 1080p depuis les masters 4K, envoyés sur R2.
       // Les intros sont des brouillons à relire par Sandrine.
@@ -337,7 +338,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
           fr: "Photographié les 6 et 7 octobre 2026.",
           en: "Photographed on 6 and 7 October 2026.",
         },
-        coverImage: "/images/portfolio/hospitality/mizuya/7.jpg",
+        coverImage: "/images/portfolio/hospitality/mizuya/2.jpg",
         films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Mizuya.mp4" }],
       },
       {
@@ -355,7 +356,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
           fr: "Photographié les 8 et 9 octobre 2026.",
           en: "Photographed on 8 and 9 October 2026.",
         },
-        coverImage: "/images/portfolio/hospitality/nishimuraya/10.jpg",
+        coverImage: "/images/portfolio/hospitality/nishimuraya/6.jpg",
         films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Nishimuraya.mp4" }],
       },
       // Coloc Housing retiré le 01/09, décision de Sandrine. La collaboration
