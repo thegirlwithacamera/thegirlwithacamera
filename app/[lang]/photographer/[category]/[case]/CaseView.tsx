@@ -167,7 +167,9 @@ export default function CaseView({
               caption={caption}
             />
           </section>
-        ) : photos.length > 12 ? (
+        // Au delà de 24 photos sans chapitres, la planche paginée reprend la
+        // main ; en dessous (Japon : 15 et 18), les pages de livre comme ailleurs.
+        ) : photos.length > 24 ? (
           <div className={s.grid}>
             <PhotoPager photos={photos} catLabel={`${item.label.en} — ${cat.label.en}`} startIndex={0} />
           </div>

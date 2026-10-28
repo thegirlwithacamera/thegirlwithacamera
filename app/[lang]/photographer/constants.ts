@@ -311,6 +311,42 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
         // Film déposé le 08/09, réencodé en 1080p depuis le master 4K du bureau.
         films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Naturel Dorf Schönleitn.mp4" }],
       },
+      // Japon, octobre 2026 (ajoutés le 28/10). Photos au Ricoh GR III,
+      // exportées en 1800 px sans métadonnées, originaux dans _originals/.
+      // Films réencodés en 1080p depuis les masters 4K, envoyés sur R2.
+      // Les intros sont des brouillons à relire par Sandrine.
+      {
+        slug: "mizuya",
+        // Petit hôtel de Miyazu, préfecture de Kyoto (vérifié sur les fiches
+        // de réservation le 28/10).
+        label: { fr: "mizuya", en: "mizuya" },
+        place: { fr: "Miyazu, Japon", en: "Miyazu, Japan" },
+        intro: {
+          fr: "Béton brut, bois chaud et un sauna, sur la côte de la préfecture de Kyoto. De la fin d'après-midi au lendemain matin.",
+          en: "Bare concrete, warm wood and a sauna, on the coast of Kyoto Prefecture. From late afternoon to the next morning.",
+        },
+        shotAt: {
+          fr: "Photographié les 6 et 7 octobre 2026.",
+          en: "Photographed on 6 and 7 October 2026.",
+        },
+        coverImage: "/images/portfolio/hospitality/mizuya/7.jpg",
+        films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Mizuya.mp4" }],
+      },
+      {
+        slug: "nishimuraya",
+        label: { fr: "Nishimuraya", en: "Nishimuraya" },
+        place: { fr: "Kinosaki Onsen, Japon", en: "Kinosaki Onsen, Japan" },
+        intro: {
+          fr: "Une ville thermale du nord de Hyōgo : les parapluies alignés à l'entrée pour la promenade du soir, une piscine sous les arbres, les bains dans la lumière de l'après-midi.",
+          en: "A hot-spring town in northern Hyōgo: umbrellas lined up at the door for the evening walk, a pool under the trees, the baths in the afternoon light.",
+        },
+        shotAt: {
+          fr: "Photographié les 8 et 9 octobre 2026.",
+          en: "Photographed on 8 and 9 October 2026.",
+        },
+        coverImage: "/images/portfolio/hospitality/nishimuraya/10.jpg",
+        films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Nishimuraya.mp4" }],
+      },
       // Coloc Housing retiré le 01/09, décision de Sandrine. La collaboration
       // s'est terminée sur un retrait de licence de sa part. Les images et le
       // film restent sur le disque, rien n'est supprimé : c'est la publication
