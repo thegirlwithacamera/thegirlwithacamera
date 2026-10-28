@@ -2,17 +2,17 @@ import { allCases } from "./constants";
 import { countCasePhotos, readPhotoRatio, type PortfolioPhoto } from "@/lib/portfolio";
 
 // ─────────────────────────────────────────────────────────────
-// Le portfolio se lit comme un livre (28/10, direction "photobook" choisie
-// par Sandrine). Chaque projet est un chapitre numéroté, dans l'ordre de
-// constants.ts : les maisons, puis les tables, puis les villes. Le sommaire
-// (Hotels & Houses, Destinations) et les pages de projet comptent ici, pour que le
-// numéro soit le même partout.
+// Les projets en ligne (ceux qui ont des photos), du plus récent au plus
+// ancien d'après leur date de tournage (champ date de constants.ts). Sert aux
+// pages Hotels & Houses et Destinations, et au précédent / suivant des pages
+// de projet. Pas de numéro de projet (28/10, Sandrine) : l'ordre change à
+// chaque nouveau projet.
 // ─────────────────────────────────────────────────────────────
 
-export function bookChapters() {
+export function liveProjects() {
   return allCases()
     .filter((c) => countCasePhotos(c.cat.slug, c.item.slug) > 0)
-    .map((c, i) => ({ ...c, no: i + 1 }));
+    .sort((a, b) => (b.item.date ?? "").localeCompare(a.item.date ?? ""));
 }
 
 export const no2 = (n: number) => String(n).padStart(2, "0");

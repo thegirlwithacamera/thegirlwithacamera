@@ -51,6 +51,10 @@ export type PhotoCase = {
   intro?: { fr: string; en: string };
   // Mois et année du tournage, affichés à la suite de l'intro.
   shotAt?: { fr: string; en: string };
+  // Date du tournage (AAAA-MM-JJ). Les projets sont classés du plus récent
+  // au plus ancien partout sur le site (décision de Sandrine du 28/10). Prise
+  // dans les métadonnées des originaux quand elles existent.
+  date?: string;
   // Position CSS object-position pour le crop 4:5 de la vignette du cas.
   coverPosition?: string;
   // Nom affiché d'un chapitre, quand le nom déduit du dossier ne suffit pas.
@@ -164,6 +168,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
         // chaptersAfter : la rangee d'ouverture montre trois maisons
         // differentes, pas trois chambres de la meme.
         slug: "altstadt-vienna",
+        date: "2026-09-02",
         // Nom de credit donne par Sandrine le 05/09. Le site de la maison
         // ecrit "Boutique Hotel Altstadt Vienna", SLH la liste en "Altstadt
         // Vienna" : c'est la forme que la maison demande pour etre creditee.
@@ -265,6 +270,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "hotel-rathaus-wien",
+        date: "2026-09-01", // à confirmer par Sandrine
         // Nom exact verifie sur hotel-rathaus-wien.at le 05/09 : la maison
         // s'appelle Hotel Rathaus Wein & Design, Lange Gasse 13, 1080 Wien.
         // "Wein", le vin, pas "Wien", la ville : c'est un hotel de design
@@ -294,6 +300,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       // supprimé : c'est la publication qui s'arrête.
       {
         slug: "naturel-dorf-schonleitn",
+        date: "2026-08-26",
         // Nom exact de la maison, verifie sur naturelhotels.com le 02/09 :
         // Naturel Hoteldorf Schoenleitn, du groupe Naturel Hotels & Resorts.
         // Le nom court garde Dorf Schoenleitn pour la vignette.
@@ -317,6 +324,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       // Les intros sont des brouillons à relire par Sandrine.
       {
         slug: "mizuya",
+        date: "2026-10-06",
         // Petit hôtel de Miyazu, préfecture de Kyoto (vérifié sur les fiches
         // de réservation le 28/10).
         label: { fr: "mizuya", en: "mizuya" },
@@ -334,6 +342,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "nishimuraya",
+        date: "2026-10-08",
         label: { fr: "Nishimuraya", en: "Nishimuraya" },
         place: { fr: "Kinosaki Onsen, Japon", en: "Kinosaki Onsen, Japan" },
         intro: {
@@ -362,6 +371,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
     cases: [
       {
         slug: "ce-pages",
+        date: "2026-07-14",
         // Cé·pages, point median et p minuscule, verifie le 11/09 : c'est un
         // jeu de mots sur les cepages. Le site l'ecrivait de trois facons,
         // Ce Pages, CE-PAGES et Ce-Pages, et aucune n'etait la bonne. Le nom
@@ -393,6 +403,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
         // dans la catégorie, et la page Vidéaste affiche le nom sans proposer
         // de lien. Le jour où les images arrivent, tout s'allume seul.
         slug: "van-der-valk-selys",
+        date: "2026-07-10",
         label: { fr: "Van der Valk Sélys", en: "Van der Valk Sélys" },
         place: { fr: "Liège, Belgique", en: "Liège, Belgium" },
         // Le texte ne parle que de la table et du spa : c'est ce qui a été
@@ -428,6 +439,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
         // Première commande de la catégorie Voyage : un office du tourisme,
         // pas une série personnelle. Elle est en tête du bloc pour ça.
         slug: "villach",
+        date: "2026-08-25",
         label: { fr: "Region Villach", en: "Region Villach" },
         short: { fr: "Villach", en: "Villach" },
         place: { fr: "Carinthie, Autriche", en: "Carinthia, Austria" },
@@ -447,6 +459,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
         // personnes sur un banc derriere une haie, faisait doublon avec la
         // vue a travers les branches et la haie mangeait le cadre.
         slug: "graz",
+        date: "2026-08-29", // à confirmer par Sandrine
         label: { fr: "Graz", en: "Graz" },
         place: { fr: "Styrie, Autriche", en: "Styria, Austria" },
         intro: {
@@ -478,6 +491,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "tokyo",
+        date: "2026-06-15", // à confirmer par Sandrine
         label: { fr: "Tokyo", en: "Tokyo" },
         place: { fr: "Japon", en: "Japan" },
         intro: {
@@ -491,6 +505,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "kyoto",
+        date: "2025-11-03",
         label: { fr: "Kyoto", en: "Kyoto" },
         place: { fr: "Japon", en: "Japan" },
         intro: {
@@ -501,6 +516,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "napoli",
+        date: "2024-10-09",
         label: { fr: "Naples", en: "Naples" },
         place: { fr: "Italie", en: "Italy" },
         intro: {
@@ -510,6 +526,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "burano",
+        date: "2024-10-12",
         label: { fr: "Burano", en: "Burano" },
         place: { fr: "Italie", en: "Italy" },
         intro: {
@@ -519,6 +536,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "venezia",
+        date: "2024-10-11",
         label: { fr: "Venise", en: "Venice" },
         place: { fr: "Italie", en: "Italy" },
         intro: {
@@ -528,6 +546,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
       },
       {
         slug: "palermo",
+        date: "2026-03-23",
         label: { fr: "Palerme", en: "Palermo" },
         place: { fr: "Italie", en: "Italy" },
         intro: {
@@ -623,14 +642,6 @@ export function findCaseByFilm(src: string) {
 // Un cas dont le dossier d'images est vide n'apparaît pas : c'est
 // app/[lang]/page.tsx qui vérifie, avec readCaseCover.
 // ─────────────────────────────────────────────────────────────
-
-// Les mots de clients publies, avec le chemin du travail dont ils parlent.
-// Source unique : le temoignage vit dans le cas, la page About le reprend.
-export function allTestimonials() {
-  return allCases()
-    .filter((c) => c.item.testimonial)
-    .map((c) => ({ t: c.item.testimonial!, href: c.href, label: c.item.label }));
-}
 
 export function allCases() {
   return PHOTO_CATEGORIES.flatMap((cat) =>

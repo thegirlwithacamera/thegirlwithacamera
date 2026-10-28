@@ -24,6 +24,9 @@ export default function Footer() {
       ? { eyebrow: "Un projet en tête ?", label: "Travaillons ensemble" }
       : { eyebrow: "Have a project in mind?", label: "Work with me" };
 
+  // L'accueil n'est que sa couverture, rien en dessous (28/10, Sandrine).
+  if (onHome) return null;
+
   return (
     <footer className={s.footer}>
       {!hideCta && (

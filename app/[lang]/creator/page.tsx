@@ -16,13 +16,14 @@ export function generateStaticParams() {
 export default async function CreatorPage({ params }: Props) {
   const { lang } = await params;
   // Couverture (28/10) comme les autres rubriques : Brands, troisième du
-  // menu choisi par Sandrine. Deux images sans texte incrusté, elle avec le
-  // Pentax 17 et l'appareil dans sa boîte.
+  // menu choisi par Sandrine. Le film "The Office" (bureau filmé d'en haut)
+  // en boucle muette ; les captures des vidéos verticales, trop basses en
+  // définition, ont été refusées.
   return (
     <>
       <Cover
-        images={["/videos/creator/GEAR/Pentax 17.jpg", "/videos/creator/UNBOXING/Pentax 17.jpg"]}
-        label="Brands"
+        film={{ src: "/videos/banners/brands-office.mp4", poster: "/videos/banners/brands-office.jpg" }}
+        label="Brands, a desk filmed from above by Sandrine Ceuppens"
         title="Brands"
       />
       <CreatorClient lang={lang} data={readCreatorData()} />

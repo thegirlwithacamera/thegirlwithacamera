@@ -3,7 +3,7 @@ import Link from "next/link";
 import type React from "react";
 import type { PhotoCategory, PhotoCase } from "../../constants";
 import { readCasePhotos, readCaseChapters } from "@/lib/portfolio";
-import { bookChapters, layoutSpreads, no2 } from "../../book";
+import { liveProjects, layoutSpreads, no2 } from "../../book";
 import Spreads from "./Spreads";
 import { posterForPath } from "@/lib/creator-videos";
 import PhotoPager from "../PhotoPager";
@@ -73,10 +73,9 @@ export default function CaseView({
     label: item.films!.length > 1 ? f.label?.[lang] : undefined,
   }));
 
-  // Numéro du chapitre, cas précédent et suivant : l'ordre du livre.
-  const book = bookChapters();
+  // Projet précédent et suivant : du plus récent au plus ancien.
+  const book = liveProjects();
   const at = book.findIndex((c) => c.cat.slug === cat.slug && c.item.slug === item.slug);
-  const chapterNo = at >= 0 ? book[at].no : null;
   const prevCase = at > 0 ? book[at - 1] : null;
   const nextCase = at >= 0 && at < book.length - 1 ? book[at + 1] : null;
 
@@ -105,15 +104,15 @@ export default function CaseView({
   const prevLabel = prevChapter
     ? prevChapter.title
     : prevCase ? (prevCase.item.short?.[lang] ?? prevCase.item.label[lang]) : null;
-  const prevNo = prevChapter ? no2(activeIndex) : prevCase ? no2(prevCase.no) : null;
+  const prevNo = prevChapter ? no2(activeIndex) : null;
   const nextHref = nextChapter ? `${base}/${nextChapter.slug}` : nextCase ? `/${lang}${nextCase.href}` : null;
   const nextLabel = nextChapter
     ? nextChapter.title
     : nextCase ? (nextCase.item.short?.[lang] ?? nextCase.item.label[lang]) : null;
-  const nextNo = nextChapter ? no2(activeIndex + 2) : nextCase ? no2(nextCase.no) : null;
+  const nextNo = nextChapter ? no2(activeIndex + 2) : null;
   // Dans une maison à pièces on tourne les pièces, ailleurs les chapitres.
-  const prevKind = prevChapter ? (lang === "fr" ? "Pièce" : "Room") : (lang === "fr" ? "Chapitre" : "Chapter");
-  const nextKind = nextChapter ? (lang === "fr" ? "Pièce" : "Room") : (lang === "fr" ? "Chapitre" : "Chapter");
+  const prevKind = prevChapter ? (lang === "fr" ? "Pièce" : "Room") : (lang === "fr" ? "Plus récent" : "Newer");
+  const nextKind = nextChapter ? (lang === "fr" ? "Pièce" : "Room") : (lang === "fr" ? "Plus ancien" : "Older");
 
   const talk = cat.citySeries
     ? lang === "fr" ? "Votre ville, vue comme ça ? Parlons-en →" : "Your city, seen like this? Let's talk →"
@@ -139,7 +138,7 @@ export default function CaseView({
               <Link href={indexHref}>← {indexLabel}</Link>
             </>
           }
-          kicker={chapterNo ? <>{lang === "fr" ? "Chapitre" : "Chapter"} {no2(chapterNo)} · {cat.label[lang]}</> : undefined}
+          kicker={cat.label[lang]}
           title={item.label[lang]}
           tr={
             <>
@@ -219,13 +218,13 @@ export default function CaseView({
         <nav className={s.turn} aria-label={lang === "fr" ? "Suite" : "More"}>
           {prevHref ? (
             <Link href={prevHref} className={s.turnLink}>
-              <span className={s.turnKind}>← {prevKind} {prevNo}</span>
+              <span className={s.turnKind}>← {prevKind}{prevNo && ` ${prevNo}`}</span>
               <span className={s.turnName}>{prevLabel}</span>
             </Link>
           ) : <span />}
           {nextHref ? (
             <Link href={nextHref} className={`${s.turnLink} ${s.turnNext}`}>
-              <span className={s.turnKind}>{nextKind} {nextNo} →</span>
+              <span className={s.turnKind}>{nextKind}{nextNo && ` ${nextNo}`} →</span>
               <span className={s.turnName}>{nextLabel}</span>
             </Link>
           ) : <span />}

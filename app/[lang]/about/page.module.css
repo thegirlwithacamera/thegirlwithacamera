@@ -1,119 +1,21 @@
 .main { padding-bottom: 8px; }
-/* Sous la couverture : la bio, le lien et les réseaux, au centre. */
-.hero {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: clamp(40px, 6vw, 80px) var(--pad) 0;
+
+/* Le court texte de présentation, sous la couverture. */
+.intro {
+  max-width: 680px;
+  margin: clamp(48px, 7vw, 96px) auto 0;
+  padding: 0 var(--pad);
+  text-align: center;
 }
-.eyebrow { margin-bottom: 18px; }
-.bio { margin: 24px 0 0; max-width: 480px; }
-.links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 28px 0 0; padding: 0; list-style: none; }
-.links a {
-  font-family: var(--font-sans);
-  font-size: var(--text-label);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.links a:hover, .links .brick { color: var(--brick); }
-/* Rangee de logos sous les deux liens. Cible de 40px de haut au doigt,
-   meme si le dessin n'en fait que 18. */
-.socials { display: flex; flex-wrap: wrap; gap: 4px 6px; margin: 14px 0 0; padding: 0; list-style: none; }
-.socials a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-left: -10px;
-  color: var(--stone);
-  transition: color 0.2s ease;
-}
-.socials li:first-child a { margin-left: -10px; }
-.socials a:hover { color: var(--brick); }
-.socials svg { width: 18px; height: 18px; display: block; }
-.approach { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--pad); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 24px clamp(32px, 6vw, 96px); }
-.approach p {
+.intro p {
+  margin: 0;
   font-family: var(--font-serif);
-  font-size: var(--text-body);
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
   line-height: 1.6;
   color: var(--ink);
-  margin: 0 0 18px;
-}
-.approach p:last-child { margin-bottom: 0; }
-.clients { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--pad); }
-.clients .eyebrow { margin-bottom: 24px; }
-.mails { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 24px 0 0; padding: 0; list-style: none; }
-.mail { font-family: var(--font-serif); font-size: var(--text-body); color: var(--ink); text-decoration: none; }
-.mail:hover { color: var(--brick); }
-.mail span { color: var(--stone); font-style: italic; margin-right: 8px; }
-@media (max-width: 900px) {
-  .approach { grid-template-columns: 1fr; }
 }
 
-/* Titre centré en haut, sur le modèle d'adriana-maria.com (16/09). */
-
-
-/* Parcours en grandes bandes, une par étape (16/09). La date et la phrase
-   se posent sur la photo ; sans photo, la bande reste sombre. */
-.pathSection { margin-top: var(--section); }
-.pathTitle { max-width: var(--page-max); margin: 0 auto 32px; padding: 0 var(--pad); }
-/* Les étapes s'empilent (16/09) : chacune reste collée en haut pendant que
-   la suivante glisse par dessus, comme sur adriana-maria.com. */
-.step {
-  position: sticky;
-  top: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  overflow: hidden;
-  background: var(--ink);
-}
-.stepPlain { min-height: clamp(240px, 36vh, 360px); }
-.stepImg { object-fit: cover; }
-.stepVeil { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(12, 12, 12, 0.62) 0%, rgba(12, 12, 12, 0.15) 65%); }
-.stepPlain .stepVeil { display: none; }
-.stepText {
-  position: relative;
-  width: 100%;
-  max-width: var(--page-max);
-  margin: 0 auto;
-  padding: clamp(40px, 6vw, 88px) var(--pad);
-  color: #fff;
-}
-.stepWhen { margin: 0; font-family: var(--font-sans); font-size: var(--text-label); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); }
-.stepTitle { margin: 14px 0 0; font-family: var(--font-serif); font-weight: 400; font-style: italic; font-size: clamp(2rem, 4.4vw, 3.75rem); line-height: 1.05; color: #fff; }
-.stepWhat { margin: 16px 0 0; max-width: 720px; font-family: var(--font-serif); font-size: clamp(1.125rem, 1.8vw, 1.5rem); line-height: 1.5; }
-
-/* Téléphone : chaque photo du parcours garde son format horizontal, le
-   texte passe dessous sur fond sombre au lieu d'être posé sur une bande
-   haute qui rognait l'image (16/09). */
-@media (max-width: 767px) {
-  .step { display: block; min-height: 0; }
-  .stepImg { position: relative !important; width: 100% !important; height: auto !important; aspect-ratio: 3 / 2; inset: auto !important; }
-  .stepVeil { display: none; }
-  .stepText { padding: 20px 20px 36px; }
-  .stepTitle { font-size: 2rem; margin-top: 8px; }
-  .stepWhat { margin-top: 8px; font-size: 1.0625rem; }
-}
-
-/* Tout centré depuis le 16/09, décision de Sandrine. */
-.approach { grid-template-columns: 1fr; max-width: 760px; text-align: center; justify-items: center; }
-.clients { text-align: center; }
-.clients .mails { justify-content: center; }
-.pathTitle { text-align: center; }
-.stepText { text-align: center; }
-.stepWhat { margin-left: auto; margin-right: auto; }
-.hero > div:last-child { text-align: center; }
-.hero .bio { margin-left: auto; margin-right: auto; }
-.hero .links, .hero .socials { justify-content: center; }
-.hero .socials li:first-child a, .hero .socials a { margin-left: 0; }
-.stepWhat em { font-style: italic; }
-
-/* Contact (fusionné dans About le 28/10) : le texte, les adresses, le
-   formulaire, puis les questions. */
+/* Le formulaire, sous l'ancre #contact. */
 .contact {
   max-width: 640px;
   margin: var(--section) auto 0;
@@ -121,6 +23,14 @@
   scroll-margin-top: 24px;
   text-align: center;
 }
+.contactTitle {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-l);
+  line-height: 1.1;
+}
+.contactTitle em { font-style: italic; color: var(--brick); }
 .words { margin: 24px 0 32px; }
 .words p {
   margin: 0 0 14px;
@@ -130,42 +40,11 @@
   color: var(--ink);
 }
 .words .fr { font-style: italic; color: var(--stone); }
-.words .mails { margin-top: 24px; font-family: var(--font-sans); font-size: var(--text-ui); letter-spacing: 0.04em; line-height: 1.9; }
+.words .mails { margin-top: 20px; font-family: var(--font-sans); font-size: var(--text-ui); letter-spacing: 0.04em; }
 .words .mails a { color: var(--ink); text-underline-offset: 3px; }
 .words .mails a:hover { color: var(--brick); }
-.words .mails span { color: var(--stone); font-style: italic; font-family: var(--font-serif); }
 .contact form { text-align: left; }
 
-.faqBlock { max-width: 760px; margin: var(--section) auto 0; padding: 0 var(--pad); text-align: center; }
-.faq { margin: 24px auto 0; text-align: left; }
-.faq details { border-bottom: 1px solid var(--line); }
-.faq details:first-child { border-top: 1px solid var(--line); }
-.faq summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 18px 28px 18px 0;
-  position: relative;
-  font-family: var(--font-serif);
-  font-size: var(--text-body);
-  color: var(--ink);
-}
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after {
-  content: "";
-  position: absolute;
-  right: 4px; top: 26px;
-  width: 7px; height: 7px;
-  border-right: 1px solid var(--stone);
-  border-bottom: 1px solid var(--stone);
-  transform: rotate(45deg);
-  transition: transform 0.25s ease;
-}
-.faq details[open] summary::after { transform: rotate(-135deg); top: 30px; }
-.faq details p {
-  margin: 0;
-  padding: 0 28px 20px 0;
-  font-family: var(--font-sans);
-  font-size: var(--text-ui);
-  line-height: 1.65;
-  color: var(--stone);
+@media (max-width: 767px) {
+  .intro, .contact { padding-left: 20px; padding-right: 20px; }
 }
