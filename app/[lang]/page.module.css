@@ -8,7 +8,9 @@
   min-height: clamp(560px, 88vh, 920px);
   background: var(--ink);
 }
-.heroBg { object-fit: cover; object-position: 50% 45%; }
+.heroBg { position: absolute; inset: 0; overflow: hidden; }
+.heroBg video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.heroTall { display: none; }
 .heroVeil {
   position: absolute;
   inset: 0;
@@ -26,9 +28,14 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr);
   gap: clamp(24px, 4vw, 64px);
 }
-.heroTitle {
+.heroText {
   align-self: end;
   margin: 0 0 clamp(40px, 7vw, 96px);
+  position: relative;
+  z-index: 2;
+}
+.heroTitle {
+  margin: 0;
   font-family: var(--font-serif);
   font-weight: 400;
   font-size: clamp(3rem, 7.2vw, 6.5rem);
@@ -40,6 +47,29 @@
   z-index: 2;
 }
 .heroTitle em { font-style: italic; }
+.heroSub {
+  margin: 22px 0 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+.heroButton {
+  display: inline-block;
+  margin-top: 26px;
+  padding: 14px 34px;
+  border: 1px solid #fff;
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.heroButton:hover { background: #fff; color: var(--ink); }
+.heroButton:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
 /* Le portrait déborde sous l'ouverture, sur le blanc (16/09, comme chez
    Adriana) : l'ouverture n'est plus rognée, le portrait passe devant. */
 .heroPortrait {
@@ -82,7 +112,25 @@
 .introButton:hover { background: var(--ink); color: var(--paper); }
 .introButton:focus-visible { outline: 2px solid var(--brick); outline-offset: 4px; }
 
+.trust { padding: 0 0 var(--section); text-align: center; }
+.trustLabel { margin-bottom: 28px; }
+.selected { padding-bottom: var(--section); }
+.words { max-width: 860px; margin: 0 auto; padding: 0 var(--pad) var(--section); }
 .bands { position: relative; }
+.closing {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--section) var(--pad) 0;
+  text-align: center;
+}
+.closingText {
+  margin: 20px auto 32px;
+  max-width: 520px;
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--stone);
+}
 .insta { padding-top: var(--section); }
 .instaHead {
   display: block;
@@ -111,9 +159,11 @@
   .intro { padding-top: var(--section); }
   .heroInner { grid-template-columns: 1fr; }
   .heroPortrait { grid-row: 1; width: min(70vw, 360px); justify-self: end; margin: clamp(48px, 10vh, 96px) 0 0; }
-  .heroTitle { grid-row: 2; margin-top: 28px; }
+  .heroText { grid-row: 2; margin-top: 28px; }
 }
 @media (max-width: 767px) {
+  .heroWide { display: none; }
+  .heroTall { display: block; }
   .intro { padding-left: 20px; padding-right: 20px; }
   .instaRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .instaRow > a:nth-child(5) { display: none; }

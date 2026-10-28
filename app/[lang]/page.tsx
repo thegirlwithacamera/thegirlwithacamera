@@ -3,8 +3,12 @@ import { allPosts, formatDate } from "@/lib/journal";
 import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
-import { ProjectCard, ProjectGrid, SectionBar } from "./components/editorial";
+import { Cta, Display, em, Eyebrow, ProjectCard, ProjectGrid, SectionBar } from "./components/editorial";
 import Band from "./components/Band";
+import TrustLogos from "./components/TrustLogos";
+import TestimonialCarousel from "./components/TestimonialCarousel";
+import LazyFilm from "./destinations/LazyFilm";
+import { allTestimonials } from "./photographer/constants";
 import InstagramRow from "./components/InstagramRow";
 import { INSTAGRAM_FALLBACK } from "@/lib/instagram";
 import s from "./page.module.css";
@@ -25,37 +29,50 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMeta({
     lang: "en",
     path: "",
-    title: "The Girl With A Camera · Sandrine Ceuppens, travel photographer & content creator",
+    title: "The Girl With A Camera · Sandrine Ceuppens, travel photographer, filmmaker & content creator",
     description:
       "Sandrine Ceuppens, travel photographer and content creator based in Brussels. Hotels and destinations, photographed and filmed the way they feel. Travelling worldwide.",
   });
 }
 
 // ─────────────────────────────────────────────────────────────
-// ACCUEIL, refait le 16/09 sur la structure d'adriana-maria.com.
+// ACCUEIL, refait le 16/09 sur la structure d'adriana-maria.com, puis
+// réordonné le 28/10 pour vendre la photo ET le film aux clients.
 //
-// Ouverture : une grande photo horizontale en fond (Tokyo la nuit, R0010544)
-// et le portrait de Sandrine devant le Fuji, vertical, posé à droite par
-// dessus. Le titre est sa bio Instagram. Portrait à droite plutôt qu'à
-// gauche : à gauche il cachait la femme qui traverse, et le titre passait sur
-// les enseignes.
+// Ouverture : un seul film en boucle, muet, en fond, celui de Nishimuraya
+// (Japon). Un projet entier plutôt qu'un montage de plusieurs (choix de
+// Sandrine le 28/10). Version horizontale sur ordinateur, verticale sur
+// téléphone, coupées après le carton "Welcome to Nishimuraya" pour ne pas
+// doubler le titre. Le portrait de Sandrine devant le Fuji est posé à
+// droite par dessus.
+// Le titre dit "photograph and film" : le film ne se voyait nulle part dans
+// le premier écran.
 //
-// Ensuite quelques mots, puis trois portes : Destinations, Content creator,
-// Journal. Plus de grille de tous les projets ici, elle vit sur
-// Destinations.
+// Ensuite, dans l'ordre où un client se pose les questions : qui t'a fait
+// confiance (logos), qu'as-tu fait (trois projets, tous photo + film),
+// comment ça s'est passé (témoignages), et pour les marques la porte
+// Content creator. Puis l'appel à écrire, le Journal et Instagram.
 // ─────────────────────────────────────────────────────────────
 
 const HERO = {
-  background: "/images/home/hero-tokyo.jpg",
+  film: { src: "/videos/banners/home-nishimuraya.mp4", poster: "/videos/banners/home-nishimuraya.jpg" },
+  filmVertical: { src: "/videos/banners/home-nishimuraya-vertical.mp4", poster: "/videos/banners/home-nishimuraya-vertical.jpg" },
   portrait: "/images/about/hero.jpg",
 };
 
-// Trois grandes bandes pleine largeur, comme chez Adriana. Les images sont
-// des affiches de films (1920 px), les seules horizontales assez grandes.
+// Trois projets commandés, chacun avec photos et film. Pour changer la
+// sélection, changer les lignes ci-dessous (couverture verticale 2:3).
+const P = "/images/portfolio";
+const SELECTED = [
+  { href: "/en/photographer/hospitality/altstadt-vienna", title: "Altstadt Vienna", place: "Vienna", cover: `${P}/hospitality/altstadt-vienna/03-saris-home/1.jpg` },
+  { href: "/en/photographer/hospitality/naturel-dorf-schonleitn", title: "Naturel Hoteldorf Schönleitn", place: "Carinthia", cover: `${P}/hospitality/naturel-dorf-schonleitn/1.jpg` },
+  { href: "/en/photographer/travel/graz", title: "Graz Tourismus", place: "Styria", cover: `${P}/travel/graz/4.jpg` },
+];
+
+// Une seule bande pleine largeur, pour les marques. Destinations a sa
+// sélection juste au dessus, le Journal sa grille plus bas.
 const BANDS = [
-  { href: "/en/destinations", word: "Destinations", button: "Discover the work", image: "/videos/creator/CINEMATIC/CITIES/Villach.jpg", position: "50% 40%" },
   { href: "/en/creator", word: "Content creator", button: "See the videos", image: "/videos/creator/CINEMATIC/HOTELS/Hotel Rathaus.jpg", position: "50% 50%" },
-  { href: "/en/journal", word: "Journal", button: "Read the stories", image: "/images/home/journal-fuji-train.jpg", position: "50% 50%" },
 ];
 
 // Bande Instagram en bas de page : les cinq derniers posts du compte, lus par
@@ -69,18 +86,21 @@ export default async function HomePage({ params }: Props) {
   return (
     <main className={s.main}>
       <section className={s.hero}>
-        <Image
-          src={HERO.background}
-          alt="A ramen restaurant on a street corner in Tokyo at night"
-          fill
-          priority
-          sizes="100vw"
-          quality={78}
-          className={s.heroBg}
-        />
+        {/* Une seule des deux versions est affichée ; l'autre, masquée, n'entre
+            jamais à l'écran et ne se charge donc pas. */}
+        <div className={`${s.heroBg} ${s.heroWide}`}>
+          <LazyFilm {...HERO.film} label="Nishimuraya, a ryokan in Japan, filmed by Sandrine Ceuppens" sound={false} />
+        </div>
+        <div className={`${s.heroBg} ${s.heroTall}`}>
+          <LazyFilm {...HERO.filmVertical} label="Nishimuraya, a ryokan in Japan, filmed by Sandrine Ceuppens" sound={false} />
+        </div>
         <span className={s.heroVeil} aria-hidden="true" />
         <div className={s.heroInner}>
-          <h1 className={s.heroTitle}>I photograph <em>the way it feels.</em></h1>
+          <div className={s.heroText}>
+            <h1 className={s.heroTitle}>I photograph and film <em>the way it feels.</em></h1>
+            <p className={s.heroSub}>Hotels, destinations &amp; brands · Photo &amp; film</p>
+            <Link href="/en/contact" className={s.heroButton}>Work with me</Link>
+          </div>
           <div className={s.heroPortrait}>
             <Image
               src={HERO.portrait}
@@ -97,9 +117,38 @@ export default async function HomePage({ params }: Props) {
 
       <section className={s.intro}>
         <p className={s.introText}>
-          Travel photographer &amp; content creator. I work in natural light, with nothing staged. I arrive before everyone else, often at five in the morning, to catch the moment a room or a street feels like itself. Sometimes I step into the frame, to tell the stay from the inside.
+          Travel photographer, filmmaker &amp; content creator. I work in natural light, with nothing staged. I arrive before everyone else, often at five in the morning, to catch the moment a room or a street feels like itself. Stills and film on the same visit, so the place reads as a whole.
         </p>
         <Link href="/en/about" className={s.introButton}>Read my story</Link>
+      </section>
+
+      <section className={s.trust}>
+        <Eyebrow tone="brick" className={s.trustLabel}>They trusted me</Eyebrow>
+        <TrustLogos lang="en" hideLabel />
+      </section>
+
+      <section className={s.selected}>
+        <SectionBar label="Selected work" sub="Photographs & film" href="/en/destinations" linkLabel="All destinations" />
+        <ProjectGrid>
+          {SELECTED.map((p) => (
+            <ProjectCard
+              key={p.href}
+              href={p.href}
+              cover={p.cover}
+              alt={`${p.title}, photographed by Sandrine Ceuppens`}
+              title={p.title}
+              sub={p.place}
+              hasFilm
+            />
+          ))}
+        </ProjectGrid>
+      </section>
+
+      <section className={s.words}>
+        <TestimonialCarousel
+          lang="en"
+          items={allTestimonials().map((x) => ({ t: x.t, href: x.href, label: x.label.en }))}
+        />
       </section>
 
       <div className={s.bands}>
@@ -107,6 +156,12 @@ export default async function HomePage({ params }: Props) {
           <Band key={b.href} {...b} />
         ))}
       </div>
+
+      <section className={s.closing}>
+        <Display size="l" as="h2">{em("Your place, *told the way it feels.*")}</Display>
+        <p className={s.closingText}>Hotels, tourism boards and brands: tell me about the place and the dates. I answer within a few days.</p>
+        <Cta href="/en/contact" variant="button">Work with me</Cta>
+      </section>
 
       {posts.length > 0 && (
         <section className={s.latest}>
