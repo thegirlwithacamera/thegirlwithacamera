@@ -20,9 +20,9 @@ type Data = {
 
 const content = {
   fr: {
-    eyebrow: "Creator",
+    eyebrow: "Brands",
     title: "Du contenu pensé pour *le feed*, tourné comme une histoire.",
-    lede: "Vidéo verticale pour les marques d'appareils et d'accessoires, et pour les maisons qui reçoivent. Sur mes canaux ou sur les vôtres.",
+    lede: "Vidéo verticale pour les marques d'appareils photo, comme Ricoh, Insta360 ou Godox, et pour les hôtels. Publiée sur mes canaux ou livrée pour les vôtres.",
     gear: "Gear",
     lifestyle: "Lifestyle",
     unboxing: "Unboxing",
@@ -32,9 +32,9 @@ const content = {
     deliverables: "Vidéo verticale · Photos éditées · Concept, tournage et montage · Droits d'usage chiffrés séparément",
   },
   en: {
-    eyebrow: "Creator",
+    eyebrow: "Brands",
     title: "Content made for *the feed*, shot like a story.",
-    lede: "Vertical video for camera and accessory brands, and for houses that welcome people. On my channels or yours.",
+    lede: "Vertical video for camera brands like Ricoh, Insta360 and Godox, and for hotels. Posted on my channels or delivered for yours.",
     gear: "Gear",
     lifestyle: "Lifestyle",
     unboxing: "Unboxing",

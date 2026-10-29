@@ -146,7 +146,7 @@ export type PhotoCategory = {
 const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
   {
     slug: "hospitality",
-    label: { fr: "Hôtels & maisons", en: "Hotels & venues" },
+    label: { fr: "Hôtels & maisons", en: "Hotels & Houses" },
     cover: "/images/portfolio/hospitality/naturel-dorf-schonleitn/1.jpg",
     cases: [
       {

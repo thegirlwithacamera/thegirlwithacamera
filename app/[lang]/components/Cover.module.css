@@ -103,6 +103,9 @@
   /* Les deux coins du haut se partagent la largeur et passent à la ligne
      plutôt que de se chevaucher. */
   .tl, .tr { max-width: calc(50% - 20px); }
+  /* Le nom du lieu garde de la présence sur téléphone (il était perdu
+     dans le coin, analyse du 29/10). */
+  .title { font-size: 2.125rem; margin: 6px 0 4px; }
   /* Deux pages côte à côte deviennent une seule sur téléphone. */
   .spread[data-count="2"] { grid-template-columns: 1fr; }
   .spread[data-count="2"] .page:last-child { display: none; }

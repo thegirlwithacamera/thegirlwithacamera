@@ -138,7 +138,9 @@ export default function CaseView({
               <Link href={indexHref}>← {indexLabel}</Link>
             </>
           }
-          kicker={cat.label[lang]}
+          // La rubrique est déjà dans le lien retour : on ne la répète
+          // que quand elle dit autre chose (Restaurants & bars).
+          kicker={cat.label.en === indexLabel || cat.citySeries ? undefined : cat.label[lang]}
           title={item.label[lang]}
           tr={
             <>
