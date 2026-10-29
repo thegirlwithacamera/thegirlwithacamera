@@ -23,7 +23,7 @@
   font-size: var(--text-label);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--brick);
+  color: var(--stone);
 }
 .quotes { max-width: 860px; margin: clamp(40px, 5vw, 64px) auto 0; }
 
@@ -50,7 +50,7 @@
   font-size: var(--text-l);
   line-height: 1.1;
 }
-.contactTitle em { font-style: italic; color: var(--brick); }
+.contactTitle em { font-style: italic; }
 .words { margin: 24px 0 32px; }
 .words p {
   margin: 0 0 14px;

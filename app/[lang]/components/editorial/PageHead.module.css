@@ -17,7 +17,7 @@
   transition: color 0.2s ease;
 }
 .back:hover { color: var(--brick); }
-.eyebrow { margin-bottom: 16px; color: var(--brick); }
+.eyebrow { margin-bottom: 16px; }
 .meta {
   display: flex;
   flex-wrap: wrap;

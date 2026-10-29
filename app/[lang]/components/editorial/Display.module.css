@@ -7,15 +7,16 @@
   text-wrap: balance;
   overflow-wrap: break-word;
 }
+/* L'italique reste à l'encre (29/10) : la brique est réservée à ce qui
+   se clique, pour qu'un même rôle ait partout la même couleur. */
 .display em {
   font-style: italic;
-  color: var(--brick);
 }
 .xl { font-size: var(--text-xl); line-height: 1.02; }
 .l  { font-size: var(--text-l);  line-height: 1.08; }
 .m  { font-size: var(--text-m);  line-height: 1.15; }
 .italic { font-style: italic; }
-/* Sur écran large, la phrase en italique brique reste d'un seul tenant :
+/* Sur écran large, la phrase en italique reste d'un seul tenant :
    un mot seul en fin de ligne casse la lecture. Sur mobile elle se coupe
    librement pour ne jamais déborder. */
 @media (min-width: 900px) {

@@ -67,7 +67,7 @@ export default function NewsletterCta({
           color: var(--ink);
           margin: 0 0 10px;
         }
-        .nl-title em { font-style: italic; color: var(--brick); }
+        .nl-title em { font-style: italic; }
         .nl-sub {
           font-family: var(--font-serif);
           font-size: var(--text-body);

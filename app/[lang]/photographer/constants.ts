@@ -328,7 +328,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
         date: "2026-10-06",
         // Petit hôtel de Miyazu, préfecture de Kyoto (vérifié sur les fiches
         // de réservation le 28/10).
-        label: { fr: "mizuya", en: "mizuya" },
+        label: { fr: "Mizuya", en: "Mizuya" },
         place: { fr: "Miyazu, Japon", en: "Miyazu, Japan" },
         intro: {
           fr: "Béton brut, bois chaud et un sauna, sur la côte de la préfecture de Kyoto. De la fin d'après-midi au lendemain matin.",
@@ -369,7 +369,7 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
   },
   {
     slug: "restaurants",
-    label: { fr: "Restaurants & bars", en: "Restaurants & bars" },
+    label: { fr: "Restaurants & bars", en: "Restaurants & Bars" },
     cover: "/images/portfolio/restaurants/ce-pages/1.jpg",
     cases: [
       {

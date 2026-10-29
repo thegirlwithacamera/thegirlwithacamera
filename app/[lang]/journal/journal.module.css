@@ -85,7 +85,7 @@
   font-size: var(--text-label);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--brick);
+  color: var(--stone);
   font-weight: 400;
 }
 /* Photos verticales : jamais plus hautes que l'écran. */

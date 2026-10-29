@@ -56,9 +56,9 @@ app/
 ## Design System
 
 Direction éditoriale depuis le 08/09/2026 (magazine, photobook, sobre, fond blanc) :
-- **Couleurs** : variables dans `app/[lang]/globals.css`. `--paper` #FFFFFF (fond blanc), `--ink` #141414 (texte), `--brick` #8C3A2B (accent, italiques des titres uniquement), `--stone` #6B6560 (texte secondaire), `--line` #E3DDD3 (filets). Aucune couleur en dur dans les pages.
+- **Couleurs** : variables dans `app/[lang]/globals.css`. `--paper` #FFFFFF (fond blanc), `--ink` #141414 (texte), `--brick` #8C3A2B (accent réservé à ce qui se clique : liens, appels « Let's talk », précédent/suivant ; depuis le 29/10 les italiques des titres et les petits intitulés sont à l'encre ou en `--stone`), `--stone` #6B6560 (texte secondaire), `--line` #E3DDD3 (filets). Aucune couleur en dur dans les pages.
 - **Typographie** : EB Garamond (titres, textes éditoriaux, légendes), Inter (menus, eyebrows, formulaire). Échelle `--text-xl` à `--text-label`. Jamais sous 11 px.
-- **Composants** : `app/[lang]/components/editorial/` (Eyebrow, Display avec `*italique brique*`, Lede, Caption, Cta, PageHead, ProjectGrid, ProjectCard, Section). Styles en CSS Modules, un par composant ou par page. Pas de bloc `<style>` dans les pages.
+- **Composants** : `app/[lang]/components/editorial/` (Eyebrow, Display avec `*italique*`, Lede, Caption, Cta, PageHead, ProjectGrid, ProjectCard, Section). Styles en CSS Modules, un par composant ou par page. Pas de bloc `<style>` dans les pages.
 - **Identité conservée** : grille 3 colonnes (2 sur mobile), mockups téléphone sur Creator (`components/showcase.css`).
 - **Couvertures (28/10/2026)** : chaque rubrique s'ouvre sur `components/Cover.tsx`, un film ou deux photos plein cadre avec une mention dans chaque coin (d'après la couverture du portfolio de Lola Fechino). Pas de menu en haut sur ces pages : les rubriques sont dans les coins (`components/nav.ts` : Hotels & Houses `/en/hotels`, Destinations `/en/destinations`, Brands `/en/creator`, puis Journal, Contact, About). About et Contact ne font qu'une page (`/en/about`, formulaire sous `#contact`). Les autres pages gardent une ligne d'en-tête dans la même écriture. L'accueil n'est que sa couverture (film Altstadt), sans rien dessous. Les projets ne sont pas numérotés et se classent du plus récent au plus ancien (champ `date` dans `photographer/constants.ts`).
 

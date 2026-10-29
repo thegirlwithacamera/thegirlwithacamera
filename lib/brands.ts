@@ -153,9 +153,9 @@ export const TRUST_LABEL: Record<"fr" | "en", string> = {
 
 // Intertitres des deux groupes.
 export const CAT_LABEL: Record<BrandCat, Record<"fr" | "en", string>> = {
-  stays: { fr: "HÔTELS, MAISONS & TABLES", en: "HOTELS, HOUSES & TABLES" },
-  travel: { fr: "VILLES & VOYAGE", en: "CITIES & TRAVEL" },
-  brand: { fr: "MARQUES", en: "BRANDS" },
+  stays: { fr: "Hôtels, maisons & tables", en: "Hotels, Houses & Tables" },
+  travel: { fr: "Villes & voyage", en: "Cities & Travel" },
+  brand: { fr: "Marques", en: "Brands" },
 };
 
 // Logos du ou des clients d'un cas, pour la page du cas elle meme.

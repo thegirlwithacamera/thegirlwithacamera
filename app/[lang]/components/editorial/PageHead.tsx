@@ -37,7 +37,7 @@ export default function PageHead({
   const head = (
     <>
       {back && <Link href={back.href} className={s.back}>← {back.label}</Link>}
-      {eyebrow && <Eyebrow className={s.eyebrow} tone="brick">{eyebrow}</Eyebrow>}
+      {eyebrow && <Eyebrow className={s.eyebrow}>{eyebrow}</Eyebrow>}
       <Display size={size} as={as}>{title}</Display>
       {metaItems.length > 0 && (
         <ul className={s.meta}>
