@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: "Brands",
     description:
       lang === "fr"
-        ? "Films de marque cinématiques et vidéo verticale pour les réseaux, en influence ou en UGC. Collaborations avec Ricoh, Pentax, Insta360, Godox et Edifier."
-        : "Cinematic brand films and vertical video for social, as influence or UGC. Collaborations with Ricoh, Pentax, Insta360, Godox and Edifier.",
+        ? "Films de marque cinématiques et vidéo verticale pour les réseaux, en influence ou en UGC. Collaborations avec Ricoh, Pentax, Insta360 et Godox."
+        : "Cinematic brand films and vertical video for social, as influence or UGC. Collaborations with Ricoh, Pentax, Insta360 and Godox.",
   });
 }
 

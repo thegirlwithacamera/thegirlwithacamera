@@ -41,13 +41,6 @@ export type BrandFilm = {
 
 export const BRAND_FILMS: readonly BrandFilm[] = [
   // Livraison attendue la semaine du 02/11.
+  // Edifier retiré le 30/10 (Sandrine) : Patam seul, en production.
   { slug: "patam", client: "Patam", year: 2026 },
-  {
-    slug: "edifier",
-    client: "Edifier",
-    year: 2026,
-    src: "/videos/creator/CINEMATIC/LIFESTYLE/Edifier.mp4",
-    poster: "/videos/creator/CINEMATIC/LIFESTYLE/Edifier.jpg",
-    role: "Concept, shooting, edit",
-  },
 ];

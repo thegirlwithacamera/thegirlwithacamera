@@ -21,11 +21,11 @@ const content = {
     modes: { influence: "Sur mes comptes", ugc: "Pour vos comptes" },
     line: {
       influence: "Publié sur mes comptes, avec ma voix, auprès d'une audience qui suit la photo et le voyage.",
-      ugc: "Tourné pour votre marque et livré : le montage, les rushes, prêts pour votre feed ou vos publicités.",
+      ugc: "Tourné et monté pour votre marque, livré prêt à publier sur votre feed ou dans vos publicités.",
     },
     deliverables: {
       influence: "Vidéo verticale · Publication sur mes comptes · Repost sur les vôtres",
-      ugc: "Vidéo verticale · Montage et rushes · Droits publicitaires chiffrés séparément",
+      ugc: "Vidéo verticale · Concept, tournage et montage · Droits publicitaires chiffrés séparément",
     },
     selected: "Ils travaillent déjà avec moi",
   },
@@ -36,11 +36,11 @@ const content = {
     modes: { influence: "On my channels", ugc: "For your channels" },
     line: {
       influence: "Posted on my channels, in my voice, to an audience that follows photography and travel.",
-      ugc: "Shot for your brand and handed over: the edit and the raw clips, ready for your feed or your ads.",
+      ugc: "Shot and edited for your brand, delivered ready to post on your feed or run in your ads.",
     },
     deliverables: {
       influence: "Vertical video · Posted on my channels · Repost on yours",
-      ugc: "Vertical video · Edit and raw clips · Paid-ad usage quoted separately",
+      ugc: "Vertical video · Concept, shooting and editing · Paid-ad usage quoted separately",
     },
     selected: "Already working with",
   },

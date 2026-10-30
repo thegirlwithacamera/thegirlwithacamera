@@ -24,6 +24,7 @@ const content = {
     films: "Brand films",
     filmsText: "Horizontal, cinématique. Un film court écrit, tourné et étalonné pour votre site, un lancement, vos écrans.",
     filmsGo: "Voir les films",
+    soon: "En production",
     social: "Social",
     socialText: "Vertical. Publié sur mes comptes, ou livré pour les vôtres.",
     socialGo: "Voir les vidéos",
@@ -34,6 +35,7 @@ const content = {
     films: "Brand films",
     filmsText: "Horizontal, cinematic. A short film written, shot and graded for your site, a launch, your screens.",
     filmsGo: "Watch the films",
+    soon: "In production",
     social: "Social",
     socialText: "Vertical. Posted on my channels, or delivered to run on yours.",
     socialGo: "See the reels",
@@ -49,6 +51,7 @@ export default async function CreatorPage({ params }: Props) {
   // place du bureau filmé d'en haut. Dessous, deux portes : les films de
   // marque et les verticales.
   const filmPoster = BRAND_FILMS.find((f) => f.poster)?.poster;
+  const nextFilm = BRAND_FILMS.find((f) => !f.src);
   const phones = readSocial(lang).filter((c) => c.poster).slice(0, 3);
 
   return (
@@ -67,8 +70,13 @@ export default async function CreatorPage({ params }: Props) {
         <div className={s.doors}>
           <Link href={`${base}/films`} className={`${s.door} ${s.doorFilms}`}>
             <span className={s.frame}>
-              {filmPoster && (
+              {filmPoster ? (
                 <Image src={filmPoster} alt="" fill sizes="(max-width: 767px) 100vw, 700px" quality={75} />
+              ) : nextFilm && (
+                <span className={s.soon}>
+                  <strong>{nextFilm.client}</strong>
+                  <em>{t.soon}</em>
+                </span>
               )}
               <span className={s.bars} aria-hidden="true" />
             </span>
