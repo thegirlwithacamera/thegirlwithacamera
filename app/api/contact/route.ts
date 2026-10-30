@@ -33,6 +33,8 @@ const TYPE_LABELS: Record<string, string> = {
 };
 
 const BUDGET_LABELS: Record<string, string> = {
+  "under-500": "Under €500",
+  "500-2k": "€500 – €2,000",
   "under-2k": "Under €2,000",
   "2-5k": "€2,000 – €5,000",
   "5-15k": "€5,000 – €15,000",

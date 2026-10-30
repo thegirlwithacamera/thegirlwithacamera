@@ -33,7 +33,10 @@ const t = {
   ],
   budgets: [
     ["tbd", "To be discussed"],
-    ["under-2k", "Under €2,000"],
+    // Paliers bas ajoutés le 30/10 (Sandrine) : une vidéo UGC se chiffre
+    // en centaines d'euros, pas en milliers.
+    ["under-500", "Under €500"],
+    ["500-2k", "€500 to €2,000"],
     ["2-5k", "€2,000 to €5,000"],
     ["5-15k", "€5,000 to €15,000"],
     ["15k+", "Over €15,000"],
