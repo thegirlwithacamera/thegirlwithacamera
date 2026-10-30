@@ -44,17 +44,18 @@ export default async function CreatorPage({ params }: Props) {
   const { lang } = await params;
   const t = content[lang];
   const base = `/${lang}/creator`;
-  // Couverture (28/10) comme les autres rubriques : le film "The Office"
-  // (bureau filmé d'en haut) en boucle muette. Dessous, deux portes (30/10) :
-  // les films de marque et les verticales.
+  // Couverture (28/10) comme les autres rubriques, en boucle muette. Depuis
+  // le 30/10, le film mode (Sandrine en look adidas, dans un escalier) à la
+  // place du bureau filmé d'en haut. Dessous, deux portes : les films de
+  // marque et les verticales.
   const filmPoster = BRAND_FILMS.find((f) => f.poster)?.poster;
   const phones = readSocial(lang).filter((c) => c.poster).slice(0, 3);
 
   return (
     <>
       <Cover
-        film={{ src: "/videos/banners/brands-office.mp4", poster: "/videos/banners/brands-office.jpg" }}
-        label="Brands, a desk filmed from above by Sandrine Ceuppens"
+        film={{ src: "/videos/banners/brands-fashion.mp4", poster: "/videos/banners/brands-fashion.jpg" }}
+        label="Brands, Sandrine Ceuppens on a stone staircase in an adidas look"
         title="Brands"
       />
       <main className={s.hub}>
