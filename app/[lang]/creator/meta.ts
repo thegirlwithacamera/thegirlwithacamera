@@ -1,42 +1,44 @@
-import type { Clip, Section } from "./constants";
+import type { Clip, Mode } from "./constants";
 
 // ─────────────────────────────────────────────────────────────
-// Légendes des téléphones : marque, projet, type de contenu.
+// Légendes des téléphones : marque et projet, plus le métier (influence ou
+// UGC) qui décide dans quel mode de la page Social le clip apparaît.
 //
 // Les vidéos sont lues depuis les dossiers (lib/creator-videos.ts) et ne
-// portent qu'un nom de fichier. Ce fichier en déduit la marque et le projet,
-// et la section donne le type de contenu. La table OVERRIDES corrige ou
-// complète un clip précis, clé = "<DOSSIER>/<fichier sans extension>".
-// Un clip absent d'ici garde son label d'origine : rien ne casse.
-//
-// Pré-rempli le 08/09 à partir des noms de fichiers. À corriger par Sandrine.
+// portent qu'un nom de fichier. Ce fichier en déduit la marque et le projet.
+// La table OVERRIDES corrige ou complète un clip précis, clé =
+// "<DOSSIER>/<fichier sans extension>".
 // ─────────────────────────────────────────────────────────────
 
 type Lang = "fr" | "en";
-type Meta = { brand?: string; project?: { fr: string; en: string } | string; kind?: { fr: string; en: string } };
+type Meta = { brand?: string; project?: { fr: string; en: string } | string; mode?: Mode | null };
 
 const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Godox", "Tokyo", "Antidote"];
 
-const KIND: Record<Section, { fr: string; en: string }> = {
-  gear: { fr: "Test matériel", en: "Gear review" },
-  lifestyle: { fr: "Lifestyle", en: "Lifestyle" },
-  unboxing: { fr: "Unboxing", en: "Unboxing" },
-  talk: { fr: "Face caméra", en: "Talking head" },
+// Métier par marque, d'après Sandrine (30/10). Une marque absente d'ici
+// n'apparaît pas sur Brands : Kodak n'est pas un client, Nishika n'avait que
+// des Talk, retirés le même jour.
+const MODE_BY_BRAND: Record<string, Mode> = {
+  Ricoh: "ugc",
+  Pentax: "ugc",
+  Godox: "influence",
+  Insta360: "influence",
+  Telesin: "influence",
 };
 
 const OVERRIDES: Record<string, Meta> = {
   "EXPERIENCES/Antidote": { brand: "Antidote", project: { fr: "Sur place", en: "On location" } },
-  "EXPERIENCES/Tokyo GR Space": { brand: "Ricoh", project: "GR Space Tokyo", kind: { fr: "Voyage", en: "Travel" } },
-  "EXPERIENCES/Tokyo Hairdresser": { brand: "Tokyo", project: { fr: "Chez le coiffeur", en: "At the hairdresser" }, kind: { fr: "Voyage", en: "Travel" } },
-  "EXPERIENCES/Tokyo Head Spa": { brand: "Tokyo", project: "Head spa", kind: { fr: "Voyage", en: "Travel" } },
-  "EXPERIENCES/Tokyo Tattoo": { brand: "Tokyo", project: { fr: "Salon de tatouage", en: "Tattoo studio" }, kind: { fr: "Voyage", en: "Travel" } },
-  "UNBOXING/Kodak Charmera Millennium": { brand: "Kodak", project: "Charmera Millennium" },
+  // Tokyo : le coiffeur et le head spa restent, en influence. GR Space et le
+  // tatouage sortent de Brands (30/10).
+  "EXPERIENCES/Tokyo GR Space": { mode: null },
+  "EXPERIENCES/Tokyo Tattoo": { mode: null },
+  "EXPERIENCES/Tokyo Hairdresser": { brand: "Tokyo", project: { fr: "Chez le coiffeur", en: "At the hairdresser" }, mode: "influence" },
+  "EXPERIENCES/Tokyo Head Spa": { brand: "Tokyo", project: "Head spa", mode: "influence" },
   "UNBOXING/Telesin": { brand: "Telesin", project: { fr: "Accessoires", en: "Accessories" } },
 };
 
 function keyFor(src: string): string {
-  const rel = src.replace(/^\/videos\/creator\//, "").replace(/\.[^./]+$/, "").replace(/['’]+$/, "");
-  return rel;
+  return src.replace(/^\/videos\/creator\//, "").replace(/\.[^./]+$/, "").replace(/['’]+$/, "");
 }
 
 function pick(v: { fr: string; en: string } | string | undefined, lang: Lang): string | undefined {
@@ -44,15 +46,16 @@ function pick(v: { fr: string; en: string } | string | undefined, lang: Lang): s
   return typeof v === "string" ? v : v[lang];
 }
 
-export function withMeta(clip: Clip, section: Section, lang: Lang): Clip {
-  const key = keyFor(clip.src);
-  const over = OVERRIDES[key] ?? {};
+// Renvoie null pour un clip qui n'a pas sa place sur Brands.
+export function withMeta(clip: Clip, lang: Lang): (Clip & { mode: Mode }) | null {
+  const over = OVERRIDES[keyFor(clip.src)] ?? {};
   const label = clip.label.replace(/['’]+$/, "").trim();
   const brand = over.brand ?? BRANDS.find((b) => label.toLowerCase().startsWith(b.toLowerCase()));
+  const mode = over.mode === undefined ? (brand ? MODE_BY_BRAND[brand] : undefined) : over.mode;
+  if (!mode) return null;
   const derivedProject = brand && label.toLowerCase().startsWith(brand.toLowerCase())
     ? label.slice(brand.length).trim()
     : label;
   const project = pick(over.project, lang) ?? (derivedProject || undefined);
-  const kind = pick(over.kind, lang) ?? KIND[section][lang];
-  return { ...clip, brand: brand ?? label, project: brand ? project : undefined, kind };
+  return { ...clip, brand: brand ?? label, project: brand ? project : undefined, kind: undefined, mode };
 }

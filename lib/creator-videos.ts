@@ -132,7 +132,7 @@ function posterFor(files: string[], folder: string, videoFile: string): string |
   return poster ? `/videos/creator/${folder}/${poster}` : undefined;
 }
 
-// Lit un sous-dossier vertical (GEAR, LIFESTYLE, UNBOXING, TALK).
+// Lit un sous-dossier vertical (GEAR, LIFESTYLE, UNBOXING).
 function readFolder(folder: string): Clip[] {
   const files = entriesOf(folder).files;
   if (files.length === 0) return [];
@@ -157,7 +157,8 @@ export function readCreatorData() {
       return renamed.length > 0 ? renamed : readFolder("EXPERIENCES");
     })(),
     unboxing: readFolder("UNBOXING"),
-    talk: readFolder("TALK"),
+    // TALK n'est plus lu depuis le 30/10 : les face caméra sont retirés de
+    // Brands. Le dossier reste en place.
   };
 }
 

@@ -1,0 +1,93 @@
+/* Page Social (30/10). */
+.main { padding-bottom: var(--section); }
+.wrap { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--pad); }
+
+.switch {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.switch a { color: var(--stone); text-decoration: none; }
+.switch a:hover { color: var(--brick); }
+.switch .prev { color: var(--brick); }
+
+/* Interrupteur influence / UGC : une pastille noire glisse sous le mode actif. */
+.toggle {
+  position: relative;
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  margin: 8px auto 0;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.toggle button {
+  position: relative; z-index: 1;
+  background: none; border: 0;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: var(--text-ui);
+  color: var(--stone);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.toggle button:hover { color: var(--ink); }
+.toggle button.on { color: var(--paper); }
+.toggle button:focus-visible { outline: 2px solid var(--brick); outline-offset: 2px; }
+.pill {
+  position: absolute; top: 4px; bottom: 4px; left: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), width 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.line { text-align: center; margin: 20px auto 0; max-width: 54ch; min-height: 3em; animation: fade 0.5s ease both; }
+
+/* Les téléphones arrivent l'un après l'autre, légèrement penchés, et se
+   redressent au survol. */
+.rail { max-width: var(--page-max); margin: clamp(24px, 3vw, 36px) auto 0; padding: 0 var(--pad); }
+.rail :global(.carousel) { padding: 0; }
+.rail :global(.carousel-track) { padding-top: 24px; padding-bottom: 24px; }
+.rail :global(.carousel-track .slide) { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.rail :global(.carousel-track .slide:nth-child(4n + 1)) { --tilt: -2.5deg; animation-delay: 0ms; }
+.rail :global(.carousel-track .slide:nth-child(4n + 2)) { --tilt: 1.5deg; animation-delay: 80ms; }
+.rail :global(.carousel-track .slide:nth-child(4n + 3)) { --tilt: -1deg; animation-delay: 160ms; }
+.rail :global(.carousel-track .slide:nth-child(4n + 4)) { --tilt: 2deg; animation-delay: 240ms; }
+.rail :global(.carousel-track .slide:nth-child(n + 5)) { animation-delay: 320ms; }
+.rail :global(.carousel-track .slide) { transform: rotate(var(--tilt, 0deg)); }
+.rail :global(.carousel-track .slide:hover) { transform: none; }
+@keyframes rise {
+  from { opacity: 0.15; transform: translateY(48px) rotate(var(--tilt, 0deg)); }
+  to { opacity: 1; transform: rotate(var(--tilt, 0deg)); }
+}
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } }
+
+.deliverables {
+  margin: clamp(32px, 4vw, 48px) 0 0;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stone);
+  line-height: 2;
+  animation: fade 0.5s ease both;
+}
+
+.brands { margin-top: var(--section); text-align: center; }
+.brandsLabel { margin-bottom: 18px; }
+
+@media (max-width: 767px) {
+  .rail { padding: 0 12px; }
+  .toggle button { padding: 10px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail :global(.carousel-track .slide), .line, .deliverables { animation: none; transition: none; }
+  .pill { transition: none; }
+}

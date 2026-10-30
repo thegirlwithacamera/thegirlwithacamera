@@ -1,0 +1,85 @@
+/* Page Brand films (30/10). */
+.main { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--pad) var(--section); }
+
+/* Ligne de passage entre les deux pages de Brands, même écriture que les
+   coins des couvertures. */
+.switch {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.switch a { color: var(--stone); text-decoration: none; }
+.switch a:hover { color: var(--brick); }
+.switch .next { color: var(--brick); }
+
+.list { display: grid; gap: clamp(56px, 7vw, 96px); margin-top: clamp(16px, 2vw, 24px); }
+
+.screen { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--ink); }
+.screen :global(video) { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 2.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.screen > div { height: 100%; }
+
+/* Le rideau : deux bandes noires qui s'écartent quand le film arrive à l'écran. */
+.curtain { position: absolute; inset: 0; pointer-events: none; }
+.curtain::before,
+.curtain::after {
+  content: "";
+  position: absolute; left: 0; right: 0;
+  height: 50%;
+  background: var(--ink);
+  transition: height 1.1s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.curtain::before { top: 0; }
+.curtain::after { bottom: 0; }
+.in .curtain::before,
+.in .curtain::after { height: 0; }
+.in .screen :global(video) { transform: none; }
+
+.corner {
+  position: absolute;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.9s;
+}
+.in .corner { opacity: 0.9; }
+.tl { top: 14px; left: 16px; }
+.br { bottom: 14px; right: 16px; }
+
+.soonTag {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-m);
+}
+
+.credits { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px var(--gutter); padding-top: 18px; }
+.name { margin: 0; font-family: var(--font-serif); font-weight: 400; font-size: var(--text-m); line-height: 1.15; }
+.facts { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; align-content: start; font-family: var(--font-serif); font-size: var(--text-caption); }
+.facts dt {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stone);
+  padding-top: 3px;
+}
+.facts dd { margin: 0; }
+
+@media (max-width: 767px) {
+  .credits { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .curtain { display: none; }
+  .corner { opacity: 0.9; transition: none; }
+  .screen :global(video) { transform: none; transition: none; }
+}

@@ -1,0 +1,64 @@
+/* Page Brands (30/10) : sous la couverture, deux portes, les films de marque
+   et les verticales. Au survol, les bandes noires s'ouvrent sur le film et les
+   téléphones se redressent. */
+.hub { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--pad) var(--section); }
+.hubHead { display: grid; justify-items: center; gap: 14px; text-align: center; padding: clamp(48px, 6vw, 80px) 0 clamp(32px, 4vw, 48px); }
+.hubHead h2 { max-width: 22ch; }
+
+.doors { display: grid; grid-template-columns: 1.6fr 1fr; gap: var(--gutter); }
+.door { display: grid; gap: 12px; align-content: start; text-decoration: none; color: var(--ink); }
+.frame { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--well); }
+
+.doorFilms .frame img { object-fit: cover; transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.bars::before,
+.bars::after {
+  content: "";
+  position: absolute; left: 0; right: 0;
+  height: 12%;
+  background: var(--ink);
+  transition: height 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.bars::before { top: 0; }
+.bars::after { bottom: 0; }
+.doorFilms:hover .bars::before,
+.doorFilms:hover .bars::after,
+.doorFilms:focus-visible .bars::before,
+.doorFilms:focus-visible .bars::after { height: 0; }
+.doorFilms:hover .frame img { transform: scale(1.04); }
+
+/* Colonne plus étroite : un cadre plus haut, pour que les deux images
+   tombent à la même hauteur (1.6 × 9/16 ≈ 10/9). */
+.doorSocial .frame { aspect-ratio: 10 / 9; display: flex; align-items: center; justify-content: center; gap: 4%; }
+.mini {
+  position: relative;
+  width: 24%;
+  aspect-ratio: 9 / 16;
+  border-radius: 12px;
+  border: 3px solid var(--ink);
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.mini img { object-fit: cover; }
+.mini:nth-child(1) { transform: rotate(-6deg) translateY(6%); }
+.mini:nth-child(3) { transform: rotate(6deg) translateY(6%); }
+.doorSocial:hover .mini,
+.doorSocial:focus-visible .mini { transform: none; }
+
+.doorTitle { font-family: var(--font-serif); font-size: var(--text-m); line-height: 1.15; padding-top: 6px; }
+.doorText { font-family: var(--font-serif); font-size: var(--text-body); line-height: 1.5; color: var(--stone); max-width: 46ch; }
+.doorGo {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brick);
+}
+.door:hover .doorGo { text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 767px) {
+  .doors { grid-template-columns: 1fr; gap: 48px; }
+  .doorSocial .frame { aspect-ratio: 16 / 9; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bars::before, .bars::after, .mini, .doorFilms .frame img { transition: none; }
+}

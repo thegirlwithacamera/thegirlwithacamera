@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: "Brands",
     description:
       lang === "fr"
-        ? "Services de création de contenu visuel pour les marques. Vidéos de produits, lifestyle, tutoriels et reels pour Instagram. Collaborations avec Ricoh, Pentax, Insta360 et Godox."
-        : "Visual content creation services for brands. Product videos, lifestyle, tutorials and reels for Instagram. Collaborations with Ricoh, Pentax, Insta360 and Godox.",
+        ? "Films de marque cinématiques et vidéo verticale pour les réseaux, en influence ou en UGC. Collaborations avec Ricoh, Pentax, Insta360, Godox et Edifier."
+        : "Cinematic brand films and vertical video for social, as influence or UGC. Collaborations with Ricoh, Pentax, Insta360, Godox and Edifier.",
   });
 }
 

@@ -59,7 +59,7 @@ function buildPaths(): Entry[] {
     }
   }
 
-  for (const s of ["gear", "lifestyle", "unboxing", "talk"]) {
+  for (const s of ["films", "social"]) {
     out.push({ path: `/creator/${s}`, priority: 0.6, changeFrequency: "monthly", lastModified: now });
   }
 
