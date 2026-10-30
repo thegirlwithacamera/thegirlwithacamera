@@ -37,7 +37,9 @@ export async function generateMetadata(): Promise<Metadata> {
 //
 // Couverture : le film de Villach depuis le 30/10, à la place de Graz (le
 // plan drone du lac de Côme est passé sur l'accueil le 28/10, pour ne pas
-// montrer deux fois le même). Puis la grille des villes, et
+// montrer deux fois le même). C'est un bandeau sans son tiré du fichier à
+// 15 Mb/s de _reencode, plus net que la copie à 6 Mb/s du dossier CITIES.
+// Puis la grille des villes, et
 // les films d'Interrail, qui n'ont pas d'autre page (ancre #interrail,
 // utilisée par le logo, le sitemap vidéo et le Journal).
 // ─────────────────────────────────────────────────────────────
@@ -49,7 +51,7 @@ export default async function DestinationsPage({ params }: Props) {
   return (
     <main className={s.main}>
       <Cover
-        film={{ src: "/videos/creator/CINEMATIC/CITIES/Villach.mp4", poster: "/videos/creator/CINEMATIC/CITIES/Villach.jpg" }}
+        film={{ src: "/videos/banners/destinations-villach.mp4", poster: "/videos/banners/destinations-villach.jpg" }}
         label="Villach, filmed by Sandrine Ceuppens"
         title="Destinations"
       />

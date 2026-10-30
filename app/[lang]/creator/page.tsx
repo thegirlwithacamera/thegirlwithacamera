@@ -57,7 +57,7 @@ export default async function CreatorPage({ params }: Props) {
   return (
     <>
       <Cover
-        film={{ src: "/videos/banners/brands-fashion.mp4", poster: "/videos/banners/brands-fashion.jpg" }}
+        film={{ src: "/videos/banners/brands-fashion-hd.mp4", poster: "/videos/banners/brands-fashion-hd.jpg" }}
         label="Brands, Sandrine Ceuppens on a stone staircase in an adidas look"
         title="Brands"
       />
