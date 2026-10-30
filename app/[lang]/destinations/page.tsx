@@ -35,8 +35,9 @@ export async function generateMetadata(): Promise<Metadata> {
 // #interrail) et European Sleeper, Bruxelles-Côme en train de nuit (ancre
 // #european-sleeper, ajouté le 28/10). Les logos y mènent.
 //
-// Couverture : le film de Graz (le plan drone du lac de Côme est passé sur
-// l'accueil le 28/10, pour ne pas montrer deux fois le même). Puis la grille des villes, et
+// Couverture : le film de Villach depuis le 30/10, à la place de Graz (le
+// plan drone du lac de Côme est passé sur l'accueil le 28/10, pour ne pas
+// montrer deux fois le même). Puis la grille des villes, et
 // les films d'Interrail, qui n'ont pas d'autre page (ancre #interrail,
 // utilisée par le logo, le sitemap vidéo et le Journal).
 // ─────────────────────────────────────────────────────────────
@@ -48,8 +49,8 @@ export default async function DestinationsPage({ params }: Props) {
   return (
     <main className={s.main}>
       <Cover
-        film={{ src: "/videos/creator/CINEMATIC/CITIES/Graz.mp4", poster: "/videos/creator/CINEMATIC/CITIES/Graz.jpg" }}
-        label="Graz, filmed by Sandrine Ceuppens for Graz Tourismus"
+        film={{ src: "/videos/creator/CINEMATIC/CITIES/Villach.mp4", poster: "/videos/creator/CINEMATIC/CITIES/Villach.jpg" }}
+        label="Villach, filmed by Sandrine Ceuppens"
         title="Destinations"
       />
       <ChapterIndex
