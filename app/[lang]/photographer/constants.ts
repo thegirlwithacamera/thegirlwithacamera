@@ -339,7 +339,12 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
           en: "Photographed on 6 and 7 October 2026.",
         },
         coverImage: "/images/portfolio/hospitality/mizuya/2.jpg",
-        films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Mizuya.mp4" }],
+        // Version verticale ajoutée le 31/10 (Sandrine) : la formule film
+        // + verticale pour les réseaux intéresse les hôtels.
+        films: [
+          { src: "/videos/creator/CINEMATIC/HOTELS/Mizuya.mp4", label: { fr: "Le film", en: "The film" } },
+          { src: "/videos/creator/CINEMATIC/HOTELS/Mizuya vertical.mp4", label: { fr: "La version verticale, pour les réseaux", en: "The vertical cut, for social media" } },
+        ],
       },
       {
         slug: "nishimuraya",
@@ -357,7 +362,12 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
           en: "Photographed on 8 and 9 October 2026.",
         },
         coverImage: "/images/portfolio/hospitality/nishimuraya/6.jpg",
-        films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Nishimuraya.mp4" }],
+        // Version verticale ajoutée le 31/10 (Sandrine) : la formule film
+        // + verticale pour les réseaux intéresse les hôtels.
+        films: [
+          { src: "/videos/creator/CINEMATIC/HOTELS/Nishimuraya.mp4", label: { fr: "Le film", en: "The film" } },
+          { src: "/videos/creator/CINEMATIC/HOTELS/Nishimuraya vertical.mp4", label: { fr: "La version verticale, pour les réseaux", en: "The vertical cut, for social media" } },
+        ],
       },
       // Coloc Housing retiré le 01/09, décision de Sandrine. La collaboration
       // s'est terminée sur un retrait de licence de sa part. Les images et le

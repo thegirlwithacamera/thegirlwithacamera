@@ -40,6 +40,16 @@ function Film({ item, lang }: { item: CaseFilmItem; lang: "fr" | "en" }) {
   const vertical = ratio !== null && ratio < 1;
   const waiting = isLong && !started;
 
+  // Une vidéo déjà en cache peut avoir lu ses métadonnées avant que React
+  // n'écoute loadedmetadata : on les relit ici, sinon un vertical restait
+  // dans un cadre 16/9 avec deux grandes bandes noires.
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || v.readyState < 1) return;
+    setDuration(v.duration);
+    if (v.videoWidth && v.videoHeight) setRatio(v.videoWidth / v.videoHeight);
+  }, []);
+
   // Une séquence courte ne démarre qu'une fois visible : la page ne télécharge
   // pas une vidéo que personne n'a encore atteinte.
   useEffect(() => {
