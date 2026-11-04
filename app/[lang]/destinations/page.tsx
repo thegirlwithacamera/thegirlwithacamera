@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "/destinations",
     title: "Destinations · Travel photographer and filmmaker",
     description:
-      "Cities and journeys photographed and filmed by Sandrine Ceuppens: Graz, Villach, Tokyo, Kyoto, Naples, Venice, Palermo, and Interrail.",
+      "Cities and journeys photographed and filmed by Sandrine Ceuppens: Graz, Villach, Lake Biwa, Tokyo, Kyoto, Naples, Venice, Palermo, and Interrail.",
     image: "/images/portfolio/travel/tokyo/1.jpg",
   });
 }
@@ -34,6 +34,9 @@ export async function generateMetadata(): Promise<Metadata> {
 // Les films de voyage en train, sans page projet : Interrail (ancre
 // #interrail) et European Sleeper, Bruxelles-Côme en train de nuit (ancre
 // #european-sleeper, ajouté le 28/10). Les logos y mènent.
+//
+// Lake Biwa (04/11) : le film de Koke-Musu:inn a Otsu, sans page projet,
+// rangé dans CINEMATIC/CITIES, envoyé sur R2 par npm run videos.
 //
 // Couverture : le film de Villach depuis le 30/10, à la place de Graz (le
 // plan drone du lac de Côme est passé sur l'accueil le 28/10, pour ne pas
@@ -59,6 +62,13 @@ export default async function DestinationsPage({ params }: Props) {
         cats={["travel"]}
         lede="Cities and journeys, told the way they felt: first light, markets before the crowds, the moments in between."
       />
+      <section id="lake-biwa" className={s.road}>
+        <h2 className={s.roadTitle}>Lake Biwa · Japan</h2>
+        <p className={s.roadSub}>Otsu, on the shore of Lake Biwa, October 2026.</p>
+        <div className={s.film}>
+          <LazyFilm src="/videos/creator/CINEMATIC/CITIES/Lake Biwa.mp4" poster="/videos/creator/CINEMATIC/CITIES/Lake Biwa.jpg" label="Lake Biwa film, Otsu, Japan" />
+        </div>
+      </section>
       <section id="european-sleeper" className={s.road}>
         <h2 className={s.roadTitle}>On the road · European Sleeper</h2>
         <p className={s.roadSub}>Brussels to Lake Como by night train, September 2026.</p>
