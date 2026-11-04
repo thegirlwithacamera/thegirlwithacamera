@@ -63,6 +63,11 @@ export const BRANDS: Brand[] = [
   // calligramme de Nishimuraya est presque carré : hauteur des badges (tall).
   { name: "NISHIMURAYA HOTEL SHOGETSUTEI", logo: "/images/brands/nishimuraya-shogetsutei.png", tall: true, cat: "stays", href: "/photographer/hospitality/nishimuraya", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "MIZUYA", logo: "/images/brands/mizuya.png", cat: "stays", href: "/photographer/hospitality/mizuya", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
+  // Koke-Musu:inn (04/11), Otsu, le film Lake Biwa sur Destinations. Pas de
+  // logo public (pas de site, photo de chambre en profil Instagram) : le nom
+  // s'affiche en texte. Ajouter logo: le jour où l'auberge en envoie un, le
+  // lien vers le film s'activera avec.
+  { name: "KOKE-MUSU:INN", cat: "stays", href: "/destinations#lake-biwa", hrefLabel: { fr: "Film", en: "Film" } },
   { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.

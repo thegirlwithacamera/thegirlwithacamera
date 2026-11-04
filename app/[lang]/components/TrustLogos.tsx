@@ -155,7 +155,13 @@ export default function TrustLogos({
       {!hideLabel && <p className="trust-label">{TRUST_LABEL[lang]}</p>}
       {groups.map((g) => {
         const item = (b: (typeof g.brands)[number], copy = false) => {
-          if (!b.logo) return <span key={b.name} className="brand-chip" aria-hidden={copy || undefined}>{b.name}</span>;
+          // Sans logo, le nom prend la même boîte qu'un logo : il reste centré
+          // sur la rangée au lieu de s'aligner en haut.
+          if (!b.logo) return (
+            <span key={b.name} className="brand-item" aria-hidden={copy || undefined}>
+              <span className="brand-box"><span className="brand-chip">{b.name}</span></span>
+            </span>
+          );
           const box = (
             <span className="brand-box">
               {/* eslint-disable-next-line @next/next/no-img-element */}
