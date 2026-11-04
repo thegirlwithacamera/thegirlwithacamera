@@ -55,9 +55,9 @@ export type Brand = {
 // revenir en arriere.
 export const BRANDS: Brand[] = [
   // Stays & places : les adresses ou l'on dort et ou l'on mange.
-  // MK HOTELS retire le 05/09, decision de Sandrine : le travail n'est pas au
-  // niveau du reste. Le cas et le film sont retires en meme temps. Le fichier
-  // mk-hotels.png reste dans public/images/brands, remettre la ligne suffit.
+  // MK HOTELS retire le 05/09, remis le 04/11 (Sandrine) : le film revient en
+  // Destinations, section Munich, avec le témoignage de Stefan Ramsperger.
+  { name: "MK HOTELS", logo: "/images/brands/mk-hotels.png", cat: "stays", href: "/destinations#munich", hrefLabel: { fr: "Film", en: "Film" } },
   // Japon, octobre 2026 (ajoutés le 28/10). Logos envoyés par Sandrine en
   // capture d'écran, détourés en encre sombre sur fond transparent. Le
   // calligramme de Nishimuraya est presque carré : hauteur des badges (tall).
@@ -67,7 +67,7 @@ export const BRANDS: Brand[] = [
   // logo public (pas de site, photo de chambre en profil Instagram) : le nom
   // s'affiche en texte. Ajouter logo: le jour où l'auberge en envoie un, le
   // lien vers le film s'activera avec.
-  { name: "KOKE-MUSU:INN", cat: "stays", href: "/destinations#lake-biwa", hrefLabel: { fr: "Film", en: "Film" } },
+  { name: "KOKE-MUSU:INN", cat: "stays", href: "/photographer/travel/otsu", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
