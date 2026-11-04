@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Cover from "../components/Cover";
+import LazyFilm from "../destinations/LazyFilm";
 import { Display, Eyebrow } from "../components/editorial";
 import { BRAND_FILMS } from "./constants";
 import { readSocial } from "./data";
@@ -50,6 +51,9 @@ export default async function CreatorPage({ params }: Props) {
   // le 30/10, le film mode (Sandrine en look adidas, dans un escalier) à la
   // place du bureau filmé d'en haut. Dessous, deux portes : les films de
   // marque et les verticales.
+  // La porte des films joue la boucle du dernier film (04/11, Sandrine :
+  // l'affiche seule paraissait floue et figée), sinon son affiche.
+  const teaserFilm = BRAND_FILMS.find((f) => f.teaser && f.poster);
   const filmPoster = BRAND_FILMS.find((f) => f.poster)?.poster;
   const nextFilm = BRAND_FILMS.find((f) => !f.src);
   const phones = readSocial(lang).filter((c) => c.poster).slice(0, 3);
@@ -70,7 +74,9 @@ export default async function CreatorPage({ params }: Props) {
         <div className={s.doors}>
           <Link href={`${base}/films`} className={`${s.door} ${s.doorFilms}`}>
             <span className={s.frame}>
-              {filmPoster ? (
+              {teaserFilm ? (
+                <LazyFilm src={teaserFilm.teaser!} poster={teaserFilm.poster!} label={`${teaserFilm.client}, brand film`} sound={false} />
+              ) : filmPoster ? (
                 <Image src={filmPoster} alt="" fill sizes="(max-width: 767px) 100vw, 700px" quality={75} />
               ) : nextFilm && (
                 <span className={s.soon}>

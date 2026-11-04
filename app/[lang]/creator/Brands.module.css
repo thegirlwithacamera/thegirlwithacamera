@@ -21,6 +21,7 @@
 }
 .soon strong { font-weight: 400; font-size: var(--text-m); }
 .soon em { font-size: var(--text-body); opacity: 0.8; }
+.doorFilms .frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .doorFilms .frame img { object-fit: cover; transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .bars::before,
 .bars::after {
@@ -36,7 +37,8 @@
 .doorFilms:hover .bars::after,
 .doorFilms:focus-visible .bars::before,
 .doorFilms:focus-visible .bars::after { height: 0; }
-.doorFilms:hover .frame img { transform: scale(1.04); }
+.doorFilms:hover .frame img,
+.doorFilms:hover .frame video { transform: scale(1.04); }
 
 /* Colonne plus étroite : un cadre plus haut, pour que les deux images
    tombent à la même hauteur (1.6 × 9/16 ≈ 10/9). */
@@ -72,17 +74,6 @@
   .doorSocial .frame { aspect-ratio: 16 / 9; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .bars::before, .bars::after, .mini, /* Tant qu'aucun film n'est en ligne (Patam en production), la porte est un
-   écran noir avec la mention, sous les mêmes bandes. */
-.doorFilms .frame { background: var(--ink); }
-.soon {
-  position: absolute; inset: 0;
-  display: grid; place-content: center; gap: 6px;
-  text-align: center;
-  color: #fff;
-  font-family: var(--font-serif);
-}
-.soon strong { font-weight: 400; font-size: var(--text-m); }
-.soon em { font-size: var(--text-body); opacity: 0.8; }
-.doorFilms .frame img { transition: none; }
+  .bars::before, .bars::after, .mini,
+  .doorFilms .frame img, .doorFilms .frame video { transition: none; }
 }

@@ -36,6 +36,10 @@ export type BrandFilm = {
   year: number;
   src?: string;
   poster?: string;
+  // Boucle muette et légère (≈ 6 Mo, 720p sans son) jouée dans la porte
+  // « Brand films » de la page Brands. Le film entier pèse trop pour une
+  // vignette qui démarre seule.
+  teaser?: string;
   role?: string;
 };
 
@@ -43,6 +47,7 @@ export const BRAND_FILMS: readonly BrandFilm[] = [
   // Edifier retiré le 30/10 (Sandrine) : Patam seul.
   // Patam livré le 04/11 : 1080p à 14 Mb/s depuis le master 4K, rangé dans
   // CINEMATIC/BRANDS (dossier que la page Filmmaker ignore), envoyé sur R2.
-  // Affiche : les deux sacs devant la balustrade, à 7 s.
-  { slug: "patam", client: "Patam", year: 2026, src: "/videos/creator/CINEMATIC/BRANDS/Patam.mp4", poster: "/videos/creator/CINEMATIC/BRANDS/Patam.jpg" },
+  // Affiche : les deux sacs de la boutique devant la balustrade, à 3 s (le
+  // plan à 7 s était pris en plein mouvement, donc flou).
+  { slug: "patam", client: "Patam", year: 2026, src: "/videos/creator/CINEMATIC/BRANDS/Patam.mp4", poster: "/videos/creator/CINEMATIC/BRANDS/Patam.jpg", teaser: "/videos/banners/brands-patam.mp4" },
 ];
