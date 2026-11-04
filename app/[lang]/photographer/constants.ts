@@ -677,10 +677,31 @@ export function findCaseByFilm(src: string) {
 
 // Les mots de clients publiés, avec le chemin du travail dont ils parlent.
 // Source unique : le témoignage vit dans le cas, la page About le reprend.
+// Reçu le 04/11 de Stefan Ramsperger, avec l'accord d'utiliser son nom, sa
+// fonction et le nom de l'hôtel. Original en anglais.
+export const MK_TESTIMONIAL: Testimonial = {
+  quote: {
+    fr: "Travailler avec Sandrine a été un vrai plaisir. Elle apporte de la créativité, du professionnalisme et une vraie passion pour ce qu'elle fait. Sa façon de saisir l'atmosphère et le caractère d'un lieu rend son travail vraiment à part. Toute la collaboration a été fluide, agréable et personnelle, et je la recommanderais volontiers à quiconque cherche un récit visuel authentique et de grande qualité.",
+    en: "Working with Sandrine was a real pleasure. She brings creativity, professionalism, and a genuine passion for what she does. Her ability to capture the atmosphere and character of a place makes her work truly special. The entire collaboration was smooth, enjoyable, and personal, and I would gladly recommend her to anyone looking for authentic, high-quality visual storytelling.",
+  },
+  author: "Stefan Ramsperger",
+  role: { fr: "Directeur de l'hôtel", en: "Hotel Manager" },
+  company: "mk | hotel münchen city",
+};
+
+// Témoignages sans cas photo (le film de Munich vit dans Destinations).
+// Ils rejoignent la page About comme les autres.
+const EXTRA_TESTIMONIALS = [
+  { t: MK_TESTIMONIAL, href: "/destinations#munich", label: { fr: "Munich", en: "Munich" } },
+];
+
 export function allTestimonials() {
-  return allCases()
-    .filter((c) => c.item.testimonial)
-    .map((c) => ({ t: c.item.testimonial!, href: c.href, label: c.item.label }));
+  return [
+    ...allCases()
+      .filter((c) => c.item.testimonial)
+      .map((c) => ({ t: c.item.testimonial!, href: c.href, label: c.item.label })),
+    ...EXTRA_TESTIMONIALS,
+  ];
 }
 
 export function allCases() {
