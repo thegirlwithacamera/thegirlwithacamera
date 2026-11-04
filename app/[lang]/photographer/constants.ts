@@ -449,6 +449,25 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
     citySeries: true,
     cases: [
       {
+        // Ajouté le 04/11 (Sandrine). Le lac et la fête d'Otsu, tournés
+        // pendant le séjour à Koke-Musu:inn. Neuf images choisies parmi les
+        // exports Instagram, alternance lac et fête. Le film est celui livré
+        // à la maison, publié en Destinations.
+        slug: "otsu",
+        date: "2026-10-10",
+        label: { fr: "Lac Biwa", en: "Lake Biwa" },
+        place: { fr: "Otsu, Japon", en: "Otsu, Japan" },
+        intro: {
+          fr: "La rive du lac Biwa dans la première lumière, et Otsu le week-end de sa fête, les chars sous les fils du train.",
+          en: "The shore of Lake Biwa in the first light, and Otsu on the weekend of its festival, the floats under the train wires.",
+        },
+        shotAt: {
+          fr: "Photographié en octobre 2026, pendant un séjour à Koke-Musu:inn.",
+          en: "Photographed in October 2026, during a stay at Koke-Musu:inn.",
+        },
+        films: [{ src: "/videos/creator/CINEMATIC/CITIES/Lake Biwa.mp4" }],
+      },
+      {
         // Première commande de la catégorie Voyage : un office du tourisme,
         // pas une série personnelle. Elle est en tête du bloc pour ça.
         slug: "villach",
