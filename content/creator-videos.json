@@ -12,6 +12,7 @@
   "CINEMATIC": {
     "files": [],
     "dirs": [
+      "BRANDS",
       "BTS",
       "CITIES",
       "FASHION",
@@ -21,6 +22,13 @@
       "SPA",
       "TABLES"
     ]
+  },
+  "CINEMATIC/BRANDS": {
+    "files": [
+      "Patam.jpg",
+      "Patam.mp4"
+    ],
+    "dirs": []
   },
   "CINEMATIC/BTS": {
     "files": [

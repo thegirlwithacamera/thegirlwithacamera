@@ -40,7 +40,9 @@ export type BrandFilm = {
 };
 
 export const BRAND_FILMS: readonly BrandFilm[] = [
-  // Livraison attendue la semaine du 02/11.
-  // Edifier retiré le 30/10 (Sandrine) : Patam seul, en production.
-  { slug: "patam", client: "Patam", year: 2026 },
+  // Edifier retiré le 30/10 (Sandrine) : Patam seul.
+  // Patam livré le 04/11 : 1080p à 14 Mb/s depuis le master 4K, rangé dans
+  // CINEMATIC/BRANDS (dossier que la page Filmmaker ignore), envoyé sur R2.
+  // Affiche : les deux sacs devant la balustrade, à 7 s.
+  { slug: "patam", client: "Patam", year: 2026, src: "/videos/creator/CINEMATIC/BRANDS/Patam.mp4", poster: "/videos/creator/CINEMATIC/BRANDS/Patam.jpg" },
 ];
