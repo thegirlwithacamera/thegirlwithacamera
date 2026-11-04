@@ -38,6 +38,9 @@ export async function generateMetadata(): Promise<Metadata> {
 // Lake Biwa (04/11) : cas photo otsu dans photographer/constants.ts, avec
 // le film de Koke-Musu:inn. Il apparait dans la grille des villes.
 //
+// Munich (04/11) : le film mk hotel, retiré des Hôtels le 05/09, revient ici
+// en film de ville seul, décision de Sandrine. Ancre #munich.
+//
 // Couverture : le film de Villach depuis le 30/10, à la place de Graz (le
 // plan drone du lac de Côme est passé sur l'accueil le 28/10, pour ne pas
 // montrer deux fois le même). C'est un bandeau sans son tiré du fichier à
@@ -62,6 +65,13 @@ export default async function DestinationsPage({ params }: Props) {
         cats={["travel"]}
         lede="Cities and journeys, told the way they felt: first light, markets before the crowds, the moments in between."
       />
+      <section id="munich" className={s.road}>
+        <h2 className={s.roadTitle}>Munich · Germany</h2>
+        <p className={s.roadSub}>Munich, August 2026, from a stay at mk hotel München City.</p>
+        <div className={s.film}>
+          <LazyFilm src="/videos/creator/CINEMATIC/HOTELS/mk hotel Munich.mp4" poster="/videos/creator/CINEMATIC/HOTELS/mk hotel Munich.jpg" label="Munich film, mk hotel München City" />
+        </div>
+      </section>
       <section id="european-sleeper" className={s.road}>
         <h2 className={s.roadTitle}>On the road · European Sleeper</h2>
         <p className={s.roadSub}>Brussels to Lake Como by night train, September 2026.</p>
