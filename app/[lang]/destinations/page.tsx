@@ -4,6 +4,8 @@ import Cover from "../components/Cover";
 import ChapterIndex from "../components/ChapterIndex";
 import TrustLogos from "../components/TrustLogos";
 import LazyFilm from "./LazyFilm";
+import CaseTestimonial from "../components/CaseTestimonial";
+import type { Testimonial } from "../photographer/constants";
 import s from "./index.module.css";
 
 interface Props {
@@ -52,6 +54,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const J = "/videos/creator/CINEMATIC/JOURNEYS";
 
+// Reçu le 04/11 de Stefan Ramsperger, avec l'accord d'utiliser son nom, sa
+// fonction et le nom de l'hôtel. Original en anglais.
+const MK_TESTIMONIAL: Testimonial = {
+  quote: {
+    fr: "Travailler avec Sandrine a été un vrai plaisir. Elle apporte de la créativité, du professionnalisme et une vraie passion pour ce qu'elle fait. Sa façon de saisir l'atmosphère et le caractère d'un lieu rend son travail vraiment à part. Toute la collaboration a été fluide, agréable et personnelle, et je la recommanderais volontiers à quiconque cherche un récit visuel authentique et de grande qualité.",
+    en: "Working with Sandrine was a real pleasure. She brings creativity, professionalism, and a genuine passion for what she does. Her ability to capture the atmosphere and character of a place makes her work truly special. The entire collaboration was smooth, enjoyable, and personal, and I would gladly recommend her to anyone looking for authentic, high-quality visual storytelling.",
+  },
+  author: "Stefan Ramsperger",
+  role: { fr: "Directeur de l'hôtel", en: "Hotel Manager" },
+  company: "mk | hotel münchen city",
+};
+
 export default async function DestinationsPage({ params }: Props) {
   await params;
   return (
@@ -71,6 +85,7 @@ export default async function DestinationsPage({ params }: Props) {
         <div className={s.film}>
           <LazyFilm src="/videos/creator/CINEMATIC/HOTELS/mk hotel Munich.mp4" poster="/videos/creator/CINEMATIC/HOTELS/mk hotel Munich.jpg" label="Munich film, mk hotel München City" />
         </div>
+        <CaseTestimonial lang="en" t={MK_TESTIMONIAL} flush />
       </section>
       <section id="european-sleeper" className={s.road}>
         <h2 className={s.roadTitle}>On the road · European Sleeper</h2>
