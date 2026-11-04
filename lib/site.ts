@@ -29,8 +29,8 @@ export const site = {
     instagramHandle: "@sandrinecppns",
   },
   partners: [
-    { name: "Ricoh Europe", url: "https://www.ricoh-imaging.eu/" },
-    { name: "Pentax Europe", url: "https://www.ricoh-imaging.eu/pentax/" },
+    { name: "Ricoh", url: "https://www.ricoh-imaging.eu/" },
+    { name: "Pentax", url: "https://www.ricoh-imaging.eu/pentax/" },
   ],
 } as const;
 

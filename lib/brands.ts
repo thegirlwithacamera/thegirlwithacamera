@@ -117,8 +117,8 @@ export const BRANDS: Brand[] = [
   // est un diary de categorie lifestyle, non publiee (PUBLISHED_DIARY_CATS
   // dans app/[lang]/filmmaker/constants.ts). Le jour ou leur contenu sort, il
   // suffit d'ajouter la ligne.
-  { name: "RICOH EUROPE", logo: "/images/brands/ricoh.svg", cat: "brand", href: "/creator/social", hrefLabel: { fr: "Vidéos", en: "Videos" } },
-  { name: "PENTAX EUROPE", logo: "/images/brands/pentax-black.png", cat: "brand", href: "/creator/social", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "RICOH", logo: "/images/brands/ricoh.svg", cat: "brand", href: "/creator/social", hrefLabel: { fr: "Vidéos", en: "Videos" } },
+  { name: "PENTAX", logo: "/images/brands/pentax-black.png", cat: "brand", href: "/creator/social", hrefLabel: { fr: "Vidéos", en: "Videos" } },
   { name: "INSTA360", logo: "/images/brands/insta360-wordmark.svg", cat: "brand", href: "/creator/social", hrefLabel: { fr: "Vidéos", en: "Videos" } },
   { name: "GODOX", logo: "/images/brands/godox.png", cat: "brand" },
   // Le SVG fourni etait en gris tres clair, pense pour un fond sombre :
@@ -129,6 +129,13 @@ export const BRANDS: Brand[] = [
   // Logo empile, pictogramme au dessus du nom : a la hauteur des wordmarks il
   // devient illisible, il prend donc celle des badges.
   { name: "STUBBLE & CO", logo: "/images/brands/stubble-and-co.png", tall: true, cat: "brand" },
+  // Ajoutées le 04/11 (Sandrine). Logos pris sur les sites officiels :
+  // patambag.com, candidocollective.com (recadrés), Fjällräven depuis
+  // Wikimedia (fjallraven.com bloque les téléchargements). Fjällräven est
+  // empilé, renard à côté du nom sur deux lignes : hauteur des badges.
+  { name: "FJÄLLRÄVEN", logo: "/images/brands/fjallraven.svg", tall: true, cat: "brand" },
+  { name: "PATAM", logo: "/images/brands/patam.png", cat: "brand" },
+  { name: "CANDIDO", logo: "/images/brands/candido.png", cat: "brand" },
 ];
 
 // Les liens des marques menaient a une ancre, #ricoh, #pentax, #insta360,
