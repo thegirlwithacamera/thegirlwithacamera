@@ -13,7 +13,7 @@ import type { Clip, Mode } from "./constants";
 type Lang = "fr" | "en";
 type Meta = { brand?: string; project?: { fr: string; en: string } | string; mode?: Mode | null };
 
-const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Godox", "Tokyo", "Antidote"];
+const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Godox", "Tokyo", "Antidote", "Candido"];
 
 // Métier par marque, d'après Sandrine (30/10). Une marque absente d'ici
 // n'apparaît pas sur Brands : Kodak n'est pas un client, Nishika n'avait que
@@ -21,6 +21,8 @@ const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "G
 const MODE_BY_BRAND: Record<string, Mode> = {
   Ricoh: "ugc",
   Pentax: "ugc",
+  // Candido (05/11) : trois pellicules tournées au Pentax au Japon, en UGC.
+  Candido: "ugc",
   Godox: "influence",
   Insta360: "influence",
   Telesin: "influence",
@@ -34,6 +36,14 @@ const OVERRIDES: Record<string, Meta> = {
   "EXPERIENCES/Tokyo Tattoo": { mode: null },
   "EXPERIENCES/Tokyo Hairdresser": { brand: "Tokyo", project: { fr: "Chez le coiffeur", en: "At the hairdresser" }, mode: "influence" },
   "EXPERIENCES/Tokyo Head Spa": { brand: "Tokyo", project: "Head spa", mode: "influence" },
+  "GEAR/Candido 200": { project: { fr: "200 · Entre ville et mer", en: "200 · Between city & sea" } },
+  "GEAR/Candido 400": { project: { fr: "400 · Tokyo au calme", en: "400 · Quiet Tokyo" } },
+  "GEAR/Candido 800": { project: { fr: "800 · Tokyo la nuit", en: "800 · Tokyo nights" } },
+  // Pentax 17 (05/11) : quatre pellicules, une intention par film.
+  "GEAR/Pentax 17 Dreamy": { project: "17 · Dreamy" },
+  "GEAR/Pentax 17 Movement": { project: "17 · Movement" },
+  "GEAR/Pentax 17 Slow": { project: "17 · Slow" },
+  "GEAR/Pentax 17 Soft": { project: "17 · Soft" },
   "UNBOXING/Telesin": { brand: "Telesin", project: { fr: "Accessoires", en: "Accessories" } },
 };
 
