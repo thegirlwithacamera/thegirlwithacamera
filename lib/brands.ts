@@ -145,6 +145,9 @@ export const BRANDS: Brand[] = [
   // Social et dans la bande, comme les autres marques.
   { name: "ASSORT", logo: "/images/brands/assort.png", tall: true, cat: "brand" },
   { name: "LIBERTA TOKYO", logo: "/images/brands/liberta-tokyo.png", tall: true, cat: "brand" },
+  // Camera Affair et Bronkey (10/11) : vidéos sur le compte de Sandrine.
+  { name: "CAMERA AFFAIR", logo: "/images/brands/camera-affair.png", cat: "brand" },
+  { name: "BRONKEY", logo: "/images/brands/bronkey.png", tall: true, cat: "brand" },
 ];
 
 // Les liens des marques menaient a une ancre, #ricoh, #pentax, #insta360,
