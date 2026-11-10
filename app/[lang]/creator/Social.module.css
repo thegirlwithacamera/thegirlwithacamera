@@ -71,7 +71,6 @@
 .cats button:hover { color: var(--ink); }
 .cats button.catOn { color: var(--ink); border-bottom-color: var(--ink); }
 .cats button:focus-visible { outline: 2px solid var(--brick); outline-offset: 3px; }
-.count { margin-left: 6px; letter-spacing: 0; opacity: 0.6; font-variant-numeric: tabular-nums; }
 
 /* Les téléphones arrivent l'un après l'autre, légèrement penchés, et se
    redressent au survol. */

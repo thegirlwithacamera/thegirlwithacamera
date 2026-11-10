@@ -55,11 +55,12 @@ const CAT_BY_FOLDER: Record<string, Category> = {
 const OVERRIDES: Record<string, Meta> = {
   "EXPERIENCES/Antidote": { brand: "Antidote", project: { fr: "Sur place", en: "On location" } },
   // Tokyo : le coiffeur et le head spa restent, en influence. GR Space et le
-  // tatouage sortent de Brands (30/10).
+  // tatouage sortent de Brands (30/10). Le 10/11, chacun sous son vrai nom,
+  // Assort et Liberta Tokyo : deux clients, donc deux téléphones.
   "EXPERIENCES/Tokyo GR Space": { mode: null },
   "EXPERIENCES/Tokyo Tattoo": { mode: null },
-  "EXPERIENCES/Tokyo Hairdresser": { brand: "Tokyo", project: { fr: "Chez le coiffeur", en: "At the hairdresser" }, mode: "influence" },
-  "EXPERIENCES/Tokyo Head Spa": { brand: "Tokyo", project: "Head spa", mode: "influence" },
+  "EXPERIENCES/Tokyo Hairdresser": { brand: "Assort", project: { fr: "Coiffeur, Tokyo", en: "Hair salon, Tokyo" }, mode: "influence" },
+  "EXPERIENCES/Tokyo Head Spa": { brand: "Liberta Tokyo", project: "Head spa", mode: "influence" },
   "GEAR/Candido 200": { project: { fr: "200 · Entre ville et mer", en: "200 · Between city & sea" } },
   "GEAR/Candido 400": { project: { fr: "400 · Tokyo au calme", en: "400 · Quiet Tokyo" } },
   "GEAR/Candido 800": { project: { fr: "800 · Tokyo la nuit", en: "800 · Tokyo nights" } },

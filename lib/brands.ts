@@ -141,6 +141,10 @@ export const BRANDS: Brand[] = [
   { name: "FJÄLLRÄVEN", logo: "/images/brands/fjallraven.svg", tall: true, cat: "brand" },
   { name: "PATAM", logo: "/images/brands/patam.png", cat: "brand" },
   { name: "CANDIDO", logo: "/images/brands/candido.png", cat: "brand" },
+  // Assort et Liberta Tokyo (10/11) : logos sous leurs vidéos sur la page
+  // Social, pas dans la bande (bandHidden).
+  { name: "ASSORT", logo: "/images/brands/assort.png", tall: true, cat: "brand", bandHidden: true },
+  { name: "LIBERTA TOKYO", logo: "/images/brands/liberta-tokyo.png", tall: true, cat: "brand", bandHidden: true },
 ];
 
 // Les liens des marques menaient a une ancre, #ricoh, #pentax, #insta360,

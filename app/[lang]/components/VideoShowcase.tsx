@@ -24,6 +24,10 @@ export type Focused = { clip: Clip; kind: "phone" | "tablet" };
 // le jour même : un chiffre collé sous une image salit la légende. La
 // longueur des films se dit dans les formules, pas sur les vignettes.
 function ClipMeta({ label, clip }: { label?: string; clip?: Clip }) {
+  if (clip?.logo) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img className={clip.logoTall ? "clip-logo clip-logo--tall" : "clip-logo"} src={clip.logo} alt={clip.brand ?? label ?? ""} />;
+  }
   if (clip && (clip.brand || clip.project || clip.kind)) {
     return (
       <Caption
@@ -92,7 +96,7 @@ export function PhoneMockup(props: { clip: Clip; cardKey: string; sound: Sound; 
   return <Mock {...props} kind="phone" />;
 }
 
-function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: string; kind: "phone" | "tablet"; sound: Sound; badge?: string }) {
+function Mock({ clip, cardKey, kind, sound, badge, bare }: { clip: Clip; cardKey: string; kind: "phone" | "tablet"; sound: Sound; badge?: string; bare?: boolean }) {
   const video = (
     <video
       ref={(el) => sound.registerRef(cardKey, el)}
@@ -128,7 +132,65 @@ function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: stri
           {badgeEl}
         </div>
       )}
-      <ClipMeta label={clip.label} clip={clip} />
+      {!bare && <ClipMeta label={clip.label} clip={clip} />}
+    </div>
+  );
+}
+
+// Tas par marque (10/11, page Social) : les vidéos d'une même marque se
+// rangent en un tas, le téléphone du dessus joue, deux autres dépassent
+// derrière. Un clic étale le tas dans la rangée, « × » le referme. Pas de
+// nombre sous le tas (Sandrine) : seulement son logo.
+type Group = { key: string; clips: Clip[] };
+
+function groupClips(clips: Clip[], by: (c: Clip) => string): Group[] {
+  const groups: Group[] = [];
+  for (const c of clips) {
+    const key = by(c);
+    const g = groups.find((x) => x.key === key);
+    if (g) g.clips.push(c);
+    else groups.push({ key, clips: [c] });
+  }
+  return groups;
+}
+
+function BrandStack({ group, cardKey, sound, onOpen, label }: { group: Group; cardKey: string; sound: Sound; onOpen: () => void; label: string }) {
+  const [top, ...rest] = group.clips;
+  const backs = rest.slice(0, 2);
+  return (
+    <div className="slide slide--stack" data-clip={cardKey}>
+      <div
+        className="brand-stack"
+        role="button"
+        tabIndex={0}
+        aria-label={label}
+        onClick={onOpen}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen(); } }}
+      >
+        {backs.map((c, j) => (
+          <div key={c.src} className={`phone stack-back stack-back--${j + 1}`} aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            {c.poster && <img src={c.poster} alt="" loading="lazy" />}
+          </div>
+        ))}
+        <div className="phone stack-top">
+          <video
+            ref={(el) => sound.registerRef(cardKey, el)}
+            src={videoUrl(top.src)}
+            poster={top.poster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            controlsList="nodownload nofullscreen"
+            onContextMenu={(e) => e.preventDefault()}
+            title={`Creator content: ${top.label}`}
+          />
+          <SoundBtn on={sound.unmutedKey === cardKey} onClick={() => sound.toggleSound(cardKey)} />
+        </div>
+      </div>
+      <ClipMeta label={group.key} clip={{ ...top, brand: top.brand ?? group.key, project: undefined, kind: undefined }} />
     </div>
   );
 }
@@ -207,8 +269,12 @@ function MobileStack({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kin
   );
 }
 
-export function Carousel({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound; badge?: string }) {
+export function Carousel({ clips: input, kind, prefix, sound, badge, stackBy, lang = "en" }: { clips: Clip[]; kind: "phone" | "tablet"; prefix: string; sound: Sound; badge?: string; stackBy?: (c: Clip) => string; lang?: "fr" | "en" }) {
   const trackRef = useRef<HTMLDivElement | null>(null);
+  const [open, setOpen] = useState<string | null>(null);
+  // En tas, les vidéos d'une marque se suivent, sur mobile aussi.
+  const groups = stackBy ? groupClips(input, stackBy) : null;
+  const clips = groups ? groups.flatMap((g) => g.clips) : input;
   const [overflow, setOverflow] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -228,7 +294,7 @@ export function Carousel({ clips, kind, prefix, sound, badge }: { clips: Clip[];
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
-  }, [clips.length, isMobile]);
+  }, [clips.length, isMobile, open]);
 
   function scroll(dir: 1 | -1) {
     const el = trackRef.current;
@@ -251,9 +317,37 @@ export function Carousel({ clips, kind, prefix, sound, badge }: { clips: Clip[];
         </button>
       )}
       <div className={`carousel-track${overflow ? "" : " carousel-track--center"}`} ref={trackRef}>
-        {clips.map((clip, i) => (
-          <Mock key={`${prefix}-${i}`} clip={clip} cardKey={`${prefix}-${i}`} kind={kind} sound={sound} badge={badge} />
-        ))}
+        {groups
+          ? groups.flatMap((g) => {
+              const id = `${prefix}-${g.key}`;
+              if (g.clips.length < 2) {
+                return [<Mock key={id} clip={g.clips[0]} cardKey={id} kind={kind} sound={sound} badge={badge} />];
+              }
+              if (open !== g.key) {
+                return [
+                  <BrandStack
+                    key={`${id}-stack`}
+                    group={g}
+                    cardKey={`${id}-stack`}
+                    sound={sound}
+                    onOpen={() => setOpen(g.key)}
+                    label={lang === "fr" ? `${g.key} : voir toutes les vidéos` : `${g.key}: see all videos`}
+                  />,
+                ];
+              }
+              return [
+                <button key={`${id}-close`} type="button" className="stack-close" onClick={() => setOpen(null)} aria-label={lang === "fr" ? `Refermer ${g.key}` : `Close ${g.key}`}>
+                  <span>{g.key}</span> ×
+                </button>,
+                ...g.clips.map((clip, j) => (
+                  // Tas ouvert : la marque est déjà en tête, pas de légende répétée.
+                  <Mock key={`${id}-${j}`} clip={clip} cardKey={`${id}-${j}`} kind={kind} sound={sound} badge={badge} bare />
+                )),
+              ];
+            })
+          : clips.map((clip, i) => (
+              <Mock key={`${prefix}-${i}`} clip={clip} cardKey={`${prefix}-${i}`} kind={kind} sound={sound} badge={badge} />
+            ))}
       </div>
       {overflow && (
         <button className="carousel-arrow carousel-arrow--next" onClick={() => scroll(1)} aria-label="Next">

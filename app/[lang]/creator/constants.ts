@@ -12,6 +12,10 @@ export type Clip = {
   brand?: string;
   project?: string;
   kind?: string;
+  // Logo de la marque (lib/brands.ts), affiché à la place de son nom sous le
+  // téléphone sur la page Social (10/11).
+  logo?: string;
+  logoTall?: boolean;
 };
 
 // Brands en deux pages (30/10, Sandrine) : les films de marque, horizontaux

@@ -12,7 +12,8 @@ import s from "./Social.module.css";
 // métiers. Influence, publié sur les comptes de Sandrine ; UGC, tourné pour
 // la marque et livré pour ses comptes. Au changement de mode, les téléphones
 // repartent l'un après l'autre. Sous l'interrupteur, une rangée de catégories
-// (09/11) qui ne montre que celles présentes dans le mode affiché.
+// (09/11) qui ne montre que celles présentes dans le mode affiché. Les
+// vidéos d'une même marque se rangent en tas (10/11).
 
 const content = {
   fr: {
@@ -139,7 +140,6 @@ export default function SocialClient({ lang, clips }: { lang: "fr" | "en"; clips
                 onClick={() => chooseCat(k)}
               >
                 {k ? t.cats[k] : t.all}
-                <span className={s.count}>{k ? inMode.filter((c) => c.cat === k).length : inMode.length}</span>
               </button>
             ))}
           </div>
@@ -149,7 +149,7 @@ export default function SocialClient({ lang, clips }: { lang: "fr" | "en"; clips
       {/* La clé relance l'entrée des téléphones à chaque changement de mode
           ou de catégorie. */}
       <section key={`${mode}-${active ?? "all"}`} className={s.rail} aria-label={t.modes[mode]}>
-        <Carousel clips={shown} kind="phone" prefix={mode} sound={sound} />
+        <Carousel clips={shown} kind="phone" prefix={mode} sound={sound} stackBy={(c) => c.brand ?? c.label} lang={lang} />
       </section>
 
       <div className={s.wrap}>
