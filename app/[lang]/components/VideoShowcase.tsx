@@ -338,7 +338,16 @@ export function Carousel({ clips: input, kind, prefix, sound, badge, stackBy, la
     if (!el) return;
     const first = el.querySelector(".slide") as HTMLElement | null;
     const step = first ? first.offsetWidth + 16 : 280;
-    el.scrollBy({ left: dir * step, behavior: "smooth" });
+    // En boucle (10/11, Sandrine) : ‹ au début repart de la fin, › à la fin
+    // revient au début.
+    const end = el.scrollWidth - el.clientWidth;
+    if (dir === -1 && el.scrollLeft <= 4) {
+      el.scrollTo({ left: end, behavior: "smooth" });
+    } else if (dir === 1 && el.scrollLeft >= end - 4) {
+      el.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: dir * step, behavior: "smooth" });
+    }
   }
 
   // Mobile : pile 3D tactile. Desktop : rangee avec fleches.
