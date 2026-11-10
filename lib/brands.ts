@@ -142,9 +142,9 @@ export const BRANDS: Brand[] = [
   { name: "PATAM", logo: "/images/brands/patam.png", cat: "brand" },
   { name: "CANDIDO", logo: "/images/brands/candido.png", cat: "brand" },
   // Assort et Liberta Tokyo (10/11) : logos sous leurs vidéos sur la page
-  // Social, pas dans la bande (bandHidden).
-  { name: "ASSORT", logo: "/images/brands/assort.png", tall: true, cat: "brand", bandHidden: true },
-  { name: "LIBERTA TOKYO", logo: "/images/brands/liberta-tokyo.png", tall: true, cat: "brand", bandHidden: true },
+  // Social et dans la bande, comme les autres marques.
+  { name: "ASSORT", logo: "/images/brands/assort.png", tall: true, cat: "brand" },
+  { name: "LIBERTA TOKYO", logo: "/images/brands/liberta-tokyo.png", tall: true, cat: "brand" },
 ];
 
 // Les liens des marques menaient a une ancre, #ricoh, #pentax, #insta360,
