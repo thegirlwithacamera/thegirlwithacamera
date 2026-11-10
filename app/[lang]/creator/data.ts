@@ -1,6 +1,6 @@
 import { readCreatorData } from "@/lib/creator-videos";
 import { BRANDS } from "@/lib/brands";
-import { withMeta } from "./meta";
+import { FEATURED, withMeta } from "./meta";
 import type { SocialClip } from "./constants";
 
 // Les verticales de la page Social, au build. Influence d'abord, puis UGC ;
@@ -39,5 +39,18 @@ export function readSocial(lang: "fr" | "en"): SocialClip[] {
       Number(!!b.c.lead) - Number(!!a.c.lead) ||
       a.i - b.i)
     .map(({ c }) => c);
-  return [...ordered.filter((c) => c.mode === "influence"), ...ordered.filter((c) => c.mode === "ugc")];
+  // Puis les marques connues en tête (FEATURED), chacune gardant ses vidéos
+  // de la plus récente à la plus ancienne ; le reste suit par date.
+  const byMode = (mode: "influence" | "ugc") => {
+    const rank = (c: SocialClip) => {
+      const i = FEATURED[mode].indexOf(c.brand ?? "");
+      return i === -1 ? FEATURED[mode].length : i;
+    };
+    return ordered
+      .filter((c) => c.mode === mode)
+      .map((c, i) => ({ c, i }))
+      .sort((a, b) => rank(a.c) - rank(b.c) || a.i - b.i)
+      .map(({ c }) => c);
+  };
+  return [...byMode("influence"), ...byMode("ugc")];
 }

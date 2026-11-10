@@ -61,6 +61,15 @@ const CAT_BY_FOLDER: Record<string, Category> = {
   UNBOXING: "gear",
 };
 
+// Marques en tête de rangée, dans cet ordre (10/11, Sandrine) : les noms
+// connus d'abord, le visiteur se repère au premier coup d'œil. Les autres
+// suivent, de la plus récente à la plus ancienne. Pour faire monter une
+// marque, l'ajouter ici.
+export const FEATURED: Record<Mode, string[]> = {
+  influence: ["Insta360", "Godox", "Tilta", "Pentax"],
+  ugc: ["Ricoh", "Pentax", "Godox"],
+};
+
 const OVERRIDES: Record<string, Meta> = {
   "EXPERIENCES/Antidote": { brand: "Antidote", project: { fr: "Sur place", en: "On location" } },
   // Tokyo : le coiffeur et le head spa restent, en influence. GR Space et le
