@@ -9,6 +9,11 @@
 // puis `npm run videos`. Le script envoie ce qui manque sur R2, reecrit
 // content/creator-videos.json, et c'est ce fichier qu'il faut committer.
 //
+// Ne jamais remplacer une video en gardant son nom : le Worker la sert avec
+// un cache d'un an (immutable), les visiteurs garderaient l'ancienne. Une
+// nouvelle version prend un nouveau nom (10/11 : "Ricoh GR III" ->
+// "Ricoh GR III Intro").
+//
 // Identifiants attendus dans .env.local (jamais dans le depot) :
 //   R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET
 
@@ -19,6 +24,26 @@ import { S3Client, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s
 const ROOT = process.cwd();
 const CREATOR_DIR = path.join(ROOT, "public", "videos", "creator");
 const MANIFEST = path.join(ROOT, "content", "creator-videos.json");
+// Date d'arrivée de chaque vidéo (10/11) : la page Social met les plus
+// récentes devant. Une vidéo absente du registre y entre à la date du jour.
+const DATES = path.join(ROOT, "content", "creator-video-dates.json");
+
+function updateDates(tree) {
+  let dates = {};
+  try { dates = JSON.parse(fs.readFileSync(DATES, "utf8")); } catch { dates = {}; }
+  const now = new Date().toISOString();
+  let added = 0;
+  for (const [rel, { files }] of Object.entries(tree)) {
+    for (const f of files) {
+      if (!VIDEO_RE.test(f)) continue;
+      const key = rel ? `${rel}/${f}` : f;
+      if (!dates[key]) { dates[key] = now; added++; }
+    }
+  }
+  const sorted = Object.fromEntries(Object.entries(dates).sort(([a], [b]) => a.localeCompare(b)));
+  fs.writeFileSync(DATES, JSON.stringify(sorted, null, 2) + "\n");
+  if (added) console.log(`${added} nouvelle(s) date(s) dans ${path.relative(ROOT, DATES)}.`);
+}
 const VIDEO_RE = /\.(mp4|mov|webm)$/i;
 const TYPES = { ".mp4": "video/mp4", ".mov": "video/quicktime", ".webm": "video/webm" };
 
@@ -58,6 +83,7 @@ async function main() {
     const tree = walk("", {});
     fs.mkdirSync(path.dirname(MANIFEST), { recursive: true });
     fs.writeFileSync(MANIFEST, JSON.stringify(tree, null, 2) + "\n");
+    updateDates(tree);
     const n = Object.values(tree).flatMap((d) => d.files).filter((f) => VIDEO_RE.test(f)).length;
     console.log(`Manifeste seul : ${n} videos, ${Object.keys(tree).length} dossiers.`);
     return;
@@ -132,10 +158,11 @@ async function main() {
 
   fs.mkdirSync(path.dirname(MANIFEST), { recursive: true });
   fs.writeFileSync(MANIFEST, JSON.stringify(tree, null, 2) + "\n");
+  updateDates(tree);
 
   console.log(`\n${sent} envoyees (${(sentBytes / 1048576).toFixed(0)} Mo), ${skipped} deja en ligne.`);
   console.log(`Manifeste ecrit : ${path.relative(ROOT, MANIFEST)}`);
-  console.log("Pense a committer le manifeste.");
+  console.log("Pense a committer le manifeste et le registre des dates.");
 }
 
 main().catch((e) => {

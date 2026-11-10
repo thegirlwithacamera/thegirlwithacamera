@@ -76,7 +76,7 @@ const OVERRIDES: Record<string, Meta> = {
   "GEAR/Godox C100": { mode: "ugc" },
   // Ricoh (10/11) : dix vidéos UGC remplacent les deux anciennes. La
   // présentation de l'appareil ouvre le tas.
-  "GEAR/Ricoh GR III": { lead: true },
+  "GEAR/Ricoh GR III Intro": { lead: true },
   "GEAR/Candido 200": { project: { fr: "200 · Entre ville et mer", en: "200 · Between city & sea" } },
   "GEAR/Candido 400": { project: { fr: "400 · Tokyo au calme", en: "400 · Quiet Tokyo" } },
   "GEAR/Candido 800": { project: { fr: "800 · Tokyo la nuit", en: "800 · Tokyo nights" } },

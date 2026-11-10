@@ -6,6 +6,11 @@ import type { SocialClip } from "./constants";
 // Les verticales de la page Social, au build. Influence d'abord, puis UGC ;
 // dans chaque métier, l'ordre des dossiers (Gear, Lifestyle, Unboxing,
 // Fashion, Events).
+function time(d?: string): number {
+  const t = d ? Date.parse(d) : NaN;
+  return Number.isNaN(t) ? 0 : t;
+}
+
 function brandFor(brand?: string) {
   if (!brand) return undefined;
   return BRANDS.find((b) => b.logo && b.name.toLowerCase() === brand.toLowerCase());
@@ -22,7 +27,17 @@ export function readSocial(lang: "fr" | "en"): SocialClip[] {
       const b = brandFor(c.brand);
       return { ...c, project: undefined, logo: b?.logo, logoTall: b?.tall };
     });
-  // Une vidéo marquée lead (meta.ts) passe en tête, donc en haut de son tas.
-  const ordered = [...all.filter((c) => c.lead), ...all.filter((c) => !c.lead)];
+  // Les plus récentes devant (10/11, Sandrine) : la page groupe ensuite par
+  // marque dans l'ordre d'apparition, donc la marque du dernier projet ouvre
+  // la rangée et chaque tas commence par sa vidéo la plus récente. À date
+  // égale (même envoi), une vidéo marquée lead (meta.ts) passe devant, puis
+  // l'ordre des dossiers.
+  const ordered = all
+    .map((c, i) => ({ c, i }))
+    .sort((a, b) =>
+      time(b.c.date) - time(a.c.date) ||
+      Number(!!b.c.lead) - Number(!!a.c.lead) ||
+      a.i - b.i)
+    .map(({ c }) => c);
   return [...ordered.filter((c) => c.mode === "influence"), ...ordered.filter((c) => c.mode === "ugc")];
 }

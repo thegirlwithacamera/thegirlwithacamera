@@ -126,6 +126,19 @@ function matchCat(name: string): DiaryCat | null {
   return null;
 }
 
+// Registre des dates d'arrivée, tenu par scripts/sync-videos.mjs.
+let datesCache: Record<string, string> | null = null;
+function dateOf(rel: string): string | undefined {
+  if (!datesCache) {
+    try {
+      datesCache = JSON.parse(fs.readFileSync(path.join(process.cwd(), "content", "creator-video-dates.json"), "utf8"));
+    } catch {
+      datesCache = {};
+    }
+  }
+  return datesCache?.[rel];
+}
+
 function posterFor(files: string[], folder: string, videoFile: string): string | undefined {
   const base = videoFile.replace(/\.[^.]+$/, "");
   const poster = POSTER_EXTS.map((ext) => base + ext).find((p) => files.includes(p));
@@ -143,6 +156,7 @@ function readFolder(folder: string): Clip[] {
       src: videoSrc(`${folder}/${f}`),
       label: toLabel(f),
       poster: posterFor(files, folder, f),
+      date: dateOf(`${folder}/${f}`),
     }));
 }
 

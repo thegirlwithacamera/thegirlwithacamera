@@ -16,6 +16,9 @@ export type Clip = {
   // téléphone sur la page Social (10/11).
   logo?: string;
   logoTall?: boolean;
+  // Date d'arrivée (content/creator-video-dates.json), pour mettre les plus
+  // récentes devant sur la page Social.
+  date?: string;
 };
 
 // Brands en deux pages (30/10, Sandrine) : les films de marque, horizontaux

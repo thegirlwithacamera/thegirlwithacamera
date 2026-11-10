@@ -220,6 +220,13 @@ function BrandStack({ group, cardKey, sound, label }: { group: Group; cardKey: s
             </div>
           );
         })}
+        {/* Flèches au survol : on feuillette dans les deux sens (10/11). */}
+        <button type="button" className="stack-nav stack-nav--prev" tabIndex={-1} aria-hidden="true" onClick={(e) => { e.stopPropagation(); go("prev"); }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <button type="button" className="stack-nav stack-nav--next" tabIndex={-1} aria-hidden="true" onClick={(e) => { e.stopPropagation(); go("next"); }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6" /></svg>
+        </button>
       </div>
       <ClipMeta label={group.key} clip={{ ...current, brand: current.brand ?? group.key, project: undefined, kind: undefined }} />
     </div>

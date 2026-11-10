@@ -263,6 +263,23 @@
 .brand-stack--prev { cursor: w-resize; }
 .brand-stack--next { cursor: e-resize; }
 .brand-stack .vid-sound { cursor: pointer; }
+.stack-nav {
+  position: absolute; top: 50%; z-index: 6;
+  width: 32px; height: 32px; margin-top: -16px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.25s ease, background 0.2s ease, color 0.2s ease;
+}
+.stack-nav--prev { left: -14px; }
+.stack-nav--next { right: -14px; }
+.brand-stack:hover .stack-nav, .brand-stack:focus-visible .stack-nav { opacity: 1; }
+.stack-nav:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+@media (hover: none) { .stack-nav { opacity: 1; } }
 .slide--stack { padding-right: 18px; }
 @media (prefers-reduced-motion: reduce) {
   .stack-card-item { transition: none; }
