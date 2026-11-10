@@ -1,4 +1,4 @@
-import type { Clip, Mode } from "./constants";
+import type { Category, Clip, Mode } from "./constants";
 
 // ─────────────────────────────────────────────────────────────
 // Légendes des téléphones : marque et projet, plus le métier (influence ou
@@ -11,7 +11,7 @@ import type { Clip, Mode } from "./constants";
 // ─────────────────────────────────────────────────────────────
 
 type Lang = "fr" | "en";
-type Meta = { brand?: string; project?: { fr: string; en: string } | string; mode?: Mode | null };
+type Meta = { brand?: string; project?: { fr: string; en: string } | string; mode?: Mode | null; cat?: Category };
 
 const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Godox", "Tokyo", "Antidote", "Candido"];
 
@@ -26,6 +26,30 @@ const MODE_BY_BRAND: Record<string, Mode> = {
   Godox: "influence",
   Insta360: "influence",
   Telesin: "influence",
+};
+
+// Catégorie par marque (09/11). Gear : tout le matériel, appareils photo,
+// pellicules, lumière, caméras d'action et accessoires (Tech fusionné dans
+// Gear le 10/11, Sandrine).
+const CAT_BY_BRAND: Record<string, Category> = {
+  Ricoh: "gear",
+  Pentax: "gear",
+  Candido: "gear",
+  Godox: "gear",
+  Kodak: "gear",
+  Insta360: "gear",
+  Telesin: "gear",
+};
+
+// Catégorie par dossier, quand la marque n'en a pas : une vidéo posée dans
+// public/videos/creator/EVENTS ou FASHION se range seule.
+const CAT_BY_FOLDER: Record<string, Category> = {
+  GEAR: "gear",
+  FASHION: "fashion",
+  EVENTS: "events",
+  EXPERIENCES: "lifestyle",
+  LIFESTYLE: "lifestyle",
+  UNBOXING: "gear",
 };
 
 const OVERRIDES: Record<string, Meta> = {
@@ -57,7 +81,7 @@ function pick(v: { fr: string; en: string } | string | undefined, lang: Lang): s
 }
 
 // Renvoie null pour un clip qui n'a pas sa place sur Brands.
-export function withMeta(clip: Clip, lang: Lang): (Clip & { mode: Mode }) | null {
+export function withMeta(clip: Clip, lang: Lang): (Clip & { mode: Mode; cat: Category }) | null {
   const over = OVERRIDES[keyFor(clip.src)] ?? {};
   const label = clip.label.replace(/['’]+$/, "").trim();
   const brand = over.brand ?? BRANDS.find((b) => label.toLowerCase().startsWith(b.toLowerCase()));
@@ -67,5 +91,7 @@ export function withMeta(clip: Clip, lang: Lang): (Clip & { mode: Mode }) | null
     ? label.slice(brand.length).trim()
     : label;
   const project = pick(over.project, lang) ?? (derivedProject || undefined);
-  return { ...clip, brand: brand ?? label, project: brand ? project : undefined, kind: undefined, mode };
+  const folder = keyFor(clip.src).split("/")[0];
+  const cat = over.cat ?? (brand ? CAT_BY_BRAND[brand] : undefined) ?? CAT_BY_FOLDER[folder] ?? "lifestyle";
+  return { ...clip, brand: brand ?? label, project: brand ? project : undefined, kind: undefined, mode, cat };
 }

@@ -5,13 +5,14 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import TrustLogos from "../components/TrustLogos";
 import { Carousel, FocusOverlay, useVideoSound } from "../components/VideoShowcase";
 import { Eyebrow, Lede, PageHead } from "../components/editorial";
-import type { Mode, SocialClip } from "./constants";
+import { CATEGORIES, type Category, type Mode, type SocialClip } from "./constants";
 import s from "./Social.module.css";
 
 // Page Social (30/10) : les verticales, avec un interrupteur entre les deux
 // métiers. Influence, publié sur les comptes de Sandrine ; UGC, tourné pour
 // la marque et livré pour ses comptes. Au changement de mode, les téléphones
-// repartent l'un après l'autre.
+// repartent l'un après l'autre. Sous l'interrupteur, une rangée de catégories
+// (09/11) qui ne montre que celles présentes dans le mode affiché.
 
 const content = {
   fr: {
@@ -28,6 +29,8 @@ const content = {
       ugc: "Vidéo verticale · Concept, tournage et montage · Droits publicitaires chiffrés séparément",
     },
     selected: "Ils travaillent déjà avec moi",
+    all: "Tout",
+    cats: { gear: "Gear", fashion: "Mode", events: "Événements", lifestyle: "Lifestyle" },
   },
   en: {
     title: "Content made for *the feed*, shot like a story.",
@@ -43,6 +46,8 @@ const content = {
       ugc: "Vertical video · Concept, shooting and editing · Paid-ad usage quoted separately",
     },
     selected: "Already working with",
+    all: "All",
+    cats: { gear: "Gear", fashion: "Fashion", events: "Events", lifestyle: "Lifestyle" },
   },
 };
 
@@ -51,14 +56,22 @@ const MODES: Mode[] = ["influence", "ugc"];
 export default function SocialClient({ lang, clips }: { lang: "fr" | "en"; clips: SocialClip[] }) {
   const t = content[lang];
   const [mode, setMode] = useState<Mode>("influence");
+  const [cat, setCat] = useState<Category | null>(null);
   const { sound, focused, closeFocus } = useVideoSound();
-  const shown = clips.filter((c) => c.mode === mode);
+  const inMode = clips.filter((c) => c.mode === mode);
+  const cats = CATEGORIES.filter((k) => inMode.some((c) => c.cat === k));
+  const active = cat && cats.includes(cat) ? cat : null;
+  const shown = active ? inMode.filter((c) => c.cat === active) : inMode;
 
-  // Un lien partagé peut ouvrir directement l'UGC : /creator/social#ugc.
+  // Un lien partagé peut ouvrir directement l'UGC, et même une catégorie :
+  // /creator/social#ugc, /creator/social#ugc-fashion.
   useEffect(() => {
     const fromHash = () => {
-      const h = window.location.hash.replace(/^#/, "");
-      if (h === "ugc" || h === "influence") setMode(h);
+      const [m, c] = window.location.hash.replace(/^#/, "").split("-");
+      if (m === "ugc" || m === "influence") {
+        setMode(m);
+        setCat((CATEGORIES as readonly string[]).includes(c) ? (c as Category) : null);
+      }
     };
     fromHash();
     window.addEventListener("hashchange", fromHash);
@@ -80,7 +93,12 @@ export default function SocialClient({ lang, clips }: { lang: "fr" | "en"; clips
 
   const choose = (m: Mode) => {
     setMode(m);
+    setCat(null);
     history.replaceState(null, "", `#${m}`);
+  };
+  const chooseCat = (c: Category | null) => {
+    setCat(c);
+    history.replaceState(null, "", c ? `#${mode}-${c}` : `#${mode}`);
   };
 
   return (
@@ -108,10 +126,29 @@ export default function SocialClient({ lang, clips }: { lang: "fr" | "en"; clips
           ))}
         </div>
         <Lede key={`line-${mode}`} className={s.line} tone="stone" align="center">{t.line[mode]}</Lede>
+
+        {/* Pas de filtre tant qu'un mode n'a qu'une catégorie. */}
+        {cats.length > 1 && (
+          <div key={`cats-${mode}`} className={s.cats} role="group" aria-label={lang === "fr" ? "Catégories" : "Categories"}>
+            {[null, ...cats].map((k) => (
+              <button
+                key={k ?? "all"}
+                type="button"
+                aria-pressed={active === k}
+                className={active === k ? s.catOn : undefined}
+                onClick={() => chooseCat(k)}
+              >
+                {k ? t.cats[k] : t.all}
+                <span className={s.count}>{k ? inMode.filter((c) => c.cat === k).length : inMode.length}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* La clé relance l'entrée des téléphones à chaque changement de mode. */}
-      <section key={mode} className={s.rail} aria-label={t.modes[mode]}>
+      {/* La clé relance l'entrée des téléphones à chaque changement de mode
+          ou de catégorie. */}
+      <section key={`${mode}-${active ?? "all"}`} className={s.rail} aria-label={t.modes[mode]}>
         <Carousel clips={shown} kind="phone" prefix={mode} sound={sound} />
       </section>
 

@@ -24,7 +24,14 @@ export type Section = (typeof SECTIONS)[number];
 // de Sandrine) et l'UGC (tournée pour la marque, livrée pour ses comptes ou
 // ses publicités). Même écriture, pas la même diffusion.
 export type Mode = "influence" | "ugc";
-export type SocialClip = Clip & { mode: Mode };
+
+// Catégories (09/11, Sandrine) : de quoi trier les verticales quand il y en
+// aura beaucoup. Une rangée de filtres sous l'interrupteur, qui ne montre que
+// les catégories présentes dans le mode affiché. L'ordre ici est celui des
+// filtres. La catégorie d'un clip vient de creator/meta.ts.
+export const CATEGORIES = ["gear", "fashion", "events", "lifestyle"] as const;
+export type Category = (typeof CATEGORIES)[number];
+export type SocialClip = Clip & { mode: Mode; cat: Category };
 
 // Films de marque, du plus récent au plus ancien. Un film sans src est
 // annoncé (« In production ») : sa place est prête, il suffit d'ajouter le

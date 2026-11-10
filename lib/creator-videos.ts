@@ -157,6 +157,10 @@ export function readCreatorData() {
       return renamed.length > 0 ? renamed : readFolder("EXPERIENCES");
     })(),
     unboxing: readFolder("UNBOXING"),
+    // Dossiers des catégories ajoutées le 09/11 : une vidéo posée là prend
+    // la catégorie du dossier (voir creator/meta.ts).
+    fashion: readFolder("FASHION"),
+    events: readFolder("EVENTS"),
     // TALK n'est plus lu depuis le 30/10 : les face caméra sont retirés de
     // Brands. Le dossier reste en place.
   };

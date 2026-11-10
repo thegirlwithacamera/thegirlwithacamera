@@ -49,6 +49,30 @@
 
 .line { text-align: center; margin: 20px auto 0; max-width: 54ch; min-height: 3em; animation: fade 0.5s ease both; }
 
+/* Catégories (09/11) : une ligne de mots, l'actif souligné à l'encre. */
+.cats {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 6px 26px;
+  margin: 8px auto 0;
+  animation: fade 0.5s ease both;
+}
+.cats button {
+  background: none; border: 0;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stone);
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.cats button:hover { color: var(--ink); }
+.cats button.catOn { color: var(--ink); border-bottom-color: var(--ink); }
+.cats button:focus-visible { outline: 2px solid var(--brick); outline-offset: 3px; }
+.count { margin-left: 6px; letter-spacing: 0; opacity: 0.6; font-variant-numeric: tabular-nums; }
+
 /* Les téléphones arrivent l'un après l'autre, légèrement penchés, et se
    redressent au survol. */
 .rail { max-width: var(--page-max); margin: clamp(24px, 3vw, 36px) auto 0; padding: 0 var(--pad); }
@@ -86,8 +110,9 @@
 @media (max-width: 767px) {
   .rail { padding: 0 12px; }
   .toggle button { padding: 10px 14px; }
+  .cats { gap: 4px 18px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .rail :global(.carousel-track .slide), .line, .deliverables { animation: none; transition: none; }
+  .rail :global(.carousel-track .slide), .line, .deliverables, .cats { animation: none; transition: none; }
   .pill { transition: none; }
 }
