@@ -229,38 +229,34 @@
   .stack-card, .focusable { transition: none; }
 }
 
-/* Tas par marque (10/11, page Social). Deux téléphones dépassent derrière
-   celui qui joue, et s'écartent un peu au survol. */
-.brand-stack { position: relative; width: 100%; cursor: pointer; }
+/* Tas par marque (10/11, page Social). La carte du dessus joue, deux autres
+   dépassent derrière. Un clic : elle file sur le côté et repasse derrière,
+   la suivante vient devant. */
+.brand-stack { position: relative; width: 100%; aspect-ratio: 9 / 16; cursor: pointer; }
 .brand-stack:focus-visible { outline: 2px solid var(--brick); outline-offset: 6px; border-radius: 28px; }
-.brand-stack .stack-top { z-index: 3; }
-.stack-back {
+.stack-card-item {
   position: absolute; inset: 0;
-  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.4s ease;
 }
-.stack-back img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.stack-back--1 { z-index: 2; transform: translate(9px, -6px) rotate(3deg); }
-.stack-back--2 { z-index: 1; transform: translate(18px, -10px) rotate(6deg); }
-.brand-stack:hover .stack-back--1 { transform: translate(16px, -8px) rotate(5deg); }
-.brand-stack:hover .stack-back--2 { transform: translate(30px, -12px) rotate(9deg); }
+.stack-card-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.stack-card-item.depth-0 { z-index: 4; transform: none; }
+.stack-card-item.depth-1 { z-index: 3; transform: translate(9px, -6px) rotate(3deg); }
+.stack-card-item.depth-2 { z-index: 2; transform: translate(18px, -10px) rotate(6deg); }
+.stack-card-item.depth-3 { z-index: 1; transform: translate(18px, -10px) rotate(6deg); opacity: 0; }
+.brand-stack:hover .depth-1 { transform: translate(16px, -8px) rotate(5deg); }
+.brand-stack:hover .depth-2 { transform: translate(30px, -12px) rotate(9deg); }
+.stack-card-item.tuck { animation: stack-tuck 0.6s cubic-bezier(0.4, 0, 0.2, 1) both; }
+@keyframes stack-tuck {
+  0% { z-index: 5; transform: none; opacity: 1; }
+  45% { z-index: 5; transform: translate(-62%, 14px) rotate(-9deg); }
+  55% { z-index: 0; }
+  100% { z-index: 0; }
+}
 .slide--stack { padding-right: 18px; }
-
-/* Le tas ouvert : sa marque et « × » en tête, pour le refermer. */
-.stack-close {
-  flex: 0 0 auto; align-self: center;
-  background: none; border: 0; padding: 8px 4px;
-  font-family: var(--font-sans);
-  font-size: var(--text-label);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--brick);
-  cursor: pointer;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+@media (prefers-reduced-motion: reduce) {
+  .stack-card-item { transition: none; }
+  .stack-card-item.tuck { animation: none; }
 }
-.stack-close span { color: var(--ink); margin-bottom: 8px; }
-.stack-close:focus-visible { outline: 2px solid var(--brick); outline-offset: 2px; }
-@media (prefers-reduced-motion: reduce) { .stack-back { transition: none; } }
 
 /* Logo de la marque sous le téléphone (page Social, 10/11). */
 .clip-logo { display: block; height: 22px; width: auto; max-width: 120px; object-fit: contain; mix-blend-mode: multiply; opacity: 0.85; }

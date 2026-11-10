@@ -22,5 +22,7 @@ export function readSocial(lang: "fr" | "en"): SocialClip[] {
       const b = brandFor(c.brand);
       return { ...c, project: undefined, logo: b?.logo, logoTall: b?.tall };
     });
-  return [...all.filter((c) => c.mode === "influence"), ...all.filter((c) => c.mode === "ugc")];
+  // Une vidéo marquée lead (meta.ts) passe en tête, donc en haut de son tas.
+  const ordered = [...all.filter((c) => c.lead), ...all.filter((c) => !c.lead)];
+  return [...ordered.filter((c) => c.mode === "influence"), ...ordered.filter((c) => c.mode === "ugc")];
 }

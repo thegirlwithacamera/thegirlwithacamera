@@ -35,7 +35,7 @@ export type Mode = "influence" | "ugc";
 // filtres. La catégorie d'un clip vient de creator/meta.ts.
 export const CATEGORIES = ["gear", "fashion", "events", "lifestyle"] as const;
 export type Category = (typeof CATEGORIES)[number];
-export type SocialClip = Clip & { mode: Mode; cat: Category };
+export type SocialClip = Clip & { mode: Mode; cat: Category; lead?: boolean };
 
 // Films de marque, du plus récent au plus ancien. Un film sans src est
 // annoncé (« In production ») : sa place est prête, il suffit d'ajouter le

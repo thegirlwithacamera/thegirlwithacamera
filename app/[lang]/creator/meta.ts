@@ -11,7 +11,7 @@ import type { Category, Clip, Mode } from "./constants";
 // ─────────────────────────────────────────────────────────────
 
 type Lang = "fr" | "en";
-type Meta = { brand?: string; project?: { fr: string; en: string } | string; mode?: Mode | null; cat?: Category };
+type Meta = { brand?: string; project?: { fr: string; en: string } | string; mode?: Mode | null; cat?: Category; lead?: boolean };
 
 const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Godox", "Tokyo", "Antidote", "Candido"];
 
@@ -61,6 +61,11 @@ const OVERRIDES: Record<string, Meta> = {
   "EXPERIENCES/Tokyo Tattoo": { mode: null },
   "EXPERIENCES/Tokyo Hairdresser": { brand: "Assort", project: { fr: "Coiffeur, Tokyo", en: "Hair salon, Tokyo" }, mode: "influence" },
   "EXPERIENCES/Tokyo Head Spa": { brand: "Liberta Tokyo", project: "Head spa", mode: "influence" },
+  // Godox (10/11) : l'IM30 Pro en haut du tas, avant le C100.
+  "GEAR/Godox IM30 Pro": { lead: true },
+  // Ricoh (10/11) : dix vidéos UGC remplacent les deux anciennes. La
+  // présentation de l'appareil ouvre le tas.
+  "GEAR/Ricoh GR III": { lead: true },
   "GEAR/Candido 200": { project: { fr: "200 · Entre ville et mer", en: "200 · Between city & sea" } },
   "GEAR/Candido 400": { project: { fr: "400 · Tokyo au calme", en: "400 · Quiet Tokyo" } },
   "GEAR/Candido 800": { project: { fr: "800 · Tokyo la nuit", en: "800 · Tokyo nights" } },
@@ -82,7 +87,7 @@ function pick(v: { fr: string; en: string } | string | undefined, lang: Lang): s
 }
 
 // Renvoie null pour un clip qui n'a pas sa place sur Brands.
-export function withMeta(clip: Clip, lang: Lang): (Clip & { mode: Mode; cat: Category }) | null {
+export function withMeta(clip: Clip, lang: Lang): (Clip & { mode: Mode; cat: Category; lead?: boolean }) | null {
   const over = OVERRIDES[keyFor(clip.src)] ?? {};
   const label = clip.label.replace(/['’]+$/, "").trim();
   const brand = over.brand ?? BRANDS.find((b) => label.toLowerCase().startsWith(b.toLowerCase()));
@@ -94,5 +99,5 @@ export function withMeta(clip: Clip, lang: Lang): (Clip & { mode: Mode; cat: Cat
   const project = pick(over.project, lang) ?? (derivedProject || undefined);
   const folder = keyFor(clip.src).split("/")[0];
   const cat = over.cat ?? (brand ? CAT_BY_BRAND[brand] : undefined) ?? CAT_BY_FOLDER[folder] ?? "lifestyle";
-  return { ...clip, brand: brand ?? label, project: brand ? project : undefined, kind: undefined, mode, cat };
+  return { ...clip, brand: brand ?? label, project: brand ? project : undefined, kind: undefined, mode, cat, lead: over.lead };
 }
