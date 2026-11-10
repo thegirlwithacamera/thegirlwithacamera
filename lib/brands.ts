@@ -63,11 +63,6 @@ export const BRANDS: Brand[] = [
   // calligramme de Nishimuraya est presque carré : hauteur des badges (tall).
   { name: "NISHIMURAYA HOTEL SHOGETSUTEI", logo: "/images/brands/nishimuraya-shogetsutei.png", tall: true, cat: "stays", href: "/photographer/hospitality/nishimuraya", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "MIZUYA", logo: "/images/brands/mizuya.png", cat: "stays", href: "/photographer/hospitality/mizuya", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
-  // Koke-Musu:inn (04/11), Otsu, le film Lake Biwa sur Destinations. Pas de
-  // logo public (pas de site, photo de chambre en profil Instagram) : le nom
-  // s'affiche en texte. Ajouter logo: le jour où l'auberge en envoie un, le
-  // lien vers le film s'activera avec.
-  { name: "KOKE-MUSU:INN", cat: "stays", href: "/photographer/travel/otsu", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   { name: "DORF SCHÖNLEITN", logo: "/images/brands/dorf-schonleitn.svg", cat: "stays", href: "/photographer/hospitality/naturel-dorf-schonleitn", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   // Etapes du voyage Interrail, actees mais pas encore tournees.
   // Vienne 31 aout au 4 septembre, Prague 4 au 7 septembre.
@@ -103,6 +98,12 @@ export const BRANDS: Brand[] = [
   { name: "KÄRNTEN", logo: "/images/brands/karnten.svg", tall: true, cat: "travel", href: "/photographer/travel/villach", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   // Pastille ronde : meme traitement que Kärnten.
   { name: "VISIT GRAZ", logo: "/images/brands/visit-graz.png", tall: true, cat: "travel", href: "/photographer/travel/graz", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
+  // Koke-Musu:inn (04/11) : commande du film Lake Biwa (Otsu) sur
+  // Destinations, donc rangée avec les villes et voyages, pas avec les
+  // hôtels (10/11, Sandrine). Pas de logo public (pas de site, photo de
+  // chambre en profil Instagram) : le nom s'affiche en texte. Ajouter logo:
+  // le jour où l'auberge en envoie un.
+  { name: "KOKE-MUSU:INN", cat: "travel", href: "/photographer/travel/otsu", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
 
   // Brands. Sans logo, le nom s'affiche en toutes lettres : mieux vaut citer
   // le client que l'omettre en attendant son fichier.
