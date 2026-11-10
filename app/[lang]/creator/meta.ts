@@ -13,7 +13,7 @@ import type { Category, Clip, Mode } from "./constants";
 type Lang = "fr" | "en";
 type Meta = { brand?: string; project?: { fr: string; en: string } | string; mode?: Mode | null; cat?: Category; lead?: boolean };
 
-const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Godox", "Tokyo", "Antidote", "Candido"];
+const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Godox", "Tokyo", "Antidote", "Candido", "Tilta", "Camera Affair", "Bronkey"];
 
 // Métier par marque, d'après Sandrine (30/10). Une marque absente d'ici
 // n'apparaît pas sur Brands : Kodak n'est pas un client, Nishika n'avait que
@@ -26,6 +26,12 @@ const MODE_BY_BRAND: Record<string, Mode> = {
   Godox: "influence",
   Insta360: "influence",
   Telesin: "influence",
+  // 10/11 : Tilta (filtres pour la Luna Ultra), Camera Affair (location
+  // d'appareils Fujifilm, deux vidéos au Japon) et Bronkey (sangle), tous
+  // publiés sur le compte de Sandrine.
+  Tilta: "influence",
+  "Camera Affair": "influence",
+  Bronkey: "influence",
 };
 
 // Catégorie par marque (09/11). Gear : tout le matériel, appareils photo,
@@ -39,6 +45,9 @@ const CAT_BY_BRAND: Record<string, Category> = {
   Kodak: "gear",
   Insta360: "gear",
   Telesin: "gear",
+  Tilta: "gear",
+  "Camera Affair": "gear",
+  Bronkey: "gear",
 };
 
 // Catégorie par dossier, quand la marque n'en a pas : une vidéo posée dans
@@ -63,6 +72,8 @@ const OVERRIDES: Record<string, Meta> = {
   "EXPERIENCES/Tokyo Head Spa": { brand: "Liberta Tokyo", project: "Head spa", mode: "influence" },
   // Godox (10/11) : l'IM30 Pro en haut du tas, avant le C100.
   "GEAR/Godox IM30 Pro": { lead: true },
+  // Le C100 est de l'UGC (10/11), l'IM30 Pro reste sur le compte de Sandrine.
+  "GEAR/Godox C100": { mode: "ugc" },
   // Ricoh (10/11) : dix vidéos UGC remplacent les deux anciennes. La
   // présentation de l'appareil ouvre le tas.
   "GEAR/Ricoh GR III": { lead: true },
@@ -70,12 +81,26 @@ const OVERRIDES: Record<string, Meta> = {
   "GEAR/Candido 400": { project: { fr: "400 · Tokyo au calme", en: "400 · Quiet Tokyo" } },
   "GEAR/Candido 800": { project: { fr: "800 · Tokyo la nuit", en: "800 · Tokyo nights" } },
   // Pentax 17 (05/11) : quatre pellicules, une intention par film.
+  // Le déballage du Pentax 17 est publié sur le compte de Sandrine (10/11) :
+  // influence, pas UGC comme le reste de Pentax.
+  "UNBOXING/Pentax 17": { mode: "influence" },
   "GEAR/Pentax 17 Dreamy": { project: "17 · Dreamy" },
   "GEAR/Pentax 17 Movement": { project: "17 · Movement" },
   "GEAR/Pentax 17 Slow": { project: "17 · Slow" },
   "GEAR/Pentax 17 Soft": { project: "17 · Soft" },
   "UNBOXING/Telesin": { brand: "Telesin", project: { fr: "Accessoires", en: "Accessories" } },
 };
+
+// Retirées de Brands le 10/11 (Sandrine) : le déballage de l'Ace Pro 2 sur
+// fond sombre, une des deux Luna Ultra et le Pentax 17 tourné dans la rue
+// (le déballage du Pentax 17 reste). Nom exact, apostrophe comprise :
+// OVERRIDES ignore l'apostrophe finale et toucherait aussi l'autre version.
+// Les fichiers restent en place.
+const HIDDEN = new Set([
+  "UNBOXING/Insta360 Ace Pro 2",
+  "UNBOXING/Insta360 Luna Ultra",
+  "GEAR/Pentax 17",
+]);
 
 function keyFor(src: string): string {
   return src.replace(/^\/videos\/creator\//, "").replace(/\.[^./]+$/, "").replace(/['’]+$/, "");
@@ -88,6 +113,7 @@ function pick(v: { fr: string; en: string } | string | undefined, lang: Lang): s
 
 // Renvoie null pour un clip qui n'a pas sa place sur Brands.
 export function withMeta(clip: Clip, lang: Lang): (Clip & { mode: Mode; cat: Category; lead?: boolean }) | null {
+  if (HIDDEN.has(clip.src.replace(/^\/videos\/creator\//, "").replace(/\.[^./]+$/, ""))) return null;
   const over = OVERRIDES[keyFor(clip.src)] ?? {};
   const label = clip.label.replace(/['’]+$/, "").trim();
   const brand = over.brand ?? BRANDS.find((b) => label.toLowerCase().startsWith(b.toLowerCase()));

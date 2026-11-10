@@ -157,31 +157,43 @@ function groupClips(clips: Clip[], by: (c: Clip) => string): Group[] {
 
 function BrandStack({ group, cardKey, sound, label }: { group: Group; cardKey: string; sound: Sound; label: string }) {
   const [top, setTop] = useState(0);
-  const [tucking, setTucking] = useState<string | null>(null);
+  const [moving, setMoving] = useState<{ src: string; dir: "next" | "prev" } | null>(null);
+  const [side, setSide] = useState<"next" | "prev">("next");
   const n = group.clips.length;
   const current = group.clips[top];
 
-  // Un clic : la carte du dessus file sur le côté et repasse derrière, la
-  // suivante vient devant et joue.
-  const next = () => {
-    setTucking(group.clips[top].src);
-    setTop((t) => (t + 1) % n);
-    window.setTimeout(() => setTucking(null), 650);
+  // Clic à droite : la carte du dessus file sur le côté et repasse derrière,
+  // la suivante vient devant. Clic à gauche (10/11) : la dernière du tas
+  // ressort par le côté et revient devant.
+  const go = (dir: "next" | "prev") => {
+    const to = dir === "next" ? (top + 1) % n : (top - 1 + n) % n;
+    setMoving({ src: group.clips[dir === "next" ? top : to].src, dir });
+    setTop(to);
+    window.setTimeout(() => setMoving(null), 650);
+  };
+  const sideOf = (e: React.MouseEvent<HTMLDivElement>) => {
+    const box = e.currentTarget.getBoundingClientRect();
+    return e.clientX - box.left < box.width / 2 ? "prev" : "next";
   };
 
   return (
     <div className="slide slide--stack" data-clip={cardKey}>
       <div
-        className="brand-stack"
+        className={`brand-stack brand-stack--${side}`}
         role="button"
         tabIndex={0}
         aria-label={label}
-        onClick={next}
-        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); next(); } }}
+        onClick={(e) => go(sideOf(e))}
+        onMouseMove={(e) => setSide(sideOf(e))}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowLeft") { e.preventDefault(); go("prev"); }
+          else if (e.key === "ArrowRight" || e.key === "Enter" || e.key === " ") { e.preventDefault(); go("next"); }
+        }}
       >
         {group.clips.map((c, i) => {
           const depth = (i - top + n) % n;
-          const cls = `phone stack-card-item depth-${Math.min(depth, 3)}${tucking === c.src ? " tuck" : ""}`;
+          const anim = moving?.src === c.src ? (moving.dir === "next" ? " tuck" : " untuck") : "";
+          const cls = `phone stack-card-item depth-${Math.min(depth, 3)}${anim}`;
           return (
             <div key={c.src} className={cls} aria-hidden={depth !== 0}>
               {depth === 0 ? (
@@ -347,7 +359,7 @@ export function Carousel({ clips: input, kind, prefix, sound, badge, stackBy, la
                   group={g}
                   cardKey={`${id}-stack`}
                   sound={sound}
-                  label={lang === "fr" ? `${g.key} : vidéo suivante` : `${g.key}: next video`}
+                  label={lang === "fr" ? `${g.key} : clic à droite pour la vidéo suivante, à gauche pour la précédente` : `${g.key}: click right for the next video, left for the previous one`}
                 />,
               ];
             })

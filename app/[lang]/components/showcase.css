@@ -252,10 +252,21 @@
   55% { z-index: 0; }
   100% { z-index: 0; }
 }
+.stack-card-item.untuck { animation: stack-untuck 0.6s cubic-bezier(0.4, 0, 0.2, 1) both; }
+@keyframes stack-untuck {
+  0% { z-index: 0; transform: translate(18px, -10px) rotate(6deg); }
+  45% { z-index: 0; }
+  55% { z-index: 5; transform: translate(-62%, 14px) rotate(-9deg); }
+  100% { z-index: 5; transform: none; }
+}
+/* Le curseur dit le sens : flèche à gauche, flèche à droite. */
+.brand-stack--prev { cursor: w-resize; }
+.brand-stack--next { cursor: e-resize; }
+.brand-stack .vid-sound { cursor: pointer; }
 .slide--stack { padding-right: 18px; }
 @media (prefers-reduced-motion: reduce) {
   .stack-card-item { transition: none; }
-  .stack-card-item.tuck { animation: none; }
+  .stack-card-item.tuck, .stack-card-item.untuck { animation: none; }
 }
 
 /* Logo de la marque sous le téléphone (page Social, 10/11). */
