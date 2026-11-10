@@ -3,6 +3,7 @@
     "files": [],
     "dirs": [
       "CINEMATIC",
+      "EVENTS",
       "EXPERIENCES",
       "GEAR",
       "TALK",
@@ -131,6 +132,21 @@
       "Cé-Pages.mp4",
       "VanDerValk Sélys.jpg",
       "VanDerValk Sélys.mp4"
+    ],
+    "dirs": []
+  },
+  "EVENTS": {
+    "files": [
+      "Amazing Asia Eat.jpg",
+      "Amazing Asia Eat.mp4",
+      "Amazing Asia Feel.jpg",
+      "Amazing Asia Feel.mp4",
+      "Amazing Asia Festival.jpg",
+      "Amazing Asia Festival.mp4",
+      "Amazing Asia Play.jpg",
+      "Amazing Asia Play.mp4",
+      "Amazing Asia Shop.jpg",
+      "Amazing Asia Shop.mp4"
     ],
     "dirs": []
   },

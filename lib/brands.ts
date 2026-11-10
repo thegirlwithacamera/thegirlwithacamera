@@ -149,6 +149,8 @@ export const BRANDS: Brand[] = [
   // Camera Affair et Bronkey (10/11) : vidéos sur le compte de Sandrine.
   { name: "CAMERA AFFAIR", logo: "/images/brands/camera-affair.png", cat: "brand" },
   { name: "BRONKEY", logo: "/images/brands/bronkey.png", tall: true, cat: "brand" },
+  // Amazing Asia (10/11) : festival, UGC et une vidéo sur le compte de Sandrine.
+  { name: "AMAZING ASIA", logo: "/images/brands/amazing-asia.png", tall: true, cat: "brand" },
 ];
 
 // Les liens des marques menaient a une ancre, #ricoh, #pentax, #insta360,

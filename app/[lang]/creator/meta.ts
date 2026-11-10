@@ -13,7 +13,7 @@ import type { Category, Clip, Mode } from "./constants";
 type Lang = "fr" | "en";
 type Meta = { brand?: string; project?: { fr: string; en: string } | string; mode?: Mode | null; cat?: Category; lead?: boolean };
 
-const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Godox", "Tokyo", "Antidote", "Candido", "Tilta", "Camera Affair", "Bronkey"];
+const BRANDS = ["Insta360", "Ricoh", "Pentax", "Kodak", "Nishika", "Telesin", "Godox", "Tokyo", "Antidote", "Candido", "Tilta", "Camera Affair", "Bronkey", "Amazing Asia"];
 
 // Métier par marque, d'après Sandrine (30/10). Une marque absente d'ici
 // n'apparaît pas sur Brands : Kodak n'est pas un client, Nishika n'avait que
@@ -32,6 +32,9 @@ const MODE_BY_BRAND: Record<string, Mode> = {
   Tilta: "influence",
   "Camera Affair": "influence",
   Bronkey: "influence",
+  // Amazing Asia (10/11) : festival, quatre vidéos UGC (Eat, Feel, Play,
+  // Shop). Catégorie Événements par le dossier EVENTS.
+  "Amazing Asia": "ugc",
 };
 
 // Catégorie par marque (09/11). Gear : tout le matériel, appareils photo,
@@ -86,6 +89,9 @@ const OVERRIDES: Record<string, Meta> = {
   // Ricoh (10/11) : dix vidéos UGC remplacent les deux anciennes. La
   // présentation de l'appareil ouvre le tas.
   "GEAR/Ricoh GR III Intro": { lead: true },
+  // Le montage du festival (« Séquence 02 ») est publié sur le compte de
+  // Sandrine.
+  "EVENTS/Amazing Asia Festival": { mode: "influence" },
   "GEAR/Candido 200": { project: { fr: "200 · Entre ville et mer", en: "200 · Between city & sea" } },
   "GEAR/Candido 400": { project: { fr: "400 · Tokyo au calme", en: "400 · Quiet Tokyo" } },
   "GEAR/Candido 800": { project: { fr: "800 · Tokyo la nuit", en: "800 · Tokyo nights" } },
