@@ -109,7 +109,7 @@ function Mock({ clip, cardKey, kind, sound, badge }: { clip: Clip; cardKey: stri
       preload="metadata"
       controlsList="nodownload nofullscreen"
       onContextMenu={(e) => e.preventDefault()}
-      title={`Creator content: ${clip.label}`}
+      aria-label={`Creator content: ${clip.label}`}
     />
   );
   const btn = <SoundBtn on={sound.unmutedKey === cardKey} onClick={() => sound.toggleSound(cardKey)} />;
@@ -209,7 +209,7 @@ function BrandStack({ group, cardKey, sound, label }: { group: Group; cardKey: s
                     preload="metadata"
                     controlsList="nodownload nofullscreen"
                     onContextMenu={(e) => e.preventDefault()}
-                    title={`Creator content: ${c.label}`}
+                    aria-label={`Creator content: ${c.label}`}
                   />
                   <SoundBtn on={sound.unmutedKey === cardKey} onClick={() => sound.toggleSound(cardKey)} />
                 </>
@@ -287,7 +287,7 @@ function MobileStack({ clips, kind, prefix, sound, badge }: { clips: Clip[]; kin
             preload="metadata"
             controlsList="nodownload nofullscreen"
             onContextMenu={(e) => e.preventDefault()}
-            title={`Creator content: ${clip.label}`}
+            aria-label={`Creator content: ${clip.label}`}
           />
         );
         const btn = <SoundBtn on={sound.unmutedKey === key} onClick={() => sound.toggleSound(key)} />;
@@ -417,7 +417,7 @@ export function FocusOverlay({ clip, kind, onClose }: { clip: Clip; kind: "phone
       playsInline
       controlsList="nodownload nofullscreen"
       onContextMenu={(e) => e.preventDefault()}
-      title={`Creator content: ${clip.label}`}
+      aria-label={`Creator content: ${clip.label}`}
     />
   );
   const btn = (

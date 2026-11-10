@@ -100,10 +100,8 @@ export const BRANDS: Brand[] = [
   { name: "VISIT GRAZ", logo: "/images/brands/visit-graz.png", tall: true, cat: "travel", href: "/photographer/travel/graz", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
   // Koke-Musu:inn (04/11) : commande du film Lake Biwa (Otsu) sur
   // Destinations, donc rangée avec les villes et voyages, pas avec les
-  // hôtels (10/11, Sandrine). Pas de logo public (pas de site, photo de
-  // chambre en profil Instagram) : le nom s'affiche en texte. Ajouter logo:
-  // le jour où l'auberge en envoie un.
-  { name: "KOKE-MUSU:INN", cat: "travel", href: "/photographer/travel/otsu", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
+  // hôtels (10/11, Sandrine). Logo reçu le 10/11.
+  { name: "KOKE-MUSU:INN", logo: "/images/brands/koke-musu-inn.png", cat: "travel", href: "/photographer/travel/otsu", hrefLabel: { fr: "Photos & film", en: "Photographs & film" } },
 
   // Brands. Sans logo, le nom s'affiche en toutes lettres : mieux vaut citer
   // le client que l'omettre en attendant son fichier.
