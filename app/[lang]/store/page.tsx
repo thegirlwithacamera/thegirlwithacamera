@@ -13,21 +13,14 @@ const PRODUCTS = [
     slug: "street",
     image: "/store/street.jpg",
     name: "Street",
-    meta: { fr: "Le preset signature · 15 €", en: "The signature preset · 15 €" },
+    meta: { fr: "Le preset signature · 9 €", en: "The signature preset · 9 €" },
     alt: "Street, the signature Lightroom preset",
-  },
-  {
-    slug: "pack-101",
-    image: "/store/pack-101.jpg",
-    name: "Pack 101",
-    meta: { fr: "4 presets Lightroom · 39 €", en: "4 Lightroom presets · 39 €" },
-    alt: "Pack 101, 4 film presets for Lightroom",
   },
   {
     slug: "shy",
     image: "/store/shy.jpg",
     name: "Shy With A Camera",
-    meta: { fr: "Le guide street pour les timides · 19 €", en: "The shy street guide · 19 €" },
+    meta: { fr: "Le guide street pour les timides · 12 €", en: "The shy street guide · 12 €" },
     alt: "Shy With A Camera, the street photography guide for shy people",
   },
 ] as const;
@@ -55,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       lang === "fr"
         ? "La boutique de Sandrine Ceuppens : presets Lightroom et objets à venir."
         : "Sandrine Ceuppens' store: Lightroom presets and more to come.",
-    image: "/store/pack-101.jpg",
+    image: "/store/street.jpg",
   });
 }
 
@@ -67,8 +60,8 @@ export default async function StorePage({ params }: Props) {
     <main>
       <section className={s.banner}>
         <img
-          src="/store/banner.jpg"
-          alt="Street, Travel, Market and Neon, the four presets side by side"
+          src="/presets101/street-after.jpg"
+          alt="A street photo edited with Street, the signature preset"
         />
         <span className={s.bannerVeil} aria-hidden="true" />
         <p className={s.bannerWord}>The Store</p>

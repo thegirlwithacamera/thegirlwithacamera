@@ -28,7 +28,6 @@ function buildPaths(): Entry[] {
     { path: "/destinations", priority: 0.9, changeFrequency: "weekly", lastModified: now },
     { path: "/hotels", priority: 0.9, changeFrequency: "weekly", lastModified: now },
     { path: "/store", priority: 0.9, changeFrequency: "weekly", lastModified: now },
-    { path: "/store/pack-101", priority: 0.9, changeFrequency: "weekly", lastModified: now },
     { path: "/store/street", priority: 0.9, changeFrequency: "weekly", lastModified: now },
     { path: "/store/shy", priority: 0.9, changeFrequency: "weekly", lastModified: now },
     { path: "/journal", priority: 0.7, changeFrequency: "weekly", lastModified: now },

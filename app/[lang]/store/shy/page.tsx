@@ -7,7 +7,7 @@ import s from "../pack-101/presets.module.css";
 // Shy With A Camera : le guide street photo pour les timides. Premier
 // produit non-preset de la boutique, cross-sell naturel du preset Street.
 const GUMROAD_URL = "https://shop.thegirlwithacamera.com/l/shy";
-const PRICE = "19 €";
+const PRICE = "12 €";
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
