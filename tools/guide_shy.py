@@ -1,5 +1,5 @@
 # Guide "Shy With A Camera" : street photo pour les timides.
-# Meme systeme visuel que le guide du Pack 101 (creme, serif vert, terra).
+# Systeme visuel creme, serif vert, terra.
 # Produit /tmp/shy_product/TGWAC Shy With A Camera/Shy With A Camera.pdf
 # + les pages en JPG dans /tmp/shy_product/preview pour relecture.
 import os
@@ -244,7 +244,7 @@ pages.append(im)
 # ---------- 11. EDIT + FR ----------
 im, d = new_page()
 y = head(d, 170, 'Edit like you meant it.')
-y = wrap(d, MX, y, 'Confidence also comes after the walk. A consistent edit makes ten shy snapshots look like a series by a photographer with a vision, which is what you are becoming. Pick one look and keep it. If you want mine, my Street preset is the exact rendering from this guide’s photos, and Pack 101 adds Travel, Market and Neon. shop.thegirlwithacamera.com', F(34), INK, W - 2 * MX, 50) + 60
+y = wrap(d, MX, y, 'Confidence also comes after the walk. A consistent edit makes ten shy snapshots look like a series by a photographer with a vision, which is what you are becoming. Pick one look and keep it. If you want mine, my Street preset is the exact rendering from this guide’s photos. thegirlwithacamera.com/store', F(34), INK, W - 2 * MX, 50) + 60
 d.line([MX, y, W - MX, y], fill=LINE, width=2)
 y += 50
 y = wrap(d, MX, y, "En français, l'essentiel", FI(72), GREEN, W - 2 * MX, 86) + 30
