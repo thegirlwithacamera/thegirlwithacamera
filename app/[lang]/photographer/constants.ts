@@ -289,6 +289,17 @@ const ALL_PHOTO_CATEGORIES: PhotoCategory[] = [
           fr: "Photographié début septembre 2026.",
           en: "Photographed in early September 2026.",
         },
+        // Recu le 11/11 d'Alexandra Marl, avec l'accord de publier son nom,
+        // son role et le nom de l'hotel. Site en anglais seulement : meme texte dans fr et en.
+        testimonial: {
+          quote: {
+            fr: "Working with Sandrine was a very pleasant experience. We especially loved the cinematic video she created for Hotel Rathaus Wein & Design and how beautifully she captured the atmosphere and character of our hotel. Her visual style feels thoughtful, authentic and very professional.",
+            en: "Working with Sandrine was a very pleasant experience. We especially loved the cinematic video she created for Hotel Rathaus Wein & Design and how beautifully she captured the atmosphere and character of our hotel. Her visual style feels thoughtful, authentic and very professional.",
+          },
+          author: "Alexandra Marl",
+          role: { fr: "Head of Social Media & Marketing", en: "Head of Social Media & Marketing" },
+          company: "Hotel Rathaus Wein & Design",
+        },
         // Film déposé le 09/09, réencodé en 1080p depuis le master 4K du bureau.
         films: [{ src: "/videos/creator/CINEMATIC/HOTELS/Hotel Rathaus.mp4" }],
       },
