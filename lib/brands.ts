@@ -149,6 +149,9 @@ export const BRANDS: Brand[] = [
   { name: "BRONKEY", logo: "/images/brands/bronkey.png", tall: true, cat: "brand" },
   // Amazing Asia (10/11) : festival, UGC et une vidéo sur le compte de Sandrine.
   { name: "AMAZING ASIA", logo: "/images/brands/amazing-asia.png", tall: true, cat: "brand" },
+  // Sandqvist (16/11) : wordmark SVG repris du pied de page de sandqvist.com,
+  // passé en noir.
+  { name: "SANDQVIST", logo: "/images/brands/sandqvist.svg", cat: "brand" },
 ];
 
 // Les liens des marques menaient a une ancre, #ricoh, #pentax, #insta360,
