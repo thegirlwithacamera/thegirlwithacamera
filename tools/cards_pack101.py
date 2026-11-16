@@ -130,7 +130,7 @@ CARDS = [
     make_card(P('street'), 'Street', 'Base preset. Born from an in-camera recipe, Tokyo tested.',
               ('Clean Highlights', 'Whites stay honest in any light, skies keep their detail.'),
               ('Aqua Boost', 'Waters and skies turn rich teal, greens calm down.'),
-              '01/05', '15 €'),
+              '01/05', '9 €'),
     make_card(P('travel'), 'Travel', 'Golden light type. Evolves any trip into a postcard.',
               ('Golden Hour', 'Warms places and skin softly, never burns.'),
               ('Soft Shadows', 'Opens the dark parts, keeps the mood intact.'),
