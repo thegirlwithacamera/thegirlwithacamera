@@ -12,7 +12,7 @@
 //
 // La cle de lecture est un secret du Worker (STATS_KEY), jamais dans le code.
 
-import { depot, lire, page as pageInsta } from "./insta.js";
+import { depot, kit, lire, page as pageInsta } from "./insta.js";
 
 const LINKS = new Set([
   "collabs",
@@ -201,6 +201,12 @@ export default {
 
     if (url.pathname === "/insta/depot" && request.method === "POST") {
       return depot(request, env);
+    }
+
+    if (url.pathname === "/kit.json") {
+      const k = kit(await lire(env));
+      if (!k) return new Response("Pas encore de releve", { status: 503 });
+      return Response.json(k, { headers: { "cache-control": "public, max-age=600" } });
     }
 
     if (url.pathname === "/insta" || url.pathname === "/insta.json") {

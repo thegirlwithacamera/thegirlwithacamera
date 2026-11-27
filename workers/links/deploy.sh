@@ -7,13 +7,13 @@ set -e
 export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH
 cd "$(dirname "$0")"
 
-npx --no-install wrangler d1 execute tgwac-links --remote --file=schema.sql -y >/dev/null
+npx --yes wrangler@4.168.0 d1 execute tgwac-links --remote --file=schema.sql -y >/dev/null
 echo "base prete"
 
-npx --no-install wrangler deploy 2>&1 | grep -E 'https://|Deployed|ERROR' || true
+npx --yes wrangler@4.168.0 deploy 2>&1 | grep -E 'https://|Deployed|ERROR' || true
 
 if [ ! -f .env.stats-key ]; then
   openssl rand -hex 16 > .env.stats-key
   chmod 600 .env.stats-key
 fi
-npx --no-install wrangler secret put STATS_KEY < .env.stats-key 2>&1 | grep -E 'Success|ERROR' || true
+npx --yes wrangler@4.168.0 secret put STATS_KEY < .env.stats-key 2>&1 | grep -E 'Success|ERROR' || true

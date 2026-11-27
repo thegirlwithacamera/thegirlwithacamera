@@ -27,7 +27,7 @@ export default function Footer() {
   // L'accueil n'est que sa couverture, rien en dessous (28/10, Sandrine).
   if (onHome) return null;
   // La page lien en bio et la desinscription ont leur propre pied, minimal.
-  if (/^\/en\/(links|unsubscribe)\/?$/.test(pathname)) return null;
+  if (/^\/en\/(links|unsubscribe|media-kit)\/?$/.test(pathname)) return null;
 
   return (
     <footer className={s.footer}>

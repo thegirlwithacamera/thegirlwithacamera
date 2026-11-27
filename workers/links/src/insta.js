@@ -191,3 +191,39 @@ app.addEventListener('click', e => {
 dessiner();
 </script></body></html>`;
 }
+
+// Media kit : un extrait public des chiffres, sans rien de prive (pas de pays,
+// pas de villes, pas de reels d'essai). Lu par la page /en/media-kit du site.
+export function kit(tout) {
+  const d = tout.donnees;
+  if (!d) return null;
+  const t = d.totaux_28j || {};
+  const pct = (lignes) => {
+    const total = (lignes || []).reduce((s, l) => s + (l[1] || 0), 0) || 1;
+    return (lignes || []).map((l) => [l[0], Math.round((l[1] / total) * 1000) / 10]);
+  };
+  const depuis = new Date(Date.now() - 90 * 86400000).toISOString().slice(0, 16);
+  const visibles = d.posts.filter((p) => p.genre === "reel" && !p.essai);
+  const recents = visibles.filter((p) => p.date >= depuis);
+  const trente = visibles.filter((p) => p.date >= new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 16));
+  const moyenne = trente.length ? Math.round(trente.reduce((s, p) => s + (p.vues || 0), 0) / trente.length) : null;
+  const ordreAges = ["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"];
+  return {
+    releve: d.releve,
+    abonnes: d.compte.abonnes,
+    croissance_28j: t.nouveaux_abonnes != null ? (t.nouveaux_abonnes || 0) - (t.desabonnes || 0) : null,
+    vues_28j: t.views ?? null,
+    portee_28j: t.reach ?? null,
+    interactions_28j: t.total_interactions ?? null,
+    enregistrements_28j: t.saves ?? null,
+    partages_28j: t.shares ?? null,
+    visites_profil_28j: t.profile_views ?? null,
+    vues_moyennes_reel_30j: moyenne,
+    ages: pct((d.public && d.public.age) || []).sort((a, b) => ordreAges.indexOf(a[0]) - ordreAges.indexOf(b[0])),
+    genres: pct((d.public && d.public.gender) || []),
+    meilleurs_reels: recents
+      .sort((a, b) => (b.vues || 0) - (a.vues || 0))
+      .slice(0, 3)
+      .map((p) => ({ texte: (p.texte || "").split(/\s#/)[0].slice(0, 90), vues: p.vues, lien: p.lien, date: p.date.slice(0, 10) })),
+  };
+}
