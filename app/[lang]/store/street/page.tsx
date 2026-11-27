@@ -8,6 +8,8 @@ import s from "../pack-101/presets.module.css";
 // Street : le preset signature, seul preset en vente.
 const GUMROAD_URL = "https://shop.thegirlwithacamera.com/l/street";
 const PRICE = "9 \u20ac";
+// Avant / apres : trois photos Ricoh (jour, nuit, crepuscule), RAW neutre puis Street.
+const SLIDERS = ["", "-2", "-3"] as const;
 
 interface Props {
   params: Promise<{ lang: "fr" | "en" }>;
@@ -67,13 +69,16 @@ export default async function StreetPage({ params }: Props) {
           </div>
         </PageHead>
         <p className={s.hint}>{t.hint}</p>
-        <div className={s.singleSlider}>
-          <BeforeAfter
-            before="/presets101/street-before.jpg"
-            after="/presets101/street-after.jpg"
-            name="Street"
-            beforeLabel={t.before}
-          />
+        <div className={s.streetSliders}>
+          {SLIDERS.map((n) => (
+            <BeforeAfter
+              key={n}
+              before={`/presets101/street${n}-before.jpg`}
+              after={`/presets101/street${n}-after.jpg`}
+              name="Street"
+              beforeLabel={t.before}
+            />
+          ))}
         </div>
       </div>
     </main>
