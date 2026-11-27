@@ -6,6 +6,7 @@ workers_dev = true
 [vars]
 IG_ID = "17841401518587675"
 PUBLIC_URL = "https://tgwac-publier.thegirlwithacamera.workers.dev"
+ALERTE_A = "sandrineceuppens@icloud.com"
 
 # Toutes les 2 minutes : publie ce qui est du, puis traite les commentaires.
 [triggers]

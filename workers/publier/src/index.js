@@ -131,17 +131,43 @@ async function avancer(env, p) {
     const essais = (p.essais || 0) + 1;
     // Une erreur de Meta sur un fichier ne s'arrange pas en retentant : on s'arrete tout de suite.
     const definitive = /refuse|format|aspect|duration|resolution|invalid/i.test(e.message);
-    await maj(env, p.id, essais >= 3 || definitive
-      ? { statut: "erreur", erreur: e.message, essais }
-      : { erreur: e.message, essais });
+    const fini = essais >= 3 || definitive;
+    await maj(env, p.id, fini ? { statut: "erreur", erreur: e.message, essais } : { erreur: e.message, essais });
+    if (fini) await alerte(env, p, e.message);
   }
 }
 
 async function attendre(env, p) {
   // Meta prepare la video. Au dela de 2 heures, on abandonne.
   if (Date.now() - new Date(p.quand).getTime() > 2 * 3600 * 1000) {
-    await maj(env, p.id, { statut: "erreur", erreur: "Meta n'a pas fini de preparer la video en 2 heures." });
+    const m = "Instagram n'a pas fini de preparer la video en 2 heures.";
+    await maj(env, p.id, { statut: "erreur", erreur: m });
+    await alerte(env, p, m);
   }
+}
+
+// Email a Sandrine quand un post echoue (Resend, offre gratuite).
+async function alerte(env, p, raison) {
+  if (!env.RESEND_KEY || !env.ALERTE_A) return;
+  const noms = { essai: "reel d'essai", reel: "reel", photo: "photo", carrousel: "carrousel" };
+  const quand = new Date(p.quand).toLocaleString("fr-BE", { timeZone: "Europe/Brussels", weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
+  const lien = `${env.PUBLIC_URL}/?key=${encodeURIComponent(env.CLE || "")}`;
+  const esc = (s) => String(s || "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { authorization: `Bearer ${env.RESEND_KEY}`, "content-type": "application/json" },
+      body: JSON.stringify({
+        from: env.ALERTE_DE || "Programmation <onboarding@resend.dev>",
+        to: [env.ALERTE_A],
+        subject: `Un ${noms[p.genre] || "post"} n'est pas parti (${quand})`,
+        html: `<p>Le ${noms[p.genre] || "post"} prevu ${esc(quand)} n'a pas ete publie.</p>` +
+          `<p><b>Raison donnee par Instagram :</b> ${esc(raison)}</p>` +
+          `<p><b>Legende :</b> ${esc((p.legende || "").slice(0, 160))}</p>` +
+          `<p><a href="${lien}">Ouvrir la programmation</a> pour le reessayer ou le retirer.</p>`,
+      }),
+    });
+  } catch {}
 }
 
 async function cron(env) {
@@ -417,7 +443,17 @@ export default {
       }
       return json({ ok: true });
     }
-    if (p === "/api/etat") return json({ jeton: Boolean(env.META_TOKEN) });
+    if (p === "/api/etat") return json({ jeton: Boolean(env.META_TOKEN), alerte: Boolean(env.RESEND_KEY && env.ALERTE_A) });
+    if (p === "/api/alerte-test" && request.method === "POST") {
+      if (!env.RESEND_KEY) return json({ erreur: "Pas de cle Resend" }, 400);
+      const r = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { authorization: `Bearer ${env.RESEND_KEY}`, "content-type": "application/json" },
+        body: JSON.stringify({ from: env.ALERTE_DE || "Programmation <onboarding@resend.dev>", to: [url.searchParams.get("a") || env.ALERTE_A],
+          subject: "Test : les alertes de la programmation marchent", html: "<p>Si tu lis ceci, tu seras prevenue par email quand un post n'arrive pas a partir.</p>" }),
+      });
+      return json({ statut: r.status, reponse: (await r.text()).slice(0, 300) });
+    }
     if (p === "/api/commentaires/passage" && request.method === "POST") {
       try {
         await passageCommentaires(env);
