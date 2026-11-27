@@ -1,0 +1,22 @@
+name = "tgwac-publier"
+main = "src/index.js"
+compatibility_date = "2026-09-20"
+workers_dev = true
+
+[vars]
+IG_ID = "17841401518587675"
+PUBLIC_URL = "https://tgwac-publier.thegirlwithacamera.workers.dev"
+
+# Toutes les 5 minutes : publie ce qui est du.
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tgwac-links"
+database_id = "a373d3de-bde3-4746-8cb2-269ae9ca7fbb"
+
+# Les fichiers a publier vivent dans le bucket des videos, sous planning/.
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "tgwac-videos"
