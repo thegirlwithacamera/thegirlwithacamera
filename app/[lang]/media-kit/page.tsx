@@ -112,8 +112,8 @@ export default async function MediaKitPage() {
             <div className={s.grid}>
               <div><b>{compact(k.vues_28j ?? 0)}</b><span>views, last 28 days</span></div>
               <div><b>{compact(k.portee_28j ?? 0)}</b><span>accounts reached, last 28 days</span></div>
-              <div><b>{n(k.vues_moyennes_reel_30j)}</b><span>average views per reel, last 30 days</span></div>
               <div><b>{n(k.interactions_28j)}</b><span>interactions, last 28 days</span></div>
+              <div><b>{n(k.visites_profil_28j)}</b><span>profile visits, last 28 days</span></div>
               <div><b>{n(k.enregistrements_28j)}</b><span>saves, last 28 days</span></div>
               <div><b>{n(k.partages_28j)}</b><span>shares, last 28 days</span></div>
             </div>
@@ -145,22 +145,6 @@ export default async function MediaKitPage() {
               </div>
             ))}
           </div>
-        </section>
-      )}
-
-      {k && k.meilleurs_reels.length > 0 && (
-        <section className={s.block}>
-          <h2 className={s.label}>Top reels, last 90 days</h2>
-          <ol className={s.reels}>
-            {k.meilleurs_reels.map((r) => (
-              <li key={r.lien}>
-                <a href={r.lien} target="_blank" rel="noopener noreferrer">
-                  <span className={s.reelText}>{r.texte.split("\n")[0]}</span>
-                  <span className={s.reelViews}>{n(r.vues)} views</span>
-                </a>
-              </li>
-            ))}
-          </ol>
         </section>
       )}
 
