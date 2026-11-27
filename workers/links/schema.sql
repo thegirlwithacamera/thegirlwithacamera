@@ -17,3 +17,11 @@ CREATE TABLE IF NOT EXISTS abonnes (
   jour TEXT PRIMARY KEY,
   n    INTEGER NOT NULL
 );
+
+-- Chiffres notes a la main depuis l'app (reels pousses en pub par un partenaire).
+CREATE TABLE IF NOT EXISTS corrections (
+  code   TEXT PRIMARY KEY,
+  vues   INTEGER,
+  portee INTEGER,
+  maj    TEXT NOT NULL
+);

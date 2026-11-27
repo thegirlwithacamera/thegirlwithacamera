@@ -37,10 +37,55 @@ export async function depot(request, env) {
   return new Response("ok");
 }
 
+// Code court d'un post (le bout apres /reel/ ou /p/ dans son lien).
+function code(lien) {
+  const m = /\/(?:reel|p|tv)\/([^/?#]+)/.exec(lien || "");
+  return m ? m[1] : null;
+}
+
 export async function lire(env) {
   const releve = await env.DB.prepare("SELECT corps FROM releves WHERE nom = 'insta'").first();
   const { results } = await env.DB.prepare("SELECT jour, n FROM abonnes ORDER BY jour").all();
-  return { donnees: releve ? JSON.parse(releve.corps) : null, abonnes: results };
+  const corr = (await env.DB.prepare("SELECT code, vues, portee FROM corrections").all()).results;
+  const donnees = releve ? JSON.parse(releve.corps) : null;
+  if (donnees && corr.length) {
+    // Chiffres notes a la main depuis l'app, pour les reels pousses en pub par
+    // un partenaire : Meta ne donne alors par l'acces officiel que la part sans pub.
+    const parCode = new Map(corr.map((c) => [c.code, c]));
+    for (const p of donnees.posts) {
+      const c = parCode.get(code(p.lien));
+      if (!c) continue;
+      p.vues_meta = p.vues;
+      p.portee_meta = p.portee;
+      if (c.vues != null) p.vues = c.vues;
+      if (c.portee != null) p.portee = c.portee;
+      p.corrige = true;
+    }
+  }
+  return { donnees, abonnes: results };
+}
+
+// Enregistre (ou efface) le chiffre de l'app pour un post.
+export async function corriger(request, env) {
+  let d;
+  try {
+    d = await request.json();
+  } catch {
+    return new Response("Illisible", { status: 400 });
+  }
+  const c = code(d.lien) || (typeof d.code === "string" && /^[\w-]{5,20}$/.test(d.code) ? d.code : null);
+  if (!c) return new Response("Post inconnu", { status: 400 });
+  const entier = (v) => (v === null || v === undefined || v === "" ? null : Math.max(0, Math.round(Number(v))) || null);
+  const vues = entier(d.vues), portee = entier(d.portee);
+  if (vues === null && portee === null) {
+    await env.DB.prepare("DELETE FROM corrections WHERE code = ?1").bind(c).run();
+  } else {
+    await env.DB.prepare(
+      "INSERT INTO corrections (code, vues, portee, maj) VALUES (?1, ?2, ?3, ?4) " +
+        "ON CONFLICT (code) DO UPDATE SET vues = ?2, portee = ?3, maj = ?4",
+    ).bind(c, vues, portee, new Date().toISOString()).run();
+  }
+  return Response.json({ ok: true, code: c, vues, portee });
 }
 
 export function page(tout, cle) {
@@ -87,6 +132,13 @@ button.on{background:#111;color:#fff;border-color:#111}
 .chiffres b{color:#111;font-weight:500}
 .chiffres .tri b{color:#b02c1e}
 .vide-msg{color:#777;padding:16px 0;border-top:1px solid #e6e6e6}
+.corr{display:inline-block;font-size:10px;letter-spacing:.06em;color:#777;border:1px solid #ccc;padding:0 5px;margin-left:6px}
+.edit{background:none;border:none;color:#777;text-decoration:underline;text-underline-offset:3px;font-size:11px;padding:4px 0;min-height:30px;margin-top:2px}
+.form{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.form[hidden]{display:none}
+.form input{font:inherit;font-size:13px;width:110px;padding:7px 8px;border:1px solid #ccc;border-radius:0}
+.form button{min-height:34px;padding:6px 10px}
+.form .aide{flex-basis:100%;font-size:11px;color:#777}
 .alerte{background:#fbf1ef;color:#7a1f15;padding:10px 12px;font-size:12px;margin-top:20px}
 @media(max-width:420px){.grand b{font-size:46px}.case b{font-size:22px}}
 </style></head><body><main>
@@ -164,12 +216,21 @@ function liste() {
   h += posts.slice(0, 60).map(p => {
     const c = (k, nom, v) => '<span class="' + (tri === k ? 'tri' : '') + '"><b>' + n(v) + '</b> ' + nom + '</span>';
     const date = new Date(p.date + 'Z').toLocaleDateString('fr-BE', { day: 'numeric', month: 'short' });
-    return '<a class="ligne" href="' + esc(p.lien) + '" target="_blank" rel="noopener noreferrer">' +
-      (p.image ? '<img loading="lazy" referrerpolicy="no-referrer" src="' + esc(p.image) + '" alt="">' : '<span class="vide"></span>') +
-      '<span><span class="texte">' + (esc(p.texte) || 'Sans texte') + '</span>' +
+    const lien = '<a href="' + esc(p.lien) + '" target="_blank" rel="noopener noreferrer"';
+    return '<div class="ligne">' + lien + '>' +
+      (p.image ? '<img loading="lazy" referrerpolicy="no-referrer" src="' + esc(p.image) + '" alt="">' : '<span class="vide"></span>') + '</a>' +
+      '<span>' + lien + ' style="text-decoration:none"><span class="texte">' + (esc(p.texte) || 'Sans texte') + '</span></a>' +
       '<span class="meta">' + date + (p.son ? ' · ' + p.son : '') + (p.duree_moyenne_s ? ' · regardé ' + String(p.duree_moyenne_s).replace('.', ',') + ' s en moyenne' : '') +
-      ((p.essai && (p.vues || 0) >= 2000) ? '<span class="badge">2K+</span>' : '') + '</span>' +
-      '<span class="chiffres">' + c('vues', 'vues', p.vues) + c('enregistrements', 'enreg.', p.enregistrements) + c('partages', 'partages', p.partages) + c('portee', 'portée', p.portee) + '<span><b>' + n(p.likes) + '</b> likes</span></span></span></a>';
+      ((p.essai && (p.vues || 0) >= 2000) ? '<span class="badge">2K+</span>' : '') +
+      (p.corrige ? '<span class="corr">CHIFFRE DE L\\'APP</span>' : '') + '</span>' +
+      '<span class="chiffres">' + c('vues', 'vues', p.vues) + c('enregistrements', 'enreg.', p.enregistrements) + c('partages', 'partages', p.partages) + c('portee', 'portée', p.portee) + '<span><b>' + n(p.likes) + '</b> likes</span></span>' +
+      '<button class="edit" data-edit="' + esc(p.lien) + '">' + (p.corrige ? 'Modifier le chiffre de l\\'app' : 'Corriger avec le chiffre de l\\'app') + '</button>' +
+      '<span class="form" data-form="' + esc(p.lien) + '" hidden>' +
+      '<input inputmode="numeric" placeholder="Vues" value="' + (p.corrige && p.vues != null ? p.vues : '') + '">' +
+      '<input inputmode="numeric" placeholder="Comptes touchés" value="' + (p.corrige && p.portee != null ? p.portee : '') + '">' +
+      '<button data-save="' + esc(p.lien) + '">Enregistrer</button>' +
+      '<span class="aide">Les chiffres de l\\'app, dans Voir les statistiques. Videz les deux cases pour revenir au chiffre de Meta' + (p.corrige ? ' (' + n(p.vues_meta) + ' vues)' : '') + '.</span>' +
+      '</span></span></div>';
   }).join('');
   if (posts.length > 60) h += '<div class="vide-msg">Les 60 premiers sur ' + posts.length + '.</div>';
   return h;
@@ -181,8 +242,25 @@ function dessiner() {
   app.innerHTML = haut() + '<div id="liste">' + liste() + '</div>' +
     ((D.alertes || []).length ? '<div class="alerte">Certains chiffres n\\'ont pas pu être lus : ' + esc(D.alertes.join(' ; ')) + '</div>' : '');
 }
-app.addEventListener('click', e => {
+const CLE = new URLSearchParams(location.search).get('key') || '';
+app.addEventListener('click', async e => {
   const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.edit) {
+    const f = [...document.querySelectorAll('[data-form]')].find(x => x.dataset.form === b.dataset.edit);
+    if (f) { f.hidden = !f.hidden; if (!f.hidden) f.querySelector('input').focus(); }
+    return;
+  }
+  if (b.dataset.save) {
+    const f = b.closest('.form'), [v, r] = f.querySelectorAll('input');
+    const chiffre = s => s.value.replace(/[^0-9]/g, '');
+    b.disabled = true; b.textContent = '...';
+    try {
+      const rep = await fetch('/insta/correction?key=' + encodeURIComponent(CLE), { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ lien: b.dataset.save, vues: chiffre(v), portee: chiffre(r) }) });
+      if (!rep.ok) throw 0;
+      location.reload();
+    } catch { b.disabled = false; b.textContent = 'Réessayer'; }
+    return;
+  }
   if (b.dataset.o) onglet = b.dataset.o;
   if (b.dataset.p !== undefined) periode = Number(b.dataset.p);
   if (b.dataset.t) tri = b.dataset.t;

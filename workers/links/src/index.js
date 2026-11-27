@@ -12,7 +12,7 @@
 //
 // La cle de lecture est un secret du Worker (STATS_KEY), jamais dans le code.
 
-import { depot, kit, lire, page as pageInsta } from "./insta.js";
+import { corriger, depot, kit, lire, page as pageInsta } from "./insta.js";
 
 const LINKS = new Set([
   "collabs",
@@ -197,6 +197,11 @@ export default {
       return new Response(page(rows), {
         headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
       });
+    }
+
+    if (url.pathname === "/insta/correction" && request.method === "POST") {
+      if (!allowed(env, url)) return new Response("Introuvable", { status: 404 });
+      return corriger(request, env);
     }
 
     if (url.pathname === "/insta/depot" && request.method === "POST") {
