@@ -396,6 +396,13 @@ export default {
     if (p.startsWith("/api/envoi/")) return envoi(request, env, url, p.split("/")[3]);
     if (p === "/api/posts" && request.method === "GET") return json(await liste(env));
     if (p === "/api/posts" && request.method === "POST") return programmer(request, env);
+    const ml = /^\/api\/posts\/([0-9a-f-]{36})\/legende$/.exec(p);
+    if (ml && request.method === "POST") {
+      const { legende } = await request.json();
+      const r = await env.DB.prepare("UPDATE planning SET legende = ?1, maj = ?2 WHERE id = ?3 AND statut = 'prevu'")
+        .bind(String(legende || "").slice(0, 2200), maintenant(), ml[1]).run();
+      return json({ ok: r.meta.changes === 1 });
+    }
     const m = /^\/api\/posts\/([0-9a-f-]{36})\/(supprimer|relancer)$/.exec(p);
     if (m && request.method === "POST") {
       if (m[2] === "supprimer") {

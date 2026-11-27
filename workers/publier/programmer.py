@@ -18,6 +18,7 @@ Commandes :
   python3 programmer.py --essai lot.json  verifie le lot sans rien envoyer
   python3 programmer.py --liste         ce qui est au programme
   python3 programmer.py --retirer ID    retire un post prevu
+  python3 programmer.py --legendes f.json  change les legendes {id: legende}
 """
 import json
 import pathlib
@@ -59,12 +60,12 @@ def preparer(chemin):
     if not p.exists():
         raise SystemExit(f"Fichier introuvable : {p}")
     ext = p.suffix.lower().lstrip(".")
-    if ext in ("heic", "png", "tif", "tiff", "jpeg") or (ext == "jpg" and False):
+    if ext in ("heic", "png", "tif", "tiff"):
         sortie = pathlib.Path("/tmp") / (p.stem + "-ig.jpg")
         subprocess.run(["sips", "-s", "format", "jpeg", "-s", "formatOptions", "92", str(p), "--out", str(sortie)],
                        check=True, capture_output=True)
         return sortie
-    if ext not in ("jpg", "mp4", "mov", "m4v"):
+    if ext not in ("jpg", "jpeg", "mp4", "mov", "m4v"):
         raise SystemExit(f"Format non pris en charge : {p.name}")
     return p
 
@@ -114,6 +115,12 @@ def main():
             q = datetime.fromisoformat(p["quand"].replace("Z", "+00:00")).astimezone(BXL)
             print(f"{q:%a %d/%m %H:%M}  {p['genre']:<9} {p['statut']:<10} {p['id']}  {(p['legende'] or '')[:50]!r}"
                   + (f"  ERREUR: {p['erreur']}" if p["statut"] == "erreur" else "") + (f"  {p['lien']}" if p.get("lien") else ""))
+        return
+    if a[0] == "--legendes":
+        # Fichier JSON {"<id>": "nouvelle legende", ...}
+        for pid, leg in json.loads(pathlib.Path(a[1]).read_text()).items():
+            r = api(f"/api/posts/{pid}/legende", {"legende": leg})
+            print(("ok  " if r.get("ok") else "NON ") + pid[:8] + "  " + leg[:60])
         return
     if a[0] == "--retirer":
         api(f"/api/posts/{a[1]}/supprimer", methode="POST", brut=b"")
