@@ -107,12 +107,12 @@ async function envoyerDM(env, budget, compteId, idc, regle) {
   return "texte";
 }
 
-export async function passageCommentaires(env) {
+export async function passageCommentaires(env, permis = 48) {
   if (!env.META_TOKEN) return;
   if (!(await lire(env, "com_actif", false))) return; // allumee seulement apres la reprise depuis le Mac
   const budget = compteur();
   const rs = regles(await lire(env, "mots_cles", null));
-  if (!rs.length) return;
+  if (!rs.length || permis < 8) return;
   const compteId = env.IG_ID;
   let pseudo = await lire(env, "com_pseudo", null);
   if (!pseudo) {
@@ -160,7 +160,7 @@ export async function passageCommentaires(env) {
   // 3. Les commentaires de ces posts.
   let envois = 0, tour = await lire(env, "com_tour", 0);
   for (const m of aVoir.slice(0, MAX_MEDIAS)) {
-    if (budget.reste(50) < 4) break;
+    if (budget.reste(permis) < 4) break;
     let complet = true;
     const page = await meta(env, budget, `${m.id}/comments?fields=id,text,username,timestamp,from&limit=50`);
     for (const c of page.data || []) {
@@ -174,7 +174,7 @@ export async function passageCommentaires(env) {
       if (!regle) { await fait(env, c.id); continue; }
       const quand = Date.parse(c.timestamp || "");
       if (quand && (quand < ACTIVATION || quand < limite)) { await fait(env, c.id); await journal(env, "ignore_trop_vieux", c, regle.nom); continue; }
-      if (envois >= MAX_ENVOIS || budget.reste(50) < 3) { complet = false; break; }
+      if (envois >= MAX_ENVOIS || budget.reste(permis) < 3) { complet = false; break; }
       try {
         const forme = await envoyerDM(env, budget, compteId, String(c.id), regle);
         await fait(env, c.id);
@@ -201,6 +201,7 @@ export async function passageCommentaires(env) {
     if (complet) await env.DB.prepare("INSERT OR REPLACE INTO com_compteurs (media, n) VALUES (?1, ?2)").bind(m.id, m.n).run();
   }
   await ecrire(env, "com_tour", tour);
+  await ecrire(env, "com_dernier", new Date().toISOString());
   // Menage : on oublie les commentaires traites il y a plus de 30 jours.
   await env.DB.prepare("DELETE FROM com_faits WHERE quand < ?1").bind(Date.now() - 30 * 86400000).run();
 }

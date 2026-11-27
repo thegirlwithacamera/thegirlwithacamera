@@ -7,9 +7,9 @@ workers_dev = true
 IG_ID = "17841401518587675"
 PUBLIC_URL = "https://tgwac-publier.thegirlwithacamera.workers.dev"
 
-# Toutes les 5 minutes : publie ce qui est du. Toutes les 2 minutes : les commentaires.
+# Toutes les 2 minutes : publie ce qui est du, puis traite les commentaires.
 [triggers]
-crons = ["*/5 * * * *", "*/2 * * * *"]
+crons = ["*/2 * * * *"]
 
 [[d1_databases]]
 binding = "DB"

@@ -33,7 +33,10 @@ const maintenant = () => new Date().toISOString();
 
 // ---------------------------------------------------------------- Meta
 
+let appels = 0;
+
 async function meta(env, chemin, corps) {
+  appels++;
   const init = { headers: { authorization: `Bearer ${env.META_TOKEN}` } };
   if (corps) {
     init.method = "POST";
@@ -143,6 +146,7 @@ async function attendre(env, p) {
 
 async function cron(env) {
   if (!env.META_TOKEN) return;
+  await env.DB.prepare("INSERT INTO reglages (nom, valeur) VALUES ('pub_dernier', ?1) ON CONFLICT (nom) DO UPDATE SET valeur = ?1").bind(JSON.stringify(maintenant())).run();
   const { results } = await env.DB.prepare(
     "SELECT * FROM planning WHERE (statut = 'prevu' AND quand <= ?1) OR statut IN ('traitement', 'enfants') ORDER BY quand LIMIT 12",
   ).bind(maintenant()).all();
@@ -422,7 +426,12 @@ export default {
     return new Response("Introuvable", { status: 404 });
   },
   async scheduled(event, env, ctx) {
-    // Deux minuteries : la publication toutes les 5 minutes, les commentaires toutes les 2.
-    ctx.waitUntil(event.cron === "*/2 * * * *" ? passageCommentaires(env) : cron(env));
+    // Toutes les 2 minutes : d'abord ce qui doit etre publie, puis les commentaires,
+    // avec ce qui reste des 50 appels permis par passage.
+    ctx.waitUntil((async () => {
+      appels = 0;
+      try { await cron(env); } catch {}
+      await passageCommentaires(env, Math.max(0, 48 - appels));
+    })());
   },
 };
