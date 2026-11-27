@@ -12,6 +12,8 @@
 //
 // La cle de lecture est un secret du Worker (STATS_KEY), jamais dans le code.
 
+import { depot, lire, page as pageInsta } from "./insta.js";
+
 const LINKS = new Set([
   "collabs",
   "shop",
@@ -193,6 +195,21 @@ export default {
         return Response.json(rows, { headers: { "cache-control": "no-store" } });
       }
       return new Response(page(rows), {
+        headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
+      });
+    }
+
+    if (url.pathname === "/insta/depot" && request.method === "POST") {
+      return depot(request, env);
+    }
+
+    if (url.pathname === "/insta" || url.pathname === "/insta.json") {
+      if (!allowed(env, url)) return new Response("Introuvable", { status: 404 });
+      const tout = await lire(env);
+      if (url.pathname === "/insta.json") {
+        return Response.json(tout, { headers: { "cache-control": "no-store" } });
+      }
+      return new Response(pageInsta(tout, url.searchParams.get("key")), {
         headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
       });
     }

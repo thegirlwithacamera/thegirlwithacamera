@@ -6,3 +6,14 @@ CREATE TABLE IF NOT EXISTS clicks (
   n      INTEGER NOT NULL DEFAULT 0,
   PRIMARY KEY (day, link, source)
 );
+
+-- Tableau de bord Instagram : le dernier releve, et le nombre d'abonnes jour apres jour.
+CREATE TABLE IF NOT EXISTS releves (
+  nom   TEXT PRIMARY KEY,
+  corps TEXT NOT NULL,
+  maj   TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS abonnes (
+  jour TEXT PRIMARY KEY,
+  n    INTEGER NOT NULL
+);
