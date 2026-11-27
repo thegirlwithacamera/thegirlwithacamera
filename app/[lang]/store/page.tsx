@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "../components/editorial";
 import { pageMeta } from "@/lib/seo";
+import ProductBox from "./ProductBox";
 import s from "./store.module.css";
 
 // Boutique : chaque produit s'affiche par son packshot, le detail (sliders,
@@ -15,6 +16,7 @@ const PRODUCTS = [
     name: "Street",
     meta: { fr: "Le preset signature · 9 €", en: "The signature preset · 9 €" },
     alt: "Street, the signature Lightroom preset",
+    box: { front: "/store/street-box-front.jpg", spine: "/store/street-box-spine.jpg", color: "#b02c1e" },
   },
   {
     slug: "shy",
@@ -71,7 +73,11 @@ export default async function StorePage({ params }: Props) {
         <div className={s.grid}>
           {PRODUCTS.map((p) => (
             <Link key={p.slug} href={`/${lang}/store/${p.slug}`} className={s.card}>
-              <img src={p.image} alt={p.alt} loading="lazy" />
+              {"box" in p ? (
+                <ProductBox front={p.box.front} spine={p.box.spine} alt={p.alt} color={p.box.color} />
+              ) : (
+                <img src={p.image} alt={p.alt} loading="lazy" />
+              )}
               <span className={s.cardName}>{p.name}</span>
               <span className={s.cardMeta}>{p.meta[lang]}</span>
             </Link>

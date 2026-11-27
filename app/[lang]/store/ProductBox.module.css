@@ -1,0 +1,122 @@
+/* Boitier produit 3D. Les dimensions suivent la largeur de la scene (cqw). */
+
+.scene {
+  --ry: 30deg;
+  --rx: 0deg;
+  --w: 64cqw;
+  --h: calc(var(--w) * 1.4144);
+  --d: 9.6cqw;
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  perspective: 1400px;
+}
+
+.box {
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: transform;
+}
+
+.scene:hover .box {
+  transition-duration: 0.12s;
+}
+
+.box > * {
+  position: absolute;
+  display: block;
+  backface-visibility: hidden;
+}
+
+.box img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.front {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateZ(calc(var(--d) / 2));
+}
+
+.sheen {
+  inset: 0;
+  transform: translateZ(calc(var(--d) / 2 + 0.5px));
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.13) 50%, transparent 62%);
+  pointer-events: none;
+}
+
+.back {
+  inset: 0;
+  background: var(--box-color);
+  filter: brightness(0.55);
+  transform: rotateY(180deg) translateZ(calc(var(--d) / 2));
+}
+
+.spine,
+.right {
+  top: 0;
+  width: var(--d);
+  height: 100%;
+}
+
+.spine {
+  left: 0;
+  object-fit: fill;
+  filter: brightness(0.82);
+  transform: translateX(calc(var(--d) / -2)) rotateY(-90deg);
+}
+
+.right {
+  right: 0;
+  background: var(--box-color);
+  filter: brightness(0.6);
+  transform: translateX(calc(var(--d) / 2)) rotateY(90deg);
+}
+
+.top,
+.bottom {
+  left: 0;
+  width: 100%;
+  height: var(--d);
+  background: var(--box-color);
+}
+
+.top {
+  top: 0;
+  filter: brightness(1.1);
+  transform: translateY(calc(var(--d) / -2)) rotateX(90deg);
+}
+
+.bottom {
+  bottom: 0;
+  filter: brightness(0.5);
+  transform: translateY(calc(var(--d) / 2)) rotateX(-90deg);
+}
+
+.shadow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--w) * 1.05);
+  height: calc(var(--h) * 0.14);
+  transform: translate(-44%, calc(var(--h) * 0.5 - 20%));
+  background: radial-gradient(ellipse at center, rgba(15, 18, 16, 0.42), rgba(15, 18, 16, 0) 68%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .box {
+    transition: none;
+  }
+}

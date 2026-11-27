@@ -60,14 +60,14 @@
   justify-items: center;
 }
 
-.card img {
+.card > img {
   width: 100%;
   display: block;
   background: var(--line);
   transition: transform 0.35s ease;
 }
 
-.card:hover img {
+.card:hover > img {
   transform: scale(1.015);
 }
 
