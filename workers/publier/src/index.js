@@ -15,6 +15,8 @@
 //   POST /api/posts/<id>/supprimer   retirer un post prevu
 //   POST /api/posts/<id>/relancer    retenter un post en erreur
 
+import { passageCommentaires } from "./commentaires.js";
+
 const GRAPH = "https://graph.facebook.com/v25.0";
 const GENRES = ["essai", "reel", "photo", "carrousel"];
 
@@ -405,9 +407,22 @@ export default {
       return json({ ok: true });
     }
     if (p === "/api/etat") return json({ jeton: Boolean(env.META_TOKEN) });
+    if (p === "/api/commentaires/passage" && request.method === "POST") {
+      try {
+        await passageCommentaires(env);
+        return json({ ok: true });
+      } catch (e) {
+        return json({ erreur: String(e && e.message || e).slice(0, 300) }, 500);
+      }
+    }
+    if (p === "/api/commentaires") {
+      const { results } = await env.DB.prepare("SELECT * FROM com_journal ORDER BY date DESC LIMIT 100").all();
+      return json(results);
+    }
     return new Response("Introuvable", { status: 404 });
   },
   async scheduled(event, env, ctx) {
-    ctx.waitUntil(cron(env));
+    // Deux minuteries : la publication toutes les 5 minutes, les commentaires toutes les 2.
+    ctx.waitUntil(event.cron === "*/2 * * * *" ? passageCommentaires(env) : cron(env));
   },
 };

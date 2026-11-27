@@ -19,3 +19,9 @@ CREATE TABLE IF NOT EXISTS planning (
   maj        TEXT
 );
 CREATE INDEX IF NOT EXISTS planning_statut_quand ON planning (statut, quand);
+
+-- Machine a commentaires (src/commentaires.js).
+CREATE TABLE IF NOT EXISTS reglages (nom TEXT PRIMARY KEY, valeur TEXT);
+CREATE TABLE IF NOT EXISTS com_faits (id TEXT PRIMARY KEY, quand INTEGER);
+CREATE TABLE IF NOT EXISTS com_compteurs (media TEXT PRIMARY KEY, n INTEGER);
+CREATE TABLE IF NOT EXISTS com_journal (date TEXT, action TEXT, regle TEXT, compte TEXT, commentaire TEXT, id_commentaire TEXT, id_media TEXT, detail TEXT);
