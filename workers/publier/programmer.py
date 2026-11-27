@@ -12,6 +12,8 @@ Un lot = un fichier JSON :
   ]
 }
 genre : essai (reel d'essai), reel, photo, carrousel. Heure de Bruxelles.
+reseau : "instagram" (par defaut) ou "threads" ; sur Threads, genre texte, photo, video ou carrousel
+(texte seul : pas de fichiers, 500 caracteres au plus).
 
 Commandes :
   python3 programmer.py lot.json        envoie les fichiers et programme
@@ -35,6 +37,7 @@ CLE = (pathlib.Path.home() / "Developer/tgwac-website/workers/links/.env.stats-k
 BXL = ZoneInfo("Europe/Brussels")
 MORCEAU = 20 * 1024 * 1024
 GENRES = {"essai", "reel", "photo", "carrousel"}
+GENRES_THREADS = {"texte", "photo", "video", "carrousel"}
 
 
 def api(chemin, data=None, methode=None, brut=None):
@@ -92,9 +95,13 @@ def lire_lot(fichier):
     lot = json.loads(pathlib.Path(fichier).read_text())
     posts = lot.get("posts", lot if isinstance(lot, list) else [])
     for i, p in enumerate(posts, 1):
-        if p.get("genre") not in GENRES:
-            raise SystemExit(f"Post {i} : genre inconnu ({p.get('genre')})")
-        if not p.get("fichiers"):
+        reseau = p.setdefault("reseau", "instagram")
+        if p.get("genre") not in (GENRES_THREADS if reseau == "threads" else GENRES):
+            raise SystemExit(f"Post {i} : genre inconnu pour {reseau} ({p.get('genre')})")
+        if reseau == "threads" and len(p.get("legende", "")) > 500:
+            raise SystemExit(f"Post {i} : texte trop long pour Threads (500 caracteres au plus)")
+        p.setdefault("fichiers", [])
+        if not p["fichiers"] and p["genre"] != "texte":
             raise SystemExit(f"Post {i} : aucun fichier")
         quand = datetime.strptime(p["quand"], "%Y-%m-%d %H:%M").replace(tzinfo=BXL)
         if quand < datetime.now(BXL):
@@ -113,7 +120,7 @@ def main():
     if a[0] == "--liste":
         for p in api("/api/posts"):
             q = datetime.fromisoformat(p["quand"].replace("Z", "+00:00")).astimezone(BXL)
-            print(f"{q:%a %d/%m %H:%M}  {p['genre']:<9} {p['statut']:<10} {p['id']}  {(p['legende'] or '')[:50]!r}"
+            print(f"{q:%a %d/%m %H:%M}  {p.get('reseau','instagram')[:2]} {p['genre']:<9} {p['statut']:<10} {p['id']}  {(p['legende'] or '')[:50]!r}"
                   + (f"  ERREUR: {p['erreur']}" if p["statut"] == "erreur" else "") + (f"  {p['lien']}" if p.get("lien") else ""))
         return
     if a[0] == "--legendes":
@@ -131,12 +138,12 @@ def main():
     print(f"{len(posts)} post(s) dans le lot.")
     if essai:
         for p in posts:
-            print(f"  {p['_quand']:%a %d/%m %H:%M}  {p['genre']:<9} {len(p['fichiers'])} fichier(s)  {p.get('legende', '')[:60]!r}")
+            print(f"  {p['_quand']:%a %d/%m %H:%M}  {p['reseau'][:2]} {p['genre']:<9} {len(p['fichiers'])} fichier(s)  {p.get('legende', '')[:60]!r}")
         return
     a_programmer = []
     for p in posts:
         cles = [envoyer(preparer(f)) for f in p["fichiers"]]
-        a_programmer.append({"genre": p["genre"], "medias": cles, "legende": p.get("legende", ""),
+        a_programmer.append({"reseau": p["reseau"], "genre": p["genre"], "medias": cles, "legende": p.get("legende", ""),
                              "quand": p["_quand"].astimezone(ZoneInfo("UTC")).isoformat()})
     r = api("/api/posts", {"posts": a_programmer})
     print(f"Programme : {len(r.get('ids', []))} post(s).")

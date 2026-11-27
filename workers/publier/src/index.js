@@ -16,9 +16,11 @@
 //   POST /api/posts/<id>/relancer    retenter un post en erreur
 
 import { passageCommentaires } from "./commentaires.js";
+import * as threads from "./threads.js";
 
 const GRAPH = "https://graph.facebook.com/v25.0";
 const GENRES = ["essai", "reel", "photo", "carrousel"];
+const GENRES_THREADS = ["texte", "photo", "video", "carrousel"];
 
 function json(data, status = 200) {
   return Response.json(data, { status, headers: { "cache-control": "no-store" } });
@@ -34,6 +36,7 @@ const maintenant = () => new Date().toISOString();
 // ---------------------------------------------------------------- Meta
 
 let appels = 0;
+threads.compter(() => { appels++; });
 
 async function meta(env, chemin, corps) {
   appels++;
@@ -104,27 +107,31 @@ async function maj(env, id, champs) {
 }
 
 async function avancer(env, p) {
+  const th = p.reseau === "threads";
+  const creer = th ? threads.creer : creerConteneurs;
+  const lire = th ? threads.etat : etat;
+  const sortir = th ? threads.publier : publier;
   try {
     if (p.statut === "prevu") {
-      await maj(env, p.id, await creerConteneurs(env, p));
+      await maj(env, p.id, await creer(env, p));
       return;
     }
     if (p.statut === "enfants") {
       const enfants = JSON.parse(p.enfants || "[]");
       for (const e of enfants) {
-        const s = await etat(env, e);
+        const s = await lire(env, e);
         if (s.code === "ERROR" || s.code === "EXPIRED") throw new Error(`Un element du carrousel est refuse par Meta (${s.detail || s.code})`);
         if (s.code !== "FINISHED") return attendre(env, p);
       }
-      const c = await meta(env, `${env.IG_ID}/media`, { media_type: "CAROUSEL", children: enfants.join(","), caption: p.legende || "" });
-      await maj(env, p.id, { statut: "traitement", conteneur: c.id });
+      const id = th ? await threads.carrousel(env, p, enfants) : (await meta(env, `${env.IG_ID}/media`, { media_type: "CAROUSEL", children: enfants.join(","), caption: p.legende || "" })).id;
+      await maj(env, p.id, { statut: "traitement", conteneur: id });
       return;
     }
     if (p.statut === "traitement") {
-      const s = await etat(env, p.conteneur);
+      const s = await lire(env, p.conteneur);
       if (s.code === "ERROR" || s.code === "EXPIRED") throw new Error(`Meta refuse le fichier (${s.detail || s.code})`);
       if (s.code !== "FINISHED") return attendre(env, p);
-      const r = await publier(env, p.conteneur);
+      const r = await sortir(env, p.conteneur);
       await maj(env, p.id, { statut: "publie", resultat: r.id, lien: r.lien, erreur: null });
     }
   } catch (e) {
@@ -140,7 +147,7 @@ async function avancer(env, p) {
 async function attendre(env, p) {
   // Meta prepare la video. Au dela de 2 heures, on abandonne.
   if (Date.now() - new Date(p.quand).getTime() > 2 * 3600 * 1000) {
-    const m = "Instagram n'a pas fini de preparer la video en 2 heures.";
+    const m = `${p.reseau === "threads" ? "Threads" : "Instagram"} n'a pas fini de preparer le fichier en 2 heures.`;
     await maj(env, p.id, { statut: "erreur", erreur: m });
     await alerte(env, p, m);
   }
@@ -149,7 +156,8 @@ async function attendre(env, p) {
 // Email a Sandrine quand un post echoue (Resend, offre gratuite).
 async function alerte(env, p, raison) {
   if (!env.RESEND_KEY || !env.ALERTE_A) return;
-  const noms = { essai: "reel d'essai", reel: "reel", photo: "photo", carrousel: "carrousel" };
+  const noms = { essai: "reel d'essai", reel: "reel", photo: "photo", carrousel: "carrousel", texte: "post texte", video: "video" };
+  const ou = p.reseau === "threads" ? "Threads" : "Instagram";
   const quand = new Date(p.quand).toLocaleString("fr-BE", { timeZone: "Europe/Brussels", weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
   const lien = `${env.PUBLIC_URL}/?key=${encodeURIComponent(env.CLE || "")}`;
   const esc = (s) => String(s || "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
@@ -160,9 +168,9 @@ async function alerte(env, p, raison) {
       body: JSON.stringify({
         from: env.ALERTE_DE || "Programmation <onboarding@resend.dev>",
         to: [env.ALERTE_A],
-        subject: `Un ${noms[p.genre] || "post"} n'est pas parti (${quand})`,
+        subject: `${ou} : un ${noms[p.genre] || "post"} n'est pas parti (${quand})`,
         html: `<p>Le ${noms[p.genre] || "post"} prevu ${esc(quand)} n'a pas ete publie.</p>` +
-          `<p><b>Raison donnee par Instagram :</b> ${esc(raison)}</p>` +
+          `<p><b>Raison donnee par ${ou} :</b> ${esc(raison)}</p>` +
           `<p><b>Legende :</b> ${esc((p.legende || "").slice(0, 160))}</p>` +
           `<p><a href="${lien}">Ouvrir la programmation</a> pour le reessayer ou le retirer.</p>`,
       }),
@@ -171,7 +179,8 @@ async function alerte(env, p, raison) {
 }
 
 async function cron(env) {
-  if (!env.META_TOKEN) return;
+  if (!env.META_TOKEN && !env.THREADS_TOKEN) return;
+  try { await threads.entretien(env); } catch {}
   await env.DB.prepare("INSERT INTO reglages (nom, valeur) VALUES ('pub_dernier', ?1) ON CONFLICT (nom) DO UPDATE SET valeur = ?1").bind(JSON.stringify(maintenant())).run();
   const { results } = await env.DB.prepare(
     "SELECT * FROM planning WHERE (statut = 'prevu' AND quand <= ?1) OR statut IN ('traitement', 'enfants') ORDER BY quand LIMIT 12",
@@ -183,7 +192,7 @@ async function cron(env) {
     "SELECT id, medias FROM planning WHERE statut = 'publie' AND menage IS NULL AND maj < ?1 LIMIT 50",
   ).bind(new Date(Date.now() - 7 * 86400000).toISOString()).all()).results;
   for (const v of vieux) {
-    for (const cle of JSON.parse(v.medias)) await env.R2.delete(`planning/${cle}`);
+    for (const cle of JSON.parse(v.medias || "[]")) await env.R2.delete(`planning/${cle}`);
     await env.DB.prepare("UPDATE planning SET menage = 1 WHERE id = ?1").bind(v.id).run();
   }
 }
@@ -243,20 +252,27 @@ async function programmer(request, env) {
   const posts = Array.isArray(d.posts) ? d.posts : [d];
   const ok = [];
   for (const p of posts) {
-    if (!GENRES.includes(p.genre)) return json({ erreur: `Type inconnu : ${p.genre}` }, 400);
+    const reseau = p.reseau === "threads" ? "threads" : "instagram";
+    if (!(reseau === "threads" ? GENRES_THREADS : GENRES).includes(p.genre)) return json({ erreur: `Type inconnu pour ${reseau} : ${p.genre}` }, 400);
     const medias = (p.medias || []).filter((c) => /^[0-9a-f-]{36}\.(mp4|mov|m4v|jpg|png)$/.test(c));
-    if (!medias.length) return json({ erreur: "Aucun fichier" }, 400);
+    if (p.genre === "texte") {
+      if (!String(p.legende || "").trim()) return json({ erreur: "Un post texte demande un texte." }, 400);
+      if (String(p.legende).length > 500) return json({ erreur: "Threads limite un post a 500 caracteres." }, 400);
+    } else if (!medias.length) return json({ erreur: "Aucun fichier" }, 400);
+    if (reseau === "threads" && String(p.legende || "").length > 500) return json({ erreur: "Threads limite le texte a 500 caracteres." }, 400);
+    if (p.genre === "video" && !estVideo(medias[0])) return json({ erreur: "Une video demande un fichier video." }, 400);
+    if (reseau === "threads" && p.genre === "carrousel" && medias.length > 20) return json({ erreur: "Threads prend 20 fichiers au plus." }, 400);
     if ((p.genre === "essai" || p.genre === "reel") && !estVideo(medias[0])) return json({ erreur: "Un reel demande une video." }, 400);
     if (p.genre === "photo" && !/\.jpg$/.test(medias[0])) return json({ erreur: "Instagram n'accepte que le JPEG pour les photos." }, 400);
-    if (p.genre === "carrousel" && (medias.length < 2 || medias.length > 10)) return json({ erreur: "Un carrousel prend de 2 a 10 fichiers." }, 400);
+    if (p.genre === "carrousel" && (medias.length < 2 || (reseau === "instagram" && medias.length > 10))) return json({ erreur: "Un carrousel prend de 2 a 10 fichiers." }, 400);
     const quand = new Date(p.quand);
     if (isNaN(quand)) return json({ erreur: "Date illisible" }, 400);
     const id = crypto.randomUUID();
     await env.DB.prepare(
       "INSERT INTO planning (id, reseau, genre, legende, medias, quand, statut, couverture, essais, cree, maj) " +
-        "VALUES (?1, 'instagram', ?2, ?3, ?4, ?5, 'prevu', ?6, 0, ?7, ?7)",
+        "VALUES (?1, ?8, ?2, ?3, ?4, ?5, 'prevu', ?6, 0, ?7, ?7)",
     ).bind(id, p.genre, String(p.legende || "").slice(0, 2200), JSON.stringify(medias), quand.toISOString(),
-      p.couverture ?? null, maintenant()).run();
+      p.couverture ?? null, maintenant(), reseau).run();
     ok.push(id);
   }
   return json({ ok: true, ids: ok });
@@ -296,19 +312,20 @@ button:disabled{opacity:.5}
 .err{color:#b02c1e;font-size:12px}
 .barre{height:4px;background:#eee;margin-top:10px}.barre span{display:block;height:100%;width:0;background:#111}
 .vide{color:#777}
+.texte{width:52px;height:69px;background:#f1f1f1;display:flex;align-items:center;justify-content:center;font:italic 20px "EB Garamond",Georgia,serif;color:#777}
 </style></head><body><main>
 <div class="sur">The Girl With A Camera</div>
 <h1>Programmation</h1>
 <div class="carte">
   <div class="ligne2">
-    <div><label>Type</label><select id="genre">
+    <div><label>Type</label><select id="genre" data-x="">
       <option value="essai">Reel d'essai</option><option value="reel">Reel</option>
       <option value="photo">Photo</option><option value="carrousel">Carrousel</option></select></div>
-    <div><label>Réseau</label><select disabled><option>Instagram</option></select></div>
+    <div><label>Réseau</label><select id="reseau"><option value="instagram">Instagram</option><option value="threads">Threads</option></select></div>
   </div>
-  <label>Fichiers</label><input type="file" id="fichiers" multiple accept="video/mp4,video/quicktime,image/jpeg,image/png">
-  <div class="aide" id="aideFichiers">Plusieurs vidéos = un reel par vidéo, espacés comme tu le choisis.</div>
-  <label>Légende commune</label><textarea id="legende" placeholder="Reprise sous chaque vidéo, modifiable une par une"></textarea>
+  <div id="blocFichiers"><label>Fichiers</label><input type="file" id="fichiers" multiple accept="video/mp4,video/quicktime,image/jpeg,image/png">
+  <div class="aide" id="aideFichiers">Plusieurs vidéos = un reel par vidéo, espacés comme tu le choisis.</div></div>
+  <label id="titreLegende">Légende commune</label><textarea id="legende" placeholder="Reprise sous chaque vidéo, modifiable une par une"></textarea>
   <div class="ligne2">
     <div><label>Premier à</label><input type="datetime-local" id="quand"></div>
     <div><label>Puis toutes les (minutes)</label><input type="number" id="intervalle" value="60" min="5"></div>
@@ -327,6 +344,25 @@ const q = s => document.querySelector(s);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const api = (chemin, opts = {}) => fetch(chemin + (chemin.includes('?') ? '&' : '?') + 'key=' + encodeURIComponent(CLE), opts);
 let fichiers = [];
+const TYPES_RESEAU = {
+  instagram: [['essai', "Reel d'essai"], ['reel', 'Reel'], ['photo', 'Photo'], ['carrousel', 'Carrousel']],
+  threads: [['texte', 'Texte seul'], ['photo', 'Photo'], ['video', 'Vidéo'], ['carrousel', 'Carrousel']],
+};
+function majReseau() {
+  const r = q('#reseau').value;
+  q('#genre').innerHTML = TYPES_RESEAU[r].map(([v, n]) => '<option value="' + v + '">' + n + '</option>').join('');
+  majGenre();
+}
+function majGenre() {
+  const r = q('#reseau').value, g = q('#genre').value, texte = g === 'texte';
+  q('#blocFichiers').hidden = texte;
+  q('#titreLegende').textContent = texte ? 'Texte (500 signes max)' : (r === 'threads' ? 'Texte (500 signes max)' : 'Légende commune');
+  q('#aideFichiers').textContent = g === 'carrousel' ? 'Toutes les photos et vidéos choisies forment un seul carrousel.' :
+    'Plusieurs fichiers = un post par fichier, espacés comme tu le choisis.';
+  if (texte) { fichiers = []; q('#fichiers').value = ''; }
+  dessinerFichiers();
+}
+q('#reseau').addEventListener('change', majReseau);
 
 (function () { const d = new Date(Date.now() + 3600e3); d.setMinutes(0, 0, 0); q('#quand').value = new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 16); })();
 
@@ -337,7 +373,7 @@ function dessinerFichiers() {
     '<div><div class="meta">' + esc(f.name) + '</div><textarea data-i="' + i + '" placeholder="Légende de ce post (vide = légende commune)">' + esc(f.legende || '') + '</textarea></div></div>').join('');
 }
 q('#fichiers').addEventListener('change', e => { fichiers = [...e.target.files].map(f => Object.assign(f, { apercu: URL.createObjectURL(f) })); dessinerFichiers(); });
-q('#genre').addEventListener('change', dessinerFichiers);
+q('#genre').addEventListener('change', majGenre);
 q('#liste-fichiers').addEventListener('input', e => { if (e.target.dataset.i) fichiers[e.target.dataset.i].legende = e.target.value; });
 
 async function envoyer(f, progres) {
@@ -356,7 +392,16 @@ async function envoyer(f, progres) {
 }
 
 q('#go').addEventListener('click', async () => {
-  const g = q('#genre').value, msg = q('#msg');
+  const g = q('#genre').value, msg = q('#msg'), reseau = q('#reseau').value;
+  if (g === 'texte') {
+    const t = q('#legende').value.trim(), d0 = new Date(q('#quand').value);
+    if (!t) { msg.textContent = 'Écris le texte.'; return; }
+    if (isNaN(d0)) { msg.textContent = 'Choisis une date.'; return; }
+    const r = await (await api('/api/posts', { method: 'POST', body: JSON.stringify({ posts: [{ reseau, genre: g, medias: [], legende: t, quand: d0.toISOString() }] }) })).json();
+    msg.textContent = r.erreur || 'Post programmé.';
+    if (!r.erreur) { q('#legende').value = ''; charger(); }
+    return;
+  }
   if (!fichiers.length) { msg.textContent = 'Choisis au moins un fichier.'; return; }
   const debut = new Date(q('#quand').value);
   if (isNaN(debut)) { msg.textContent = 'Choisis une date.'; return; }
@@ -366,10 +411,11 @@ q('#go').addEventListener('click', async () => {
     const cles = [];
     for (const f of fichiers) { const avant = fait; cles.push(await envoyer(f, x => { fait = avant + x; q('#barre span').style.width = (fait / total * 100) + '%'; })); }
     const commun = q('#legende').value, pas = Math.max(5, Number(q('#intervalle').value) || 60) * 6e4;
-    const posts = (g === 'carrousel' || g === 'photo')
+    let posts = (g === 'carrousel' || g === 'photo')
       ? (g === 'carrousel' ? [{ genre: g, medias: cles, legende: commun, quand: debut.toISOString() }]
         : cles.map((c, i) => ({ genre: g, medias: [c], legende: commun, quand: new Date(+debut + i * pas).toISOString() })))
       : cles.map((c, i) => ({ genre: g, medias: [c], legende: fichiers[i].legende || commun, quand: new Date(+debut + i * pas).toISOString() }));
+    posts = posts.map(p => Object.assign(p, { reseau }));
     const r = await (await api('/api/posts', { method: 'POST', body: JSON.stringify({ posts }) })).json();
     if (r.erreur) throw new Error(r.erreur);
     msg.textContent = posts.length + (posts.length > 1 ? ' posts programmés.' : ' post programmé.');
@@ -378,7 +424,7 @@ q('#go').addEventListener('click', async () => {
   q('#go').disabled = false; setTimeout(() => { q('#barre').hidden = true; q('#barre span').style.width = 0; }, 800);
 });
 
-const NOMS = { essai: "Reel d'essai", reel: 'Reel', photo: 'Photo', carrousel: 'Carrousel' };
+const NOMS = { essai: "Reel d'essai", reel: 'Reel', photo: 'Photo', carrousel: 'Carrousel', texte: 'Texte', video: 'Vidéo' };
 const ST = { prevu: 'prévu', traitement: 'en cours', enfants: 'en cours', publie: 'publié', erreur: 'erreur' };
 async function charger() {
   const posts = await (await api('/api/posts')).json();
@@ -387,12 +433,12 @@ async function charger() {
   for (const p of posts) {
     const d = new Date(p.quand), j = d.toLocaleDateString('fr-BE', { weekday: 'long', day: 'numeric', month: 'long' });
     if (j !== jour) { h += '<div class="jour">' + j + '</div>'; jour = j; }
-    const m = p.medias[0], src = '/media/' + m;
-    h += '<div class="post">' + (/\\.(mp4|mov|m4v)$/.test(m) ? '<video muted preload="metadata" src="' + src + '#t=1"></video>' : '<img src="' + src + '">') +
-      '<div><div class="meta">' + d.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' }) + ' · ' + NOMS[p.genre] + (p.medias.length > 1 ? ' · ' + p.medias.length + ' fichiers' : '') +
+    const m = p.medias[0], src = '/media/' + m, res = p.reseau === 'threads' ? 'Threads' : 'Instagram';
+    h += '<div class="post">' + (!m ? '<div class="texte">Aa</div>' : /\\.(mp4|mov|m4v)$/.test(m) ? '<video muted preload="metadata" src="' + src + '#t=1"></video>' : '<img src="' + src + '">') +
+      '<div><div class="meta">' + d.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' }) + ' · ' + res + ' · ' + NOMS[p.genre] + (p.medias.length > 1 ? ' · ' + p.medias.length + ' fichiers' : '') +
       '<span class="st ' + p.statut + '">' + ST[p.statut] + '</span></div><div class="leg">' + (esc(p.legende) || '<span class="vide">Sans légende</span>') + '</div>' +
       (p.erreur && p.statut === 'erreur' ? '<div class="err">' + esc(p.erreur) + '</div>' : '') +
-      (p.lien ? '<a class="meta" href="' + esc(p.lien) + '" target="_blank" rel="noopener">Voir sur Instagram</a>' : '') + '</div><div>' +
+      (p.lien ? '<a class="meta" href="' + esc(p.lien) + '" target="_blank" rel="noopener">Voir sur ' + res + '</a>' : '') + '</div><div>' +
       (p.statut === 'prevu' ? '<button class="leger" data-sup="' + p.id + '">Retirer</button>' : '') +
       (p.statut === 'erreur' ? '<button class="leger" data-rel="' + p.id + '">Réessayer</button>' : '') + '</div></div>';
   }
@@ -406,7 +452,7 @@ q('#posts').addEventListener('click', async e => {
   charger();
 });
 function confirmRetrait(b) { if (b.dataset.ok) return true; b.dataset.ok = 1; b.textContent = 'Confirmer'; setTimeout(() => { delete b.dataset.ok; b.textContent = 'Retirer'; }, 4000); return false; }
-charger(); setInterval(charger, 60000);
+majReseau(); charger(); setInterval(charger, 60000);
 </script></body></html>`;
 }
 
@@ -434,7 +480,7 @@ export default {
       if (m[2] === "supprimer") {
         const r = await env.DB.prepare("SELECT medias FROM planning WHERE id = ?1 AND statut = 'prevu'").bind(m[1]).first();
         if (r) {
-          for (const cle of JSON.parse(r.medias)) await env.R2.delete(`planning/${cle}`);
+          for (const cle of JSON.parse(r.medias || "[]")) await env.R2.delete(`planning/${cle}`);
           await env.DB.prepare("DELETE FROM planning WHERE id = ?1").bind(m[1]).run();
         }
       } else {
@@ -443,7 +489,15 @@ export default {
       }
       return json({ ok: true });
     }
-    if (p === "/api/etat") return json({ jeton: Boolean(env.META_TOKEN), alerte: Boolean(env.RESEND_KEY && env.ALERTE_A) });
+    if (p === "/api/etat") return json({ jeton: Boolean(env.META_TOKEN), threads: Boolean(env.THREADS_TOKEN), alerte: Boolean(env.RESEND_KEY && env.ALERTE_A) });
+    if (p === "/api/threads/test") {
+      try {
+        const d = await threads.profil(env);
+        return json({ ok: true, compte: d.username });
+      } catch (e) {
+        return json({ erreur: String(e.message || e).slice(0, 200) }, 500);
+      }
+    }
     if (p === "/api/alerte-test" && request.method === "POST") {
       if (!env.RESEND_KEY) return json({ erreur: "Pas de cle Resend" }, 400);
       const r = await fetch("https://api.resend.com/emails", {
