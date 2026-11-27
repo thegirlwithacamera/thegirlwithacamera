@@ -17,6 +17,7 @@
 
 import { passageCommentaires } from "./commentaires.js";
 import * as threads from "./threads.js";
+import { pageCommentaires } from "./page-commentaires.js";
 
 const GRAPH = "https://graph.facebook.com/v25.0";
 const GENRES = ["essai", "reel", "photo", "carrousel"];
@@ -515,6 +516,15 @@ export default {
       } catch (e) {
         return json({ erreur: String(e && e.message || e).slice(0, 300) }, 500);
       }
+    }
+    if (p === "/commentaires") return new Response(pageCommentaires(), { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
+    if (p === "/api/commentaires/vue") {
+      const lire = async (nom) => { const r = await env.DB.prepare("SELECT valeur FROM reglages WHERE nom = ?1").bind(nom).first(); return r ? JSON.parse(r.valeur) : null; };
+      const brut = (await lire("mots_cles")) || {};
+      const { results } = await env.DB.prepare("SELECT date, action, regle, compte, commentaire FROM com_journal ORDER BY date DESC LIMIT 60").all();
+      const dms = await env.DB.prepare("SELECT COUNT(*) AS n FROM com_journal WHERE action = 'dm_envoye' AND date >= ?1").bind(new Date(Date.now() - 7 * 86400000).toISOString()).first();
+      return json({ actif: Boolean(await lire("com_actif")), dernier: await lire("com_dernier"), dms7: dms ? dms.n : 0,
+        regles: (brut.regles || []).map((r) => ({ nom: r.nom, actif: r.actif, mots: r.mots, dm: r.dm, bouton: r.bouton })), journal: results });
     }
     if (p === "/api/commentaires") {
       const { results } = await env.DB.prepare("SELECT * FROM com_journal ORDER BY date DESC LIMIT 100").all();
