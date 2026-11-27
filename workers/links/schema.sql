@@ -25,3 +25,12 @@ CREATE TABLE IF NOT EXISTS corrections (
   portee INTEGER,
   maj    TEXT NOT NULL
 );
+
+-- Notes de Sandrine sur ses reels d'essai.
+CREATE TABLE IF NOT EXISTS notes (
+  code     TEXT PRIMARY KEY,
+  accroche TEXT,
+  format   TEXT,
+  musique  TEXT,
+  maj      TEXT NOT NULL
+);

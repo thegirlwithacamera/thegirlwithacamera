@@ -47,7 +47,19 @@ export async function lire(env) {
   const releve = await env.DB.prepare("SELECT corps FROM releves WHERE nom = 'insta'").first();
   const { results } = await env.DB.prepare("SELECT jour, n FROM abonnes ORDER BY jour").all();
   const corr = (await env.DB.prepare("SELECT code, vues, portee FROM corrections").all()).results;
+  const notes = (await env.DB.prepare("SELECT code, accroche, format, musique FROM notes").all()).results;
   const donnees = releve ? JSON.parse(releve.corps) : null;
+  if (donnees && notes.length) {
+    // Ce que Sandrine note sur ses reels d'essai : accroche, format, musique.
+    const parCode = new Map(notes.map((x) => [x.code, x]));
+    for (const p of donnees.posts) {
+      const x = parCode.get(code(p.lien));
+      if (!x) continue;
+      if (x.accroche) p.accroche = x.accroche;
+      if (x.format) p.format = x.format;
+      if (x.musique) p.musique = x.musique;
+    }
+  }
   if (donnees && corr.length) {
     // Chiffres notes a la main depuis l'app, pour les reels pousses en pub par
     // un partenaire : Meta ne donne alors par l'acces officiel que la part sans pub.
@@ -63,6 +75,29 @@ export async function lire(env) {
     }
   }
   return { donnees, abonnes: results };
+}
+
+// Enregistre (ou efface) les notes d'un reel : accroche, format, musique.
+export async function noter(request, env) {
+  let d;
+  try {
+    d = await request.json();
+  } catch {
+    return new Response("Illisible", { status: 400 });
+  }
+  const c = code(d.lien);
+  if (!c) return new Response("Post inconnu", { status: 400 });
+  const texte = (v, max) => (typeof v === "string" ? v.trim().replace(/\s+/g, " ").slice(0, max) : "") || null;
+  const accroche = texte(d.accroche, 200), format = texte(d.format, 60), musique = texte(d.musique, 120);
+  if (!accroche && !format && !musique) {
+    await env.DB.prepare("DELETE FROM notes WHERE code = ?1").bind(c).run();
+  } else {
+    await env.DB.prepare(
+      "INSERT INTO notes (code, accroche, format, musique, maj) VALUES (?1, ?2, ?3, ?4, ?5) " +
+        "ON CONFLICT (code) DO UPDATE SET accroche = ?2, format = ?3, musique = ?4, maj = ?5",
+    ).bind(c, accroche, format, musique, new Date().toISOString()).run();
+  }
+  return Response.json({ ok: true, code: c });
 }
 
 // Enregistre (ou efface) le chiffre de l'app pour un post.
@@ -139,6 +174,22 @@ button.on{background:#111;color:#fff;border-color:#111}
 .form input{font:inherit;font-size:13px;width:110px;padding:7px 8px;border:1px solid #ccc;border-radius:0}
 .form button{min-height:34px;padding:6px 10px}
 .form .aide{flex-basis:100%;font-size:11px;color:#777}
+.notes{display:block;font-size:12px;color:#333;margin:2px 0 4px}
+.notes i{font-style:normal;color:#777}
+.groupes{display:grid;grid-template-columns:1fr;gap:18px;margin:4px 0 18px}
+.groupes h3{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#777;font-weight:500;margin:0 0 4px}
+.groupes table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.groupes th{font-weight:400;color:#999;text-align:right;padding:4px 0 4px 8px;font-size:10px}
+.groupes th:first-child,.groupes td:first-child{text-align:left;padding-left:0}
+.groupes td{border-top:1px solid #eee;padding:7px 0 7px 8px;text-align:right}
+.groupes tr.clic{cursor:pointer}
+.groupes tr.clic:hover td{background:#faf8f6}
+.groupes tr.sel td{font-weight:500}
+.groupes .vide-g{color:#999;font-size:12px}
+.filtre{font-size:12px;margin:0 0 10px}
+.filtre button{min-height:28px;padding:2px 8px;font-size:11px;margin-left:6px}
+.form.note input{width:100%}
+@media(min-width:620px){.groupes{grid-template-columns:1fr 1fr}.form.note input{width:calc(33% - 6px)}}
 .alerte{background:#fbf1ef;color:#7a1f15;padding:10px 12px;font-size:12px;margin-top:20px}
 @media(max-width:420px){.grand b{font-size:46px}.case b{font-size:22px}}
 </style></head><body><main>
@@ -157,7 +208,25 @@ const nf = new Intl.NumberFormat('fr-BE');
 const n = v => (v === null || v === undefined) ? '·' : nf.format(v);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const signe = v => (v > 0 ? '+' : '') + nf.format(v);
-let onglet = 'reel', periode = 30, tri = 'vues';
+let onglet = 'reel', periode = 30, tri = 'vues', filtre = null;
+const mediane = l => { if (!l.length) return null; const s = [...l].sort((a, b) => a - b), m = s.length >> 1; return s.length % 2 ? s[m] : Math.round((s[m - 1] + s[m]) / 2); };
+function groupes(posts) {
+  const bloc = (titre, cle, valeur) => {
+    const g = new Map();
+    for (const p of posts) { const v = valeur(p); if (!v) continue; if (!g.has(v)) g.set(v, []); g.get(v).push(p); }
+    const lignes = [...g.entries()].map(([v, l]) => ({ v, n: l.length, k: l.filter(p => (p.vues || 0) >= 2000).length, med: mediane(l.map(p => p.vues || 0)) }))
+      .sort((a, b) => (b.k / b.n) - (a.k / a.n) || b.med - a.med);
+    let h = '<div><h3>' + titre + '</h3>';
+    if (!lignes.length) return h + '<p class="vide-g">Rien de noté pour l\\'instant.</p></div>';
+    return h + '<table><tr><th></th><th>essais</th><th>2K+</th><th>vues médianes</th></tr>' + lignes.slice(0, 8).map(l => {
+      const sel = filtre && filtre.cle === cle && filtre.val === l.v;
+      return '<tr class="clic' + (sel ? ' sel' : '') + '" data-fc="' + cle + '" data-fv="' + esc(l.v) + '"><td>' + esc(l.v) + '</td><td>' + l.n + '</td><td>' + l.k + ' (' + Math.round(l.k / l.n * 100) + '%)</td><td>' + n(l.med) + '</td></tr>';
+    }).join('') + '</table></div>';
+  };
+  return '<div class="groupes">' + bloc('Par format', 'format', p => p.format) + bloc('Par musique', 'musique', p => p.musique) +
+    bloc('Musique ou son original', 'son', p => p.son) + bloc('Durée regardée', 'duree', p => p.duree_moyenne_s == null ? null : (p.duree_moyenne_s < 3 ? 'moins de 3 s' : p.duree_moyenne_s < 5 ? '3 à 5 s' : p.duree_moyenne_s < 8 ? '5 à 8 s' : '8 s et plus')) + '</div>';
+}
+function listeDe(cle) { return [...new Set(D.posts.map(p => p[cle]).filter(Boolean))].sort(); }
 
 function courbe(points, couleur) {
   if (points.length < 2) return '';
@@ -210,7 +279,13 @@ function liste() {
     '<div class="choix">' + [['vues', 'Vues'], ['enregistrements', 'Enregistrements'], ['partages', 'Partages'], ['portee', 'Portée'], ['date', 'Date']].map(o => '<button data-t="' + o[0] + '" class="' + (tri === o[0] ? 'on' : '') + '">' + o[1] + '</button>').join('') + '</div>';
   if (onglet === 'essai' && posts.length) {
     const gagnants = posts.filter(p => (p.vues || 0) >= 2000).length;
-    h += '<p class="resume">' + posts.length + ' essais sur la période, <b>' + gagnants + '</b> au-dessus de 2 000 vues.</p>';
+    const notes = posts.filter(p => p.accroche || p.format || p.musique).length;
+    h += '<p class="resume">' + posts.length + ' essais sur la période, <b>' + gagnants + '</b> au-dessus de 2 000 vues. ' + notes + ' notés.</p>' + groupes(posts);
+    if (filtre) {
+      const duree = p => p.duree_moyenne_s == null ? null : (p.duree_moyenne_s < 3 ? 'moins de 3 s' : p.duree_moyenne_s < 5 ? '3 à 5 s' : p.duree_moyenne_s < 8 ? '5 à 8 s' : '8 s et plus');
+      posts = posts.filter(p => (filtre.cle === 'duree' ? duree(p) : p[filtre.cle]) === filtre.val);
+      h += '<p class="filtre">Seulement : <b>' + esc(filtre.val) + '</b><button data-fx="1">Tout montrer</button></p>';
+    }
   }
   if (!posts.length) return h + '<div class="vide-msg">Rien sur cette période.</div>';
   h += posts.slice(0, 60).map(p => {
@@ -223,7 +298,15 @@ function liste() {
       '<span class="meta">' + date + (p.son ? ' · ' + p.son : '') + (p.duree_moyenne_s ? ' · regardé ' + String(p.duree_moyenne_s).replace('.', ',') + ' s en moyenne' : '') +
       ((p.essai && (p.vues || 0) >= 2000) ? '<span class="badge">2K+</span>' : '') +
       (p.corrige ? '<span class="corr">CHIFFRE DE L\\'APP</span>' : '') + '</span>' +
+      ((p.accroche || p.format || p.musique) ? '<span class="notes">' + [p.accroche ? '<i>Accroche</i> « ' + esc(p.accroche) + ' »' : '', p.format ? '<i>Format</i> ' + esc(p.format) : '', p.musique ? '<i>Musique</i> ' + esc(p.musique) : ''].filter(Boolean).join(' · ') + '</span>' : '') +
       '<span class="chiffres">' + c('vues', 'vues', p.vues) + c('enregistrements', 'enreg.', p.enregistrements) + c('partages', 'partages', p.partages) + c('portee', 'portée', p.portee) + '<span><b>' + n(p.likes) + '</b> likes</span></span>' +
+      (p.genre === 'reel' ? '<button class="edit" data-noter="' + esc(p.lien) + '">' + ((p.accroche || p.format || p.musique) ? 'Modifier mes notes' : 'Noter l\\'accroche, le format, la musique') + '</button> ' +
+      '<span class="form note" data-fnote="' + esc(p.lien) + '" hidden>' +
+      '<input placeholder="Accroche (le texte ou la phrase du début)" value="' + esc(p.accroche || '') + '">' +
+      '<input list="dl-format" placeholder="Format" value="' + esc(p.format || '') + '">' +
+      '<input list="dl-musique" placeholder="Musique" value="' + esc(p.musique || '') + '">' +
+      '<button data-snote="' + esc(p.lien) + '">Enregistrer</button>' +
+      '<span class="aide">Format et musique : tes réponses déjà tapées reviennent en proposition, pour que les reels se rangent ensemble.</span></span>' : '') +
       '<button class="edit" data-edit="' + esc(p.lien) + '">' + (p.corrige ? 'Modifier le chiffre de l\\'app' : 'Corriger avec le chiffre de l\\'app') + '</button>' +
       '<span class="form" data-form="' + esc(p.lien) + '" hidden>' +
       '<input inputmode="numeric" placeholder="Vues" value="' + (p.corrige && p.vues != null ? p.vues : '') + '">' +
@@ -239,12 +322,38 @@ function liste() {
 function dessiner() {
   if (!D) { app.innerHTML = '<p>Aucun relevé pour l\\'instant.</p>'; return; }
   document.getElementById('maj').textContent = '@' + D.compte.pseudo + ' · relevé du ' + new Date(D.releve).toLocaleString('fr-BE', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
-  app.innerHTML = haut() + '<div id="liste">' + liste() + '</div>' +
+  app.innerHTML = '<datalist id="dl-format">' + listeDe('format').map(v => '<option value="' + esc(v) + '">').join('') + '</datalist>' +
+    '<datalist id="dl-musique">' + listeDe('musique').map(v => '<option value="' + esc(v) + '">').join('') + '</datalist>' +
+    haut() + '<div id="liste">' + liste() + '</div>' +
     ((D.alertes || []).length ? '<div class="alerte">Certains chiffres n\\'ont pas pu être lus : ' + esc(D.alertes.join(' ; ')) + '</div>' : '');
 }
 const CLE = new URLSearchParams(location.search).get('key') || '';
 app.addEventListener('click', async e => {
+  const tr = e.target.closest('tr[data-fc]');
+  if (tr) {
+    filtre = (filtre && filtre.cle === tr.dataset.fc && filtre.val === tr.dataset.fv) ? null : { cle: tr.dataset.fc, val: tr.dataset.fv };
+    document.getElementById('liste').innerHTML = liste();
+    return;
+  }
   const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.fx) { filtre = null; document.getElementById('liste').innerHTML = liste(); return; }
+  if (b.dataset.noter) {
+    const f = [...document.querySelectorAll('[data-fnote]')].find(x => x.dataset.fnote === b.dataset.noter);
+    if (f) { f.hidden = !f.hidden; if (!f.hidden) f.querySelector('input').focus(); }
+    return;
+  }
+  if (b.dataset.snote) {
+    const [a, fo, mu] = b.closest('.form').querySelectorAll('input');
+    b.disabled = true; b.textContent = '...';
+    try {
+      const rep = await fetch('/insta/note?key=' + encodeURIComponent(CLE), { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ lien: b.dataset.snote, accroche: a.value, format: fo.value, musique: mu.value }) });
+      if (!rep.ok) throw 0;
+      const p = D.posts.find(x => x.lien === b.dataset.snote);
+      if (p) { p.accroche = a.value.trim() || undefined; p.format = fo.value.trim() || undefined; p.musique = mu.value.trim() || undefined; }
+      const y = window.scrollY; dessiner(); window.scrollTo(0, y);
+    } catch { b.disabled = false; b.textContent = 'Réessayer'; }
+    return;
+  }
   if (b.dataset.edit) {
     const f = [...document.querySelectorAll('[data-form]')].find(x => x.dataset.form === b.dataset.edit);
     if (f) { f.hidden = !f.hidden; if (!f.hidden) f.querySelector('input').focus(); }
@@ -261,7 +370,7 @@ app.addEventListener('click', async e => {
     } catch { b.disabled = false; b.textContent = 'Réessayer'; }
     return;
   }
-  if (b.dataset.o) onglet = b.dataset.o;
+  if (b.dataset.o) { onglet = b.dataset.o; filtre = null; }
   if (b.dataset.p !== undefined) periode = Number(b.dataset.p);
   if (b.dataset.t) tri = b.dataset.t;
   document.getElementById('liste').innerHTML = liste();
