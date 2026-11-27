@@ -1,0 +1,249 @@
+/* Page lien en bio. Telephone d'abord : une colonne, grandes zones a toucher. */
+
+.page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 44px 22px 56px;
+}
+
+.head {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.eyebrow,
+.sectionTitle {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin: 0;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 2.5rem;
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 12px 0 8px;
+}
+
+.role {
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  color: var(--stone);
+  margin: 0;
+}
+
+.links {
+  border-top: 1px solid var(--line);
+}
+
+.link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  align-items: center;
+  padding: 18px 4px;
+  min-height: 64px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+
+.linkLabel {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+
+.linkNote {
+  grid-column: 1;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--stone);
+  margin-top: 3px;
+}
+
+.arrow {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  color: var(--brick);
+  transition: transform 0.2s ease;
+}
+
+.link:hover,
+.link:active {
+  color: var(--brick);
+}
+
+.link:hover .arrow {
+  transform: translateX(4px);
+}
+
+.products,
+.email {
+  margin-top: 52px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.product {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+}
+
+.productVisual {
+  display: block;
+  width: 100%;
+}
+
+.productName {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 2px 0 4px;
+}
+
+.productMeta {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin: 0 0 14px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 22px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.button:hover {
+  background: var(--brick);
+  border-color: var(--brick);
+}
+
+.button:disabled {
+  background: var(--stone);
+  border-color: var(--stone);
+  cursor: default;
+}
+
+.emailSub {
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 12px auto 20px;
+  max-width: 400px;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--dust);
+  border-radius: 0;
+  background: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 1rem; /* 16 px : sinon l'iPhone zoome sur le champ */
+  color: var(--ink);
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--ink);
+}
+
+.consent {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--stone);
+  margin: 14px 0 0;
+  text-align: left;
+}
+
+.consent a {
+  color: var(--stone);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.emailDone,
+.emailError {
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  color: var(--ink);
+  margin: 12px 0 0;
+}
+
+.emailError {
+  color: var(--brick);
+}
+
+.foot {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+/* Icone seule : zone a toucher de 44 px au moins. */
+.footLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footLink:hover {
+  color: var(--brick);
+}
+
+@media (max-width: 380px) {
+  .form {
+    flex-direction: column;
+  }
+}

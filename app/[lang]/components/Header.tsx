@@ -14,7 +14,7 @@ import s from "./Header.module.css";
 // simplement à la ligne.
 // ─────────────────────────────────────────────────────────────
 
-const COVER_PAGES = [/^\/en\/?$/, /^\/en\/(hotels|destinations|creator|about)\/?$/, /^\/en\/journal\/?$/, /^\/en\/photographer\//];
+const COVER_PAGES = [/^\/en\/?$/, /^\/en\/(hotels|destinations|creator|about)\/?$/, /^\/en\/journal\/?$/, /^\/en\/photographer\//, /^\/en\/(links|unsubscribe)\/?$/];
 
 export default function Header() {
   const pathname = usePathname() ?? "";

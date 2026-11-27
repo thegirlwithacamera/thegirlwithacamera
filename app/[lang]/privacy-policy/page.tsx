@@ -50,11 +50,11 @@ export default async function PrivacyPolicyPage({ params }: Props) {
               I use them only to answer you and, if we work together, to prepare and run the
               project. The form is sent by email through Resend, an email delivery service.
             </p>
-            <h3>The newsletter</h3>
+            <h3>Shop news by email</h3>
             <p>
-              If you sign up, I keep your email address in a mailing list hosted by Resend, to send
-              you new journal stories and news. Every email has an unsubscribe link, and you can
-              also ask me to remove you at any time.
+              If you leave your email address, I keep it in a mailing list hosted by Resend, to write
+              to you when I release something new in the shop, and for nothing else. You can{" "}
+              <a href="/en/unsubscribe">unsubscribe</a> at any time, and you can also ask me to remove you.
             </p>
             <h3>Visit statistics</h3>
             <p>
@@ -107,7 +107,7 @@ export default async function PrivacyPolicyPage({ params }: Props) {
             <p>
               Messages from the contact form are kept for as long as we are in touch, and for up to
               three years after our last exchange, unless a project requires longer (for example
-              invoices, which Belgian law requires me to keep for seven years). Newsletter
+              invoices, which Belgian law requires me to keep for seven years). Mailing list
               addresses are kept until you unsubscribe.
             </p>
 
