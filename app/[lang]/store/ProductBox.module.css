@@ -1,11 +1,9 @@
 /* Boitier produit 3D. Les dimensions suivent la largeur de la scene (cqw). */
 
 .scene {
-  --ry: 30deg;
-  --rx: 0deg;
   --w: 64cqw;
   --h: calc(var(--w) * 1.4144);
-  --d: 9.6cqw;
+  --d: calc(var(--w) * var(--depth, 0.15));
   container-type: inline-size;
   position: relative;
   width: 100%;
@@ -20,13 +18,19 @@
   width: var(--w);
   height: var(--h);
   transform-style: preserve-3d;
-  transform: rotateX(var(--rx)) rotateY(var(--ry));
-  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform: rotateX(0deg) rotateY(28deg);
+  animation: sway 7s ease-in-out var(--delay, 0s) infinite alternate;
   will-change: transform;
 }
 
-.scene:hover .box {
-  transition-duration: 0.12s;
+/* Oscillation lente et continue : le boitier tourne un peu sur lui meme. */
+@keyframes sway {
+  from {
+    transform: rotateX(2deg) rotateY(16deg);
+  }
+  to {
+    transform: rotateX(-2deg) rotateY(40deg);
+  }
 }
 
 .box > * {
@@ -78,7 +82,7 @@
 
 .right {
   right: 0;
-  background: var(--box-color);
+  background: var(--box-edge);
   filter: brightness(0.6);
   transform: translateX(calc(var(--d) / 2)) rotateY(90deg);
 }
@@ -88,7 +92,7 @@
   left: 0;
   width: 100%;
   height: var(--d);
-  background: var(--box-color);
+  background: var(--box-edge);
 }
 
 .top {
@@ -117,6 +121,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .box {
-    transition: none;
+    animation: none;
   }
 }

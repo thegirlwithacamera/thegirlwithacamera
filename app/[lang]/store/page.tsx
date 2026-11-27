@@ -16,7 +16,7 @@ const PRODUCTS = [
     name: "Street",
     meta: { fr: "Le preset signature · 9 €", en: "The signature preset · 9 €" },
     alt: "Street, the signature Lightroom preset",
-    box: { front: "/store/street-box-front.jpg", spine: "/store/street-box-spine.jpg", color: "#b02c1e" },
+    box: { front: "/store/street-box-front.jpg", spine: "/store/street-box-spine.jpg", color: "#b02c1e", edge: "#b02c1e", depth: 0.15, delay: 0 },
   },
   {
     slug: "shy",
@@ -24,6 +24,7 @@ const PRODUCTS = [
     name: "Shy With A Camera",
     meta: { fr: "Le guide street pour les timides · 12 €", en: "The shy street guide · 12 €" },
     alt: "Shy With A Camera, the street photography guide for shy people",
+    box: { front: "/store/shy-box-front.jpg", spine: "/store/shy-box-spine.jpg", color: "#1c3a2c", edge: "#efe7d8", depth: 0.07, delay: -3.5 },
   },
 ] as const;
 
@@ -73,11 +74,15 @@ export default async function StorePage({ params }: Props) {
         <div className={s.grid}>
           {PRODUCTS.map((p) => (
             <Link key={p.slug} href={`/${lang}/store/${p.slug}`} className={s.card}>
-              {"box" in p ? (
-                <ProductBox front={p.box.front} spine={p.box.spine} alt={p.alt} color={p.box.color} />
-              ) : (
-                <img src={p.image} alt={p.alt} loading="lazy" />
-              )}
+              <ProductBox
+                front={p.box.front}
+                spine={p.box.spine}
+                alt={p.alt}
+                color={p.box.color}
+                edge={p.box.edge}
+                depth={p.box.depth}
+                delay={p.box.delay}
+              />
               <span className={s.cardName}>{p.name}</span>
               <span className={s.cardMeta}>{p.meta[lang]}</span>
             </Link>
