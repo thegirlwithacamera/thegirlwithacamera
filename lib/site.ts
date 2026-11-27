@@ -26,6 +26,7 @@ export const site = {
     tiktok: "https://www.tiktok.com/@sandrineceuppens",
     youtube: "https://www.youtube.com/@sandrinecppns",
     pinterest: "https://www.pinterest.com/sandrineceuppens/",
+    linkedin: "https://www.linkedin.com/in/sandrineceuppens/",
     instagramHandle: "@sandrinecppns",
   },
   partners: [
