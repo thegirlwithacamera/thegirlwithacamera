@@ -14,7 +14,7 @@ interface Props {
 
 // Adresse du compteur (Worker Cloudflare, voir workers/links). Tant qu'elle
 // n'est pas renseignee, le lien marche normalement et rien n'est compte.
-const COUNTER = process.env.NEXT_PUBLIC_LINKS_COUNTER_URL;
+const COUNTER = process.env.NEXT_PUBLIC_LINKS_COUNTER_URL ?? "https://tgwac-links.thegirlwithacamera.workers.dev";
 
 // Lien qui signale son clic au compteur. Aucun cookie, aucune donnee sur le
 // visiteur : seul le nom du lien et, s'il existe, le parametre ?from= de la

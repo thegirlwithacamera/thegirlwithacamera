@@ -1,0 +1,12 @@
+name = "tgwac-links"
+main = "src/index.js"
+compatibility_date = "2026-09-20"
+
+# Publie sur une adresse workers.dev : aucun domaine a brancher.
+workers_dev = true
+
+# La base qui garde les clics (offre gratuite Cloudflare D1).
+[[d1_databases]]
+binding = "DB"
+database_name = "tgwac-links"
+database_id = "a373d3de-bde3-4746-8cb2-269ae9ca7fbb"
