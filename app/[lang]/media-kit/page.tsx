@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { site } from "@/lib/site";
 import TrustLogos from "../components/TrustLogos";
 import PrintButton from "./PrintButton";
@@ -58,16 +57,6 @@ const n = (v: number | null | undefined) => (v === null || v === undefined ? "‚Ä
 const compact = (v: number) => new Intl.NumberFormat("en-GB", { notation: "compact", maximumFractionDigits: 1 }).format(v);
 
 const GENRES: Record<string, string> = { F: "Women", M: "Men", U: "Not specified" };
-
-// Photos deja choisies par Sandrine pour son site, montrees entieres (2:3).
-const WORK = [
-  { src: "/images/portfolio/hospitality/hotel-rathaus-wien/1.jpg", label: "Hotel Rathaus Wein & Design, Vienna", href: "/en/photographer/hospitality/hotel-rathaus-wien" },
-  { src: "/images/portfolio/hospitality/nishimuraya/1.jpg", label: "Nishimuraya Hotel Shogetsutei, Japan", href: "/en/photographer/hospitality/nishimuraya" },
-  { src: "/images/portfolio/hospitality/naturel-dorf-schonleitn/1.jpg", label: "Naturel Hoteldorf Sch√∂nleitn, Austria", href: "/en/photographer/hospitality/naturel-dorf-schonleitn" },
-  { src: "/images/portfolio/hospitality/mizuya/1.jpg", label: "Mizuya, Japan", href: "/en/photographer/hospitality/mizuya" },
-  { src: "/images/portfolio/travel/graz/1.jpg", label: "Graz, for Graz Tourismus", href: "/en/photographer/travel/graz" },
-  { src: "/images/portfolio/travel/tokyo/1.jpg", label: "Tokyo", href: "/en/photographer/travel/tokyo" },
-];
 
 const SERVICES = [
   { title: "Hotels & houses", text: "Photographs and a film made on the same visit, in natural light, with nothing staged." },
@@ -147,18 +136,6 @@ export default async function MediaKitPage() {
           </div>
         </section>
       )}
-
-      <section className={s.block}>
-        <h2 className={s.label}>Selected work</h2>
-        <div className={s.work}>
-          {WORK.map((w) => (
-            <Link key={w.src} href={w.href} className={s.workItem}>
-              <Image src={w.src} alt={w.label} width={1200} height={1800} sizes="(max-width: 767px) 50vw, 240px" />
-              <span>{w.label}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
 
       <section className={s.block}>
         <h2 className={s.label}>They trusted me</h2>
