@@ -134,7 +134,9 @@ async function avancer(env, p) {
       if (p.statut === "prevu") {
         await maj(env, p.id, { statut: "traitement", conteneur: null });
         const id = await tiktok.envoyer(env, p);
-        await maj(env, p.id, { statut: "traitement", conteneur: id });
+        // Un brouillon est livre des que l'envoi est fini : TikTok ne donne pas d'etat final pour la boite de reception.
+        if (JSON.parse(p.extra || "{}").mode === "brouillon") await maj(env, p.id, { statut: "publie", resultat: id, conteneur: id, erreur: null });
+        else await maj(env, p.id, { statut: "traitement", conteneur: id });
         return;
       }
       if (p.statut === "traitement") {
@@ -145,7 +147,10 @@ async function avancer(env, p) {
         }
         const s = await tiktok.etat(env, p.conteneur, env.TT_COMPTE);
         if (s.code === "ERROR") throw new Error(`TikTok refuse la video (${s.detail})`);
-        if (s.code !== "FINISHED") return attendre(env, p);
+        if (s.code !== "FINISHED") {
+          if (s.detail && s.detail !== p.erreur) await maj(env, p.id, { erreur: s.detail });
+          return attendre(env, p);
+        }
         await maj(env, p.id, { statut: "publie", resultat: s.id, lien: s.lien, erreur: null });
       }
     } catch (e) {
@@ -333,8 +338,9 @@ async function programmer(request, env) {
       extra = JSON.stringify({ tableau: String(p.tableau), lien: p.lien || "" });
     }
     if (reseau === "tiktok") {
-      if (!p.confidentialite) return json({ erreur: "Choisis qui peut voir la video sur TikTok." }, 400);
-      extra = JSON.stringify({ confidentialite: String(p.confidentialite), commentaires: p.commentaires !== false, duo: p.duo !== false, collage: p.collage !== false });
+      const brouillon = p.mode === "brouillon";
+      if (!brouillon && !p.confidentialite) return json({ erreur: "Choisis qui peut voir la video sur TikTok." }, 400);
+      extra = JSON.stringify({ mode: brouillon ? "brouillon" : "direct", confidentialite: String(p.confidentialite), commentaires: p.commentaires !== false, duo: p.duo !== false, collage: p.collage !== false });
     }
     if (p.genre === "video" && !estVideo(medias[0])) return json({ erreur: "Une video demande un fichier video." }, 400);
     if (reseau === "threads" && p.genre === "carrousel" && medias.length > 20) return json({ erreur: "Threads prend 20 fichiers au plus." }, 400);
@@ -389,6 +395,7 @@ button:disabled{opacity:.5}
 .barre{height:4px;background:#eee;margin-top:10px}.barre span{display:block;height:100%;width:0;background:#111}
 .vide{color:#777}
 .texte{width:52px;height:69px;background:#f1f1f1;display:flex;align-items:center;justify-content:center;font:italic 20px "EB Garamond",Georgia,serif;color:#777}
+.coche{display:flex;align-items:center;gap:8px;font-size:14px;margin:6px 0;text-transform:none;letter-spacing:0;color:inherit}.coche input{width:auto;margin:0}[hidden]{display:none!important}
 </style></head><body><main>
 <div class="sur">The Girl With A Camera</div>
 <h1>Programmation</h1>
@@ -415,12 +422,13 @@ button:disabled{opacity:.5}
   </div>
   <div id="blocTt" hidden>
     <div class="aide" id="ttCompte"></div>
-    <div class="ligne2">
+    <label>Comment</label><select id="ttMode"><option value="direct">Publier directement</option><option value="brouillon">Envoyer en brouillon dans l'app TikTok</option></select>
+    <div class="ligne2" id="ttDirect">
       <div><label>Qui peut voir la vidéo</label><select id="ttPriv"><option value="">Choisir…</option></select></div>
       <div><label>Autoriser</label>
-        <label class="aide"><input type="checkbox" id="ttCom"> Commentaires</label>
-        <label class="aide"><input type="checkbox" id="ttDuo"> Duo</label>
-        <label class="aide"><input type="checkbox" id="ttCol"> Collage</label></div>
+        <label class="coche"><input type="checkbox" id="ttCom"> Commentaires</label>
+        <label class="coche"><input type="checkbox" id="ttDuo"> Duo</label>
+        <label class="coche"><input type="checkbox" id="ttCol"> Collage</label></div>
     </div>
     <div class="aide">En publiant, tu acceptes la <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener">Music Usage Confirmation</a> de TikTok.</div>
   </div>
@@ -522,7 +530,7 @@ q('#go').addEventListener('click', async () => {
         : cles.map((c, i) => ({ genre: g, medias: [c], legende: commun, quand: new Date(+debut + i * pas).toISOString() })))
       : cles.map((c, i) => ({ genre: g, medias: [c], legende: fichiers[i].legende || commun, quand: new Date(+debut + i * pas).toISOString() }));
     posts = posts.map(p => Object.assign(p, { reseau }, reseau === 'pinterest' ? { genre: 'epingle', tableau: q('#tableau').value, lien: q('#lienPin').value.trim() } : {},
-      reseau === 'tiktok' ? { confidentialite: q('#ttPriv').value, commentaires: q('#ttCom').checked, duo: q('#ttDuo').checked, collage: q('#ttCol').checked } : {}));
+      reseau === 'tiktok' ? { mode: q('#ttMode').value, confidentialite: q('#ttPriv').value, commentaires: q('#ttCom').checked, duo: q('#ttDuo').checked, collage: q('#ttCol').checked } : {}));
     const r = await (await api('/api/posts', { method: 'POST', body: JSON.stringify({ posts }) })).json();
     if (r.erreur) throw new Error(r.erreur);
     msg.textContent = posts.length + (posts.length > 1 ? ' posts programmés.' : ' post programmé.');
@@ -561,6 +569,7 @@ q('#posts').addEventListener('click', async e => {
 function confirmRetrait(b) { if (b.dataset.ok) return true; b.dataset.ok = 1; b.textContent = 'Confirmer'; setTimeout(() => { delete b.dataset.ok; b.textContent = 'Retirer'; }, 4000); return false; }
 majReseau(); charger(); setInterval(charger, 60000);
 const PRIV = { PUBLIC_TO_EVERYONE: 'Tout le monde', MUTUAL_FOLLOW_FRIENDS: 'Amis', FOLLOWER_OF_CREATOR: 'Abonnés', SELF_ONLY: 'Moi seule' };
+q('#ttMode').addEventListener('change', () => { q('#ttDirect').hidden = q('#ttMode').value === 'brouillon'; });
 async function chargerCreateur() {
   const c = await (await api('/api/tiktok/createur')).json();
   if (c.erreur) { q('#ttCompte').textContent = c.erreur; return; }
@@ -589,6 +598,8 @@ export default {
     if (p === "/youtube/retour") return youtube.retourGoogle(env, url);
     if (p === "/pinterest/retour") return pinterest.retourPinterest(env, url);
     if (p === "/tiktok/retour") return tiktok.retourTiktok(env, url);
+    // Preuve de propriete demandee par TikTok for Developers (fichier public, sans secret).
+    if (p === "/tiktokvkqwXoVt0NTlRliZH4jtt5enCtqTkFwZ.txt") return new Response("tiktok-developers-site-verification=vkqwXoVt0NTlRliZH4jtt5enCtqTkFwZ", { headers: { "content-type": "text/plain" } });
     if (!autorise(env, url)) return new Response("Introuvable", { status: 404 });
     if (p === "/") return new Response(page(), { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
     if (p.startsWith("/api/envoi/")) return envoi(request, env, url, p.split("/")[3]);

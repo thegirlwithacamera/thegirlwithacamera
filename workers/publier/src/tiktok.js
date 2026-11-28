@@ -114,6 +114,13 @@ export async function envoyer(env, p) {
   const taille = tete.size;
   const morceau = taille <= 64 * MO ? taille : 32 * MO;
   const nombre = Math.max(1, Math.floor(taille / morceau));
+  const source = { source: "FILE_UPLOAD", video_size: taille, chunk_size: morceau, total_chunk_count: nombre };
+  // Brouillon : la video arrive dans la boite de reception TikTok, Sandrine finit dans l'app.
+  if (extra.mode === "brouillon") {
+    const b = await api(env, "post/publish/inbox/video/init/", { source_info: source });
+    await pousser(env, cle, b.upload_url, taille, morceau, nombre);
+    return b.publish_id;
+  }
   const options = (await createur(env)).confidentialites;
   const prive = options.includes(extra.confidentialite) ? extra.confidentialite : (options.includes("SELF_ONLY") ? "SELF_ONLY" : options[0]);
   const post = {
@@ -124,10 +131,12 @@ export async function envoyer(env, p) {
     disable_stitch: extra.collage === false,
   };
   if (Number.isFinite(p.couverture)) post.video_cover_timestamp_ms = Math.max(0, Math.round(p.couverture));
-  const d = await api(env, "post/publish/video/init/", {
-    post_info: post,
-    source_info: { source: "FILE_UPLOAD", video_size: taille, chunk_size: morceau, total_chunk_count: nombre },
-  });
+  const d = await api(env, "post/publish/video/init/", { post_info: post, source_info: source });
+  await pousser(env, cle, d.upload_url, taille, morceau, nombre);
+  return d.publish_id;
+}
+
+async function pousser(env, cle, adresse, taille, morceau, nombre) {
   for (let i = 0; i < nombre; i++) {
     const debut = i * morceau;
     const fin = i === nombre - 1 ? taille : debut + morceau;
@@ -135,21 +144,23 @@ export async function envoyer(env, p) {
     const { readable, writable } = new FixedLengthStream(fin - debut);
     o.body.pipeTo(writable);
     compteur();
-    const r = await fetch(d.upload_url, {
+    const r = await fetch(adresse, {
       method: "PUT",
       headers: { "content-type": /\.mov$/.test(cle) ? "video/quicktime" : "video/mp4", "content-range": `bytes ${debut}-${fin - 1}/${taille}` },
       body: readable,
     });
-    if (!r.ok) throw new Error(`Envoi TikTok interrompu (${r.status}) ${(await r.text()).slice(0, 200)}`);
+    const texte = (await r.text()).slice(0, 200);
+    if (!r.ok) throw new Error(`Envoi TikTok interrompu (${r.status}) ${texte}`);
+    if (i === nombre - 1 && r.status !== 201) throw new Error(`Envoi TikTok incomplet (${r.status}) ${texte}`);
   }
-  return d.publish_id;
 }
 
 // Etape 2 : ou en est la publication.
 export async function etat(env, id, compte) {
   const d = await api(env, "post/publish/status/fetch/", { publish_id: id });
   if (d.status === "FAILED") return { code: "ERROR", detail: d.fail_reason || "echec" };
-  if (d.status !== "PUBLISH_COMPLETE") return { code: "IN_PROGRESS" };
+  if (d.status === "SEND_TO_USER_INBOX") return { code: "FINISHED", id, lien: null, brouillon: true };
+  if (d.status !== "PUBLISH_COMPLETE") return { code: "IN_PROGRESS", detail: d.status };
   const vid = (d.publicaly_available_post_id || [])[0];
   return { code: "FINISHED", id: vid ? String(vid) : id, lien: vid && compte ? `https://www.tiktok.com/@${compte}/video/${vid}` : null };
 }
