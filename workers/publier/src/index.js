@@ -21,6 +21,7 @@ import * as youtube from "./youtube.js";
 import * as pinterest from "./pinterest.js";
 import * as tiktok from "./tiktok.js";
 import { pageCommentaires } from "./page-commentaires.js";
+import { pageProgrammation } from "./page-programmation.js";
 
 const GRAPH = "https://graph.facebook.com/v25.0";
 const GENRES = ["essai", "reel", "photo", "carrousel"];
@@ -273,7 +274,7 @@ const TYPES = { mp4: "video/mp4", mov: "video/quicktime", m4v: "video/mp4", jpg:
 async function envoi(request, env, url, etape) {
   if (etape === "debut") {
     const ext = (url.searchParams.get("ext") || "").toLowerCase();
-    if (!TYPES[ext]) return json({ erreur: "Format accepte : mp4, mov, jpg, png." }, 400);
+    if (!TYPES[ext]) return json({ erreur: "Accepted formats: mp4, mov, jpg, png." }, 400);
     const cle = `${crypto.randomUUID()}.${ext === "jpeg" ? "jpg" : ext}`;
     const m = await env.R2.createMultipartUpload(`planning/${cle}`, { httpMetadata: { contentType: TYPES[ext] } });
     return json({ cle, uploadId: m.uploadId });
@@ -322,33 +323,33 @@ async function programmer(request, env) {
   const ok = [];
   for (const p of posts) {
     const reseau = ["threads", "youtube", "pinterest", "tiktok"].includes(p.reseau) ? p.reseau : "instagram";
-    if (!({ threads: GENRES_THREADS, youtube: GENRES_YOUTUBE, pinterest: GENRES_PINTEREST, tiktok: GENRES_TIKTOK }[reseau] || GENRES).includes(p.genre)) return json({ erreur: `Type inconnu pour ${reseau} : ${p.genre}` }, 400);
+    if (!({ threads: GENRES_THREADS, youtube: GENRES_YOUTUBE, pinterest: GENRES_PINTEREST, tiktok: GENRES_TIKTOK }[reseau] || GENRES).includes(p.genre)) return json({ erreur: `Unknown type for ${reseau}: ${p.genre}` }, 400);
     const medias = (p.medias || []).filter((c) => /^[0-9a-f-]{36}\.(mp4|mov|m4v|jpg|png)$/.test(c));
     if (p.genre === "texte") {
-      if (!String(p.legende || "").trim()) return json({ erreur: "Un post texte demande un texte." }, 400);
-      if (String(p.legende).length > 500) return json({ erreur: "Threads limite un post a 500 caracteres." }, 400);
-    } else if (!medias.length) return json({ erreur: "Aucun fichier" }, 400);
-    if (reseau === "threads" && String(p.legende || "").length > 500) return json({ erreur: "Threads limite le texte a 500 caracteres." }, 400);
-    if (reseau === "youtube" && !String(p.legende || "").split("\n")[0].trim()) return json({ erreur: "Sur YouTube, la premiere ligne de la legende sert de titre." }, 400);
+      if (!String(p.legende || "").trim()) return json({ erreur: "A text post needs some text." }, 400);
+      if (String(p.legende).length > 500) return json({ erreur: "Threads allows 500 characters max." }, 400);
+    } else if (!medias.length) return json({ erreur: "No file" }, 400);
+    if (reseau === "threads" && String(p.legende || "").length > 500) return json({ erreur: "Threads allows 500 characters max." }, 400);
+    if (reseau === "youtube" && !String(p.legende || "").split("\n")[0].trim()) return json({ erreur: "On YouTube, the first line of the caption is the title." }, 400);
     let extra = null;
     if (reseau === "pinterest") {
-      if (!p.tableau) return json({ erreur: "Choisis un tableau Pinterest." }, 400);
-      if (!/\.jpg$/.test(medias[0])) return json({ erreur: "Une epingle demande une photo." }, 400);
-      if (p.lien && !/^https:\/\//.test(p.lien)) return json({ erreur: "Le lien doit commencer par https://" }, 400);
+      if (!p.tableau) return json({ erreur: "Pick a Pinterest board." }, 400);
+      if (!/\.jpg$/.test(medias[0])) return json({ erreur: "A pin needs a photo." }, 400);
+      if (p.lien && !/^https:\/\//.test(p.lien)) return json({ erreur: "The link must start with https://" }, 400);
       extra = JSON.stringify({ tableau: String(p.tableau), lien: p.lien || "" });
     }
     if (reseau === "tiktok") {
       const brouillon = p.mode === "brouillon";
-      if (!brouillon && !p.confidentialite) return json({ erreur: "Choisis qui peut voir la video sur TikTok." }, 400);
+      if (!brouillon && !p.confidentialite) return json({ erreur: "Choose who can watch the video on TikTok." }, 400);
       extra = JSON.stringify({ mode: brouillon ? "brouillon" : "direct", confidentialite: String(p.confidentialite), commentaires: p.commentaires !== false, duo: p.duo !== false, collage: p.collage !== false });
     }
-    if (p.genre === "video" && !estVideo(medias[0])) return json({ erreur: "Une video demande un fichier video." }, 400);
-    if (reseau === "threads" && p.genre === "carrousel" && medias.length > 20) return json({ erreur: "Threads prend 20 fichiers au plus." }, 400);
-    if ((p.genre === "essai" || p.genre === "reel") && !estVideo(medias[0])) return json({ erreur: "Un reel demande une video." }, 400);
-    if (p.genre === "photo" && !/\.jpg$/.test(medias[0])) return json({ erreur: "Instagram n'accepte que le JPEG pour les photos." }, 400);
-    if (p.genre === "carrousel" && (medias.length < 2 || (reseau === "instagram" && medias.length > 10))) return json({ erreur: "Un carrousel prend de 2 a 10 fichiers." }, 400);
+    if (p.genre === "video" && !estVideo(medias[0])) return json({ erreur: "A video post needs a video file." }, 400);
+    if (reseau === "threads" && p.genre === "carrousel" && medias.length > 20) return json({ erreur: "Threads takes 20 files max." }, 400);
+    if ((p.genre === "essai" || p.genre === "reel") && !estVideo(medias[0])) return json({ erreur: "A reel needs a video." }, 400);
+    if (p.genre === "photo" && !/\.jpg$/.test(medias[0])) return json({ erreur: "Instagram only takes JPEG photos." }, 400);
+    if (p.genre === "carrousel" && (medias.length < 2 || (reseau === "instagram" && medias.length > 10))) return json({ erreur: "A carousel takes 2 to 10 files." }, 400);
     const quand = new Date(p.quand);
-    if (isNaN(quand)) return json({ erreur: "Date illisible" }, 400);
+    if (isNaN(quand)) return json({ erreur: "Unreadable date" }, 400);
     const id = crypto.randomUUID();
     await env.DB.prepare(
       "INSERT INTO planning (id, reseau, genre, legende, medias, quand, statut, couverture, essais, cree, maj, extra) " +
@@ -363,303 +364,7 @@ async function programmer(request, env) {
 // ---------------------------------------------------------------- page
 
 function page() {
-  return `<!doctype html><html lang="fr"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">
-<title>Programmation</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-/* Meme famille que Studio Reels : bordeaux, rose et rouge, Cormorant pour les titres, Inter pour le reste. */
-:root{--bg:#fbf7f6;--panel:#fff;--ink:#3a0f1a;--muted:#8b6f75;--line:#efe3e4;--bordeaux:#6e1b2e;--rose:#e7a1b0;--rose-soft:#f9e8ec;--rouge:#c21f39;--rouge-soft:#fbe5e8;--on:#fff;
---display:"Cormorant Garamond","Didot",Georgia,serif;--body:"Inter",-apple-system,"Helvetica Neue",Arial,sans-serif}
-@media (prefers-color-scheme:dark){:root{--bg:#1b0c11;--panel:#26121a;--ink:#f7eaed;--muted:#c2a3aa;--line:#3a1d26;--bordeaux:#e58a9d;--rose:#f1b3c1;--rose-soft:#3a1922;--rouge:#ff6b7f;--rouge-soft:#401a21;--on:#1b0c11;color-scheme:dark}}
-*{box-sizing:border-box}[hidden]{display:none!important}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--body)}
-main{max-width:1120px;margin:0 auto;padding:56px max(20px,env(safe-area-inset-left)) 80px}
-.hero{display:flex;flex-wrap:wrap;gap:28px 48px;align-items:flex-end;justify-content:space-between}
-.sur{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--rouge);font-weight:600}
-h1{font-family:var(--display);font-weight:500;font-size:clamp(46px,8vw,88px);line-height:.92;margin:12px 0 14px;letter-spacing:-.01em}
-h1 em{color:var(--bordeaux)}
-.lead{color:var(--muted);max-width:46ch;margin:0}
-.stats{display:flex;gap:34px}
-.stat b{display:block;font-family:var(--display);font-weight:500;font-size:46px;line-height:1;font-variant-numeric:tabular-nums}
-.stat span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.stat.a b{color:var(--bordeaux)}.stat.b b{color:var(--rose)}.stat.c b{color:var(--rouge)}
-.rang{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:40px 0 44px}
-.rang>*{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:10px;display:block;background:var(--rose-soft)}
-@media(max-width:640px){.rang{grid-template-columns:repeat(3,1fr)}.rang>:nth-child(n+4){display:none}}
-.cols{display:grid;grid-template-columns:minmax(0,480px) minmax(0,1fr);gap:40px;align-items:start}
-@media(max-width:880px){.cols{grid-template-columns:1fr}}
-.carte{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px 22px;position:sticky;top:20px}
-@media(max-width:880px){.carte{position:static}}
-.carte h2,.liste h2{font-family:var(--display);font-weight:500;font-size:30px;line-height:1.05;margin:0 0 6px;letter-spacing:0;text-transform:none;color:var(--ink)}
-.pilules{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 2px}
-.pilules button{font:500 13px var(--body);color:var(--muted);background:transparent;border:1px solid var(--line);padding:6px 12px;border-radius:999px;cursor:pointer;min-height:0;letter-spacing:0;text-transform:none}
-.pilules button[aria-pressed="true"]{color:var(--on);background:var(--bordeaux);border-color:var(--bordeaux)}
-.cache{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
-label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted);margin:18px 0 6px}
-select,input,textarea{font:14px var(--body);color:var(--ink);width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
-input[type=file]{padding:9px;background:var(--rose-soft);border-style:dashed;border-color:var(--rose)}
-input[type=file]::file-selector-button{font:600 12.5px var(--body);border:0;border-radius:999px;background:var(--bordeaux);color:var(--on);padding:7px 14px;margin-right:10px;cursor:pointer}
-textarea{min-height:84px;resize:vertical}
-select:focus,input:focus,textarea:focus{outline:2px solid var(--rose);outline-offset:1px;border-color:transparent}
-.ligne2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-button{font:600 14px var(--body);border:1px solid var(--bordeaux);background:var(--bordeaux);color:var(--on);padding:12px 22px;min-height:46px;border-radius:999px;cursor:pointer}
-#go{width:100%;margin-top:6px}
-button.leger{background:var(--panel);color:var(--ink);border-color:var(--line);font-size:12.5px;padding:7px 14px;min-height:34px}
-button.leger:hover{border-color:var(--bordeaux)}
-button:disabled{opacity:.45;cursor:wait}
-a{color:var(--rouge)}
-.fichier{display:grid;grid-template-columns:64px 1fr;gap:12px;margin-top:12px;align-items:start}
-.fichier video,.fichier img{width:64px;aspect-ratio:9/16;object-fit:cover;border-radius:10px;background:#000}
-.aide{font-size:12.5px;color:var(--muted);margin-top:6px}
-#msg{color:var(--bordeaux);font-weight:500}
-.connexions{margin-top:16px;padding:12px 14px;background:var(--rose-soft);border-radius:12px;font-size:13px;color:var(--muted)}
-.connexions:empty,.connexions:not(:has(.aide:not([hidden]))){display:none}
-.connexions .aide{margin:0}
-.jour{font-family:var(--display);font-style:italic;font-size:24px;margin:30px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-.jour:first-child{margin-top:8px}
-.post{display:grid;grid-template-columns:62px 1fr auto;gap:16px;padding:12px 0;align-items:start}
-.post+.post{border-top:1px solid var(--line)}
-.post video,.post img,.texte{width:62px;aspect-ratio:9/16;object-fit:cover;border-radius:10px;background:#000}
-.texte{display:flex;align-items:center;justify-content:center;font:italic 22px var(--display);color:var(--muted);background:var(--rose-soft)}
-.meta{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:12px;color:var(--muted)}
-.meta .res{color:var(--rouge);text-transform:uppercase;letter-spacing:.12em;font-weight:600;font-size:10.5px}
-.leg{font-size:14px;margin-top:4px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.st{font:600 10px var(--body);letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--rose-soft);color:var(--bordeaux)}
-.st.publie{background:var(--bordeaux);color:var(--on)}.st.erreur{background:var(--rouge);color:#fff}.st.traitement,.st.enfants{background:var(--rose);color:#3a0f1a}
-.voir{font-size:12.5px;color:var(--bordeaux);font-weight:500;text-decoration:none}
-.err{color:var(--rouge);font-size:12.5px;margin-top:4px;padding:6px 10px;background:var(--rouge-soft);border-radius:10px}
-.barre{height:4px;background:var(--rose-soft);border-radius:4px;margin-top:12px;overflow:hidden}.barre span{display:block;height:100%;width:0;background:var(--bordeaux)}
-.vide{color:var(--muted);font-style:italic}
-.coche{display:flex;align-items:center;gap:8px;font:400 14px var(--body);letter-spacing:0;text-transform:none;color:var(--ink);margin:6px 0}.coche input{width:auto;margin:0;accent-color:var(--bordeaux)}
-#ttCompte{display:flex;align-items:center;gap:8px;margin-top:14px}
-</style></head><body><main>
-<div class="hero">
-  <div><div class="sur">The Girl with a Camera</div>
-  <h1>Ma <em>programmation</em></h1>
-  <p class="lead">Instagram, Threads, YouTube, Pinterest et TikTok, au même endroit. Tu déposes, tu choisis l'heure, ça part tout seul.</p></div>
-  <div class="stats" aria-live="polite">
-    <div class="stat a"><b id="nPrevus">·</b><span>prévus</span></div>
-    <div class="stat b"><b id="nPublies">·</b><span>publiés · 7 j</span></div>
-    <div class="stat c"><b id="nErreurs">·</b><span>à revoir</span></div>
-  </div>
-</div>
-<div class="rang" id="rang" aria-hidden="true"></div>
-<div class="cols">
-<div class="carte">
-  <h2>Nouveau post</h2>
-  <label>Réseau</label><div class="pilules" id="pReseau"></div>
-  <label>Type</label><div class="pilules" id="pGenre"></div>
-  <div class="cache" aria-hidden="true">
-    <select id="genre" tabindex="-1">
-      <option value="essai">Reel d'essai</option><option value="reel">Reel</option>
-      <option value="photo">Photo</option><option value="carrousel">Carrousel</option></select>
-    <select id="reseau" tabindex="-1"><option value="instagram">Instagram</option><option value="threads">Threads</option><option value="youtube">YouTube</option><option value="pinterest">Pinterest</option><option value="tiktok">TikTok</option></select>
-  </div>
-  <div id="blocFichiers"><label>Fichiers</label><input type="file" id="fichiers" multiple accept="video/mp4,video/quicktime,image/jpeg,image/png">
-  <div class="aide" id="aideFichiers">Plusieurs vidéos = un reel par vidéo, espacés comme tu le choisis.</div></div>
-  <label id="titreLegende">Légende commune</label><textarea id="legende" placeholder="Reprise sous chaque vidéo, modifiable une par une"></textarea>
-  <div class="ligne2">
-    <div><label>Premier à</label><input type="datetime-local" id="quand"></div>
-    <div><label>Écart (min)</label><input type="number" id="intervalle" value="60" min="5"></div>
-  </div>
-  <div id="blocPin" hidden>
-    <div class="ligne2">
-      <div><label>Tableau</label><select id="tableau"><option value="">Chargement…</option></select></div>
-      <div><label>Lien de l'épingle</label><input id="lienPin" placeholder="https://www.thegirlwithacamera.com/en/store/..."></div>
-    </div>
-    <div class="aide"><a href="#" id="nouveauTableau">Créer un tableau</a></div>
-    <div class="ligne2" id="blocTableau" hidden><div><input id="nomTableau" placeholder="Nom du nouveau tableau"></div><div><button class="leger" id="creerTableau">Créer</button></div></div>
-  </div>
-  <div id="blocTt" hidden>
-    <div class="aide" id="ttCompte"></div>
-    <label>Comment</label><select id="ttMode"><option value="direct">Publier directement</option><option value="brouillon">Envoyer en brouillon dans l'app TikTok</option></select>
-    <div class="ligne2" id="ttDirect">
-      <div><label>Qui peut voir la vidéo</label><select id="ttPriv"><option value="">Choisir…</option></select></div>
-      <div><label>Autoriser</label>
-        <label class="coche"><input type="checkbox" id="ttCom"> Commentaires</label>
-        <label class="coche"><input type="checkbox" id="ttDuo"> Duo</label>
-        <label class="coche"><input type="checkbox" id="ttCol"> Collage</label></div>
-    </div>
-    <div class="aide">En publiant, tu acceptes la <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener">Music Usage Confirmation</a> de TikTok.</div>
-  </div>
-  <div id="liste-fichiers"></div>
-  <div style="margin-top:22px"><button id="go">Programmer</button></div>
-  <div class="barre" id="barre" hidden><span></span></div>
-  <div id="msg" class="aide"></div>
-  <div class="connexions">
-  <div id="ytCo" class="aide" hidden></div>
-  <div id="pinCo" class="aide" hidden></div>
-  <div id="ttCo" class="aide" hidden></div>
-  </div>
-</div>
-<div class="liste">
-<h2>Au programme</h2>
-<div id="posts"><p class="vide">Chargement…</p></div>
-</div>
-</div>
-</main>
-<script>
-const CLE = new URLSearchParams(location.search).get('key') || '';
-const q = s => document.querySelector(s);
-const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const api = (chemin, opts = {}) => fetch(chemin + (chemin.includes('?') ? '&' : '?') + 'key=' + encodeURIComponent(CLE), opts);
-let fichiers = [];
-const TYPES_RESEAU = {
-  instagram: [['essai', "Reel d'essai"], ['reel', 'Reel'], ['photo', 'Photo'], ['carrousel', 'Carrousel']],
-  threads: [['texte', 'Texte seul'], ['photo', 'Photo'], ['video', 'Vidéo'], ['carrousel', 'Carrousel']],
-  youtube: [['video', 'Vidéo (Short si verticale et courte)']],
-  pinterest: [['epingle', 'Épingle photo']],
-  tiktok: [['video', 'Vidéo']],
-};
-const RESEAUX = [['instagram', 'Instagram'], ['threads', 'Threads'], ['youtube', 'YouTube'], ['pinterest', 'Pinterest'], ['tiktok', 'TikTok']];
-function pilules(boite, liste, valeur, quand) {
-  q(boite).innerHTML = liste.map(([v, n]) => '<button type="button" data-v="' + v + '" aria-pressed="' + (v === valeur) + '">' + esc(n) + '</button>').join('');
-  q(boite).onclick = e => { const b = e.target.closest('button'); if (b) quand(b.dataset.v); };
-}
-function majReseau() {
-  const r = q('#reseau').value;
-  q('#genre').innerHTML = TYPES_RESEAU[r].map(([v, n]) => '<option value="' + v + '">' + n + '</option>').join('');
-  pilules('#pReseau', RESEAUX, r, v => { q('#reseau').value = v; majReseau(); });
-  majGenre();
-}
-function majGenre() {
-  const r = q('#reseau').value, g = q('#genre').value, texte = g === 'texte';
-  pilules('#pGenre', TYPES_RESEAU[r].map(([v, n]) => [v, n.replace(/ \\(.*\\)/, '')]), g, v => { q('#genre').value = v; majGenre(); });
-  q('#blocFichiers').hidden = texte;
-  q('#titreLegende').textContent = texte ? 'Texte (500 signes max)' : (r === 'threads' ? 'Texte (500 signes max)' : (r === 'youtube' || r === 'pinterest') ? 'Titre sur la 1re ligne, puis la description' : 'Légende commune');
-  q('#blocPin').hidden = r !== 'pinterest';
-  q('#pinCo').hidden = r !== 'pinterest';
-  if (r === 'pinterest') chargerTableaux();
-  q('#ytCo').hidden = r !== 'youtube';
-  q('#blocTt').hidden = q('#ttCo').hidden = r !== 'tiktok';
-  if (r === 'tiktok') chargerCreateur();
-  q('#aideFichiers').textContent = g === 'carrousel' ? 'Toutes les photos et vidéos choisies forment un seul carrousel.' :
-    'Plusieurs fichiers = un post par fichier, espacés comme tu le choisis.';
-  if (texte) { fichiers = []; q('#fichiers').value = ''; }
-  dessinerFichiers();
-}
-q('#reseau').addEventListener('change', majReseau);
-
-(function () { const d = new Date(Date.now() + 3600e3); d.setMinutes(0, 0, 0); q('#quand').value = new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 16); })();
-
-function dessinerFichiers() {
-  const g = q('#genre').value, groupe = g === 'carrousel' || g === 'photo';
-  q('#liste-fichiers').innerHTML = groupe ? '' : fichiers.map((f, i) =>
-    '<div class="fichier">' + (f.type.startsWith('video') ? '<video muted src="' + f.apercu + '"></video>' : '<img src="' + f.apercu + '">') +
-    '<div><div class="meta">' + esc(f.name) + '</div><textarea data-i="' + i + '" placeholder="Légende de ce post (vide = légende commune)">' + esc(f.legende || '') + '</textarea></div></div>').join('');
-}
-q('#fichiers').addEventListener('change', e => { fichiers = [...e.target.files].map(f => Object.assign(f, { apercu: URL.createObjectURL(f) })); dessinerFichiers(); });
-q('#genre').addEventListener('change', majGenre);
-q('#liste-fichiers').addEventListener('input', e => { if (e.target.dataset.i) fichiers[e.target.dataset.i].legende = e.target.value; });
-
-async function envoyer(f, progres) {
-  const ext = f.name.split('.').pop().toLowerCase();
-  const d = await (await api('/api/envoi/debut?ext=' + ext, { method: 'POST' })).json();
-  if (d.erreur) throw new Error(d.erreur);
-  const TAILLE = 20 * 1024 * 1024, parts = [];
-  for (let n = 1, pos = 0; pos < f.size; n++, pos += TAILLE) {
-    const r = await api('/api/envoi/morceau?cle=' + d.cle + '&uploadId=' + encodeURIComponent(d.uploadId) + '&n=' + n, { method: 'PUT', body: f.slice(pos, pos + TAILLE) });
-    if (!r.ok) throw new Error('Envoi interrompu, réessaie.');
-    parts.push(await r.json()); progres(Math.min(f.size, pos + TAILLE));
-  }
-  const fin = await api('/api/envoi/fin?cle=' + d.cle + '&uploadId=' + encodeURIComponent(d.uploadId), { method: 'POST', body: JSON.stringify({ parts }) });
-  if (!fin.ok) throw new Error('Envoi non terminé, réessaie.');
-  return d.cle;
-}
-
-q('#go').addEventListener('click', async () => {
-  const g = q('#genre').value, msg = q('#msg'), reseau = q('#reseau').value;
-  if (g === 'texte') {
-    const t = q('#legende').value.trim(), d0 = new Date(q('#quand').value);
-    if (!t) { msg.textContent = 'Écris le texte.'; return; }
-    if (isNaN(d0)) { msg.textContent = 'Choisis une date.'; return; }
-    const r = await (await api('/api/posts', { method: 'POST', body: JSON.stringify({ posts: [{ reseau, genre: g, medias: [], legende: t, quand: d0.toISOString() }] }) })).json();
-    msg.textContent = r.erreur || 'Post programmé.';
-    if (!r.erreur) { q('#legende').value = ''; charger(); }
-    return;
-  }
-  if (!fichiers.length) { msg.textContent = 'Choisis au moins un fichier.'; return; }
-  const debut = new Date(q('#quand').value);
-  if (isNaN(debut)) { msg.textContent = 'Choisis une date.'; return; }
-  const total = fichiers.reduce((s, f) => s + f.size, 0); let fait = 0;
-  q('#go').disabled = true; q('#barre').hidden = false; msg.textContent = 'Envoi des fichiers…';
-  try {
-    const cles = [];
-    for (const f of fichiers) { const avant = fait; cles.push(await envoyer(f, x => { fait = avant + x; q('#barre span').style.width = (fait / total * 100) + '%'; })); }
-    const commun = q('#legende').value, pas = Math.max(5, Number(q('#intervalle').value) || 60) * 6e4;
-    let posts = (g === 'carrousel' || g === 'photo' || g === 'epingle')
-      ? (g === 'carrousel' ? [{ genre: g, medias: cles, legende: commun, quand: debut.toISOString() }]
-        : cles.map((c, i) => ({ genre: g, medias: [c], legende: commun, quand: new Date(+debut + i * pas).toISOString() })))
-      : cles.map((c, i) => ({ genre: g, medias: [c], legende: fichiers[i].legende || commun, quand: new Date(+debut + i * pas).toISOString() }));
-    posts = posts.map(p => Object.assign(p, { reseau }, reseau === 'pinterest' ? { genre: 'epingle', tableau: q('#tableau').value, lien: q('#lienPin').value.trim() } : {},
-      reseau === 'tiktok' ? { mode: q('#ttMode').value, confidentialite: q('#ttPriv').value, commentaires: q('#ttCom').checked, duo: q('#ttDuo').checked, collage: q('#ttCol').checked } : {}));
-    const r = await (await api('/api/posts', { method: 'POST', body: JSON.stringify({ posts }) })).json();
-    if (r.erreur) throw new Error(r.erreur);
-    msg.textContent = posts.length + (posts.length > 1 ? ' posts programmés.' : ' post programmé.');
-    fichiers = []; q('#fichiers').value = ''; q('#legende').value = ''; dessinerFichiers(); charger();
-  } catch (e) { msg.textContent = e.message; }
-  q('#go').disabled = false; setTimeout(() => { q('#barre').hidden = true; q('#barre span').style.width = 0; }, 800);
-});
-
-const NOMS = { essai: "Reel d'essai", reel: 'Reel', photo: 'Photo', carrousel: 'Carrousel', texte: 'Texte', video: 'Vidéo', epingle: 'Épingle' };
-const ST = { prevu: 'prévu', traitement: 'en cours', enfants: 'en cours', publie: 'publié', erreur: 'erreur' };
-const estVid = m => /\\.(mp4|mov|m4v)$/.test(m);
-function apercu(m) { return !m ? '<div class="texte">Aa</div>' : estVid(m) ? '<video muted playsinline preload="metadata" src="/media/' + m + '#t=1"></video>' : '<img loading="lazy" src="/media/' + m + '" alt="">'; }
-async function charger() {
-  const posts = await (await api('/api/posts')).json();
-  const semaine = Date.now() - 7 * 864e5;
-  q('#nPrevus').textContent = posts.filter(p => p.statut !== 'publie' && p.statut !== 'erreur').length;
-  q('#nPublies').textContent = posts.filter(p => p.statut === 'publie' && new Date(p.quand) > semaine).length;
-  q('#nErreurs').textContent = posts.filter(p => p.statut === 'erreur').length;
-  const avenir = posts.filter(p => p.statut === 'prevu' && p.medias[0]).slice(0, 6);
-  const rang = avenir.length >= 3 ? avenir : posts.filter(p => p.medias[0]).slice(-6);
-  q('#rang').innerHTML = rang.map(p => apercu(p.medias[0])).join('');
-  q('#rang').hidden = !rang.length;
-  if (!posts.length) { q('#posts').innerHTML = '<p class="vide">Rien de programmé.</p>'; return; }
-  let jour = '', h = '';
-  for (const p of posts) {
-    const d = new Date(p.quand), j = d.toLocaleDateString('fr-BE', { weekday: 'long', day: 'numeric', month: 'long' });
-    if (j !== jour) { h += '<div class="jour">' + j + '</div>'; jour = j; }
-    const m = p.medias[0], res = { threads: 'Threads', youtube: 'YouTube', pinterest: 'Pinterest', tiktok: 'TikTok' }[p.reseau] || 'Instagram';
-    h += '<div class="post">' + apercu(m) +
-      '<div><div class="meta"><span class="res">' + res + '</span><span>' + d.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' }) + ' · ' + NOMS[p.genre] + (p.medias.length > 1 ? ' · ' + p.medias.length + ' fichiers' : '') + '</span>' +
-      '<span class="st ' + p.statut + '">' + ST[p.statut] + '</span></div><div class="leg">' + (esc(p.legende) || '<span class="vide">Sans légende</span>') + '</div>' +
-      (p.erreur && p.statut === 'erreur' ? '<div class="err">' + esc(p.erreur) + '</div>' : '') +
-      (p.lien ? '<a class="voir" href="' + esc(p.lien) + '" target="_blank" rel="noopener">Voir sur ' + res + ' →</a>' : '') + '</div><div>' +
-      (p.statut === 'prevu' ? '<button class="leger" data-sup="' + p.id + '">Retirer</button>' : '') +
-      (p.statut === 'erreur' ? '<button class="leger" data-rel="' + p.id + '">Réessayer</button>' : '') + '</div></div>';
-  }
-  q('#posts').innerHTML = h;
-}
-q('#posts').addEventListener('click', async e => {
-  const b = e.target.closest('button'); if (!b) return;
-  if (b.dataset.sup && !confirmRetrait(b)) return;
-  b.disabled = true;
-  await api('/api/posts/' + (b.dataset.sup || b.dataset.rel) + '/' + (b.dataset.sup ? 'supprimer' : 'relancer'), { method: 'POST' });
-  charger();
-});
-function confirmRetrait(b) { if (b.dataset.ok) return true; b.dataset.ok = 1; b.textContent = 'Confirmer'; setTimeout(() => { delete b.dataset.ok; b.textContent = 'Retirer'; }, 4000); return false; }
-majReseau(); charger(); setInterval(charger, 60000);
-const PRIV = { PUBLIC_TO_EVERYONE: 'Tout le monde', MUTUAL_FOLLOW_FRIENDS: 'Amis', FOLLOWER_OF_CREATOR: 'Abonnés', SELF_ONLY: 'Moi seule' };
-q('#ttMode').addEventListener('change', () => { q('#ttDirect').hidden = q('#ttMode').value === 'brouillon'; });
-async function chargerCreateur() {
-  const c = await (await api('/api/tiktok/createur')).json();
-  if (c.erreur) { q('#ttCompte').textContent = c.erreur; return; }
-  q('#ttCompte').innerHTML = (c.avatar ? '<img src="' + esc(c.avatar) + '" style="width:24px;height:24px;border-radius:50%;vertical-align:middle;margin-right:6px">' : '') + 'Publié sur le compte ' + esc(c.nom) + ' · vidéos de ' + Math.round(c.duree_max / 60) + ' min max';
-  q('#ttPriv').innerHTML = '<option value="">Choisir…</option>' + c.confidentialites.map(v => '<option value="' + esc(v) + '">' + esc(PRIV[v] || v) + '</option>').join('');
-  [['#ttCom', c.commentaires_off], ['#ttDuo', c.duo_off], ['#ttCol', c.collage_off]].forEach(([s, off]) => { q(s).disabled = off; if (off) q(s).checked = false; });
-}
-async function chargerTableaux() {
-  const r = await (await api('/api/pinterest/tableaux')).json();
-  q('#tableau').innerHTML = r.erreur ? '<option value="">' + esc(r.erreur) + '</option>' : (r.length ? r.map(b => '<option value="' + esc(b.id) + '">' + esc(b.nom) + '</option>').join('') : '<option value="">Aucun tableau</option>');
-}
-q('#nouveauTableau').addEventListener('click', e => { e.preventDefault(); q('#blocTableau').hidden = false; q('#nomTableau').focus(); });
-q('#creerTableau').addEventListener('click', async e => { e.preventDefault(); const nom = q('#nomTableau').value.trim(); if (!nom) return; const r = await (await api('/api/pinterest/tableaux', { method: 'POST', body: JSON.stringify({ nom }) })).json(); q('#nomTableau').value = ''; q('#blocTableau').hidden = true; await chargerTableaux(); if (r.id) q('#tableau').value = r.id; });
-api('/api/etat').then(r => r.json()).then(e => { const pn = e.pinterest || {}; q('#pinCo').innerHTML = (pn.connecte ? 'Pinterest connecté' + (pn.bac_a_sable ? ' (mode test : épingles visibles par toi seule)' : '') + '. ' : '') + '<a href="/pinterest/connecter?key=' + encodeURIComponent(CLE) + '">' + (pn.connecte ? 'Reconnecter' : 'Connecter mon compte Pinterest') + '</a>'; });
-api('/api/etat').then(r => r.json()).then(e => { const y = e.youtube || {}; q('#ytCo').innerHTML = y.connecte ? 'YouTube connecté' + (y.chaine ? ' : ' + esc(y.chaine) : '') + (y.souci ? ' (' + esc(y.souci) + ')' : '') + '. <a href="/youtube/connecter?key=' + encodeURIComponent(CLE) + '">Changer de chaîne</a>' : '<a href="/youtube/connecter?key=' + encodeURIComponent(CLE) + '">Connecter ma chaîne YouTube</a>'; });
-api('/api/etat').then(r => r.json()).then(e => { const t = e.tiktok || {}; q('#ttCo').innerHTML = (t.connecte ? 'TikTok connecté' + (t.compte ? ' : ' + esc(t.compte) : '') + '. ' : '') + '<a href="/tiktok/connecter?key=' + encodeURIComponent(CLE) + '">' + (t.connecte ? 'Reconnecter' : 'Connecter mon compte TikTok') + '</a>'; });
-</script></body></html>`;
+  return pageProgrammation();
 }
 
 // ---------------------------------------------------------------- routes

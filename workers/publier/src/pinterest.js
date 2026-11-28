@@ -54,20 +54,20 @@ export async function connecter(env) {
 export async function retourPinterest(env, url) {
   const page = (t) => new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><body style="font:16px -apple-system,sans-serif;padding:40px;max-width:520px">${t}</body>`, { headers: { "content-type": "text/html; charset=utf-8" } });
   const e = await reglage(env, "pin_etat");
-  if (!e || e.etat !== url.searchParams.get("state") || Date.now() - e.quand > 15 * 60000) return page("Lien expire. Recommence depuis la page de programmation.");
-  if (!url.searchParams.get("code")) return page("Connexion annulee.");
+  if (!e || e.etat !== url.searchParams.get("state") || Date.now() - e.quand > 15 * 60000) return page("Link expired. Start again from the schedule page.");
+  if (!url.searchParams.get("code")) return page("Connection cancelled.");
   try {
     await jetons(env, { grant_type: "authorization_code", code: url.searchParams.get("code"), redirect_uri: retour(env), continuous_refresh: "true" });
   } catch (err) {
     return page(String(err.message));
   }
   await poser(env, "pin_etat", null);
-  return page("Pinterest est connecte. Tu peux fermer cette page.");
+  return page("Pinterest is connected. You can close this page.");
 }
 
 async function acces(env) {
   const g = await reglage(env, "pin_jeton");
-  if (!g) throw new Error("Pinterest n'est pas encore connecte.");
+  if (!g) throw new Error("Pinterest is not connected yet.");
   if (Date.now() < g.expire - 3 * 86400000) return dechiffrer(env, g.acces);
   return jetons(env, { grant_type: "refresh_token", refresh_token: await dechiffrer(env, g.renouv), continuous_refresh: "true" });
 }
@@ -108,7 +108,7 @@ export async function creerTableau(env, nom) {
 // Une epingle : la premiere ligne de la legende devient le titre, le reste la description.
 export async function publier(env, p) {
   const extra = JSON.parse(p.extra || "{}");
-  if (!extra.tableau) throw new Error("Aucun tableau Pinterest choisi");
+  if (!extra.tableau) throw new Error("No Pinterest board picked");
   const cle = JSON.parse(p.medias)[0];
   const lignes = String(p.legende || "").split("\n");
   const corps = {

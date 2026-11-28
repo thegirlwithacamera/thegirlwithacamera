@@ -53,8 +53,8 @@ export async function connecter(env) {
 export async function retourTiktok(env, url) {
   const page = (t) => new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><body style="font:16px -apple-system,sans-serif;padding:40px;max-width:520px">${t}</body>`, { headers: { "content-type": "text/html; charset=utf-8" } });
   const e = await reglage(env, "tt_etat");
-  if (!e || e.etat !== url.searchParams.get("state") || Date.now() - e.quand > 15 * 60000) return page("Lien expire. Recommence depuis la page de programmation.");
-  if (!url.searchParams.get("code")) return page("Connexion annulee.");
+  if (!e || e.etat !== url.searchParams.get("state") || Date.now() - e.quand > 15 * 60000) return page("Link expired. Start again from the schedule page.");
+  if (!url.searchParams.get("code")) return page("Connection cancelled.");
   try {
     await jetons(env, { grant_type: "authorization_code", code: url.searchParams.get("code"), redirect_uri: retour(env) });
     const u = await api(env, "user/info/?fields=open_id,display_name,avatar_url", null, "GET");
@@ -63,14 +63,14 @@ export async function retourTiktok(env, url) {
     return page(String(err.message));
   }
   await poser(env, "tt_etat", null);
-  return page("TikTok est connecte. Tu peux fermer cette page.");
+  return page("TikTok is connected. You can close this page.");
 }
 
 async function acces(env) {
   const g = await reglage(env, "tt_jeton");
-  if (!g) throw new Error("TikTok n'est pas encore connecte.");
+  if (!g) throw new Error("TikTok is not connected yet.");
   if (Date.now() < g.expire - 10 * 60000) return dechiffrer(env, g.acces);
-  if (Date.now() > g.fin_renouv) throw new Error("La connexion TikTok a expire, reconnecte ton compte.");
+  if (Date.now() > g.fin_renouv) throw new Error("The TikTok connection expired, reconnect your account.");
   return jetons(env, { grant_type: "refresh_token", refresh_token: await dechiffrer(env, g.renouv) });
 }
 

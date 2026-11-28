@@ -37,14 +37,14 @@ export async function connecter(env) {
 export async function retourGoogle(env, url) {
   const page = (t) => new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><body style="font:16px -apple-system,sans-serif;padding:40px;max-width:520px">${t}</body>`, { headers: { "content-type": "text/html; charset=utf-8" } });
   const e = await reglage(env, "yt_etat");
-  if (!e || e.etat !== url.searchParams.get("state") || Date.now() - e.quand > 15 * 60000) return page("Lien expire. Recommence depuis la page de programmation.");
-  if (url.searchParams.get("error")) return page("Connexion annulee.");
+  if (!e || e.etat !== url.searchParams.get("state") || Date.now() - e.quand > 15 * 60000) return page("Link expired. Start again from the schedule page.");
+  if (url.searchParams.get("error")) return page("Connection cancelled.");
   const r = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     body: new URLSearchParams({ code: url.searchParams.get("code") || "", client_id: env.YT_CLIENT_ID, client_secret: env.YT_CLIENT_SECRET, redirect_uri: retour(env), grant_type: "authorization_code" }),
   });
   const d = await r.json().catch(() => ({}));
-  if (!d.refresh_token) return page("Google n'a pas donne de jeton. Recommence la connexion.");
+  if (!d.refresh_token) return page("Google did not send a token. Try connecting again.");
   await poser(env, "yt_jeton", { chiffre: await chiffrer(env, d.refresh_token) });
   await poser(env, "yt_etat", null);
   let nom = "";
@@ -53,7 +53,7 @@ export async function retourGoogle(env, url) {
     nom = (c.items && c.items[0] && c.items[0].snippet.title) || "";
     await poser(env, "yt_chaine", nom);
   } catch {}
-  return page(`YouTube est connecte${nom ? ` a la chaine <b>${nom.replace(/[<>&]/g, "")}</b>` : ""}. Tu peux fermer cette page.`);
+  return page(`YouTube is connected${nom ? ` to the channel <b>${nom.replace(/[<>&]/g, "")}</b>` : ""}. You can close this page.`);
 }
 
 async function acces(env) {
@@ -80,7 +80,7 @@ export async function etatConnexion(env) {
       const c = await r.json();
       chaine = c.items?.[0]?.snippet?.title || "";
       if (chaine) await poser(env, "yt_chaine", chaine);
-      else souci = c.error?.message ? String(c.error.message).slice(0, 160) : "Aucune chaine sur ce compte Google";
+      else souci = c.error?.message ? String(c.error.message).slice(0, 160) : "No channel on this Google account";
     } catch (e) { souci = String(e.message).slice(0, 160); }
   }
   return { connecte, chaine, souci };
