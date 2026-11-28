@@ -4,7 +4,7 @@
 export function pageProgrammation() {
   return String.raw`<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">
-<title>Schedule · The Girl with a Camera</title>
+<title>My social media planner · The Girl with a Camera</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* Strawberry matcha: matcha greens for structure, strawberry pinks for accents, white background. */
@@ -22,7 +22,7 @@ a{color:var(--fraise-deep)}
 .sur{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--fraise);font-weight:600}
 .sur i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--matcha);margin:0 8px 1px 0;box-shadow:12px 0 0 var(--fraise)}
 .sur i+span{margin-left:12px}
-h1{font-family:var(--display);font-weight:500;font-size:clamp(46px,8vw,88px);line-height:.92;margin:12px 0 14px;letter-spacing:-.01em;color:var(--matcha-deep)}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(42px,7vw,80px);line-height:.92;margin:12px 0 14px;letter-spacing:-.01em;color:var(--matcha-deep)}
 h1 em{color:var(--fraise)}
 .lead{color:var(--muted);max-width:46ch;margin:0}
 .stats{display:flex;gap:34px}
@@ -108,7 +108,7 @@ button:disabled{opacity:.45;cursor:wait}
 </style></head><body><main>
 <div class="hero">
   <div><div class="sur"><i></i><span>The Girl with a Camera</span></div>
-  <h1>My <em>schedule</em></h1>
+  <h1>My social media <em>planner</em></h1>
   <p class="lead">Instagram, Threads, YouTube, Pinterest and TikTok in one place. Drop your files, pick a time, and it posts itself.</p></div>
   <div class="stats" aria-live="polite">
     <div class="stat a"><b id="nPrevus">·</b><span>scheduled</span></div>
