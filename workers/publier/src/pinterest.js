@@ -73,7 +73,8 @@ async function acces(env) {
 }
 
 async function api(env, chemin, corps) {
-  const t = await acces(env);
+  // En mode test, Pinterest n'accepte que le jeton bac a sable genere sur la page de l'app.
+  const t = base(env).includes("sandbox") && env.PIN_SANDBOX_TOKEN ? env.PIN_SANDBOX_TOKEN : await acces(env);
   compteur();
   const r = await fetch(`${base(env)}/v5/${chemin}`, {
     method: corps ? "POST" : "GET",
@@ -90,13 +91,18 @@ export async function etatConnexion(env) {
 }
 
 export async function tableaux(env) {
-  const d = await api(env, "boards?page_size=100");
-  return (d.items || []).map((b) => ({ id: b.id, nom: b.name }));
+  const d = await api(env, "boards?page_size=100&privacy=ALL");
+  const liste = (d.items || []).map((b) => ({ id: b.id, nom: b.name }));
+  // Le bac a sable ne liste pas toujours les tableaux : on garde aussi ceux crees ici.
+  for (const t of (await reglage(env, "pin_tableaux")) || []) if (!liste.some((x) => x.id === t.id)) liste.push(t);
+  return liste;
 }
 
 export async function creerTableau(env, nom) {
   const d = await api(env, "boards", { name: String(nom).slice(0, 50), privacy: "PUBLIC" });
-  return { id: d.id, nom: d.name };
+  const t = { id: d.id, nom: d.name };
+  await poser(env, "pin_tableaux", [...((await reglage(env, "pin_tableaux")) || []), t]);
+  return t;
 }
 
 // Une epingle : la premiere ligne de la legende devient le titre, le reste la description.
@@ -114,5 +120,6 @@ export async function publier(env, p) {
   };
   if (extra.lien) corps.link = extra.lien;
   const d = await api(env, "pins", corps);
-  return { id: d.id, lien: `https://www.pinterest.com/pin/${d.id}/` };
+  // Une epingle du bac a sable n'existe pas sur pinterest.com : pas de lien.
+  return { id: d.id, lien: base(env).includes("sandbox") ? null : `https://www.pinterest.com/pin/${d.id}/` };
 }

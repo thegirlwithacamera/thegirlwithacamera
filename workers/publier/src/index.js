@@ -419,6 +419,7 @@ button:disabled{opacity:.5}
       <div><label>Lien de l'épingle</label><input id="lienPin" placeholder="https://www.thegirlwithacamera.com/en/store/..."></div>
     </div>
     <div class="aide"><a href="#" id="nouveauTableau">Créer un tableau</a></div>
+    <div class="ligne2" id="blocTableau" hidden><div><input id="nomTableau" placeholder="Nom du nouveau tableau"></div><div><button class="leger" id="creerTableau">Créer</button></div></div>
   </div>
   <div id="blocTt" hidden>
     <div class="aide" id="ttCompte"></div>
@@ -581,7 +582,8 @@ async function chargerTableaux() {
   const r = await (await api('/api/pinterest/tableaux')).json();
   q('#tableau').innerHTML = r.erreur ? '<option value="">' + esc(r.erreur) + '</option>' : (r.length ? r.map(b => '<option value="' + esc(b.id) + '">' + esc(b.nom) + '</option>').join('') : '<option value="">Aucun tableau</option>');
 }
-q('#nouveauTableau').addEventListener('click', async e => { e.preventDefault(); const nom = prompt('Nom du tableau'); if (!nom) return; await api('/api/pinterest/tableaux', { method: 'POST', body: JSON.stringify({ nom }) }); chargerTableaux(); });
+q('#nouveauTableau').addEventListener('click', e => { e.preventDefault(); q('#blocTableau').hidden = false; q('#nomTableau').focus(); });
+q('#creerTableau').addEventListener('click', async e => { e.preventDefault(); const nom = q('#nomTableau').value.trim(); if (!nom) return; const r = await (await api('/api/pinterest/tableaux', { method: 'POST', body: JSON.stringify({ nom }) })).json(); q('#nomTableau').value = ''; q('#blocTableau').hidden = true; await chargerTableaux(); if (r.id) q('#tableau').value = r.id; });
 api('/api/etat').then(r => r.json()).then(e => { const pn = e.pinterest || {}; q('#pinCo').innerHTML = (pn.connecte ? 'Pinterest connecté' + (pn.bac_a_sable ? ' (mode test : épingles visibles par toi seule)' : '') + '. ' : '') + '<a href="/pinterest/connecter?key=' + encodeURIComponent(CLE) + '">' + (pn.connecte ? 'Reconnecter' : 'Connecter mon compte Pinterest') + '</a>'; });
 api('/api/etat').then(r => r.json()).then(e => { const y = e.youtube || {}; q('#ytCo').innerHTML = y.connecte ? 'YouTube connecté' + (y.chaine ? ' : ' + esc(y.chaine) : '') + (y.souci ? ' (' + esc(y.souci) + ')' : '') + '. <a href="/youtube/connecter?key=' + encodeURIComponent(CLE) + '">Changer de chaîne</a>' : '<a href="/youtube/connecter?key=' + encodeURIComponent(CLE) + '">Connecter ma chaîne YouTube</a>'; });
 api('/api/etat').then(r => r.json()).then(e => { const t = e.tiktok || {}; q('#ttCo').innerHTML = (t.connecte ? 'TikTok connecté' + (t.compte ? ' : ' + esc(t.compte) : '') + '. ' : '') + '<a href="/tiktok/connecter?key=' + encodeURIComponent(CLE) + '">' + (t.connecte ? 'Reconnecter' : 'Connecter mon compte TikTok') + '</a>'; });
