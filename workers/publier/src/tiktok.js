@@ -164,3 +164,23 @@ export async function etat(env, id, compte) {
   const vid = (d.publicaly_available_post_id || [])[0];
   return { code: "FINISHED", id: vid ? String(vid) : id, lien: vid && compte ? `https://www.tiktok.com/@${compte}/video/${vid}` : null };
 }
+
+// Carrousel photo : TikTok va chercher lui-meme les photos sur /media/ (adresse verifiee dans l'app TikTok).
+export async function photos(env, p) {
+  const extra = JSON.parse(p.extra || "{}");
+  const lignes = String(p.legende || "").split("\n");
+  const info = { title: (lignes[0] || "").slice(0, 90), description: String(p.legende || "").slice(0, 4000), auto_add_music: true };
+  const brouillon = extra.mode === "brouillon";
+  if (!brouillon) {
+    const options = (await createur(env)).confidentialites;
+    info.privacy_level = options.includes(extra.confidentialite) ? extra.confidentialite : (options.includes("SELF_ONLY") ? "SELF_ONLY" : options[0]);
+    info.disable_comment = extra.commentaires === false;
+  }
+  const d = await api(env, "post/publish/content/init/", {
+    media_type: "PHOTO",
+    post_mode: brouillon ? "MEDIA_UPLOAD" : "DIRECT_POST",
+    post_info: info,
+    source_info: { source: "PULL_FROM_URL", photo_cover_index: 0, photo_images: JSON.parse(p.medias).map((c) => `${env.PUBLIC_URL}/media/${c}`) },
+  });
+  return d.publish_id;
+}

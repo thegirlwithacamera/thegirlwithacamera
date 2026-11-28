@@ -28,7 +28,7 @@ const GENRES = ["essai", "reel", "photo", "carrousel"];
 const GENRES_THREADS = ["texte", "photo", "video", "carrousel"];
 const GENRES_YOUTUBE = ["video"];
 const GENRES_PINTEREST = ["epingle"];
-const GENRES_TIKTOK = ["video"];
+const GENRES_TIKTOK = ["video", "carrousel"];
 
 function json(data, status = 200) {
   return Response.json(data, { status, headers: { "cache-control": "no-store" } });
@@ -134,7 +134,7 @@ async function avancer(env, p) {
     try {
       if (p.statut === "prevu") {
         await maj(env, p.id, { statut: "traitement", conteneur: null });
-        const id = await tiktok.envoyer(env, p);
+        const id = p.genre === "carrousel" ? await tiktok.photos(env, p) : await tiktok.envoyer(env, p);
         // Un brouillon est livre des que l'envoi est fini : TikTok ne donne pas d'etat final pour la boite de reception.
         if (JSON.parse(p.extra || "{}").mode === "brouillon") await maj(env, p.id, { statut: "publie", resultat: id, conteneur: id, erreur: null });
         else await maj(env, p.id, { statut: "traitement", conteneur: id });
@@ -338,6 +338,7 @@ async function programmer(request, env) {
       if (p.lien && !/^https:\/\//.test(p.lien)) return json({ erreur: "The link must start with https://" }, 400);
       extra = JSON.stringify({ tableau: String(p.tableau), lien: p.lien || "" });
     }
+    if (reseau === "tiktok" && p.genre === "carrousel" && (medias.length < 1 || medias.length > 35 || medias.some((c) => !/\.jpg$/.test(c)))) return json({ erreur: "A TikTok photo carousel takes 1 to 35 JPEG photos." }, 400);
     if (reseau === "tiktok") {
       const brouillon = p.mode === "brouillon";
       if (!brouillon && !p.confidentialite) return json({ erreur: "Choose who can watch the video on TikTok." }, 400);
@@ -347,7 +348,7 @@ async function programmer(request, env) {
     if (reseau === "threads" && p.genre === "carrousel" && medias.length > 20) return json({ erreur: "Threads takes 20 files max." }, 400);
     if ((p.genre === "essai" || p.genre === "reel") && !estVideo(medias[0])) return json({ erreur: "A reel needs a video." }, 400);
     if (p.genre === "photo" && !/\.jpg$/.test(medias[0])) return json({ erreur: "Instagram only takes JPEG photos." }, 400);
-    if (p.genre === "carrousel" && (medias.length < 2 || (reseau === "instagram" && medias.length > 10))) return json({ erreur: "A carousel takes 2 to 10 files." }, 400);
+    if (p.genre === "carrousel" && reseau !== "tiktok" && (medias.length < 2 || (reseau === "instagram" && medias.length > 10))) return json({ erreur: "A carousel takes 2 to 10 files." }, 400);
     const quand = new Date(p.quand);
     if (isNaN(quand)) return json({ erreur: "Unreadable date" }, 400);
     const id = crypto.randomUUID();
@@ -379,7 +380,9 @@ export default {
     if (p === "/pinterest/retour") return pinterest.retourPinterest(env, url);
     if (p === "/tiktok/retour") return tiktok.retourTiktok(env, url);
     // Preuve de propriete demandee par TikTok for Developers (fichier public, sans secret).
-    if (p === "/tiktokvkqwXoVt0NTlRliZH4jtt5enCtqTkFwZ.txt") return new Response("tiktok-developers-site-verification=vkqwXoVt0NTlRliZH4jtt5enCtqTkFwZ", { headers: { "content-type": "text/plain" } });
+    const VERIF = { vkqwXoVt0NTlRliZH4jtt5enCtqTkFwZ: 1, uum5jsjYlLC7wkGzOfIg7ziagq4zuyEY: 1 };
+    const mv = /^\/tiktok([A-Za-z0-9]{32})\.txt$/.exec(p);
+    if (mv && VERIF[mv[1]]) return new Response("tiktok-developers-site-verification=" + mv[1], { headers: { "content-type": "text/plain" } });
     if (!autorise(env, url)) return new Response("Introuvable", { status: 404 });
     if (p === "/") return new Response(page(), { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
     if (p.startsWith("/api/envoi/")) return envoi(request, env, url, p.split("/")[3]);
@@ -412,11 +415,12 @@ export default {
     }
     if (p === "/api/studio" && request.method === "POST") {
       const d = await request.json();
-      if (!/^[A-Za-z0-9-]{1,40}$/.test(d.id || "") || !/^[0-9a-f-]{36}\.(mp4|mov)$/.test(d.cle || "")) return json({ erreur: "Bad studio reel" }, 400);
+      if (!/^[A-Za-z0-9-]{1,40}$/.test(d.id || "") || !/^[0-9a-f-]{36}\.(mp4|mov|jpg)$/.test(d.cle || "")) return json({ erreur: "Bad studio reel" }, 400);
       const reseau = ["instagram", "tiktok", "youtube", "threads"].includes(d.reseau) ? d.reseau : "instagram";
-      await env.DB.prepare("INSERT INTO studio (id, reseau, titre, legende, cle, duree, empreinte, statut, ajoute) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'pret', ?8) " +
-        "ON CONFLICT (id) DO UPDATE SET reseau = ?2, titre = ?3, legende = ?4, cle = ?5, duree = ?6, empreinte = ?7, statut = 'pret', ajoute = ?8")
-        .bind(d.id, reseau, String(d.titre || "").slice(0, 200), String(d.legende || "").slice(0, 2200), d.cle, String(d.duree || "").slice(0, 20), String(d.empreinte || "").slice(0, 64), maintenant()).run();
+      const photos = Array.isArray(d.photos) ? d.photos.filter((c) => /^[0-9a-f-]{36}\.jpg$/.test(c)).slice(0, 35) : [];
+      await env.DB.prepare("INSERT INTO studio (id, reseau, titre, legende, cle, duree, empreinte, statut, ajoute, photos) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'pret', ?8, ?9) " +
+        "ON CONFLICT (id) DO UPDATE SET reseau = ?2, titre = ?3, legende = ?4, cle = ?5, duree = ?6, empreinte = ?7, statut = 'pret', ajoute = ?8, photos = ?9")
+        .bind(d.id, reseau, String(d.titre || "").slice(0, 200), String(d.legende || "").slice(0, 2200), d.cle, String(d.duree || "").slice(0, 20), String(d.empreinte || "").slice(0, 64), maintenant(), photos.length ? JSON.stringify(photos) : null).run();
       return json({ ok: true });
     }
     if (p === "/api/studio/empreintes" && request.method === "GET") {

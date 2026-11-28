@@ -201,7 +201,7 @@ const TYPES_RESEAU = {
   threads: [['texte', 'Text only'], ['photo', 'Photo'], ['video', 'Video'], ['carrousel', 'Carousel']],
   youtube: [['video', 'Video']],
   pinterest: [['epingle', 'Photo pin']],
-  tiktok: [['video', 'Video']],
+  tiktok: [['video', 'Video'], ['carrousel', 'Photo carousel']],
 };
 const RESEAUX = [['instagram', 'Instagram'], ['threads', 'Threads'], ['youtube', 'YouTube'], ['pinterest', 'Pinterest'], ['tiktok', 'TikTok']];
 const NOM_RES = { instagram: 'Instagram', threads: 'Threads', youtube: 'YouTube', pinterest: 'Pinterest', tiktok: 'TikTok' };
@@ -231,7 +231,7 @@ function majGenre() {
   q('#ytCo').hidden = r !== 'youtube';
   q('#blocTt').hidden = q('#ttCo').hidden = r !== 'tiktok';
   if (r === 'tiktok') { chargerCreateur(); majTtMode(); }
-  q('#aideFichiers').textContent = g === 'carrousel' ? 'All the files you pick become one carousel.' : 'Several files = one post per file, spaced by the gap below.';
+  q('#aideFichiers').textContent = (g === 'carrousel' && r === 'tiktok') ? 'JPEG photos only, up to 35. TikTok adds a sound itself.' : g === 'carrousel' ? 'All the files you pick become one carousel.' : 'Several files = one post per file, spaced by the gap below.';
   if (texte) { fichiers = []; q('#fichiers').value = ''; }
   dessinerFichiers();
 }
@@ -282,7 +282,7 @@ q('#go').addEventListener('click', async () => {
   if (studioChoisi) {
     const d0 = new Date(q('#quand').value);
     if (isNaN(d0)) { msg.textContent = 'Pick a date.'; return; }
-    const p = Object.assign({ reseau, genre: g, medias: [studioChoisi.cle], legende: q('#legende').value, quand: d0.toISOString() },
+    const p = Object.assign({ reseau, genre: studioChoisi.photos ? 'carrousel' : g, medias: studioChoisi.photos ? JSON.parse(studioChoisi.photos) : [studioChoisi.cle], legende: q('#legende').value, quand: d0.toISOString() },
       reseau === 'tiktok' ? { mode: q('#ttMode').value, confidentialite: q('#ttPriv').value, commentaires: q('#ttCom').checked, duo: q('#ttDuo').checked, collage: q('#ttCol').checked } : {});
     q('#go').disabled = true;
     const r = await (await api('/api/posts', { method: 'POST', body: JSON.stringify({ posts: [p] }) })).json();
@@ -320,10 +320,11 @@ q('#go').addEventListener('click', async () => {
 // ---- studio tray
 async function chargerStudio() { try { studio = await (await api('/api/studio')).json(); } catch (e) { studio = []; } dessinerStudio(); }
 function dessinerStudio() {
-  const r = q('#reseau').value, g = q('#genre').value, l = studio.filter(x => x.reseau === r);
+  const r = q('#reseau').value, g = q('#genre').value, l = studio.filter(x => x.reseau === r && (g === 'carrousel') === !!x.photos);
   if (studioChoisi && studioChoisi.reseau !== r) studioChoisi = null;
-  q('#blocStudio').hidden = !l.length || g === 'texte' || g === 'photo' || g === 'carrousel' || g === 'epingle';
-  q('#studio').innerHTML = l.map(x => '<button type="button" class="sitem" data-id="' + esc(x.id) + '" aria-pressed="' + (studioChoisi && studioChoisi.id === x.id) + '"><video muted playsinline preload="metadata" src="/media/' + esc(x.cle) + '#t=1"></video><span>' + esc(x.titre || x.id) + '</span><i data-retirer="' + esc(x.id) + '" title="Remove from the tray">×</i></button>').join('');
+  if (studioChoisi && !l.some(x => x.id === studioChoisi.id)) studioChoisi = null;
+  q('#blocStudio').hidden = !l.length || g === 'texte' || g === 'photo' || g === 'epingle' || (g === 'carrousel' && r !== 'tiktok');
+  q('#studio').innerHTML = l.map(x => '<button type="button" class="sitem" data-id="' + esc(x.id) + '" aria-pressed="' + (studioChoisi && studioChoisi.id === x.id) + '">' + (x.photos ? '<video poster="/media/' + esc(x.cle) + '"></video>' : '<video muted playsinline preload="metadata" src="/media/' + esc(x.cle) + '#t=1"></video>') + '<span>' + (x.photos ? JSON.parse(x.photos).length + ' photos · ' : '') + esc(x.titre || x.id) + '</span><i data-retirer="' + esc(x.id) + '" title="Remove from the tray">×</i></button>').join('');
   q('#choisi').hidden = !studioChoisi;
   if (studioChoisi) q('#choisi').innerHTML = '<span>Using <b>' + esc(studioChoisi.titre || studioChoisi.id) + '</b> from the studio</span><button type="button" class="leger" id="lacher">Change</button>';
   q('#blocFichiers').hidden = g === 'texte' || !!studioChoisi;

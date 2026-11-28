@@ -37,5 +37,6 @@ CREATE TABLE IF NOT EXISTS studio (
   duree TEXT,
   empreinte TEXT,
   statut TEXT NOT NULL DEFAULT 'pret',
-  ajoute TEXT NOT NULL
+  ajoute TEXT NOT NULL,
+  photos TEXT
 );
