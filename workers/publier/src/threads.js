@@ -11,7 +11,7 @@ async function cleChiffrement(env) {
   return crypto.subtle.importKey("raw", brut, "AES-GCM", false, ["encrypt", "decrypt"]);
 }
 
-async function chiffrer(env, texte) {
+export async function chiffrer(env, texte) {
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const c = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, await cleChiffrement(env), new TextEncoder().encode(texte)));
   const tout = new Uint8Array(12 + c.length);
@@ -19,7 +19,7 @@ async function chiffrer(env, texte) {
   return btoa(String.fromCharCode(...tout));
 }
 
-async function dechiffrer(env, b64) {
+export async function dechiffrer(env, b64) {
   const tout = Uint8Array.from(atob(b64), (x) => x.charCodeAt(0));
   const p = await crypto.subtle.decrypt({ name: "AES-GCM", iv: tout.slice(0, 12) }, await cleChiffrement(env), tout.slice(12));
   return new TextDecoder().decode(p);

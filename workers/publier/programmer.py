@@ -38,6 +38,7 @@ BXL = ZoneInfo("Europe/Brussels")
 MORCEAU = 20 * 1024 * 1024
 GENRES = {"essai", "reel", "photo", "carrousel"}
 GENRES_THREADS = {"texte", "photo", "video", "carrousel"}
+GENRES_YOUTUBE = {"video"}
 
 
 def api(chemin, data=None, methode=None, brut=None):
@@ -96,7 +97,7 @@ def lire_lot(fichier):
     posts = lot.get("posts", lot if isinstance(lot, list) else [])
     for i, p in enumerate(posts, 1):
         reseau = p.setdefault("reseau", "instagram")
-        if p.get("genre") not in (GENRES_THREADS if reseau == "threads" else GENRES):
+        if p.get("genre") not in ({"threads": GENRES_THREADS, "youtube": GENRES_YOUTUBE}.get(reseau, GENRES)):
             raise SystemExit(f"Post {i} : genre inconnu pour {reseau} ({p.get('genre')})")
         if reseau == "threads" and len(p.get("legende", "")) > 500:
             raise SystemExit(f"Post {i} : texte trop long pour Threads (500 caracteres au plus)")
