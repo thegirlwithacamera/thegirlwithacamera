@@ -18,12 +18,14 @@
 import { passageCommentaires } from "./commentaires.js";
 import * as threads from "./threads.js";
 import * as youtube from "./youtube.js";
+import * as pinterest from "./pinterest.js";
 import { pageCommentaires } from "./page-commentaires.js";
 
 const GRAPH = "https://graph.facebook.com/v25.0";
 const GENRES = ["essai", "reel", "photo", "carrousel"];
 const GENRES_THREADS = ["texte", "photo", "video", "carrousel"];
 const GENRES_YOUTUBE = ["video"];
+const GENRES_PINTEREST = ["epingle"];
 
 function json(data, status = 200) {
   return Response.json(data, { status, headers: { "cache-control": "no-store" } });
@@ -41,6 +43,7 @@ const maintenant = () => new Date().toISOString();
 let appels = 0;
 threads.compter(() => { appels++; });
 youtube.compter(() => { appels++; });
+pinterest.compter(() => { appels++; });
 
 async function meta(env, chemin, corps) {
   appels++;
@@ -111,6 +114,18 @@ async function maj(env, id, champs) {
 }
 
 async function avancer(env, p) {
+  if (p.reseau === "pinterest") {
+    try {
+      const r = await pinterest.publier(env, p);
+      await maj(env, p.id, { statut: "publie", resultat: r.id, lien: r.lien, erreur: null });
+    } catch (e) {
+      const essais = (p.essais || 0) + 1;
+      const fini = essais >= 3 || /refuse|tableau|connecte/i.test(e.message);
+      await maj(env, p.id, fini ? { statut: "erreur", erreur: e.message, essais } : { erreur: e.message, essais });
+      if (fini) await alerte(env, p, e.message);
+    }
+    return;
+  }
   if (p.reseau === "youtube") {
     // Un envoi deja en cours dans un autre passage : on ne le relance pas avant 20 minutes.
     if (p.statut === "traitement" && Date.now() - new Date(p.maj).getTime() < 20 * 60000) return;
@@ -176,7 +191,7 @@ async function attendre(env, p) {
 async function alerte(env, p, raison) {
   if (!env.RESEND_KEY || !env.ALERTE_A) return;
   const noms = { essai: "reel d'essai", reel: "reel", photo: "photo", carrousel: "carrousel", texte: "post texte", video: "video" };
-  const ou = { threads: "Threads", youtube: "YouTube" }[p.reseau] || "Instagram";
+  const ou = { threads: "Threads", youtube: "YouTube", pinterest: "Pinterest" }[p.reseau] || "Instagram";
   const quand = new Date(p.quand).toLocaleString("fr-BE", { timeZone: "Europe/Brussels", weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
   const lien = `${env.PUBLIC_URL}/?key=${encodeURIComponent(env.CLE || "")}`;
   const esc = (s) => String(s || "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
@@ -271,8 +286,8 @@ async function programmer(request, env) {
   const posts = Array.isArray(d.posts) ? d.posts : [d];
   const ok = [];
   for (const p of posts) {
-    const reseau = ["threads", "youtube"].includes(p.reseau) ? p.reseau : "instagram";
-    if (!({ threads: GENRES_THREADS, youtube: GENRES_YOUTUBE }[reseau] || GENRES).includes(p.genre)) return json({ erreur: `Type inconnu pour ${reseau} : ${p.genre}` }, 400);
+    const reseau = ["threads", "youtube", "pinterest"].includes(p.reseau) ? p.reseau : "instagram";
+    if (!({ threads: GENRES_THREADS, youtube: GENRES_YOUTUBE, pinterest: GENRES_PINTEREST }[reseau] || GENRES).includes(p.genre)) return json({ erreur: `Type inconnu pour ${reseau} : ${p.genre}` }, 400);
     const medias = (p.medias || []).filter((c) => /^[0-9a-f-]{36}\.(mp4|mov|m4v|jpg|png)$/.test(c));
     if (p.genre === "texte") {
       if (!String(p.legende || "").trim()) return json({ erreur: "Un post texte demande un texte." }, 400);
@@ -280,6 +295,13 @@ async function programmer(request, env) {
     } else if (!medias.length) return json({ erreur: "Aucun fichier" }, 400);
     if (reseau === "threads" && String(p.legende || "").length > 500) return json({ erreur: "Threads limite le texte a 500 caracteres." }, 400);
     if (reseau === "youtube" && !String(p.legende || "").split("\n")[0].trim()) return json({ erreur: "Sur YouTube, la premiere ligne de la legende sert de titre." }, 400);
+    let extra = null;
+    if (reseau === "pinterest") {
+      if (!p.tableau) return json({ erreur: "Choisis un tableau Pinterest." }, 400);
+      if (!/\.jpg$/.test(medias[0])) return json({ erreur: "Une epingle demande une photo." }, 400);
+      if (p.lien && !/^https:\/\//.test(p.lien)) return json({ erreur: "Le lien doit commencer par https://" }, 400);
+      extra = JSON.stringify({ tableau: String(p.tableau), lien: p.lien || "" });
+    }
     if (p.genre === "video" && !estVideo(medias[0])) return json({ erreur: "Une video demande un fichier video." }, 400);
     if (reseau === "threads" && p.genre === "carrousel" && medias.length > 20) return json({ erreur: "Threads prend 20 fichiers au plus." }, 400);
     if ((p.genre === "essai" || p.genre === "reel") && !estVideo(medias[0])) return json({ erreur: "Un reel demande une video." }, 400);
@@ -289,10 +311,10 @@ async function programmer(request, env) {
     if (isNaN(quand)) return json({ erreur: "Date illisible" }, 400);
     const id = crypto.randomUUID();
     await env.DB.prepare(
-      "INSERT INTO planning (id, reseau, genre, legende, medias, quand, statut, couverture, essais, cree, maj) " +
-        "VALUES (?1, ?8, ?2, ?3, ?4, ?5, 'prevu', ?6, 0, ?7, ?7)",
+      "INSERT INTO planning (id, reseau, genre, legende, medias, quand, statut, couverture, essais, cree, maj, extra) " +
+        "VALUES (?1, ?8, ?2, ?3, ?4, ?5, 'prevu', ?6, 0, ?7, ?7, ?9)",
     ).bind(id, p.genre, String(p.legende || "").slice(0, 2200), JSON.stringify(medias), quand.toISOString(),
-      p.couverture ?? null, maintenant(), reseau).run();
+      p.couverture ?? null, maintenant(), reseau, extra).run();
     ok.push(id);
   }
   return json({ ok: true, ids: ok });
@@ -341,7 +363,7 @@ button:disabled{opacity:.5}
     <div><label>Type</label><select id="genre" data-x="">
       <option value="essai">Reel d'essai</option><option value="reel">Reel</option>
       <option value="photo">Photo</option><option value="carrousel">Carrousel</option></select></div>
-    <div><label>Réseau</label><select id="reseau"><option value="instagram">Instagram</option><option value="threads">Threads</option><option value="youtube">YouTube</option></select></div>
+    <div><label>Réseau</label><select id="reseau"><option value="instagram">Instagram</option><option value="threads">Threads</option><option value="youtube">YouTube</option><option value="pinterest">Pinterest</option></select></div>
   </div>
   <div id="blocFichiers"><label>Fichiers</label><input type="file" id="fichiers" multiple accept="video/mp4,video/quicktime,image/jpeg,image/png">
   <div class="aide" id="aideFichiers">Plusieurs vidéos = un reel par vidéo, espacés comme tu le choisis.</div></div>
@@ -350,11 +372,19 @@ button:disabled{opacity:.5}
     <div><label>Premier à</label><input type="datetime-local" id="quand"></div>
     <div><label>Puis toutes les (minutes)</label><input type="number" id="intervalle" value="60" min="5"></div>
   </div>
+  <div id="blocPin" hidden>
+    <div class="ligne2">
+      <div><label>Tableau</label><select id="tableau"><option value="">Chargement…</option></select></div>
+      <div><label>Lien de l'épingle</label><input id="lienPin" placeholder="https://www.thegirlwithacamera.com/en/store/..."></div>
+    </div>
+    <div class="aide"><a href="#" id="nouveauTableau">Créer un tableau</a></div>
+  </div>
   <div id="liste-fichiers"></div>
   <div style="margin-top:16px"><button id="go">Programmer</button></div>
   <div class="barre" id="barre" hidden><span></span></div>
   <div id="msg" class="aide"></div>
   <div id="ytCo" class="aide" hidden></div>
+  <div id="pinCo" class="aide" hidden></div>
 </div>
 <h2>Au programme</h2>
 <div id="posts"><p class="vide">Chargement…</p></div>
@@ -369,6 +399,7 @@ const TYPES_RESEAU = {
   instagram: [['essai', "Reel d'essai"], ['reel', 'Reel'], ['photo', 'Photo'], ['carrousel', 'Carrousel']],
   threads: [['texte', 'Texte seul'], ['photo', 'Photo'], ['video', 'Vidéo'], ['carrousel', 'Carrousel']],
   youtube: [['video', 'Vidéo (Short si verticale et courte)']],
+  pinterest: [['epingle', 'Épingle photo']],
 };
 function majReseau() {
   const r = q('#reseau').value;
@@ -378,7 +409,10 @@ function majReseau() {
 function majGenre() {
   const r = q('#reseau').value, g = q('#genre').value, texte = g === 'texte';
   q('#blocFichiers').hidden = texte;
-  q('#titreLegende').textContent = texte ? 'Texte (500 signes max)' : (r === 'threads' ? 'Texte (500 signes max)' : r === 'youtube' ? 'Titre sur la 1re ligne, puis la description' : 'Légende commune');
+  q('#titreLegende').textContent = texte ? 'Texte (500 signes max)' : (r === 'threads' ? 'Texte (500 signes max)' : (r === 'youtube' || r === 'pinterest') ? 'Titre sur la 1re ligne, puis la description' : 'Légende commune');
+  q('#blocPin').hidden = r !== 'pinterest';
+  q('#pinCo').hidden = r !== 'pinterest';
+  if (r === 'pinterest') chargerTableaux();
   q('#ytCo').hidden = r !== 'youtube';
   q('#aideFichiers').textContent = g === 'carrousel' ? 'Toutes les photos et vidéos choisies forment un seul carrousel.' :
     'Plusieurs fichiers = un post par fichier, espacés comme tu le choisis.';
@@ -434,11 +468,11 @@ q('#go').addEventListener('click', async () => {
     const cles = [];
     for (const f of fichiers) { const avant = fait; cles.push(await envoyer(f, x => { fait = avant + x; q('#barre span').style.width = (fait / total * 100) + '%'; })); }
     const commun = q('#legende').value, pas = Math.max(5, Number(q('#intervalle').value) || 60) * 6e4;
-    let posts = (g === 'carrousel' || g === 'photo')
+    let posts = (g === 'carrousel' || g === 'photo' || g === 'epingle')
       ? (g === 'carrousel' ? [{ genre: g, medias: cles, legende: commun, quand: debut.toISOString() }]
         : cles.map((c, i) => ({ genre: g, medias: [c], legende: commun, quand: new Date(+debut + i * pas).toISOString() })))
       : cles.map((c, i) => ({ genre: g, medias: [c], legende: fichiers[i].legende || commun, quand: new Date(+debut + i * pas).toISOString() }));
-    posts = posts.map(p => Object.assign(p, { reseau }));
+    posts = posts.map(p => Object.assign(p, { reseau }, reseau === 'pinterest' ? { genre: 'epingle', tableau: q('#tableau').value, lien: q('#lienPin').value.trim() } : {}));
     const r = await (await api('/api/posts', { method: 'POST', body: JSON.stringify({ posts }) })).json();
     if (r.erreur) throw new Error(r.erreur);
     msg.textContent = posts.length + (posts.length > 1 ? ' posts programmés.' : ' post programmé.');
@@ -447,7 +481,7 @@ q('#go').addEventListener('click', async () => {
   q('#go').disabled = false; setTimeout(() => { q('#barre').hidden = true; q('#barre span').style.width = 0; }, 800);
 });
 
-const NOMS = { essai: "Reel d'essai", reel: 'Reel', photo: 'Photo', carrousel: 'Carrousel', texte: 'Texte', video: 'Vidéo' };
+const NOMS = { essai: "Reel d'essai", reel: 'Reel', photo: 'Photo', carrousel: 'Carrousel', texte: 'Texte', video: 'Vidéo', epingle: 'Épingle' };
 const ST = { prevu: 'prévu', traitement: 'en cours', enfants: 'en cours', publie: 'publié', erreur: 'erreur' };
 async function charger() {
   const posts = await (await api('/api/posts')).json();
@@ -456,7 +490,7 @@ async function charger() {
   for (const p of posts) {
     const d = new Date(p.quand), j = d.toLocaleDateString('fr-BE', { weekday: 'long', day: 'numeric', month: 'long' });
     if (j !== jour) { h += '<div class="jour">' + j + '</div>'; jour = j; }
-    const m = p.medias[0], src = '/media/' + m, res = { threads: 'Threads', youtube: 'YouTube' }[p.reseau] || 'Instagram';
+    const m = p.medias[0], src = '/media/' + m, res = { threads: 'Threads', youtube: 'YouTube', pinterest: 'Pinterest' }[p.reseau] || 'Instagram';
     h += '<div class="post">' + (!m ? '<div class="texte">Aa</div>' : /\\.(mp4|mov|m4v)$/.test(m) ? '<video muted preload="metadata" src="' + src + '#t=1"></video>' : '<img src="' + src + '">') +
       '<div><div class="meta">' + d.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' }) + ' · ' + res + ' · ' + NOMS[p.genre] + (p.medias.length > 1 ? ' · ' + p.medias.length + ' fichiers' : '') +
       '<span class="st ' + p.statut + '">' + ST[p.statut] + '</span></div><div class="leg">' + (esc(p.legende) || '<span class="vide">Sans légende</span>') + '</div>' +
@@ -476,6 +510,12 @@ q('#posts').addEventListener('click', async e => {
 });
 function confirmRetrait(b) { if (b.dataset.ok) return true; b.dataset.ok = 1; b.textContent = 'Confirmer'; setTimeout(() => { delete b.dataset.ok; b.textContent = 'Retirer'; }, 4000); return false; }
 majReseau(); charger(); setInterval(charger, 60000);
+async function chargerTableaux() {
+  const r = await (await api('/api/pinterest/tableaux')).json();
+  q('#tableau').innerHTML = r.erreur ? '<option value="">' + esc(r.erreur) + '</option>' : (r.length ? r.map(b => '<option value="' + esc(b.id) + '">' + esc(b.nom) + '</option>').join('') : '<option value="">Aucun tableau</option>');
+}
+q('#nouveauTableau').addEventListener('click', async e => { e.preventDefault(); const nom = prompt('Nom du tableau'); if (!nom) return; await api('/api/pinterest/tableaux', { method: 'POST', body: JSON.stringify({ nom }) }); chargerTableaux(); });
+api('/api/etat').then(r => r.json()).then(e => { const pn = e.pinterest || {}; q('#pinCo').innerHTML = (pn.connecte ? 'Pinterest connecté' + (pn.bac_a_sable ? ' (mode test : épingles visibles par toi seule)' : '') + '. ' : '') + '<a href="/pinterest/connecter?key=' + encodeURIComponent(CLE) + '">' + (pn.connecte ? 'Reconnecter' : 'Connecter mon compte Pinterest') + '</a>'; });
 api('/api/etat').then(r => r.json()).then(e => { const y = e.youtube || {}; q('#ytCo').innerHTML = y.connecte ? 'YouTube connecté' + (y.chaine ? ' : ' + esc(y.chaine) : '') + '. <a href="/youtube/connecter?key=' + encodeURIComponent(CLE) + '">Changer de chaîne</a>' : '<a href="/youtube/connecter?key=' + encodeURIComponent(CLE) + '">Connecter ma chaîne YouTube</a>'; });
 </script></body></html>`;
 }
@@ -488,6 +528,7 @@ export default {
     const p = url.pathname;
     if (p.startsWith("/media/")) return media(env, url);
     if (p === "/youtube/retour") return youtube.retourGoogle(env, url);
+    if (p === "/pinterest/retour") return pinterest.retourPinterest(env, url);
     if (!autorise(env, url)) return new Response("Introuvable", { status: 404 });
     if (p === "/") return new Response(page(), { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
     if (p.startsWith("/api/envoi/")) return envoi(request, env, url, p.split("/")[3]);
@@ -515,7 +556,14 @@ export default {
       return json({ ok: true });
     }
     if (p === "/youtube/connecter") return youtube.connecter(env);
-    if (p === "/api/etat") return json({ jeton: Boolean(env.META_TOKEN), threads: Boolean(env.THREADS_TOKEN), youtube: await youtube.etatConnexion(env), alerte: Boolean(env.RESEND_KEY && env.ALERTE_A) });
+    if (p === "/pinterest/connecter") return pinterest.connecter(env);
+    if (p === "/api/pinterest/tableaux") {
+      try {
+        if (request.method === "POST") return json(await pinterest.creerTableau(env, (await request.json()).nom));
+        return json(await pinterest.tableaux(env));
+      } catch (e) { return json({ erreur: String(e.message).slice(0, 200) }, 500); }
+    }
+    if (p === "/api/etat") return json({ jeton: Boolean(env.META_TOKEN), threads: Boolean(env.THREADS_TOKEN), youtube: await youtube.etatConnexion(env), pinterest: await pinterest.etatConnexion(env), alerte: Boolean(env.RESEND_KEY && env.ALERTE_A) });
     if (p === "/api/threads/test") {
       try {
         const d = await threads.profil(env);

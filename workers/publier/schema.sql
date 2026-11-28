@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS planning (
   essais     INTEGER DEFAULT 0,
   menage     INTEGER,
   cree       TEXT,
-  maj        TEXT
+  maj        TEXT,
+  extra      TEXT
 );
 CREATE INDEX IF NOT EXISTS planning_statut_quand ON planning (statut, quand);
 

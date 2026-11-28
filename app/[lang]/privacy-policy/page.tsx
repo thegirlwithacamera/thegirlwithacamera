@@ -34,7 +34,7 @@ export default async function PrivacyPolicyPage({ params }: Props) {
       <article className={s.body}>
         <section className="section">
           <div className="text">
-            <p>Last updated: 16 November 2026.</p>
+            <p>Last updated: 28 November 2026.</p>
             <p>
               This site is run by Sandrine Ceuppens, a photographer and filmmaker based in Brussels,
               Belgium, working as The Girl With A Camera. I am responsible for the personal data
@@ -101,6 +101,15 @@ export default async function PrivacyPolicyPage({ params }: Props) {
               </a>
               , including the Limited Use requirements. You can see how YouTube handles data in the{" "}
               <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.
+            </p>
+
+            <p>
+              I also use a second private tool, The Girl with a Camera Planner, to schedule and
+              publish my own posts on Instagram, Threads, YouTube, Pinterest and TikTok, and to read
+              basic statistics about them. It connects only to my own accounts, through each
+              platform's official API, after I have authorised it. The access keys are stored
+              encrypted on Cloudflare, and the photos and videos I upload to it are deleted seven
+              days after they are published. It collects nothing from anyone else.
             </p>
 
             <h2>How long I keep it</h2>
