@@ -65,6 +65,14 @@ button:disabled{opacity:.45;cursor:wait}
 .connexions .aide{margin:0}
 .coche{display:flex;align-items:center;gap:8px;font:400 14px var(--body);letter-spacing:0;text-transform:none;color:var(--ink);margin:6px 0}.coche input{width:auto;margin:0;accent-color:var(--fraise)}
 #ttCompte{display:flex;align-items:center;gap:8px;margin-top:14px}
+.studio{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px}
+.sitem{position:relative;display:flex;flex-direction:column;gap:4px;padding:0;min-height:0;background:transparent;border:0;color:var(--ink);font:500 11px/1.25 var(--body);text-align:left;cursor:pointer}
+.sitem video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:12px;background:#000;border:2px solid transparent}
+.sitem[aria-pressed="true"] video{border-color:var(--fraise);box-shadow:0 0 0 3px var(--fraise-soft)}
+.sitem span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sitem i{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.9);color:#2c3622;font:600 13px/20px var(--body);text-align:center;font-style:normal;opacity:0}
+.sitem:hover i{opacity:1}
+.choisi{margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--panel);font-size:13px;display:flex;justify-content:space-between;gap:10px;align-items:center}
 .barre{height:4px;background:var(--fraise-soft);border-radius:4px;margin-top:12px;overflow:hidden}.barre span{display:block;height:100%;width:0;background:var(--fraise)}
 
 /* calendar */
@@ -126,7 +134,10 @@ button:disabled{opacity:.45;cursor:wait}
     <select id="genre" tabindex="-1"></select>
     <select id="reseau" tabindex="-1"><option value="instagram">Instagram</option><option value="threads">Threads</option><option value="youtube">YouTube</option><option value="pinterest">Pinterest</option><option value="tiktok">TikTok</option></select>
   </div>
-  <div id="blocFichiers"><label>Files</label><label class="depot"><input type="file" id="fichiers" multiple accept="video/mp4,video/quicktime,image/jpeg,image/png"><b>Choose files</b><span id="nomFichiers">No file chosen</span></label>
+  <div id="blocStudio" hidden><label>From the studio</label><div class="studio" id="studio"></div>
+  <div class="aide">Kept in Studio TGWAC, sound included. Click one to use it.</div></div>
+  <div class="choisi" id="choisi" hidden></div>
+  <div id="blocFichiers"><label>Or your own files</label><label class="depot"><input type="file" id="fichiers" multiple accept="video/mp4,video/quicktime,image/jpeg,image/png"><b>Choose files</b><span id="nomFichiers">No file chosen</span></label>
   <div class="aide" id="aideFichiers"></div></div>
   <label id="titreLegende">Caption</label><textarea id="legende" placeholder="Used for every file, editable one by one"></textarea>
   <div class="ligne2">
@@ -184,7 +195,7 @@ const q = s => document.querySelector(s);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const api = (chemin, opts = {}) => fetch(chemin + (chemin.includes('?') ? '&' : '?') + 'key=' + encodeURIComponent(CLE), opts);
 const LANG = 'en-GB';
-let fichiers = [], posts = [];
+let fichiers = [], posts = [], studio = [], studioChoisi = null;
 const TYPES_RESEAU = {
   instagram: [['essai', 'Trial reel'], ['reel', 'Reel'], ['photo', 'Photo'], ['carrousel', 'Carousel']],
   threads: [['texte', 'Text only'], ['photo', 'Photo'], ['video', 'Video'], ['carrousel', 'Carousel']],
@@ -212,7 +223,8 @@ function majReseau() {
 function majGenre() {
   const r = q('#reseau').value, g = q('#genre').value, texte = g === 'texte';
   pilules('#pGenre', TYPES_RESEAU[r], g, v => { q('#genre').value = v; majGenre(); });
-  q('#blocFichiers').hidden = texte;
+  q('#blocFichiers').hidden = texte || !!studioChoisi;
+  dessinerStudio();
   q('#titreLegende').textContent = (texte || r === 'threads') ? 'Text (500 characters max)' : (r === 'youtube' || r === 'pinterest') ? 'Title on the first line, then the description' : 'Caption';
   q('#blocPin').hidden = q('#pinCo').hidden = r !== 'pinterest';
   if (r === 'pinterest') chargerTableaux();
@@ -267,7 +279,21 @@ q('#go').addEventListener('click', async () => {
     if (!r.erreur) { q('#legende').value = ''; charger(); }
     return;
   }
-  if (!fichiers.length) { msg.textContent = 'Pick at least one file.'; return; }
+  if (studioChoisi) {
+    const d0 = new Date(q('#quand').value);
+    if (isNaN(d0)) { msg.textContent = 'Pick a date.'; return; }
+    const p = Object.assign({ reseau, genre: g, medias: [studioChoisi.cle], legende: q('#legende').value, quand: d0.toISOString() },
+      reseau === 'tiktok' ? { mode: q('#ttMode').value, confidentialite: q('#ttPriv').value, commentaires: q('#ttCom').checked, duo: q('#ttDuo').checked, collage: q('#ttCol').checked } : {});
+    q('#go').disabled = true;
+    const r = await (await api('/api/posts', { method: 'POST', body: JSON.stringify({ posts: [p] }) })).json();
+    q('#go').disabled = false;
+    if (r.erreur) { msg.textContent = r.erreur; return; }
+    await api('/api/studio/' + studioChoisi.id + '/utilise', { method: 'POST' });
+    msg.textContent = 'Scheduled from the studio.';
+    studioChoisi = null; q('#legende').value = ''; choisi = cleJour(d0); mois = new Date(d0.getFullYear(), d0.getMonth(), 1);
+    chargerStudio(); charger(); return;
+  }
+  if (!fichiers.length) { msg.textContent = 'Pick at least one file, or one from the studio.'; return; }
   const debut = new Date(q('#quand').value);
   if (isNaN(debut)) { msg.textContent = 'Pick a date.'; return; }
   const total = fichiers.reduce((s, f) => s + f.size, 0); let fait = 0;
@@ -290,6 +316,28 @@ q('#go').addEventListener('click', async () => {
   } catch (e) { msg.textContent = e.message; }
   q('#go').disabled = false; setTimeout(() => { q('#barre').hidden = true; q('#barre span').style.width = 0; }, 800);
 });
+
+// ---- studio tray
+async function chargerStudio() { try { studio = await (await api('/api/studio')).json(); } catch (e) { studio = []; } dessinerStudio(); }
+function dessinerStudio() {
+  const r = q('#reseau').value, g = q('#genre').value, l = studio.filter(x => x.reseau === r);
+  if (studioChoisi && studioChoisi.reseau !== r) studioChoisi = null;
+  q('#blocStudio').hidden = !l.length || g === 'texte' || g === 'photo' || g === 'carrousel' || g === 'epingle';
+  q('#studio').innerHTML = l.map(x => '<button type="button" class="sitem" data-id="' + esc(x.id) + '" aria-pressed="' + (studioChoisi && studioChoisi.id === x.id) + '"><video muted playsinline preload="metadata" src="/media/' + esc(x.cle) + '#t=1"></video><span>' + esc(x.titre || x.id) + '</span><i data-retirer="' + esc(x.id) + '" title="Remove from the tray">×</i></button>').join('');
+  q('#choisi').hidden = !studioChoisi;
+  if (studioChoisi) q('#choisi').innerHTML = '<span>Using <b>' + esc(studioChoisi.titre || studioChoisi.id) + '</b> from the studio</span><button type="button" class="leger" id="lacher">Change</button>';
+  q('#blocFichiers').hidden = g === 'texte' || !!studioChoisi;
+}
+q('#studio').addEventListener('click', async e => {
+  const x = e.target.closest('[data-retirer]');
+  if (x) { e.stopPropagation(); await api('/api/studio/' + x.dataset.retirer + '/retirer', { method: 'POST' }); if (studioChoisi && studioChoisi.id === x.dataset.retirer) studioChoisi = null; chargerStudio(); return; }
+  const b = e.target.closest('.sitem'); if (!b) return;
+  const it = studio.find(s => s.id === b.dataset.id);
+  studioChoisi = studioChoisi && studioChoisi.id === it.id ? null : it;
+  if (studioChoisi) { q('#legende').value = it.legende || ''; fichiers = []; q('#fichiers').value = ''; dessinerFichiers(); }
+  dessinerStudio();
+});
+q('#choisi').addEventListener('click', e => { if (e.target.id === 'lacher') { studioChoisi = null; q('#legende').value = ''; dessinerStudio(); } });
 
 // ---- posts: shared bits
 const estVid = m => /\.(mp4|mov|m4v)$/.test(m);
@@ -394,6 +442,6 @@ api('/api/etat').then(r => r.json()).then(e => {
   q('#ttCo').innerHTML = (t.connecte ? 'TikTok connected' + (t.compte ? ': ' + esc(t.compte) : '') + '. ' : '') + lien('/tiktok/connecter', t.connecte ? 'Reconnect' : 'Connect my TikTok');
 });
 
-majReseau(); majVue(); charger(); setInterval(charger, 60000);
+majReseau(); majVue(); charger(); chargerStudio(); setInterval(charger, 60000);
 </script></body></html>`;
 }

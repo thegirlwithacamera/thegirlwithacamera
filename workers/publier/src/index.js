@@ -374,6 +374,7 @@ export default {
     const url = new URL(request.url);
     const p = url.pathname;
     if (p.startsWith("/media/")) return media(env, url);
+    if (p === "/ping") return new Response('{"ok":true}', { headers: { "content-type": "application/json", "access-control-allow-origin": "*" } });
     if (p === "/youtube/retour") return youtube.retourGoogle(env, url);
     if (p === "/pinterest/retour") return pinterest.retourPinterest(env, url);
     if (p === "/tiktok/retour") return tiktok.retourTiktok(env, url);
@@ -403,6 +404,28 @@ export default {
         await env.DB.prepare("UPDATE planning SET statut = 'prevu', erreur = NULL, essais = 0, conteneur = NULL, enfants = NULL, quand = ?1 WHERE id = ?2 AND statut = 'erreur'")
           .bind(maintenant(), m[1]).run();
       }
+      return json({ ok: true });
+    }
+    if (p === "/api/studio" && request.method === "GET") {
+      const { results } = await env.DB.prepare("SELECT * FROM studio WHERE statut = 'pret' ORDER BY ajoute DESC").all();
+      return json(results);
+    }
+    if (p === "/api/studio" && request.method === "POST") {
+      const d = await request.json();
+      if (!/^[A-Za-z0-9-]{1,40}$/.test(d.id || "") || !/^[0-9a-f-]{36}\.(mp4|mov)$/.test(d.cle || "")) return json({ erreur: "Bad studio reel" }, 400);
+      const reseau = ["instagram", "tiktok", "youtube", "threads"].includes(d.reseau) ? d.reseau : "instagram";
+      await env.DB.prepare("INSERT INTO studio (id, reseau, titre, legende, cle, duree, empreinte, statut, ajoute) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'pret', ?8) " +
+        "ON CONFLICT (id) DO UPDATE SET reseau = ?2, titre = ?3, legende = ?4, cle = ?5, duree = ?6, empreinte = ?7, statut = 'pret', ajoute = ?8")
+        .bind(d.id, reseau, String(d.titre || "").slice(0, 200), String(d.legende || "").slice(0, 2200), d.cle, String(d.duree || "").slice(0, 20), String(d.empreinte || "").slice(0, 64), maintenant()).run();
+      return json({ ok: true });
+    }
+    if (p === "/api/studio/empreintes" && request.method === "GET") {
+      const { results } = await env.DB.prepare("SELECT id, empreinte, statut FROM studio").all();
+      return json(results);
+    }
+    const ms = /^\/api\/studio\/([A-Za-z0-9-]{1,40})\/(utilise|retirer)$/.exec(p);
+    if (ms && request.method === "POST") {
+      await env.DB.prepare("UPDATE studio SET statut = ?1 WHERE id = ?2").bind(ms[2] === "utilise" ? "programme" : "retire", ms[1]).run();
       return json({ ok: true });
     }
     if (p === "/youtube/connecter") return youtube.connecter(env);
