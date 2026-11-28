@@ -366,52 +366,102 @@ function page() {
   return `<!doctype html><html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">
 <title>Programmation</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}body{margin:0;padding:26px 16px 80px;font:14px/1.5 Inter,-apple-system,sans-serif;color:#111;background:#fff}
-main{max-width:760px;margin:0 auto}
-.sur{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#777}
-h1{font:italic 34px/1.15 "EB Garamond",Georgia,serif;margin:6px 0 22px;font-weight:400}
-h2{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#777;font-weight:500;margin:34px 0 12px}
-.carte{border:1px solid #e6e6e6;padding:16px}
-label{display:block;font-size:12px;color:#555;margin:12px 0 4px}
-select,input,textarea{font:inherit;width:100%;padding:9px 10px;border:1px solid #ccc;border-radius:0;background:#fff}
-textarea{min-height:70px;resize:vertical}
-.ligne2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-button{font:inherit;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border:1px solid #111;background:#111;color:#fff;padding:12px 18px;min-height:44px;cursor:pointer;border-radius:0}
-button.leger{background:#fff;color:#111;text-transform:none;letter-spacing:0;padding:6px 10px;min-height:32px}
-button:disabled{opacity:.5}
-.fichier{display:grid;grid-template-columns:64px 1fr;gap:10px;margin-top:10px;align-items:start}
-.fichier video,.fichier img{width:64px;height:85px;object-fit:cover;background:#f1f1f1}
-.aide{font-size:11px;color:#777;margin-top:4px}
-.jour{font:italic 20px "EB Garamond",Georgia,serif;margin:22px 0 6px}
-.post{display:grid;grid-template-columns:52px 1fr auto;gap:12px;padding:10px 0;border-top:1px solid #eee;align-items:start}
-.post video,.post img{width:52px;height:69px;object-fit:cover;background:#f1f1f1}
-.meta{font-size:11px;color:#777}
-.leg{font-size:13px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.st{font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border:1px solid #ccc;color:#555;margin-left:6px}
-.st.publie{border-color:#1c6b3a;color:#1c6b3a}.st.erreur{border-color:#b02c1e;color:#b02c1e}
-.err{color:#b02c1e;font-size:12px}
-.barre{height:4px;background:#eee;margin-top:10px}.barre span{display:block;height:100%;width:0;background:#111}
-.vide{color:#777}
-.texte{width:52px;height:69px;background:#f1f1f1;display:flex;align-items:center;justify-content:center;font:italic 20px "EB Garamond",Georgia,serif;color:#777}
-.coche{display:flex;align-items:center;gap:8px;font-size:14px;margin:6px 0;text-transform:none;letter-spacing:0;color:inherit}.coche input{width:auto;margin:0}[hidden]{display:none!important}
+/* Meme famille que Studio Reels : bordeaux, rose et rouge, Cormorant pour les titres, Inter pour le reste. */
+:root{--bg:#fbf7f6;--panel:#fff;--ink:#3a0f1a;--muted:#8b6f75;--line:#efe3e4;--bordeaux:#6e1b2e;--rose:#e7a1b0;--rose-soft:#f9e8ec;--rouge:#c21f39;--rouge-soft:#fbe5e8;--on:#fff;
+--display:"Cormorant Garamond","Didot",Georgia,serif;--body:"Inter",-apple-system,"Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#1b0c11;--panel:#26121a;--ink:#f7eaed;--muted:#c2a3aa;--line:#3a1d26;--bordeaux:#e58a9d;--rose:#f1b3c1;--rose-soft:#3a1922;--rouge:#ff6b7f;--rouge-soft:#401a21;--on:#1b0c11;color-scheme:dark}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--body)}
+main{max-width:1120px;margin:0 auto;padding:56px max(20px,env(safe-area-inset-left)) 80px}
+.hero{display:flex;flex-wrap:wrap;gap:28px 48px;align-items:flex-end;justify-content:space-between}
+.sur{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--rouge);font-weight:600}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(46px,8vw,88px);line-height:.92;margin:12px 0 14px;letter-spacing:-.01em}
+h1 em{color:var(--bordeaux)}
+.lead{color:var(--muted);max-width:46ch;margin:0}
+.stats{display:flex;gap:34px}
+.stat b{display:block;font-family:var(--display);font-weight:500;font-size:46px;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.stat.a b{color:var(--bordeaux)}.stat.b b{color:var(--rose)}.stat.c b{color:var(--rouge)}
+.rang{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:40px 0 44px}
+.rang>*{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:10px;display:block;background:var(--rose-soft)}
+@media(max-width:640px){.rang{grid-template-columns:repeat(3,1fr)}.rang>:nth-child(n+4){display:none}}
+.cols{display:grid;grid-template-columns:minmax(0,480px) minmax(0,1fr);gap:40px;align-items:start}
+@media(max-width:880px){.cols{grid-template-columns:1fr}}
+.carte{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px 22px;position:sticky;top:20px}
+@media(max-width:880px){.carte{position:static}}
+.carte h2,.liste h2{font-family:var(--display);font-weight:500;font-size:30px;line-height:1.05;margin:0 0 6px;letter-spacing:0;text-transform:none;color:var(--ink)}
+.pilules{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 2px}
+.pilules button{font:500 13px var(--body);color:var(--muted);background:transparent;border:1px solid var(--line);padding:6px 12px;border-radius:999px;cursor:pointer;min-height:0;letter-spacing:0;text-transform:none}
+.pilules button[aria-pressed="true"]{color:var(--on);background:var(--bordeaux);border-color:var(--bordeaux)}
+.cache{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted);margin:18px 0 6px}
+select,input,textarea{font:14px var(--body);color:var(--ink);width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+input[type=file]{padding:9px;background:var(--rose-soft);border-style:dashed;border-color:var(--rose)}
+input[type=file]::file-selector-button{font:600 12.5px var(--body);border:0;border-radius:999px;background:var(--bordeaux);color:var(--on);padding:7px 14px;margin-right:10px;cursor:pointer}
+textarea{min-height:84px;resize:vertical}
+select:focus,input:focus,textarea:focus{outline:2px solid var(--rose);outline-offset:1px;border-color:transparent}
+.ligne2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{font:600 14px var(--body);border:1px solid var(--bordeaux);background:var(--bordeaux);color:var(--on);padding:12px 22px;min-height:46px;border-radius:999px;cursor:pointer}
+#go{width:100%;margin-top:6px}
+button.leger{background:var(--panel);color:var(--ink);border-color:var(--line);font-size:12.5px;padding:7px 14px;min-height:34px}
+button.leger:hover{border-color:var(--bordeaux)}
+button:disabled{opacity:.45;cursor:wait}
+a{color:var(--rouge)}
+.fichier{display:grid;grid-template-columns:64px 1fr;gap:12px;margin-top:12px;align-items:start}
+.fichier video,.fichier img{width:64px;aspect-ratio:9/16;object-fit:cover;border-radius:10px;background:#000}
+.aide{font-size:12.5px;color:var(--muted);margin-top:6px}
+#msg{color:var(--bordeaux);font-weight:500}
+.connexions{margin-top:16px;padding:12px 14px;background:var(--rose-soft);border-radius:12px;font-size:13px;color:var(--muted)}
+.connexions:empty,.connexions:not(:has(.aide:not([hidden]))){display:none}
+.connexions .aide{margin:0}
+.jour{font-family:var(--display);font-style:italic;font-size:24px;margin:30px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.jour:first-child{margin-top:8px}
+.post{display:grid;grid-template-columns:62px 1fr auto;gap:16px;padding:12px 0;align-items:start}
+.post+.post{border-top:1px solid var(--line)}
+.post video,.post img,.texte{width:62px;aspect-ratio:9/16;object-fit:cover;border-radius:10px;background:#000}
+.texte{display:flex;align-items:center;justify-content:center;font:italic 22px var(--display);color:var(--muted);background:var(--rose-soft)}
+.meta{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:12px;color:var(--muted)}
+.meta .res{color:var(--rouge);text-transform:uppercase;letter-spacing:.12em;font-weight:600;font-size:10.5px}
+.leg{font-size:14px;margin-top:4px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.st{font:600 10px var(--body);letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--rose-soft);color:var(--bordeaux)}
+.st.publie{background:var(--bordeaux);color:var(--on)}.st.erreur{background:var(--rouge);color:#fff}.st.traitement,.st.enfants{background:var(--rose);color:#3a0f1a}
+.voir{font-size:12.5px;color:var(--bordeaux);font-weight:500;text-decoration:none}
+.err{color:var(--rouge);font-size:12.5px;margin-top:4px;padding:6px 10px;background:var(--rouge-soft);border-radius:10px}
+.barre{height:4px;background:var(--rose-soft);border-radius:4px;margin-top:12px;overflow:hidden}.barre span{display:block;height:100%;width:0;background:var(--bordeaux)}
+.vide{color:var(--muted);font-style:italic}
+.coche{display:flex;align-items:center;gap:8px;font:400 14px var(--body);letter-spacing:0;text-transform:none;color:var(--ink);margin:6px 0}.coche input{width:auto;margin:0;accent-color:var(--bordeaux)}
+#ttCompte{display:flex;align-items:center;gap:8px;margin-top:14px}
 </style></head><body><main>
-<div class="sur">The Girl With A Camera</div>
-<h1>Programmation</h1>
+<div class="hero">
+  <div><div class="sur">The Girl with a Camera</div>
+  <h1>Ma <em>programmation</em></h1>
+  <p class="lead">Instagram, Threads, YouTube, Pinterest et TikTok, au même endroit. Tu déposes, tu choisis l'heure, ça part tout seul.</p></div>
+  <div class="stats" aria-live="polite">
+    <div class="stat a"><b id="nPrevus">·</b><span>prévus</span></div>
+    <div class="stat b"><b id="nPublies">·</b><span>publiés · 7 j</span></div>
+    <div class="stat c"><b id="nErreurs">·</b><span>à revoir</span></div>
+  </div>
+</div>
+<div class="rang" id="rang" aria-hidden="true"></div>
+<div class="cols">
 <div class="carte">
-  <div class="ligne2">
-    <div><label>Type</label><select id="genre" data-x="">
+  <h2>Nouveau post</h2>
+  <label>Réseau</label><div class="pilules" id="pReseau"></div>
+  <label>Type</label><div class="pilules" id="pGenre"></div>
+  <div class="cache" aria-hidden="true">
+    <select id="genre" tabindex="-1">
       <option value="essai">Reel d'essai</option><option value="reel">Reel</option>
-      <option value="photo">Photo</option><option value="carrousel">Carrousel</option></select></div>
-    <div><label>Réseau</label><select id="reseau"><option value="instagram">Instagram</option><option value="threads">Threads</option><option value="youtube">YouTube</option><option value="pinterest">Pinterest</option><option value="tiktok">TikTok</option></select></div>
+      <option value="photo">Photo</option><option value="carrousel">Carrousel</option></select>
+    <select id="reseau" tabindex="-1"><option value="instagram">Instagram</option><option value="threads">Threads</option><option value="youtube">YouTube</option><option value="pinterest">Pinterest</option><option value="tiktok">TikTok</option></select>
   </div>
   <div id="blocFichiers"><label>Fichiers</label><input type="file" id="fichiers" multiple accept="video/mp4,video/quicktime,image/jpeg,image/png">
   <div class="aide" id="aideFichiers">Plusieurs vidéos = un reel par vidéo, espacés comme tu le choisis.</div></div>
   <label id="titreLegende">Légende commune</label><textarea id="legende" placeholder="Reprise sous chaque vidéo, modifiable une par une"></textarea>
   <div class="ligne2">
     <div><label>Premier à</label><input type="datetime-local" id="quand"></div>
-    <div><label>Puis toutes les (minutes)</label><input type="number" id="intervalle" value="60" min="5"></div>
+    <div><label>Écart (min)</label><input type="number" id="intervalle" value="60" min="5"></div>
   </div>
   <div id="blocPin" hidden>
     <div class="ligne2">
@@ -434,15 +484,20 @@ button:disabled{opacity:.5}
     <div class="aide">En publiant, tu acceptes la <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener">Music Usage Confirmation</a> de TikTok.</div>
   </div>
   <div id="liste-fichiers"></div>
-  <div style="margin-top:16px"><button id="go">Programmer</button></div>
+  <div style="margin-top:22px"><button id="go">Programmer</button></div>
   <div class="barre" id="barre" hidden><span></span></div>
   <div id="msg" class="aide"></div>
+  <div class="connexions">
   <div id="ytCo" class="aide" hidden></div>
   <div id="pinCo" class="aide" hidden></div>
   <div id="ttCo" class="aide" hidden></div>
+  </div>
 </div>
+<div class="liste">
 <h2>Au programme</h2>
 <div id="posts"><p class="vide">Chargement…</p></div>
+</div>
+</div>
 </main>
 <script>
 const CLE = new URLSearchParams(location.search).get('key') || '';
@@ -457,13 +512,20 @@ const TYPES_RESEAU = {
   pinterest: [['epingle', 'Épingle photo']],
   tiktok: [['video', 'Vidéo']],
 };
+const RESEAUX = [['instagram', 'Instagram'], ['threads', 'Threads'], ['youtube', 'YouTube'], ['pinterest', 'Pinterest'], ['tiktok', 'TikTok']];
+function pilules(boite, liste, valeur, quand) {
+  q(boite).innerHTML = liste.map(([v, n]) => '<button type="button" data-v="' + v + '" aria-pressed="' + (v === valeur) + '">' + esc(n) + '</button>').join('');
+  q(boite).onclick = e => { const b = e.target.closest('button'); if (b) quand(b.dataset.v); };
+}
 function majReseau() {
   const r = q('#reseau').value;
   q('#genre').innerHTML = TYPES_RESEAU[r].map(([v, n]) => '<option value="' + v + '">' + n + '</option>').join('');
+  pilules('#pReseau', RESEAUX, r, v => { q('#reseau').value = v; majReseau(); });
   majGenre();
 }
 function majGenre() {
   const r = q('#reseau').value, g = q('#genre').value, texte = g === 'texte';
+  pilules('#pGenre', TYPES_RESEAU[r].map(([v, n]) => [v, n.replace(/ \\(.*\\)/, '')]), g, v => { q('#genre').value = v; majGenre(); });
   q('#blocFichiers').hidden = texte;
   q('#titreLegende').textContent = texte ? 'Texte (500 signes max)' : (r === 'threads' ? 'Texte (500 signes max)' : (r === 'youtube' || r === 'pinterest') ? 'Titre sur la 1re ligne, puis la description' : 'Légende commune');
   q('#blocPin').hidden = r !== 'pinterest';
@@ -542,19 +604,29 @@ q('#go').addEventListener('click', async () => {
 
 const NOMS = { essai: "Reel d'essai", reel: 'Reel', photo: 'Photo', carrousel: 'Carrousel', texte: 'Texte', video: 'Vidéo', epingle: 'Épingle' };
 const ST = { prevu: 'prévu', traitement: 'en cours', enfants: 'en cours', publie: 'publié', erreur: 'erreur' };
+const estVid = m => /\\.(mp4|mov|m4v)$/.test(m);
+function apercu(m) { return !m ? '<div class="texte">Aa</div>' : estVid(m) ? '<video muted playsinline preload="metadata" src="/media/' + m + '#t=1"></video>' : '<img loading="lazy" src="/media/' + m + '" alt="">'; }
 async function charger() {
   const posts = await (await api('/api/posts')).json();
+  const semaine = Date.now() - 7 * 864e5;
+  q('#nPrevus').textContent = posts.filter(p => p.statut !== 'publie' && p.statut !== 'erreur').length;
+  q('#nPublies').textContent = posts.filter(p => p.statut === 'publie' && new Date(p.quand) > semaine).length;
+  q('#nErreurs').textContent = posts.filter(p => p.statut === 'erreur').length;
+  const avenir = posts.filter(p => p.statut === 'prevu' && p.medias[0]).slice(0, 6);
+  const rang = avenir.length >= 3 ? avenir : posts.filter(p => p.medias[0]).slice(-6);
+  q('#rang').innerHTML = rang.map(p => apercu(p.medias[0])).join('');
+  q('#rang').hidden = !rang.length;
   if (!posts.length) { q('#posts').innerHTML = '<p class="vide">Rien de programmé.</p>'; return; }
   let jour = '', h = '';
   for (const p of posts) {
     const d = new Date(p.quand), j = d.toLocaleDateString('fr-BE', { weekday: 'long', day: 'numeric', month: 'long' });
     if (j !== jour) { h += '<div class="jour">' + j + '</div>'; jour = j; }
-    const m = p.medias[0], src = '/media/' + m, res = { threads: 'Threads', youtube: 'YouTube', pinterest: 'Pinterest', tiktok: 'TikTok' }[p.reseau] || 'Instagram';
-    h += '<div class="post">' + (!m ? '<div class="texte">Aa</div>' : /\\.(mp4|mov|m4v)$/.test(m) ? '<video muted preload="metadata" src="' + src + '#t=1"></video>' : '<img src="' + src + '">') +
-      '<div><div class="meta">' + d.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' }) + ' · ' + res + ' · ' + NOMS[p.genre] + (p.medias.length > 1 ? ' · ' + p.medias.length + ' fichiers' : '') +
+    const m = p.medias[0], res = { threads: 'Threads', youtube: 'YouTube', pinterest: 'Pinterest', tiktok: 'TikTok' }[p.reseau] || 'Instagram';
+    h += '<div class="post">' + apercu(m) +
+      '<div><div class="meta"><span class="res">' + res + '</span><span>' + d.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' }) + ' · ' + NOMS[p.genre] + (p.medias.length > 1 ? ' · ' + p.medias.length + ' fichiers' : '') + '</span>' +
       '<span class="st ' + p.statut + '">' + ST[p.statut] + '</span></div><div class="leg">' + (esc(p.legende) || '<span class="vide">Sans légende</span>') + '</div>' +
       (p.erreur && p.statut === 'erreur' ? '<div class="err">' + esc(p.erreur) + '</div>' : '') +
-      (p.lien ? '<a class="meta" href="' + esc(p.lien) + '" target="_blank" rel="noopener">Voir sur ' + res + '</a>' : '') + '</div><div>' +
+      (p.lien ? '<a class="voir" href="' + esc(p.lien) + '" target="_blank" rel="noopener">Voir sur ' + res + ' →</a>' : '') + '</div><div>' +
       (p.statut === 'prevu' ? '<button class="leger" data-sup="' + p.id + '">Retirer</button>' : '') +
       (p.statut === 'erreur' ? '<button class="leger" data-rel="' + p.id + '">Réessayer</button>' : '') + '</div></div>';
   }
