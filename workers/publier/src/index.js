@@ -19,6 +19,7 @@ import { passageCommentaires } from "./commentaires.js";
 import * as threads from "./threads.js";
 import * as youtube from "./youtube.js";
 import * as pinterest from "./pinterest.js";
+import * as tiktok from "./tiktok.js";
 import { pageCommentaires } from "./page-commentaires.js";
 
 const GRAPH = "https://graph.facebook.com/v25.0";
@@ -26,6 +27,7 @@ const GENRES = ["essai", "reel", "photo", "carrousel"];
 const GENRES_THREADS = ["texte", "photo", "video", "carrousel"];
 const GENRES_YOUTUBE = ["video"];
 const GENRES_PINTEREST = ["epingle"];
+const GENRES_TIKTOK = ["video"];
 
 function json(data, status = 200) {
   return Response.json(data, { status, headers: { "cache-control": "no-store" } });
@@ -44,6 +46,7 @@ let appels = 0;
 threads.compter(() => { appels++; });
 youtube.compter(() => { appels++; });
 pinterest.compter(() => { appels++; });
+tiktok.compter(() => { appels++; });
 
 async function meta(env, chemin, corps) {
   appels++;
@@ -126,6 +129,33 @@ async function avancer(env, p) {
     }
     return;
   }
+  if (p.reseau === "tiktok") {
+    try {
+      if (p.statut === "prevu") {
+        await maj(env, p.id, { statut: "traitement", conteneur: null });
+        const id = await tiktok.envoyer(env, p);
+        await maj(env, p.id, { statut: "traitement", conteneur: id });
+        return;
+      }
+      if (p.statut === "traitement") {
+        // Envoi coupe en plein milieu : on repart de zero au passage suivant.
+        if (!p.conteneur) {
+          if (Date.now() - new Date(p.maj).getTime() > 20 * 60000) await maj(env, p.id, { statut: "prevu" });
+          return;
+        }
+        const s = await tiktok.etat(env, p.conteneur, env.TT_COMPTE);
+        if (s.code === "ERROR") throw new Error(`TikTok refuse la video (${s.detail})`);
+        if (s.code !== "FINISHED") return attendre(env, p);
+        await maj(env, p.id, { statut: "publie", resultat: s.id, lien: s.lien, erreur: null });
+      }
+    } catch (e) {
+      const essais = (p.essais || 0) + 1;
+      const fini = essais >= 3 || /refuse|connecte|expire/i.test(e.message);
+      await maj(env, p.id, fini ? { statut: "erreur", erreur: e.message, essais } : { statut: "prevu", conteneur: null, erreur: e.message, essais });
+      if (fini) await alerte(env, p, e.message);
+    }
+    return;
+  }
   if (p.reseau === "youtube") {
     // Un envoi deja en cours dans un autre passage : on ne le relance pas avant 20 minutes.
     if (p.statut === "traitement" && Date.now() - new Date(p.maj).getTime() < 20 * 60000) return;
@@ -181,7 +211,7 @@ async function avancer(env, p) {
 async function attendre(env, p) {
   // Meta prepare la video. Au dela de 2 heures, on abandonne.
   if (Date.now() - new Date(p.quand).getTime() > 2 * 3600 * 1000) {
-    const m = `${p.reseau === "threads" ? "Threads" : "Instagram"} n'a pas fini de preparer le fichier en 2 heures.`;
+    const m = `${{ threads: "Threads", tiktok: "TikTok" }[p.reseau] || "Instagram"} n'a pas fini de preparer le fichier en 2 heures.`;
     await maj(env, p.id, { statut: "erreur", erreur: m });
     await alerte(env, p, m);
   }
@@ -191,7 +221,7 @@ async function attendre(env, p) {
 async function alerte(env, p, raison) {
   if (!env.RESEND_KEY || !env.ALERTE_A) return;
   const noms = { essai: "reel d'essai", reel: "reel", photo: "photo", carrousel: "carrousel", texte: "post texte", video: "video" };
-  const ou = { threads: "Threads", youtube: "YouTube", pinterest: "Pinterest" }[p.reseau] || "Instagram";
+  const ou = { threads: "Threads", youtube: "YouTube", pinterest: "Pinterest", tiktok: "TikTok" }[p.reseau] || "Instagram";
   const quand = new Date(p.quand).toLocaleString("fr-BE", { timeZone: "Europe/Brussels", weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
   const lien = `${env.PUBLIC_URL}/?key=${encodeURIComponent(env.CLE || "")}`;
   const esc = (s) => String(s || "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
@@ -286,8 +316,8 @@ async function programmer(request, env) {
   const posts = Array.isArray(d.posts) ? d.posts : [d];
   const ok = [];
   for (const p of posts) {
-    const reseau = ["threads", "youtube", "pinterest"].includes(p.reseau) ? p.reseau : "instagram";
-    if (!({ threads: GENRES_THREADS, youtube: GENRES_YOUTUBE, pinterest: GENRES_PINTEREST }[reseau] || GENRES).includes(p.genre)) return json({ erreur: `Type inconnu pour ${reseau} : ${p.genre}` }, 400);
+    const reseau = ["threads", "youtube", "pinterest", "tiktok"].includes(p.reseau) ? p.reseau : "instagram";
+    if (!({ threads: GENRES_THREADS, youtube: GENRES_YOUTUBE, pinterest: GENRES_PINTEREST, tiktok: GENRES_TIKTOK }[reseau] || GENRES).includes(p.genre)) return json({ erreur: `Type inconnu pour ${reseau} : ${p.genre}` }, 400);
     const medias = (p.medias || []).filter((c) => /^[0-9a-f-]{36}\.(mp4|mov|m4v|jpg|png)$/.test(c));
     if (p.genre === "texte") {
       if (!String(p.legende || "").trim()) return json({ erreur: "Un post texte demande un texte." }, 400);
@@ -301,6 +331,10 @@ async function programmer(request, env) {
       if (!/\.jpg$/.test(medias[0])) return json({ erreur: "Une epingle demande une photo." }, 400);
       if (p.lien && !/^https:\/\//.test(p.lien)) return json({ erreur: "Le lien doit commencer par https://" }, 400);
       extra = JSON.stringify({ tableau: String(p.tableau), lien: p.lien || "" });
+    }
+    if (reseau === "tiktok") {
+      if (!p.confidentialite) return json({ erreur: "Choisis qui peut voir la video sur TikTok." }, 400);
+      extra = JSON.stringify({ confidentialite: String(p.confidentialite), commentaires: p.commentaires !== false, duo: p.duo !== false, collage: p.collage !== false });
     }
     if (p.genre === "video" && !estVideo(medias[0])) return json({ erreur: "Une video demande un fichier video." }, 400);
     if (reseau === "threads" && p.genre === "carrousel" && medias.length > 20) return json({ erreur: "Threads prend 20 fichiers au plus." }, 400);
@@ -363,7 +397,7 @@ button:disabled{opacity:.5}
     <div><label>Type</label><select id="genre" data-x="">
       <option value="essai">Reel d'essai</option><option value="reel">Reel</option>
       <option value="photo">Photo</option><option value="carrousel">Carrousel</option></select></div>
-    <div><label>Réseau</label><select id="reseau"><option value="instagram">Instagram</option><option value="threads">Threads</option><option value="youtube">YouTube</option><option value="pinterest">Pinterest</option></select></div>
+    <div><label>Réseau</label><select id="reseau"><option value="instagram">Instagram</option><option value="threads">Threads</option><option value="youtube">YouTube</option><option value="pinterest">Pinterest</option><option value="tiktok">TikTok</option></select></div>
   </div>
   <div id="blocFichiers"><label>Fichiers</label><input type="file" id="fichiers" multiple accept="video/mp4,video/quicktime,image/jpeg,image/png">
   <div class="aide" id="aideFichiers">Plusieurs vidéos = un reel par vidéo, espacés comme tu le choisis.</div></div>
@@ -379,12 +413,24 @@ button:disabled{opacity:.5}
     </div>
     <div class="aide"><a href="#" id="nouveauTableau">Créer un tableau</a></div>
   </div>
+  <div id="blocTt" hidden>
+    <div class="aide" id="ttCompte"></div>
+    <div class="ligne2">
+      <div><label>Qui peut voir la vidéo</label><select id="ttPriv"><option value="">Choisir…</option></select></div>
+      <div><label>Autoriser</label>
+        <label class="aide"><input type="checkbox" id="ttCom"> Commentaires</label>
+        <label class="aide"><input type="checkbox" id="ttDuo"> Duo</label>
+        <label class="aide"><input type="checkbox" id="ttCol"> Collage</label></div>
+    </div>
+    <div class="aide">En publiant, tu acceptes la <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener">Music Usage Confirmation</a> de TikTok.</div>
+  </div>
   <div id="liste-fichiers"></div>
   <div style="margin-top:16px"><button id="go">Programmer</button></div>
   <div class="barre" id="barre" hidden><span></span></div>
   <div id="msg" class="aide"></div>
   <div id="ytCo" class="aide" hidden></div>
   <div id="pinCo" class="aide" hidden></div>
+  <div id="ttCo" class="aide" hidden></div>
 </div>
 <h2>Au programme</h2>
 <div id="posts"><p class="vide">Chargement…</p></div>
@@ -400,6 +446,7 @@ const TYPES_RESEAU = {
   threads: [['texte', 'Texte seul'], ['photo', 'Photo'], ['video', 'Vidéo'], ['carrousel', 'Carrousel']],
   youtube: [['video', 'Vidéo (Short si verticale et courte)']],
   pinterest: [['epingle', 'Épingle photo']],
+  tiktok: [['video', 'Vidéo']],
 };
 function majReseau() {
   const r = q('#reseau').value;
@@ -414,6 +461,8 @@ function majGenre() {
   q('#pinCo').hidden = r !== 'pinterest';
   if (r === 'pinterest') chargerTableaux();
   q('#ytCo').hidden = r !== 'youtube';
+  q('#blocTt').hidden = q('#ttCo').hidden = r !== 'tiktok';
+  if (r === 'tiktok') chargerCreateur();
   q('#aideFichiers').textContent = g === 'carrousel' ? 'Toutes les photos et vidéos choisies forment un seul carrousel.' :
     'Plusieurs fichiers = un post par fichier, espacés comme tu le choisis.';
   if (texte) { fichiers = []; q('#fichiers').value = ''; }
@@ -472,7 +521,8 @@ q('#go').addEventListener('click', async () => {
       ? (g === 'carrousel' ? [{ genre: g, medias: cles, legende: commun, quand: debut.toISOString() }]
         : cles.map((c, i) => ({ genre: g, medias: [c], legende: commun, quand: new Date(+debut + i * pas).toISOString() })))
       : cles.map((c, i) => ({ genre: g, medias: [c], legende: fichiers[i].legende || commun, quand: new Date(+debut + i * pas).toISOString() }));
-    posts = posts.map(p => Object.assign(p, { reseau }, reseau === 'pinterest' ? { genre: 'epingle', tableau: q('#tableau').value, lien: q('#lienPin').value.trim() } : {}));
+    posts = posts.map(p => Object.assign(p, { reseau }, reseau === 'pinterest' ? { genre: 'epingle', tableau: q('#tableau').value, lien: q('#lienPin').value.trim() } : {},
+      reseau === 'tiktok' ? { confidentialite: q('#ttPriv').value, commentaires: q('#ttCom').checked, duo: q('#ttDuo').checked, collage: q('#ttCol').checked } : {}));
     const r = await (await api('/api/posts', { method: 'POST', body: JSON.stringify({ posts }) })).json();
     if (r.erreur) throw new Error(r.erreur);
     msg.textContent = posts.length + (posts.length > 1 ? ' posts programmés.' : ' post programmé.');
@@ -490,7 +540,7 @@ async function charger() {
   for (const p of posts) {
     const d = new Date(p.quand), j = d.toLocaleDateString('fr-BE', { weekday: 'long', day: 'numeric', month: 'long' });
     if (j !== jour) { h += '<div class="jour">' + j + '</div>'; jour = j; }
-    const m = p.medias[0], src = '/media/' + m, res = { threads: 'Threads', youtube: 'YouTube', pinterest: 'Pinterest' }[p.reseau] || 'Instagram';
+    const m = p.medias[0], src = '/media/' + m, res = { threads: 'Threads', youtube: 'YouTube', pinterest: 'Pinterest', tiktok: 'TikTok' }[p.reseau] || 'Instagram';
     h += '<div class="post">' + (!m ? '<div class="texte">Aa</div>' : /\\.(mp4|mov|m4v)$/.test(m) ? '<video muted preload="metadata" src="' + src + '#t=1"></video>' : '<img src="' + src + '">') +
       '<div><div class="meta">' + d.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' }) + ' · ' + res + ' · ' + NOMS[p.genre] + (p.medias.length > 1 ? ' · ' + p.medias.length + ' fichiers' : '') +
       '<span class="st ' + p.statut + '">' + ST[p.statut] + '</span></div><div class="leg">' + (esc(p.legende) || '<span class="vide">Sans légende</span>') + '</div>' +
@@ -510,13 +560,22 @@ q('#posts').addEventListener('click', async e => {
 });
 function confirmRetrait(b) { if (b.dataset.ok) return true; b.dataset.ok = 1; b.textContent = 'Confirmer'; setTimeout(() => { delete b.dataset.ok; b.textContent = 'Retirer'; }, 4000); return false; }
 majReseau(); charger(); setInterval(charger, 60000);
+const PRIV = { PUBLIC_TO_EVERYONE: 'Tout le monde', MUTUAL_FOLLOW_FRIENDS: 'Amis', FOLLOWER_OF_CREATOR: 'Abonnés', SELF_ONLY: 'Moi seule' };
+async function chargerCreateur() {
+  const c = await (await api('/api/tiktok/createur')).json();
+  if (c.erreur) { q('#ttCompte').textContent = c.erreur; return; }
+  q('#ttCompte').innerHTML = (c.avatar ? '<img src="' + esc(c.avatar) + '" style="width:24px;height:24px;border-radius:50%;vertical-align:middle;margin-right:6px">' : '') + 'Publié sur le compte ' + esc(c.nom) + ' · vidéos de ' + Math.round(c.duree_max / 60) + ' min max';
+  q('#ttPriv').innerHTML = '<option value="">Choisir…</option>' + c.confidentialites.map(v => '<option value="' + esc(v) + '">' + esc(PRIV[v] || v) + '</option>').join('');
+  [['#ttCom', c.commentaires_off], ['#ttDuo', c.duo_off], ['#ttCol', c.collage_off]].forEach(([s, off]) => { q(s).disabled = off; if (off) q(s).checked = false; });
+}
 async function chargerTableaux() {
   const r = await (await api('/api/pinterest/tableaux')).json();
   q('#tableau').innerHTML = r.erreur ? '<option value="">' + esc(r.erreur) + '</option>' : (r.length ? r.map(b => '<option value="' + esc(b.id) + '">' + esc(b.nom) + '</option>').join('') : '<option value="">Aucun tableau</option>');
 }
 q('#nouveauTableau').addEventListener('click', async e => { e.preventDefault(); const nom = prompt('Nom du tableau'); if (!nom) return; await api('/api/pinterest/tableaux', { method: 'POST', body: JSON.stringify({ nom }) }); chargerTableaux(); });
 api('/api/etat').then(r => r.json()).then(e => { const pn = e.pinterest || {}; q('#pinCo').innerHTML = (pn.connecte ? 'Pinterest connecté' + (pn.bac_a_sable ? ' (mode test : épingles visibles par toi seule)' : '') + '. ' : '') + '<a href="/pinterest/connecter?key=' + encodeURIComponent(CLE) + '">' + (pn.connecte ? 'Reconnecter' : 'Connecter mon compte Pinterest') + '</a>'; });
-api('/api/etat').then(r => r.json()).then(e => { const y = e.youtube || {}; q('#ytCo').innerHTML = y.connecte ? 'YouTube connecté' + (y.chaine ? ' : ' + esc(y.chaine) : '') + '. <a href="/youtube/connecter?key=' + encodeURIComponent(CLE) + '">Changer de chaîne</a>' : '<a href="/youtube/connecter?key=' + encodeURIComponent(CLE) + '">Connecter ma chaîne YouTube</a>'; });
+api('/api/etat').then(r => r.json()).then(e => { const y = e.youtube || {}; q('#ytCo').innerHTML = y.connecte ? 'YouTube connecté' + (y.chaine ? ' : ' + esc(y.chaine) : '') + (y.souci ? ' (' + esc(y.souci) + ')' : '') + '. <a href="/youtube/connecter?key=' + encodeURIComponent(CLE) + '">Changer de chaîne</a>' : '<a href="/youtube/connecter?key=' + encodeURIComponent(CLE) + '">Connecter ma chaîne YouTube</a>'; });
+api('/api/etat').then(r => r.json()).then(e => { const t = e.tiktok || {}; q('#ttCo').innerHTML = (t.connecte ? 'TikTok connecté' + (t.compte ? ' : ' + esc(t.compte) : '') + '. ' : '') + '<a href="/tiktok/connecter?key=' + encodeURIComponent(CLE) + '">' + (t.connecte ? 'Reconnecter' : 'Connecter mon compte TikTok') + '</a>'; });
 </script></body></html>`;
 }
 
@@ -529,6 +588,7 @@ export default {
     if (p.startsWith("/media/")) return media(env, url);
     if (p === "/youtube/retour") return youtube.retourGoogle(env, url);
     if (p === "/pinterest/retour") return pinterest.retourPinterest(env, url);
+    if (p === "/tiktok/retour") return tiktok.retourTiktok(env, url);
     if (!autorise(env, url)) return new Response("Introuvable", { status: 404 });
     if (p === "/") return new Response(page(), { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
     if (p.startsWith("/api/envoi/")) return envoi(request, env, url, p.split("/")[3]);
@@ -557,13 +617,17 @@ export default {
     }
     if (p === "/youtube/connecter") return youtube.connecter(env);
     if (p === "/pinterest/connecter") return pinterest.connecter(env);
+    if (p === "/tiktok/connecter") return tiktok.connecter(env);
+    if (p === "/api/tiktok/createur") {
+      try { return json(await tiktok.createur(env)); } catch (e) { return json({ erreur: String(e.message).slice(0, 200) }, 500); }
+    }
     if (p === "/api/pinterest/tableaux") {
       try {
         if (request.method === "POST") return json(await pinterest.creerTableau(env, (await request.json()).nom));
         return json(await pinterest.tableaux(env));
       } catch (e) { return json({ erreur: String(e.message).slice(0, 200) }, 500); }
     }
-    if (p === "/api/etat") return json({ jeton: Boolean(env.META_TOKEN), threads: Boolean(env.THREADS_TOKEN), youtube: await youtube.etatConnexion(env), pinterest: await pinterest.etatConnexion(env), alerte: Boolean(env.RESEND_KEY && env.ALERTE_A) });
+    if (p === "/api/etat") return json({ jeton: Boolean(env.META_TOKEN), threads: Boolean(env.THREADS_TOKEN), youtube: await youtube.etatConnexion(env), pinterest: await pinterest.etatConnexion(env), tiktok: await tiktok.etatConnexion(env), alerte: Boolean(env.RESEND_KEY && env.ALERTE_A) });
     if (p === "/api/threads/test") {
       try {
         const d = await threads.profil(env);

@@ -70,7 +70,20 @@ async function acces(env) {
 }
 
 export async function etatConnexion(env) {
-  return { connecte: Boolean(await reglage(env, "yt_jeton")), chaine: await reglage(env, "yt_chaine") };
+  const connecte = Boolean(await reglage(env, "yt_jeton"));
+  let chaine = await reglage(env, "yt_chaine");
+  let souci = null;
+  // Nom de chaine vide (premiere connexion) : on le redemande a YouTube.
+  if (connecte && !chaine) {
+    try {
+      const r = await fetch("https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true", { headers: { authorization: `Bearer ${await acces(env)}` } });
+      const c = await r.json();
+      chaine = c.items?.[0]?.snippet?.title || "";
+      if (chaine) await poser(env, "yt_chaine", chaine);
+      else souci = c.error?.message ? String(c.error.message).slice(0, 160) : "Aucune chaine sur ce compte Google";
+    } catch (e) { souci = String(e.message).slice(0, 160); }
+  }
+  return { connecte, chaine, souci };
 }
 
 // Publie une video : la premiere ligne de la legende devient le titre, le reste la description.
