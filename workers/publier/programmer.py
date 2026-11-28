@@ -36,7 +36,7 @@ URL = "https://tgwac-publier.thegirlwithacamera.workers.dev"
 CLE = (pathlib.Path.home() / "Developer/tgwac-website/workers/links/.env.stats-key").read_text().strip()
 BXL = ZoneInfo("Europe/Brussels")
 MORCEAU = 20 * 1024 * 1024
-GENRES = {"essai", "reel", "photo", "carrousel"}
+GENRES = {"essai", "reel", "photo", "carrousel", "story"}
 GENRES_THREADS = {"texte", "photo", "video", "carrousel"}
 GENRES_YOUTUBE = {"video"}
 

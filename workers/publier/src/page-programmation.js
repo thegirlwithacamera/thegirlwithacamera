@@ -206,7 +206,7 @@ const api = (chemin, opts = {}) => fetch(chemin + (chemin.includes('?') ? '&' : 
 const LANG = 'en-GB';
 let fichiers = [], posts = [], studio = [], studioChoisi = null;
 const TYPES_RESEAU = {
-  instagram: [['essai', 'Trial reel'], ['reel', 'Reel'], ['photo', 'Photo'], ['carrousel', 'Carousel']],
+  instagram: [['essai', 'Trial reel'], ['reel', 'Reel'], ['photo', 'Photo'], ['carrousel', 'Carousel'], ['story', 'Story']],
   threads: [['texte', 'Text only'], ['photo', 'Photo'], ['video', 'Video'], ['carrousel', 'Carousel']],
   youtube: [['video', 'Video']],
   pinterest: [['epingle', 'Photo pin']],
@@ -215,7 +215,7 @@ const TYPES_RESEAU = {
 const RESEAUX = [['instagram', 'Instagram'], ['threads', 'Threads'], ['youtube', 'YouTube'], ['pinterest', 'Pinterest'], ['tiktok', 'TikTok']];
 const NOM_RES = { instagram: 'Instagram', threads: 'Threads', youtube: 'YouTube', pinterest: 'Pinterest', tiktok: 'TikTok' };
 const COUL = { instagram: '#e0566f', threads: '#2c3622', youtube: '#b8324c', pinterest: '#f4b1bd', tiktok: '#6f8f4e' };
-const NOMS = { essai: 'Trial reel', reel: 'Reel', photo: 'Photo', carrousel: 'Carousel', texte: 'Text', video: 'Video', epingle: 'Pin' };
+const NOMS = { essai: 'Trial reel', reel: 'Reel', photo: 'Photo', carrousel: 'Carousel', texte: 'Text', video: 'Video', epingle: 'Pin', story: 'Story' };
 const ST = { prevu: 'scheduled', traitement: 'posting', enfants: 'posting', publie: 'posted', erreur: 'error' };
 const PRIV = { PUBLIC_TO_EVERYONE: 'Everyone', MUTUAL_FOLLOW_FRIENDS: 'Friends', FOLLOWER_OF_CREATOR: 'Followers', SELF_ONLY: 'Only me' };
 
@@ -240,7 +240,7 @@ function majGenre() {
   q('#ytCo').hidden = r !== 'youtube';
   q('#blocTt').hidden = q('#ttCo').hidden = r !== 'tiktok';
   if (r === 'tiktok') { chargerCreateur(); majTtMode(); }
-  q('#aideFichiers').textContent = (g === 'carrousel' && r === 'tiktok') ? 'JPEG photos only, up to 35. TikTok adds a sound itself.' : g === 'carrousel' ? 'All the files you pick become one carousel.' : 'Several files = one post per file, spaced by the gap below.';
+  q('#aideFichiers').textContent = g === 'story' ? 'One story per file: a JPEG photo (9:16) or a video, up to 60 s. No caption on stories.' : (g === 'carrousel' && r === 'tiktok') ? 'JPEG photos only, up to 35. TikTok adds a sound itself.' : g === 'carrousel' ? 'All the files you pick become one carousel.' : 'Several files = one post per file, spaced by the gap below.';
   if (texte) { fichiers = []; q('#fichiers').value = ''; }
   dessinerFichiers();
 }

@@ -24,7 +24,7 @@ import { pageCommentaires } from "./page-commentaires.js";
 import { pageProgrammation } from "./page-programmation.js";
 
 const GRAPH = "https://graph.facebook.com/v25.0";
-const GENRES = ["essai", "reel", "photo", "carrousel"];
+const GENRES = ["essai", "reel", "photo", "carrousel", "story"];
 const GENRES_THREADS = ["texte", "photo", "video", "carrousel"];
 const GENRES_YOUTUBE = ["video"];
 const GENRES_PINTEREST = ["epingle"];
@@ -79,6 +79,12 @@ async function creerConteneurs(env, p) {
       delete corps.share_to_feed;
     }
     if (p.couverture != null) corps.thumb_offset = Number(p.couverture) || 0;
+    const c = await meta(env, `${ig}/media`, corps);
+    return { statut: "traitement", conteneur: c.id };
+  }
+  if (p.genre === "story") {
+    // Story : une photo ou une video, sans legende (Instagram ne l'affiche pas).
+    const corps = estVideo(medias[0]) ? { media_type: "STORIES", video_url: url(medias[0]) } : { media_type: "STORIES", image_url: url(medias[0]) };
     const c = await meta(env, `${ig}/media`, corps);
     return { statut: "traitement", conteneur: c.id };
   }
@@ -226,7 +232,7 @@ async function attendre(env, p) {
 // Email a Sandrine quand un post echoue (Resend, offre gratuite).
 async function alerte(env, p, raison) {
   if (!env.RESEND_KEY || !env.ALERTE_A) return;
-  const noms = { essai: "reel d'essai", reel: "reel", photo: "photo", carrousel: "carrousel", texte: "post texte", video: "video" };
+  const noms = { essai: "reel d'essai", reel: "reel", photo: "photo", carrousel: "carrousel", texte: "post texte", video: "video", story: "story" };
   const ou = { threads: "Threads", youtube: "YouTube", pinterest: "Pinterest", tiktok: "TikTok" }[p.reseau] || "Instagram";
   const quand = new Date(p.quand).toLocaleString("fr-BE", { timeZone: "Europe/Brussels", weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
   const lien = `${env.PUBLIC_URL}/?key=${encodeURIComponent(env.CLE || "")}`;
@@ -348,6 +354,7 @@ async function programmer(request, env) {
     if (reseau === "threads" && p.genre === "carrousel" && medias.length > 20) return json({ erreur: "Threads takes 20 files max." }, 400);
     if ((p.genre === "essai" || p.genre === "reel") && !estVideo(medias[0])) return json({ erreur: "A reel needs a video." }, 400);
     if (p.genre === "photo" && !/\.jpg$/.test(medias[0])) return json({ erreur: "Instagram only takes JPEG photos." }, 400);
+    if (p.genre === "story" && !/\.(jpg|mp4|mov|m4v)$/.test(medias[0])) return json({ erreur: "A story takes one JPEG photo or one video." }, 400);
     if (p.genre === "carrousel" && reseau !== "tiktok" && (medias.length < 2 || (reseau === "instagram" && medias.length > 10))) return json({ erreur: "A carousel takes 2 to 10 files." }, 400);
     const quand = new Date(p.quand);
     if (isNaN(quand)) return json({ erreur: "Unreadable date" }, 400);
