@@ -112,6 +112,30 @@ export default async function PrivacyPolicyPage({ params }: Props) {
               days after they are published. It collects nothing from anyone else.
             </p>
 
+            <h2>YouTube API Services</h2>
+            <p>
+              The Girl with a Camera Planner uses YouTube API Services to upload my own videos to my
+              own YouTube channel. By using it, you agree to the{" "}
+              <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>, and Google
+              handles data as described in the{" "}
+              <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.
+            </p>
+            <p>
+              What it accesses: the name of the connected channel, and permission to upload videos to
+              it. What it stores: the access key Google returns, encrypted, and the videos waiting to
+              be published. It does not read, store or share anything else, and nothing is sold or
+              used for advertising.
+            </p>
+            <p>
+              You can withdraw the tool&apos;s access at any time on the{" "}
+              <a href="https://security.google.com/settings/security/permissions">
+                Google security settings page
+              </a>
+              . When access is withdrawn, or on request at{" "}
+              <a href="mailto:sandrine@thegirlwithacamera.com">sandrine@thegirlwithacamera.com</a>,
+              the stored key and any waiting videos are deleted within seven days.
+            </p>
+
             <h2>How long I keep it</h2>
             <p>
               Messages from the contact form are kept for as long as we are in touch, and for up to

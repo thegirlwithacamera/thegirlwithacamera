@@ -60,6 +60,13 @@ export default async function TermsPage({ params }: Props) {
               <Link href="/en/privacy-policy">privacy policy</Link>.
             </p>
 
+            <h2>YouTube</h2>
+            <p>
+              The Planner uses YouTube API Services. Anyone using it agrees to be bound by the{" "}
+              <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a> and the{" "}
+              <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.
+            </p>
+
             <h2>Links to other sites</h2>
             <p>
               Some pages link to other sites, including affiliate links. I am not responsible for

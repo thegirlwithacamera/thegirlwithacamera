@@ -113,6 +113,8 @@ button:disabled{opacity:.45;cursor:wait}
 .voir{font-size:12.5px;color:var(--fraise-deep);font-weight:500;text-decoration:none}
 .err{color:var(--fraise-deep);font-size:12.5px;margin-top:4px;padding:6px 10px;background:var(--fraise-soft);border-radius:10px}
 .vide{color:var(--muted);font-style:italic}
+.pied{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted)}
+.pied span{flex-basis:100%}
 </style></head><body><main>
 <div class="hero">
   <div><div class="sur"><i></i><span>The Girl with a Camera</span></div>
@@ -188,6 +190,13 @@ button:disabled{opacity:.45;cursor:wait}
   <div id="vueListe" hidden><div id="posts"><p class="vide">Loading…</p></div></div>
 </div>
 </div>
+<footer class="pied">
+  <span>The Girl with a Camera Planner uploads to YouTube with YouTube API Services.</span>
+  <a href="https://www.thegirlwithacamera.com/en/privacy-policy" target="_blank" rel="noopener">Privacy policy</a>
+  <a href="https://www.thegirlwithacamera.com/en/terms" target="_blank" rel="noopener">Terms of use</a>
+  <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a>
+  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>
+</footer>
 </main>
 <script>
 const CLE = new URLSearchParams(location.search).get('key') || '';
